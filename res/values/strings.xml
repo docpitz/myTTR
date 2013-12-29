@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">myTTR</string>
+    <string name="username_message">Usernamen eingeben</string>
+    <string name="button_send">Login</string>
+    <string name="password_message">Passwort eingeben</string>
+    <string name="read_from_foto">Aus Photo lesen</string>
+    <string name="enter_manual">Manuell eingeben</string>
+    <string name="after_login_text">Der Login war erfolgreich.\n\nDu hast nun 2 Möglichkeiten die Spieler einzugeben:</string>
+    <string name="main_text">Bitte Login für myTTR</string>
+    <string name="player_1">Spieler 1:</string>
+    <string name="player_1_hint">Namen eingeben</string>
+    <string name="entry_club_edit">Vereinsname eingeben</string>
+    <string name="entry_club_label">Vereinsname (optional, aber wenn Name oft vorkommt (Klaus Müller) dann besser eingeben</string>
+    <string name="entry_lastname_edit">Nachname eingeben</string>
+    <string name="entry_lastname_label">Nachname*:</string>
+    <string name="entry_firstname_edit">Vorname eingeben</string>
+    <string name="entry_firstname_label">Vorname*:</string>
+    <string name="entries_new_player">Spieler anlegen</string>
+    <string name="btn_edit_player">Spieler\nbearbeiten…</string>
+</resources>
