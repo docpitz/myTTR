@@ -12,7 +12,7 @@ package com.jmelzer.myttr.parser;
 
 import android.net.Uri;
 import android.util.Log;
-import com.jmelzer.myttr.Verein;
+import com.jmelzer.myttr.Club;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -24,7 +24,7 @@ public class TTRPointParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
 
-    VereinParser vereinParser = new VereinParser();
+    ClubParser clubParser = new ClubParser();
 
     public int getPoints() {
         String url = "http://mytischtennis.de/community/index";
@@ -61,7 +61,7 @@ public class TTRPointParser {
 
 
         if (vereinsName != null) {
-            Verein v = vereinParser.getVerein(vereinsName);
+            Club v = clubParser.getClubExact(vereinsName);
             if (v != null) {
                 builder.appendQueryParameter("vereinPersonenSuche", v.getName());
                 builder.appendQueryParameter("vereinIdPersonenSuche", v.getId() + "," + v.getVerband());

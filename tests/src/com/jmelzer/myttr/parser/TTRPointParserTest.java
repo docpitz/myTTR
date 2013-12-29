@@ -19,7 +19,7 @@ public class TTRPointParserTest extends TestCase {
     @SmallTest
     public void testgetPoints() {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "bla"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         TTRPointParser ttrPointParser = new TTRPointParser();
         System.out.println("ttrPointParser.parse() = " + ttrPointParser.getPoints());
@@ -28,7 +28,7 @@ public class TTRPointParserTest extends TestCase {
     @SmallTest
     public void testFindPlayer() {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "bla"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         TTRPointParser ttrPointParser = new TTRPointParser();
         assertEquals(-1, ttrPointParser.findPlayer("Jens", "Bauer", null));

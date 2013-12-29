@@ -18,4 +18,5 @@
     <string name="entry_firstname_label">Vorname*:</string>
     <string name="entries_new_player">Spieler anlegen</string>
     <string name="btn_edit_player">Spieler\nbearbeiten…</string>
+    <string name="detail_search">Suchen</string>
 </resources>

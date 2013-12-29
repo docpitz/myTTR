@@ -30,7 +30,7 @@ public class LoginActivity extends Activity {
         userNameTextField.setText("chokdee");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-        pwTextField.setText("bla");
+        pwTextField.setText("fuckyou");
 
 //        button.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {
@@ -85,7 +85,6 @@ public class LoginActivity extends Activity {
             protected Integer doInBackground(String... params) {
 
                 LoginManager loginManager = new LoginManager();
-//                loginManager.login("chokdee", "fuckyou");
                 String username = ((EditText) findViewById(R.id.username)).getText().toString();
                 String pw = ((EditText) findViewById(R.id.password)).getText().toString();
                 if (loginManager.login(username, pw)) {

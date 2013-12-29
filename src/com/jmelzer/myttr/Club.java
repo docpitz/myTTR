@@ -10,14 +10,14 @@
 
 package com.jmelzer.myttr;
 
-public class Verein {
+public class Club {
 
     private String name;
     private String id;
     private String verband;
     private String webName;
 
-    public Verein(String name, String id, String verband, String webName) {
+    public Club(String name, String id, String verband, String webName) {
         this.name = name;
         this.id = id;
         this.verband = verband;

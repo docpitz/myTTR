@@ -35,4 +35,10 @@
             android:layout_height="wrap_content"
             android:text="@string/entry_club_edit"
             android:id="@+id/detail_club" android:inputType="text"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_search"
+            android:onClick="search"
+            android:id="@+id/button" android:layout_gravity="center"/>
 </LinearLayout>

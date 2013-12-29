@@ -19,7 +19,7 @@ public class IntegrationTest extends TestCase {
     @SmallTest
     public void test()  {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "bla"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         TTRPointParser ttrPointParser = new TTRPointParser();
         int myPoints = ttrPointParser.getPoints();
