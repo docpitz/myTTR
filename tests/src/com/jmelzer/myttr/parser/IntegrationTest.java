@@ -11,6 +11,7 @@
 package com.jmelzer.myttr.parser;
 
 import android.test.suitebuilder.annotation.SmallTest;
+import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -24,9 +25,10 @@ public class IntegrationTest extends TestCase {
         TTRPointParser ttrPointParser = new TTRPointParser();
         int myPoints = ttrPointParser.getPoints();
 
-        int ttrB = ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
-        System.out.println("ttrB = " + ttrB);
+        Player p  = ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
+        assertNotNull(p);
+        System.out.println("ttrB = " + p.getTtrPoints());
         TTRCalculator calculator = new TTRCalculator();
-        assertEquals(15, calculator.calcPoints(myPoints, ttrB, true));
+        assertEquals(15, calculator.calcPoints(myPoints, p.getTtrPoints(), true));
     }
 }

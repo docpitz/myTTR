@@ -15,6 +15,10 @@ public class Player {
     String lastname;
     String club;
     int ttrPoints;
+    boolean isChecked;
+
+    public Player() {
+    }
 
     public Player(String firstname, String lastname) {
         this.firstname = firstname;
@@ -60,8 +64,27 @@ public class Player {
         this.ttrPoints = ttrPoints;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
     public String visualize() {
         return firstname + " " + lastname +
                (club ==null ? "" : ("\n" + club)) + "\nTTR: " + ttrPoints;
+    }
+    public String nameAndClub() {
+        return firstname + " " + lastname +
+               (club ==null ? "" : ("\n" + club));
+    }
+
+    public void copy(Player p) {
+        lastname = p.getLastname();
+        firstname = p.getFirstname();
+        ttrPoints = p.getTtrPoints();
+        club = p.getClub();
     }
 }

@@ -4,4 +4,39 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_new_player"
+            android:onClick="newplayer"
+            android:id="@+id/button" android:layout_gravity="center"/>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_player_list"
+            android:id="@+id/textView"/>
+    <Space
+            android:layout_width="20px"
+            android:layout_height="10px"
+            android:id="@+id/space" android:layout_gravity="right|center_vertical"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="24dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:id="@+id/textView1" android:layout_gravity="center"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Punkte"
+                android:id="@+id/textView2" android:layout_gravity="center" android:layout_marginLeft="100dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sieg?"
+                android:id="@+id/textView3" android:layout_gravity="center_vertical|top" android:layout_marginLeft="20dp"/>
+    </LinearLayout>
 </LinearLayout>

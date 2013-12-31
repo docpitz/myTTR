@@ -11,6 +11,7 @@
 package com.jmelzer.myttr.parser;
 
 import android.test.suitebuilder.annotation.SmallTest;
+import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -31,10 +32,13 @@ public class TTRPointParserTest extends TestCase {
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         TTRPointParser ttrPointParser = new TTRPointParser();
-        assertEquals(-1, ttrPointParser.findPlayer("Jens", "Bauer", null));
-        assertEquals(2016, ttrPointParser.findPlayer("Marco", "Vester", null));
+        assertNull(ttrPointParser.findPlayer("Jens", "Bauer", null));
+        assertEquals(2016, ttrPointParser.findPlayer("Marco", "Vester", null).getTtrPoints());
 
-        assertEquals(1742, ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg"));
+        assertEquals(1742, ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
+        Player p = ttrPointParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
+        assertEquals("Hinrichs", p.getLastname());
+        assertEquals("Chritian", p.getFirstname());
 
     }
 }

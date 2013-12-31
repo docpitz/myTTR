@@ -43,6 +43,16 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".activities.ManualEntriesActivity"/>
         </activity>
+        <activity android:name=".activities.ResultActivity"
+                  android:label="@string/app_name" android:icon="@drawable/myttr"
+                  android:parentActivityName=".activities.ManualEntriesActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.ManualEntriesActivity"/>
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

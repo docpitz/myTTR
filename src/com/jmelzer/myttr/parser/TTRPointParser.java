@@ -13,6 +13,7 @@ package com.jmelzer.myttr.parser;
 import android.net.Uri;
 import android.util.Log;
 import com.jmelzer.myttr.Club;
+import com.jmelzer.myttr.Player;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -49,7 +50,7 @@ public class TTRPointParser {
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public int findPlayer(String firstName, String lastName, String vereinsName) {
+    public Player findPlayer(String firstName, String lastName, String vereinsName) {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
@@ -86,24 +87,45 @@ public class TTRPointParser {
             Log.e("TTRParser", "findPlayer", e);
         }
 
-        return 0;
+        return null;
     }
 
-    private int parseTTRForPlayer(String firstName, String lastName, String page) {
-        int idx = page.indexOf(firstName + " " + lastName);
+    private Player parseTTRForPlayer(String firstName, String lastName, String page) {
+        String pageU = page.toUpperCase();
+        String name = (firstName + " " + lastName).toUpperCase();
+        int idx = pageU.indexOf(name);
         if (idx > 0) {
             //do we have more than one?
-            int idx2 = page.indexOf(firstName + " " + lastName, idx + 1);
+            int idx2 = pageU.indexOf(name, idx + 1);
             if (idx2 > 0) {
-                return -1;
+                return null;
             } else {
-                final String textBeforePoints = "<td style=\"text-align:center;\">";
-                idx = page.indexOf(textBeforePoints, idx) + textBeforePoints.length();
-                idx2 = page.indexOf("</td>", idx);
-                return Integer.valueOf(page.substring(idx, idx2).trim());
+                Player player = new Player();
+                player.setTtrPoints(findPoints(idx, pageU));
+                player.setFirstname(findFirstName(idx, pageU));
+                player.setLastname(findLastName(idx, pageU, page));
+                return player;
             }
 
         }
-        return 0;
+        return null;
+    }
+
+    private String findFirstName(int idx, String pageU) {
+        return null;
+    }
+    private String findLastName(int startIdx, String pageU, String page) {
+        String toFind = "<STRONG>";
+        String toFindClose = "</STRONG>";
+        int idx = pageU.indexOf(toFind, startIdx) + toFind.length()+1;
+        return page.substring(idx, pageU.indexOf(toFindClose, idx));
+//        return null;
+    }
+
+    int findPoints(final int startIdx, String pageU) {
+        final String textBeforePoints = "<TD STYLE=\"TEXT-ALIGN:CENTER;\">";
+        int idx = pageU.indexOf(textBeforePoints, startIdx) + textBeforePoints.length();
+        int idx2 = pageU.indexOf("</TD>", idx);
+        return Integer.valueOf(pageU.substring(idx, idx2).trim());
     }
 }

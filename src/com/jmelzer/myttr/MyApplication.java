@@ -22,6 +22,7 @@ public class MyApplication extends Application {
     public static int ttrValue;
     public static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
+    public static int result;
 
     public void onCreate() {
         super.onCreate();
