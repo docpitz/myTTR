@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
 <LinearLayout android:id="@+id/manual_entries_view"
         android:orientation="vertical"
         android:layout_width="fill_parent"

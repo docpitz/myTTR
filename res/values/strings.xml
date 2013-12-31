@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
 <resources>
     <string name="app_name">myTTR</string>
     <string name="username_message">Usernamen eingeben</string>

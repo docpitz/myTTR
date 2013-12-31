@@ -1,11 +1,8 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 29.12.13 
-*
-*/
+/*
+ * Copyright (c) Juergen Melzer
+ *
+ * 2013.
+ */
 
 
 package com.jmelzer.myttr.activities;

@@ -1,11 +1,8 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
+/*
+ * Copyright (c) Juergen Melzer
+ *
+ * 2013.
+ */
 
 
 package com.jmelzer.myttr.parser;
@@ -102,8 +99,8 @@ public class TTRPointParser {
             } else {
                 Player player = new Player();
                 player.setTtrPoints(findPoints(idx, pageU));
-                player.setFirstname(findFirstName(idx, pageU));
-                player.setLastname(findLastName(idx, pageU, page));
+                player.setFirstname(findFirstName(idx, page));
+                player.setLastname(findLastName(idx, page));
                 return player;
             }
 
@@ -111,14 +108,27 @@ public class TTRPointParser {
         return null;
     }
 
-    private String findFirstName(int idx, String pageU) {
-        return null;
+    private String findFirstName(int startIdx, String page) {
+        String toFind = ">";
+        String toFindEnd = "<strong>";
+        int idx = page.indexOf(toFind, startIdx) + toFind.length();
+        int idx2 = page.indexOf(toFindEnd, idx);
+
+        System.out.println(page.substring(idx, idx2));
+        System.out.println(page.substring(idx-10, idx2-10));
+
+        return page.substring(idx, idx2).trim();
     }
-    private String findLastName(int startIdx, String pageU, String page) {
-        String toFind = "<STRONG>";
-        String toFindClose = "</STRONG>";
-        int idx = pageU.indexOf(toFind, startIdx) + toFind.length()+1;
-        return page.substring(idx, pageU.indexOf(toFindClose, idx));
+    private String findLastName(int startIdx, String page) {
+        String toFind = "<strong>";
+        String toFindClose = "</strong>";
+        int idx = page.indexOf(toFind, startIdx) + toFind.length();
+        int idx2 = page.indexOf(toFindClose, idx);
+
+        System.out.println(page.substring(idx, idx2));
+        System.out.println(page.substring(idx - 10, idx2 - 10));
+
+        return page.substring(idx, idx2).trim();
 //        return null;
     }
 

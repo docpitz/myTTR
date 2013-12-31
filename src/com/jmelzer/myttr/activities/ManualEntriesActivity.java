@@ -1,11 +1,8 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 29.12.13 
-*
-*/
+/*
+ * Copyright (c) Juergen Melzer
+ *
+ * 2013.
+ */
 
 
 package com.jmelzer.myttr.activities;
@@ -47,15 +44,23 @@ public class ManualEntriesActivity extends Activity {
             TextView tvPlayer = new TextView(this);
             tvPlayer.setText(player.nameAndClub());
             tvPlayer.setWidth(300);
-//            tvPlayer.setHeight(150);
+            tvPlayer.setHeight(150);
             layoutH.addView(tvPlayer);
 
-            EditText ttrText = new EditText(this);
+//            EditText ttrText = new EditText(this);
+            TextView ttrText = new TextView(this);
             ttrText.setText("" + player.getTtrPoints());
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(20, 0, 0, 0);
+            ttrText.setLayoutParams(layoutParams);
             layoutH.addView(ttrText);
 
             CheckBox checkBox = new CheckBox(this);
             checkBox.setId(i);
+            layoutParams = new LinearLayout.LayoutParams(100, 100);
+            layoutParams.setMargins(40, 0, 0, 0);
+            checkBox.setLayoutParams(layoutParams);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -65,14 +70,9 @@ public class ManualEntriesActivity extends Activity {
             layoutH.addView(checkBox);
 
             ImageButton button = new ImageButton(this);
-//            button.setText(R.string.btn_edit_player);
             button.setImageResource(R.drawable.edit);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            layoutParams.setMargins(30, 0, 0, 0);
+            layoutParams = new LinearLayout.LayoutParams(100, 100);
             button.setLayoutParams(layoutParams);
-//            button.setGravity(Gravity.CENTER_VERTICAL);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,10 +81,27 @@ public class ManualEntriesActivity extends Activity {
                     startActivity(target);
                 }
             });
-
-            //todo add delete btn
-
             layoutH.addView(button);
+
+            ImageButton deleteBtn = new ImageButton(this);
+            deleteBtn.setImageResource(R.drawable.delete);
+            layoutParams = new LinearLayout.LayoutParams(100, 100);
+            deleteBtn.setLayoutParams(layoutParams);
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent target = new Intent(ManualEntriesActivity.this, PlayerDetailActivity.class);
+//                    MyApplication.actualPlayer = player;
+//                    startActivity(target);
+                    MyApplication.players.remove(player);
+                    ManualEntriesActivity.this.recreate();
+//                    View vg = findViewById (R.id.manual_entries_view);
+//                    vg.invalidate();
+                }
+            });
+
+            layoutH.addView(deleteBtn);
+
             layout.addView(layoutH);
             i++;
 

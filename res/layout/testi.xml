@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
@@ -8,17 +14,29 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent" android:layout_gravity="center">
+            android:layout_height="50dp" android:layout_gravity="center|left">
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100px"
                 android:layout_height="wrap_content"
                 android:lines="3"
                 android:text="Marco Vester\n TTG. St. Augustin\n TTR:2001"
                 android:id="@+id/textView" android:layout_gravity="center_horizontal|top"/>
-        <Button
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button" android:layout_gravity="center_horizontal|bottom"/>
+                android:text="1500"
+                android:id="@+id/textView1" android:layout_marginLeft="20dp"/>
+        <CheckBox
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox" android:checked="false"/>
+        <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton" android:src="@drawable/edit"/>
+        <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageButton1" android:src="@drawable/delete"/>
     </LinearLayout>
 </LinearLayout>

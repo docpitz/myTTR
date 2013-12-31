@@ -38,7 +38,11 @@ public class TTRPointParserTest extends TestCase {
         assertEquals(1742, ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
         Player p = ttrPointParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.getLastname());
-        assertEquals("Chritian", p.getFirstname());
+        assertEquals("Christian", p.getFirstname());
+
+        p = ttrPointParser.findPlayer("manfred", "Hildebrand", "TTG St. Augustin");
+        assertEquals("Hildebrandt", p.getLastname());
+        assertEquals("Manfred", p.getFirstname());
 
     }
 }

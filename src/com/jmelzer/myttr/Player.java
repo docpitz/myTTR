@@ -1,11 +1,8 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 29.12.13 
-*
-*/
+/*
+ * Copyright (c) Juergen Melzer
+ *
+ * 2013.
+ */
 
 
 package com.jmelzer.myttr;
@@ -82,9 +79,44 @@ public class Player {
     }
 
     public void copy(Player p) {
+        if (p == null) {
+            return;
+        }
         lastname = p.getLastname();
         firstname = p.getFirstname();
         ttrPoints = p.getTtrPoints();
         club = p.getClub();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Player player = (Player) o;
+
+        if (club != null ? !club.equals(player.club) : player.club != null) {
+            return false;
+        }
+        if (firstname != null ? !firstname.equals(player.firstname) : player.firstname != null) {
+            return false;
+        }
+        if (lastname != null ? !lastname.equals(player.lastname) : player.lastname != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstname != null ? firstname.hashCode() : 0;
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        result = 31 * result + (club != null ? club.hashCode() : 0);
+        return result;
     }
 }
