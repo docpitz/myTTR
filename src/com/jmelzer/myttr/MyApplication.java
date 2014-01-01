@@ -24,8 +24,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MyApplication.context = getApplicationContext();
-        Player p = new Player("Marco", "Vester", "TTG St. Augustin", 2015);
-        players.add(p);
     }
 
     public static Context getAppContext() {

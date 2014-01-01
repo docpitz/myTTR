@@ -13,7 +13,7 @@
     <string name="read_from_foto">Aus Photo lesen</string>
     <string name="enter_manual">Manuell eingeben</string>
     <string name="after_login_text">Der Login war erfolgreich.\n\nDu hast nun 2 Möglichkeiten die Spieler einzugeben:</string>
-    <string name="main_text">Bitte Login für myTTR</string>
+    <string name="main_text">Bitte Login für myTischtennis.de</string>
     <string name="player_1">Spieler 1:</string>
     <string name="player_1_hint">Namen eingeben</string>
     <string name="entry_club_edit">Vereinsname eingeben</string>

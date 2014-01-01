@@ -19,7 +19,7 @@
                 android:layout_width="100px"
                 android:layout_height="wrap_content"
                 android:lines="3"
-                android:text="Marco Vester\n TTG. St. Augustin\n TTR:2001"
+                android:text="Dummy Spieler\n TTG. St. Augustin\n TTR:1950"
                 android:id="@+id/textView" android:layout_gravity="center_horizontal|top"/>
         <TextView
                 android:layout_width="wrap_content"

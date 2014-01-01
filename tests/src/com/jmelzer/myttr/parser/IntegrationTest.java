@@ -18,9 +18,9 @@ import junit.framework.TestCase;
 public class IntegrationTest extends TestCase {
 
     @SmallTest
-    public void test()  {
+    public void test() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("myttlogin", "mytpw"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();

@@ -35,10 +35,10 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
-        userNameTextField.setText("chokdee");
+//        userNameTextField.setText("myttlogin");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-        pwTextField.setText("fuckyou");
+//        pwTextField.setText("mytpw");
 
 
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
@@ -75,7 +75,7 @@ public class LoginActivity extends Activity {
             System.out.println("time = " + (System.currentTimeMillis() - start) + "ms");
             if (ttr == 0) {
                 Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich bitte nochmals versuchen.",
-                               100000);
+                               Toast.LENGTH_SHORT).show();
 //                    AlertDialog ad = new AlertDialog.Builder(LoginActivity.this).create();
 //                    ad.setCancelable(false); // This blocks the 'BACK' button
 //                    ad.setMessage("TTR punkte = " + ttr);
