@@ -31,4 +31,7 @@ public class MyApplication extends Application {
     public static Context getAppContext() {
         return MyApplication.context;
     }
+    public static String getTitle() {
+        return "Dein TTR: " + ttrValue;
+    }
 }

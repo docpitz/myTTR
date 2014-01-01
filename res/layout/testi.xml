@@ -39,4 +39,9 @@
                 android:layout_height="40dp"
                 android:id="@+id/imageButton1" android:src="@drawable/delete"/>
     </LinearLayout>
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView2" android:layout_gravity="center_horizontal" android:paddingLeft="10dp"/>
 </LinearLayout>

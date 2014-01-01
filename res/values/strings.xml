@@ -27,6 +27,6 @@
     <string name="detail_search">Suchen</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
-    <string name="btn_new_player">Neuen Spieler anlegen</string>
+    <string name="btn_new_player">Spieler suchen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string><string name="result_txt">Das Ergebnis</string>
 </resources>

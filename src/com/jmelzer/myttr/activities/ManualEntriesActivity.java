@@ -28,6 +28,8 @@ public class ManualEntriesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_entries);
 
+        setTitle(MyApplication.getTitle());
+
         LinearLayout layout = (LinearLayout) findViewById(R.id.manual_entries_view);
 
         //todo refactor to listview
@@ -90,18 +92,12 @@ public class ManualEntriesActivity extends Activity {
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent target = new Intent(ManualEntriesActivity.this, PlayerDetailActivity.class);
-//                    MyApplication.actualPlayer = player;
-//                    startActivity(target);
                     MyApplication.players.remove(player);
                     ManualEntriesActivity.this.recreate();
-//                    View vg = findViewById (R.id.manual_entries_view);
-//                    vg.invalidate();
                 }
             });
 
             layoutH.addView(deleteBtn);
-
             layout.addView(layoutH);
             i++;
 
@@ -112,11 +108,14 @@ public class ManualEntriesActivity extends Activity {
         buttonCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (MyApplication.players.size() == 0) {
+                    Toast.makeText(ManualEntriesActivity.this,
+                                   "Bitte zunächst einen Spieler auswählen.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int newV = MyApplication.ttrValue;
-                System.out.println("newV = " + newV);
                 for (Player player : MyApplication.players) {
                     newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked());
-//                    System.out.println("newV = " + newV);
                 }
                 MyApplication.result = newV;
                 Intent target = new Intent(ManualEntriesActivity.this, ResultActivity.class);

@@ -22,10 +22,10 @@ public class IntegrationTest extends TestCase {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
-        TTRPointParser ttrPointParser = new TTRPointParser();
-        int myPoints = ttrPointParser.getPoints();
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        int myPoints = myTischtennisParser.getPoints();
 
-        Player p  = ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
+        Player p  = myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
         assertNotNull(p);
         System.out.println("ttrB = " + p.getTtrPoints());
         TTRCalculator calculator = new TTRCalculator();

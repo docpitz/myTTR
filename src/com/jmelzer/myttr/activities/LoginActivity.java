@@ -20,7 +20,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.parser.LoginManager;
-import com.jmelzer.myttr.parser.TTRPointParser;
+import com.jmelzer.myttr.parser.MyTischtennisParser;
 
 public class LoginActivity extends Activity {
     Button btnSignIn;
@@ -46,6 +46,7 @@ public class LoginActivity extends Activity {
 
         // Get The Refference Of Buttons
         btnSignIn = (Button) findViewById(R.id.button_login);
+
 
         User user = loginDataBaseAdapter.getSinlgeEntry();
         if (user != null) {
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity {
             System.out.println("time = " + (System.currentTimeMillis() - start) + "ms");
             if (ttr == 0) {
                 Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich bitte nochmals versuchen.",
-                               1000);
+                               100000);
 //                    AlertDialog ad = new AlertDialog.Builder(LoginActivity.this).create();
 //                    ad.setCancelable(false); // This blocks the 'BACK' button
 //                    ad.setMessage("TTR punkte = " + ttr);
@@ -111,8 +112,8 @@ public class LoginActivity extends Activity {
             if (loginManager.login(username, pw)) {
                 loginDataBaseAdapter.deleteEntry(username);
                 loginDataBaseAdapter.insertEntry(username, pw);
-                TTRPointParser ttrPointParser = new TTRPointParser();
-                ttr = ttrPointParser.getPoints();
+                MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+                ttr = myTischtennisParser.getPoints();
             }
 
             return null;

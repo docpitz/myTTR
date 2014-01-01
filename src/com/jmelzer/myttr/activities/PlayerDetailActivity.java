@@ -11,26 +11,26 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.parser.ClubParser;
-import com.jmelzer.myttr.parser.LoginManager;
-import com.jmelzer.myttr.parser.TTRPointParser;
+import com.jmelzer.myttr.parser.MyTischtennisParser;
+import com.jmelzer.myttr.parser.TooManyPlayersFound;
 
 import java.util.List;
 
 public class PlayerDetailActivity extends Activity {
 
     ClubParser clubParser = new ClubParser();
-    TTRPointParser ttrPointParser = new TTRPointParser();
+    MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -107,16 +107,19 @@ public class PlayerDetailActivity extends Activity {
                 }
                 System.out.println("time = " + (System.currentTimeMillis() - start) + "ms" );
                 if (ttr == 0) {
-                    AlertDialog ad = new AlertDialog.Builder(PlayerDetailActivity.this).create();
-                    ad.setCancelable(false); // This blocks the 'BACK' button
-                    ad.setMessage("TTR punkte = " + ttr);
-                    ad.setButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    ad.show();
+//                    AlertDialog ad = new AlertDialog.Builder(PlayerDetailActivity.this).create();
+//                    ad.setCancelable(false); // This blocks the 'BACK' button
+//                    ad.setMessage("TTR punkte = " + ttr);
+//                    ad.setButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//                    ad.show();
+                    Toast.makeText(PlayerDetailActivity.this,
+                                   "Es wurden mehrere Spieler gefunden. Bitte Verein angeben",
+                                   Toast.LENGTH_SHORT).show();
                 } else {
                     MyApplication.actualPlayer.setTtrPoints(ttr);
                     System.out.println("ttr = " + ttr);
@@ -128,7 +131,12 @@ public class PlayerDetailActivity extends Activity {
             @Override
             protected Integer doInBackground(String... params) {
 
-                Player p  = ttrPointParser.findPlayer(firstname, lastname, club);
+                Player p  = null;
+                try {
+                    p = myTischtennisParser.findPlayer(firstname, lastname, club);
+                } catch (TooManyPlayersFound tooManyPlayersFound) {
+                    return null;
+                }
                 MyApplication.actualPlayer.copy(p);
                 if (p != null) {
                     ttr = p.getTtrPoints();

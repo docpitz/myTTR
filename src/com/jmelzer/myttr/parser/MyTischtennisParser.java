@@ -18,7 +18,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class TTRPointParser {
+public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
 
@@ -47,7 +47,7 @@ public class TTRPointParser {
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public Player findPlayer(String firstName, String lastName, String vereinsName) {
+    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
@@ -55,7 +55,6 @@ public class TTRPointParser {
                 .path("community/ranking")
                 .appendQueryParameter("vorname", firstName)
                 .appendQueryParameter("nachname", lastName);
-//                .build().toString();
 
 
         if (vereinsName != null) {
@@ -78,7 +77,7 @@ public class TTRPointParser {
 //            System.out.println("response.getStatusLine().getStatusCode() = " + response.getStatusLine().getStatusCode());
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
-            return parseTTRForPlayer(firstName, lastName, page);
+            return parseForPlayer(firstName, lastName, page);
 //            System.out.println("page = " + page);
         } catch (IOException e) {
             Log.e("TTRParser", "findPlayer", e);
@@ -87,7 +86,7 @@ public class TTRPointParser {
         return null;
     }
 
-    private Player parseTTRForPlayer(String firstName, String lastName, String page) {
+    private Player parseForPlayer(String firstName, String lastName, String page) throws TooManyPlayersFound {
         String pageU = page.toUpperCase();
         String name = (firstName + " " + lastName).toUpperCase();
         int idx = pageU.indexOf(name);
@@ -95,7 +94,7 @@ public class TTRPointParser {
             //do we have more than one?
             int idx2 = pageU.indexOf(name, idx + 1);
             if (idx2 > 0) {
-                return null;
+                throw new TooManyPlayersFound();
             } else {
                 Player player = new Player();
                 player.setTtrPoints(findPoints(idx, pageU));

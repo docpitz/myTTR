@@ -15,15 +15,15 @@ import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-public class TTRPointParserTest extends TestCase {
+public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testgetPoints() {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
-        TTRPointParser ttrPointParser = new TTRPointParser();
-        System.out.println("ttrPointParser.parse() = " + ttrPointParser.getPoints());
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        System.out.println("ttrPointParser.parse() = " + myTischtennisParser.getPoints());
     }
 
     @SmallTest
@@ -31,16 +31,16 @@ public class TTRPointParserTest extends TestCase {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
-        TTRPointParser ttrPointParser = new TTRPointParser();
-        assertNull(ttrPointParser.findPlayer("Jens", "Bauer", null));
-        assertEquals(2016, ttrPointParser.findPlayer("Marco", "Vester", null).getTtrPoints());
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        assertNull(myTischtennisParser.findPlayer("Jens", "Bauer", null));
+        assertEquals(2016, myTischtennisParser.findPlayer("Marco", "Vester", null).getTtrPoints());
 
-        assertEquals(1742, ttrPointParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
-        Player p = ttrPointParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
+        assertEquals(1742, myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
+        Player p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.getLastname());
         assertEquals("Christian", p.getFirstname());
 
-        p = ttrPointParser.findPlayer("manfred", "Hildebrand", "TTG St. Augustin");
+        p = myTischtennisParser.findPlayer("manfred", "Hildebrand", "TTG St. Augustin");
         assertEquals("Hildebrandt", p.getLastname());
         assertEquals("Manfred", p.getFirstname());
 
