@@ -59,8 +59,20 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".activities.ManualEntriesActivity"/>
         </activity>
+        <activity android:name=".activities.EnterTTRActivity"
+                  android:label="@string/app_name" android:icon="@drawable/myttr"
+                  android:parentActivityName=".activities.AfterLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.AfterLoginActivity"/>
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--todo remove this later-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

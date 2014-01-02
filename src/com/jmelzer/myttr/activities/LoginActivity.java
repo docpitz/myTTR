@@ -7,7 +7,9 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,11 +23,14 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.parser.LoginManager;
 import com.jmelzer.myttr.parser.MyTischtennisParser;
+import com.jmelzer.myttr.parser.PlayerNotWellRegistered;
 
 public class LoginActivity extends Activity {
     Button btnSignIn;
     LoginDataBaseAdapter loginDataBaseAdapter;
     LoginManager loginManager = new LoginManager();
+    boolean loginSuccess;
+    private boolean playerNotWellRegistered = false;
 
     /** Called when the activity is first created. */
     @Override
@@ -35,10 +40,10 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
-//        userNameTextField.setText("myttlogin");
+//        userNameTextField.setText("my123");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-//        pwTextField.setText("mytpw");
+//        pwTextField.setText("123456");
 
 
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
@@ -50,6 +55,8 @@ public class LoginActivity extends Activity {
 
         User user = loginDataBaseAdapter.getSinlgeEntry();
         if (user != null) {
+            userNameTextField.setText(user.getUsername());
+            pwTextField.setText(user.getPassword());
             login(null);
         }
     }
@@ -72,20 +79,18 @@ public class LoginActivity extends Activity {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            System.out.println("time = " + (System.currentTimeMillis() - start) + "ms");
-            if (ttr == 0) {
-                Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich bitte nochmals versuchen.",
+
+            if (playerNotWellRegistered) {
+                MyApplication.ttrValue = -1;
+                gotoNextActivity();
+                return;
+            }
+            if (loginSuccess && ttr == 0) {
+                Toast.makeText(LoginActivity.this, "Login war erfolgreich konnte aber die Punkte nicht finden.",
                                Toast.LENGTH_SHORT).show();
-//                    AlertDialog ad = new AlertDialog.Builder(LoginActivity.this).create();
-//                    ad.setCancelable(false); // This blocks the 'BACK' button
-//                    ad.setMessage("TTR punkte = " + ttr);
-//                    ad.setButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//                    ad.show();
+            }else if (!loginSuccess) {
+                Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich. Hast du einen Premiumaccount?",
+                               Toast.LENGTH_SHORT).show();
             } else {
                 MyApplication.ttrValue = ttr;
                 gotoNextActivity();
@@ -97,7 +102,7 @@ public class LoginActivity extends Activity {
             start = System.currentTimeMillis();
             if (progressDialog == null) {
                 progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.setMessage("Login, bitte warten...");
+                progressDialog.setMessage("Login zu mytischtennis.de, bitte warten...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
@@ -110,10 +115,15 @@ public class LoginActivity extends Activity {
             String username = ((EditText) findViewById(R.id.username)).getText().toString();
             String pw = ((EditText) findViewById(R.id.password)).getText().toString();
             if (loginManager.login(username, pw)) {
+                loginSuccess = true;
                 loginDataBaseAdapter.deleteEntry(username);
                 loginDataBaseAdapter.insertEntry(username, pw);
                 MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-                ttr = myTischtennisParser.getPoints();
+                try {
+                    ttr = myTischtennisParser.getPoints();
+                } catch (PlayerNotWellRegistered e) {
+                    playerNotWellRegistered = true;
+                }
             }
 
             return null;

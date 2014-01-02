@@ -29,4 +29,5 @@
     <string name="cancel">Abbrechen</string>
     <string name="btn_new_player">Spieler suchen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string><string name="result_txt">Das Ergebnis</string>
+    <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen. Darum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>
 </resources>

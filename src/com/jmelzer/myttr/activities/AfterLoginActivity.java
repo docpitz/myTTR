@@ -34,4 +34,13 @@ public class AfterLoginActivity extends Activity {
         Toast.makeText(getApplicationContext(), "Noch nicht fettig.",
                        Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (MyApplication.ttrValue < 0) {
+            Intent target = new Intent(this, EnterTTRActivity.class);
+            startActivity(target);
+        }
+    }
 }

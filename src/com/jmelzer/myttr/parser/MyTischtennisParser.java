@@ -7,24 +7,29 @@
 
 package com.jmelzer.myttr.parser;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import com.jmelzer.myttr.Club;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
-
     ClubParser clubParser = new ClubParser();
 
-    public int getPoints() {
+    public int getPoints() throws PlayerNotWellRegistered {
         String url = "http://mytischtennis.de/community/index";
 
         HttpGet httpGet = new HttpGet(url);
@@ -32,14 +37,43 @@ public class MyTischtennisParser {
             HttpResponse response = Client.client.execute(httpGet);
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
+
+            checkIfPlayerRegisteredWithClub(page);
+
             int start = page.indexOf(ZUR_TTR_HISTORIE) + ZUR_TTR_HISTORIE.length();
+            if (start < 0) {
+                return -1;
+            }
             int end = page.indexOf("</a>", start + 1);
-            return Integer.valueOf(page.substring(start, end));
+            if (end < 0) {
+                return -2;
+            }
+            try {
+                return Integer.valueOf(page.substring(start, end));
+            } catch (NumberFormatException e) {
+                String filename = "myfile.html";
+                FileOutputStream outputStream;
+
+                File file = new File("/storage/sdcard0/Download", filename);
+                outputStream = new FileOutputStream(file);
+                outputStream.write(page.getBytes());
+                outputStream.close();
+                file.setReadable(true);
+                return -3;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return 0;
+    }
+
+    private void checkIfPlayerRegisteredWithClub(String page) throws PlayerNotWellRegistered {
+        final String toCheck = "Du bist für uns leider nicht eindeutig";
+
+        if (page.indexOf(toCheck) > 0) {
+            throw new PlayerNotWellRegistered();
+        }
     }
 
     /**
@@ -67,7 +101,6 @@ public class MyTischtennisParser {
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
         url = url.replace("%20", "+");
-
 
 
         try {
@@ -114,10 +147,11 @@ public class MyTischtennisParser {
         int idx2 = page.indexOf(toFindEnd, idx);
 
         System.out.println(page.substring(idx, idx2));
-        System.out.println(page.substring(idx-10, idx2-10));
+        System.out.println(page.substring(idx - 10, idx2 - 10));
 
         return page.substring(idx, idx2).trim();
     }
+
     private String findLastName(int startIdx, String page) {
         String toFind = "<strong>";
         String toFindClose = "</strong>";
