@@ -51,7 +51,7 @@ public class MyTischtennisParser {
             try {
                 return Integer.valueOf(page.substring(start, end));
             } catch (NumberFormatException e) {
-                String filename = "myfile.html";
+                String filename = "myttr.html";
                 FileOutputStream outputStream;
 
                 File file = new File("/storage/sdcard0/Download", filename);
