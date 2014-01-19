@@ -78,6 +78,12 @@ public class PlayerDetailActivity extends Activity {
             String firstname = ((EditText) findViewById(R.id.detail_firstname)).getText().toString();
             String lastname = ((EditText) findViewById(R.id.detail_lastname)).getText().toString();
             club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
+            if ("".equals(firstname) || "".equals(lastname)) {
+                Toast.makeText(PlayerDetailActivity.this,
+                               "Bitte Vornamen und nach Namen angeben!",
+                               Toast.LENGTH_SHORT).show();
+                return;
+            }
             findPlayer(club, firstname, lastname);
         }
 
@@ -105,25 +111,17 @@ public class PlayerDetailActivity extends Activity {
                 if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                System.out.println("time = " + (System.currentTimeMillis() - start) + "ms" );
                 if (ttr == 0) {
-//                    AlertDialog ad = new AlertDialog.Builder(PlayerDetailActivity.this).create();
-//                    ad.setCancelable(false); // This blocks the 'BACK' button
-//                    ad.setMessage("TTR punkte = " + ttr);
-//                    ad.setButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//                    ad.show();
+                    Toast.makeText(PlayerDetailActivity.this,
+                                   "Es wurde kein Spieler mit dem Namen gefunden.",
+                                   Toast.LENGTH_SHORT).show();
+                }
+                else if (ttr == -1) {
                     Toast.makeText(PlayerDetailActivity.this,
                                    "Es wurden mehrere Spieler gefunden. Bitte Verein angeben",
                                    Toast.LENGTH_SHORT).show();
                 } else {
                     MyApplication.actualPlayer.setTtrPoints(ttr);
-                    System.out.println("ttr = " + ttr);
-//                    navigateUpTo()
                     NavUtils.navigateUpFromSameTask(PlayerDetailActivity.this);
                 }
             }
@@ -135,11 +133,14 @@ public class PlayerDetailActivity extends Activity {
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
+                    ttr = -1;
                     return null;
                 }
-                MyApplication.actualPlayer.copy(p);
                 if (p != null) {
+                    MyApplication.actualPlayer.copy(p);
                     ttr = p.getTtrPoints();
+                } else {
+                    ttr = 0;
                 }
                 return null;
             }

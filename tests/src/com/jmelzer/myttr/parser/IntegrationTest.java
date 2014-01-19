@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 public class IntegrationTest extends TestCase {
 
     @SmallTest
-    public void test() throws TooManyPlayersFound {
+    public void test() throws TooManyPlayersFound, PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("myttlogin", "mytpw"));
 

@@ -52,6 +52,7 @@ public class LoginActivity extends Activity {
         // Get The Refference Of Buttons
         btnSignIn = (Button) findViewById(R.id.button_login);
 
+        loginDataBaseAdapter.deleteAllEntriesIfErrors();
 
         User user = loginDataBaseAdapter.getSinlgeEntry();
         if (user != null) {

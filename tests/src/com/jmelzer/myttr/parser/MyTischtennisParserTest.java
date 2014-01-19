@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
-    public void testgetPoints() {
+    public void testgetPoints() throws PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("myttlogin", "mytpw"));
 

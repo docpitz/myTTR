@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import com.jmelzer.myttr.User;
 
 public class LoginDataBaseAdapter {
@@ -62,10 +63,18 @@ public class LoginDataBaseAdapter {
         return numberOFEntriesDeleted;
     }
 
+    public void deleteAllEntriesIfErrors() {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME is not null", null, null, null, null);
+        if (cursor.getCount() > 1) {
+            cursor.close();
+            db.execSQL("delete from LOGIN");
+            Log.i("myttr", "cleanuped table");
+        }
+    }
+
     public User getSinlgeEntry() {
         Cursor cursor = db.query("LOGIN", null, " USERNAME is not null", null, null, null, null);
-        if (cursor.getCount() < 1) // UserName Not Exist
-        {
+        if (cursor.getCount() < 1) {
             cursor.close();
             return null;
         }
