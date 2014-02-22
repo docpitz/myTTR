@@ -10,6 +10,9 @@ package com.jmelzer.myttr.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import com.jmelzer.myttr.MyApplication;
@@ -30,7 +33,8 @@ public class AfterLoginActivity extends Activity {
         Intent target = new Intent(this, ManualEntriesActivity.class);
         startActivity(target);
     }
-    public void  ocr(final View view) {
+
+    public void ocr(final View view) {
         Toast.makeText(getApplicationContext(), "Noch nicht fettig.",
                        Toast.LENGTH_LONG).show();
     }
@@ -42,5 +46,22 @@ public class AfterLoginActivity extends Activity {
             Intent target = new Intent(this, EnterTTRActivity.class);
             startActivity(target);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.settings, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menu_settings:
+                Intent intent = new Intent(AfterLoginActivity.this, MySettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return false;
     }
 }
