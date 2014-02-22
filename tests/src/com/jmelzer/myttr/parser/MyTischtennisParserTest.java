@@ -20,16 +20,18 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testgetPoints() throws PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("myttlogin", "mytpw"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        int myPoints = myTischtennisParser.getPoints();
         System.out.println("ttrPointParser.parse() = " + myTischtennisParser.getPoints());
+        assertEquals(1564, myPoints);
     }
 
     @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("myttlogin", "mytpw"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         try {
@@ -38,9 +40,9 @@ public class MyTischtennisParserTest extends TestCase {
         } catch (TooManyPlayersFound tooManyPlayersFound) {
             //ok
         }
-        assertEquals(2016, myTischtennisParser.findPlayer("Marco", "Vester", null).getTtrPoints());
+        assertEquals(2017, myTischtennisParser.findPlayer("Marco", "Vester", null).getTtrPoints());
 
-        assertEquals(1742, myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
+        assertEquals(1734, myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
         Player p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.getLastname());
         assertEquals("Christian", p.getFirstname());

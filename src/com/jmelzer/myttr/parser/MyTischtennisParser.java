@@ -30,7 +30,7 @@ public class MyTischtennisParser {
     ClubParser clubParser = new ClubParser();
 
     public int getPoints() throws PlayerNotWellRegistered {
-        String url = "http://mytischtennis.de/community/index";
+        String url = "http://www.mytischtennis.de/community/index";
 
         HttpGet httpGet = new HttpGet(url);
         try {
@@ -85,7 +85,7 @@ public class MyTischtennisParser {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
-                .authority("mytischtennis.de")
+                .authority("www.mytischtennis.de")
                 .path("community/ranking")
                 .appendQueryParameter("vorname", firstName)
                 .appendQueryParameter("nachname", lastName);
@@ -104,7 +104,7 @@ public class MyTischtennisParser {
 
 
         try {
-            System.out.println("url = " + url);
+            Log.d("TTRParser", "url = " + url);
             HttpGet httpGet = new HttpGet(url);
             HttpResponse response = Client.client.execute(httpGet);
 //            System.out.println("response.getStatusLine().getStatusCode() = " + response.getStatusLine().getStatusCode());
