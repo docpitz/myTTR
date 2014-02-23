@@ -7,12 +7,12 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,9 +21,9 @@ import android.widget.Toast;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.User;
-import com.jmelzer.myttr.parser.LoginManager;
-import com.jmelzer.myttr.parser.MyTischtennisParser;
-import com.jmelzer.myttr.parser.PlayerNotWellRegistered;
+import com.jmelzer.myttr.logic.LoginManager;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
 public class LoginActivity extends Activity {
     Button btnSignIn;
@@ -65,7 +65,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (MyApplication.ttrValue > 0) {
+        if (MyApplication.loginUser.getPoints() > 0) {
             gotoNextActivity();
         }
     }
@@ -82,18 +82,18 @@ public class LoginActivity extends Activity {
             }
 
             if (playerNotWellRegistered) {
-                MyApplication.ttrValue = -1;
+                MyApplication.loginUser.setPoints(-1);
                 gotoNextActivity();
                 return;
             }
             if (loginSuccess && ttr == 0) {
                 Toast.makeText(LoginActivity.this, "Login war erfolgreich konnte aber die Punkte nicht finden.",
                                Toast.LENGTH_SHORT).show();
-            }else if (!loginSuccess) {
+            } else if (!loginSuccess) {
                 Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich. Hast du einen Premiumaccount?",
                                Toast.LENGTH_SHORT).show();
             } else {
-                MyApplication.ttrValue = ttr;
+                MyApplication.loginUser.setPoints(ttr);
                 gotoNextActivity();
             }
         }
@@ -117,13 +117,20 @@ public class LoginActivity extends Activity {
             String pw = ((EditText) findViewById(R.id.password)).getText().toString();
             if (loginManager.login(username, pw)) {
                 loginSuccess = true;
-                loginDataBaseAdapter.deleteEntry(username);
-                loginDataBaseAdapter.insertEntry(username, pw);
                 MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+
                 try {
                     ttr = myTischtennisParser.getPoints();
                 } catch (PlayerNotWellRegistered e) {
                     playerNotWellRegistered = true;
+                }
+                MyApplication.loginUser = new User(username, pw, ttr);
+                loginDataBaseAdapter.deleteEntry(username);
+
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
+                if (saveUser) {
+                    loginDataBaseAdapter.insertEntry(username, pw, ttr);
                 }
             }
 

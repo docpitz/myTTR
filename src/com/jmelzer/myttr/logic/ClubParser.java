@@ -5,7 +5,7 @@
  */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.MyApplication;

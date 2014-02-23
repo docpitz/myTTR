@@ -28,7 +28,7 @@ public class EnterTTRActivity extends Activity {
 
         EditText txtField = (EditText) findViewById(R.id.txt_ttrvalue);
         try {
-            MyApplication.ttrValue = Integer.valueOf(txtField.getText().toString());
+            MyApplication.loginUser.setPoints(Integer.valueOf(txtField.getText().toString()));
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Das ist keine g\u00FCltige Zahl.", Toast.LENGTH_SHORT).show();
             return;

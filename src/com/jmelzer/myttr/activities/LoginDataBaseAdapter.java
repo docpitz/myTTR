@@ -12,16 +12,17 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.User;
 
 public class LoginDataBaseAdapter {
     public static final int NAME_COLUMN = 1;
     static final String DATABASE_NAME = "login.db";
-    static final int DATABASE_VERSION = 1;
-    // TODO: Create public field for each column in your table.
+    static final int DATABASE_VERSION = 2;
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
-                                          "( " + "ID" + " integer primary key autoincrement," + "USERNAME  text,PASSWORD text); ";
+                                          "( " + "ID" + " integer primary key autoincrement," +
+                                          "USERNAME  text,PASSWORD text, POINTS NUMERIC); ";
     // Context of the application using the database.
     private final Context context;
     // Variable to hold the database instance
@@ -47,11 +48,12 @@ public class LoginDataBaseAdapter {
         return db;
     }
 
-    public long insertEntry(String userName, String password) {
+    public long insertEntry(String userName, String password, int points) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
+        newValues.put("POINTS", points);
 
         // Insert the row into your table
         return db.insert("LOGIN", null, newValues);
@@ -68,7 +70,7 @@ public class LoginDataBaseAdapter {
         if (cursor.getCount() > 1) {
             cursor.close();
             db.execSQL("delete from LOGIN");
-            Log.i("myttr", "cleanuped table");
+            Log.i(Constants.LOG_TAG, "cleanuped table");
         }
     }
 
@@ -81,8 +83,9 @@ public class LoginDataBaseAdapter {
         cursor.moveToFirst();
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         String username = cursor.getString(cursor.getColumnIndex("USERNAME"));
+        int points = cursor.getInt(cursor.getColumnIndex("POINTS"));
         cursor.close();
-        return new User(username, password);
+        return new User(username, password, points);
     }
 
     public void updateEntry(String userName, String password) {

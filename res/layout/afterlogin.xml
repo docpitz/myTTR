@@ -28,9 +28,8 @@
             android:onClick="manual"
             android:id="@+id/button"/>
     <Button
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/read_from_foto"
-            android:onClick="ocr"
-            android:id="@+id/button1"/>
+            android:text="Vereinsrangliste"
+            android:id="@+id/button_verein_rangliste"/>
 </LinearLayout>

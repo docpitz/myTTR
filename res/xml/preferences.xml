@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
-            android:key="pref_sync"
+            android:key="SYNC_TTR"
             android:title="@string/pref_sync"
             android:summary="@string/pref_sync_summ"
+            android:defaultValue="true" />
+    <CheckBoxPreference
+            android:key="SAVE_USER"
+            android:title="@string/pref_user"
+            android:summary="@string/pref_user_summ"
             android:defaultValue="true" />
 
 </PreferenceScreen>

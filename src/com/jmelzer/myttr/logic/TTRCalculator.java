@@ -5,7 +5,7 @@
  */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
 public class TTRCalculator {
 

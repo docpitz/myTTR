@@ -5,15 +5,12 @@
  */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 import com.jmelzer.myttr.Club;
-import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Player;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -104,7 +101,7 @@ public class MyTischtennisParser {
 
 
         try {
-            Log.d("TTRParser", "url = " + url);
+            Log.d(Constants.LOG_TAG, "url = " + url);
             HttpGet httpGet = new HttpGet(url);
             HttpResponse response = Client.client.execute(httpGet);
 //            System.out.println("response.getStatusLine().getStatusCode() = " + response.getStatusLine().getStatusCode());
@@ -113,7 +110,7 @@ public class MyTischtennisParser {
             return parseForPlayer(firstName, lastName, page);
 //            System.out.println("page = " + page);
         } catch (IOException e) {
-            Log.e("TTRParser", "findPlayer", e);
+            Log.e(Constants.LOG_TAG, "findPlayer", e);
         }
 
         return null;

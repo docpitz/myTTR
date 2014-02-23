@@ -16,7 +16,7 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private static Context context;
-    public static int ttrValue;
+    public static User loginUser = new User("", "", 0);
     public static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
     public static int result;
@@ -29,7 +29,8 @@ public class MyApplication extends Application {
     public static Context getAppContext() {
         return MyApplication.context;
     }
+
     public static String getTitle() {
-        return "Dein TTR: " + ttrValue;
+        return "Dein TTR: " + loginUser.getPoints();
     }
 }

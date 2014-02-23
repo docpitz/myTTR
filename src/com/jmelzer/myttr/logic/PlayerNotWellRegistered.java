@@ -11,7 +11,7 @@
 */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
 public class PlayerNotWellRegistered extends Exception {
     private static final long serialVersionUID = -3853347114333836296L;

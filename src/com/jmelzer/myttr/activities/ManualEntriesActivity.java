@@ -17,7 +17,7 @@ import android.widget.*;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.parser.TTRCalculator;
+import com.jmelzer.myttr.logic.TTRCalculator;
 
 public class ManualEntriesActivity extends Activity {
 
@@ -113,7 +113,7 @@ public class ManualEntriesActivity extends Activity {
                                    "Bitte zunächst einen Spieler auswählen.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int newV = MyApplication.ttrValue;
+                int newV = MyApplication.loginUser.getPoints();
                 for (Player player : MyApplication.players) {
                     newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked());
                 }

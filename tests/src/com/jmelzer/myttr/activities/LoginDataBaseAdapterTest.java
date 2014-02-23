@@ -25,10 +25,11 @@ public class LoginDataBaseAdapterTest extends TestCase {
         LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
         adapter.deleteEntry("testi");
-        assertTrue(adapter.insertEntry("testi", "pwww") != -1);
+        assertTrue(adapter.insertEntry("testi", "pwww", 4711) != -1);
         User u = adapter.getSinlgeEntry();
         assertNotNull(u);
         assertEquals("testi", u.getUsername());
         assertEquals("pwww", u.getPassword());
+        assertEquals(4711, u.getPoints());
     }
 }

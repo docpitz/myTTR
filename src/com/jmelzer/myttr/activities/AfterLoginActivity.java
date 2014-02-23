@@ -10,6 +10,7 @@ package com.jmelzer.myttr.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +27,6 @@ public class AfterLoginActivity extends Activity {
 
         setTitle(MyApplication.getTitle());
 
-
     }
 
     public void manual(final View view) {
@@ -42,7 +42,7 @@ public class AfterLoginActivity extends Activity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (MyApplication.ttrValue < 0) {
+        if (MyApplication.loginUser.getPoints() < 0) {
             Intent target = new Intent(this, EnterTTRActivity.class);
             startActivity(target);
         }
@@ -64,4 +64,6 @@ public class AfterLoginActivity extends Activity {
         }
         return false;
     }
+
+
 }

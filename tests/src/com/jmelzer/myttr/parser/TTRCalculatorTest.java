@@ -11,6 +11,7 @@
 package com.jmelzer.myttr.parser;
 
 import android.test.suitebuilder.annotation.SmallTest;
+import com.jmelzer.myttr.logic.TTRCalculator;
 import junit.framework.TestCase;
 
 public class TTRCalculatorTest extends TestCase {

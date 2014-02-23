@@ -12,6 +12,7 @@ package com.jmelzer.myttr.parser;
 
 import android.test.suitebuilder.annotation.SmallTest;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.logic.*;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 

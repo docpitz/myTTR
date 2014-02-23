@@ -21,9 +21,9 @@ import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.parser.ClubParser;
-import com.jmelzer.myttr.parser.MyTischtennisParser;
-import com.jmelzer.myttr.parser.TooManyPlayersFound;
+import com.jmelzer.myttr.logic.ClubParser;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
 
