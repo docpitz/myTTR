@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.SyncManager;
 
 public class AfterLoginActivity extends Activity {
     @Override
@@ -26,6 +27,8 @@ public class AfterLoginActivity extends Activity {
         setContentView(R.layout.afterlogin);
 
         setTitle(MyApplication.getTitle());
+        startService(new Intent(this, SyncManager.class));
+//        new SyncManager().startService();
 
     }
 

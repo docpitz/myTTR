@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2014.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Deine neuen Punkte: "
+            android:id="@+id/textView2" android:layout_gravity="center"/>
+</LinearLayout>

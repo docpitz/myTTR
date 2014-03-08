@@ -48,14 +48,14 @@ public class MyTischtennisParser {
             try {
                 return Integer.valueOf(page.substring(start, end));
             } catch (NumberFormatException e) {
-                String filename = "myttr.html";
-                FileOutputStream outputStream;
-
-                File file = new File("/storage/sdcard0/Download", filename);
-                outputStream = new FileOutputStream(file);
-                outputStream.write(page.getBytes());
-                outputStream.close();
-                file.setReadable(true);
+//                String filename = "myttr.html";
+//                FileOutputStream outputStream;
+//
+//                File file = new File("/storage/sdcard0/Download", filename);
+//                outputStream = new FileOutputStream(file);
+//                outputStream.write(page.getBytes());
+//                outputStream.close();
+//                file.setReadable(true);
                 return -3;
             }
         } catch (IOException e) {
