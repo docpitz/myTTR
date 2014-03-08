@@ -20,6 +20,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public class MyTischtennisParser {
 
@@ -27,6 +28,8 @@ public class MyTischtennisParser {
     ClubParser clubParser = new ClubParser();
 
     public int getPoints() throws PlayerNotWellRegistered {
+//        if (true)
+//            return new Random(1000).nextInt();
         String url = "http://www.mytischtennis.de/community/index";
 
         HttpGet httpGet = new HttpGet(url);

@@ -15,7 +15,13 @@ package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
 /**
  * will be aclled after the user press the notification for new points.
@@ -25,5 +31,23 @@ public class NewPointsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newpointsreceived);
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.newpointsview);
+        TextView resultText = new TextView(this);
+        resultText.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        resultText.setWidth(300);
+
+        MyTischtennisParser parser = new MyTischtennisParser();
+        int n = 0;
+        try {
+            n = parser.getPoints();
+            int r = (n - MyApplication.loginUser.getPoints());
+        } catch (PlayerNotWellRegistered playerNotWellRegistered) {
+            //ignore
+        }
+
+        String text = "Dein neuer TTR Wert ist: " + n;
+        resultText.setText(text);
+        layout.addView(resultText);
     }
 }

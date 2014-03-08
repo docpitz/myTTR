@@ -20,6 +20,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.activities.NewPointsActivity;
 
@@ -57,6 +58,18 @@ public class SyncManager extends Service {
         }
     }
 
+    /**
+     * checks wether the logged in user have new points at mytischtennis.de since the last login date.
+     * maybe better then the last update in db?
+     *
+     * @return true/false
+     */
+    boolean hasNewPoints() throws PlayerNotWellRegistered {
+        MyTischtennisParser parser = new MyTischtennisParser();
+
+        return (parser.getPoints() != MyApplication.loginUser.getPoints());
+    }
+
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         Toast.makeText(getApplicationContext(), "Noch nicht fettig.",
@@ -64,18 +77,20 @@ public class SyncManager extends Service {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (notifcationSent) {
+                try {
+                    if (notifcationSent || !hasNewPoints()) {
+                        return;
+                    }
+                } catch (PlayerNotWellRegistered playerNotWellRegistered) {
+                    //ignore
+                    timer.cancel();
                     return;
                 }
-                // prepare intent which is triggered if the
-// notification is selected
 
                 Intent notIntent = new Intent(SyncManager.this, NewPointsActivity.class);
                 PendingIntent pIntent = PendingIntent.getActivity(SyncManager.this, 0, notIntent, 0);
 
-// build notification
-// the addAction re-use the same intent to keep the example short
-                Notification n  = new Notification.Builder(SyncManager.this)
+                Notification n = new Notification.Builder(SyncManager.this)
                         .setContentTitle("Neue Punkte von myTischtennis!")
                         .setContentText("Du hast neue Punkte erhalten, schau sie dir an.")
                         .setSmallIcon(R.drawable.myttr)
@@ -90,7 +105,9 @@ public class SyncManager extends Service {
                 notificationManager.notify(0, n);
                 notifcationSent = true;
             }
-        }, 0, 5000);
+            // sek min h
+        }, 0, 1000*60*60);
+        //every 1h
         return Service.START_NOT_STICKY;
     }
 
