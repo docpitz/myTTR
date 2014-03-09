@@ -86,6 +86,14 @@ public class SyncManager extends Service {
                 }
 
                 Intent notIntent = new Intent(SyncManager.this, NewPointsActivity.class);
+                MyTischtennisParser parser = new MyTischtennisParser();
+
+                try {
+                    notIntent.putExtra("points", parser.getPoints());
+                } catch (PlayerNotWellRegistered playerNotWellRegistered) {
+                    //ignore
+                    return;
+                }
                 PendingIntent pIntent = PendingIntent.getActivity(SyncManager.this, 0, notIntent, 0);
 
                 Notification n = new Notification.Builder(SyncManager.this)

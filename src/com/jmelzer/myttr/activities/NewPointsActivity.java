@@ -37,14 +37,7 @@ public class NewPointsActivity extends Activity {
         resultText.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         resultText.setWidth(300);
 
-        MyTischtennisParser parser = new MyTischtennisParser();
-        int n = 0;
-        try {
-            n = parser.getPoints();
-            int r = (n - MyApplication.loginUser.getPoints());
-        } catch (PlayerNotWellRegistered playerNotWellRegistered) {
-            //ignore
-        }
+        int n = getIntent().getIntExtra("points", 0);
 
         String text = "Dein neuer TTR Wert ist: " + n;
         resultText.setText(text);
