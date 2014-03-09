@@ -16,10 +16,11 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private static Context context;
-    public static User loginUser = new User("", "", 0);
+    public static User loginUser = new User("", "", "", 0);
     public static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
     public static int result;
+    public static List<Player> clubPlayers;
 
     public void onCreate() {
         super.onCreate();

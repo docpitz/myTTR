@@ -124,13 +124,14 @@ public class LoginActivity extends Activity {
                 } catch (PlayerNotWellRegistered e) {
                     playerNotWellRegistered = true;
                 }
-                MyApplication.loginUser = new User(username, pw, ttr);
+                String name = myTischtennisParser.getRealName();
+                MyApplication.loginUser = new User(name, username, pw, ttr);
                 loginDataBaseAdapter.deleteEntry(username);
 
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                 Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
                 if (saveUser) {
-                    loginDataBaseAdapter.insertEntry(username, pw, ttr);
+                    loginDataBaseAdapter.insertEntry(name, username, pw, ttr);
                 }
             }
 

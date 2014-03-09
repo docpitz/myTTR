@@ -72,8 +72,6 @@ public class SyncManager extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
-        Toast.makeText(getApplicationContext(), "Noch nicht fettig.",
-                       Toast.LENGTH_LONG).show();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

@@ -8,6 +8,7 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import com.jmelzer.myttr.logic.SyncManager;
 import java.util.List;
 
 public class AfterLoginActivity extends Activity {
-    public static List<Player> players;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,6 @@ public class AfterLoginActivity extends Activity {
     public void manual(final View view) {
         Intent target = new Intent(this, ManualEntriesActivity.class);
         startActivity(target);
-    }
-
-    public void ocr(final View view) {
-        Toast.makeText(getApplicationContext(), "Noch nicht fettig.",
-                       Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -78,20 +74,38 @@ public class AfterLoginActivity extends Activity {
 
 
     public void clublist(View view) {
-        AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
-            @Override
-            protected Integer doInBackground(String... params) {
-                MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-                players = myTischtennisParser.getClubList();
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                Intent intent = new Intent(AfterLoginActivity.this, ClubListActivity.class);
-                startActivity(intent);
-            }
-        };
+        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask();
         task.execute();
+    }
+
+    private class ClubListAsyncTask extends AsyncTask<String, Void, Integer> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            if (progressDialog == null) {
+                progressDialog = new ProgressDialog(AfterLoginActivity.this);
+                progressDialog.setMessage("Lade die Vereinsliste, bitte warten...");
+                progressDialog.setIndeterminate(false);
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+        }
+
+        @Override
+        protected Integer doInBackground(String... params) {
+            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+            MyApplication.clubPlayers = myTischtennisParser.getClubList();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            Intent intent = new Intent(AfterLoginActivity.this, ClubListActivity.class);
+            startActivity(intent);
+        }
     }
 }

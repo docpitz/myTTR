@@ -18,11 +18,11 @@ import com.jmelzer.myttr.User;
 public class LoginDataBaseAdapter {
     public static final int NAME_COLUMN = 1;
     static final String DATABASE_NAME = "login.db";
-    static final int DATABASE_VERSION = 2;
+    static final int DATABASE_VERSION = 3;
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
                                           "( " + "ID" + " integer primary key autoincrement," +
-                                          "USERNAME  text,PASSWORD text, POINTS NUMERIC); ";
+                                          "REALNAME text, USERNAME  text,PASSWORD text, POINTS NUMERIC); ";
     // Context of the application using the database.
     private final Context context;
     // Variable to hold the database instance
@@ -48,9 +48,10 @@ public class LoginDataBaseAdapter {
         return db;
     }
 
-    public long insertEntry(String userName, String password, int points) {
+    public long insertEntry(String realName, String userName, String password, int points) {
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
+        newValues.put("REALNAME", realName);
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
         newValues.put("POINTS", points);
@@ -59,9 +60,9 @@ public class LoginDataBaseAdapter {
         return db.insert("LOGIN", null, newValues);
     }
 
-    public int deleteEntry(String UserName) {
+    public int deleteEntry(String userName) {
         String where = "USERNAME=?";
-        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{UserName});
+        int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{userName});
         return numberOFEntriesDeleted;
     }
 
@@ -81,21 +82,12 @@ public class LoginDataBaseAdapter {
             return null;
         }
         cursor.moveToFirst();
+        String realName = cursor.getString(cursor.getColumnIndex("REALNAME"));
         String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         String username = cursor.getString(cursor.getColumnIndex("USERNAME"));
         int points = cursor.getInt(cursor.getColumnIndex("POINTS"));
         cursor.close();
-        return new User(username, password, points);
+        return new User(realName, username, password, points);
     }
 
-    public void updateEntry(String userName, String password) {
-        // Define the updated row content.
-        ContentValues updatedValues = new ContentValues();
-        // Assign values for each row.
-        updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD", password);
-
-        String where = "USERNAME = ?";
-        db.update("LOGIN", updatedValues, where, new String[]{userName});
-    }
 }

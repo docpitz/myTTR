@@ -16,9 +16,11 @@ package com.jmelzer.myttr;
 public class User {
     String username;
     String password;
+    String realName;
     int points;
 
-    public User(String username, String password, int points) {
+    public User(String realName, String username, String password, int points) {
+        this.realName = realName;
         this.username = username;
         this.password = password;
         this.points = points;
@@ -35,6 +37,10 @@ public class User {
 
     public int getPoints() {
         return points;
+    }
+
+    public String getRealName() {
+        return realName;
     }
 
     public void setPoints(int points) {

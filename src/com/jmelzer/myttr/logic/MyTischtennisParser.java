@@ -203,10 +203,8 @@ public class MyTischtennisParser {
                 List<Player> list = new ArrayList<Player>();
                 Helper h = getNextPlayer(page, id, idx);
                 while (h != null) {
+                    list.add(h.p);
                     h = getNextPlayer(page, id, h.idx);
-                    if (h != null) {
-                        list.add(h.p);
-                    }
                 }
                 return list;
 
@@ -241,5 +239,26 @@ public class MyTischtennisParser {
         int n1 = page.indexOf(tagStart, nStartIdx) + tagStart.length();
         int n2 = page.indexOf(tagEnd, n1);
         return Integer.valueOf(page.substring(n1, n2).trim());
+    }
+
+    public String getRealName() {
+        String firstPage = "http://www.mytischtennis.de/community/index";
+        HttpGet httpGet = new HttpGet(firstPage);
+        try {
+            HttpResponse response = Client.client.execute(httpGet);
+            HttpEntity httpEntity = response.getEntity();
+            String page = EntityUtils.toString(httpEntity);
+            return parseRealName(page);
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, e.getMessage());
+        }
+        return null;
+    }
+    private String parseRealName(String page) {
+        final String tagStart = "<span class=\"usertext_ontopbar\">";
+        final String tagEnd = "</span>";
+        int n1 = page.indexOf(tagStart) + tagStart.length();
+        int n2 = page.indexOf(tagEnd, n1);
+        return page.substring(n1,n2).trim();
     }
 }
