@@ -11,6 +11,8 @@
 package com.jmelzer.myttr.parser;
 
 import android.test.suitebuilder.annotation.SmallTest;
+import android.util.Log;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
@@ -19,12 +21,14 @@ import com.jmelzer.myttr.logic.TooManyPlayersFound;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import java.util.List;
+
 public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testgetPoints() throws PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
@@ -33,9 +37,20 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
+    public void testGetClubList() throws TooManyPlayersFound {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> clublist = myTischtennisParser.getClubList();
+        for (Player player : clublist) {
+            Log.i(Constants.LOG_TAG, player.toString());
+        }
+    }
+
+    @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         try {

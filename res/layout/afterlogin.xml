@@ -31,5 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Vereinsrangliste"
+            android:onClick="clublist"
             android:id="@+id/button_verein_rangliste"/>
 </LinearLayout>

@@ -17,15 +17,24 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
     ClubParser clubParser = new ClubParser();
+
+    class Helper {
+        Player p;
+        int idx;
+
+        public Helper(Player player, int idx) {
+            p = player;
+            this.idx = idx;
+        }
+    }
 
     public int getPoints() throws PlayerNotWellRegistered {
 //        if (true)
@@ -170,5 +179,67 @@ public class MyTischtennisParser {
         int idx = pageU.indexOf(textBeforePoints, startIdx) + textBeforePoints.length();
         int idx2 = pageU.indexOf("</TD>", idx);
         return Integer.valueOf(pageU.substring(idx, idx2).trim());
+    }
+
+    public List<Player> getClubList() {
+        String firstPage = "http://www.mytischtennis.de/community/showclubinfo";
+        HttpGet httpGet = new HttpGet(firstPage);
+        try {
+            HttpResponse response = Client.client.execute(httpGet);
+            HttpEntity httpEntity = response.getEntity();
+            String page = EntityUtils.toString(httpEntity);
+            int n = page.indexOf("vereinid=");
+            if (n > 0) {
+                int n2 = page.indexOf("&", n);
+                String id = page.substring(n + 9, n2);
+
+                String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
+                                     "&alleSpielberechtigen=yes";
+                httpGet = new HttpGet(clubListUrl);
+                response = Client.client.execute(httpGet);
+                httpEntity = response.getEntity();
+                page = EntityUtils.toString(httpEntity);
+                int idx = 0;
+                List<Player> list = new ArrayList<Player>();
+                Helper h = getNextPlayer(page, id, idx);
+                while (h != null) {
+                    h = getNextPlayer(page, id, h.idx);
+                    if (h != null) {
+                        list.add(h.p);
+                    }
+                }
+                return list;
+
+            }
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, e.getMessage());
+        }
+        return null;
+    }
+
+    private Helper getNextPlayer(String page, String id, int idx) {
+        final String cssBefore = "openinfos myttFeaturesTooltip";
+        int nCssClassBefore = page.indexOf(cssBefore, idx);
+        if (nCssClassBefore <= 0) {
+            return null;
+        }
+        int nStart = page.indexOf(">", nCssClassBefore + cssBefore.length());
+        int nEnd = page.indexOf("<span", nStart + 1);
+        String name = page.substring(nStart + 1, nEnd);
+//        System.out.println("name = " + name);
+        String firstName = findFirstName(nStart, page);
+        String lastName = findLastName(nStart, page);
+        Player player = new Player(firstName, lastName, id, parsePoints(page, nStart));
+//        System.out.println("player = " + player);
+        return new Helper(player, nEnd);
+    }
+
+
+    private int parsePoints(String page, int nStartIdx) {
+        final String tagStart = "<td style=\"text-align:center;\">";
+        final String tagEnd = "</td>";
+        int n1 = page.indexOf(tagStart, nStartIdx) + tagStart.length();
+        int n2 = page.indexOf(tagEnd, n1);
+        return Integer.valueOf(page.substring(n1, n2).trim());
     }
 }

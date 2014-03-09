@@ -73,6 +73,16 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".activities.AfterLoginActivity"/>
         </activity>
+        <activity android:name=".activities.ClubListActivity"
+                  android:label="@string/app_name" android:icon="@drawable/myttr"
+                  android:parentActivityName=".activities.AfterLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.AfterLoginActivity"/>
+        </activity>
         <activity android:name=".activities.MySettingsActivity" android:label="@string/menu_settings"/>
         <activity android:name=".activities.NewPointsActivity" android:label="@string/notifcation_result">
             <meta-data android:name="android.support.PARENT_ACTIVITY"

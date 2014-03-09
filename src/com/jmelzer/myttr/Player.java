@@ -119,4 +119,16 @@ public class Player {
         result = 31 * result + (club != null ? club.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Player{");
+        sb.append("firstname='").append(firstname).append('\'');
+        sb.append(", lastname='").append(lastname).append('\'');
+        sb.append(", club='").append(club).append('\'');
+        sb.append(", ttrPoints=").append(ttrPoints);
+        sb.append(", isChecked=").append(isChecked);
+        sb.append('}');
+        return sb.toString();
+    }
 }
