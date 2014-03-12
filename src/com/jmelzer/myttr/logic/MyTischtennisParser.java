@@ -25,6 +25,7 @@ public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
     ClubParser clubParser = new ClubParser();
+    public static int debugCounter = 1;
 
     class Helper {
         Player p;
@@ -37,8 +38,14 @@ public class MyTischtennisParser {
     }
 
     public int getPoints() throws PlayerNotWellRegistered {
-//        if (true)
-//            return new Random(1000).nextInt();
+//        if (debugCounter++ % 10 == 0) {
+//            Log.i(Constants.LOG_TAG, "getPoints() = " + (1600 + debugCounter));
+//            return 1600 + debugCounter;
+//        } else {
+//            Log.i(Constants.LOG_TAG, "getPoints() = " + 1565);
+//            return 1565;
+//        }
+//
         String url = "http://www.mytischtennis.de/community/index";
 
         HttpGet httpGet = new HttpGet(url);
@@ -254,11 +261,12 @@ public class MyTischtennisParser {
         }
         return null;
     }
+
     private String parseRealName(String page) {
         final String tagStart = "<span class=\"usertext_ontopbar\">";
         final String tagEnd = "</span>";
         int n1 = page.indexOf(tagStart) + tagStart.length();
         int n2 = page.indexOf(tagEnd, n1);
-        return page.substring(n1,n2).trim();
+        return page.substring(n1, n2).trim();
     }
 }

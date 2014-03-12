@@ -19,7 +19,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
+import android.util.Log;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.activities.NewPointsActivity;
@@ -32,7 +33,9 @@ public class SyncManager extends Service {
     static Intent intent;
     static boolean started = false;
     private static Timer timer = new Timer();
-    static boolean notifcationSent = false;
+    static public boolean notifcationSent = false;
+    MyTischtennisParser parser = new MyTischtennisParser();
+    public static int newTTRPoints;
 
     public void switchSync(Boolean newValue) {
         init();
@@ -65,9 +68,9 @@ public class SyncManager extends Service {
      * @return true/false
      */
     boolean hasNewPoints() throws PlayerNotWellRegistered {
-        MyTischtennisParser parser = new MyTischtennisParser();
 
-        return (parser.getPoints() != MyApplication.loginUser.getPoints());
+
+        return false;
     }
 
     @Override
@@ -75,10 +78,17 @@ public class SyncManager extends Service {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                if (notifcationSent) {
+                    return;
+                }
+                int newPoints = 0;
                 try {
-                    if (notifcationSent || !hasNewPoints()) {
+                    newPoints = parser.getPoints();
+                    int old = MyApplication.loginUser.getPoints();
+                    if (old == newPoints) {
                         return;
                     }
+//                    Log.d(Constants.LOG_TAG, "new points received " + old + "!=" + newPoints);
                 } catch (PlayerNotWellRegistered playerNotWellRegistered) {
                     //ignore
                     timer.cancel();
@@ -86,14 +96,9 @@ public class SyncManager extends Service {
                 }
 
                 Intent notIntent = new Intent(SyncManager.this, NewPointsActivity.class);
-                MyTischtennisParser parser = new MyTischtennisParser();
 
-                try {
-                    notIntent.putExtra("points", parser.getPoints());
-                } catch (PlayerNotWellRegistered playerNotWellRegistered) {
-                    //ignore
-                    return;
-                }
+                newTTRPoints = newPoints;
+//                Log.i(Constants.LOG_TAG, "save points " + newPoints);
                 PendingIntent pIntent = PendingIntent.getActivity(SyncManager.this, 0, notIntent, 0);
 
                 Notification n = new Notification.Builder(SyncManager.this)

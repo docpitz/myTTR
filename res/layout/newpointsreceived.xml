@@ -15,7 +15,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Deine neuen Punkte: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Du hast neue Punkte erhalten! "
             android:id="@+id/textView2" android:layout_gravity="center"/>
 </LinearLayout>
