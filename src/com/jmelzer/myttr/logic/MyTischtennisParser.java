@@ -85,7 +85,7 @@ public class MyTischtennisParser {
     }
 
     private void checkIfPlayerRegisteredWithClub(String page) throws PlayerNotWellRegistered {
-        final String toCheck = "Du bist für uns leider nicht eindeutig";
+        final String toCheck = "Du bist fï¿½r uns leider nicht eindeutig";
 
         if (page.indexOf(toCheck) > 0) {
             throw new PlayerNotWellRegistered();
@@ -218,6 +218,33 @@ public class MyTischtennisParser {
             }
         } catch (IOException e) {
             Log.e(Constants.LOG_TAG, e.getMessage());
+        }
+        return null;
+    }
+
+
+    public String getNameOfOwnClub() {
+        String firstPage = "http://www.mytischtennis.de/community/userMasterPage";
+        HttpGet httpGet = new HttpGet(firstPage);
+        try {
+            HttpResponse response = Client.client.execute(httpGet);
+            HttpEntity httpEntity = response.getEntity();
+            String page = EntityUtils.toString(httpEntity);
+            return readClubName(page);
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, e.getMessage());
+        }
+        return null;
+    }
+    private String readClubName(String page) {
+        String marker = "<strong>Verein:</strong>";
+        String div = "<div class=\"col_3 mb_5\">" ;
+
+        int n = page.indexOf(marker);
+        if (n > 0) {
+            n = page.indexOf(div, n + marker.length());
+            int end = page.indexOf("</div>", n) ;
+            return page.substring(n+div.length(), end);
         }
         return null;
     }

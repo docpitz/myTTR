@@ -22,16 +22,18 @@ public class IntegrationTest extends TestCase {
     @SmallTest
     public void test() throws TooManyPlayersFound, PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
         assertEquals(1567, myPoints);
+        String name = myTischtennisParser.getNameOfOwnClub();
+        assertEquals("TTG St. Augustin", name);
 
         Player p  = myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
         assertNotNull(p);
         System.out.println("ttrB = " + p.getTtrPoints());
-        assertEquals(1732, p.getTtrPoints());
+        assertEquals(1722, p.getTtrPoints());
         TTRCalculator calculator = new TTRCalculator();
         assertEquals(15, calculator.calcPoints(myPoints, p.getTtrPoints(), true));
     }

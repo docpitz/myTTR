@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/** Parses entries from file. */
 public class ClubParser {
 
 
     HashMap<String, Club> clubHashMap = new HashMap<String, Club>();
+
     List<String> clubNames = new ArrayList<String>();
 
     public List<String> getClubNameUnsharp(String name) {
@@ -68,7 +70,8 @@ public class ClubParser {
 
     private void readClubs() {
         if (clubHashMap.isEmpty()) {
-            int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine", "raw", "com.jmelzer.myttr");
+            int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine", "raw",
+                    "com.jmelzer.myttr");
             readFile(r);
             readClubNames();
         }

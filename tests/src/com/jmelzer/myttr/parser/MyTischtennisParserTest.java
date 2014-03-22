@@ -28,7 +28,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testgetPoints() throws PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
@@ -39,7 +39,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testGetClubList() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
@@ -50,16 +50,25 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testGetRealName() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name  = myTischtennisParser.getRealName();
-        assertEquals("Jürgen Melzer", name);
+        assertEquals("JÃ¼rgen Melzer", name);
+    }
+
+    @SmallTest
+    public void testgetNameOfOwnClub() throws TooManyPlayersFound {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        String name  = myTischtennisParser.getNameOfOwnClub();
+        assertEquals("TTG St. Augustin", name);
     }
 
     @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("un", "pw"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         try {
