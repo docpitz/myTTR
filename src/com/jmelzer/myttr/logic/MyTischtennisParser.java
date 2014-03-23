@@ -121,7 +121,7 @@ public class MyTischtennisParser {
             return parseForPlayer(firstName, lastName, page);
 //            System.out.println("page = " + page);
         } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "findPlayer", e);
+            Log.e(Constants.LOG_TAG, "findPlayer:" ,  e);
         }
 
         return null;
@@ -209,7 +209,7 @@ public class MyTischtennisParser {
 
             }
         } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, e.getMessage());
+            Log.e(Constants.LOG_TAG, "getClubList:" ,  e);
         }
         return null;
     }
@@ -223,7 +223,7 @@ public class MyTischtennisParser {
             String page = EntityUtils.toString(httpEntity);
             return readClubName(page);
         } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, e.getMessage());
+            Log.e(Constants.LOG_TAG, "getNameOfOwnClub:" ,  e);
         }
         return null;
     }
@@ -275,7 +275,7 @@ public class MyTischtennisParser {
             String page = EntityUtils.toString(httpEntity);
             return parseRealName(page);
         } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, e.getMessage());
+            Log.e(Constants.LOG_TAG, "getRealName:" ,  e);
         }
         return null;
     }
@@ -297,7 +297,7 @@ public class MyTischtennisParser {
             String page = EntityUtils.toString(httpEntity);
             return parsePlayerFromTeam(page);
         } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, e.getMessage());
+            Log.e(Constants.LOG_TAG, "readPlayersFromTeam:" ,  e);
         }
         return null;
 

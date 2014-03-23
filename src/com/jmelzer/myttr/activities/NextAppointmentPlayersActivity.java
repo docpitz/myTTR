@@ -1,16 +1,3 @@
-/*
- * Copyright (c) Juergen Melzer
- *
- * 2014.
- */
-
-/*
-* Author: J. Melzer
-* Date: 09.03.14 
-*
-*/
-
-
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
@@ -19,7 +6,13 @@ import android.widget.ListView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
-public class ClubListActivity extends Activity {
+/**
+ * TODO
+ * User: jmelzer
+ * Date: 22.03.14
+ * Time: 13:06
+ */
+public class NextAppointmentPlayersActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +22,7 @@ public class ClubListActivity extends Activity {
         final ListView listview = (ListView) findViewById(R.id.listview);
         final PlayerAdapter adapter = new PlayerAdapter(this,
                 android.R.layout.simple_list_item_1,
-                MyApplication.clubPlayers);
+                MyApplication.foreignTeamPlayers);
         listview.setAdapter(adapter);
     }
-
 }

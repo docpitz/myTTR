@@ -1,8 +1,11 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.Util;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
 
 import java.util.List;
 
@@ -42,11 +46,56 @@ public class NextAppointmentsActivity extends Activity {
 
 
                 view.setSelected(true);
-                return true;
+
+                if (position > -1 && position < MyApplication.teamAppointments.size()) {
+                    String teamid = MyApplication.teamAppointments.get(position).getId();
+
+                    new ClubListAsyncTask(teamid).execute();
+                    return true;
+                }
+                return false;
             }
         });
+
+
     }
 
+    class ClubListAsyncTask extends AsyncTask<String, Void, Integer> {
+        ProgressDialog progressDialog;
+
+        String id;
+
+        ClubListAsyncTask(String id) {
+            this.id = id;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (progressDialog == null) {
+                progressDialog = new ProgressDialog(NextAppointmentsActivity.this);
+                progressDialog.setMessage("Lade die Spieler, bitte warten...");
+                progressDialog.setIndeterminate(false);
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+        }
+
+        @Override
+        protected Integer doInBackground(String... params) {
+            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+            MyApplication.foreignTeamPlayers = myTischtennisParser.readPlayersFromTeam(id);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            Intent target = new Intent(NextAppointmentsActivity.this, NextAppointmentPlayersActivity.class);
+            startActivity(target);
+        }
+    }
     class AppointmentAdapter extends ArrayAdapter<TeamAppointment> {
 
         public AppointmentAdapter(Context context, int resource, List<TeamAppointment> appointments) {

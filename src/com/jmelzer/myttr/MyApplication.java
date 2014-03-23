@@ -22,6 +22,7 @@ public class MyApplication extends Application {
     public static List<TeamAppointment> teamAppointments;
     public static int result;
     public static List<Player> clubPlayers;
+    public static List<Player> foreignTeamPlayers;
 
     public void onCreate() {
         super.onCreate();
