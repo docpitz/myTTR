@@ -29,12 +29,12 @@ public class LoginManager {
     public boolean login(String username, String password) {
 
 
-        HttpParams httpParams = new BasicHttpParams();
-        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
-        HttpConnectionParams.setSoTimeout(httpParams, 20000);
-        httpParams.setParameter("http.protocol.handle-redirects",false);
-
-        Client.client = new DefaultHttpClient(httpParams);
+//        HttpParams httpParams = new BasicHttpParams();
+//        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+//        HttpConnectionParams.setSoTimeout(httpParams, 20000);
+//        httpParams.setParameter("http.protocol.handle-redirects",false);
+//
+//        Client.client = new DefaultHttpClient(httpParams);
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0");
         HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
 

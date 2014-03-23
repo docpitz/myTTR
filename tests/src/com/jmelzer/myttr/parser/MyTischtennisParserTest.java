@@ -48,11 +48,26 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
+    public void testreadPlayersFromTeam() throws TooManyPlayersFound {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.readPlayersFromTeam("1234868");
+        boolean found = false;
+        for (Player player : players) {
+            Log.i(Constants.LOG_TAG, player.toString());
+            if (player.getLastname().equals("Hugo"))
+                found = true;
+        }
+        assertTrue(found);
+    }
+
+    @SmallTest
     public void testGetRealName() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        String name  = myTischtennisParser.getRealName();
+        String name = myTischtennisParser.getRealName();
         assertEquals("Jürgen Melzer", name);
     }
 
@@ -61,7 +76,7 @@ public class MyTischtennisParserTest extends TestCase {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        String name  = myTischtennisParser.getNameOfOwnClub();
+        String name = myTischtennisParser.getNameOfOwnClub();
         assertEquals("TTG St. Augustin", name);
     }
 

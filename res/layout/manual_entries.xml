@@ -11,11 +11,18 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
     <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_new_player"
             android:onClick="newplayer"
             android:id="@+id/button" android:layout_gravity="center"/>
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next_appointments_search"
+            android:onClick="nextAppointments"
+            android:layout_gravity="center"
+            android:id="@+id/button_next_appointments" android:layout_marginBottom="6dp"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

@@ -7,7 +7,7 @@
 
 package com.jmelzer.myttr;
 
-public class Player {
+public class Player implements Comparable<Player> {
     String firstname;
     String lastname;
     String club;
@@ -71,11 +71,12 @@ public class Player {
 
     public String visualize() {
         return firstname + " " + lastname +
-               (club ==null ? "" : ("\n" + club)) + "\nTTR: " + ttrPoints;
+                (club == null ? "" : ("\n" + club)) + "\nTTR: " + ttrPoints;
     }
+
     public String nameAndClub() {
         return firstname + " " + lastname +
-               (club ==null ? "" : ("\n" + club));
+                (club == null ? "" : ("\n" + club));
     }
 
     public void copy(Player p) {
@@ -130,5 +131,22 @@ public class Player {
         sb.append(", isChecked=").append(isChecked);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Player that) {
+        if (this.lastname.compareTo(that.lastname) < 0) {
+            return -1;
+        } else if (this.lastname.compareTo(that.lastname) > 0) {
+            return 1;
+        }
+        if (this.firstname != null && this.firstname.compareTo(that.firstname) < 0) {
+            return -1;
+        } else if (this.firstname != null && this.firstname.compareTo(that.firstname) > 0) {
+            return 1;
+        }
+
+
+        return 0;
     }
 }

@@ -36,4 +36,8 @@
     <string name="notifcation_result">Neue Punkte</string>
     <string name="pref_user">Benutzer / Passwort speichern</string>
     <string name="pref_user_summ">Der Benutzer und das Passwort werden für die nächste Benutzung gespeichert und ein automatisches Login durchgeführt.</string>
+    <string name="next_appointments_search">Über nächste Termine suchen</string>
+    <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
+        kannst du einen Spieler aus gegnerischen Mannschaft auswählen
+    </string>
 </resources>

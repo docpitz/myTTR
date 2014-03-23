@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.Util;
 
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class ClubListActivity extends Activity {
             String txt = player.getFirstname();
             String firstName = txt;
             //max 15 characters
-            textView.setText(abbreviate(txt, 0, 8));
+            textView.setText(Util.abbreviate(txt, 0, 8));
             textView = (TextView) rowView.findViewById(R.id.lastname);
             txt = player.getLastname();
             String name = firstName + " " + txt;
@@ -76,7 +77,7 @@ public class ClubListActivity extends Activity {
                 textViewFirstName.setTypeface(null, Typeface.NORMAL);
             }
 
-            textView.setText(abbreviate(txt, 0, 15));
+            textView.setText(Util.abbreviate(txt, 0, 15));
 
             textView = (TextView) rowView.findViewById(R.id.points);
             txt = "" + player.getTtrPoints();
@@ -86,32 +87,5 @@ public class ClubListActivity extends Activity {
         }
     }
 
-    public String abbreviate(final String str, int offset, final int maxWidth) {
-        if (str == null) {
-            return null;
-        }
-        if (maxWidth < 4) {
-            throw new IllegalArgumentException("Minimum abbreviation width is 4");
-        }
-        if (str.length() <= maxWidth) {
-            return str;
-        }
-        if (offset > str.length()) {
-            offset = str.length();
-        }
-        if (str.length() - offset < maxWidth - 3) {
-            offset = str.length() - (maxWidth - 3);
-        }
-        final String abrevMarker = "...";
-        if (offset <= 4) {
-            return str.substring(0, maxWidth - 3) + abrevMarker;
-        }
-        if (maxWidth < 7) {
-            throw new IllegalArgumentException("Minimum abbreviation width with offset is 7");
-        }
-        if (offset + maxWidth - 3 < str.length()) {
-            return abrevMarker + abbreviate(str.substring(offset), 0, maxWidth - 3);
-        }
-        return abrevMarker + str.substring(str.length() - (maxWidth - 3));
-    }
+
 }

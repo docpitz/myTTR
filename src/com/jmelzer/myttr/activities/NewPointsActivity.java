@@ -53,7 +53,7 @@ public class NewPointsActivity extends Activity {
 
         if (r > 0) {
             imageView.setImageResource(R.drawable.smileygood);
-            text += "Glückwunsch, du hast " + r + " Punkte dazu gewonnen!";
+            text += "GlÃ¼ckwunsch, du hast " + r + " Punkte dazu gewonnen!";
         } else {
             imageView.setImageResource(R.drawable.smileybad);
             text += "Schade, du hast " + r + " verloren!";

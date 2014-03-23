@@ -20,22 +20,14 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
-    ClubParser clubParser = new ClubParser();
     public static int debugCounter = 1;
-
-    class Helper {
-        Player p;
-        int idx;
-
-        public Helper(Player player, int idx) {
-            p = player;
-            this.idx = idx;
-        }
-    }
+    ClubParser clubParser = new ClubParser();
 
     public int getPoints() throws PlayerNotWellRegistered {
 //        if (debugCounter++ % 10 == 0) {
@@ -85,7 +77,7 @@ public class MyTischtennisParser {
     }
 
     private void checkIfPlayerRegisteredWithClub(String page) throws PlayerNotWellRegistered {
-        final String toCheck = "Du bist f�r uns leider nicht eindeutig";
+        final String toCheck = "Du bist für uns leider nicht eindeutig";
 
         if (page.indexOf(toCheck) > 0) {
             throw new PlayerNotWellRegistered();
@@ -201,7 +193,7 @@ public class MyTischtennisParser {
                 String id = page.substring(n + 9, n2);
 
                 String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
-                                     "&alleSpielberechtigen=yes";
+                        "&alleSpielberechtigen=yes";
                 httpGet = new HttpGet(clubListUrl);
                 response = Client.client.execute(httpGet);
                 httpEntity = response.getEntity();
@@ -222,7 +214,6 @@ public class MyTischtennisParser {
         return null;
     }
 
-
     public String getNameOfOwnClub() {
         String firstPage = "http://www.mytischtennis.de/community/userMasterPage";
         HttpGet httpGet = new HttpGet(firstPage);
@@ -236,15 +227,16 @@ public class MyTischtennisParser {
         }
         return null;
     }
+
     private String readClubName(String page) {
         String marker = "<strong>Verein:</strong>";
-        String div = "<div class=\"col_3 mb_5\">" ;
+        String div = "<div class=\"col_3 mb_5\">";
 
         int n = page.indexOf(marker);
         if (n > 0) {
             n = page.indexOf(div, n + marker.length());
-            int end = page.indexOf("</div>", n) ;
-            return page.substring(n+div.length(), end);
+            int end = page.indexOf("</div>", n);
+            return page.substring(n + div.length(), end);
         }
         return null;
     }
@@ -265,7 +257,6 @@ public class MyTischtennisParser {
 //        System.out.println("player = " + player);
         return new Helper(player, nEnd);
     }
-
 
     private int parsePoints(String page, int nStartIdx) {
         final String tagStart = "<td style=\"text-align:center;\">";
@@ -295,5 +286,66 @@ public class MyTischtennisParser {
         int n1 = page.indexOf(tagStart) + tagStart.length();
         int n2 = page.indexOf(tagEnd, n1);
         return page.substring(n1, n2).trim();
+    }
+
+    public List<Player> readPlayersFromTeam(String id) {
+        String firstPage = "http://www.mytischtennis.de/community/teamplayers?teamId=" + id;
+        HttpGet httpGet = new HttpGet(firstPage);
+        try {
+            HttpResponse response = Client.client.execute(httpGet);
+            HttpEntity httpEntity = response.getEntity();
+            String page = EntityUtils.toString(httpEntity);
+            return parsePlayerFromTeam(page);
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, e.getMessage());
+        }
+        return null;
+
+    }
+
+    private List<Player> parsePlayerFromTeam(String page) {
+        Set<Player> set = new TreeSet<Player>();
+
+        final String toCheck = "<div class=\"openinfos myttFeaturesTooltip\" data-tooltipdata=";
+
+        String trClosed = "</td>";
+
+        int start = page.indexOf(toCheck);
+        if (start > 0) {
+            int n = start;
+            while (n > 0) {
+                n += toCheck.length();
+                set.add(readPlayer(page, n));
+                n = page.indexOf(trClosed, n);
+                n = page.indexOf(toCheck, n);
+            }
+        }
+        return new ArrayList<Player>(set);
+
+    }
+
+    private Player readPlayer(String page, int startPoint) {
+        String tr = "\">";
+        Player player = new Player();
+        String div = "</div>";
+        int n = page.indexOf(tr, startPoint);
+        int end = page.indexOf(div, n);
+        String name = page.substring(n + tr.length(), end);
+        int k = name.indexOf(',');
+        player.setLastname(name.substring(0, k));
+        player.setFirstname(name.substring(k + 2));
+
+
+        return player;
+    }
+
+    class Helper {
+        Player p;
+        int idx;
+
+        public Helper(Player player, int idx) {
+            p = player;
+            this.idx = idx;
+        }
     }
 }
