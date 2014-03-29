@@ -18,7 +18,7 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:text="Wolfgang"
-            android:layout_weight=".20"
+            android:layout_weight=".30"
             android:textSize="18sp"
             android:gravity="left">
     </TextView>
@@ -28,7 +28,7 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:text="Tamimzadeh"
-            android:layout_weight=".30"
+            android:layout_weight=".40"
             android:textSize="18sp"
             >
     </TextView>
