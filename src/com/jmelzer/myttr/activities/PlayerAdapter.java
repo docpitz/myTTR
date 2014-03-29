@@ -15,7 +15,7 @@ import com.jmelzer.myttr.Util;
 import java.util.List;
 
 /**
- * TODO
+ * Adapter for displaying a list of players.
  * User: jmelzer
  * Date: 23.03.14
  * Time: 14:34
@@ -33,8 +33,8 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         View rowView = inflater.inflate(R.layout.playerrow, parent, false);
         Player player = getItem(position);
 
-        TextView txtViewNumber  = (TextView) rowView.findViewById(R.id.number);
-        txtViewNumber.setText("" + (position+1));
+        TextView txtViewNumber = (TextView) rowView.findViewById(R.id.number);
+        txtViewNumber.setText("" + (position + 1));
 
         TextView textView = (TextView) rowView.findViewById(R.id.firstname);
         TextView textViewFirstName = textView;
@@ -53,10 +53,19 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
             textViewFirstName.setTypeface(null, Typeface.NORMAL);
         }
 
-        textView.setText(Util.abbreviate(txt, 0, 15));
+        if (player.getTtrPoints() > 0) {
+            textView.setText(Util.abbreviate(txt, 0, 15));
+        } else {
+            textView.setText(Util.abbreviate(txt, 0, 30));
+        }
+
 
         textView = (TextView) rowView.findViewById(R.id.points);
-        txt = "" + player.getTtrPoints();
+        if (player.getTtrPoints() > 0) {
+            txt = "" + player.getTtrPoints();
+        } else {
+            txt = "";
+        }
         textView.setText(txt);
 
         return rowView;

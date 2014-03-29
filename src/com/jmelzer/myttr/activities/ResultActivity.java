@@ -36,7 +36,7 @@ public class ResultActivity extends Activity {
 
         if (MyApplication.result > MyApplication.loginUser.getPoints()) {
             imageView.setImageResource(R.drawable.smileygood);
-            text += "Glückwunsch, du hast " + r + " Punkte dazu gewonnen!";
+            text += "Gl\u00FCckwunsch, du hast " + r + " Punkte dazu gewonnen!";
         } else if (MyApplication.result < MyApplication.loginUser.getPoints()) {
             imageView.setImageResource(R.drawable.smileybad);
             text += "Schade, du hast " + r + " verloren!";

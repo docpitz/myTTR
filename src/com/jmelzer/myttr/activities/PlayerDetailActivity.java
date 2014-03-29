@@ -11,9 +11,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -122,7 +122,9 @@ public class PlayerDetailActivity extends Activity {
                                    Toast.LENGTH_SHORT).show();
                 } else {
                     MyApplication.actualPlayer.setTtrPoints(ttr);
-                    NavUtils.navigateUpFromSameTask(PlayerDetailActivity.this);
+                    Intent target = new Intent(PlayerDetailActivity.this, ManualEntriesActivity.class);
+                    startActivity(target);
+//                    NavUtils.navigateUpFromSameTask(PlayerDetailActivity.this);
                 }
             }
 

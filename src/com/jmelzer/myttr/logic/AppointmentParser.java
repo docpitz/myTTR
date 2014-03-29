@@ -28,8 +28,8 @@ public class AppointmentParser {
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
             return read(page, clubName);
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, e.getMessage());
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
     }

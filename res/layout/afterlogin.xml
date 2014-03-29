@@ -22,16 +22,20 @@
             android:layout_height="20dp"
             android:id="@+id/space" android:layout_gravity="right|center_vertical"/>
     <Button
-            android:layout_width="fill_parent"
+            android:layout_width="333dp"
+            android:width="300dp"
             android:layout_height="wrap_content"
             android:text="@string/enter_manual"
             android:onClick="manual"
-            android:id="@+id/button"/>
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"/>
     <Button
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
+            android:width="300dp"
             android:layout_height="wrap_content"
-            android:text="Vereinsrangliste"
+            android:text="@string/clublist"
             android:onClick="clublist"
-            android:id="@+id/button_verein_rangliste"/>
+            android:id="@+id/button_verein_rangliste"
+            android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

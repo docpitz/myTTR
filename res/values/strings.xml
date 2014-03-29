@@ -27,12 +27,13 @@
     <string name="detail_search">Suchen</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
-    <string name="btn_new_player">Spieler suchen</string>
+    <string name="btn_new_player">Spieler eingeben und suchen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string><string name="result_txt">Das Ergebnis</string>
     <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen. Darum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>
     <string name="pref_sync">Synchronisiere Punkte mit mytischtennis</string>
     <string name="pref_sync_summ">In einem Intervall werden die Punkte verglichen, ob es neue Werte für dich gibt.</string>
     <string name="menu_settings">Einstellungen</string>
+    <string name="select">Auswählen</string>
     <string name="notifcation_result">Neue Punkte</string>
     <string name="pref_user">Benutzer / Passwort speichern</string>
     <string name="pref_user_summ">Der Benutzer und das Passwort werden für die nächste Benutzung gespeichert und ein automatisches Login durchgeführt.</string>
@@ -40,4 +41,7 @@
     <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
         kannst du einen Spieler aus gegnerischen Mannschaft auswählen
     </string>
+    <string name="clublist">Vereinsrangliste</string>
+    <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
+    <string name="calc">Berechnen</string>
 </resources>

@@ -115,13 +115,11 @@ public class MyTischtennisParser {
             Log.d(Constants.LOG_TAG, "url = " + url);
             HttpGet httpGet = new HttpGet(url);
             HttpResponse response = Client.client.execute(httpGet);
-//            System.out.println("response.getStatusLine().getStatusCode() = " + response.getStatusLine().getStatusCode());
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
             return parseForPlayer(firstName, lastName, page);
-//            System.out.println("page = " + page);
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "findPlayer:" ,  e);
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
 
         return null;
@@ -208,8 +206,8 @@ public class MyTischtennisParser {
                 return list;
 
             }
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "getClubList:" ,  e);
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
     }
@@ -222,8 +220,8 @@ public class MyTischtennisParser {
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
             return readClubName(page);
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "getNameOfOwnClub:" ,  e);
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
     }
@@ -274,8 +272,8 @@ public class MyTischtennisParser {
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
             return parseRealName(page);
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "getRealName:" ,  e);
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
     }
@@ -296,8 +294,8 @@ public class MyTischtennisParser {
             HttpEntity httpEntity = response.getEntity();
             String page = EntityUtils.toString(httpEntity);
             return parsePlayerFromTeam(page);
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "readPlayersFromTeam:" ,  e);
+        } catch (Exception e) {
+            Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
 

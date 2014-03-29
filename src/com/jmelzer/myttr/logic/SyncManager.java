@@ -57,6 +57,12 @@ public class SyncManager extends Service {
 
     private void init() {
         if (intent == null) {
+            //FIXME
+//            java.lang.NullPointerException
+//            at android.content.ContextWrapper.getPackageName(ContextWrapper.java:135)
+//            at android.content.ComponentName.<init>(ComponentName.java:75)
+//            at android.content.Intent.<init>(Intent.java:3491)
+//            at com.jmelzer.myttr.logic.SyncManager.init(SyncManager.java:60)
             intent = new Intent(this, SyncManager.class);
         }
     }
@@ -85,7 +91,8 @@ public class SyncManager extends Service {
                 try {
                     newPoints = parser.getPoints();
                     int old = MyApplication.loginUser.getPoints();
-                    if (old == newPoints) {
+                    //prevent from wrong parsing
+                    if (old == newPoints || Math.abs(old-newPoints) > 200) {
                         return;
                     }
 //                    Log.d(Constants.LOG_TAG, "new points received " + old + "!=" + newPoints);
