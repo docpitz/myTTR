@@ -28,7 +28,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testgetPoints() throws PlayerNotWellRegistered {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
@@ -39,7 +39,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testGetClubList() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
@@ -50,7 +50,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testreadPlayersFromTeam() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.readPlayersFromTeam("1234868");
         boolean found = false;
@@ -65,7 +65,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testGetRealName() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getRealName();
         assertEquals("Jürgen Melzer", name);
@@ -74,7 +74,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testgetNameOfOwnClub() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getNameOfOwnClub();
         assertEquals("TTG St. Augustin", name);
@@ -83,7 +83,7 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         try {

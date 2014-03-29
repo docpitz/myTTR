@@ -84,6 +84,15 @@ public class MyTischtennisParser {
         }
     }
 
+    public Player findPlayerWithClubName(String firstName, String lastName, String clubName) throws TooManyPlayersFound {
+        List<String> list = clubParser.getClubNameUnsharp(clubName);
+        if (list.size() == 0) {
+            return null;
+        }
+        Club club = clubParser.getClubExact(list.get(0));
+        return findPlayer(firstName, lastName, club.getName());
+    }
+
     /**
      * @param firstName
      * @param lastName
@@ -191,7 +200,7 @@ public class MyTischtennisParser {
                 String id = page.substring(n + 9, n2);
 
                 String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
-                        "&alleSpielberechtigen=yes";
+                                     "&alleSpielberechtigen=yes";
                 httpGet = new HttpGet(clubListUrl);
                 response = Client.client.execute(httpGet);
                 httpEntity = response.getEntity();

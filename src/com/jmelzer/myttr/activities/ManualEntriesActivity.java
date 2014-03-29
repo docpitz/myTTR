@@ -92,7 +92,7 @@ public class ManualEntriesActivity extends Activity {
                 start = System.currentTimeMillis();
                 if (progressDialog == null) {
                     progressDialog = new ProgressDialog(ManualEntriesActivity.this);
-                    progressDialog.setMessage("Suche nächste Spiele, bitte warten...");
+                    progressDialog.setMessage("Suche n\u00E4chste Spiele, bitte warten...");
                     progressDialog.setIndeterminate(false);
                     progressDialog.setCancelable(false);
                     progressDialog.show();

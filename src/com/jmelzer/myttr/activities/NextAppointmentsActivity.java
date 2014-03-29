@@ -12,10 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.TeamAppointment;
-import com.jmelzer.myttr.Util;
+import com.jmelzer.myttr.*;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 
 import java.util.List;
@@ -49,8 +46,9 @@ public class NextAppointmentsActivity extends Activity {
 
                 if (position > -1 && position < MyApplication.teamAppointments.size()) {
                     String teamid = MyApplication.teamAppointments.get(position).getId();
+                    String clubName = MyApplication.teamAppointments.get(position).getTeam();
 
-                    new ClubListAsyncTask(teamid).execute();
+                    new ClubListAsyncTask(teamid, clubName).execute();
                     return true;
                 }
                 return false;
@@ -64,9 +62,11 @@ public class NextAppointmentsActivity extends Activity {
         ProgressDialog progressDialog;
 
         String id;
+        String clubName;
 
-        ClubListAsyncTask(String id) {
+        ClubListAsyncTask(String id, String clubName) {
             this.id = id;
+            this.clubName = clubName;
         }
 
         @Override
@@ -84,6 +84,9 @@ public class NextAppointmentsActivity extends Activity {
         protected Integer doInBackground(String... params) {
             MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
             MyApplication.foreignTeamPlayers = myTischtennisParser.readPlayersFromTeam(id);
+            for (Player player : MyApplication.foreignTeamPlayers) {
+                player.setClub(clubName);
+            }
             return null;
         }
 
