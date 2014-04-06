@@ -44,8 +44,8 @@ public class LoginManager {
         httpGet2.setParams(gethttpParams);
 
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-        nvps.add(new BasicNameValuePair("userName", username));
-        nvps.add(new BasicNameValuePair("userPassWord", password));
+        nvps.add(new BasicNameValuePair("userNameB", username));
+        nvps.add(new BasicNameValuePair("userPassWordB", password));
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));

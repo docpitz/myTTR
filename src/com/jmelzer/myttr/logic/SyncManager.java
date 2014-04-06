@@ -19,10 +19,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
-import com.jmelzer.myttr.Constants;
+import android.preference.PreferenceManager;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.activities.NewPointsActivity;
 
 import java.util.Timer;
@@ -30,57 +30,54 @@ import java.util.TimerTask;
 
 public class SyncManager extends Service {
 
-    static Intent intent;
+    static Intent startedIntent;
     static boolean started = false;
     private static Timer timer = new Timer();
     static public boolean notifcationSent = false;
     MyTischtennisParser parser = new MyTischtennisParser();
     public static int newTTRPoints;
+    static SyncManager syncManager;
+
+    public static SyncManager getInstance() {
+        return syncManager;
+
+    }
 
     public void switchSync(Boolean newValue) {
-        init();
-        if (newValue) {
+        if (newValue && !started) {
             startService();
-        } else {
-            this.stopService(intent);
+        } else if (!newValue && started) {
+            stopService(startedIntent);
+            timer.cancel();
+            started = false;
         }
 
     }
 
     public void startService() {
-        init();
         if (!started) {
-            startService(intent);
+            startService(startedIntent);
             started = true;
         }
     }
 
-    private void init() {
-        if (intent == null) {
-            //FIXME
-//            java.lang.NullPointerException
-//            at android.content.ContextWrapper.getPackageName(ContextWrapper.java:135)
-//            at android.content.ComponentName.<init>(ComponentName.java:75)
-//            at android.content.Intent.<init>(Intent.java:3491)
-//            at com.jmelzer.myttr.logic.SyncManager.init(SyncManager.java:60)
-            intent = new Intent(this, SyncManager.class);
-        }
-    }
-
-    /**
-     * checks wether the logged in user have new points at mytischtennis.de since the last login date.
-     * maybe better then the last update in db?
-     *
-     * @return true/false
-     */
-    boolean hasNewPoints() throws PlayerNotWellRegistered {
-
-
-        return false;
-    }
 
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
+        // todo: check the global background data setting
+        boolean isActive = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean(MySettingsActivity.KEY_PREF_SYNC_TTR,
+                                                                                                      true);
+        if (isActive) {
+            handleIntent();
+        }
+        started = isActive;
+        startedIntent = intent;
+        syncManager = this;
+        return Service.START_NOT_STICKY;
+    }
+
+    private void handleIntent() {
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -92,7 +89,7 @@ public class SyncManager extends Service {
                     newPoints = parser.getPoints();
                     int old = MyApplication.loginUser.getPoints();
                     //prevent from wrong parsing
-                    if (old == newPoints || Math.abs(old-newPoints) > 200) {
+                    if (old == newPoints || Math.abs(old - newPoints) > 200) {
                         return;
                     }
 //                    Log.d(Constants.LOG_TAG, "new points received " + old + "!=" + newPoints);
@@ -124,9 +121,9 @@ public class SyncManager extends Service {
                 notifcationSent = true;
             }
             // sek min h
-        }, 0, 1000*60*60);
+//        }, 0, 1000 * 60 * 60);
+        }, 0, 60 * 60);
         //every 1h
-        return Service.START_NOT_STICKY;
     }
 
     @Override
