@@ -25,7 +25,7 @@ public class AppointmentParserTest extends TestCase {
     @SmallTest
     public void testRead() throws PlayerNotWellRegistered, IOException {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("un", "pw"));
 
         AppointmentParser parser= new AppointmentParser();
         List<TeamAppointment> list = parser.read("TTG St. Augustin");

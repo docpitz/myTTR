@@ -82,7 +82,7 @@ public class NextAppointmentPlayersActivity extends Activity {
                     }
                     Player p = null;
                     try {
-                        p = myTischtennisParser.findPlayer(teamPlayer.getFirstname(),
+                        p = myTischtennisParser.findPlayerWithClubName(teamPlayer.getFirstname(),
                                 teamPlayer.getLastname(),
                                 teamPlayer.getClub());
                     } catch (TooManyPlayersFound tooManyPlayersFound) {
