@@ -9,10 +9,17 @@ package com.jmelzer.myttr;
 
 public class Player implements Comparable<Player> {
     String firstname;
+
     String lastname;
+
     String club;
+    String teamName;
+    long personId;
     int ttrPoints;
+
     boolean isChecked;
+
+    int rank = 0;
 
     public Player() {
     }
@@ -127,8 +134,11 @@ public class Player implements Comparable<Player> {
         sb.append("firstname='").append(firstname).append('\'');
         sb.append(", lastname='").append(lastname).append('\'');
         sb.append(", club='").append(club).append('\'');
+        sb.append(", teamName='").append(teamName).append('\'');
+        sb.append(", personId=").append(personId);
         sb.append(", ttrPoints=").append(ttrPoints);
         sb.append(", isChecked=").append(isChecked);
+        sb.append(", rank=").append(rank);
         sb.append('}');
         return sb.toString();
     }
@@ -149,4 +159,30 @@ public class Player implements Comparable<Player> {
 
         return 0;
     }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(long personId) {
+        this.personId = personId;
+    }
+
+
 }

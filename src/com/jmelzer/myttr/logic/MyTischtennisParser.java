@@ -12,21 +12,20 @@ import android.util.Log;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Player;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+@SuppressWarnings("ALL")
 public class MyTischtennisParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
+
     public static int debugCounter = 1;
+
     ClubParser clubParser = new ClubParser();
 
     public int getPoints() throws PlayerNotWellRegistered {
@@ -40,11 +39,8 @@ public class MyTischtennisParser {
 //
         String url = "http://www.mytischtennis.de/community/index";
 
-        HttpGet httpGet = new HttpGet(url);
         try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
+            String page = Client.getPage(url);
 
             checkIfPlayerRegisteredWithClub(page);
 
@@ -69,7 +65,7 @@ public class MyTischtennisParser {
 //                file.setReadable(true);
                 return -3;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -101,6 +97,9 @@ public class MyTischtennisParser {
 
         if (vereinsName != null) {
             Club v = clubParser.getClubExact(vereinsName);
+            if (v == null) {
+                v = clubParser.getClubNameBestMatch(vereinsName);
+            }
             if (v != null) {
                 builder.appendQueryParameter("vereinPersonenSuche", v.getName());
                 builder.appendQueryParameter("vereinIdPersonenSuche", v.getId() + "," + v.getVerband());
@@ -111,18 +110,10 @@ public class MyTischtennisParser {
         url = url.replace("%20", "+");
 
 
-        try {
-            Log.d(Constants.LOG_TAG, "url = " + url);
-            HttpGet httpGet = new HttpGet(url);
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
-            return parseForPlayer(firstName, lastName, page);
-        } catch (Exception e) {
-            Log.e(Constants.LOG_TAG, "", e);
-        }
+        Log.d(Constants.LOG_TAG, "url = " + url);
+        String page = Client.getPage(url);
+        return parseForPlayer(firstName, lastName, page);
 
-        return null;
     }
 
     private Player parseForPlayer(String firstName, String lastName, String page) throws TooManyPlayersFound {
@@ -179,12 +170,9 @@ public class MyTischtennisParser {
     }
 
     public List<Player> getClubList() {
-        String firstPage = "http://www.mytischtennis.de/community/showclubinfo";
-        HttpGet httpGet = new HttpGet(firstPage);
+        String url = "http://www.mytischtennis.de/community/showclubinfo";
         try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
+            String page = Client.getPage(url);
             int n = page.indexOf("vereinid=");
             if (n > 0) {
                 int n2 = page.indexOf("&", n);
@@ -192,10 +180,7 @@ public class MyTischtennisParser {
 
                 String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
                         "&alleSpielberechtigen=yes";
-                httpGet = new HttpGet(clubListUrl);
-                response = Client.client.execute(httpGet);
-                httpEntity = response.getEntity();
-                page = EntityUtils.toString(httpEntity);
+                page = Client.getPage(clubListUrl);
                 int idx = 0;
                 List<Player> list = new ArrayList<Player>();
                 Helper h = getNextPlayer(page, id, idx);
@@ -213,12 +198,9 @@ public class MyTischtennisParser {
     }
 
     public String getNameOfOwnClub() {
-        String firstPage = "http://www.mytischtennis.de/community/userMasterPage";
-        HttpGet httpGet = new HttpGet(firstPage);
+        String url = "http://www.mytischtennis.de/community/userMasterPage";
         try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
+            String page = Client.getPage(url);
             return readClubName(page);
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
@@ -265,12 +247,9 @@ public class MyTischtennisParser {
     }
 
     public String getRealName() {
-        String firstPage = "http://www.mytischtennis.de/community/index";
-        HttpGet httpGet = new HttpGet(firstPage);
+        String url = "http://www.mytischtennis.de/community/index";
         try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
+            String page = Client.getPage(url);
             return parseRealName(page);
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
@@ -287,22 +266,35 @@ public class MyTischtennisParser {
     }
 
     public List<Player> readPlayersFromTeam(String id) {
-        String firstPage = "http://www.mytischtennis.de/community/teamplayers?teamId=" + id;
-        HttpGet httpGet = new HttpGet(firstPage);
-        try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
-            return parsePlayerFromTeam(page);
-        } catch (Exception e) {
-            Log.e(Constants.LOG_TAG, "", e);
-        }
-        return null;
+
+        String url = "http://www.mytischtennis.de/community/teamplayers?teamId=" + id;
+
+        String page = Client.getPage(url);
+        return parsePlayerFromTeam(page);
 
     }
 
+
+
     private List<Player> parsePlayerFromTeam(String page) {
-        Set<Player> set = new TreeSet<Player>();
+        Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
+            @Override
+            public int compare(Player lhs, Player rhs) {
+                return lhs.getRank() - rhs.getRank();
+            }
+        });
+        if (page == null) {
+            return new ArrayList<Player>();
+        }
+        final String teamNameS = "<h2>";
+        final String teamNameE = "</h2>";
+        int startTeam = page.indexOf(teamNameS);
+        int endTeam = page.indexOf(teamNameE);
+        String teamName = "";
+        if (startTeam > 0 && endTeam > 0) {
+            teamName = page.substring(startTeam + teamNameS.length(), endTeam);
+        }
+        String clubName = getClubNameFromTeamName(teamName);
 
         final String toCheck = "<div class=\"openinfos myttFeaturesTooltip\" data-tooltipdata=";
 
@@ -311,15 +303,69 @@ public class MyTischtennisParser {
         int start = page.indexOf(toCheck);
         if (start > 0) {
             int n = start;
+            int rank = 1;
             while (n > 0) {
                 n += toCheck.length();
-                set.add(readPlayer(page, n));
+                Player p = readPlayer(page, n);
+                p.setRank(rank);
+                p.setTeamName(teamName);
+                p.setClub(clubName);
+                rank++;
+                set.add(p);
                 n = page.indexOf(trClosed, n);
                 n = page.indexOf(toCheck, n);
             }
         }
         return new ArrayList<Player>(set);
 
+    }
+
+    String getClubNameFromTeamName(String teamName) {
+        String c = removeString(teamName, "II");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "III");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "IV");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "V");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "VI");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "VII");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "VIII");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "IX");
+        if (c != null) {
+            return c;
+        }
+        c = removeString(teamName, "X");
+        c = removeString(teamName, "X");
+        if (c != null) {
+            return c;
+        }
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
+
+    private String removeString(String teamName, String n) {
+        if (teamName.endsWith(" " + n)) {
+            return teamName.substring(0, teamName.indexOf(" " + n));
+        }
+        return null;
     }
 
     private Player readPlayer(String page, int startPoint) {
@@ -333,12 +379,19 @@ public class MyTischtennisParser {
         player.setLastname(name.substring(0, k));
         player.setFirstname(name.substring(k + 2));
 
+        n = page.indexOf("personId=", n);
+        if (n > 0) {
+            end = page.indexOf("\"", n);
+            String idS = page.substring(n, end);
+            player.setPersonId(Long.valueOf(idS));
+        }
 
         return player;
     }
 
     class Helper {
         Player p;
+
         int idx;
 
         public Helper(Player player, int idx) {

@@ -16,6 +16,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.Util;
+import com.jmelzer.myttr.logic.ClubParser;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 
 import java.util.List;

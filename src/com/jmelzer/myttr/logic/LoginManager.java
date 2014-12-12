@@ -7,7 +7,10 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.util.Log;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.User;
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -21,21 +24,14 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginManager {
 
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws IOException {
 
-
-//        HttpParams httpParams = new BasicHttpParams();
-//        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
-//        HttpConnectionParams.setSoTimeout(httpParams, 20000);
-//        httpParams.setParameter("http.protocol.handle-redirects",false);
-//
-//        Client.client = new DefaultHttpClient(httpParams);
-        Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0");
         HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
 
         HttpGet httpGet2 = new HttpGet("http://www.mytischtennis.de/community/index");
@@ -44,14 +40,16 @@ public class LoginManager {
         httpGet2.setParams(gethttpParams);
 
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-        nvps.add(new BasicNameValuePair("userName", username));
-        nvps.add(new BasicNameValuePair("userPassWord", password));
+        nvps.add(new BasicNameValuePair("userNameB", username));
+        nvps.add(new BasicNameValuePair("userPassWordB", password));
 
-        try {
+//        try {
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-            Client.client.execute(httpPost);
-            Client.client.execute(httpGet2);
-
+            HttpResponse response = Client.client.execute(httpPost);
+            Log.d(Constants.LOG_TAG, "status code 1" + response.getStatusLine().getStatusCode());
+            response = Client.client.execute(httpGet2);
+            Log.d(Constants.LOG_TAG, "status code 2" + response.getStatusLine().getStatusCode());
+            p();
             for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
 //                System.out.println("cookie.name = " + cookie.getName());
 //                System.out.println("cookie.value = " + cookie.getValue());
@@ -60,17 +58,16 @@ public class LoginManager {
                 }
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        } catch (IOException e) {
+//            Log.e(Constants.LOG_TAG, "", e);
+//        }
 
 
         return false;
     }
     void p() {
         for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
-            System.out.println("cookie.name = " + cookie.getName());
-            System.out.println("cookie.value = " + cookie.getValue());
+            Log.d(Constants.LOG_TAG, "name/value = " + cookie.getName() + "/" + cookie.getValue());
         }
     }
 }

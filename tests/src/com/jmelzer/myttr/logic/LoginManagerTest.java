@@ -8,18 +8,19 @@
 */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
 
 import android.test.suitebuilder.annotation.SmallTest;
-import com.jmelzer.myttr.logic.LoginManager;
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
+import java.io.IOException;
 
 public class LoginManagerTest extends TestCase {
 
     @SmallTest
-    public void testlogin() {
+    public void testlogin() throws IOException {
         LoginManager loginManager = new LoginManager();
         Assert.assertFalse(loginManager.login("error", "error"));
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));

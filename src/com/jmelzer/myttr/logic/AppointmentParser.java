@@ -1,15 +1,7 @@
 package com.jmelzer.myttr.logic;
 
-import android.util.Log;
-import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.TeamAppointment;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,20 +13,16 @@ public class AppointmentParser {
 
 
     public List<TeamAppointment> read(String clubName) {
-        String firstPage = "http://www.mytischtennis.de/community/index";
-        HttpGet httpGet = new HttpGet(firstPage);
-        try {
-            HttpResponse response = Client.client.execute(httpGet);
-            HttpEntity httpEntity = response.getEntity();
-            String page = EntityUtils.toString(httpEntity);
-            return read(page, clubName);
-        } catch (Exception e) {
-            Log.e(Constants.LOG_TAG, "", e);
-        }
-        return null;
+        String url = "http://www.mytischtennis.de/community/index";
+        String page = Client.getPage(url);
+        return read(page, clubName);
     }
+
     private List<TeamAppointment> read(String page, String clubName) {
         List<TeamAppointment> list = new ArrayList<TeamAppointment>();
+        if (page == null) {
+            return list;
+        }
 
         final String toCheck = "zu meiner Mannschaft";
         String tr = "<tr>";

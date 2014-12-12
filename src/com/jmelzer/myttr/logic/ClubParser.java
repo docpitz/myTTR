@@ -7,7 +7,9 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.util.Log;
 import com.jmelzer.myttr.Club;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 
 import java.io.IOException;
@@ -22,9 +24,17 @@ import java.util.List;
 public class ClubParser {
 
 
-    HashMap<String, Club> clubHashMap = new HashMap<String, Club>();
+    static HashMap<String, Club> clubHashMap = new HashMap<String, Club>();
 
-    List<String> clubNames = new ArrayList<String>();
+    static List<String> clubNames = new ArrayList<String>();
+
+    public Club getClubNameBestMatch(String name) {
+        List<String> list = getClubNameUnsharp(name);
+        if (list.size() > 0) {
+            return getClubExact(list.get(0));
+        }
+        return null;
+    }
 
     public List<String> getClubNameUnsharp(String name) {
 
@@ -68,7 +78,7 @@ public class ClubParser {
         return clubHashMap.get(name);
     }
 
-    private void readClubs() {
+    private synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
             int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine", "raw",
                     "com.jmelzer.myttr");
@@ -78,9 +88,12 @@ public class ClubParser {
     }
 
     private void readFile(int r) {
+        LineNumberReader reader = null;
+        InputStreamReader isReader = null;
         try {
             InputStream is = MyApplication.getAppContext().getResources().openRawResource(r);
-            LineNumberReader reader = new LineNumberReader(new InputStreamReader(is));
+            isReader = new InputStreamReader(is);
+            reader = new LineNumberReader(isReader);
 
             String line = reader.readLine();
             while (line != null) {
@@ -91,7 +104,16 @@ public class ClubParser {
 //                if (true) break;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(Constants.LOG_TAG, "", e);
+        } finally {
+            if (reader != null) {
+                try {
+                    isReader.close();
+                    reader.close();
+                } catch (IOException e) {
+                    //ignore
+                }
+            }
         }
     }
 
@@ -110,5 +132,16 @@ public class ClubParser {
 
     public HashMap<String, Club> getClubHashMap() {
         return clubHashMap;
+    }
+
+    public String getClubNameById(String id) {
+        readClubs();
+        for (String key : clubHashMap.keySet()) {
+            Club c = clubHashMap.get(key);
+            if (c.getId().equals(id)) {
+                return c.getName();
+            }
+        }
+        return null;
     }
 }

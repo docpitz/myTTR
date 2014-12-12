@@ -8,27 +8,22 @@
 */
 
 
-package com.jmelzer.myttr.parser;
+package com.jmelzer.myttr.logic;
 
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.TeamAppointment;
-import com.jmelzer.myttr.logic.AppointmentParser;
-import com.jmelzer.myttr.logic.LoginManager;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
-import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
-import com.jmelzer.myttr.logic.TooManyPlayersFound;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AppointmentParserTest extends TestCase {
 
     @SmallTest
-    public void testRead() throws PlayerNotWellRegistered {
+    public void testRead() throws PlayerNotWellRegistered, IOException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
@@ -37,7 +32,7 @@ public class AppointmentParserTest extends TestCase {
 
         assertTrue(list.size() > 0);
         for (TeamAppointment teamAppointment : list) {
-            System.out.println("teamAppointment = " + teamAppointment);
+            Log.d(Constants.LOG_TAG, "teamAppointment = " + teamAppointment);
         }
     }
 

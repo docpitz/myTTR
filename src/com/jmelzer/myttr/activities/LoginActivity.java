@@ -25,6 +25,8 @@ import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
+import java.net.SocketTimeoutException;
+
 public class LoginActivity extends Activity {
     Button btnSignIn;
     LoginDataBaseAdapter loginDataBaseAdapter;
@@ -40,10 +42,10 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
-//        userNameTextField.setText("my123");
+        userNameTextField.setText("chokdee");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-//        pwTextField.setText("123456");
+        pwTextField.setText("fuckyou");
 
 
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
@@ -115,24 +117,28 @@ public class LoginActivity extends Activity {
 
             String username = ((EditText) findViewById(R.id.username)).getText().toString();
             String pw = ((EditText) findViewById(R.id.password)).getText().toString();
-            if (loginManager.login(username, pw)) {
-                loginSuccess = true;
-                MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+            try {
+                if (loginManager.login(username, pw)) {
+                    loginSuccess = true;
+                    MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
-                try {
-                    ttr = myTischtennisParser.getPoints();
-                } catch (PlayerNotWellRegistered e) {
-                    playerNotWellRegistered = true;
-                }
-                String name = myTischtennisParser.getRealName();
-                MyApplication.loginUser = new User(name, username, pw, ttr);
-                loginDataBaseAdapter.deleteEntry(username);
+                    try {
+                        ttr = myTischtennisParser.getPoints();
+                    } catch (PlayerNotWellRegistered e) {
+                        playerNotWellRegistered = true;
+                    }
+                    String name = myTischtennisParser.getRealName();
+                    MyApplication.loginUser = new User(name, username, pw, ttr);
+                    loginDataBaseAdapter.deleteEntry(username);
 
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
-                if (saveUser) {
-                    loginDataBaseAdapter.insertEntry(name, username, pw, ttr);
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                    Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
+                    if (saveUser) {
+                        loginDataBaseAdapter.insertEntry(name, username, pw, ttr);
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
 
             return null;
