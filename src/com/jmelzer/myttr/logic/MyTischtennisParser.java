@@ -85,7 +85,7 @@ public class MyTischtennisParser {
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound {
+    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound, NetworkException {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
@@ -265,7 +265,7 @@ public class MyTischtennisParser {
         return page.substring(n1, n2).trim();
     }
 
-    public List<Player> readPlayersFromTeam(String id) {
+    public List<Player> readPlayersFromTeam(String id) throws NetworkException {
 
         String url = "http://www.mytischtennis.de/community/teamplayers?teamId=" + id;
 
