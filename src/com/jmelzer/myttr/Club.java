@@ -36,15 +36,4 @@ public class Club {
     public String getWebName() {
         return webName;
     }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Club{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", id='").append(id).append('\'');
-        sb.append(", verband='").append(verband).append('\'');
-        sb.append(", webName='").append(webName).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

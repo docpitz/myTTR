@@ -37,5 +37,13 @@
             android:onClick="clublist"
             android:id="@+id/button_verein_rangliste"
             android:layout_gravity="center_horizontal"/>
+    <Button
+            android:layout_width="330dp"
+            android:width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/statistik"
+            android:onClick="statistik"
+            android:id="@+id/button_my_statistik"
+            android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

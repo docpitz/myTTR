@@ -18,6 +18,7 @@ import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.Util;
 import com.jmelzer.myttr.logic.ClubParser;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.List;
 
@@ -84,7 +85,11 @@ public class NextAppointmentsActivity extends Activity {
         @Override
         protected Integer doInBackground(String... params) {
             MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-            MyApplication.foreignTeamPlayers = myTischtennisParser.readPlayersFromTeam(id);
+            try {
+                MyApplication.foreignTeamPlayers = myTischtennisParser.readPlayersFromTeam(id);
+            } catch (NetworkException e) {
+                //todo
+            }
             return null;
         }
 

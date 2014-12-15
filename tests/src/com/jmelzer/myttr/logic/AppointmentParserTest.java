@@ -23,7 +23,7 @@ import java.util.List;
 public class AppointmentParserTest extends TestCase {
 
     @SmallTest
-    public void testRead() throws PlayerNotWellRegistered, IOException {
+    public void testRead() throws PlayerNotWellRegistered, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 

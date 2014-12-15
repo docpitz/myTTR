@@ -13,25 +13,34 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
-import java.net.SocketTimeoutException;
+import java.io.IOException;
 
 public class LoginActivity extends Activity {
     Button btnSignIn;
+
     LoginDataBaseAdapter loginDataBaseAdapter;
+
     LoginManager loginManager = new LoginManager();
+
     boolean loginSuccess;
+
+    String errorMessage;
+
     private boolean playerNotWellRegistered = false;
 
     /** Called when the activity is first created. */
@@ -72,9 +81,29 @@ public class LoginActivity extends Activity {
         }
     }
 
+    private void gotoNextActivity() {
+        Intent target = new Intent(this, AfterLoginActivity.class);
+        startActivity(target);
+    }
+
+    public void login(final View view) {
+
+        AsyncTask<String, Void, Integer> task = new LoginTask();
+        task.execute();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
+    }
+
     class LoginTask extends AsyncTask<String, Void, Integer> {
         ProgressDialog progressDialog;
+
         long start;
+
         int ttr = 0;
 
         @Override
@@ -90,10 +119,12 @@ public class LoginActivity extends Activity {
             }
             if (loginSuccess && ttr == 0) {
                 Toast.makeText(LoginActivity.this, "Login war erfolgreich konnte aber die Punkte nicht finden.",
-                               Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
+            } else if (!loginSuccess && errorMessage != null) {
+                Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
             } else if (!loginSuccess) {
                 Toast.makeText(LoginActivity.this, "Login war nicht erfolgreich. Hast du einen Premiumaccount?",
-                               Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
             } else {
                 MyApplication.loginUser.setPoints(ttr);
                 gotoNextActivity();
@@ -117,6 +148,7 @@ public class LoginActivity extends Activity {
 
             String username = ((EditText) findViewById(R.id.username)).getText().toString();
             String pw = ((EditText) findViewById(R.id.password)).getText().toString();
+            errorMessage = null;
             try {
                 if (loginManager.login(username, pw)) {
                     loginSuccess = true;
@@ -137,29 +169,12 @@ public class LoginActivity extends Activity {
                         loginDataBaseAdapter.insertEntry(name, username, pw, ttr);
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (IOException e) {
+                errorMessage = NetworkException.translate(e);
+                Log.d(Constants.LOG_TAG, "", e);
             }
 
             return null;
         }
-    }
-
-    private void gotoNextActivity() {
-        Intent target = new Intent(this, AfterLoginActivity.class);
-        startActivity(target);
-    }
-
-    public void login(final View view) {
-
-        AsyncTask<String, Void, Integer> task = new LoginTask();
-        task.execute();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Close The Database
-        loginDataBaseAdapter.close();
     }
 }

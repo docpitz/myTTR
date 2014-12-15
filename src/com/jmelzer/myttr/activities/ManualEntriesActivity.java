@@ -23,6 +23,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.logic.AppointmentParser;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TTRCalculator;
 
 import java.util.List;
@@ -92,7 +93,7 @@ public class ManualEntriesActivity extends Activity {
                 start = System.currentTimeMillis();
                 if (progressDialog == null) {
                     progressDialog = new ProgressDialog(ManualEntriesActivity.this);
-                    progressDialog.setMessage("Suche n\u00E4chste Spiele, bitte warten...");
+                    progressDialog.setMessage("Suche nächste Spiele, bitte warten...");
                     progressDialog.setIndeterminate(false);
                     progressDialog.setCancelable(false);
                     progressDialog.show();
@@ -121,7 +122,12 @@ public class ManualEntriesActivity extends Activity {
                 Player p = null;
 
                 String name = myTischtennisParser.getNameOfOwnClub();
-                teamAppointments = appointmentParser.read(name);
+                try {
+                    teamAppointments = appointmentParser.read(name);
+                } catch (NetworkException e) {
+                    //todo
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
                 return null;
             }
         };

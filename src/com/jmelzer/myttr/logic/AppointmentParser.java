@@ -12,7 +12,7 @@ import java.util.List;
 public class AppointmentParser {
 
 
-    public List<TeamAppointment> read(String clubName) {
+    public List<TeamAppointment> read(String clubName) throws NetworkException {
         String url = "http://www.mytischtennis.de/community/index";
         String page = Client.getPage(url);
         return read(page, clubName);

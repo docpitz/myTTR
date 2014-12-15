@@ -23,6 +23,7 @@ import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClubParser;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
@@ -137,6 +138,9 @@ public class PlayerDetailActivity extends Activity {
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
                     ttr = -1;
                     return null;
+                } catch (NetworkException e) {
+                    //todo
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
                 if (p != null) {
                     MyApplication.actualPlayer.copy(p);

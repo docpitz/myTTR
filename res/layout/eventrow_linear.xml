@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="10" >
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="21.03.2014"
+        android:layout_weight="3"
+        android:layout_marginRight="10px"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/event"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/date"
+        android:gravity="left"
+        android:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40"
+        android:layout_weight="5"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/ak"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/event"
+        android:gravity="left"
+        android:text="16"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"/>
+
+    <TextView
+        android:id="@+id/ttr"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ak"
+        android:gravity="right"
+        android:text="1611"
+        android:layout_weight="1"
+        android:layout_width="0dp"/>
+
+
+</LinearLayout>

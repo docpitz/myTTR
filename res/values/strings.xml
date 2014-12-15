@@ -42,6 +42,8 @@
         kannst du einen Spieler aus gegnerischen Mannschaft auswählen
     </string>
     <string name="clublist">Vereinsrangliste</string>
+    <string name="statistik">Meine Statistiken</string>
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
+    <string name="text_events">Deine letzten Spiele, wähle eins aus um Details zu sehen</string>
 </resources>

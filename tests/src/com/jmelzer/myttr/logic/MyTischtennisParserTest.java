@@ -13,6 +13,7 @@ package com.jmelzer.myttr.logic;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -34,7 +35,30 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testGetClubList() throws TooManyPlayersFound, IOException {
+    public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Game> games = myTischtennisParser.readGames();
+        for (Game game : games) {
+            Log.i(Constants.LOG_TAG, game.toString());
+        }
+    }
+    @SmallTest
+    public void testReadBetween() {
+        String toTest = "bla bla<td>06.12.2014</td><td style=\"width: 550px;";
+        assertEquals("06.12.2014", new MyTischtennisParser().readBetween(toTest , 7, "<td>", "</td>").result);
+    }
+    @SmallTest
+    public void teststripTags() {
+        String toTest = "style=\"width: 550px;\"><a href=\"javascript:openmoreinfos(423703061," +
+                "'eventdiv1');\" class=\"trigger2\" title=\"Details anzeigen\">BK-Herren | TV Bergheim II : TTG St. " +
+                "Augustin II";
+        assertEquals("BK-Herren | TV Bergheim II : TTG St. Augustin II", new MyTischtennisParser().stripTags(toTest ));
+    }
+    @SmallTest
+    public void testGetClubList() throws TooManyPlayersFound, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -45,7 +69,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testreadPlayersFromTeam() throws TooManyPlayersFound, IOException {
+    public void testreadPlayersFromTeam() throws TooManyPlayersFound, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -78,7 +102,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testFindPlayer() throws TooManyPlayersFound, IOException {
+    public void testFindPlayer() throws TooManyPlayersFound, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 

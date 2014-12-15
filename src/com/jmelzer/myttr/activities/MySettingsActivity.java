@@ -39,7 +39,7 @@ public class MySettingsActivity extends Activity {
     }
 
 
-    public class SettingsFragment extends PreferenceFragment {
+    public static class SettingsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class MySettingsActivity extends Activity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Log.i(Constants.LOG_TAG, "preferenced changed");
-                    SyncManager.getInstance().switchSync((Boolean)newValue);
+                    new SyncManager().switchSync((Boolean)newValue);
                     return true;
                 }
             });

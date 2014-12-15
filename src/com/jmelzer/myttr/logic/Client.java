@@ -33,25 +33,27 @@ public class Client {
         httpParams.setParameter("http.protocol.handle-redirects", false);
 
         Client.client = new DefaultHttpClient(httpParams);
-        Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Moziaalla/5.0 (Windows NT 6.1; WOW64; " +
+        Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
                 "rv:34.0) Gecko/20100101 Firefox/34.0");
         Client.client.getParams().setParameter("Accept-Encoding" , "gzip, deflate");
     }
     public static DefaultHttpClient client;
 
-    public static String getPage(String url) {
+    public static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
         HttpGet httpGet = prepareGet(url);
         try {
             HttpResponse response = Client.client.execute(httpGet);
 
-            return readGzippedResponse(response);
+            String s = readGzippedResponse(response);
+            long end = System.currentTimeMillis();
+            Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url);
+
+            return s;
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
+            throw new NetworkException(e);
         }
-        long end = System.currentTimeMillis();
-        Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url);
-        return null;
     }
 
     private static String readGzippedResponse(HttpResponse response) throws IOException {
@@ -76,7 +78,7 @@ public class Client {
             close(rd);
         }
 
-//        Log.d(Constants.LOG_TAG, page);
+        Log.d(Constants.LOG_TAG, page);
         return page;
     }
 

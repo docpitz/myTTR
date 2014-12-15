@@ -9,8 +9,10 @@ package com.jmelzer.myttr.logic;
 
 import android.net.Uri;
 import android.util.Log;
+
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.Player;
 
 import java.util.ArrayList;
@@ -85,7 +87,8 @@ public class MyTischtennisParser {
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound, NetworkException {
+    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
+            NetworkException {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
@@ -169,30 +172,26 @@ public class MyTischtennisParser {
         return Integer.valueOf(pageU.substring(idx, idx2).trim());
     }
 
-    public List<Player> getClubList() {
+    public List<Player> getClubList() throws NetworkException {
         String url = "http://www.mytischtennis.de/community/showclubinfo";
-        try {
-            String page = Client.getPage(url);
-            int n = page.indexOf("vereinid=");
-            if (n > 0) {
-                int n2 = page.indexOf("&", n);
-                String id = page.substring(n + 9, n2);
+        String page = Client.getPage(url);
+        int n = page.indexOf("vereinid=");
+        if (n > 0) {
+            int n2 = page.indexOf("&", n);
+            String id = page.substring(n + 9, n2);
 
-                String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
-                        "&alleSpielberechtigen=yes";
-                page = Client.getPage(clubListUrl);
-                int idx = 0;
-                List<Player> list = new ArrayList<Player>();
-                Helper h = getNextPlayer(page, id, idx);
-                while (h != null) {
-                    list.add(h.p);
-                    h = getNextPlayer(page, id, h.idx);
-                }
-                return list;
-
+            String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
+                    "&alleSpielberechtigen=yes";
+            page = Client.getPage(clubListUrl);
+            int idx = 0;
+            List<Player> list = new ArrayList<Player>();
+            Helper h = getNextPlayer(page, id, idx);
+            while (h != null) {
+                list.add(h.p);
+                h = getNextPlayer(page, id, h.idx);
             }
-        } catch (Exception e) {
-            Log.e(Constants.LOG_TAG, "", e);
+            return list;
+
         }
         return null;
     }
@@ -274,7 +273,73 @@ public class MyTischtennisParser {
 
     }
 
+    public List<Game> readGames() throws NetworkException {
+        List<Game> games = new ArrayList<Game>();
+        String url = "http://www.mytischtennis.de/community/events";
+        String page = Client.getPage(url);
+        String startTag = "coolTable";
+        boolean endoflist = false;
 
+        int n = page.indexOf(startTag);
+        if (n > 0) {
+            while (!endoflist) {
+                //find next td
+                ParseResult result = readBetween(page, n, "<td>", "</td>");
+                if (result == null) {
+                    break;
+                }
+                Game game = new Game();
+                games.add(game);
+                game.setDate(result.result);
+                n = result.end;
+                result = readBetween(page, n, "openmoreinfos(", ",");
+                game.setEventId(Long.valueOf(result.result));
+                result = readBetween(page, n, "Details anzeigen\">", "</a>");
+                game.setEvent(result.result);
+                if (result.result.equals("BK-Herren | DJK Stallberg-Wolsdorf : TTG St. Augustin II")) {
+                    System.out.println();
+                }
+                n = result.end;
+
+                //next 5 td not interesting in
+                for (int i = 0; i < 5; i++) {
+                    result = readBetween(page, n, "<td>", "</td>");
+                    n = result.end;
+                }
+                result = readBetween(page, n, "<td>", "</td>");
+                game.setTtr(Integer.valueOf(result.result));
+                n = result.end;
+                result = readBetween(page, n, "<td ", "</td>");
+                n = result.end - 15;
+                result = readBetween(page, n, ">", "</span>");
+                game.setSum(Short.valueOf(result.result));
+                n = result.end;
+                endoflist = page.indexOf("</table>", n) == -1;
+            }
+
+        }
+
+        return games;
+    }
+
+    String stripTags(String s) {
+        int start = s.indexOf(">");
+        String ret = s;
+        while (start >= 0) {
+            ret = ret.substring(start + 1);
+            start = ret.indexOf(">");
+        }
+        return ret;
+    }
+
+    ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
+        int s = page.indexOf(tagStart, start);
+        if (s == -1) {
+            return null;
+        }
+        int e = page.indexOf(tagEnd, s + tagStart.length());
+        return new ParseResult(page.substring(s + tagStart.length(), e), e);
+    }
 
     private List<Player> parsePlayerFromTeam(String page) {
         Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
@@ -387,6 +452,17 @@ public class MyTischtennisParser {
         }
 
         return player;
+    }
+
+    class ParseResult {
+        String result;
+
+        int end;
+
+        ParseResult(String result, int end) {
+            this.result = result;
+            this.end = end;
+        }
     }
 
     class Helper {
