@@ -148,7 +148,7 @@ public class AfterLoginActivity extends Activity {
         protected Integer doInBackground(String... params) {
             MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
             try {
-                MyApplication.games = myTischtennisParser.readGames();
+                MyApplication.events = myTischtennisParser.readEvents();
             } catch (NetworkException e) {
                 errorMessage = NetworkException.translate(e);
                 Log.d(Constants.LOG_TAG, "", e);

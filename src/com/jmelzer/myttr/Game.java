@@ -1,100 +1,59 @@
 package com.jmelzer.myttr;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * TODO
- * User: jmelzer
- * Date: 12.12.14
- * Time: 13:31
+ * Created by J. Melzer on 15.12.2014.
  */
 public class Game {
-    String date;
-    String event;
-    String ak = "16";
-    short playCount;
-    short won;
-    int ttr;
-    long eventId;
-    short sum;
+    String player;
+    String result;
+    List<String> sets = new ArrayList();
 
-    public String getDate() {
-        return date;
+    public String getPlayer() {
+        return player;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
-    public String getEvent() {
-        return event;
+    public String getResult() {
+        return result;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setResult(String result) {
+        this.result = result;
     }
 
-    public String getAk() {
-        return ak;
+    public List<String> getSets() {
+        return sets;
     }
 
-    public void setAk(String ak) {
-        this.ak = ak;
+    public void setSets(List<String> sets) {
+        this.sets = sets;
     }
 
-    public short getPlayCount() {
-        return playCount;
-    }
-
-    public void setPlayCount(short playCount) {
-        this.playCount = playCount;
-    }
-
-    public short getWon() {
-        return won;
-    }
-
-    public void setWon(short won) {
-        this.won = won;
-    }
-
-    public int getTtr() {
-        return ttr;
-    }
-    public String getTtrAsString() {
-        return "" + ttr;
-    }
-
-    public void setTtr(int ttr) {
-        this.ttr = ttr;
-    }
-
-    public short getSum() {
-        return sum;
-    }
-
-    public void setSum(short sum) {
-        this.sum = sum;
-    }
-
-    public long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(long eventId) {
-        this.eventId = eventId;
+    public void addSet(String result) {
+        sets.add(result);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Game{");
-        sb.append("date='").append(date).append('\'');
-        sb.append(", event='").append(event).append('\'');
-        sb.append(", ak='").append(ak).append('\'');
-        sb.append(", playCount=").append(playCount);
-        sb.append(", won=").append(won);
-        sb.append(", ttr=").append(ttr);
-        sb.append(", eventId=").append(eventId);
-        sb.append(", sum=").append(sum);
-        sb.append('}');
-        return sb.toString();
+        return "Game{" +
+                "player='" + player + '\'' +
+                ", result='" + result + '\'' +
+                ", sets=" + sets +
+                '}';
+    }
+
+    public String getSetsInARow() {
+        String ret = "";
+        for (String set : sets) {
+            ret += set + "    ";
+        }
+
+        return ret;
     }
 }

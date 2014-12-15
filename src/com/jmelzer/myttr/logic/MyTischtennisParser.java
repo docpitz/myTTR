@@ -12,6 +12,8 @@ import android.util.Log;
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.Event;
+import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.Player;
 
@@ -273,8 +275,8 @@ public class MyTischtennisParser {
 
     }
 
-    public List<Game> readGames() throws NetworkException {
-        List<Game> games = new ArrayList<Game>();
+    public List<Event> readEvents() throws NetworkException {
+        List<Event> events = new ArrayList<Event>();
         String url = "http://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         String startTag = "coolTable";
@@ -288,14 +290,14 @@ public class MyTischtennisParser {
                 if (result == null) {
                     break;
                 }
-                Game game = new Game();
-                games.add(game);
-                game.setDate(result.result);
+                Event event = new Event();
+                events.add(event);
+                event.setDate(result.result);
                 n = result.end;
                 result = readBetween(page, n, "openmoreinfos(", ",");
-                game.setEventId(Long.valueOf(result.result));
+                event.setEventId(Long.valueOf(result.result));
                 result = readBetween(page, n, "Details anzeigen\">", "</a>");
-                game.setEvent(result.result);
+                event.setEvent(result.result);
                 if (result.result.equals("BK-Herren | DJK Stallberg-Wolsdorf : TTG St. Augustin II")) {
                     System.out.println();
                 }
@@ -307,19 +309,19 @@ public class MyTischtennisParser {
                     n = result.end;
                 }
                 result = readBetween(page, n, "<td>", "</td>");
-                game.setTtr(Integer.valueOf(result.result));
+                event.setTtr(Integer.valueOf(result.result));
                 n = result.end;
                 result = readBetween(page, n, "<td ", "</td>");
                 n = result.end - 15;
                 result = readBetween(page, n, ">", "</span>");
-                game.setSum(Short.valueOf(result.result));
+                event.setSum(Short.valueOf(result.result));
                 n = result.end;
                 endoflist = page.indexOf("</table>", n) == -1;
             }
 
         }
 
-        return games;
+        return events;
     }
 
     String stripTags(String s) {
@@ -452,6 +454,48 @@ public class MyTischtennisParser {
         }
 
         return player;
+    }
+
+    public EventDetail readEventDetail(Event event) throws NetworkException {
+        String url = "http://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
+        String page = Client.getPage(url);
+        String startTag = "bigtooltip'});\">";
+        int n = page.indexOf(startTag);
+        boolean endoflist = false;
+        EventDetail eventDetail = new EventDetail();
+        int j = 0;
+        if (n > 0) {
+            while (!endoflist) {
+                ParseResult result = readBetween(page, n, startTag, "</span>");
+                if (result == null) {
+                    break;
+                }
+                Game game = new Game();
+                eventDetail.getGames().add(game);
+                game.setPlayer(result.result);
+                n = result.end;
+//
+                int i = 1;
+                result = readBetween(page, n, "<td>", "</td>");
+                n = result.end;
+                game.setResult(result.result.trim());
+                while (true) {
+                    result = readBetween(page, n, "<td>", "</td>");
+                    if (result == null || result.result.startsWith("&nbsp;")) {
+                        break;
+                    }
+                    game.addSet(result.result);
+                    n = result.end;
+                    i++;
+
+                }
+                j++;
+
+                endoflist = page.indexOf("</table>", n) == -1;
+            }
+
+        }
+        return eventDetail;
     }
 
     class ParseResult {

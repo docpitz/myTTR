@@ -13,7 +13,8 @@ package com.jmelzer.myttr.logic;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Event;
+import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -40,11 +41,25 @@ public class MyTischtennisParserTest extends TestCase {
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Game> games = myTischtennisParser.readGames();
-        for (Game game : games) {
-            Log.i(Constants.LOG_TAG, game.toString());
+        List<Event> events = myTischtennisParser.readEvents();
+        for (Event event : events) {
+            Log.i(Constants.LOG_TAG, event.toString());
         }
     }
+    @SmallTest
+    public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Event> events = myTischtennisParser.readEvents();
+        for (Event event : events) {
+            Log.i(Constants.LOG_TAG, event.toString());
+           EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
+            Log.i(Constants.LOG_TAG, eventDetail.toString());
+        }
+    }
+
     @SmallTest
     public void testReadBetween() {
         String toTest = "bla bla<td>06.12.2014</td><td style=\"width: 550px;";
