@@ -29,7 +29,7 @@ import com.jmelzer.myttr.logic.SyncManager;
 /**
  * will be aclled after the user press the notification for new points.
  */
-public class NewPointsActivity extends Activity {
+public class NewPointsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

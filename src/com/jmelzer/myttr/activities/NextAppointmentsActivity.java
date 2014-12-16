@@ -28,7 +28,7 @@ import java.util.List;
  * Date: 22.03.14
  * Time: 13:06
  */
-public class NextAppointmentsActivity extends Activity {
+public class NextAppointmentsActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

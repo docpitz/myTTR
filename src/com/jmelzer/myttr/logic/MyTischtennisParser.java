@@ -298,13 +298,18 @@ public class MyTischtennisParser {
                 event.setEventId(Long.valueOf(result.result));
                 result = readBetween(page, n, "Details anzeigen\">", "</a>");
                 event.setEvent(result.result);
-                if (result.result.equals("BK-Herren | DJK Stallberg-Wolsdorf : TTG St. Augustin II")) {
-                    System.out.println();
-                }
                 n = result.end;
 
-                //next 5 td not interesting in
-                for (int i = 0; i < 5; i++) {
+                result = readBetween(page, n, "<td>", "</td>");
+                n = result.end;
+                event.setAk(result.result);
+
+                result = readBetween(page, n, "<td>", "</td>");
+                n = result.end;
+                event.setPlayCount(result.result);
+
+                //next 3 td not interesting in
+                for (int i = 0; i < 3; i++) {
                     result = readBetween(page, n, "<td>", "</td>");
                     n = result.end;
                 }

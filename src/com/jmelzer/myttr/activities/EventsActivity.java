@@ -29,7 +29,7 @@ import java.util.List;
  * Date: 22.03.14
  * Time: 13:06
  */
-public class EventsActivity extends Activity {
+public class EventsActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,10 +84,14 @@ public class EventsActivity extends Activity {
 
             textView = (TextView) rowView.findViewById(R.id.event);
             textView.setText(event.getEvent());
+            textView = (TextView) rowView.findViewById(R.id.sp);
+            textView.setText(event.getPlayCount());
             textView = (TextView) rowView.findViewById(R.id.ak);
             textView.setText(event.getAk());
             textView = (TextView) rowView.findViewById(R.id.ttr);
             textView.setText(event.getTtrAsString());
+            textView = (TextView) rowView.findViewById(R.id.diff);
+            textView.setText("" + event.getSum());
 
 
             return rowView;

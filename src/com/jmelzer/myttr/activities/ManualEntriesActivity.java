@@ -28,7 +28,7 @@ import com.jmelzer.myttr.logic.TTRCalculator;
 
 import java.util.List;
 
-public class ManualEntriesActivity extends Activity {
+public class ManualEntriesActivity extends BaseActivity {
 
     TTRCalculator calculator = new TTRCalculator();
 

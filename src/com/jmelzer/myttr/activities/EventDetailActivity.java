@@ -30,7 +30,7 @@ import java.util.List;
  * Date: 22.03.14
  * Time: 13:06
  */
-public class EventDetailActivity extends Activity {
+public class EventDetailActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

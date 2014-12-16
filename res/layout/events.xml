@@ -17,14 +17,15 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="24dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:text="Datum" />
 
         <TextView
@@ -32,7 +33,7 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="5"
+            android:layout_weight="4.5"
             android:text="Begegnung" />
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="AK" />
 
         <TextView
@@ -48,8 +49,26 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
+            android:text="Sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.2"
             android:text="TTR" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.9"
+            android:gravity="right"
+            android:layout_marginRight="2dp"
+            android:text="+/-" />
     </LinearLayout>
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"

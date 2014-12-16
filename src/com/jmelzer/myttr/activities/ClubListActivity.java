@@ -19,7 +19,7 @@ import android.widget.ListView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
-public class ClubListActivity extends Activity {
+public class ClubListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

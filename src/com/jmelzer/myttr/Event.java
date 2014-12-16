@@ -10,7 +10,7 @@ public class Event {
     String date;
     String event;
     String ak = "16";
-    short playCount;
+    String playCount;
     short won;
     int ttr;
     long eventId;
@@ -40,11 +40,11 @@ public class Event {
         this.ak = ak;
     }
 
-    public short getPlayCount() {
+    public String getPlayCount() {
         return playCount;
     }
 
-    public void setPlayCount(short playCount) {
+    public void setPlayCount(String playCount) {
         this.playCount = playCount;
     }
 

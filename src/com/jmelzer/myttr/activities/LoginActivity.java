@@ -6,7 +6,6 @@
 
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,7 +29,7 @@ import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
 import java.io.IOException;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
     Button btnSignIn;
 
     LoginDataBaseAdapter loginDataBaseAdapter;
@@ -47,10 +46,12 @@ public class LoginActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
+        //todo
         userNameTextField.setText("chokdee");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
@@ -82,7 +83,7 @@ public class LoginActivity extends Activity {
     }
 
     private void gotoNextActivity() {
-        Intent target = new Intent(this, AfterLoginActivity.class);
+        Intent target = new Intent(this, HomeActivity.class);
         startActivity(target);
     }
 

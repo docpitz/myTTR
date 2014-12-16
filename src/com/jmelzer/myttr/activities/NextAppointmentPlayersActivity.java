@@ -16,12 +16,11 @@ import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 /**
- * TODO
  * User: jmelzer
  * Date: 22.03.14
  * Time: 13:06
  */
-public class NextAppointmentPlayersActivity extends Activity {
+public class NextAppointmentPlayersActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     @Override
@@ -36,6 +35,9 @@ public class NextAppointmentPlayersActivity extends Activity {
         listview.setAdapter(adapter);
         Button button = new Button(this);
         button.setText(R.string.select);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 //        listview.addFooterView(button);
     }

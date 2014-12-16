@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Ergebnis" />
+            android:text="Erg." />
 
         <TextView
             android:id="@+id/textView3"

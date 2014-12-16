@@ -28,7 +28,7 @@ import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
 
-public class PlayerDetailActivity extends Activity {
+public class PlayerDetailActivity extends BaseActivity {
 
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
