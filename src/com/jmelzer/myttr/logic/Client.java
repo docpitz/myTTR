@@ -30,7 +30,7 @@ public class Client {
         HttpParams httpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
         HttpConnectionParams.setSoTimeout(httpParams, 90000);
-        httpParams.setParameter("http.protocol.handle-redirects", false);
+        httpParams.setParameter("http.protocol.handle-redirects", true);
 
         Client.client = new DefaultHttpClient(httpParams);
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
@@ -47,7 +47,7 @@ public class Client {
 
             String s = readGzippedResponse(response);
             long end = System.currentTimeMillis();
-            Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url);
+            Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url + " returncode = " + response.getStatusLine().getStatusCode());
 
             return s;
         } catch (Exception e) {

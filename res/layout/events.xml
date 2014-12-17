@@ -25,7 +25,7 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="2.2"
             android:text="Datum" />
 
         <TextView
@@ -70,6 +70,10 @@
             android:layout_marginRight="2dp"
             android:text="+/-" />
     </LinearLayout>
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="2dip"
+    android:background="#ff000000"/>
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/eventlist"

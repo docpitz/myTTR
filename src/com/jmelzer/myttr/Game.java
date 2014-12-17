@@ -8,8 +8,18 @@ import java.util.List;
  */
 public class Game {
     String player;
+    String playerWithPoints;
+    long playerId;
     String result;
     List<String> sets = new ArrayList();
+
+    public long getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(long playerId) {
+        this.playerId = playerId;
+    }
 
     public String getPlayer() {
         return player;
@@ -25,6 +35,14 @@ public class Game {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getPlayerWithPoints() {
+        return playerWithPoints;
+    }
+
+    public void setPlayerWithPoints(String playerWithPoints) {
+        this.playerWithPoints = playerWithPoints;
     }
 
     public List<String> getSets() {
@@ -43,6 +61,7 @@ public class Game {
     public String toString() {
         return "Game{" +
                 "player='" + player + '\'' +
+                ", playerId=" + playerId +
                 ", result='" + result + '\'' +
                 ", sets=" + sets +
                 '}';

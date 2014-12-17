@@ -47,21 +47,21 @@ public class EventsActivity extends BaseActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-
-
                 view.setSelected(true);
-
                 if (position > -1 && position < MyApplication.events.size()) {
                     Event event = MyApplication.events.get(position);
-
-                    new DetailAsyncTask(event).execute();
+                    new DetailAsyncTask(event, EventsActivity.this, EventDetailActivity.class).execute();
                     return true;
                 }
                 return false;
             }
         });
 
-
+        TextView textView = (TextView) findViewById(R.id.textView);
+        if (MyApplication.selectedPlayer != null) {
+            //todo spieler namen verbessern (Melzer, Jürgen (1611) etc.
+            textView.setText("Statistiken für den Spieler " + MyApplication.selectedPlayer);
+        }
     }
 
     class EventAdapter extends ArrayAdapter<Event> {
@@ -85,7 +85,7 @@ public class EventsActivity extends BaseActivity {
             textView = (TextView) rowView.findViewById(R.id.event);
             textView.setText(event.getEvent());
             textView = (TextView) rowView.findViewById(R.id.sp);
-            textView.setText(event.getPlayCount());
+            textView.setText(event.getWon() + "/" + event.getPlayCount());
             textView = (TextView) rowView.findViewById(R.id.ak);
             textView.setText(event.getAk());
             textView = (TextView) rowView.findViewById(R.id.ttr);
@@ -98,53 +98,4 @@ public class EventsActivity extends BaseActivity {
         }
     }
 
-    class DetailAsyncTask extends AsyncTask<String, Void, Integer> {
-        ProgressDialog progressDialog;
-
-        Event event;
-        String errorMessage;
-
-        DetailAsyncTask(Event event) {
-            this.event = event;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            if (progressDialog == null) {
-                progressDialog = new ProgressDialog(EventsActivity.this);
-                progressDialog.setMessage("Lade die Details, bitte warten...");
-                progressDialog.setIndeterminate(false);
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected Integer doInBackground(String... params) {
-            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-            try {
-                MyApplication.currentDetail = myTischtennisParser.readEventDetail(event);
-            } catch (NetworkException e) {
-                errorMessage = e.getMessage();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            if (errorMessage != null) {
-                Toast.makeText(EventsActivity.this, errorMessage,
-                        Toast.LENGTH_SHORT).show();
-            }else if (MyApplication.currentDetail == null) {
-                Toast.makeText(EventsActivity.this, "Konnte Details nicht laden",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Intent target = new Intent(EventsActivity.this, EventDetailActivity.class);
-                startActivity(target);
-            }
-        }
-    }
 }

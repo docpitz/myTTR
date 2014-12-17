@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/sp"
-        android:layout_weight="1.5"
+        android:layout_weight="1.2"
         android:text="1611" />
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/ttr"
-        android:layout_weight="0.6"
+        android:layout_weight="0.9"
         android:layout_marginRight="2dp"
         android:gravity="right"
         android:text="-12" />

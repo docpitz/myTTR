@@ -148,9 +148,6 @@ public class MyTischtennisParser {
         int idx = page.indexOf(toFind, startIdx) + toFind.length();
         int idx2 = page.indexOf(toFindEnd, idx);
 
-        System.out.println(page.substring(idx, idx2));
-        System.out.println(page.substring(idx - 10, idx2 - 10));
-
         return page.substring(idx, idx2).trim();
     }
 
@@ -159,9 +156,6 @@ public class MyTischtennisParser {
         String toFindClose = "</strong>";
         int idx = page.indexOf(toFind, startIdx) + toFind.length();
         int idx2 = page.indexOf(toFindClose, idx);
-
-        System.out.println(page.substring(idx, idx2));
-        System.out.println(page.substring(idx - 10, idx2 - 10));
 
         return page.substring(idx, idx2).trim();
 //        return null;
@@ -228,14 +222,15 @@ public class MyTischtennisParser {
         if (nCssClassBefore <= 0) {
             return null;
         }
+        ParseResult result = readBetween(page, nCssClassBefore, "data-tooltipdata=\"", ";");
+
         int nStart = page.indexOf(">", nCssClassBefore + cssBefore.length());
         int nEnd = page.indexOf("<span", nStart + 1);
         String name = page.substring(nStart + 1, nEnd);
-//        System.out.println("name = " + name);
         String firstName = findFirstName(nStart, page);
         String lastName = findLastName(nStart, page);
         Player player = new Player(firstName, lastName, id, parsePoints(page, nStart));
-//        System.out.println("player = " + player);
+        player.setPersonId(Long.valueOf(result.result));
         return new Helper(player, nEnd);
     }
 
@@ -276,9 +271,13 @@ public class MyTischtennisParser {
     }
 
     public List<Event> readEvents() throws NetworkException {
-        List<Event> events = new ArrayList<Event>();
         String url = "http://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
+        return parseEvents(page);
+    }
+
+    private List<Event> parseEvents(String page) {
+        List<Event> events = new ArrayList<Event>();
         String startTag = "coolTable";
         boolean endoflist = false;
 
@@ -307,9 +306,12 @@ public class MyTischtennisParser {
                 result = readBetween(page, n, "<td>", "</td>");
                 n = result.end;
                 event.setPlayCount(result.result);
+                result = readBetween(page, n, "<td>", "</td>");
+                n = result.end;
+                event.setWon(Short.valueOf(result.result));
 
                 //next 3 td not interesting in
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 2; i++) {
                     result = readBetween(page, n, "<td>", "</td>");
                     n = result.end;
                 }
@@ -464,21 +466,30 @@ public class MyTischtennisParser {
     public EventDetail readEventDetail(Event event) throws NetworkException {
         String url = "http://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
         String page = Client.getPage(url);
-        String startTag = "bigtooltip'});\">";
+        String startTag = "data-tooltipdata=\"";
         int n = page.indexOf(startTag);
         boolean endoflist = false;
         EventDetail eventDetail = new EventDetail();
         int j = 0;
         if (n > 0) {
             while (!endoflist) {
-                ParseResult result = readBetween(page, n, startTag, "</span>");
+                ParseResult result = readBetween(page, n, startTag, ";");
                 if (result == null) {
                     break;
                 }
                 Game game = new Game();
                 eventDetail.getGames().add(game);
+                game.setPlayerId(Long.valueOf(result.result));
+
+                n = result.end;
+                result = readBetween(page, n, ";", ";");
+                n = result.end;
+                result = readBetween(page, n, ";", ";");
                 game.setPlayer(result.result);
                 n = result.end;
+
+                result = readBetween(page, n, "bigtooltip'});\">", "</span>");
+                game.setPlayerWithPoints(result.result);
 //
                 int i = 1;
                 result = readBetween(page, n, "<td>", "</td>");
@@ -501,6 +512,13 @@ public class MyTischtennisParser {
 
         }
         return eventDetail;
+    }
+
+    public List<Event> readEventsForForeignPlayer(long playerId) throws NetworkException {
+
+        String url = "http://www.mytischtennis.de/community/events?personId=" + playerId;
+        String page = Client.getPage(url);
+        return parseEvents(page);
     }
 
     class ParseResult {

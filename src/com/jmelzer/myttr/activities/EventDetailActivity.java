@@ -41,8 +41,22 @@ public class EventDetailActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 MyApplication.currentDetail.getGames());
         listview.setAdapter(adapter);
-        setTitle(MyApplication.getTitle());
 
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                view.setSelected(true);
+                if (position > -1 && position < MyApplication.events.size()) {
+                    Game game = MyApplication.currentDetail.getGames().get(position);
+
+                    new EventsAsyncTask(EventDetailActivity.this, EventsActivity.class, game).execute();
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
     }
@@ -62,7 +76,7 @@ public class EventDetailActivity extends BaseActivity {
             Game game = MyApplication.currentDetail.getGames().get(position);
 
             TextView textView = (TextView) rowView.findViewById(R.id.name);
-            String txt = game.getPlayer();
+            String txt = game.getPlayerWithPoints();
             textView.setText(txt);
 
             textView = (TextView) rowView.findViewById(R.id.result);

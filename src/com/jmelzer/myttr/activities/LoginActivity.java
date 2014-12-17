@@ -6,6 +6,7 @@
 
 package com.jmelzer.myttr.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,7 @@ import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
 import java.io.IOException;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends Activity {
     Button btnSignIn;
 
     LoginDataBaseAdapter loginDataBaseAdapter;

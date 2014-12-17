@@ -7,6 +7,7 @@
 
 package com.jmelzer.myttr.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -51,100 +52,31 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void clublist(View view) {
-        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask();
+        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(this, ClubListActivity.class);
         task.execute();
     }
 
     public void statistik(View view) {
-        AsyncTask<String, Void, Integer> task = new EventsAsyncTask();
+        AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
         task.execute();
     }
 
-    private class ClubListAsyncTask extends AsyncTask<String, Void, Integer> {
-        ProgressDialog progressDialog;
-        private String errorMessage;
+    private class ClubListAsyncTask extends BaseAsyncTask {
 
-        @Override
-        protected void onPreExecute() {
-            if (progressDialog == null) {
-                progressDialog = new ProgressDialog(HomeActivity.this);
-                progressDialog.setMessage("Lade die Vereinsliste, bitte warten...");
-                progressDialog.setIndeterminate(false);
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-            }
+        public ClubListAsyncTask(Activity parent, Class targetClz) {
+            super(parent, targetClz);
         }
 
         @Override
-        protected Integer doInBackground(String... params) {
-            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-            try {
-                MyApplication.clubPlayers = myTischtennisParser.getClubList();
-            } catch (NetworkException e) {
-                errorMessage = NetworkException.translate(e);
-                Log.d(Constants.LOG_TAG, "", e);
-
-            }
-            return null;
+        protected void callParser() throws NetworkException {
+            MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
         }
 
+
         @Override
-        protected void onPostExecute(Integer integer) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            if (MyApplication.clubPlayers != null) {
-                Intent intent = new Intent(HomeActivity.this, ClubListActivity.class);
-                startActivity(intent);
-            } else if (errorMessage != null) {
-                Toast.makeText(HomeActivity.this, errorMessage,
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(HomeActivity.this, "Konnte die Vereinsliste nicht laden",
-                        Toast.LENGTH_SHORT).show();
-            }
+        protected boolean dataLoaded() {
+            return MyApplication.clubPlayers != null;
         }
     }
 
-    private class EventsAsyncTask extends AsyncTask<String, Void, Integer> {
-        ProgressDialog progressDialog;
-
-        private String errorMessage;
-
-        @Override
-        protected void onPreExecute() {
-            if (progressDialog == null) {
-                progressDialog = new ProgressDialog(HomeActivity.this);
-                progressDialog.setMessage("Lade deine Spiele, bitte warten...");
-                progressDialog.setIndeterminate(false);
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-            }
-        }
-
-        @Override
-        protected Integer doInBackground(String... params) {
-            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-            try {
-                MyApplication.events = myTischtennisParser.readEvents();
-            } catch (NetworkException e) {
-                errorMessage = NetworkException.translate(e);
-                Log.d(Constants.LOG_TAG, "", e);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-            }
-            if (errorMessage != null) {
-                Toast.makeText(HomeActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-            } else {
-                Intent intent = new Intent(HomeActivity.this, EventsActivity.class);
-                startActivity(intent);
-            }
-        }
-    }
 }

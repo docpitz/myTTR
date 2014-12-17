@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 /**
@@ -22,7 +23,7 @@ public abstract class BaseActivity extends Activity {
 //
 //        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.header);
 
-//        setTitle(MyApplication.getTitle());
+        setTitle(MyApplication.getTitle());
     }
 
     @Override

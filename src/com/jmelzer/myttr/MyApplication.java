@@ -25,6 +25,7 @@ public class MyApplication extends Application {
     public static List<Event> events;
     public static List<Player> foreignTeamPlayers;
     public static EventDetail currentDetail;
+    public static String selectedPlayer;
 
     public void onCreate() {
         super.onCreate();

@@ -97,11 +97,9 @@ public class ClubParser {
 
             String line = reader.readLine();
             while (line != null) {
-//                System.out.println("line = " + line);
                 Club v = parseLine(line);
                 clubHashMap.put(v.getName(), v);
                 line = reader.readLine();
-//                if (true) break;
             }
         } catch (IOException e) {
             Log.e(Constants.LOG_TAG, "", e);

@@ -97,6 +97,20 @@ public class Player implements Comparable<Player> {
     }
 
     @Override
+    public String toString() {
+        return "Player{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", club='" + club + '\'' +
+                ", teamName='" + teamName + '\'' +
+                ", personId=" + personId +
+                ", ttrPoints=" + ttrPoints +
+                ", isChecked=" + isChecked +
+                ", rank=" + rank +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -126,21 +140,6 @@ public class Player implements Comparable<Player> {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (club != null ? club.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Player{");
-        sb.append("firstname='").append(firstname).append('\'');
-        sb.append(", lastname='").append(lastname).append('\'');
-        sb.append(", club='").append(club).append('\'');
-        sb.append(", teamName='").append(teamName).append('\'');
-        sb.append(", personId=").append(personId);
-        sb.append(", ttrPoints=").append(ttrPoints);
-        sb.append(", isChecked=").append(isChecked);
-        sb.append(", rank=").append(rank);
-        sb.append('}');
-        return sb.toString();
     }
 
     @Override
@@ -185,4 +184,7 @@ public class Player implements Comparable<Player> {
     }
 
 
+    public String getFullName() {
+        return firstname + " " + lastname + " (" + ttrPoints + ")";
+    }
 }

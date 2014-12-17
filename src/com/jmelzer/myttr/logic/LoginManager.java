@@ -46,9 +46,9 @@ public class LoginManager {
 //        try {
             httpPost.setEntity(new UrlEncodedFormEntity(nvps));
             HttpResponse response = Client.client.execute(httpPost);
-            Log.d(Constants.LOG_TAG, "status code 1" + response.getStatusLine().getStatusCode());
+            Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
             response = Client.client.execute(httpGet2);
-            Log.d(Constants.LOG_TAG, "status code 2" + response.getStatusLine().getStatusCode());
+            Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
             p();
             for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
 //                System.out.println("cookie.name = " + cookie.getName());

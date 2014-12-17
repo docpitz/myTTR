@@ -15,8 +15,13 @@ package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 
 public class ClubListActivity extends BaseActivity {
@@ -31,6 +36,22 @@ public class ClubListActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 MyApplication.clubPlayers);
         listview.setAdapter(adapter);
+
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                view.setSelected(true);
+                if (position > -1 && position < MyApplication.clubPlayers.size()) {
+                    Player p = MyApplication.clubPlayers.get(position);
+
+                    new EventsAsyncTask(ClubListActivity.this, EventsActivity.class, p).execute();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
 }

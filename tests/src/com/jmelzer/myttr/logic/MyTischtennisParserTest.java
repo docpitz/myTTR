@@ -12,10 +12,12 @@ package com.jmelzer.myttr.logic;
 
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
+
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Player;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -46,6 +48,19 @@ public class MyTischtennisParserTest extends TestCase {
             Log.i(Constants.LOG_TAG, event.toString());
         }
     }
+
+    @SmallTest
+    public void testreadGamesForForeignPlayer() throws PlayerNotWellRegistered, IOException, NetworkException {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Event> events = myTischtennisParser.readEventsForForeignPlayer(425165L);
+        for (Event event : events) {
+            Log.i(Constants.LOG_TAG, event.toString());
+        }
+    }
+
     @SmallTest
     public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
@@ -55,7 +70,7 @@ public class MyTischtennisParserTest extends TestCase {
         List<Event> events = myTischtennisParser.readEvents();
         for (Event event : events) {
             Log.i(Constants.LOG_TAG, event.toString());
-           EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
+            EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
             Log.i(Constants.LOG_TAG, eventDetail.toString());
         }
     }
@@ -63,15 +78,17 @@ public class MyTischtennisParserTest extends TestCase {
     @SmallTest
     public void testReadBetween() {
         String toTest = "bla bla<td>06.12.2014</td><td style=\"width: 550px;";
-        assertEquals("06.12.2014", new MyTischtennisParser().readBetween(toTest , 7, "<td>", "</td>").result);
+        assertEquals("06.12.2014", new MyTischtennisParser().readBetween(toTest, 7, "<td>", "</td>").result);
     }
+
     @SmallTest
     public void teststripTags() {
         String toTest = "style=\"width: 550px;\"><a href=\"javascript:openmoreinfos(423703061," +
                 "'eventdiv1');\" class=\"trigger2\" title=\"Details anzeigen\">BK-Herren | TV Bergheim II : TTG St. " +
                 "Augustin II";
-        assertEquals("BK-Herren | TV Bergheim II : TTG St. Augustin II", new MyTischtennisParser().stripTags(toTest ));
+        assertEquals("BK-Herren | TV Bergheim II : TTG St. Augustin II", new MyTischtennisParser().stripTags(toTest));
     }
+
     @SmallTest
     public void testGetClubList() throws TooManyPlayersFound, IOException, NetworkException {
         LoginManager loginManager = new LoginManager();
