@@ -38,7 +38,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException {
+    public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
@@ -50,7 +50,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testreadGamesForForeignPlayer() throws PlayerNotWellRegistered, IOException, NetworkException {
+    public void testreadGamesForForeignPlayer() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
@@ -62,7 +62,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException {
+    public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
 
@@ -90,7 +90,7 @@ public class MyTischtennisParserTest extends TestCase {
     }
 
     @SmallTest
-    public void testGetClubList() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testGetClubList() throws Exception {
         LoginManager loginManager = new LoginManager();
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();

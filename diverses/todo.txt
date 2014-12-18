@@ -1,0 +1,6 @@
+- Stabilität
+- Relogin
+- Spieler Simulation
+- Suche verbessern (nur Verein?)
+- Link auf mytischtennis.de
+- Navigation drawers

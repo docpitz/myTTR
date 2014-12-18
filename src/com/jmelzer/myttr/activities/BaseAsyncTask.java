@@ -4,13 +4,20 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
 
+import java.io.IOException;
+
 /**
- * Created by cicgfp on 17.12.2014.
+ * Base class for same error handling.
  */
 public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     String errorMessage;
@@ -40,11 +47,19 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             callParser();
         } catch (NetworkException e) {
             errorMessage = e.getMessage();
+        } catch (LoginExpiredException e) {
+            try {
+                new LoginManager().relogin();
+                callParser();
+            } catch (Exception e2) {
+                errorMessage = "Das erneute Anmelden war nicht erfolgreich";
+                Log.e(Constants.LOG_TAG, "", e2);
+            }
         }
         return null;
     }
 
-    protected abstract void callParser() throws NetworkException;
+    protected abstract void callParser() throws NetworkException, LoginExpiredException;
 
     @Override
     protected void onPostExecute(Integer integer) {
@@ -52,8 +67,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             progressDialog.dismiss();
         }
         if (errorMessage != null) {
-            Toast.makeText(parent, errorMessage,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
         } else if (!dataLoaded()) {
             Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
                     Toast.LENGTH_SHORT).show();

@@ -47,8 +47,8 @@ public class Client {
 
             String s = readGzippedResponse(response);
             long end = System.currentTimeMillis();
+            response.getEntity().consumeContent();
             Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url + " returncode = " + response.getStatusLine().getStatusCode());
-
             return s;
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
@@ -57,6 +57,7 @@ public class Client {
     }
 
     private static String readGzippedResponse(HttpResponse response) throws IOException {
+
         InputStream instream = response.getEntity().getContent();
         Header contentEncoding = response.getFirstHeader("Content-Encoding");
         if (contentEncoding != null && contentEncoding.getValue().equalsIgnoreCase("gzip")) {
@@ -73,8 +74,10 @@ public class Client {
             while ((line = rd.readLine()) != null) {
                 page += line;
             }
+
         } finally {
             close(in);
+            close(instream);
             close(rd);
         }
 

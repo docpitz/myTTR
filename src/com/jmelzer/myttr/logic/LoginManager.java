@@ -8,8 +8,10 @@
 package com.jmelzer.myttr.logic;
 
 import android.util.Log;
+
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.User;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -29,7 +31,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginManager {
+    public static String un;
+    public static String pw;
 
+    public boolean relogin() throws IOException {
+        if (un == null || pw == null) {
+            throw new IllegalArgumentException("login must be called befor relogin");
+        }
+        return login(un, pw);
+
+    }
     public boolean login(String username, String password) throws IOException {
 
         HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
@@ -43,28 +54,24 @@ public class LoginManager {
         nvps.add(new BasicNameValuePair("userNameB", username));
         nvps.add(new BasicNameValuePair("userPassWordB", password));
 
-//        try {
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-            HttpResponse response = Client.client.execute(httpPost);
-            Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
-            response = Client.client.execute(httpGet2);
-            Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
-            p();
-            for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
-//                System.out.println("cookie.name = " + cookie.getName());
-//                System.out.println("cookie.value = " + cookie.getValue());
-                if ("LOGGEDINAS".equals(cookie.getName())) {
-                    return true;
-                }
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+        HttpResponse response = Client.client.execute(httpPost);
+        Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
+        response.getEntity().consumeContent();
+        response = Client.client.execute(httpGet2);
+        Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
+        response.getEntity().consumeContent();
+        for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
+            if ("LOGGEDINAS".equals(cookie.getName())) {
+                un = username;
+                pw = password;
+                return true;
             }
-
-//        } catch (IOException e) {
-//            Log.e(Constants.LOG_TAG, "", e);
-//        }
-
+        }
 
         return false;
     }
+
     void p() {
         for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
             Log.d(Constants.LOG_TAG, "name/value = " + cookie.getName() + "/" + cookie.getValue());

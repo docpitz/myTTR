@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.MyApplication;
@@ -57,7 +59,7 @@ public class EventsActivity extends BaseActivity {
             }
         });
 
-        TextView textView = (TextView) findViewById(R.id.textView);
+        TextView textView = (TextView) findViewById(R.id.selected_player);
         if (MyApplication.selectedPlayer != null) {
             //todo spieler namen verbessern (Melzer, Jürgen (1611) etc.
             textView.setText("Statistiken für den Spieler " + MyApplication.selectedPlayer);

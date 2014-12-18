@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 
@@ -30,7 +31,7 @@ public class EventsAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void callParser() throws NetworkException {
+    protected void callParser() throws NetworkException, LoginExpiredException {
         if (game != null) {
             MyApplication.events = new MyTischtennisParser().readEventsForForeignPlayer(game.getPlayerId());
             MyApplication.selectedPlayer = game.getPlayer();

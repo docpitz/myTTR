@@ -168,9 +168,12 @@ public class MyTischtennisParser {
         return Integer.valueOf(pageU.substring(idx, idx2).trim());
     }
 
-    public List<Player> getClubList() throws NetworkException {
+    public List<Player> getClubList() throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/showclubinfo";
         String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
         int n = page.indexOf("vereinid=");
         if (n > 0) {
             int n2 = page.indexOf("&", n);
@@ -190,6 +193,10 @@ public class MyTischtennisParser {
 
         }
         return null;
+    }
+
+    private boolean redirectedToLogin(String page) {
+        return page.contains("<title>Login");
     }
 
     public String getNameOfOwnClub() {
@@ -270,9 +277,12 @@ public class MyTischtennisParser {
 
     }
 
-    public List<Event> readEvents() throws NetworkException {
+    public List<Event> readEvents() throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
         return parseEvents(page);
     }
 
@@ -514,10 +524,13 @@ public class MyTischtennisParser {
         return eventDetail;
     }
 
-    public List<Event> readEventsForForeignPlayer(long playerId) throws NetworkException {
+    public List<Event> readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
 
         String url = "http://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
         return parseEvents(page);
     }
 

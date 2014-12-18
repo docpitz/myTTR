@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.Client;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.SyncManager;
@@ -68,7 +70,7 @@ public class HomeActivity extends BaseActivity {
         }
 
         @Override
-        protected void callParser() throws NetworkException {
+        protected void callParser() throws NetworkException, LoginExpiredException {
             MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
         }
 
