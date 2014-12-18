@@ -20,12 +20,12 @@ import junit.framework.TestCase;
 import java.io.IOException;
 import java.util.List;
 
-public class AppointmentParserTest extends TestCase {
+public class AppointmentParserTest extends BaseTestCase {
 
     @SmallTest
     public void testRead() throws PlayerNotWellRegistered, IOException, NetworkException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+
+        login();
 
         AppointmentParser parser= new AppointmentParser();
         List<TeamAppointment> list = parser.read("TTG St. Augustin");

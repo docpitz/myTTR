@@ -24,12 +24,11 @@ import junit.framework.TestCase;
 import java.io.IOException;
 import java.util.List;
 
-public class MyTischtennisParserTest extends TestCase {
+public class MyTischtennisParserTest extends BaseTestCase {
 
     @SmallTest
     public void testgetPoints() throws PlayerNotWellRegistered, IOException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
@@ -39,8 +38,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents();
@@ -51,8 +49,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testreadGamesForForeignPlayer() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEventsForForeignPlayer(425165L);
@@ -63,8 +60,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents();
@@ -91,8 +87,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testGetClubList() throws Exception {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
@@ -102,8 +97,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testreadPlayersFromTeam() throws TooManyPlayersFound, IOException, NetworkException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.readPlayersFromTeam("1411599");
         boolean found = false;
@@ -117,8 +111,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testGetRealName() throws TooManyPlayersFound, IOException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getRealName();
         assertEquals("Jürgen Melzer", name);
@@ -126,8 +119,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testgetNameOfOwnClub() throws TooManyPlayersFound, IOException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getNameOfOwnClub();
         assertEquals("TTG St. Augustin", name);
@@ -135,8 +127,7 @@ public class MyTischtennisParserTest extends TestCase {
 
     @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound, IOException, NetworkException {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         try {
