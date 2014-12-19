@@ -46,6 +46,18 @@ public abstract class BaseActivity extends Activity {
                 startActivity(intent);
                 break;
             }
+            case R.id.menu_about: {
+                AboutDialog about = new AboutDialog(this);
+                about.setTitle("Über myTTR");
+                about.show();
+                break;
+            }
+            case R.id.menu_impressum: {
+                ImpressumDialog dialog = new ImpressumDialog(this);
+                dialog.setTitle("Impressum");
+                dialog.show();
+                break;
+            }
         }
         return false;
     }

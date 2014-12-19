@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
@@ -48,6 +49,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     }
 
     private void findPlayer() {
+        //todo
         AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
             ProgressDialog progressDialog;
 
@@ -86,10 +88,8 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
                     }
                     Player p = null;
                     try {
-                        p = myTischtennisParser.findPlayer(teamPlayer.getFirstname(),
-                                teamPlayer.getLastname(),
-                                teamPlayer.getClub());
-                    } catch (TooManyPlayersFound tooManyPlayersFound) {
+                        p = myTischtennisParser.completePlayerWithTTR(teamPlayer);
+                    } catch (LoginExpiredException e) {
                         return null;
                     } catch (NetworkException e) {
                         break;

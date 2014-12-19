@@ -48,7 +48,7 @@ public class Client {
             String s = readGzippedResponse(response);
             long end = System.currentTimeMillis();
             response.getEntity().consumeContent();
-            Log.i(Constants.LOG_TAG, "request time " + (end - start) / 1000 + " s for " + url + " returncode = " + response.getStatusLine().getStatusCode());
+            Log.i(Constants.LOG_TAG, "request time " + (end - start)  + " ms for " + url + " returncode = " + response.getStatusLine().getStatusCode());
             return s;
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);

@@ -11,10 +11,15 @@ import java.util.List;
  */
 public class AppointmentParser {
 
-
-    public List<TeamAppointment> read(String clubName) throws NetworkException {
+    private boolean redirectedToLogin(String page) {
+        return page.contains("<title>Login");
+    }
+    public List<TeamAppointment> read(String clubName) throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/index";
         String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
         return read(page, clubName);
     }
 

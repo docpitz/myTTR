@@ -109,13 +109,15 @@ public class MyTischtennisParser {
                 builder.appendQueryParameter("vereinPersonenSuche", v.getName());
                 builder.appendQueryParameter("vereinIdPersonenSuche", v.getId() + "," + v.getVerband());
             }
+            if (v == null) {
+                Log.i(Constants.LOG_TAG, "club not found in list:" + vereinsName);
+            }
         }
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
         url = url.replace("%20", "+");
 
 
-        Log.d(Constants.LOG_TAG, "url = " + url);
         String page = Client.getPage(url);
         return parseForPlayer(firstName, lastName, page);
 
@@ -394,6 +396,7 @@ public class MyTischtennisParser {
                 p.setRank(rank);
                 p.setTeamName(teamName);
                 p.setClub(clubName);
+
                 rank++;
                 set.add(p);
                 n = page.indexOf(trClosed, n);
@@ -438,11 +441,10 @@ public class MyTischtennisParser {
             return c;
         }
         c = removeString(teamName, "X");
-        c = removeString(teamName, "X");
         if (c != null) {
             return c;
         }
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        return teamName;
     }
 
     private String removeString(String teamName, String n) {
@@ -456,6 +458,14 @@ public class MyTischtennisParser {
         String tr = "\">";
         Player player = new Player();
         String div = "</div>";
+        ParseResult result = readBetween(page, startPoint-50, "data-tooltipdata=\"", ";");
+        if (result != null) {
+            player.setPersonId(Long.valueOf(result.result));
+        }
+        if (player.getPersonId() == 0) {
+            System.out.println("break");
+        }
+
         int n = page.indexOf(tr, startPoint);
         int end = page.indexOf(div, n);
         String name = page.substring(n + tr.length(), end);
@@ -463,12 +473,12 @@ public class MyTischtennisParser {
         player.setLastname(name.substring(0, k));
         player.setFirstname(name.substring(k + 2));
 
-        n = page.indexOf("personId=", n);
-        if (n > 0) {
-            end = page.indexOf("\"", n);
-            String idS = page.substring(n, end);
-            player.setPersonId(Long.valueOf(idS));
-        }
+//        n = page.indexOf("personId=", n);
+//        if (n > 0) {
+//            end = page.indexOf("\"", n);
+//            String idS = page.substring(n, end);
+//            player.setPersonId(Long.valueOf(idS));
+//        }
 
         return player;
     }
@@ -532,6 +542,20 @@ public class MyTischtennisParser {
             throw new LoginExpiredException();
         }
         return parseEvents(page);
+    }
+
+    public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException {
+        if (player.getPersonId() == 0)
+            System.out.println();
+        String url = "http://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
+        String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
+        ParseResult result = readBetween(page, 0, "<h3 class=\"white\">", "<span");
+        result = readBetween(page, result.end, "</span>", "<div");
+        player.setTtrPoints(Integer.valueOf(result.result.trim()));
+        return player;
     }
 
     class ParseResult {

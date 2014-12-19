@@ -22,6 +22,7 @@ public class ClubParserTest extends TestCase {
         assertNull(clubParser.getClubExact("Bla"));
         assertNotNull(clubParser.getClubExact("TTG St. Augustin"));
         assertNotNull(clubParser.getClubExact("TV Bergheim/Sieg"));
+        assertNotNull(clubParser.getClubExact("TV Geislar"));
 
     }
 

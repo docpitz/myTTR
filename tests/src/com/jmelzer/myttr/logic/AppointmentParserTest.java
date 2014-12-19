@@ -23,7 +23,7 @@ import java.util.List;
 public class AppointmentParserTest extends BaseTestCase {
 
     @SmallTest
-    public void testRead() throws PlayerNotWellRegistered, IOException, NetworkException {
+    public void testRead() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
 
         login();
 

@@ -17,11 +17,13 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.logic.AppointmentParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TTRCalculator;
@@ -81,55 +83,21 @@ public class ManualEntriesActivity extends BaseActivity {
     }
 
     private void readNextAppointments() {
-        AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
-            ProgressDialog progressDialog;
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, NextAppointmentsActivity.class) {
 
-            long start;
-
-            List<TeamAppointment> teamAppointments = null;
 
             @Override
-            protected void onPreExecute() {
-                start = System.currentTimeMillis();
-                if (progressDialog == null) {
-                    progressDialog = new ProgressDialog(ManualEntriesActivity.this);
-                    progressDialog.setMessage("Suche nächste Spiele, bitte warten...");
-                    progressDialog.setIndeterminate(false);
-                    progressDialog.setCancelable(false);
-                    progressDialog.show();
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-                if (teamAppointments == null || teamAppointments.size() == 0) {
-                    Toast.makeText(ManualEntriesActivity.this,
-                            "Es wurde keine Termine gefunden.",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    MyApplication.teamAppointments = teamAppointments;
-                    Intent target = new Intent(ManualEntriesActivity.this, NextAppointmentsActivity.class);
-                    startActivity(target);
-                }
-            }
-
-            @Override
-            protected Integer doInBackground(String... params) {
-
-                Player p = null;
-
+            protected void callParser() throws NetworkException, LoginExpiredException {
                 String name = myTischtennisParser.getNameOfOwnClub();
-                try {
-                    teamAppointments = appointmentParser.read(name);
-                } catch (NetworkException e) {
-                    //todo
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
-                return null;
+                MyApplication.teamAppointments = appointmentParser.read(name);
             }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.teamAppointments != null;
+            }
+
+
         };
         task.execute();
     }

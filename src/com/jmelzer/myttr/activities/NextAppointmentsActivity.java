@@ -61,7 +61,7 @@ public class NextAppointmentsActivity extends BaseActivity {
 
 
     }
-
+//todo base class
     class ClubListAsyncTask extends AsyncTask<String, Void, Integer> {
         ProgressDialog progressDialog;
 
