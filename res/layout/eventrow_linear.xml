@@ -18,7 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/date"
-        android:layout_weight="4.5"
+        android:layout_weight="4.4"
         android:gravity="left"
         android:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40" />
 
@@ -38,16 +38,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/event"
-        android:layout_weight="0.5"
+        android:layout_weight="0.8"
         android:gravity="left"
-        android:text="2" />
+        android:text="1/2" />
 
     <TextView
         android:id="@+id/ttr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/sp"
-        android:layout_weight="1.2"
+        android:layout_weight="1.0"
         android:text="1611" />
 
     <TextView
