@@ -1,2 +1,0 @@
-All rights reserved.
-This app runs under the Apache License.
