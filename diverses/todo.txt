@@ -1,6 +1,7 @@
-- Stabilität
-- Relogin
+- Stabilität (erledigt)
+- Relogin (erledigt)
 - Spieler Simulation
 - Suche verbessern (nur Verein?)
 - Link auf mytischtennis.de
 - Navigation drawers
+- Änderungskonstante
