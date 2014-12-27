@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
+<resources>
+    <string name="app_name">myTTR</string>
+    <string name="username_message">Usernamen eingeben</string>
+    <string name="button_send">Login</string>
+    <string name="password_message">Passwort eingeben</string>
+    <string name="read_from_foto">Aus Photo lesen</string>
+    <string name="enter_manual">TTR Werte berechnen</string>
+    <string name="after_login_text">Der Login war erfolgreich.\n\nFolgende Möglichkeiten hast du:</string>
+    <string name="main_text">Bitte Login für myTischtennis.de</string>
+    <string name="player_1">Spieler 1:</string>
+    <string name="player_1_hint">Namen eingeben</string>
+    <string name="entry_club_edit">Vereinsname eingeben</string>
+    <string name="entry_club_label">Vereinsname (optional, aber wenn Name oft vorkommt (Klaus Müller) dann besser eingeben</string>
+    <string name="entry_lastname_edit">Nachname eingeben</string>
+    <string name="entry_lastname_label">Nachname*:</string>
+    <string name="entry_firstname_edit">Vorname eingeben</string>
+    <string name="entry_firstname_label">Vorname*:</string>
+    <string name="entries_new_player">Spieler anlegen</string>
+    <string name="btn_edit_player">Spieler\nbearbeiten…</string>
+    <string name="detail_search">Suchen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="btn_new_player">Spieler eingeben und suchen</string>
+    <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string><string name="result_txt">Das Ergebnis</string>
+    <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen. Darum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>
+    <string name="pref_sync">Synchronisiere Punkte mit mytischtennis</string>
+    <string name="pref_sync_summ">In einem Intervall werden die Punkte verglichen, ob es neue Werte für dich gibt.</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_about">&#220;ber</string>
+    <string name="menu_impressum">Impressum</string>
+    <string name="select">Auswählen</string>
+    <string name="notifcation_result">Neue Punkte</string>
+    <string name="pref_user">Benutzer / Passwort speichern</string>
+    <string name="pref_user_summ">Der Benutzer und das Passwort werden für die nächste Benutzung gespeichert und ein automatisches Login durchgeführt.</string>
+    <string name="next_appointments_search">Über nächste Termine suchen</string>
+    <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
+        kannst du einen Spieler aus gegnerischen Mannschaft auswählen
+    </string>
+    <string name="clublist">Vereinsrangliste</string>
+    <string name="statistik">Meine Statistiken</string>
+    <string name="player_sim">Spieler Simulation</string>
+    <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
+    <string name="calc">Berechnen</string>
+    <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
+    <string name="text_event_details">Wähle ein Spieler aus um Details zu sehen</string>
+    <string name="text_select_player">Durch die Auswahl eines Teamspielers kannst du TTR Werte auch für ihn berechnen.</string>
+    <string name="imp_text">Impressum
+\n
+\nAngaben gemäß § 5 TMG
+\n
+\nJuergen Melzer
+\n53757 St. Augustin
+\n
+\nKontakt
+\n
+\nE-Mail: ju.melzer@gmail.com (mailto:ju.melzer@gmail.com)
+\n
+\nHaftungsausschluss
+\n
+\nHaftung für Inhalte
+\nDie Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+\n
+\nHaftung für Links
+\nUnser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+\n
+\nUrheberrecht
+\nDie durch die Seitenbetreiber erstellten bzw. verwendeten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+\n
+</string>
+</resources>

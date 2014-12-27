@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="256px"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/around_sim_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simulationsmodus"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/player_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peter Muster "
+            />
+
+        <ImageView
+            android:id="@+id/sim_player_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="sim"
+            android:src="@drawable/ic_sim"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+</LinearLayout>

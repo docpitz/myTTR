@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/after_login_text"
+        android:textSize="20sp" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|center_vertical" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:width="300dp"
+        android:onClick="manual"
+        android:text="@string/enter_manual" />
+
+    <Button
+        android:id="@+id/button_verein_rangliste"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:width="300dp"
+        android:onClick="clublist"
+        android:text="@string/clublist" />
+
+    <Button
+        android:id="@+id/button_my_statistik"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:width="300dp"
+        android:onClick="statistik"
+        android:text="@string/statistik" />
+
+    <Button
+        android:id="@+id/button_player_sim"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:width="300dp"
+        android:onClick="player_sim"
+        android:text="@string/player_sim" />
+
+    <!--<LinearLayout
+        android:id="@+id/sim_view"
+        android:orientation="vertical"
+        android:layout_width="256px"
+        android:layout_gravity="right"
+        android:layout_height="match_parent">
+
+    </LinearLayout>-->
+
+    <fragment
+        android:id="@+id/sim_info_fragment"
+        android:name="com.jmelzer.myttr.activities.SimInfoFragment"
+        android:layout_width="256px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="50dp"/>
+</LinearLayout>

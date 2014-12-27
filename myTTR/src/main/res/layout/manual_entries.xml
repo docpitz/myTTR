@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
+<LinearLayout
+        android:id="@+id/manual_entries_view_main"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:id="@+id/manual_entries_view"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:gravity="center_horizontal">
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/btn_new_player"
+                android:onClick="newplayer"
+                android:id="@+id/button"
+                android:textSize="14dp"
+                />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/next_appointments_search"
+                android:onClick="nextAppointments"
+                android:textSize="14dp"
+                android:id="@+id/button_next_appointments"
+                />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_player_list"
+            android:id="@+id/textView"
+            android:layout_marginTop="10dp"/>
+
+    <Space
+            android:layout_width="20px"
+            android:layout_height="10px"
+            android:id="@+id/space"
+            android:layout_gravity="right|center_vertical"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="24dp">
+
+        <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:id="@+id/textView1"
+                android:layout_weight=".40"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:text="Punkte"
+                android:id="@+id/textView2"
+                android:layout_gravity="center"
+                android:layout_weight=".20"/>
+
+        <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:text="Sieg?"
+                android:id="@+id/textView3"
+                android:layout_gravity="center"
+                android:layout_weight=".10"/>
+
+        <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:text="    "
+                android:id="@+id/textView4"
+                android:layout_gravity="center"
+                android:layout_weight=".10"/>
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/calc"
+                android:layout_alignParentBottom="true"
+                android:onClick="recalc"
+                android:id="@+id/footer"/>
+
+        <ListView
+                android:id="@+id/playerlistview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@id/footer"/>
+    </RelativeLayout>
+</LinearLayout>

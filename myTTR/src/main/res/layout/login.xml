@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2013.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_text"
+            android:layout_marginBottom="20dp" android:textSize="20dp"/>
+    <EditText android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username_message"
+        />
+    <EditText android:id="@+id/password"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/password_message"
+              android:password="true"
+            />
+    <Button android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send"
+            android:onClick="login" />
+</LinearLayout>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" >
+
+    <TextView
+            android:id="@+id/number"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="18sp"
+            android:gravity="left"
+            android:layout_weight=".10">
+    </TextView>
+
+    <TextView
+            android:id="@+id/firstname"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Wolfgang"
+            android:layout_weight=".30"
+            android:textSize="18sp"
+            android:gravity="left">
+    </TextView>
+
+    <TextView
+            android:id="@+id/lastname"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="Tamimzadeh"
+            android:layout_weight=".40"
+            android:textSize="18sp"
+            >
+    </TextView>
+
+
+    <TextView
+            android:id="@+id/points"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:paddingRight="5dp"
+            android:layout_weight=".20"
+            android:textSize="18sp"
+            android:gravity="right">
+    </TextView>
+
+</LinearLayout>
