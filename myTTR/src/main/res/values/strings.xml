@@ -46,6 +46,7 @@
     <string name="clublist">Vereinsrangliste</string>
     <string name="statistik">Meine Statistiken</string>
     <string name="player_sim">Spieler Simulation</string>
+    <string name="search">Spieler / Verein Suche</string>
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>

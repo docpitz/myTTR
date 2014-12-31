@@ -18,9 +18,6 @@ import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Player;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
         System.out.println("ttrPointParser.parse() = " + myTischtennisParser.getPoints());
-        assertEquals(1650, myPoints);
+        assertEquals(1664, myPoints);
     }
 
     @SmallTest
@@ -104,8 +101,38 @@ public class MyTischtennisParserTest extends BaseTestCase {
         boolean found = false;
         for (Player player : players) {
             Log.i(Constants.LOG_TAG, player.toString());
-            if (player.getLastname().equals("Werner"))
+            if (player.getLastname().equals("Werner")) {
+                assertFalse("player should be found once " + player, found);
                 found = true;
+            }
+        }
+        assertTrue(found);
+    }
+
+    @SmallTest
+    public void testparsePlayerFromTeam() throws TooManyPlayersFound, IOException, NetworkException {
+        String rueckrunde = readFile("assets/mannschaft-rueckrunde.html");
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.parsePlayerFromTeam(rueckrunde);
+        boolean found = false;
+        for (Player player : players) {
+            Log.i(Constants.LOG_TAG, player.toString());
+            if (player.getLastname().equals("Melzer")) {
+                assertFalse("player should be found once " + player, found);
+                found = true;
+            }
+        }
+        assertTrue(found);
+
+        String hinrunde = readFile("assets/mannschaft-hinrunde.html");
+        players = myTischtennisParser.parsePlayerFromTeam(hinrunde);
+        found = false;
+        for (Player player : players) {
+            Log.i(Constants.LOG_TAG, player.toString());
+            if (player.getLastname().equals("Werner")) {
+                assertFalse("player should be found once " + player, found);
+                found = true;
+            }
         }
         assertTrue(found);
     }
@@ -113,16 +140,19 @@ public class MyTischtennisParserTest extends BaseTestCase {
     @SmallTest
     public void testreadPlayersFromTeamNoId() throws TooManyPlayersFound, IOException, NetworkException {
         login();
+
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.readPlayersFromTeam(null);
         boolean found = false;
         for (Player player : players) {
             Log.i(Constants.LOG_TAG, player.toString());
-            if (player.getLastname().equals("Kraut"))
+            if (player.getLastname().equals("Kraut")) {
                 found = true;
+            }
         }
         assertTrue(found);
     }
+
 
     @SmallTest
     public void testGetRealName() throws TooManyPlayersFound, IOException {
@@ -161,6 +191,11 @@ public class MyTischtennisParserTest extends BaseTestCase {
         p = myTischtennisParser.findPlayer("manfred", "Hildebrand", "TTG St. Augustin");
         assertEquals("Hildebrandt", p.getLastname());
         assertEquals("Manfred", p.getFirstname());
+
+
+        p = myTischtennisParser.findPlayer("Patrick", "Kaufmann", "Aggertaler TTC Gummersbach");
+        assertNotNull(p);
+//        152009
 
     }
 

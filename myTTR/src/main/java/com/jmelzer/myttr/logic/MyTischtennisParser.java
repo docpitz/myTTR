@@ -400,7 +400,7 @@ public class MyTischtennisParser {
         return new ParseResult(page.substring(s + tagStart.length(), e), e);
     }
 
-    private List<Player> parsePlayerFromTeam(String page) {
+    List<Player> parsePlayerFromTeam(String page) {
         Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
             @Override
             public int compare(Player lhs, Player rhs) {
@@ -420,11 +420,17 @@ public class MyTischtennisParser {
         }
         String clubName = getClubNameFromTeamName(teamName);
 
+        final String startTag = "Rückrunde";
+        int start = page.indexOf(startTag);
+        final String startTag2 = "Vorrunde";
+        if (start == -1) {
+            start = page.indexOf(startTag2);
+        }
         final String toCheck = "<div class=\"openinfos myttFeaturesTooltip\" data-tooltipdata=";
 
         String trClosed = "</td>";
 
-        int start = page.indexOf(toCheck);
+        start = page.indexOf(toCheck, start);
         if (start > 0) {
             int n = start;
             int rank = 1;

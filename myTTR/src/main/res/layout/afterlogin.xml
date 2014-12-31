@@ -51,6 +51,14 @@
         android:onClick="statistik"
         android:text="@string/statistik" />
 
+    <!--<Button
+        android:id="@+id/button_search"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:width="300dp"
+        android:onClick="search"
+        android:text="@string/search" />-->
     <Button
         android:id="@+id/button_player_sim"
         android:layout_width="330dp"

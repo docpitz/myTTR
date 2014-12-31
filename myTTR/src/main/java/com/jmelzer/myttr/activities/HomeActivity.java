@@ -65,6 +65,9 @@ public class HomeActivity extends BaseActivity {
         task.execute();
     }
 
+    public void search(View view) {
+    }
+
     private class ClubListAsyncTask extends BaseAsyncTask {
 
         public ClubListAsyncTask(Activity parent, Class targetClz) {

@@ -15,7 +15,7 @@ public class BaseTestCase extends TestCase {
     protected void login() throws IOException {
 
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("-", "-"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou123"));
     }
 
     protected String readFile( String file ) throws IOException {

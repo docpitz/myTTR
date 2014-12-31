@@ -68,7 +68,7 @@ public class TTRCalculatorActivity extends BaseActivity {
     }
 
     public void newplayer(final View view) {
-        Intent target = new Intent(this, PlayerDetailActivity.class);
+        Intent target = new Intent(this, TTRPlayerSearchActivity.class);
         MyApplication.actualPlayer = new Player();
         MyApplication.players.add(MyApplication.actualPlayer);
         startActivity(target);

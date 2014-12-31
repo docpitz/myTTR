@@ -27,7 +27,7 @@ import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
 
-public class PlayerDetailActivity extends BaseActivity {
+public class TTRPlayerSearchActivity extends BaseActivity {
 
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -35,7 +35,7 @@ public class PlayerDetailActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.player_detail);
+        setContentView(R.layout.ttr_player_search);
 //        http://developer.android.com/training/implementing-navigation/ancestral.html
         EditText editText = (EditText) findViewById(R.id.detail_firstname);
         editText.setText(MyApplication.actualPlayer.getFirstname());
@@ -79,7 +79,7 @@ public class PlayerDetailActivity extends BaseActivity {
             String lastname = ((EditText) findViewById(R.id.detail_lastname)).getText().toString();
             club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
             if ("".equals(firstname) || "".equals(lastname)) {
-                Toast.makeText(PlayerDetailActivity.this,
+                Toast.makeText(TTRPlayerSearchActivity.this,
                                "Bitte Vornamen und nach Namen angeben!",
                                Toast.LENGTH_SHORT).show();
                 return;
@@ -98,7 +98,7 @@ public class PlayerDetailActivity extends BaseActivity {
             protected void onPreExecute() {
                 start = System.currentTimeMillis();
                 if (progressDialog == null) {
-                    progressDialog = new ProgressDialog(PlayerDetailActivity.this);
+                    progressDialog = new ProgressDialog(TTRPlayerSearchActivity.this);
                     progressDialog.setMessage("Suche Spieler, bitte warten...");
                     progressDialog.setIndeterminate(false);
                     progressDialog.setCancelable(false);
@@ -112,19 +112,19 @@ public class PlayerDetailActivity extends BaseActivity {
                     progressDialog.dismiss();
                 }
                 if (ttr == 0) {
-                    Toast.makeText(PlayerDetailActivity.this,
+                    Toast.makeText(TTRPlayerSearchActivity.this,
                                    "Es wurde kein Spieler mit dem Namen gefunden.",
                                    Toast.LENGTH_SHORT).show();
                 }
                 else if (ttr == -1) {
-                    Toast.makeText(PlayerDetailActivity.this,
+                    Toast.makeText(TTRPlayerSearchActivity.this,
                                    "Es wurden mehrere Spieler gefunden. Bitte Verein angeben",
                                    Toast.LENGTH_SHORT).show();
                 } else {
                     MyApplication.actualPlayer.setTtrPoints(ttr);
-                    Intent target = new Intent(PlayerDetailActivity.this, TTRCalculatorActivity.class);
+                    Intent target = new Intent(TTRPlayerSearchActivity.this, TTRCalculatorActivity.class);
                     startActivity(target);
-//                    NavUtils.navigateUpFromSameTask(PlayerDetailActivity.this);
+//                    NavUtils.navigateUpFromSameTask(TTRPlayerSearchActivity.this);
                 }
             }
 
