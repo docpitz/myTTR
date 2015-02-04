@@ -19,7 +19,6 @@ import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.Player;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -126,9 +125,11 @@ public class MyTischtennisParser {
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public Player findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
+    public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
             NetworkException {
 
+        firstName = (Character.toUpperCase(firstName.charAt(0)) + firstName.substring(1)).trim();
+        lastName = (Character.toUpperCase(lastName.charAt(0)) + lastName.substring(1)).trim();
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
                 .authority("www.mytischtennis.de")
@@ -137,7 +138,7 @@ public class MyTischtennisParser {
                 .appendQueryParameter("nachname", lastName);
 
 
-        if (vereinsName != null) {
+        if (vereinsName != null && !"".equals(vereinsName)) {
             Club v = clubParser.getClubExact(vereinsName);
             if (v == null) {
                 v = clubParser.getClubNameBestMatch(vereinsName);
@@ -149,6 +150,9 @@ public class MyTischtennisParser {
             if (v == null) {
                 Log.i(Constants.LOG_TAG, "club not found in list:" + vereinsName);
             }
+        } else {
+            builder.appendQueryParameter("vereinIdPersonenSuche", null);
+            builder.appendQueryParameter("vereinPersonenSuche", null);
         }
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
@@ -156,29 +160,25 @@ public class MyTischtennisParser {
 
 
         String page = Client.getPage(url);
-        return parseForPlayer(firstName, lastName, page);
+        List<Player> list = new ArrayList<>();
+        return parseForPlayer(firstName, lastName, page, list, 0);
 
     }
 
-    private Player parseForPlayer(String firstName, String lastName, String page) throws TooManyPlayersFound {
+    private List<Player> parseForPlayer(String firstName, String lastName, String page, List<Player> list, int start) throws TooManyPlayersFound {
         String pageU = page.toUpperCase();
         String name = (firstName + " " + lastName).toUpperCase();
-        int idx = pageU.indexOf(name);
+        int idx = pageU.indexOf(name, start + 1);
         if (idx > 0) {
-            //do we have more than one?
-            int idx2 = pageU.indexOf(name, idx + 1);
-            if (idx2 > 0) {
-                throw new TooManyPlayersFound();
-            } else {
-                Player player = new Player();
-                player.setTtrPoints(findPoints(idx, pageU));
-                player.setFirstname(findFirstName(idx, page));
-                player.setLastname(findLastName(idx, page));
-                return player;
-            }
-
+            Player player = new Player();
+            player.setTtrPoints(findPoints(idx, pageU));
+            player.setFirstname(findFirstName(idx, page));
+            player.setLastname(findLastName(idx, page));
+            player.setClub(readClubFromPage(idx, page));
+            list.add(player);
+            return parseForPlayer(firstName, lastName, page, list, idx);
         }
-        return null;
+        return list;
     }
 
     private String findFirstName(int startIdx, String page) {
@@ -200,11 +200,21 @@ public class MyTischtennisParser {
 //        return null;
     }
 
+    private String readClubFromPage(int startIdx, String page) {
+        ParseResult result = readBetween(page, startIdx, "<a href=\"showclubinfo", "</a>");
+        if (result.result.length() > 0) {
+            return result.result.substring(result.result.indexOf("\">")+ 2);
+        }
+        return "";
+    }
+
     int findPoints(final int startIdx, String pageU) {
-        final String textBeforePoints = "<TD STYLE=\"TEXT-ALIGN:CENTER;\">";
-        int idx = pageU.indexOf(textBeforePoints, startIdx) + textBeforePoints.length();
-        int idx2 = pageU.indexOf("</TD>", idx);
-        return Integer.valueOf(pageU.substring(idx, idx2).trim());
+        ParseResult result = readBetween(pageU, startIdx, "<TD STYLE=\"TEXT-ALIGN:CENTER;\">", "</TD>");
+        try {
+            return Integer.valueOf(result.result.trim());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     public List<Player> getClubList() throws NetworkException, LoginExpiredException {
@@ -310,8 +320,9 @@ public class MyTischtennisParser {
     public List<Player> readPlayersFromTeam(String id) throws NetworkException {
 
         String url = "http://www.mytischtennis.de/community/teamplayers";
-        if (id != null)
+        if (id != null) {
             url += "?teamId=" + id;
+        }
         String page = Client.getPage(url);
         return parsePlayerFromTeam(page);
 
@@ -589,8 +600,9 @@ public class MyTischtennisParser {
     }
 
     public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException {
-        if (player.getPersonId() == 0)
+        if (player.getPersonId() == 0) {
             System.out.println();
+        }
         String url = "http://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
@@ -600,6 +612,36 @@ public class MyTischtennisParser {
         result = readBetween(page, result.end, "</span>", "<div");
         player.setTtrPoints(Integer.valueOf(result.result.trim()));
         return player;
+    }
+
+    List<Player> search(String firstname, String lastname, String clubName) throws NetworkException {
+        Uri.Builder builder = new Uri.Builder()
+                .scheme("http")
+                .authority("www.mytischtennis.de")
+                .path("community/ranking");
+
+
+        if (clubName != null) {
+            Club v = clubParser.getClubExact(clubName);
+            if (v == null) {
+                v = clubParser.getClubNameBestMatch(clubName);
+            }
+            if (v != null) {
+                builder.appendQueryParameter("verein", v.getName());
+                builder.appendQueryParameter("vereinId", v.getId() + "," + v.getVerband());
+            }
+            if (v == null) {
+                Log.i(Constants.LOG_TAG, "club not found in list:" + clubName);
+            }
+        }
+        String url = builder.build().toString();
+        //bad trick for the crap from mytischtennis.de
+        url = url.replace("%20", "+");
+
+
+        String page = Client.getPage(url);
+//        return parseForPlayer(firstName, lastName, page);
+        return null;
     }
 
     class ParseResult {

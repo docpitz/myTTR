@@ -17,9 +17,6 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.TeamAppointment;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -35,12 +32,12 @@ public class IntegrationTest extends BaseTestCase {
         String name = myTischtennisParser.getNameOfOwnClub();
         assertEquals("TTG St. Augustin", name);
 
-        Player p = myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
+        List<Player> p = myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg");
         assertNotNull(p);
-        System.out.println("ttrB = " + p.getTtrPoints());
-        assertTrue(p.getTtrPoints() > 0);
+        System.out.println("ttrB = " + p.get(0).getTtrPoints());
+        assertTrue(p.get(0).getTtrPoints() > 0);
         TTRCalculator calculator = new TTRCalculator();
-        assertEquals(11, calculator.calcPoints(myPoints, p.getTtrPoints(), true));
+        assertEquals(11, calculator.calcPoints(myPoints, p.get(0).getTtrPoints(), true));
     }
 
     @SmallTest
@@ -58,20 +55,21 @@ public class IntegrationTest extends BaseTestCase {
             Log.d(Constants.LOG_TAG, "teamAppointment = " + teamAppointment);
             List<Player> players = myTischtennisParser.readPlayersFromTeam(teamAppointment.getId());
             for (Player player : players) {
-                Player fp = null;
+                List<Player> fp = null;
+                Player fp2 = null;
                 try {
                     fp = myTischtennisParser.findPlayer(player.getFirstname(), player.getLastname(), player.getClub());
-                } catch (TooManyPlayersFound tooManyPlayersFound) {
-                } catch (NetworkException e) {
+                } catch (TooManyPlayersFound | NetworkException tooManyPlayersFound) {
                 }
+                fp2 = fp.get(0);
                 if (fp != null) {
-                    Log.d(Constants.LOG_TAG, "player found = " + fp.toString());
+                    Log.d(Constants.LOG_TAG, "player found = " + fp2.toString());
                 } else {
                     Log.d(Constants.LOG_TAG, "could not find player " + player);
-                    fp = myTischtennisParser.completePlayerWithTTR(player);
+                    fp2 = myTischtennisParser.completePlayerWithTTR(player);
                 }
-                assertTrue("must be found " + fp, fp.getTtrPoints() > 0);
-                Log.d(Constants.LOG_TAG, fp.toString());
+                assertTrue("must be found " + fp2, fp2.getTtrPoints() > 0);
+                Log.d(Constants.LOG_TAG, fp2.toString());
             }
         }
 

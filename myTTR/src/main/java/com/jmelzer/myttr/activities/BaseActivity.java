@@ -26,6 +26,8 @@ public abstract class BaseActivity extends FragmentActivity {
 //
 //        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.header);
 
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
+
         setTitle(MyApplication.getTitle());
     }
 

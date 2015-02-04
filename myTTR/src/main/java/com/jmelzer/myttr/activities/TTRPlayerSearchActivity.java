@@ -90,6 +90,7 @@ public class TTRPlayerSearchActivity extends BaseActivity {
     }
 
     private void findPlayer(final String club, final String firstname, final String lastname) {
+        //todo change base class
         AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
             ProgressDialog progressDialog;
             long start;
@@ -131,7 +132,7 @@ public class TTRPlayerSearchActivity extends BaseActivity {
             @Override
             protected Integer doInBackground(String... params) {
 
-                Player p  = null;
+                List<Player> p  = null;
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
@@ -141,9 +142,10 @@ public class TTRPlayerSearchActivity extends BaseActivity {
                     //todo
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
-                if (p != null) {
-                    MyApplication.actualPlayer.copy(p);
-                    ttr = p.getTtrPoints();
+                if (p.size() > 0) {
+                    Player p1 = p.get(0);
+                    MyApplication.actualPlayer.copy(p1);
+                    ttr = p1.getTtrPoints();
                 } else {
                     ttr = 0;
                 }

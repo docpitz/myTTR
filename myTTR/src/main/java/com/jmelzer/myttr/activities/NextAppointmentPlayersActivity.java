@@ -42,8 +42,10 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     }
 
     public void select(final View view) {
-
         findPlayer();
+    }
+
+    public void loadPlayerFromClub(final View view) {
     }
 
     private void findPlayer() {

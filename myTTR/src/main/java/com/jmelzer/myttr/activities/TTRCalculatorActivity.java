@@ -86,7 +86,11 @@ public class TTRCalculatorActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 String name = myTischtennisParser.getNameOfOwnClub();
-                MyApplication.teamAppointments = appointmentParser.read(name);
+                if (name != null) {
+                    MyApplication.teamAppointments = appointmentParser.read(name);
+                } else {
+                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln";
+                }
             }
 
             @Override

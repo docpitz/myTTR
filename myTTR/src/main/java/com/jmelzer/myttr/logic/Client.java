@@ -44,7 +44,7 @@ public class Client {
         long start = System.currentTimeMillis();
         HttpGet httpGet = prepareGet(url);
         try {
-            Log.i(Constants.LOG_TAG, "calling url "  + url);
+            Log.i(Constants.LOG_TAG, "calling url '"  + url + "'");
             HttpResponse response = Client.client.execute(httpGet);
             Log.i(Constants.LOG_TAG, "execute time "  + (System.currentTimeMillis() - start)  + " ms");
             String s = readGzippedResponse(response);

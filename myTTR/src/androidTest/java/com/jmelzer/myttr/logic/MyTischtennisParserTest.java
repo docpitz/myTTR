@@ -171,32 +171,51 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
+    public void testSearch() throws TooManyPlayersFound, IOException, NetworkException {
+        login();
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        myTischtennisParser.search(null, null, "TV Bergheim/Sieg");
+    }
+
+    @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound, IOException, NetworkException {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        try {
-            myTischtennisParser.findPlayer("Astrid", "Schulz", null);
-            fail("TooManyPlayersFound expected");
-        } catch (TooManyPlayersFound tooManyPlayersFound) {
-            //ok
-        }
-        assertEquals(2014, myTischtennisParser.findPlayer("Marco", "Vester", null).getTtrPoints());
+        List<Player> players = myTischtennisParser.findPlayer("Astrid", "Schulz", null);
+        assertEquals(2, players.size());
 
-        assertEquals(1711, myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").getTtrPoints());
-        Player p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
-        assertEquals("Hinrichs", p.getLastname());
-        assertEquals("Christian", p.getFirstname());
+        assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
+
+        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1700);
+        List<Player> p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
+        assertEquals("Hinrichs", p.get(0).getLastname());
+        assertEquals("Christian", p.get(0).getFirstname());
 
         p = myTischtennisParser.findPlayer("manfred", "Hildebrand", "TTG St. Augustin");
-        assertEquals("Hildebrandt", p.getLastname());
-        assertEquals("Manfred", p.getFirstname());
+        assertEquals("Hildebrandt", p.get(0).getLastname());
+        assertEquals("Manfred", p.get(0).getFirstname());
 
 
         p = myTischtennisParser.findPlayer("Patrick", "Kaufmann", "Aggertaler TTC Gummersbach");
         assertNotNull(p);
+
+        p = myTischtennisParser.findPlayer("Johannes ", "hinrichs", "");
+        assertNotNull(p);
 //        152009
 
+    }
+
+    @SmallTest
+    public void testFindPlayer1() throws TooManyPlayersFound, IOException, NetworkException {
+        login();
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.findPlayer("achim ", "hugo", "");
+        assertEquals(2, players.size());
+        assertEquals("Achim", players.get(0).getFirstname());
+        assertEquals("Hugo", players.get(0).getLastname());
+        assertEquals("TTC Troisdorf", players.get(0).getClub());
     }
 
     @SmallTest

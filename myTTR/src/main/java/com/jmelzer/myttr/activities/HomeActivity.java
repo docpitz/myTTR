@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -26,7 +25,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.afterlogin);
+        setContentView(R.layout.home);
 
 
 
@@ -36,6 +35,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void manual(final View view) {
+
         Intent target = new Intent(this, TTRCalculatorActivity.class);
         startActivity(target);
     }
@@ -55,6 +55,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void statistik(View view) {
+        MyApplication.selectedPlayer = null;
         AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
         task.execute();
     }
