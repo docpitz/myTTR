@@ -37,8 +37,6 @@ public class TTRCalculatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_entries);
 
-        setTitle(MyApplication.getTitle());
-
         LinearLayout layout = (LinearLayout) findViewById(R.id.manual_entries_view_main);
         final ListView listview = (ListView) findViewById(R.id.playerlistview);
 
@@ -81,7 +79,6 @@ public class TTRCalculatorActivity extends BaseActivity {
 
     private void readNextAppointments() {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, NextAppointmentsActivity.class) {
-
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {

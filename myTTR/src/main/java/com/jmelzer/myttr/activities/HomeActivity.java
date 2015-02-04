@@ -62,7 +62,7 @@ public class HomeActivity extends BaseActivity {
 
     public void player_sim(View view) {
         AsyncTask<String, Void, Integer> task = new OwnClubListAsyncTask(this,
-                SelectPlayerActivity.class);
+                SelectTeamPlayerActivity.class);
         task.execute();
     }
 

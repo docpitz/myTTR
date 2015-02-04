@@ -52,6 +52,7 @@
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
     <string name="text_event_details">Wähle ein Spieler aus um Details zu sehen</string>
     <string name="text_select_player">Durch die Auswahl eines Teamspielers kannst du TTR Werte auch für ihn berechnen.</string>
+    <string name="text_search_result">Folgende Spieler wurden gefunden.</string>
     <string name="imp_text">Impressum
 \n
 \nAngaben gemäß § 5 TMG

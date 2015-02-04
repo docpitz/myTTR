@@ -8,19 +8,19 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClubParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
@@ -36,11 +36,10 @@ public class TTRPlayerSearchActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttr_player_search);
-//        http://developer.android.com/training/implementing-navigation/ancestral.html
         EditText editText = (EditText) findViewById(R.id.detail_firstname);
-        editText.setText(MyApplication.actualPlayer.getFirstname());
+        editText.setText("Achim");
         editText = (EditText) findViewById(R.id.detail_lastname);
-        editText.setText(MyApplication.actualPlayer.getLastname());
+        editText.setText("Hugo");
         clubEdit = (EditText) findViewById(R.id.detail_club);
         clubEdit.setText(MyApplication.actualPlayer.getClub());
 
@@ -80,8 +79,8 @@ public class TTRPlayerSearchActivity extends BaseActivity {
             club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
             if ("".equals(firstname) || "".equals(lastname)) {
                 Toast.makeText(TTRPlayerSearchActivity.this,
-                               "Bitte Vornamen und nach Namen angeben!",
-                               Toast.LENGTH_SHORT).show();
+                        "Bitte Vornamen und nach Namen angeben!",
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
             findPlayer(club, firstname, lastname);
@@ -90,67 +89,40 @@ public class TTRPlayerSearchActivity extends BaseActivity {
     }
 
     private void findPlayer(final String club, final String firstname, final String lastname) {
-        //todo change base class
-        AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
-            ProgressDialog progressDialog;
-            long start;
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TTRPlayerSearchActivity.this, TTRCalculatorActivity.class) {
             int ttr = 0;
-            @Override
-            protected void onPreExecute() {
-                start = System.currentTimeMillis();
-                if (progressDialog == null) {
-                    progressDialog = new ProgressDialog(TTRPlayerSearchActivity.this);
-                    progressDialog.setMessage("Suche Spieler, bitte warten...");
-                    progressDialog.setIndeterminate(false);
-                    progressDialog.setCancelable(false);
-                    progressDialog.show();
-                }
-            }
 
             @Override
-            protected void onPostExecute(Integer integer) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-                if (ttr == 0) {
-                    Toast.makeText(TTRPlayerSearchActivity.this,
-                                   "Es wurde kein Spieler mit dem Namen gefunden.",
-                                   Toast.LENGTH_SHORT).show();
-                }
-                else if (ttr == -1) {
-                    Toast.makeText(TTRPlayerSearchActivity.this,
-                                   "Es wurden mehrere Spieler gefunden. Bitte Verein angeben",
-                                   Toast.LENGTH_SHORT).show();
-                } else {
-                    MyApplication.actualPlayer.setTtrPoints(ttr);
-                    Intent target = new Intent(TTRPlayerSearchActivity.this, TTRCalculatorActivity.class);
-                    startActivity(target);
-//                    NavUtils.navigateUpFromSameTask(TTRPlayerSearchActivity.this);
-                }
-            }
-
-            @Override
-            protected Integer doInBackground(String... params) {
-
-                List<Player> p  = null;
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                List<Player> p = null;
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
                     ttr = -1;
-                    return null;
-                } catch (NetworkException e) {
-                    //todo
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
-                if (p.size() > 0) {
-                    Player p1 = p.get(0);
-                    MyApplication.actualPlayer.copy(p1);
-                    ttr = p1.getTtrPoints();
-                } else {
-                    ttr = 0;
+                if (p != null) {
+                    if (p.size() == 1) {
+
+                        Player p1 = p.get(0);
+                        MyApplication.actualPlayer.copy(p1);
+                        ttr = p1.getTtrPoints();
+                    }
+                    if (p.size() > 1) {
+                        targetClz = SearchResultActivity.class;
+                        MyApplication.searchResult = p;
+                        ttr = 1;
+                    } else {
+                        ttr = 0;
+                    }
                 }
-                return null;
+//                MyApplication.actualPlayer.setTtrPoints(ttr);
             }
+
+            @Override
+            protected boolean dataLoaded() {
+                return ttr > 0;
+            }
+
         };
         task.execute();
     }

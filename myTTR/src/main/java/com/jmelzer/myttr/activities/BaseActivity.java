@@ -22,13 +22,9 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-//
-//        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.header);
-
         Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
-        setTitle(MyApplication.getTitle());
+        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
     }
 
     @Override
