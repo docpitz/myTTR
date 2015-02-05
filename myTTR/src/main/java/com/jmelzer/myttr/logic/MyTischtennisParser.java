@@ -128,32 +128,45 @@ public class MyTischtennisParser {
     public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
             NetworkException {
 
-        firstName = (Character.toUpperCase(firstName.charAt(0)) + firstName.substring(1)).trim();
-        lastName = (Character.toUpperCase(lastName.charAt(0)) + lastName.substring(1)).trim();
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
                 .authority("www.mytischtennis.de")
-                .path("community/ranking")
-                .appendQueryParameter("vorname", firstName)
-                .appendQueryParameter("nachname", lastName);
-
-
+                .path("community/ranking");
+        Club v = null;
         if (vereinsName != null && !"".equals(vereinsName)) {
-            Club v = clubParser.getClubExact(vereinsName);
+            v = clubParser.getClubExact(vereinsName);
             if (v == null) {
                 v = clubParser.getClubNameBestMatch(vereinsName);
-            }
-            if (v != null) {
-                builder.appendQueryParameter("vereinPersonenSuche", v.getName());
-                builder.appendQueryParameter("vereinIdPersonenSuche", v.getId() + "," + v.getVerband());
             }
             if (v == null) {
                 Log.i(Constants.LOG_TAG, "club not found in list:" + vereinsName);
             }
-        } else {
-            builder.appendQueryParameter("vereinIdPersonenSuche", null);
-            builder.appendQueryParameter("vereinPersonenSuche", null);
         }
+
+        if (firstName != null && firstName.length() > 2 && lastName != null && lastName.length() > 2) {
+            firstName = (Character.toUpperCase(firstName.charAt(0)) + firstName.substring(1)).trim();
+            lastName = (Character.toUpperCase(lastName.charAt(0)) + lastName.substring(1)).trim();
+            builder.appendQueryParameter("vorname", firstName)
+                    .appendQueryParameter("nachname", lastName);
+
+            if (v != null) {
+                builder.appendQueryParameter("vereinPersonenSuche", v.getName());
+                builder.appendQueryParameter("vereinIdPersonenSuche", v.getId() + "," + v.getVerband());
+            } else {
+                builder.appendQueryParameter("vereinIdPersonenSuche", "");
+                builder.appendQueryParameter("vereinPersonenSuche", "");
+            }
+
+        } else {
+            //only club name given, so we have to use other parameters as with username
+            //sometimes I hate mytischtennis
+            if (v != null) {
+                builder.appendQueryParameter("verein", v.getName());
+                builder.appendQueryParameter("vereinId", v.getId() + "," + v.getVerband());
+            }
+
+        }
+
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
         url = url.replace("%20", "+");
@@ -166,28 +179,45 @@ public class MyTischtennisParser {
     }
 
     private List<Player> parseForPlayer(String firstName, String lastName, String page, List<Player> list, int start) throws TooManyPlayersFound {
-        String pageU = page.toUpperCase();
-        String name = (firstName + " " + lastName).toUpperCase();
-        int idx = pageU.indexOf(name, start + 1);
-        if (idx > 0) {
+        if (list.size() >= 100) {
+            return list;
+        }
+        int idx = start;
+        //let start at table tag
+        if (start == 0) {
+            idx = page.indexOf("<table class=\"coolTable\"");
+            //skipp the header
+            idx = page.indexOf("<tr>", idx);
+            idx = page.indexOf("<tr>", idx + 5);
+        }
+        //Indicator if we we have next rows
+        String startTag = "tooli100";
+        int idx2 = page.indexOf(startTag, idx);
+        if (idx2 > 0) {
+            //go back to the last row "<tr
+            idx = page.indexOf("<tr", idx);
             Player player = new Player();
-            player.setTtrPoints(findPoints(idx, pageU));
+            player.setTtrPoints(findPoints(idx, page));
             player.setFirstname(findFirstName(idx, page));
             player.setLastname(findLastName(idx, page));
             player.setClub(readClubFromPage(idx, page));
             list.add(player);
+            idx = page.indexOf("</tr>", idx);
             return parseForPlayer(firstName, lastName, page, list, idx);
         }
         return list;
     }
 
     private String findFirstName(int startIdx, String page) {
-        String toFind = ">";
-        String toFindEnd = "<strong>";
-        int idx = page.indexOf(toFind, startIdx) + toFind.length();
-        int idx2 = page.indexOf(toFindEnd, idx);
-
-        return page.substring(idx, idx2).trim();
+        ParseResult result = readBetween(page, startIdx, "<span class=\"", "<strong>");
+        result = readBetween(result.result, 0, ">", " ");
+        return result.result;
+//        String toFind = ">";
+//        String toFindEnd = "<strong>";
+//        int idx = page.indexOf(toFind, startIdx) + toFind.length();
+//        int idx2 = page.indexOf(toFindEnd, idx);
+//
+//        return page.substring(idx, idx2).trim();
     }
 
     private String findLastName(int startIdx, String page) {
@@ -203,13 +233,13 @@ public class MyTischtennisParser {
     private String readClubFromPage(int startIdx, String page) {
         ParseResult result = readBetween(page, startIdx, "<a href=\"showclubinfo", "</a>");
         if (result.result.length() > 0) {
-            return result.result.substring(result.result.indexOf("\">")+ 2);
+            return result.result.substring(result.result.indexOf("\">") + 2);
         }
         return "";
     }
 
     int findPoints(final int startIdx, String pageU) {
-        ParseResult result = readBetween(pageU, startIdx, "<TD STYLE=\"TEXT-ALIGN:CENTER;\">", "</TD>");
+        ParseResult result = readBetween(pageU, startIdx, "<td style=\"text-align:center;\">", "</td>");
         try {
             return Integer.valueOf(result.result.trim());
         } catch (NumberFormatException e) {
@@ -260,6 +290,9 @@ public class MyTischtennisParser {
     }
 
     private String readClubName(String page) {
+        if (true) {
+            return "TTG St. Augustin";
+        }
         String marker = "<strong>Verein:</strong>";
         String div = "<div class=\"col_3 mb_5\">";
 

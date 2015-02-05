@@ -37,11 +37,12 @@ public class TTRPlayerSearchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttr_player_search);
         EditText editText = (EditText) findViewById(R.id.detail_firstname);
-        editText.setText("Achim");
+        editText.setText("");
         editText = (EditText) findViewById(R.id.detail_lastname);
-        editText.setText("Hugo");
+        editText.setText("");
         clubEdit = (EditText) findViewById(R.id.detail_club);
-        clubEdit.setText(MyApplication.actualPlayer.getClub());
+//        clubEdit.setText(MyApplication.actualPlayer.getClub());
+        clubEdit.setText("Bergheim");
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -76,10 +77,11 @@ public class TTRPlayerSearchActivity extends BaseActivity {
         } else {
             String firstname = ((EditText) findViewById(R.id.detail_firstname)).getText().toString();
             String lastname = ((EditText) findViewById(R.id.detail_lastname)).getText().toString();
+            String clubname = ((EditText) findViewById(R.id.detail_club)).getText().toString();
             club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
-            if ("".equals(firstname) || "".equals(lastname)) {
+            if ("".equals(firstname) && "".equals(lastname) && "".equals(clubname)) {
                 Toast.makeText(TTRPlayerSearchActivity.this,
-                        "Bitte Vornamen und nach Namen angeben!",
+                        "Bitte Vornamen und nach Namen oder Verein angeben!",
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -100,6 +102,8 @@ public class TTRPlayerSearchActivity extends BaseActivity {
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
                     ttr = -1;
                 }
+//                if(true)
+//                throw new RuntimeException();
                 if (p != null) {
                     if (p.size() == 1) {
 

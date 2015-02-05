@@ -175,7 +175,11 @@ public class MyTischtennisParserTest extends BaseTestCase {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        myTischtennisParser.search(null, null, "TV Bergheim/Sieg");
+        List<Player> players = myTischtennisParser.findPlayer(null, null, "TV Bergheim/Sieg");
+        assertTrue(players.size() > 20);
+        for (Player player : players) {
+            Log.i(Constants.LOG_TAG, player.toString());
+        }
     }
 
     @SmallTest

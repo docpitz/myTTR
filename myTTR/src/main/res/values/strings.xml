@@ -17,18 +17,19 @@
     <string name="player_1">Spieler 1:</string>
     <string name="player_1_hint">Namen eingeben</string>
     <string name="entry_club_edit">Vereinsname eingeben</string>
-    <string name="entry_club_label">Vereinsname (optional, aber wenn Name oft vorkommt (Klaus Müller) dann besser eingeben</string>
+    <string name="entry_club_label">Vereinsname</string>
     <string name="entry_lastname_edit">Nachname eingeben</string>
-    <string name="entry_lastname_label">Nachname*:</string>
+    <string name="entry_lastname_label">Nachname:</string>
     <string name="entry_firstname_edit">Vorname eingeben</string>
-    <string name="entry_firstname_label">Vorname*:</string>
+    <string name="entry_firstname_label">Vorname:</string>
     <string name="entries_new_player">Spieler anlegen</string>
     <string name="btn_edit_player">Spieler\nbearbeiten…</string>
     <string name="detail_search">Suchen</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="btn_new_player">Spieler eingeben und suchen</string>
-    <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string><string name="result_txt">Das Ergebnis</string>
+    <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string>
+    <string name="result_txt">Das Ergebnis</string>
     <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen. Darum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>
     <string name="pref_sync">Synchronisiere Punkte mit mytischtennis</string>
     <string name="pref_sync_summ">In einem Intervall werden die Punkte verglichen, ob es neue Werte für dich gibt.</string>
