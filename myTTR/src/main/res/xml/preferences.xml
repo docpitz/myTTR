@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-   <!-- <CheckBoxPreference
-            android:key="SYNC_TTR"
-            android:title="@string/pref_sync"
-            android:summary="@string/pref_sync_summ"
-            android:defaultValue="true" />-->
+    <!-- <CheckBoxPreference
+             android:key="SYNC_TTR"
+             android:title="@string/pref_sync"
+             android:summary="@string/pref_sync_summ"
+             android:defaultValue="true" />-->
     <CheckBoxPreference
-            android:key="SAVE_USER"
-            android:title="@string/pref_user"
-            android:summary="@string/pref_user_summ"
-            android:defaultValue="true" />
+        android:key="SAVE_USER"
+        android:title="@string/pref_user"
+        android:summary="@string/pref_user_summ"
+        android:defaultValue="true"/>
+    <PreferenceScreen
+        android:title="@string/enter_clubname"
+        android:summary="@string/enter_clubname_sum">
 
+        <intent android:action="ManualClubName"/>
+
+    </PreferenceScreen>
+    <!--<EditTextPreference android:key="MANUAL_CLUB"
+                        android:title="Verein eingeben"
+                        android:summary="Verein eingeben2"  />-->
 </PreferenceScreen>

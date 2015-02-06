@@ -8,7 +8,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.jmelzer.myttr"
           android:versionCode="8"
-          android:versionName="0.11">
+          android:versionName="0.12">
+
     <uses-sdk android:targetSdkVersion="21" android:maxSdkVersion="21" android:minSdkVersion="16"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -89,6 +90,21 @@
                   android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+        </activity>
+        <activity
+            android:name="com.jmelzer.myttr.activities.EnterClubNameActivity"
+            android:label="@string/app_name"
+            android:icon="@drawable/myttr"
+            android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="ManualClubName"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY"

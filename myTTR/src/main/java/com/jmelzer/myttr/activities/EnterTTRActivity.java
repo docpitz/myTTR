@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
@@ -20,7 +21,6 @@ public class EnterTTRActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enterttr);
-        setTitle(MyApplication.getTitle());
     }
 
     public void ok(final View view) {

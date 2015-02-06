@@ -16,6 +16,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 
 import java.io.File;
@@ -290,8 +291,8 @@ public class MyTischtennisParser {
     }
 
     private String readClubName(String page) {
-        if (true) {
-            return "TTG St. Augustin";
+        if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
+            return MyApplication.manualClub;
         }
         String marker = "<strong>Verein:</strong>";
         String div = "<div class=\"col_3 mb_5\">";

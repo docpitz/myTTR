@@ -1,23 +1,22 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 /**
+ * Shows the player for the next appointment,
  * User: jmelzer
- * Date: 22.03.14
- * Time: 13:06
  */
 public class NextAppointmentPlayersActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -46,62 +45,56 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     }
 
     public void loadPlayerFromClub(final View view) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.searchResult = null;
+                try {
+                    MyApplication.searchResult = myTischtennisParser.findPlayer(null, null,
+                            MyApplication.foreignTeamPlayers.get(0).getClub());
+                } catch (TooManyPlayersFound tooManyPlayersFound) {
+                    //ok
+                }
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.searchResult != null;
+            }
+
+
+        };
+        task.execute();
     }
 
     private void findPlayer() {
-        //todo
-        AsyncTask<String, Void, Integer> task = new AsyncTask<String, Void, Integer>() {
-            ProgressDialog progressDialog;
-
-            String errorMessage;
-            long start;
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, TTRCalculatorActivity.class) {
+            boolean completed = false;
 
             @Override
-            protected void onPreExecute() {
-                start = System.currentTimeMillis();
-                if (progressDialog == null) {
-                    progressDialog = new ProgressDialog(NextAppointmentPlayersActivity.this);
-                    progressDialog.setMessage("Suche Spieler, bitte warten...");
-                    progressDialog.setIndeterminate(false);
-                    progressDialog.setCancelable(false);
-                    progressDialog.show();
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Integer integer) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-//                NavUtils.navigateUpFromSameTask(NextAppointmentPlayersActivity.this);
-                Intent target = new Intent(NextAppointmentPlayersActivity.this, TTRCalculatorActivity.class);
-                startActivity(target);
-            }
-
-            @Override
-            protected Integer doInBackground(String... params) {
-                errorMessage = null;
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                Player p = null;
                 for (Player teamPlayer : MyApplication.foreignTeamPlayers) {
-
                     if (!teamPlayer.isChecked()) {
                         continue;
                     }
-                    Player p = null;
-                    try {
-                        p = myTischtennisParser.completePlayerWithTTR(teamPlayer);
-                    } catch (LoginExpiredException e) {
-                        return null;
-                    } catch (NetworkException e) {
-                        break;
-                    }
+                    p = myTischtennisParser.completePlayerWithTTR(teamPlayer);
                     if (p != null) {
                         teamPlayer.setTtrPoints(p.getTtrPoints());
                         MyApplication.players.add(teamPlayer);
                         teamPlayer.setChecked(false);
                     }
                 }
-                return null;
+                completed = true;
             }
+
+            @Override
+            protected boolean dataLoaded() {
+                return completed;
+            }
+
+
         };
         task.execute();
     }

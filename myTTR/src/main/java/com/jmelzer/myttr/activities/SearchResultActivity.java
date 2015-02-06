@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.logic.LoginExpiredException;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
-import com.jmelzer.myttr.logic.NetworkException;
 
 /**
  * Showing result of a player search
@@ -44,7 +39,13 @@ public class SearchResultActivity extends BaseActivity {
                                            int position, long id) {
                 view.setSelected(true);
                 if (position > -1 && position < MyApplication.searchResult.size()) {
-                    MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
+                    if (MyApplication.actualPlayer != null) {
+                        MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
+                    } else {
+                        MyApplication.actualPlayer = MyApplication.searchResult.get(position);
+                        MyApplication.players.add(MyApplication.actualPlayer);
+                    }
+                    //todo must be given from the client
                     Intent target = new Intent(SearchResultActivity.this, TTRCalculatorActivity.class);
                     SearchResultActivity.this.startActivity(target);
                     return true;

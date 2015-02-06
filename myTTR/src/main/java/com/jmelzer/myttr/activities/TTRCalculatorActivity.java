@@ -86,7 +86,8 @@ public class TTRCalculatorActivity extends BaseActivity {
                 if (name != null) {
                     MyApplication.teamAppointments = appointmentParser.read(name);
                 } else {
-                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln";
+                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln. " +
+                            "Du kannst ihn aber in den Einstellungen selbst eingeben.";
                 }
             }
 

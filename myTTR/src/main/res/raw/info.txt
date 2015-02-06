@@ -1,5 +1,5 @@
 <h3>myTTR</h3>
 
-Version 0.10<br>
+Version 0.12<br>
 
-Copyright 2014<br>
+Copyright 2014-2015<br>

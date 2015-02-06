@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.jmelzer.myttr.Constants;
 
 
@@ -31,7 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase _db, int _oldVersion, int _newVersion) {
         // Log the version upgrade.
-        Log.w(Constants.LOG_TAG, "Upgrading from version " + _oldVersion + " to " + _newVersion + ", which will destroy all old data");
+        Log.i(Constants.LOG_TAG, "Upgrading from version " + _oldVersion + " to " + _newVersion + ", which will destroy all old data");
 
         // Upgrade the existing database to conform to the new version. Multiple
         // previous versions can be handled by comparing _oldVersion and _newVersion

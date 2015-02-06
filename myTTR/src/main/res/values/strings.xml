@@ -78,4 +78,7 @@
 \n
 </string>
     <string name="loadplayerfromclub">Alle Spieler aus dem Verein anzeigen</string>
+    <string name="enter_clubname_sum">Hier kannst du den Namen deines Vereins eingeben, falls er nicht automatisch ermittelt werden konnte.</string>
+    <string name="enter_clubname">Verein eingeben</string>
+    <string name="reset">Zurücksetzen</string>
 </resources>

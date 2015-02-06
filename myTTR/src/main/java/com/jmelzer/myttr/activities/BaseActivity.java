@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -24,7 +23,13 @@ public abstract class BaseActivity extends FragmentActivity {
 
         Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
-        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+//        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+
+        if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
+            setTitle(MyApplication.getTitle() + " - " + MyApplication.manualClub);
+        } else {
+            setTitle(MyApplication.getTitle());
+        }
     }
 
     @Override

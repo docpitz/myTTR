@@ -11,12 +11,13 @@ import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MyApplication extends Application {
 
     private static Context context;
-    public static User loginUser = new User("", "", "", 0);
+    public static User loginUser = new User("", "", "", 0, new Date(), null);
     public static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
     public static List<TeamAppointment> teamAppointments;
@@ -29,6 +30,7 @@ public class MyApplication extends Application {
     public static EventDetail currentDetail;
     public static String selectedPlayer;
     public static Player simPlayer;
+    public static String manualClub;
 
     public void onCreate() {
         super.onCreate();
