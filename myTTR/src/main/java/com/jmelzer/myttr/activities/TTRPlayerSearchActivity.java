@@ -42,7 +42,7 @@ public class TTRPlayerSearchActivity extends BaseActivity {
         editText.setText("");
         clubEdit = (EditText) findViewById(R.id.detail_club);
 //        clubEdit.setText(MyApplication.actualPlayer.getClub());
-        clubEdit.setText("Bergheim");
+        clubEdit.setText("");
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }

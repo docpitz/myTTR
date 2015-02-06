@@ -262,14 +262,21 @@ public class MyTischtennisParser {
             String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
                     "&alleSpielberechtigen=yes";
             page = Client.getPage(clubListUrl);
-            int idx = 0;
-            List<Player> list = new ArrayList<Player>();
-            Helper h = getNextPlayer(page, id, idx);
-            while (h != null) {
-                list.add(h.p);
-                h = getNextPlayer(page, id, h.idx);
+            List<Player> list = new ArrayList<>();
+            try {
+                return parseForPlayer(null, null, page, list, 0);
+            } catch (TooManyPlayersFound tooManyPlayersFound) {
+                //ignore
             }
-            return list;
+
+//            int idx = 0;
+//            List<Player> list = new ArrayList<Player>();
+//            Helper h = getNextPlayer(page, id, idx);
+//            while (h != null) {
+//                list.add(h.p);
+//                h = getNextPlayer(page, id, h.idx);
+//            }
+//            return list;
 
         }
         return null;
