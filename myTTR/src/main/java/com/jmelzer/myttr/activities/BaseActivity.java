@@ -23,13 +23,13 @@ public abstract class BaseActivity extends FragmentActivity {
 
         Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
-//        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
 
         if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
             setTitle(MyApplication.getTitle() + " - " + MyApplication.manualClub);
         } else {
             setTitle(MyApplication.getTitle());
         }
+        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
     }
 
     @Override

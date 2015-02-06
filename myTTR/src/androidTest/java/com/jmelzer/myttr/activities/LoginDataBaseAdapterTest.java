@@ -14,13 +14,24 @@
 package com.jmelzer.myttr.activities;
 
 import android.test.suitebuilder.annotation.SmallTest;
+import android.util.Log;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
 
 import junit.framework.TestCase;
 
 public class LoginDataBaseAdapterTest extends TestCase {
+
+    @SmallTest
+    public void testRead() {
+        LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(MyApplication.getAppContext());
+        adapter.open();
+        User u = adapter.getSinlgeEntry();
+        Log.i(Constants.LOG_TAG, u.toString());
+
+    }
 
     @SmallTest
     public void testDB() {
@@ -37,9 +48,11 @@ public class LoginDataBaseAdapterTest extends TestCase {
         assertEquals(4711, u.getPoints());
         assertTrue(u.getChangedAt() != null);
 
+        adapter = new LoginDataBaseAdapter(MyApplication.getAppContext());
         adapter.storeClub("changed");
         u = adapter.getSinlgeEntry();
         assertNotNull(u);
         assertEquals("changed", u.getClubName());
+        adapter.close();
     }
 }

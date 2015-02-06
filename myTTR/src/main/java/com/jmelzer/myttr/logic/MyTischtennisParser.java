@@ -202,6 +202,7 @@ public class MyTischtennisParser {
             player.setFirstname(findFirstName(idx, page));
             player.setLastname(findLastName(idx, page));
             player.setClub(readClubFromPage(idx, page));
+            player.setPersonId(findPlayerId(idx, page));
             list.add(player);
             idx = page.indexOf("</tr>", idx);
             return parseForPlayer(firstName, lastName, page, list, idx);
@@ -219,6 +220,18 @@ public class MyTischtennisParser {
 //        int idx2 = page.indexOf(toFindEnd, idx);
 //
 //        return page.substring(idx, idx2).trim();
+    }
+
+    private Long findPlayerId(int startIdx, String page) {
+        ParseResult result = readBetween(page, startIdx, "data-tooltipdata=\"", ";");
+        if (result != null) {
+            try {
+                return (Long.valueOf(result.result));
+            } catch (NumberFormatException e) {
+                //ignore
+            }
+        }
+        return 0L;
     }
 
     private String findLastName(int startIdx, String page) {

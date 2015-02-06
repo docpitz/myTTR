@@ -60,4 +60,16 @@ public class User {
     public String getClubName() {
         return clubName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", realName='" + realName + '\'' +
+                ", clubName='" + clubName + '\'' +
+                ", points=" + points +
+                ", changedAt=" + changedAt +
+                '}';
+    }
 }

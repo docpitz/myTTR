@@ -34,13 +34,15 @@ public class LoginDataBaseAdapter {
     // Context of the application using the database.
     private final Context context;
     // Variable to hold the database instance
-    public SQLiteDatabase db;
+    static SQLiteDatabase db;
     // Database open/upgrade helper
-    private DataBaseHelper dbHelper;
+    private static DataBaseHelper dbHelper;
 
     public LoginDataBaseAdapter(Context _context) {
         context = _context;
-        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        if (dbHelper == null) {
+            dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        }
     }
 
     public LoginDataBaseAdapter open() throws SQLException {
@@ -49,14 +51,11 @@ public class LoginDataBaseAdapter {
     }
 
     public void close() {
-        db.close();
-    }
-
-    public SQLiteDatabase getDatabaseInstance() {
-        return db;
+//        db.close();
     }
 
     public long insertEntry(String realName, String userName, String password, int points, String clubName) {
+        db.beginTransaction();
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
         newValues.put("REALNAME", realName);
@@ -67,20 +66,28 @@ public class LoginDataBaseAdapter {
         newValues.put("CHANGED_AT", formatter.format(new Date()));
 
         // Insert the row into your table
-        return db.insert("LOGIN", null, newValues);
+        long l = db.insert("LOGIN", null, newValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        return l;
     }
 
     public void storeClub(String clubName) {
-        if (db == null || !db.isOpen()) {
-            open();
-        }
+//        if (db == null || !db.isOpen()) {
+//            open();
+//        }
+        db.beginTransaction();
         db.execSQL("update LOGIN set CLUB_NAME='" + clubName + "'");
-        db.close();
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     public int deleteEntry(String userName) {
         String where = "USERNAME=?";
+        db.beginTransaction();
         int numberOFEntriesDeleted = db.delete("LOGIN", where, new String[]{userName});
+        db.setTransactionSuccessful();
+        db.endTransaction();
         return numberOFEntriesDeleted;
     }
 
@@ -92,7 +99,10 @@ public class LoginDataBaseAdapter {
         Cursor cursor = db.query("LOGIN", null, " USERNAME is not null", null, null, null, null);
         if (cursor.getCount() > 1) {
             cursor.close();
+            db.beginTransaction();
             db.execSQL("delete from LOGIN");
+            db.setTransactionSuccessful();
+            db.endTransaction();
             Log.i(Constants.LOG_TAG, "cleanuped table");
         }
     }
