@@ -12,6 +12,7 @@ package com.jmelzer.myttr.logic;
 
 
 import android.test.suitebuilder.annotation.SmallTest;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -23,7 +24,7 @@ public class LoginManagerTest extends TestCase {
     public void testlogin() throws IOException {
         LoginManager loginManager = new LoginManager();
         Assert.assertFalse(loginManager.login("error", "error"));
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou"));
+        Assert.assertTrue(loginManager.login("chokdee", "fuckyou123"));
 
     }
 }

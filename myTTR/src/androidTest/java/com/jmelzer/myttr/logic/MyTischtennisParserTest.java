@@ -29,8 +29,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         int myPoints = myTischtennisParser.getPoints();
-        System.out.println("ttrPointParser.parse() = " + myTischtennisParser.getPoints());
-        assertEquals(1664, myPoints);
+        assertTrue(myPoints > 1600);
     }
 
     @SmallTest

@@ -92,7 +92,10 @@ public class LoginDataBaseAdapter {
     }
 
     public void deleteAllEntries() {
+        db.beginTransaction();
         db.execSQL("delete from LOGIN");
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     public void deleteAllEntriesIfErrors() {

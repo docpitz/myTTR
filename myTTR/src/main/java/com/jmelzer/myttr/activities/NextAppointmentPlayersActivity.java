@@ -82,7 +82,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
                     p = myTischtennisParser.completePlayerWithTTR(teamPlayer);
                     if (p != null) {
                         teamPlayer.setTtrPoints(p.getTtrPoints());
-                        MyApplication.players.add(teamPlayer);
+                        MyApplication.addPlayer(teamPlayer);
                         teamPlayer.setChecked(false);
                     }
                 }

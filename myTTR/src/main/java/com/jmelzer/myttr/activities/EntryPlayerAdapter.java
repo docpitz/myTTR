@@ -1,7 +1,6 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.Util;
 
 import java.util.List;
 
@@ -47,14 +46,14 @@ public class EntryPlayerAdapter extends ArrayAdapter<Player> {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MyApplication.players.get(buttonView.getId()).setChecked(isChecked);
+                MyApplication.getPlayers().get(buttonView.getId()).setChecked(isChecked);
             }
         });
         final ImageButton deleteBtn = (ImageButton) rowView.findViewById(R.id.imageButton);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyApplication.players.remove(player);
+                MyApplication.removePlayer(player);
                 notifyDataSetChanged();
             }
         });

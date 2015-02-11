@@ -43,8 +43,8 @@ public class SearchResultActivity extends BaseActivity {
                         MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
                     } else {
                         MyApplication.actualPlayer = MyApplication.searchResult.get(position);
-                        MyApplication.players.add(MyApplication.actualPlayer);
                     }
+                    MyApplication.addPlayer(MyApplication.actualPlayer);
                     //todo must be given from the client
                     Intent target = new Intent(SearchResultActivity.this, TTRCalculatorActivity.class);
                     SearchResultActivity.this.startActivity(target);

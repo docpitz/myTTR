@@ -192,8 +192,10 @@ public class MyTischtennisParser {
             idx = page.indexOf("<tr>", idx + 5);
         }
         //Indicator if we we have next rows
-        String startTag = "tooli100";
-        int idx2 = page.indexOf(startTag, idx);
+        int idx2 = page.indexOf("<tr class=\"even", idx);
+        if (idx2 < 0) {
+            idx2 = page.indexOf("<tr>", idx);
+        }
         if (idx2 > 0) {
             //go back to the last row "<tr
             idx = page.indexOf("<tr", idx);
