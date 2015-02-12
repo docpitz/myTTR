@@ -82,25 +82,70 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
                 TTRCalculatorActivity.class.getName(), null, false);
 
         solo.clickOnText("TTR Werte berechnen");
-        TTRCalculatorActivity ttrCalculatorActivity = (TTRCalculatorActivity) monitorTTR.waitForActivityWithTimeout(1000);
-        assertNotNull(ttrCalculatorActivity);
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
 
+//        testEmptyTTRList();
+
+//        testManualEntry();
+
+        //test the appointment activity
+        testAppointments();
+    }
+
+    private void testAppointments() {
+        MyApplication.manualClub = "TTG St. Augustin";
+        assertNull(MyApplication.teamAppointments);
+        solo.clickOnButton(solo.getString(R.string.next_appointments_search));
+        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 5000));
+        assertNotNull(MyApplication.teamAppointments);
+
+        //select first appointment
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
+
+        solo.clickOnCheckBox(0);
+        solo.clickOnCheckBox(1);
+
+        solo.clickOnButton(solo.getString(R.string.select));
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+
+        assertEquals("2 selected", 2, MyApplication.getPlayers().size());
+
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+
+        assertEquals("all removed", 0, MyApplication.getPlayers().size());
+
+        solo.clickOnButton(solo.getString(R.string.next_appointments_search));
+        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 5000));
+        assertNotNull(MyApplication.teamAppointments);
+
+        //select first appointment
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
+        solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
+        solo.clickLongInList(3);
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+
+        assertEquals("one selected", 1, MyApplication.getPlayers().size());
+
+    }
+
+    private void testEmptyTTRList() {
         solo.clickOnText("Berechnen");
         assertTrue("no entries in the list", solo.waitForText(solo.getString(R.string.select_player_first)));
 
-        //add manual player
         assertNull(MyApplication.actualPlayer);
-        solo.clickOnText(solo.getString(R.string.btn_new_player));
-        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(
-                SearchActivity.class.getName(), null, false);
-
-        SearchActivity searchActivity = (SearchActivity) monitor.waitForActivityWithTimeout(500);
-        assertNotNull(searchActivity);
-
-        testSearchActivity(searchActivity);
     }
 
-    private void testSearchActivity(SearchActivity searchActivity) throws InterruptedException {
+    private void testManualEntry() throws InterruptedException {
+
+
+        solo.clickOnText(solo.getString(R.string.btn_new_player));
+        assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
+
         assertEquals("", solo.getEditText(0).getText().toString());
         assertEquals("", solo.getEditText(1).getText().toString());
         assertEquals("", solo.getEditText(2).getText().toString());
@@ -109,7 +154,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
 
         //vor und nachname
-        searchActivity.runOnUiThread(new Runnable() {
+        solo.getCurrentActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 solo.getEditText(0).setText("Timo");
@@ -212,6 +257,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
         assertEquals("all entries (2) must be deleted", 0, MyApplication.getPlayers().size());
+
 
 //        solo.
 //        solo.clickOnText();
