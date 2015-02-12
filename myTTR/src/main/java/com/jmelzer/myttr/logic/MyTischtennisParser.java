@@ -214,12 +214,11 @@ public class MyTischtennisParser {
 
     private String findFirstName(int startIdx, String page) {
         ParseResult result = readBetween(page, startIdx, "<span class=\"", "<strong>");
-        result = readBetween(result.result, 0, ">", " ");
-        return result.result;
-//        String toFind = ">";
-//        String toFindEnd = "<strong>";
-//        int idx = page.indexOf(toFind, startIdx) + toFind.length();
-//        int idx2 = page.indexOf(toFindEnd, idx);
+        result = readBetween(result.result, 0, "\">", null);
+        if (!result.isEmpty()) {
+            return result.result.trim();
+        }
+        return null;
 //
 //        return page.substring(idx, idx2).trim();
     }
@@ -463,7 +462,12 @@ public class MyTischtennisParser {
         if (s == -1) {
             return null;
         }
-        int e = page.indexOf(tagEnd, s + tagStart.length());
+        int e = 0;
+        if (tagEnd != null) {
+            e = page.indexOf(tagEnd, s + tagStart.length());
+        } else {
+            e = page.length();
+        }
         return new ParseResult(page.substring(s + tagStart.length(), e), e);
     }
 

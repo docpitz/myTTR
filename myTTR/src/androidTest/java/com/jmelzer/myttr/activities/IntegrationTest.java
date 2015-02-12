@@ -1,23 +1,16 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.Instrumentation;
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.robotium.solo.Solo;
-
-import java.util.ArrayList;
 
 /**
  * Simulate the workflow of the app
@@ -81,8 +74,42 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
 //        testHomeButton();
 //        testPreferences();
-        testClubList();
+//        testClubList();
+//        testOwnStatistics();
+        testPlayerSimulation();
 //        testTTR();
+    }
+
+    private void testPlayerSimulation() {
+        solo.clickOnButton(solo.getString(R.string.player_sim));
+        assertTrue(solo.waitForActivity(SelectTeamPlayerActivity.class, 5000));
+
+        assertTrue(solo.searchText("Schmidt"));
+        solo.clickLongInList(8);
+
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        assertTrue("Ali is selected as player", solo.searchText("Manfred"));
+        assertNotNull(MyApplication.simPlayer);
+        assertTrue(MyApplication.simPlayer.getTtrPoints() > 0);
+
+        solo.clickOnText("TTR Werte berechnen");
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        testManualEntry();
+
+        solo.clickOnActionBarItem(R.id.action_remove_sim);
+        assertTrue(solo.waitForText("wurde beendet"));
+
+
+    }
+
+    private void testOwnStatistics() {
+        solo.clickOnButton(solo.getString(R.string.statistik));
+        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        solo.clickLongInList(1);
+        assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
+
+        solo.clickOnActionBarItem(R.id.action_home);
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
     }
 
     private void testClubList() {
@@ -93,16 +120,15 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue(solo.searchText("Vester"));
         solo.clickLongInList(0);
         assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
-        ListView vMainList = solo.getCurrentViews(ListView.class).get(0);
-        ArrayList<TextView> vTiles = new ArrayList<TextView>();
-        vTiles = solo.getCurrentViews(TextView.class, vMainList);
-        Log.i(Constants.LOG_TAG, "Total number of texts into list are " + vTiles.size());
-        for (int i = 0; i < vTiles.size(); i++) {
-            Log.i(Constants.LOG_TAG, vTiles.get(i).getText().toString());
-        }
 
         assertTrue(solo.searchText("11 : ") || solo.searchText(" : 11"));
         assertFalse(solo.searchText("div"));
+
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+
+        solo.clickOnActionBarItem(R.id.action_home);
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
 
     }
 
@@ -115,8 +141,6 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     private void testTTR() throws InterruptedException {
-        Instrumentation.ActivityMonitor monitorTTR = getInstrumentation().addMonitor(
-                TTRCalculatorActivity.class.getName(), null, false);
 
         solo.clickOnText("TTR Werte berechnen");
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
@@ -174,7 +198,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertNull(MyApplication.actualPlayer);
     }
 
-    private void testManualEntry() throws InterruptedException {
+    private void testManualEntry() {
 
 
         solo.clickOnText(solo.getString(R.string.btn_new_player));

@@ -91,6 +91,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         for (Player player : clublist) {
             Log.i(Constants.LOG_TAG, player.toString());
             assertTrue(player.getPersonId() > 0);
+            assertTrue(player.toString(), player.getTtrPoints() > 0);
         }
     }
 
