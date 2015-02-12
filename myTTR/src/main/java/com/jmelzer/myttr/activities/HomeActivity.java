@@ -28,7 +28,6 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.home);
 
 
-
 //        startService(new Intent(this, SyncManager.class));
 //        new SyncManager().startService();
 
@@ -67,6 +66,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void search(View view) {
+//        Intent target = new Intent(this, SearchActivity.class);
+//        target.putExtra(SearchActivity.NOAUTOLOGIN, true);
+//        startActivity(target);
     }
 
     private class ClubListAsyncTask extends BaseAsyncTask {

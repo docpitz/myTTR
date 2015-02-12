@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/entry_firstname_edit"
+        android:text=""
         android:id="@+id/editText"
         android:inputType="text"/>
 
@@ -26,7 +26,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/entry_lastname_edit"
+        android:text=""
         android:id="@+id/editText2"
         android:inputType="text"/>
 
@@ -39,7 +39,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/entry_club_edit"
+        android:text=""
         android:id="@+id/editText3"
         android:inputType="text"/>
 

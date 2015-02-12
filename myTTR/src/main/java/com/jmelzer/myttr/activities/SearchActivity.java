@@ -27,7 +27,7 @@ import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
 
-public class TTRPlayerSearchActivity extends BaseActivity {
+public class SearchActivity extends BaseActivity {
 
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -79,9 +79,9 @@ public class TTRPlayerSearchActivity extends BaseActivity {
             String lastname = ((EditText) findViewById(R.id.detail_lastname)).getText().toString();
             String clubname = ((EditText) findViewById(R.id.detail_club)).getText().toString();
             club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
-            if ("".equals(firstname) && "".equals(lastname) && "".equals(clubname)) {
-                Toast.makeText(TTRPlayerSearchActivity.this,
-                        "Bitte Vornamen und nach Namen oder Verein angeben!",
+            if (("".equals(firstname) || "".equals(lastname)) && "".equals(clubname)) {
+                Toast.makeText(SearchActivity.this,
+                        getString(R.string.error_search_required_fields),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -91,7 +91,7 @@ public class TTRPlayerSearchActivity extends BaseActivity {
     }
 
     private void findPlayer(final String club, final String firstname, final String lastname) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TTRPlayerSearchActivity.this, TTRCalculatorActivity.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, TTRCalculatorActivity.class) {
             int ttr = 0;
 
             @Override
@@ -109,9 +109,9 @@ public class TTRPlayerSearchActivity extends BaseActivity {
 
                         Player p1 = p.get(0);
                         MyApplication.actualPlayer.copy(p1);
+                        MyApplication.addPlayer(p1);
                         ttr = p1.getTtrPoints();
-                    }
-                    if (p.size() > 1) {
+                    } else if (p.size() > 1) {
                         targetClz = SearchResultActivity.class;
                         MyApplication.searchResult = p;
                         ttr = 1;

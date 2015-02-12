@@ -42,22 +42,22 @@ public class TTRCalculatorActivity extends BaseActivity {
 
         final EntryPlayerAdapter adapter = new EntryPlayerAdapter(this,
                 android.R.layout.simple_list_item_1,
-                MyApplication.players);
+                MyApplication.getPlayers());
         listview.setAdapter(adapter);
 
     }
 
     public void recalc(final View view) {
-        if (MyApplication.players.size() == 0) {
+        if (MyApplication.getPlayers().size() == 0) {
             Toast.makeText(TTRCalculatorActivity.this,
-                    "Bitte zun\u00E4chst einen Spieler ausw\u00E4hlen.", Toast.LENGTH_SHORT).show();
+                    getString(R.string.select_player_first), Toast.LENGTH_SHORT).show();
             return;
         }
         int newV = MyApplication.loginUser.getPoints();
         if (MyApplication.simPlayer != null) {
             newV = MyApplication.simPlayer.getTtrPoints();
         }
-        for (Player player : MyApplication.players) {
+        for (Player player : MyApplication.getPlayers()) {
             newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked());
         }
         MyApplication.result = newV;
@@ -66,9 +66,8 @@ public class TTRCalculatorActivity extends BaseActivity {
     }
 
     public void newplayer(final View view) {
-        Intent target = new Intent(this, TTRPlayerSearchActivity.class);
+        Intent target = new Intent(this, SearchActivity.class);
         MyApplication.actualPlayer = new Player();
-        MyApplication.players.add(MyApplication.actualPlayer);
         startActivity(target);
     }
 
