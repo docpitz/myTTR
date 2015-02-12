@@ -61,6 +61,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents();
+        assertTrue(events.size() > 0);
         for (Event event : events) {
             Log.i(Constants.LOG_TAG, event.toString());
             EventDetail eventDetail = myTischtennisParser.readEventDetail(event);

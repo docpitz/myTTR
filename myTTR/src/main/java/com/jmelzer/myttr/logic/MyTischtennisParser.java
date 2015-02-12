@@ -628,7 +628,7 @@ public class MyTischtennisParser {
                 game.setResult(result.result.trim());
                 while (true) {
                     result = readBetween(page, n, "<td>", "</td>");
-                    if (result == null || result.result.startsWith("&nbsp;")) {
+                    if (result == null || result.isEmpty() || result.result.charAt(0) == ' ') {
                         break;
                     }
                     game.addSet(result.result);
@@ -708,6 +708,10 @@ public class MyTischtennisParser {
         ParseResult(String result, int end) {
             this.result = result;
             this.end = end;
+        }
+
+        public boolean isEmpty() {
+            return result == null || result.isEmpty();
         }
     }
 

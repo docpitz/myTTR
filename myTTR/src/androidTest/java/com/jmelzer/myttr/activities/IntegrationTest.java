@@ -5,13 +5,19 @@ import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.test.suitebuilder.annotation.MediumTest;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.robotium.solo.Solo;
+
+import java.util.ArrayList;
 
 /**
  * Simulate the workflow of the app
@@ -73,8 +79,39 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertNotNull(MyApplication.loginUser);
         assertEquals("chokdee", MyApplication.loginUser.getUsername());
 
-        testPreferences();
-        testTTR();
+//        testHomeButton();
+//        testPreferences();
+        testClubList();
+//        testTTR();
+    }
+
+    private void testClubList() {
+        solo.clickOnButton(solo.getString(R.string.clublist));
+        assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        assertTrue(solo.searchText("Vester"));
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
+        ListView vMainList = solo.getCurrentViews(ListView.class).get(0);
+        ArrayList<TextView> vTiles = new ArrayList<TextView>();
+        vTiles = solo.getCurrentViews(TextView.class, vMainList);
+        Log.i(Constants.LOG_TAG, "Total number of texts into list are " + vTiles.size());
+        for (int i = 0; i < vTiles.size(); i++) {
+            Log.i(Constants.LOG_TAG, vTiles.get(i).getText().toString());
+        }
+
+        assertTrue(solo.searchText("11 : ") || solo.searchText(" : 11"));
+        assertFalse(solo.searchText("div"));
+
+    }
+
+    private void testHomeButton() {
+        solo.clickOnButton(solo.getString(R.string.clublist));
+        assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
+        solo.clickOnActionBarItem(R.id.action_home);
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+
     }
 
     private void testTTR() throws InterruptedException {
