@@ -223,6 +223,17 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
+    public void testFindPlayerUmlaut() throws TooManyPlayersFound, IOException, NetworkException {
+        login();
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.findPlayer("timo ", "boll", "");
+        assertEquals(4, players.size());
+        assertEquals("Timo", players.get(2).getFirstname());
+        assertEquals("Boll", players.get(2).getLastname());
+        assertEquals("Borussia Düsseldorf", players.get(2).getClub());
+    }
+
+    @SmallTest
     public void testGetClubNameFromTeamName() {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         assertEquals("TTG Niederkassel", myTischtennisParser.getClubNameFromTeamName("TTG Niederkassel II"));

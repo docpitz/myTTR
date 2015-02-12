@@ -8,7 +8,10 @@
 package com.jmelzer.myttr.logic;
 
 import android.util.Log;
+
 import com.jmelzer.myttr.Constants;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -69,11 +72,13 @@ public class Client {
         InputStreamReader in = null;
         StringBuilder page = new StringBuilder(20000);
         try {
-            in = new InputStreamReader(instream);
+            in = new InputStreamReader(instream, "UTF-8");
             rd = new BufferedReader(in, 8000);
 
             String line = "";
             while ((line = rd.readLine()) != null) {
+                line = StringEscapeUtils.unescapeHtml4(line);
+//                Log.d(Constants.LOG_TAG, line);
                 page .append(line);
             }
 
@@ -83,7 +88,7 @@ public class Client {
             close(rd);
         }
 
-//        Log.d(Constants.LOG_TAG, page);
+
         return page.toString();
     }
 

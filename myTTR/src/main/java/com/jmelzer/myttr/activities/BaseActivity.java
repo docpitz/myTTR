@@ -21,7 +21,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
 
         if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {

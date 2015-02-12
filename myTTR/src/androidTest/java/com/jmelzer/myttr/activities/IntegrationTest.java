@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.robotium.solo.Solo;
 
@@ -63,17 +64,11 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
             }
         });
 
-        // Add monitor to check for the second activity
-        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(
-                HomeActivity.class.getName(), null, false);
 
         Button btnLaunch = (Button) loginActivity.findViewById(R.id.button_login);
         TouchUtils.clickView(this, btnLaunch);
 
-
-        // Wait 5 seconds for the start of the activity
-        HomeActivity homeActivity = (HomeActivity) monitor.waitForActivityWithTimeout(5000);
-        assertNotNull(homeActivity);
+        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
 
         assertNotNull(MyApplication.loginUser);
         assertEquals("chokdee", MyApplication.loginUser.getUsername());
@@ -161,16 +156,63 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         solo.clickOnText(solo.getString(R.string.detail_search));
 
-        assertTrue(solo.waitForActivity(SearchResultActivity.class, 5000));
+        assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
 
         solo.clickLongInList(3); //real Timo
 
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 20000));
 
         assertEquals(1, MyApplication.getPlayers().size());
+        Player p = MyApplication.getPlayers().get(0);
+        assertEquals("Timo", p.getFirstname());
+        assertEquals("Boll", p.getLastname());
+        assertEquals("Borussia Düsseldorf", p.getClub());
 
 
-        //todo test exact player
+        //test exact player
+        solo.clickOnText(solo.getString(R.string.btn_new_player));
+        assertTrue(solo.waitForActivity(SearchActivity.class, 10000));
+
+        assertTrue(solo.searchText("Vorname"));
+
+        //vor und nachname
+        solo.getCurrentActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                solo.getEditText(0).setText("Marco");
+                solo.getEditText(1).setText("Vester");
+            }
+        });
+        solo.clickOnText(solo.getString(R.string.detail_search));
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 20000));
+        assertEquals(2, MyApplication.getPlayers().size());
+
+        p = MyApplication.getPlayers().get(1);
+        assertEquals("Marco", p.getFirstname());
+        assertEquals("Vester", p.getLastname());
+        assertEquals("TTG St. Augustin", p.getClub());
+
+        solo.clickOnText(solo.getString(R.string.calc));
+        assertTrue(solo.waitForActivity(ResultActivity.class, 5000));
+        assertTrue(solo.searchText("Deine Punkte sind gleich geblieben"));
+        solo.goBack();
+
+        solo.clickOnCheckBox(0);
+        solo.clickOnCheckBox(1);
+        solo.clickOnText(solo.getString(R.string.calc));
+        assertTrue(solo.waitForActivity(ResultActivity.class, 5000));
+        assertTrue(solo.searchText("32 Punkte dazu gewonnen"));
+
+        solo.goBack();
+
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+        assertEquals("1 must be deleted", 1, MyApplication.getPlayers().size());
+
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+        assertEquals("all entries (2) must be deleted", 0, MyApplication.getPlayers().size());
+
 //        solo.
 //        solo.clickOnText();
 

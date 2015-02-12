@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -53,6 +54,7 @@ public class EntryPlayerAdapter extends ArrayAdapter<Player> {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(v.getContext(), R.string.player_removed_from_list, Toast.LENGTH_SHORT).show();
                 MyApplication.removePlayer(player);
                 notifyDataSetChanged();
             }

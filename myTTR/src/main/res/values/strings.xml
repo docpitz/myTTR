@@ -83,4 +83,5 @@
     <string name="enter_clubname">Verein eingeben</string>
     <string name="reset">Zurücksetzen</string>
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
+    <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
 </resources>
