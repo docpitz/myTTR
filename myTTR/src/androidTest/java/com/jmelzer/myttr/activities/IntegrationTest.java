@@ -73,7 +73,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertNotNull(MyApplication.loginUser);
         assertEquals("chokdee", MyApplication.loginUser.getUsername());
 
-//        testPreferences();
+        testPreferences();
         testTTR();
     }
 
@@ -84,11 +84,8 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnText("TTR Werte berechnen");
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
 
-//        testEmptyTTRList();
-
-//        testManualEntry();
-
-        //test the appointment activity
+        testEmptyTTRList();
+        testManualEntry();
         testAppointments();
     }
 
@@ -144,7 +141,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
 
         solo.clickOnText(solo.getString(R.string.btn_new_player));
-        assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
+        assertTrue(solo.waitForActivity(SearchActivity.class, 20000));
 
         assertEquals("", solo.getEditText(0).getText().toString());
         assertEquals("", solo.getEditText(1).getText().toString());
@@ -289,9 +286,6 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     private void testPreferences() {
-        // Add monitor to check for the second activity
-        Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(
-                HomeActivity.class.getName(), null, false);
 
         solo.sendKey(Solo.MENU);
         solo.clickOnText("Einstellungen");
@@ -304,11 +298,9 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnText("TTG St. Augustin");
         solo.clickOnButton("OK");
 
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
         assertEquals("TTG St. Augustin", MyApplication.manualClub);
 
-        // Wait 10 seconds for the start of the activity
-        HomeActivity homeActivity = (HomeActivity) monitor.waitForActivityWithTimeout(1000);
-        assertNotNull(homeActivity);
 
     }
 }
