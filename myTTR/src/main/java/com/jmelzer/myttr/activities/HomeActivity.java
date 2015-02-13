@@ -66,9 +66,9 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void search(View view) {
-//        Intent target = new Intent(this, SearchActivity.class);
-//        target.putExtra(SearchActivity.NOAUTOLOGIN, true);
-//        startActivity(target);
+        Intent target = new Intent(this, SearchActivity.class);
+        target.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
+        startActivity(target);
     }
 
     private class ClubListAsyncTask extends BaseAsyncTask {

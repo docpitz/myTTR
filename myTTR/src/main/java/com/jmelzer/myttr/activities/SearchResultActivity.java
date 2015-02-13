@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 
 /**
@@ -15,6 +16,7 @@ import com.jmelzer.myttr.R;
  * User: jmelzer
  */
 public class SearchResultActivity extends BaseActivity {
+    Class goBackToClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +34,35 @@ public class SearchResultActivity extends BaseActivity {
         if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        Intent i = getIntent();
+        goBackToClass = TTRCalculatorActivity.class;
+        if (i != null && i.getExtras() != null) {
+            goBackToClass = (Class) i.getExtras().getSerializable(SearchActivity.BACK_TO);
+        }
+
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 view.setSelected(true);
-                if (position > -1 && position < MyApplication.searchResult.size()) {
-                    if (MyApplication.actualPlayer != null) {
-                        MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
-                    } else {
-                        MyApplication.actualPlayer = MyApplication.searchResult.get(position);
+                if (goBackToClass.equals(TTRCalculatorActivity.class)) {
+                    if (position > -1 && position < MyApplication.searchResult.size()) {
+                        if (MyApplication.actualPlayer != null) {
+                            MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
+                        } else {
+                            MyApplication.actualPlayer = MyApplication.searchResult.get(position);
+                        }
+                        MyApplication.addPlayer(MyApplication.actualPlayer);
+                        Intent target = new Intent(SearchResultActivity.this, goBackToClass);
+                        SearchResultActivity.this.startActivity(target);
+                        return true;
                     }
-                    MyApplication.addPlayer(MyApplication.actualPlayer);
-                    //todo must be given from the client
-                    Intent target = new Intent(SearchResultActivity.this, TTRCalculatorActivity.class);
-                    SearchResultActivity.this.startActivity(target);
-                    return true;
+                } else {
+                    Player p = MyApplication.searchResult.get(position);
+
+                    new EventsAsyncTask(SearchResultActivity.this, EventsActivity.class, p).execute();
                 }
                 return false;
             }

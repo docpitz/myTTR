@@ -9,6 +9,7 @@ package com.jmelzer.myttr.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -29,9 +30,12 @@ import java.util.List;
 
 public class SearchActivity extends BaseActivity {
 
+    public static final String BACK_TO = "BACK_TO";
+    Class goBackToClass = TTRCalculatorActivity.class;
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,11 @@ public class SearchActivity extends BaseActivity {
         clubEdit = (EditText) findViewById(R.id.detail_club);
 //        clubEdit.setText(MyApplication.actualPlayer.getClub());
         clubEdit.setText("");
+
+        Intent i = getIntent();
+        if (i != null && i.getExtras() != null) {
+            goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
+        }
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -93,6 +102,11 @@ public class SearchActivity extends BaseActivity {
     private void findPlayer(final String club, final String firstname, final String lastname) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, TTRCalculatorActivity.class) {
             int ttr = 0;
+
+            @Override
+            protected void putExtra(Intent target) {
+                target.putExtra(SearchActivity.BACK_TO, goBackToClass);
+            }
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {

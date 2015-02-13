@@ -1,10 +1,7 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.MyApplication;
@@ -34,4 +31,8 @@ public class DetailAsyncTask extends BaseAsyncTask {
         MyApplication.currentDetail = new MyTischtennisParser().readEventDetail(event);
     }
 
+    @Override
+    protected void putExtra(Intent target) {
+//        target.putExtra("DETAIL", MyApplication.currentDetail);
+    }
 }

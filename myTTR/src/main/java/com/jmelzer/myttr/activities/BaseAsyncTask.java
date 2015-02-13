@@ -4,17 +4,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
-
-import java.io.IOException;
 
 /**
  * Base class for same error handling.
@@ -73,8 +69,13 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                     Toast.LENGTH_SHORT).show();
         } else {
             Intent target = new Intent(parent, targetClz);
+            putExtra(target);
             parent.startActivity(target);
         }
+    }
+
+    protected void putExtra(Intent target) {
+
     }
 
     protected abstract boolean dataLoaded();

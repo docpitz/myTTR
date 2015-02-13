@@ -84,13 +84,35 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         testHomeButton();
         testPreferences();
         testTTR();
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         testClubList();
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         testOwnStatistics();
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
+        testSearch();
+        gotoHome();
         testPlayerSimulation();
         testLogOut();
+    }
+
+    private void gotoHome() {
+        solo.clickOnActionBarItem(R.id.action_home);
+    }
+
+    private void testSearch() {
+        solo.clickOnButton(solo.getString(R.string.search));
+        assertTrue(solo.waitForActivity(SearchActivity.class, 5000));
+        solo.enterText(2, "Borussia Düsseldorf");
+        solo.clickOnText(solo.getString(R.string.detail_search));
+        assertTrue(solo.waitForActivity(SearchResultActivity.class, 5000));
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        assertTrue(solo.searchText("Boll"));
+        solo.clickLongInList(3);
+        assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
+        solo.clickLongInList(0);
+        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+
     }
 
     private void testAutomaticLogin() {
@@ -139,7 +161,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     private void testLogOut() {
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
         solo.clickOnActionBarItem(R.id.action_logout);
         assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
@@ -176,7 +198,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickLongInList(1);
         assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
 
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
     }
 
@@ -195,7 +217,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickLongInList(0);
         assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
 
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
 
     }
@@ -203,7 +225,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     private void testHomeButton() {
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
-        solo.clickOnActionBarItem(R.id.action_home);
+        gotoHome();
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
 
     }
@@ -278,7 +300,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("", solo.getEditText(1).getText().toString());
         assertEquals("", solo.getEditText(2).getText().toString());
 
-//        testEmptyName(searchActivity);
+        testEmptyName();
 
 
         //vor und nachname
@@ -393,9 +415,9 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testEmptyName(SearchActivity searchActivity) {
+    private void testEmptyName() {
         //fill up only vorname
-        searchActivity.runOnUiThread(new Runnable() {
+        solo.getCurrentActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 solo.getEditText(0).setText("Timo");
@@ -406,7 +428,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue("first name only no allowed", solo.waitForText(solo.getString(R.string.error_search_required_fields)));
 
         //fill up only nachname
-        searchActivity.runOnUiThread(new Runnable() {
+        solo.getCurrentActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 solo.getEditText(0).setText("");

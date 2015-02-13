@@ -3,11 +3,13 @@ package com.jmelzer.myttr.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginManager;
@@ -30,6 +32,12 @@ public abstract class BaseActivity extends FragmentActivity {
             setTitle(MyApplication.getTitle());
         }
         setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d(Constants.LOG_TAG, "back pressed in " + this);
     }
 
     @Override

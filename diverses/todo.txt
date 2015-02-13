@@ -1,7 +1,16 @@
-- Stabilität (erledigt)
-- Relogin (erledigt)
-- Spieler Simulation
-- Suche verbessern (nur Verein?)
-- Link auf mytischtennis.de
+
+- Links auf mytischtennis.de ?
 - Navigation drawers
 - Änderungskonstante
+- Bug: Keine Daten vorhanden als Ergebnis in Suche
+- Home wieder entfernen (ist schon oben links)
+
+Erledigt
+------------
+- Stabilität (erledigt)
+- Relogin (erledigt)
+- Spieler Simulation (erledigt)
+- Suche verbessern (nur Verein?) (erledigt)
+- GUI Tests (erledigt)
+- Allg. Suche (erledigt)
+- Umstellung weg von statischen Variablen?
