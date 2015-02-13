@@ -18,7 +18,7 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private static Context context;
-    public static User loginUser = new User("", "", "", 0, new Date(), null);
+    private static User loginUser = new User("", "", "", 0, new Date(), null);
     private static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
     public static List<TeamAppointment> teamAppointments;
@@ -33,9 +33,25 @@ public class MyApplication extends Application {
     public static Player simPlayer;
     public static String manualClub;
 
+    public static void setLoginUser(User loginUser) {
+        MyApplication.loginUser = loginUser;
+    }
+
     public void onCreate() {
         super.onCreate();
         MyApplication.context = getApplicationContext();
+        createEmptyUser();
+    }
+
+    public static User getLoginUser() {
+        return loginUser;
+    }
+
+    public static int getPoints() {
+        return loginUser != null ? loginUser.getPoints() : 0;
+    }
+
+    public static void createEmptyUser() {
         loginUser = new User("", "", "", 0, new Date(), null);
     }
 

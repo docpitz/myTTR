@@ -1,10 +1,10 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.TouchUtils;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.jmelzer.myttr.MyApplication;
@@ -33,6 +33,14 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         adapter.open();
         adapter.deleteAllEntries();
 
+        //prepare the db and prefs to automatic
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPref.edit().putBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true).commit();
+
+        adapter.insertEntry("testi", "chokdee", "fuckyou123",
+                2000, "TTG St. Augustin");
+
         loginActivity = getActivity();
         solo = new Solo(getInstrumentation(), getActivity());
 
@@ -46,7 +54,9 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     @MediumTest
     public void testit() throws InterruptedException {
-        assertEquals("", MyApplication.loginUser.getUsername());
+        testAutomaticLogin();
+
+        assertEquals("", MyApplication.getLoginUser().getUsername());
 
         final EditText loginTxt = (EditText) loginActivity.findViewById(R.id.username);
         loginActivity.runOnUiThread(new Runnable() {
@@ -64,20 +74,75 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         });
 
 
-        Button btnLaunch = (Button) loginActivity.findViewById(R.id.button_login);
-        TouchUtils.clickView(this, btnLaunch);
+        solo.clickOnButton(0);
 
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
 
-        assertNotNull(MyApplication.loginUser);
-        assertEquals("chokdee", MyApplication.loginUser.getUsername());
+        assertNotNull(MyApplication.getLoginUser());
+        assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
 
-//        testHomeButton();
-//        testPreferences();
-//        testClubList();
-//        testOwnStatistics();
+        testHomeButton();
+        testPreferences();
+        testTTR();
+        solo.clickOnActionBarItem(R.id.action_home);
+        testClubList();
+        solo.clickOnActionBarItem(R.id.action_home);
+        testOwnStatistics();
+        solo.clickOnActionBarItem(R.id.action_home);
         testPlayerSimulation();
-//        testTTR();
+        testLogOut();
+    }
+
+    private void testAutomaticLogin() {
+
+
+        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
+        //automatic login must be sucessfull
+
+        solo.sendKey(Solo.MENU);
+        solo.clickOnText(solo.getString(R.string.menu_settings));
+        solo.clickOnCheckBox(0);
+        sleep(1000);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(solo.getCurrentActivity().getApplicationContext());
+        Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
+        assertFalse(saveUser);
+
+        //entries in the dn must be deleted
+        LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(solo.getCurrentActivity().getApplicationContext());
+        assertNull(adapter.getSinlgeEntry());
+
+        solo.sendKey(Solo.MENU);
+        solo.clickOnText(solo.getString(R.string.menu_settings));
+        solo.clickOnCheckBox(0);
+
+        sleep(1000);
+        saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
+        assertTrue(saveUser);
+
+        adapter = new LoginDataBaseAdapter(solo.getCurrentActivity().getApplicationContext());
+        assertNotNull("db entry must be created", adapter.getSinlgeEntry());
+
+        solo.goBack();
+
+        solo.clickOnActionBarItem(R.id.action_logout);
+        assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
+
+    }
+
+    private void sleep(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+//            e.printStackTrace();
+        }
+    }
+
+    private void testLogOut() {
+        solo.clickOnActionBarItem(R.id.action_home);
+        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        solo.clickOnActionBarItem(R.id.action_logout);
+        assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
     }
 
     private void testPlayerSimulation() {
@@ -88,16 +153,19 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickLongInList(8);
 
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
-        assertTrue("Ali is selected as player", solo.searchText("Manfred"));
+        assertTrue("Manni is selected as player", solo.searchText("Manfred"));
         assertNotNull(MyApplication.simPlayer);
         assertTrue(MyApplication.simPlayer.getTtrPoints() > 0);
 
         solo.clickOnText("TTR Werte berechnen");
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        //todo write own test here
         testManualEntry();
 
         solo.clickOnActionBarItem(R.id.action_remove_sim);
         assertTrue(solo.waitForText("wurde beendet"));
+
+        assertFalse("No one is selected ", solo.searchText("Manfred"));
 
 
     }
@@ -188,7 +256,9 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
 
         assertEquals("one selected", 1, MyApplication.getPlayers().size());
-
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+        assertEquals("none selected", 0, MyApplication.getPlayers().size());
     }
 
     private void testEmptyTTRList() {
@@ -199,7 +269,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     private void testManualEntry() {
-
+        assertEquals(0, MyApplication.getPlayers().size());
 
         solo.clickOnText(solo.getString(R.string.btn_new_player));
         assertTrue(solo.waitForActivity(SearchActivity.class, 20000));
@@ -219,6 +289,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
                 solo.getEditText(1).setText("Boll");
             }
         });
+
 
         solo.clickOnText(solo.getString(R.string.detail_search));
 
@@ -349,8 +420,8 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     private void testPreferences() {
 
         solo.sendKey(Solo.MENU);
-        solo.clickOnText("Einstellungen");
-        solo.clickOnText("Verein eingeben");
+        solo.clickOnText(solo.getString(R.string.menu_settings));
+        solo.clickOnText(solo.getString(R.string.enter_clubname));
         solo.clearEditText(0);
         assertTrue(solo.searchText(""));
         solo.enterText(0, "TTG St. Augus");

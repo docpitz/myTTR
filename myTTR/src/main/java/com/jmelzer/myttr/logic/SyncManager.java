@@ -19,8 +19,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
-import com.jmelzer.myttr.Constants;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.activities.NewPointsActivity;
@@ -90,7 +89,7 @@ public class SyncManager extends Service {
                 int newPoints = 0;
                 try {
                     newPoints = parser.getPoints();
-                    int old = MyApplication.loginUser.getPoints();
+                    int old = MyApplication.getPoints();
                     //prevent from wrong parsing
                     if (old == newPoints || Math.abs(old-newPoints) > 200) {
                         return;

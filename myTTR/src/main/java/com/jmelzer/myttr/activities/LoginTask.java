@@ -48,7 +48,7 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         }
         loginDataBaseAdapter.close();
         if (playerNotWellRegistered) {
-            MyApplication.loginUser.setPoints(-1);
+            MyApplication.getLoginUser().setPoints(-1);
             parent.gotoNextActivity();
             return;
         }
@@ -61,7 +61,7 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
             Toast.makeText(parent, "Login war nicht erfolgreich. Hast du einen Premiumaccount?",
                     Toast.LENGTH_SHORT).show();
         } else {
-            MyApplication.loginUser.setPoints(ttr);
+            MyApplication.getLoginUser().setPoints(ttr);
             parent.gotoNextActivity();
         }
     }
@@ -115,13 +115,13 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         if (userDb != null) {
             MyApplication.manualClub = userDb.getClubName();
         }
-        MyApplication.loginUser = new User(name, username, pw, ttr, new Date(), MyApplication.manualClub);
+        MyApplication.setLoginUser(new User(name, username, pw, ttr, new Date(), MyApplication.manualClub));
         loginDataBaseAdapter.deleteEntry(username);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(parent);
         Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
         if (saveUser) {
-            loginDataBaseAdapter.insertEntry(name, username, pw, ttr, "dummyClub");
+            loginDataBaseAdapter.insertEntry(name, username, pw, ttr, "");
         }
     }
 }

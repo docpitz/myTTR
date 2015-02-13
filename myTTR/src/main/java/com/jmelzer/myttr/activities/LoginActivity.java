@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -68,7 +67,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (MyApplication.loginUser != null && MyApplication.loginUser.getPoints() > 0) {
+        if (MyApplication.getPoints() > 0) {
             gotoNextActivity();
         }
     }

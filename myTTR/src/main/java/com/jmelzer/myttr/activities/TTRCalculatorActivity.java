@@ -53,7 +53,7 @@ public class TTRCalculatorActivity extends BaseActivity {
                     getString(R.string.select_player_first), Toast.LENGTH_SHORT).show();
             return;
         }
-        int newV = MyApplication.loginUser.getPoints();
+        int newV = MyApplication.getPoints();
         if (MyApplication.simPlayer != null) {
             newV = MyApplication.simPlayer.getTtrPoints();
         }

@@ -42,7 +42,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (MyApplication.loginUser.getPoints() < 0) {
+        if (MyApplication.getPoints() < 0) {
             Intent target = new Intent(this, EnterTTRActivity.class);
             startActivity(target);
         }

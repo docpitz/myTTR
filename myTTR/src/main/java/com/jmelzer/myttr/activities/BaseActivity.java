@@ -55,7 +55,7 @@ public abstract class BaseActivity extends FragmentActivity {
             }
             case R.id.action_logout: {
                 new LoginManager().logout();
-                MyApplication.loginUser = null;
+                MyApplication.createEmptyUser();
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra(LoginActivity.NOAUTOLOGIN, true);
                 startActivity(intent);

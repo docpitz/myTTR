@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
@@ -45,7 +46,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         textView = (TextView) rowView.findViewById(R.id.lastname);
         txt = player.getLastname();
         String name = firstName + " " + txt;
-        if (name.equals(MyApplication.loginUser.getRealName())) {
+        if (name.equals(MyApplication.getLoginUser().getRealName())) {
             textView.setTypeface(null, Typeface.BOLD);
             textViewFirstName.setTypeface(null, Typeface.BOLD);
         } else {

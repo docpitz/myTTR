@@ -13,17 +13,16 @@
 
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.SyncManager;
 
 /**
@@ -46,7 +45,7 @@ public class NewPointsActivity extends BaseActivity {
 
         String text = "";
 
-        int r = n - MyApplication.loginUser.getPoints();
+        int r = n - MyApplication.getPoints();
         Log.i(Constants.LOG_TAG, "difference " + r);
         ImageView imageView = new ImageView(this);
         imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -65,6 +64,6 @@ public class NewPointsActivity extends BaseActivity {
         //reset
         SyncManager.notifcationSent = false;
 //        MyTischtennisParser.debugCounter = 0;
-        MyApplication.loginUser.setPoints(n);
+        MyApplication.getLoginUser().setPoints(n);
     }
 }
