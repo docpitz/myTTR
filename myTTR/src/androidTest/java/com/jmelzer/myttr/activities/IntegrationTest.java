@@ -56,6 +56,23 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     public void testit() throws InterruptedException {
         testAutomaticLogin();
 
+        login();
+
+        testHomeButton();
+        testPreferences();
+        testTTR();
+        gotoHome();
+        testClubList();
+        gotoHome();
+        testOwnStatistics();
+        gotoHome();
+        testSearch();
+        gotoHome();
+        testPlayerSimulation();
+        testLogOut();
+    }
+
+    private void login() {
         assertEquals("", MyApplication.getLoginUser().getUsername());
 
         final EditText loginTxt = (EditText) loginActivity.findViewById(R.id.username);
@@ -80,19 +97,6 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         assertNotNull(MyApplication.getLoginUser());
         assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
-
-        testHomeButton();
-        testPreferences();
-        testTTR();
-        gotoHome();
-        testClubList();
-        gotoHome();
-        testOwnStatistics();
-        gotoHome();
-        testSearch();
-        gotoHome();
-        testPlayerSimulation();
-        testLogOut();
     }
 
     private void gotoHome() {

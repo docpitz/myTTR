@@ -11,10 +11,12 @@
     <string name="button_send">Login</string>
     <string name="password_message">Passwort eingeben</string>
     <string name="read_from_foto">Aus Photo lesen</string>
-    <string name="enter_manual">TTR Werte berechnen</string>
+    <string name="enter_manual">TTR-Rechner</string>
     <string name="select_player_first">Bitte zunächst einen Spieler auswählen</string>
     <string name="after_login_text">Der Login war erfolgreich.\n\nFolgende Möglichkeiten hast du:</string>
-    <string name="main_text">Bitte Login für myTischtennis.de</string>
+    <string name="main_text">Bitte Login für myTischtennis.de eingeben</string>
+    <string name="not_registered_text">Wenn du noch keinen mytischtennis Premium Zugang hast. Kannst du bei
+     www.mytischtennis.de/community/register einen Zugang beantragen.</string>
     <string name="player_1">Spieler 1:</string>
     <string name="player_1_hint">Namen eingeben</string>
     <string name="entry_club_edit">Vereinsname eingeben</string>
@@ -45,10 +47,10 @@
     <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
         kannst du einen Spieler aus gegnerischen Mannschaft auswählen
     </string>
-    <string name="clublist">Vereinsrangliste</string>
-    <string name="statistik">Meine Statistiken</string>
-    <string name="player_sim">Spieler Simulation</string>
-    <string name="search">Spieler / Verein Suche</string>
+    <string name="clublist">Vereinsrangl.</string>
+    <string name="statistik">Statistiken</string>
+    <string name="player_sim">Simulation</string>
+    <string name="search">Suche</string>
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
@@ -84,4 +86,5 @@
     <string name="reset">Zurücksetzen</string>
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
+    <string name="info">Info</string>
 </resources>

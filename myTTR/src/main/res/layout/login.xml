@@ -2,34 +2,78 @@
 <!--
   ~ Copyright (c) Juergen Melzer
   ~
-  ~ 2013.
+  ~ 2015.
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-        >
+              android:orientation="vertical"
+              android:paddingLeft="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo_schrift"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"/>
+
     <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_text"
-            android:layout_marginBottom="20dp" android:textSize="20dp"/>
-    <EditText android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/main_text"
+        android:id="@+id/textView8"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+
+    <EditText
+        android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username_message"
         />
-    <EditText android:id="@+id/password"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:hint="@string/password_message"
-              android:password="true"
-            />
-    <Button android:id="@+id/button_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_send"
-            android:onClick="login" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_message"
+        android:password="true"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="login"
+        android:background="@drawable/buttonshape"
+        android:text="@string/button_send"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/not_registered_text"
+        android:autoLink="web"
+        android:id="@+id/textView9"
+        android:textSize="12dp"/>
+
+
 </LinearLayout>
 

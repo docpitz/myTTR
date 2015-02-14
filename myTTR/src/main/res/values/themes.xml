@@ -2,15 +2,25 @@
 <!--
   ~ Copyright (c) Juergen Melzer
   ~
-  ~ 2013.
+  ~ 2015.
   -->
 
 <resources>
-    <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+    <style name="MyTheme" parent="@android:style/Theme.Holo">
+        <!--<item name="android:background">#f3191919</item>-->
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Myttr</item>
+        <item name="android:selectableItemBackground">@null</item>
     </style>
 
-    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">#ED7802</item>
+    <style name="ActionBar.Solid.Myttr" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_myttr</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_myttr</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_myttr</item>
+        <!--<item name="android:progressBarStyle">@style/ProgressBar.Myttr</item>-->
+    </style>
+
+    <style name="ActionBarStyle.Transparent.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

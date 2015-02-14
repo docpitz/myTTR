@@ -60,7 +60,7 @@ public class MyApplication extends Application {
     }
 
     public static String getTitle() {
-        return "Dein TTR: " + loginUser.getPoints();
+        return "TTR: " + loginUser.getPoints();
     }
 
     public static int calcActualDiff() {

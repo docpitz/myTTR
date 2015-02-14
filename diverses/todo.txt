@@ -3,7 +3,6 @@
 - Navigation drawers
 - Änderungskonstante
 - Bug: Keine Daten vorhanden als Ergebnis in Suche
-- Home wieder entfernen (ist schon oben links)
 
 Erledigt
 ------------

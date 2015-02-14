@@ -31,7 +31,9 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+//        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+        getActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
     @Override
@@ -58,6 +60,7 @@ public abstract class BaseActivity extends FragmentActivity {
             }
             case R.id.action_home: {
                 Intent intent = new Intent(this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
             }
@@ -78,7 +81,6 @@ public abstract class BaseActivity extends FragmentActivity {
             }
             case R.id.menu_about: {
                 AboutDialog about = new AboutDialog(this);
-                about.setTitle("Über myTTR");
                 about.show();
                 break;
             }
