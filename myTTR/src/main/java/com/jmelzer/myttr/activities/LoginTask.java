@@ -112,16 +112,18 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
     private void store(String username, String pw, MyTischtennisParser myTischtennisParser) {
         String name = myTischtennisParser.getRealName();
         User userDb = loginDataBaseAdapter.getSinlgeEntry();
+        int ak = 16;
         if (userDb != null) {
             MyApplication.manualClub = userDb.getClubName();
+            ak = userDb.getAk();
         }
-        MyApplication.setLoginUser(new User(name, username, pw, ttr, new Date(), MyApplication.manualClub));
+        MyApplication.setLoginUser(new User(name, username, pw, ttr, new Date(), MyApplication.manualClub, ak));
         loginDataBaseAdapter.deleteEntry(username);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(parent);
         Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
         if (saveUser) {
-            loginDataBaseAdapter.insertEntry(name, username, pw, ttr, "");
+            loginDataBaseAdapter.insertEntry(name, username, pw, ttr, MyApplication.manualClub, ak);
         }
     }
 }

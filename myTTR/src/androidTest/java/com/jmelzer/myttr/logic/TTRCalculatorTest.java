@@ -11,6 +11,7 @@
 package com.jmelzer.myttr.logic;
 
 import android.test.suitebuilder.annotation.SmallTest;
+
 import junit.framework.TestCase;
 
 public class TTRCalculatorTest extends TestCase {
@@ -19,10 +20,10 @@ public class TTRCalculatorTest extends TestCase {
     public void testCalc() {
 
         TTRCalculator calculator = new TTRCalculator();
-        assertEquals(8, calculator.calcPoints(1550, 1550, true));
-        assertEquals(-8, calculator.calcPoints(1550, 1550, false));
-        assertEquals(15, calculator.calcPoints(1555, 1742, true));
-        assertEquals(-16, calculator.calcPoints(2555, 1742, false));
+        assertEquals(8, calculator.calcPoints(1550, 1550, true, 16));
+        assertEquals(-8, calculator.calcPoints(1550, 1550, false, 16));
+        assertEquals(15, calculator.calcPoints(1555, 1742, true, 16));
+        assertEquals(-16, calculator.calcPoints(2555, 1742, false, 16));
 
     }
 }

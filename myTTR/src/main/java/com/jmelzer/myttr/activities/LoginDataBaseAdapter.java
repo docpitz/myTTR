@@ -23,14 +23,14 @@ import java.util.Date;
 public class LoginDataBaseAdapter {
     public static final int NAME_COLUMN = 1;
     static final String DATABASE_NAME = "login.db";
-    static final int DATABASE_VERSION = 5;
+    static final int DATABASE_VERSION = 6;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "LOGIN" +
             "( " + "ID" + " integer primary key autoincrement," +
             "REALNAME text, USERNAME  text,PASSWORD text, " +
-            "POINTS NUMERIC, CLUB_NAME text, CHANGED_AT date); ";
+            "POINTS NUMERIC, AK NUMERIC, CLUB_NAME text, CHANGED_AT date); ";
     // Context of the application using the database.
     private final Context context;
     // Variable to hold the database instance
@@ -54,7 +54,7 @@ public class LoginDataBaseAdapter {
 //        db.close();
     }
 
-    public long insertEntry(String realName, String userName, String password, int points, String clubName) {
+    public long insertEntry(String realName, String userName, String password, int points, String clubName, int ak) {
         db.beginTransaction();
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
@@ -62,6 +62,7 @@ public class LoginDataBaseAdapter {
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD", password);
         newValues.put("POINTS", points);
+        newValues.put("AK", ak);
         newValues.put("CLUB_NAME", clubName);
         newValues.put("CHANGED_AT", formatter.format(new Date()));
 
@@ -122,6 +123,7 @@ public class LoginDataBaseAdapter {
         String username = cursor.getString(cursor.getColumnIndex("USERNAME"));
         String clubName = cursor.getString(cursor.getColumnIndex("CLUB_NAME"));
         int points = cursor.getInt(cursor.getColumnIndex("POINTS"));
+        int ak = cursor.getInt(cursor.getColumnIndex("AK"));
         String changed = cursor.getString(cursor.getColumnIndex("CHANGED_AT"));
         Date changedAt = new Date(); //prevent NPE
         if (changed != null) {
@@ -132,7 +134,14 @@ public class LoginDataBaseAdapter {
             }
         }
         cursor.close();
-        return new User(realName, username, password, points, changedAt, clubName);
+        User u = new User(realName, username, password, points, changedAt, clubName, ak);
+        return u;
     }
 
+    public void storeAk(int ak) {
+        db.beginTransaction();
+        db.execSQL("update LOGIN set AK=" + ak);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
 }

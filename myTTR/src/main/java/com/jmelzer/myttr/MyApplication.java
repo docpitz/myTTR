@@ -18,7 +18,7 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private static Context context;
-    private static User loginUser = new User("", "", "", 0, new Date(), null);
+    private static User loginUser;
     private static List<Player> players = new ArrayList<Player>();
     public static Player actualPlayer;
     public static List<TeamAppointment> teamAppointments;
@@ -32,6 +32,10 @@ public class MyApplication extends Application {
     public static String selectedPlayer;
     public static Player simPlayer;
     public static String manualClub;
+
+    static {
+        createEmptyUser();
+    }
 
     public static void setLoginUser(User loginUser) {
         MyApplication.loginUser = loginUser;
@@ -52,7 +56,7 @@ public class MyApplication extends Application {
     }
 
     public static void createEmptyUser() {
-        loginUser = new User("", "", "", 0, new Date(), null);
+        loginUser = new User("", "", "", 0, new Date(), null, 16);
     }
 
     public static Context getAppContext() {
@@ -83,5 +87,9 @@ public class MyApplication extends Application {
 
     public static void removePlayer(Player p) {
         players.remove(p);
+    }
+
+    public static int getAk() {
+        return getLoginUser().getAk();
     }
 }

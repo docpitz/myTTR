@@ -73,7 +73,7 @@ public class MySettingsActivity extends Activity {
                     } else {
                         User u = MyApplication.getLoginUser();
                         adapter.insertEntry(u.getRealName(), u.getUsername(), u.getPassword(),
-                                u.getPoints(), u.getClubName());
+                                u.getPoints(), u.getClubName(), u.getAk());
                     }
                     return true;
                 }

@@ -26,6 +26,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="select"
+            android:background="@drawable/buttonshape"
             android:text="@string/select"/>
 
         <Button
@@ -33,6 +34,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="loadPlayerFromClub"
+            android:background="@drawable/buttonshape"
             android:text="@string/loadplayerfromclub"/>
 
 

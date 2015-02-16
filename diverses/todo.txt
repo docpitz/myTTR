@@ -1,15 +1,13 @@
 
+Offen
+----------
 - Links auf mytischtennis.de ?
 - Navigation drawers
-- Änderungskonstante
+
 - Bug: Keine Daten vorhanden als Ergebnis in Suche
 - Bug: Robin Malessa Westdeutsche
 - Bug: ClickTT Feed not available
-- Neues Layout
-      - Abmelden im Menu (erledigt)
-      - Login Button kleiner (erledigt)
-      - Aktion in Actionbar oder footer
-      - Lösch Buttons und Gesten
+
 
 Erledigt
 ------------
@@ -20,3 +18,10 @@ Erledigt
 - GUI Tests (erledigt)
 - Allg. Suche (erledigt)
 - Umstellung weg von statischen Variablen?
+- Sim-Modus wieder aktivieren / anzeigen
+- Neues Layout
+      - Abmelden im Menu (erledigt)
+      - Login Button kleiner (erledigt)
+      - Aktion in Actionbar oder footer (erledigt)
+      - Lösch Buttons (erledigt)
+ - Änderungskonstante

@@ -38,13 +38,14 @@ public class LoginDataBaseAdapterTest extends TestCase {
         LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
         adapter.deleteAllEntries();
-        assertTrue(adapter.insertEntry("real", "testi", "pwww", 4711, "dummyClub") != -1);
+        assertTrue(adapter.insertEntry("real", "testi", "pwww", 4711, "dummyClub", 16) != -1);
         User u = adapter.getSinlgeEntry();
         assertNotNull(u);
         assertEquals("real", u.getRealName());
         assertEquals("testi", u.getUsername());
         assertEquals("pwww", u.getPassword());
         assertEquals("dummyClub", u.getClubName());
+        assertEquals(16, u.getAk());
         assertEquals(4711, u.getPoints());
         assertTrue(u.getChangedAt() != null);
 
@@ -53,6 +54,12 @@ public class LoginDataBaseAdapterTest extends TestCase {
         u = adapter.getSinlgeEntry();
         assertNotNull(u);
         assertEquals("changed", u.getClubName());
+
+        adapter.storeAk(20);
+        u = adapter.getSinlgeEntry();
+        assertNotNull(u);
+        assertEquals(20, u.getAk());
+
         adapter.close();
     }
 }

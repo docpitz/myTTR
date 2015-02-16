@@ -22,14 +22,16 @@ public class User {
     String clubName;
     int points;
     Date changedAt;
+    int ak;
 
-    public User(String realName, String username, String password, int points, Date changedAt, String clubName) {
+    public User(String realName, String username, String password, int points, Date changedAt, String clubName, int ak) {
         this.realName = realName;
         this.username = username;
         this.password = password;
         this.points = points;
         this.changedAt = changedAt;
         this.clubName = clubName;
+        this.ak = ak;
     }
 
     public String getUsername() {
@@ -43,6 +45,14 @@ public class User {
 
     public int getPoints() {
         return points;
+    }
+
+    public int getAk() {
+        return ak;
+    }
+
+    public void setAk(int ak) {
+        this.ak = ak;
     }
 
     public String getRealName() {

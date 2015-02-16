@@ -6,16 +6,19 @@
              android:summary="@string/pref_sync_summ"
              android:defaultValue="true" />-->
     <CheckBoxPreference
+        android:defaultValue="true"
         android:key="SAVE_USER"
-        android:title="@string/pref_user"
         android:summary="@string/pref_user_summ"
-        android:defaultValue="true"/>
+        android:title="@string/pref_user"/>
     <PreferenceScreen
-        android:title="@string/enter_clubname"
-        android:summary="@string/enter_clubname_sum">
-
+        android:summary="@string/enter_clubname_sum"
+        android:title="@string/enter_clubname">
         <intent android:action="ManualClubName"/>
-
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:summary="@string/enter_ak_sum"
+        android:title="@string/enter_ak">
+        <intent android:action="AK"/>
     </PreferenceScreen>
     <!--<EditTextPreference android:key="MANUAL_CLUB"
                         android:title="Verein eingeben"

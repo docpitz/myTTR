@@ -6,6 +6,7 @@
   ~ 2015.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
               android:gravity="center_horizontal"
@@ -20,88 +21,111 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"/>
 
-    <GridLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
-        android:alignmentMode="alignBounds"
-        android:columnCount="3"
-        android:rowCount="2"
-        android:layout_gravity="center_horizontal">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="212dp"
+            android:alignmentMode="alignBounds"
+            android:columnCount="3"
+            android:rowCount="6"
+            android:layout_gravity="center_horizontal">
 
 
-        <Button
-            android:id="@+id/imageButton1"
-            style="@style/DashboardButton"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:onClick="statistik"
-            android:drawableTop="@drawable/ic_action_stat"
-            android:text="@string/statistik"
-            />
+            <Button
+                android:id="@+id/imageButton1"
+                style="@style/DashboardButton"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:onClick="statistik"
+                android:drawableTop="@drawable/ic_action_stat"
+                android:text="@string/statistik"
+                />
 
-        <Button
-            android:id="@+id/imageButton2"
-            style="@style/DashboardButton"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:drawableTop="@drawable/icon_club_list"
-            android:onClick="clublist"
-            android:text="@string/clublist"
-            />
+            <Button
+                android:id="@+id/imageButton2"
+                style="@style/DashboardButton"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:drawableTop="@drawable/icon_club_list"
+                android:onClick="clublist"
+                android:text="@string/clublist"
+                />
 
-        <Button
-            android:id="@+id/imageButton3"
-            style="@style/DashboardButton"
-            android:layout_column="2"
-            android:layout_row="0"
-            android:onClick="manual"
-            android:drawableTop="@drawable/ic_ttr"
-            android:text="@string/enter_manual"
-            />
+            <Button
+                android:id="@+id/imageButton3"
+                style="@style/DashboardButton"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:onClick="manual"
+                android:drawableTop="@drawable/ic_ttr"
+                android:text="@string/enter_manual"
+                />
 
-        <Button
-            android:id="@+id/imageButton4"
-            style="@style/DashboardButton"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:onClick="player_sim"
-            android:drawableTop="@drawable/ic_sim"
-            android:text="@string/player_sim"
-            />
+            <Button
+                android:id="@+id/imageButton4"
+                style="@style/DashboardButton"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:onClick="player_sim"
+                android:drawableTop="@drawable/ic_sim"
+                android:text="@string/player_sim"
+                />
 
-        <Button
-            android:id="@+id/imageButton5"
-            style="@style/DashboardButton"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:onClick="search"
-            android:drawableTop="@drawable/ic_action_search"
-            android:text="@string/search"
-            />
+            <Button
+                android:id="@+id/imageButton5"
+                style="@style/DashboardButton"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:onClick="search"
+                android:drawableTop="@drawable/ic_action_search"
+                android:text="@string/search"
+                />
 
-        <Button
-            android:id="@+id/imageButton6"
-            style="@style/DashboardButton"
-            android:layout_column="2"
-            android:layout_row="1"
-            android:onClick="info"
-            android:drawableTop="@drawable/ic_info"
-            android:text="@string/info"
+            <Button
+                android:id="@+id/imageButton6"
+                style="@style/DashboardButton"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:onClick="info"
+                android:drawableTop="@drawable/ic_info"
+                android:text="@string/info"
 
-            />
-        <!--  <Space
-              android:layout_width="100dp"
-              android:layout_height="20px"
-              android:layout_row="0"
-              android:layout_column="3"/>
-      -->
-        <!-- <fragment
-             android:id="@+id/sim_info_fragment"
-             android:name="com.jmelzer.myttr.activities.SimInfoFragment"
-             android:layout_width="256px"
-             android:layout_height="100dp"
-             android:layout_gravity="right"
-             android:layout_marginTop="50dp"/>-->
-    </GridLayout>
+                />
+
+
+            <!--  <Space
+                  android:layout_width="100dp"
+                  android:layout_height="20px"
+                  android:layout_row="0"
+                  android:layout_column="3"/>
+          -->
+            <!-- <fragment
+                 android:id="@+id/sim_info_fragment"
+                 android:name="com.jmelzer.myttr.activities.SimInfoFragment"
+                 android:layout_width="256px"
+                 android:layout_height="100dp"
+                 android:layout_gravity="right"
+                 android:layout_marginTop="50dp"/>-->
+        </GridLayout>
+
+        <fragment
+            android:id="@+id/sim_info_fragment"
+            android:name="com.jmelzer.myttr.activities.SimInfoFragment"
+            android:layout_height="fill_parent"
+            android:layout_width="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            tools:layout="@layout/sim_info"
+            android:layout_gravity="right"/>
+        <!-- <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/imageView2"
+             android:src="@drawable/ic_sim"/>-->
+    </LinearLayout>
 </LinearLayout>

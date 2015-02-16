@@ -7,10 +7,10 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:weightSum="10">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:weightSum="10">
 
     <TextView
         android:id="@+id/textView"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:text="@string/text_select_player" />
+        android:text="@string/text_select_player"/>
 
 
     <LinearLayout
@@ -34,24 +34,26 @@
             android:gravity="start"
             android:layout_marginLeft="10dp"
             android:layout_weight="5"
-            android:text="Vorname" />
+            android:text="Vorname"/>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Nachname" />
+            android:text="Nachname"/>
     </LinearLayout>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="#ff000000"/>
+        android:background="@color/white"/>
+
     <ListView
         android:id="@+id/playerlistview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-         />
+        />
 
 
 </LinearLayout>

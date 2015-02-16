@@ -87,7 +87,8 @@ public class TTRCalculatorActivity extends BaseActivity {
             newV = MyApplication.simPlayer.getTtrPoints();
         }
         for (Player player : MyApplication.getPlayers()) {
-            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked());
+            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked(),
+                    MyApplication.getAk());
         }
         MyApplication.result = newV;
         Intent target = new Intent(TTRCalculatorActivity.this, ResultActivity.class);
@@ -113,7 +114,7 @@ public class TTRCalculatorActivity extends BaseActivity {
                 if (name != null) {
                     MyApplication.teamAppointments = appointmentParser.read(name);
                 } else {
-                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln. Fehler in mytischtennis.de." +
+                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln. Wahrscheinlich ein Fehler bei mytischtennis.de." +
                             "Du kannst ihn aber in den Einstellungen selbst eingeben.";
                     Intent target = new Intent(TTRCalculatorActivity.this, EnterClubNameActivity.class);
                     startActivity(target);

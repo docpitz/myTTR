@@ -34,6 +34,7 @@
 
         <Button
             android:id="@+id/button"
+            android:background="@drawable/buttonshape"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:onClick="ok"
@@ -43,6 +44,7 @@
         <Button
             android:id="@+id/button_reset"
             android:layout_width="100dp"
+            android:background="@drawable/buttonshape"
             android:layout_height="wrap_content"
             android:onClick="reset"
             android:text="@string/reset"
