@@ -29,6 +29,7 @@ public class AboutDialog extends BaseInfoDialog {
         tv = (TextView) findViewById(R.id.info_text);
         tv.setText(Html.fromHtml(readRawTextFile(R.raw.info)));
         tv.setLinkTextColor(Color.WHITE);
+        tv.setTextColor(Color.WHITE);
         Linkify.addLinks(tv, Linkify.ALL);
     }
 

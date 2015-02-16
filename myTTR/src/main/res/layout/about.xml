@@ -4,29 +4,41 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:stretchColumns="*">
-	<TableRow>
-		<ImageView 
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content" 
-	    	android:src="@drawable/about"
+
+    <TableRow
+        android:layout_marginLeft="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/home_self"
 	    	android:layout_gravity="left|center"/>
 		<TextView
 			android:id="@+id/info_text"
 			android:gravity="center"
-            android:text=""
+            android:text="myTTR
+
+Version 0.12.2
+
+Copyright 2014-2015"
 			android:layout_gravity="center"
 			android:layout_width="fill_parent"
-			android:layout_height="fill_parent" />
-	</TableRow>
+            android:layout_height="150dp"/>
+    </TableRow>
 	<TableRow>
 		<TextView
 			android:id="@+id/legal_text"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+            android:text="All rights reserved.
+This app runs under the Apache License.
+"
 			android:textSize="10dip"
 			android:textStyle="italic"
 			android:layout_span="2"
 			android:layout_margin="8dip"
-			android:textColor="#cccccc" />
-	</TableRow>
+            />
+    </TableRow>
 </TableLayout>

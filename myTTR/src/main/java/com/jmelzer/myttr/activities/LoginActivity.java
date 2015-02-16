@@ -56,8 +56,9 @@ public class LoginActivity extends Activity {
             pwTextField.setText(user.getPassword());
             Intent i = getIntent();
 
-            if (i == null || i.getExtras() == null || !i.getExtras().getBoolean(NOAUTOLOGIN, false))
+            if (i == null || i.getExtras() == null || !i.getExtras().getBoolean(NOAUTOLOGIN, false)) {
                 login(null);
+            }
         }
         // Close The Database
         loginDataBaseAdapter.close();
@@ -92,4 +93,8 @@ public class LoginActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //do nothing in login
+    }
 }

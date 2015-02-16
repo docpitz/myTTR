@@ -100,7 +100,9 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     private void gotoHome() {
-        solo.clickOnActionBarItem(R.id.action_home);
+
+        //solo.clickOnActionBarItem(R.id.action_home);
+        fail("fixme");
     }
 
     private void testSearch() {

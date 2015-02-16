@@ -14,15 +14,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.TeamAppointment;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.util.List;
 
 public class AppointmentParserTest extends BaseTestCase {
@@ -53,6 +47,16 @@ public class AppointmentParserTest extends BaseTestCase {
         for (TeamAppointment teamAppointment : list) {
             Log.d(Constants.LOG_TAG, "teamAppointment = " + teamAppointment);
         }
+    }
+
+    @SmallTest
+    public void testParseNoAppointments() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+
+        AppointmentParser parser = new AppointmentParser();
+        String page = readFile("assets/no_appointment.html");
+        List<TeamAppointment> list = parser.parse(page, "TTG St. Augustin");
+
+        assertEquals(0, list.size());
     }
 }
 

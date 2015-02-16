@@ -301,6 +301,9 @@ public class MyTischtennisParser {
     }
 
     public String getNameOfOwnClub() {
+        if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
+            return MyApplication.manualClub;
+        }
         String url = "http://www.mytischtennis.de/community/userMasterPage";
         try {
             String page = Client.getPage(url);
@@ -312,9 +315,7 @@ public class MyTischtennisParser {
     }
 
     private String readClubName(String page) {
-        if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
-            return MyApplication.manualClub;
-        }
+
         String marker = "<strong>Verein:</strong>";
         String div = "<div class=\"col_3 mb_5\">";
 

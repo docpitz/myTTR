@@ -39,21 +39,25 @@ public class Client {
         Client.client = new DefaultHttpClient(httpParams);
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
                 "rv:34.0) Gecko/20100101 Firefox/34.0");
-        Client.client.getParams().setParameter("Accept-Encoding" , "gzip, deflate");
+        Client.client.getParams().setParameter("Accept-Encoding", "gzip, deflate");
     }
+
     public static DefaultHttpClient client;
 
     public static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
         HttpGet httpGet = prepareGet(url);
         try {
-            Log.i(Constants.LOG_TAG, "calling url '"  + url + "'");
+            Log.i(Constants.LOG_TAG, "calling url '" + url + "'");
             HttpResponse response = Client.client.execute(httpGet);
-            Log.i(Constants.LOG_TAG, "execute time "  + (System.currentTimeMillis() - start)  + " ms");
+            Log.i(Constants.LOG_TAG, "execute time " + (System.currentTimeMillis() - start) + " ms");
             String s = readGzippedResponse(response);
             response.getEntity().consumeContent();
             Log.i(Constants.LOG_TAG, "request time " + (System.currentTimeMillis() - start)
                     + " ms , returncode = " + response.getStatusLine().getStatusCode());
+            if (response.getStatusLine().getStatusCode() == 500) {
+                throw new NetworkException("mytischtennis meldet zur Zeit einen Fehler zurück :-(");
+            }
             return s;
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
@@ -79,7 +83,7 @@ public class Client {
             while ((line = rd.readLine()) != null) {
                 line = StringEscapeUtils.unescapeHtml4(line);
 //                Log.d(Constants.LOG_TAG, line);
-                page .append(line);
+                page.append(line);
             }
 
         } finally {

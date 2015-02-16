@@ -11,11 +11,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 
@@ -34,7 +39,6 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void manual(final View view) {
-
         Intent target = new Intent(this, TTRCalculatorActivity.class);
         startActivity(target);
     }
@@ -111,5 +115,57 @@ public class HomeActivity extends BaseActivity {
             return MyApplication.myTeamPlayers != null;
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.home_actions, menu);
+        menu.getItem(0).setVisible(MyApplication.simPlayer != null);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_settings: {
+                Intent intent = new Intent(this, MySettingsActivity.class);
+                startActivity(intent);
+                break;
+            }
+//            case R.id.action_home: {
+//                Intent intent = new Intent(this, HomeActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                break;
+//            }
+            case R.id.action_logout: {
+                new LoginManager().logout();
+                MyApplication.createEmptyUser();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.putExtra(LoginActivity.NOAUTOLOGIN, true);
+                startActivity(intent);
+                break;
+            }
+            case R.id.action_remove_sim: {
+                MyApplication.simPlayer = null;
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "Simulation wurde beendet", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.menu_about: {
+                AboutDialog about = new AboutDialog(this);
+                about.show();
+                break;
+            }
+            case R.id.menu_impressum: {
+                ImpressumDialog dialog = new ImpressumDialog(this);
+                dialog.setTitle("Impressum");
+                dialog.show();
+                break;
+            }
+        }
+        return false;
     }
 }

@@ -12,10 +12,10 @@
               android:paddingLeft="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="299dp"
+        android:layout_height="173dp"
         android:id="@+id/imageView"
-        android:src="@drawable/logo_schrift"
+        android:src="@drawable/home_self"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"/>
@@ -54,11 +54,12 @@
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="32dp"
         android:onClick="login"
         android:background="@drawable/buttonshape"
-        android:text="@string/button_send"/>
+        android:text="@string/button_send"
+        android:layout_marginBottom="10dp"/>
 
     <Space
         android:layout_width="match_parent"

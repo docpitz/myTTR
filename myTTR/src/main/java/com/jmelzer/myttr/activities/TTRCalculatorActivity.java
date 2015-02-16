@@ -10,9 +10,12 @@ package com.jmelzer.myttr.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
@@ -35,9 +38,8 @@ public class TTRCalculatorActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.manual_entries);
+        setContentView(R.layout.ttr_calc);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.manual_entries_view_main);
         final ListView listview = (ListView) findViewById(R.id.playerlistview);
 
         final EntryPlayerAdapter adapter = new EntryPlayerAdapter(this,
@@ -45,7 +47,34 @@ public class TTRCalculatorActivity extends BaseActivity {
                 MyApplication.getPlayers());
         listview.setAdapter(adapter);
 
+
+        if (MyApplication.getPlayers() == null || MyApplication.getPlayers().isEmpty()) {
+            findViewById(R.id.txt_player_list).setVisibility(View.GONE);
+            findViewById(R.id.txt_player_list_empty).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.txt_player_list).setVisibility(View.VISIBLE);
+            findViewById(R.id.txt_player_list_empty).setVisibility(View.GONE);
+
+            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) findViewById(R.id.header).getLayoutParams();
+            p.addRule(RelativeLayout.BELOW, R.id.txt_player_list);
+            findViewById(R.id.header).setLayoutParams(p);
+        }
+//        FloatingActionButton a = (FloatingActionButton) findViewById(R.id.button_next_appointments);
+//        a.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                nextAppointments(v);
+//            }
+//        });
+//        a = (FloatingActionButton) findViewById(R.id.btn_new_player);
+//        a.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                newplayer(v);
+//            }
+//        });
     }
+
 
     public void recalc(final View view) {
         if (MyApplication.getPlayers().size() == 0) {
@@ -65,13 +94,12 @@ public class TTRCalculatorActivity extends BaseActivity {
         startActivity(target);
     }
 
-    public void newplayer(final View view) {
-        Intent target = new Intent(this, SearchActivity.class);
-        MyApplication.actualPlayer = new Player();
-        startActivity(target);
+    public void nextAppointments(MenuItem item) {
+        readNextAppointments();
+
     }
 
-    public void nextAppointments(final View view) {
+    public void nextAppointments(View v) {
         readNextAppointments();
 
     }
@@ -85,8 +113,10 @@ public class TTRCalculatorActivity extends BaseActivity {
                 if (name != null) {
                     MyApplication.teamAppointments = appointmentParser.read(name);
                 } else {
-                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln. " +
+                    errorMessage = "Konnte den Namen deines Vereins nicht ermitteln. Fehler in mytischtennis.de." +
                             "Du kannst ihn aber in den Einstellungen selbst eingeben.";
+                    Intent target = new Intent(TTRCalculatorActivity.this, EnterClubNameActivity.class);
+                    startActivity(target);
                 }
             }
 
@@ -98,5 +128,24 @@ public class TTRCalculatorActivity extends BaseActivity {
 
         };
         task.execute();
+    }
+
+    public void newplayer(MenuItem item) {
+        Intent target = new Intent(this, SearchActivity.class);
+        MyApplication.actualPlayer = new Player();
+        startActivity(target);
+    }
+
+    public void newplayer(View item) {
+        Intent target = new Intent(this, SearchActivity.class);
+        MyApplication.actualPlayer = new Player();
+        startActivity(target);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.ttr_actions, menu);
+        return true;
     }
 }

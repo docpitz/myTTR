@@ -72,4 +72,8 @@ public class User {
                 ", changedAt=" + changedAt +
                 '}';
     }
+
+    public String getInfo() {
+        return realName + "(" + points + ")";
+    }
 }

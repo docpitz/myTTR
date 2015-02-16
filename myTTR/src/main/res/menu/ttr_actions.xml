@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2014 - 2015.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_new_player"
+        android:text="@string/btn_new_player"
+        android:onClick="newplayer"
+        android:icon="@drawable/ic_action_ab_search"
+        android:showAsAction="always"
+        android:title="@string/btn_new_player"/>
+    <item
+        android:id="@+id/next_appointments_search"
+        android:text="@string/next_appointments_search"
+        android:onClick="nextAppointments"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_appointment"
+        android:title="@string/simulation"/>
+</menu>

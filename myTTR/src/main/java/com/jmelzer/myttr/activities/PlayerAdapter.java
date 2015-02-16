@@ -42,7 +42,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         String txt = player.getFirstname();
         String firstName = txt;
         //max 15 characters
-        textView.setText(Util.abbreviate(txt, 0, 8));
+        textView.setText(Util.abbreviate(txt, 0, 15));
         textView = (TextView) rowView.findViewById(R.id.lastname);
         txt = player.getLastname();
         String name = firstName + " " + txt;

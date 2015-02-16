@@ -33,7 +33,6 @@ public class EventsActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 MyApplication.events);
         listview.setAdapter(adapter);
-        setTitle(MyApplication.getTitle());
         events = MyApplication.events;
 
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -55,6 +54,8 @@ public class EventsActivity extends BaseActivity {
         if (MyApplication.selectedPlayer != null) {
             //todo spieler namen verbessern (Melzer, Jürgen (1611) etc.
             textView.setText("Statistiken für den Spieler " + MyApplication.selectedPlayer);
+        } else {
+            textView.setText("Statistiken für den Spieler " + MyApplication.getLoginUser().getInfo());
         }
     }
 

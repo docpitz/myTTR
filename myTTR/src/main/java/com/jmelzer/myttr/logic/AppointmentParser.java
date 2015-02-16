@@ -29,6 +29,10 @@ public class AppointmentParser {
             return list;
         }
 
+        final String toCheckError = "keine</span> Termine vorhanden";
+        if (page.indexOf(toCheckError) > 0) {
+            return list;
+        }
         final String toCheck = "zu meiner Mannschaft";
         String tr = "<tr>";
         String trClosed = "</tr>";

@@ -32,6 +32,9 @@
     <string name="cancel">Abbrechen</string>
     <string name="btn_new_player">Spieler eingeben und suchen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string>
+    <!--<string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltfläche rechts</string>-->
+    <string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltflächen oben</string>
+    <string name="txt_search_explain">Entweder Vorname und Nachname oder Vereinsname eingeben. Oder alles zusammen.</string>
     <string name="result_txt">Das Ergebnis</string>
     <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen. Darum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>
     <string name="pref_sync">Synchronisiere Punkte mit mytischtennis</string>
@@ -87,4 +90,6 @@
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
     <string name="info">Info</string>
+    <string name="logout">Abmelden</string>
+    <string name="simulation">Simulation</string>
 </resources>

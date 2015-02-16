@@ -3,26 +3,18 @@
 <!--
   ~ Copyright (c) Juergen Melzer
   ~
-  ~ 2014.
+  ~ 2014 - 2015.
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Help -->
-    <item
-        android:id="@+id/action_home"
-        android:icon="@drawable/home"
-        android:showAsAction="ifRoom"
-        android:title="Home"/>
-    <item
-        android:id="@+id/action_logout"
-        android:icon="@drawable/logout"
-        android:showAsAction="ifRoom"
-        android:title="Logout"/>
+
+
     <item
         android:id="@+id/action_remove_sim"
         android:icon="@drawable/ic_sim_black"
         android:showAsAction="ifRoom"
-        android:title="Simulation"/>
+        android:title="@string/simulation"/>
     <item
         android:id="@+id/menu_settings"
         android:icon="@android:drawable/ic_menu_preferences"
@@ -38,7 +30,13 @@
     <item
         android:id="@+id/menu_impressum"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         android:showAsAction="never"
         android:title="@string/menu_impressum"/>
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="@string/logout"/>
 </menu>
