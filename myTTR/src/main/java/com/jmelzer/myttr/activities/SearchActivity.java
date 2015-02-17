@@ -111,10 +111,13 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 List<Player> p = null;
+                errorMessage = null;
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
-                    ttr = -1;
+                    errorMessage = "Es wurden zu viele Spieler gefunden.";
+                    ttr = 0;
+                    return;
                 }
 //                if(true)
 //                throw new RuntimeException();
@@ -122,7 +125,11 @@ public class SearchActivity extends BaseActivity {
                     if (p.size() == 1) {
 
                         Player p1 = p.get(0);
-                        MyApplication.actualPlayer.copy(p1);
+                        if (MyApplication.actualPlayer != null) {
+                            MyApplication.actualPlayer.copy(p1);
+                        } else {
+                            MyApplication.actualPlayer = p1;
+                        }
                         MyApplication.addPlayer(p1);
                         ttr = p1.getTtrPoints();
                     } else if (p.size() > 1) {
@@ -131,6 +138,7 @@ public class SearchActivity extends BaseActivity {
                         ttr = 1;
                     } else {
                         ttr = 0;
+                        errorMessage = "Es wurden keine Spieler gefunden.";
                     }
                 }
 //                MyApplication.actualPlayer.setTtrPoints(ttr);

@@ -7,7 +7,8 @@ Offen
 - Bug: Keine Daten vorhanden als Ergebnis in Suche
 - Bug: Robin Malessa Westdeutsche
 - Bug: ClickTT Feed not available
-
+- Google Analytics einbauen https://developers.google.com/analytics/devguides/collection/android/v4/#manifest
+- Bug aus Forum
 
 Erledigt
 ------------

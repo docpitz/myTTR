@@ -183,6 +183,12 @@ public class MyTischtennisParser {
         if (list.size() >= 100) {
             return list;
         }
+        if (page.indexOf("Verfeinere deine Suche um ein optimales Ergebnis zu erzielen") > 0) {
+            throw new TooManyPlayersFound();
+        }
+        if (page.indexOf("Keine Person(en) gefunden") > 0) {
+            return list;
+        }
         int idx = start;
         //let start at table tag
         if (start == 0) {

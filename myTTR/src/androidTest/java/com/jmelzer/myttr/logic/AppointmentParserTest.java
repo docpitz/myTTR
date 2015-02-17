@@ -50,6 +50,20 @@ public class AppointmentParserTest extends BaseTestCase {
     }
 
     @SmallTest
+    public void testParseForumError() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+
+
+        AppointmentParser parser= new AppointmentParser();
+        String page = readFile("assets/appointment_error.html");
+        List<TeamAppointment> list = parser.parse(page, "TSV RW Auerbach");
+
+        assertTrue(list.size() > 0);
+        for (TeamAppointment teamAppointment : list) {
+            Log.d(Constants.LOG_TAG, "teamAppointment = " + teamAppointment);
+        }
+    }
+
+    @SmallTest
     public void testParseNoAppointments() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
 
         AppointmentParser parser = new AppointmentParser();

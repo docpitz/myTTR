@@ -183,6 +183,20 @@ public class MyTischtennisParserTest extends BaseTestCase {
             Log.i(Constants.LOG_TAG, player.toString());
         }
     }
+    @SmallTest
+    public void testSearchError() throws TooManyPlayersFound, IOException, NetworkException {
+        login();
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.findPlayer("Michael Stefan", "Keller", null);
+        assertTrue(players.size() > 0);
+        for (Player player : players) {
+            Log.i(Constants.LOG_TAG, player.toString());
+        }
+        myTischtennisParser = new MyTischtennisParser();
+        players = myTischtennisParser.findPlayer("Peter", "Meyers", null);
+        assertEquals(0, players.size());
+    }
 
     @SmallTest
     public void testFindPlayer() throws TooManyPlayersFound, IOException, NetworkException {
