@@ -3,6 +3,8 @@ package com.jmelzer.myttr.logic;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +32,6 @@ public class BaseTestCase extends TestCase {
             stringBuilder.append( ls );
         }
 
-        return stringBuilder.toString();
+        return StringEscapeUtils.unescapeHtml4(stringBuilder.toString());
     }
 }

@@ -608,6 +608,10 @@ public class MyTischtennisParser {
     public EventDetail readEventDetail(Event event) throws NetworkException {
         String url = "http://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
         String page = Client.getPage(url);
+        return parseDetail(page);
+    }
+
+    EventDetail parseDetail(String page) {
         String startTag = "data-tooltipdata=\"";
         int n = page.indexOf(startTag);
         boolean endoflist = false;
@@ -639,7 +643,7 @@ public class MyTischtennisParser {
                 game.setResult(result.result.trim());
                 while (true) {
                     result = readBetween(page, n, "<td>", "</td>");
-                    if (result == null || result.isEmpty() || result.result.charAt(0) == ' ') {
+                    if (result == null || result.isEmpty() || result.result.charAt(0) == ' ' || result.result.contains(",")) {
                         break;
                     }
                     game.addSet(result.result);

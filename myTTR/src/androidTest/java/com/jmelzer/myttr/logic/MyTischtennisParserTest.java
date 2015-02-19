@@ -18,6 +18,8 @@ import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Player;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -67,6 +69,18 @@ public class MyTischtennisParserTest extends BaseTestCase {
             EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
             Log.i(Constants.LOG_TAG, eventDetail.toString());
         }
+        System.out.println();
+    }
+
+    @SmallTest
+    public void testreadDetailGameError1() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        String page = readFile("assets/eventDetails_error1.htm");
+        EventDetail eventDetail = myTischtennisParser.parseDetail(page);
+        assertNotNull(eventDetail);
+        assertEquals(6, eventDetail.getGames().size());
+        Log.i(Constants.LOG_TAG, eventDetail.toString());
     }
 
     @SmallTest

@@ -100,8 +100,9 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void findPlayer(final String club, final String firstname, final String lastname) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, TTRCalculatorActivity.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, goBackToClass) {
             int ttr = 0;
+            Player foundSinglePlayer;
 
             @Override
             protected void putExtra(Intent target) {
@@ -111,6 +112,7 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 List<Player> p = null;
+                //todo remove ttr handling here, use errormessage
                 errorMessage = null;
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
@@ -119,9 +121,8 @@ public class SearchActivity extends BaseActivity {
                     ttr = 0;
                     return;
                 }
-//                if(true)
-//                throw new RuntimeException();
                 if (p != null) {
+
                     if (p.size() == 1) {
 
                         Player p1 = p.get(0);
@@ -132,6 +133,8 @@ public class SearchActivity extends BaseActivity {
                         }
                         MyApplication.addPlayer(p1);
                         ttr = p1.getTtrPoints();
+                        foundSinglePlayer = p1;
+
                     } else if (p.size() > 1) {
                         targetClz = SearchResultActivity.class;
                         MyApplication.searchResult = p;
@@ -142,6 +145,15 @@ public class SearchActivity extends BaseActivity {
                     }
                 }
 //                MyApplication.actualPlayer.setTtrPoints(ttr);
+            }
+
+            @Override
+            protected void startNextActivity() {
+                if (goBackToClass.equals(EventsActivity.class) && foundSinglePlayer != null) {
+                    new EventsAsyncTask(parent, EventsActivity.class, foundSinglePlayer).execute();
+                } else {
+                    super.startNextActivity();
+                }
             }
 
             @Override

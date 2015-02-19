@@ -10,6 +10,7 @@ package com.jmelzer.myttr.logic;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.utils.StringUtils;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.Header;
@@ -75,17 +76,21 @@ public class Client {
         BufferedReader rd = null;
         InputStreamReader in = null;
         StringBuilder page = new StringBuilder(20000);
+        String pageS = null;
         try {
             in = new InputStreamReader(instream, "UTF-8");
             rd = new BufferedReader(in, 8000);
 
+            long start = System.currentTimeMillis();
             String line = "";
             while ((line = rd.readLine()) != null) {
-                line = StringEscapeUtils.unescapeHtml4(line);
+//                line = StringEscapeUtils.unescapeHtml4(line);
+//                line = StringUtils.unescapeHtml3(line);
 //                Log.d(Constants.LOG_TAG, line);
                 page.append(line);
             }
-
+            pageS = StringUtils.unescapeHtml3(page.toString());
+            Log.d(Constants.LOG_TAG,"read from stream takes " + (System.currentTimeMillis() - start) + " ms");
         } finally {
             close(in);
             close(instream);
@@ -93,7 +98,8 @@ public class Client {
         }
 
 
-        return page.toString();
+//        return page.toString();
+        return pageS;
     }
 
     static void close(Closeable c) {

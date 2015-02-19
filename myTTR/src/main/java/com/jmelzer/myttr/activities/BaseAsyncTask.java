@@ -68,10 +68,14 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
                     Toast.LENGTH_SHORT).show();
         } else {
-            Intent target = new Intent(parent, targetClz);
-            putExtra(target);
-            parent.startActivity(target);
+            startNextActivity();
         }
+    }
+
+    protected void startNextActivity() {
+        Intent target = new Intent(parent, targetClz);
+        putExtra(target);
+        parent.startActivity(target);
     }
 
     protected void putExtra(Intent target) {
