@@ -1,8 +1,12 @@
 package com.jmelzer.myttr.logic;
 
+import android.util.Log;
+
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Spiel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,16 +57,16 @@ public class ClickTTParser extends AbstractBaseParser {
         result = readBetweenOpenTag(resultrow.result, result.end, "<td", "</td>");
         datum += " " + result.result;
         //Uhrzeit we dont use
-        result = readBetween(resultrow.result, result.end+1, "<td", "</td>");
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
         //halle: we don't use
-        result = readBetween(resultrow.result, result.end+1, "<td", "</td>");
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
         //nr: we don't use
-        result = readBetween(resultrow.result, result.end+1, "<td", "</td>");
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
         //Heim
-        result = readBetweenOpenTag(resultrow.result, result.end+1, "<td", "</td>");
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
         String heimMannsschaft = result.result;
         //Gast
-        result = readBetweenOpenTag(resultrow.result, result.end+1, "<td", "</td>");
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
         String gastMannsschaft = result.result;
         //Ergebnis
         result = readBetween(resultrow.result, result.end, "<td ", "</td>");
@@ -80,8 +84,9 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     private String safeResult(ParseResult parseResult) {
-        if (parseResult != null)
+        if (parseResult != null) {
             return parseResult.result;
+        }
         return null;
     }
 
@@ -97,7 +102,7 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * see http://dttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?championship=DTTB+14%2F15&group=223193
      */
-    public Liga parseStaffel(Liga liga, String page) {
+    public Liga parseLiga(Liga liga, String page) {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
         int c = 0;
         int idx = 0;
@@ -205,5 +210,73 @@ public class ClickTTParser extends AbstractBaseParser {
             }
             idx = resultLiga.end - 10;
         }
+    }
+
+    public void parseMannschaftspiel(String page, Mannschaftspiel mannschaftspiel) {
+        ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
+        int c = 0;
+        int idx = 0;
+        String lastDate = null;
+        while (true) {
+            ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            if (!safeResult(resultrow).contains("Bälle")) {
+                parseMannschaftsspielTableRow(mannschaftspiel, resultrow);
+            } else {
+                parseMannschaftsspielStatistik(mannschaftspiel, resultrow);
+            }
+            idx = resultrow.end;
+
+        }
+    }
+
+    private void parseMannschaftsspielStatistik(Mannschaftspiel mannschaftspiel, ParseResult resultrow) {
+        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        mannschaftspiel.setBaelle(result.result);
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<b", "</b>");
+        mannschaftspiel.setSaetze(result.result);
+    }
+
+    private void parseMannschaftsspielTableRow(Mannschaftspiel mannschaftspiel, ParseResult resultrow) {
+        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
+        String posName = safeResult(result);
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        if (result == null) { //sometime empty lines in table, we skip
+            return;
+        }
+        Spiel spiel = new Spiel();
+        mannschaftspiel.addSpiel(spiel);
+        spiel.setName(posName);
+
+        ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
+        String url = safeResult(result2);
+        spiel.setSpieler1Url(url);
+        result2 = readBetweenOpenTag(resultrow.result, result.end + 1, "<a", "</a>");
+        spiel.setSpieler1Name(safeResult(result2));
+
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        result2 = readBetween(result.result, 0, "href=\"", "\">");
+        url = safeResult(result2);
+        spiel.setSpieler2Url(url);
+        result2 = readBetweenOpenTag(result.result, 0, "<a", "</a>");
+        spiel.setSpieler2Name(safeResult(result2));
+
+        for (int i = 1; i < 6; i++) {
+            result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+            spiel.addSet(safeResult(result));
+        }
+
+
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        spiel.setResult(safeResult(result));
+        Log.d(Constants.LOG_TAG, "spiel = " + spiel);
     }
 }

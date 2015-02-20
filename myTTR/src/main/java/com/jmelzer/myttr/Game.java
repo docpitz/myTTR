@@ -5,13 +5,14 @@ import java.util.List;
 
 /**
  * Created by J. Melzer on 15.12.2014.
+ * Used only in mytt.de
  */
 public class Game {
     String player;
     String playerWithPoints;
     long playerId;
     String result;
-    List<String> sets = new ArrayList();
+    List<String> sets = new ArrayList<>();
 
     public long getPlayerId() {
         return playerId;

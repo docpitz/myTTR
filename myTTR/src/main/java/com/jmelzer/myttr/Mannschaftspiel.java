@@ -1,6 +1,8 @@
 package com.jmelzer.myttr;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -13,6 +15,9 @@ public class Mannschaftspiel {
     String ergebnis;
     String urlDetail;
     boolean genehmigt;
+    String baelle;
+    String saetze;
+    List<Spiel> spiele = new ArrayList<>();
 
     public Mannschaftspiel() {
     }
@@ -26,6 +31,14 @@ public class Mannschaftspiel {
         this.genehmigt = genehmigt;
     }
 
+    public void setSaetze(String saetze) {
+        this.saetze = saetze;
+    }
+
+    public void setBaelle(String baelle) {
+        this.baelle = baelle;
+    }
+
     @Override
     public String toString() {
         return "Mannschaftspiel{" +
@@ -35,6 +48,9 @@ public class Mannschaftspiel {
                 ", ergebnis='" + ergebnis + '\'' +
                 ", urlDetail='" + urlDetail + '\'' +
                 ", genehmigt=" + genehmigt +
+                ", baelle='" + baelle + '\'' +
+                ", saetze='" + saetze + '\'' +
+                ", spiele=" + spiele +
                 '}';
     }
 
@@ -84,5 +100,20 @@ public class Mannschaftspiel {
 
     public boolean isGenehmigt() {
         return genehmigt;
+    }
+    public void addSpiel(Spiel spiel) {
+        spiele.add(spiel);
+    }
+
+    public String getBaelle() {
+        return baelle;
+    }
+
+    public String getSaetze() {
+        return saetze;
+    }
+
+    public List<Spiel> getSpiele() {
+        return spiele;
     }
 }

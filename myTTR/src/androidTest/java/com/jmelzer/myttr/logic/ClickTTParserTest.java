@@ -18,6 +18,7 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ClickTTParserTest extends BaseTestCase {
@@ -46,7 +47,7 @@ public class ClickTTParserTest extends BaseTestCase {
         String page = readFile("assets/clicktt/staffel.htm");
         assertNotNull(page);
         Liga liga = new Liga();
-        liga = parser.parseStaffel(liga , page);
+        liga = parser.parseLiga(liga, page);
 
         for (Mannschaft m : liga.getMannschaften()) {
             Log.d(Constants.LOG_TAG, "m = " + m);
@@ -54,17 +55,32 @@ public class ClickTTParserTest extends BaseTestCase {
     }
     @SmallTest
     public void testParseErgebnisse() throws Exception {
-        String page = readFile("assets/clicktt/staffel.htm");
-        assertNotNull(page);
-        Liga liga = new Liga();
-        liga = parser.parseStaffel(liga, page);
-        page = readFile("assets/clicktt/spiele.htm");
-        parser.parseErgebnisse(liga, page, true);
+        Liga liga = ergebnisse();
 
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             Log.d(Constants.LOG_TAG, "sp = " + mannschaftspiel);
         }
+    }
+
+    Liga ergebnisse() throws IOException {
+        String page = readFile("assets/clicktt/staffel.htm");
+        assertNotNull(page);
+        Liga liga = new Liga();
+        liga = parser.parseLiga(liga, page);
+        page = readFile("assets/clicktt/spiele.htm");
+        parser.parseErgebnisse(liga, page, true);
+        return liga;
+    }
+
+    @SmallTest
+    public void testParseMannschaftspiel() throws Exception {
+        Liga liga = ergebnisse();
+        String page = readFile("assets/clicktt/mannschafts-spiel.htm");
+        assertTrue(liga.getSpieleVorrunde().size() > 0);
+        Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
+        parser.parseMannschaftspiel(page, mannschaftspiel);
+        Log.d(Constants.LOG_TAG, "sp = " + mannschaftspiel);
     }
 }
 
