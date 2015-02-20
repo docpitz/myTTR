@@ -27,7 +27,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 @SuppressWarnings("ALL")
-public class MyTischtennisParser {
+public class MyTischtennisParser extends AbstractBaseParser {
 
     public static final String ZUR_TTR_HISTORIE = "zur TTR-Historie\">TTR ";
 
@@ -464,19 +464,6 @@ public class MyTischtennisParser {
         return ret;
     }
 
-    ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
-        int s = page.indexOf(tagStart, start);
-        if (s == -1) {
-            return null;
-        }
-        int e = 0;
-        if (tagEnd != null) {
-            e = page.indexOf(tagEnd, s + tagStart.length());
-        } else {
-            e = page.length();
-        }
-        return new ParseResult(page.substring(s + tagStart.length(), e), e);
-    }
 
     List<Player> parsePlayerFromTeam(String page) {
         Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
@@ -715,20 +702,7 @@ public class MyTischtennisParser {
         return null;
     }
 
-    class ParseResult {
-        String result;
 
-        int end;
-
-        ParseResult(String result, int end) {
-            this.result = result;
-            this.end = end;
-        }
-
-        public boolean isEmpty() {
-            return result == null || result.isEmpty();
-        }
-    }
 
     class Helper {
         Player p;
