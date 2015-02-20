@@ -7,6 +7,12 @@ Offen
 - Google Analytics einbauen https://developers.google.com/analytics/devguides/collection/android/v4/#manifest
 - Neu: Favoriten / Spieler merken
 - Neu: Ligaergebnisse
+    - Navigation:
+            -> Saison
+            -> Verband
+            -> Liga
+            -> Herren / Damen
+            -> ?
 
 Erledigt
 ------------

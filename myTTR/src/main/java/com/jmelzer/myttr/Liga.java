@@ -15,6 +15,8 @@ public class Liga {
     List<Mannschaft> mannschaften = new ArrayList<>();
     List<Mannschaftspiel> spieleVorrunde = new ArrayList<>();
     List<Mannschaftspiel> spieleRueckrunde = new ArrayList<>();
+    private String urlRR;
+    private String urlVR;
 
     public Liga(String name, String url, String sex) {
         this.name = name;
@@ -80,6 +82,27 @@ public class Liga {
                 "sex='" + sex + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
+                ", spieleVorrunde=" + spieleVorrunde +
+                ", spieleRueckrunde=" + spieleRueckrunde +
+                ", urlRR='" + urlRR + '\'' +
+                ", urlVR='" + urlVR + '\'' +
+                ", mannschaften=" + mannschaften +
                 '}';
+    }
+
+    public void setUrlRR(String urlRR) {
+        this.urlRR = urlRR;
+    }
+
+    public String getUrlRR() {
+        return urlRR;
+    }
+
+    public void setUrlVR(String urlVR) {
+        this.urlVR = urlVR;
+    }
+
+    public String getUrlVR() {
+        return urlVR;
     }
 }

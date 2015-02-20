@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Verband;
 
 import java.io.IOException;
 import java.util.List;
@@ -81,6 +82,34 @@ public class ClickTTParserTest extends BaseTestCase {
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
         parser.parseMannschaftspiel(page, mannschaftspiel);
         Log.d(Constants.LOG_TAG, "sp = " + mannschaftspiel);
+    }
+
+    public void testReadIntegration() throws NetworkException {
+        List<Verband> verbaende = parser.readVerbaende();
+        assertEquals(1, verbaende.size());
+        Verband v = verbaende.get(0);
+        assertNotNull(v);
+
+        List<Liga> ligen = parser.readTopLigen();
+//        for (Liga liga : ligen) {
+//            Log.d(Constants.LOG_TAG, "liga = " + liga);
+//        }
+        Liga liga = ligen.get(5);
+        parser.readLiga(liga);
+        Log.d(Constants.LOG_TAG, "liga = " + liga);
+
+        assertEquals("Regionalliga West", liga.getName());
+        assertEquals(10, liga.getMannschaften().size());
+
+        parser.readVR(liga);
+
+        assertTrue(liga.getSpieleVorrunde().size() > 5);
+
+        Mannschaftspiel spiel = liga.getSpieleVorrunde().get(5);
+        parser.readDetail(spiel);
+
+        assertTrue(spiel.getSpiele().size() > 0);
+
     }
 }
 

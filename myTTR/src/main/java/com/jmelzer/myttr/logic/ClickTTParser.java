@@ -1,12 +1,10 @@
 package com.jmelzer.myttr.logic;
 
-import android.util.Log;
-
-import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
-import com.jmelzer.myttr.Spiel;
+import com.jmelzer.myttr.Spielbericht;
+import com.jmelzer.myttr.Verband;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ public class ClickTTParser extends AbstractBaseParser {
      * parsed die Ergebnisse, und füllt das Liga objekt
      * siehe http://dttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?displayTyp=vorrunde&displayDetail=meetings&championship=DTTB+14%2F15&group=223193
      */
-    public Liga parseErgebnisse(Liga liga, String page, boolean vorrunde) {
+    Liga parseErgebnisse(Liga liga, String page, boolean vorrunde) {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
         int c = 0;
         int idx = 0;
@@ -102,10 +100,11 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * see http://dttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage?championship=DTTB+14%2F15&group=223193
      */
-    public Liga parseLiga(Liga liga, String page) {
+    Liga parseLiga(Liga liga, String page) {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
         int c = 0;
         int idx = 0;
+        parseSpielplanLinks(liga, page);
         while (true) {
             ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
             if (isEmpty(resultrow)) {
@@ -122,6 +121,19 @@ public class ClickTTParser extends AbstractBaseParser {
         }
         return liga;
 
+    }
+
+    private void parseSpielplanLinks(Liga liga, String page) {
+        ParseResult result = readBetween(page, 0, "<li>Spielplan", "</li>");
+        if (result != null) {
+            ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
+            String urlVR = result2.result;
+            liga.setUrlVR(urlVR);
+            result2 = readBetween(result.result, result2.end, "href=\"", "\">");
+            if (result2 != null) {
+                liga.setUrlRR(result2.result);
+            }
+        }
     }
 
     private Mannschaft parseLigaTableRow(ParseResult resultrow) {
@@ -167,7 +179,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return Integer.valueOf(win);
     }
 
-    public List<Liga> parseUntilOberliga(String page) {
+    List<Liga> parseUntilOberliga(String page) {
         List<Liga> ligen = new ArrayList<>();
 
         ParseResult resultHerren = readBetween(page, 0, "<h2>Herren</h2>", "<h2>Damen</h2>");
@@ -198,7 +210,7 @@ public class ClickTTParser extends AbstractBaseParser {
             while (true) {
                 ParseResult result = readBetween(resultLiga.result, subIdx, "<a href", "</a>");
                 if (!isEmpty(result)) {
-                    String url = readBetween(result.result, 0, null, "\">").result;
+                    String url = readBetween(result.result, 0, "=\"", "\">").result;
                     String name = readBetween(result.result, 0, ">", null).result;
                     Liga liga = new Liga(name, url, sex);
                     ligen.add(liga);
@@ -212,7 +224,7 @@ public class ClickTTParser extends AbstractBaseParser {
         }
     }
 
-    public void parseMannschaftspiel(String page, Mannschaftspiel mannschaftspiel) {
+    void parseMannschaftspiel(String page, Mannschaftspiel mannschaftspiel) {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
         int c = 0;
         int idx = 0;
@@ -252,31 +264,67 @@ public class ClickTTParser extends AbstractBaseParser {
         if (result == null) { //sometime empty lines in table, we skip
             return;
         }
-        Spiel spiel = new Spiel();
-        mannschaftspiel.addSpiel(spiel);
-        spiel.setName(posName);
+        Spielbericht spielbericht = new Spielbericht();
+        mannschaftspiel.addSpiel(spielbericht);
+        spielbericht.setName(posName);
 
         ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
         String url = safeResult(result2);
-        spiel.setSpieler1Url(url);
+        spielbericht.setSpieler1Url(url);
         result2 = readBetweenOpenTag(resultrow.result, result.end + 1, "<a", "</a>");
-        spiel.setSpieler1Name(safeResult(result2));
+        spielbericht.setSpieler1Name(safeResult(result2));
 
         result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
         result2 = readBetween(result.result, 0, "href=\"", "\">");
         url = safeResult(result2);
-        spiel.setSpieler2Url(url);
+        spielbericht.setSpieler2Url(url);
         result2 = readBetweenOpenTag(result.result, 0, "<a", "</a>");
-        spiel.setSpieler2Name(safeResult(result2));
+        spielbericht.setSpieler2Name(safeResult(result2));
 
         for (int i = 1; i < 6; i++) {
             result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-            spiel.addSet(safeResult(result));
+            spielbericht.addSet(safeResult(result));
         }
 
 
         result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        spiel.setResult(safeResult(result));
-        Log.d(Constants.LOG_TAG, "spiel = " + spiel);
+        spielbericht.setResult(safeResult(result));
+    }
+
+
+    public List<Verband> readVerbaende() {
+        List<Verband> verbaende = new ArrayList<>();
+//        verbaende.add(new Verband("Badischer TTV", "http://ttvbw.click-tt.de/"));
+        verbaende.add(new Verband("Westdeutscher TTV", "http://wttv.click-tt.de/"));
+
+        return verbaende;
+    }
+
+    public List<Liga> readTopLigen() throws NetworkException {
+        //todo saison
+        String url = "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
+        String page = Client.getPage(url);
+        return parseUntilOberliga(page);
+    }
+
+    public void readLiga(Liga liga) throws NetworkException {
+        String url = "http://dttb.click-tt.de";
+        url += liga.getUrl();
+        String page = Client.getPage(url);
+        parseLiga(liga, page);
+    }
+
+    public void readVR(Liga liga) throws NetworkException {
+        String url = "http://dttb.click-tt.de";
+        url += liga.getUrlVR();
+        String page = Client.getPage(url);
+        parseErgebnisse(liga, page, true);
+    }
+
+    public void readDetail(Mannschaftspiel spiel) throws NetworkException {
+        String url = "http://dttb.click-tt.de";
+        url += spiel.getUrlDetail();
+        String page = Client.getPage(url);
+        parseMannschaftspiel(page, spiel);
     }
 }

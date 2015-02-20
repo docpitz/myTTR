@@ -1,7 +1,6 @@
 package com.jmelzer.myttr;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ public class Mannschaftspiel {
     boolean genehmigt;
     String baelle;
     String saetze;
-    List<Spiel> spiele = new ArrayList<>();
+    List<Spielbericht> spiele = new ArrayList<>();
 
     public Mannschaftspiel() {
     }
@@ -101,8 +100,8 @@ public class Mannschaftspiel {
     public boolean isGenehmigt() {
         return genehmigt;
     }
-    public void addSpiel(Spiel spiel) {
-        spiele.add(spiel);
+    public void addSpiel(Spielbericht spielbericht) {
+        spiele.add(spielbericht);
     }
 
     public String getBaelle() {
@@ -113,7 +112,7 @@ public class Mannschaftspiel {
         return saetze;
     }
 
-    public List<Spiel> getSpiele() {
+    public List<Spielbericht> getSpiele() {
         return spiele;
     }
 }

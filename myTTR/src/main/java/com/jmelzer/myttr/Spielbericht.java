@@ -7,7 +7,7 @@ import java.util.List;
  * Created by J. Melzer on 20.02.2015.
  * Einzel oder Doppelspiel
  */
-public class Spiel {
+public class Spielbericht {
     /** e.g. D1-D2 or 1-2 */
     String name;
 
@@ -20,7 +20,7 @@ public class Spiel {
 
     String result;
 
-    public Spiel(String posName, String spieler1Name, String spieler1Url, String spieler2Name, String spieler2Url, String result) {
+    public Spielbericht(String posName, String spieler1Name, String spieler1Url, String spieler2Name, String spieler2Url, String result) {
         this.name = posName;
         this.spieler1Name = spieler1Name;
         this.spieler1Url = spieler1Url;
@@ -29,7 +29,7 @@ public class Spiel {
         this.result = result;
     }
 
-    public Spiel() {
+    public Spielbericht() {
 
     }
 
