@@ -91,7 +91,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="2"
                 android:layout_row="1"
-                android:onClick="info"
+                android:onClick="liga"
                 android:drawableTop="@drawable/ic_info"
                 android:text="@string/info"
 

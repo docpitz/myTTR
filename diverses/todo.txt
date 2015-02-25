@@ -13,6 +13,10 @@ Offen
             -> Liga
             -> Herren / Damen
             -> ?
+- Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
+- Schriftgröße: Konfiguration
+- Simulationsmodus: Ersatzspieler berücksichtigen
+- About Dialog überarbeiten (hat auch Bugs)
 
 Erledigt
 ------------

@@ -16,9 +16,8 @@ import android.util.Log;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
+import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Player;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,16 +33,31 @@ public class MyTischtennisParserTest extends BaseTestCase {
         assertTrue(myPoints > 1600);
     }
 
+    @Override
+    protected void prepareMocks() {
+        super.prepareMocks();
+        MockResponses.forRequestDoAnswer(".*/events", "events.htm");
+        MockResponses.forRequestDoAnswer(".*personId=425165", "events_425165.htm");
+        MockResponses.forRequestDoAnswer(".*eventDetails.*", "eventDetails.htm");
+        MockResponses.forRequestDoAnswer(".*showclubinfo.*", "showclubinfo.htm");
+        MockResponses.forRequestDoAnswer(".*vereinid=3147.*", "ranking_verein.htm");
+    }
+
     @SmallTest
     public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents();
+        boolean found = false;
         for (Event event : events) {
             String s = event.toString();
-//            Log.i(Constants.LOG_TAG, event.toString());
+            Log.i(Constants.LOG_TAG, s);
+            if (event.getEvent().equals("Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40")) {
+                found = true;
+            }
         }
+        assertTrue(found);
     }
 
     @SmallTest
@@ -52,9 +66,13 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEventsForForeignPlayer(425165L);
+        boolean found = false;
         for (Event event : events) {
-//            Log.i(Constants.LOG_TAG, event.toString());
+            if (event.getEvent().equals("RL-Herren | TTC RG Porz : TTC Elz")) {
+                found = true;
+            }
         }
+        assertTrue(found);
     }
 
     @SmallTest
@@ -69,7 +87,6 @@ public class MyTischtennisParserTest extends BaseTestCase {
             EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
             Log.i(Constants.LOG_TAG, eventDetail.toString());
         }
-        System.out.println();
     }
 
     @SmallTest
@@ -197,6 +214,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
             Log.i(Constants.LOG_TAG, player.toString());
         }
     }
+
     @SmallTest
     public void testSearchError() throws TooManyPlayersFound, IOException, NetworkException {
         login();
@@ -222,7 +240,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
 
-        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1700);
+        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1600);
         List<Player> p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.get(0).getLastname());
         assertEquals("Christian", p.get(0).getFirstname());

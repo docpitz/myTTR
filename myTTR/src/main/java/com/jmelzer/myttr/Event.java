@@ -8,6 +8,7 @@ package com.jmelzer.myttr;
  */
 public class Event {
     String date;
+    /** name of the event*/
     String event;
     String ak = "16";
     String playCount;

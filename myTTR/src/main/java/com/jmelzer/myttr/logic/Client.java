@@ -12,10 +12,12 @@ import android.util.Log;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.utils.StringUtils;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.CoreProtocolPNames;
@@ -30,6 +32,9 @@ import java.io.InputStreamReader;
 import java.util.zip.GZIPInputStream;
 
 public class Client {
+    public static HttpClient client;
+    public static CookieStoreDelegate cookieStoreDelegate;
+
     static {
         HttpParams httpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
@@ -37,13 +42,15 @@ public class Client {
         HttpConnectionParams.setTcpNoDelay(httpParams, true);
         httpParams.setParameter("http.protocol.handle-redirects", true);
 
-        Client.client = new DefaultHttpClient(httpParams);
+        client = new DefaultHttpClient(httpParams);
+        cookieStoreDelegate = new CookieStoreDelegate();
+        cookieStoreDelegate.setHttpClient(client);
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
                 "rv:34.0) Gecko/20100101 Firefox/34.0");
         Client.client.getParams().setParameter("Accept-Encoding", "gzip, deflate");
     }
 
-    public static DefaultHttpClient client;
+
 
     public static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
@@ -90,7 +97,7 @@ public class Client {
                 page.append(line);
             }
             pageS = StringUtils.unescapeHtml3(page.toString());
-            Log.d(Constants.LOG_TAG,"read from stream takes " + (System.currentTimeMillis() - start) + " ms");
+            Log.d(Constants.LOG_TAG, "read from stream takes " + (System.currentTimeMillis() - start) + " ms");
         } finally {
             close(in);
             close(instream);
@@ -120,5 +127,18 @@ public class Client {
         httpGet.setHeader("Accept-Encoding", "gzip, deflate");
         httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         return httpGet;
+    }
+
+    public static HttpResponse execute(HttpPost httpPost) throws IOException {
+
+        return client.execute(httpPost);
+    }
+
+    public static void setHttpClient(HttpClient sClient) {
+        client = sClient;
+    }
+
+    public static CookieStore getCookieStore() {
+        return cookieStoreDelegate.getCookieStore();
     }
 }

@@ -87,6 +87,12 @@ public class LoginActivity extends Activity {
         task.execute();
     }
 
+    public void liga(View view) {
+        MyApplication.topLigen = null;
+        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaMain.class);
+        task.execute();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

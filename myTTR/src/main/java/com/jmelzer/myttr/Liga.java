@@ -105,4 +105,32 @@ public class Liga {
     public String getUrlVR() {
         return urlVR;
     }
+
+    public List<Mannschaftspiel> getSpieleFor(String mannschaft, boolean vr) {
+        if (vr){
+            return filterSpiele(spieleVorrunde, mannschaft);
+        } else{
+            return filterSpiele(spieleRueckrunde, mannschaft);
+        }
+
+    }
+
+    private List<Mannschaftspiel> filterSpiele(List<Mannschaftspiel> spiele, String mannschaft) {
+        List<Mannschaftspiel> retList = new ArrayList<>();
+        for (Mannschaftspiel mannschaftspiel : spiele) {
+            if (mannschaftspiel.getGastMannschaft().getName().equals(mannschaft) ||
+                    mannschaftspiel.getHeimMannschaft().getName().equals(mannschaft)) {
+                retList.add(mannschaftspiel);
+            }
+        }
+        return retList;
+    }
+
+    public void clearSpiele(boolean vorrunde) {
+        if (vorrunde) {
+            spieleVorrunde.clear();
+        } else {
+            spieleRueckrunde.clear();
+        }
+    }
 }

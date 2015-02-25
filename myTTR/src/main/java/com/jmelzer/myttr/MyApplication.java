@@ -37,6 +37,10 @@ public class MyApplication extends Application {
         createEmptyUser();
     }
 
+    public static List<Liga> topLigen;
+    public static Liga selectedLiga;
+    public static Mannschaft selectedMannschaft;
+
     public static void setLoginUser(User loginUser) {
         MyApplication.loginUser = loginUser;
     }

@@ -63,6 +63,12 @@ public class HomeActivity extends BaseActivity {
         task.execute();
     }
 
+    public void liga(View view) {
+        MyApplication.topLigen = null;
+        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaMain.class);
+        task.execute();
+    }
+
     public void player_sim(View view) {
         AsyncTask<String, Void, Integer> task = new OwnClubListAsyncTask(this,
                 SelectTeamPlayerActivity.class);

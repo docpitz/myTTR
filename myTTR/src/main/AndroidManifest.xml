@@ -210,6 +210,42 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmelzer.myttr.activities.HomeActivity"/>
         </activity>
+        <activity
+            android:name=".activities.LigaMain"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+        </activity>
+        <activity
+            android:name=".activities.LigaTabelle"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.LigaMain">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+        </activity>
+        <activity
+            android:name=".activities.LigaMannschaftDetail"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.LigaTabelle">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+        </activity>
         <!--<service android:name=".logic.SyncManager" android:label="myTTR Background Sync"
                  android:icon="@drawable/ic_action_actionbar">
         </service>-->

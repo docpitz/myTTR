@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="13" >
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="So. 	25.01.2015 	14:00"
+        android:layout_weight="4"
+        android:layout_marginRight="10px"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/heim"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/name"
+        android:gravity="left"
+        android:text="Borussia Dortmund"
+        android:layout_weight="4"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/gast"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/result"
+        android:gravity="left"
+        android:text="TTG St. Augustin II"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="4"
+        android:layout_width="0dp"/>
+    <TextView
+        android:id="@+id/result"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/games"
+        android:gravity="left"
+        android:text="9:4"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"/>
+
+</LinearLayout>

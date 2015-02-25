@@ -441,10 +441,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 result = readBetween(page, n, "<td>", "</td>");
                 event.setTtr(Integer.valueOf(result.result));
                 n = result.end;
-                result = readBetween(page, n, "<td ", "</td>");
-                n = result.end - 15;
-                result = readBetween(page, n, ">", "</span>");
-                event.setSum(Short.valueOf(result.result));
+                result = readBetweenOpenTag(page, n, "<td ", "</td>");
+//                Log.d(Constants.LOG_TAG, "res = " + result.result);
+//                n = result.end - 15;
+                ParseResult result2 = readBetweenOpenTag(result.result, 0, "<span", "</span>");
+                event.setSum(Short.valueOf(result2.result));
                 n = result.end;
                 endoflist = page.indexOf("</table>", n) == -1;
             }
@@ -599,6 +600,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     EventDetail parseDetail(String page) {
+        //                data-tooltipdata="817950;0;Spies von Büllesheim, Alexander;true"
         String startTag = "data-tooltipdata=\"";
         int n = page.indexOf(startTag);
         boolean endoflist = false;
@@ -614,12 +616,13 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 eventDetail.getGames().add(game);
                 game.setPlayerId(Long.valueOf(result.result));
 
-                n = result.end;
+                n = result.end-1;
                 result = readBetween(page, n, ";", ";");
-                n = result.end;
+                //not interersting number, skip
+                n = result.end-1;
                 result = readBetween(page, n, ";", ";");
                 game.setPlayer(result.result);
-                n = result.end;
+                n = result.end-1;
 
                 result = readBetween(page, n, "bigtooltip'});\">", "</span>");
                 game.setPlayerWithPoints(result.result);

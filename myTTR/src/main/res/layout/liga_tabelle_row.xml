@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="11" >
+
+    <TextView
+        android:id="@+id/liga_pos"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="10"
+        android:layout_weight="1.5"
+        android:layout_marginRight="10px"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/name"
+        android:gravity="left"
+        android:text="Borussia Dortmund"
+        android:layout_weight="6"
+        android:layout_width="0dp" />
+
+    <TextView
+        android:id="@+id/games"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/result"
+        android:gravity="left"
+        android:text="12"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="2"
+        android:layout_width="0dp"/>
+    <TextView
+        android:id="@+id/points"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/games"
+        android:gravity="left"
+        android:text="12:12"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="2"
+        android:layout_width="0dp"/>
+
+</LinearLayout>

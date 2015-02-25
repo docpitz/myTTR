@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginManager {
+    public static final String LOGGEDINAS = "LOGGEDINAS";
     public static String un;
     public static String pw;
 
@@ -42,7 +43,7 @@ public class LoginManager {
 
     }
     public void logout()  {
-        Client.client.getCookieStore().clear();
+        Client.getCookieStore().clear();
     }
     public boolean login(String username, String password) throws IOException {
         logout();
@@ -58,14 +59,14 @@ public class LoginManager {
         nvps.add(new BasicNameValuePair("userPassWordB", password));
 
         httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-        HttpResponse response = Client.client.execute(httpPost);
+        HttpResponse response = Client.execute(httpPost);
         Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
         response.getEntity().consumeContent();
         response = Client.client.execute(httpGet2);
         Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
         response.getEntity().consumeContent();
-        for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
-            if ("LOGGEDINAS".equals(cookie.getName())) {
+        for (Cookie cookie : Client.getCookieStore().getCookies()) {
+            if (LOGGEDINAS.equals(cookie.getName())) {
                 un = username;
                 pw = password;
                 return true;
@@ -76,7 +77,7 @@ public class LoginManager {
     }
 
     void p() {
-        for (Cookie cookie : Client.client.getCookieStore().getCookies()) {
+        for (Cookie cookie : Client.getCookieStore().getCookies()) {
             Log.d(Constants.LOG_TAG, "name/value = " + cookie.getName() + "/" + cookie.getValue());
         }
     }

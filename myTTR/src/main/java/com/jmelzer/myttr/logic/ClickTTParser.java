@@ -24,8 +24,10 @@ public class ClickTTParser extends AbstractBaseParser {
         int c = 0;
         int idx = 0;
         String lastDate = null;
+        liga.clearSpiele(vorrunde);
         while (true) {
-            ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+
             if (isEmpty(resultrow)) {
                 break;
             }
@@ -34,6 +36,8 @@ public class ClickTTParser extends AbstractBaseParser {
                 continue;//skip first row
 
             }
+            idx = resultrow.end-1;
+
             Mannschaftspiel m = parseSpieleTableRow(liga, resultrow);
             if (m.getDate() == null || m.getDate().equals(" ")) {
                 m.setDate(lastDate);
@@ -41,7 +45,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 lastDate = m.getDate();
             }
             liga.addSpiel(m, vorrunde);
-            idx = resultrow.end;
+
 
         }
         return liga;
@@ -179,25 +183,25 @@ public class ClickTTParser extends AbstractBaseParser {
         return Integer.valueOf(win);
     }
 
-    List<Liga> parseUntilOberliga(String page) {
+    List<Liga> parseLinksUntilOberliga(String page) {
         List<Liga> ligen = new ArrayList<>();
 
         ParseResult resultHerren = readBetween(page, 0, "<h2>Herren</h2>", "<h2>Damen</h2>");
         if (resultHerren.isEmpty()) {
             return ligen;
         }
-        parseLiga(ligen, resultHerren, "Herren");
+        parseLigaLinks(ligen, resultHerren, "Herren");
 
         ParseResult resultDamen = readBetween(page, 0, "<h2>Damen</h2>", "</tr>");
         if (resultDamen.isEmpty()) {
             return ligen;
         }
-        parseLiga(ligen, resultDamen, "Damen");
+        parseLigaLinks(ligen, resultDamen, "Damen");
         return ligen;
 
     }
 
-    void parseLiga(List<Liga> ligen, ParseResult startResult, String sex) {
+    void parseLigaLinks(List<Liga> ligen, ParseResult startResult, String sex) {
         int idx = 0;
         while (true) {
             //one row
@@ -304,7 +308,7 @@ public class ClickTTParser extends AbstractBaseParser {
         //todo saison
         String url = "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
         String page = Client.getPage(url);
-        return parseUntilOberliga(page);
+        return parseLinksUntilOberliga(page);
     }
 
     public void readLiga(Liga liga) throws NetworkException {
@@ -326,5 +330,12 @@ public class ClickTTParser extends AbstractBaseParser {
         url += spiel.getUrlDetail();
         String page = Client.getPage(url);
         parseMannschaftspiel(page, spiel);
+    }
+
+    public void readRR(Liga liga) throws NetworkException {
+        String url = "http://dttb.click-tt.de";
+        url += liga.getUrlRR();
+        String page = Client.getPage(url);
+        parseErgebnisse(liga, page, false);
     }
 }

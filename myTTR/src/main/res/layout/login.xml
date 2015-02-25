@@ -12,8 +12,8 @@
               android:paddingLeft="10dp">
 
     <ImageView
-        android:layout_width="299dp"
-        android:layout_height="173dp"
+        android:layout_width="150dp"
+        android:layout_height="87dp"
         android:id="@+id/imageView"
         android:src="@drawable/home_self"
         android:layout_gravity="center_horizontal"
@@ -23,13 +23,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16sp"
         android:text="@string/main_text"
         android:id="@+id/textView8"/>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="15dp"
         />
 
     <EditText
@@ -49,17 +49,27 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="15dp"
         />
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="178dp"
-        android:layout_height="32dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
         android:onClick="login"
         android:background="@drawable/buttonshape"
         android:text="@string/button_send"
-        android:layout_marginBottom="10dp"/>
+        />
+        <Button
+            android:id="@+id/button_ligs"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:onClick="liga"
+            android:textSize="10sp"
+            android:text="@string/button_liga"
+            android:layout_marginTop="10dp"
+            android:background="#ff000000"/>
 
     <Space
         android:layout_width="match_parent"
