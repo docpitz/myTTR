@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
@@ -24,16 +25,25 @@ import java.util.List;
 
 /**
  * Created by J. Melzer on 27.02.2015.
- *
+ * <p/>
+ * Fragment for showibng results of a liga or a club
  */
 public class LigaMannschaftResultsFragment extends Fragment {
     Mannschaft mannschaft;
+    Liga liga;
     SpielAdapter adapter;
     int pos = 0;
 
-
     public void setPos(int pos) {
         this.pos = pos;
+    }
+
+    public void setLiga(Liga liga) {
+        this.liga = liga;
+    }
+
+    public void setMannschaft(Mannschaft mannschaft) {
+        this.mannschaft = mannschaft;
     }
 
     @Override
@@ -41,15 +51,11 @@ public class LigaMannschaftResultsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.liga_mannschaft_results, container, false);
-//        TextView textView = (TextView)  rootView.findViewById(R.id.selected_mannschaft);
-        mannschaft = MyApplication.selectedMannschaft;
-//        textView.setText(mannschaft.getName());
 
-
-        final ListView listview = (ListView)  rootView.findViewById(R.id.liga_mannschaft_detail_row);
+        final ListView listview = (ListView) rootView.findViewById(R.id.liga_mannschaft_detail_row);
         adapter = new SpielAdapter(getActivity(),
                 android.R.layout.simple_list_item_1,
-                MyApplication.selectedLiga.getSpieleFor(mannschaft.getName(), true));
+                getSpiele(true /* todo*/));
         listview.setAdapter(adapter);
 
 
@@ -65,18 +71,17 @@ public class LigaMannschaftResultsFragment extends Fragment {
             }
         });
 
-//        final Switch aSwitch = (Switch) rootView.findViewById(R.id.switch1);
-//        aSwitch.setTextOff("Vorrunde");
-//        aSwitch.setTextOn("Rückrunde");
-//        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                configList(isChecked);
-//            }
-//        });
-
         configList(pos == 0);
 
         return rootView;
+    }
+
+    List<Mannschaftspiel> getSpiele(boolean vr) {
+        if (mannschaft != null) {
+            return MyApplication.selectedLiga.getSpieleFor(mannschaft.getName(), vr);
+        } else {
+            return MyApplication.selectedLiga.getSpieleFor(null, vr);
+        }
     }
 
     private void callMannschaftSpielDetail() {
@@ -130,7 +135,7 @@ public class LigaMannschaftResultsFragment extends Fragment {
     void configList(boolean vr) {
         if (adapter != null) {
             adapter.clear();
-            adapter.addAll(MyApplication.selectedLiga.getSpieleFor(MyApplication.selectedMannschaft.getName(), vr));
+            adapter.addAll(getSpiele(vr));
             // fire the event
             adapter.notifyDataSetChanged();
         }

@@ -107,10 +107,18 @@ public class Liga {
     }
 
     public List<Mannschaftspiel> getSpieleFor(String mannschaft, boolean vr) {
-        if (vr){
-            return filterSpiele(spieleVorrunde, mannschaft);
-        } else{
-            return filterSpiele(spieleRueckrunde, mannschaft);
+        if (vr) {
+            if (mannschaft != null) {
+                return filterSpiele(spieleVorrunde, mannschaft);
+            } else {
+                return getSpieleVorrunde();
+            }
+        } else {
+            if (mannschaft != null) {
+                return filterSpiele(spieleRueckrunde, mannschaft);
+            } else {
+                return getSpieleRueckrunde();
+            }
         }
 
     }

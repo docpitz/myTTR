@@ -14,6 +14,7 @@ import com.jmelzer.myttr.utils.StringUtils;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -48,6 +49,10 @@ public class Client {
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
                 "rv:34.0) Gecko/20100101 Firefox/34.0");
         Client.client.getParams().setParameter("Accept-Encoding", "gzip, deflate");
+//        Client.client.getParams().setParameter("Content-Type", "application/x-www-form-urlencoded");
+//        Client.client.getParams().setParameter("Accept-Language", "de,en-US;q=0.7,en;q=0.3");
+        client.getParams().setParameter("http.protocol.version", HttpVersion.HTTP_1_1);
+        client.getParams().setParameter("http.protocol.content-charset", "UTF-8");
     }
 
 

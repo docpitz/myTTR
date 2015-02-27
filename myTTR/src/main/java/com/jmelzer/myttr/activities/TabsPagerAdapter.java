@@ -4,34 +4,39 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.jmelzer.myttr.Liga;
+import com.jmelzer.myttr.Mannschaft;
+
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
+    Mannschaft mannschaft;
+    Liga liga;
 
-	public TabsPagerAdapter(FragmentManager fm) {
-		super(fm);
-	}
+    public TabsPagerAdapter(FragmentManager fm, Mannschaft m) {
+        super(fm);
+        mannschaft = m;
+    }
 
-	@Override
-	public Fragment getItem(int index) {
+    public TabsPagerAdapter(FragmentManager fm, Liga l) {
+        super(fm);
+        liga = l;
+    }
 
-		switch (index) {
-		case 0:
-            LigaMannschaftResultsFragment f =  new LigaMannschaftResultsFragment();
-            f.setPos(0);
-            return f;
-		case 1:
-            f =  new LigaMannschaftResultsFragment();
-            f.setPos(1);
-            return f;
-		}
+    @Override
+    public Fragment getItem(int index) {
+        LigaMannschaftResultsFragment f;
+        f = new LigaMannschaftResultsFragment();
+        f.setPos(index);
+        f.setLiga(liga);
+        f.setMannschaft(mannschaft);
 
-		return null;
-	}
+        return f;
+    }
 
-	@Override
-	public int getCount() {
-		// get item count - equal to number of tabs
-		return 2;
-	}
+    @Override
+    public int getCount() {
+        // get item count - equal to number of tabs
+        return 2;
+    }
 
 }

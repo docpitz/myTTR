@@ -49,7 +49,7 @@ public class LigaTabelle extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 MyApplication.selectedMannschaft = (Mannschaft) parent.getItemAtPosition(position);
-                callMannschaftDetail();
+                callMannschaftDetail(LigaMannschaftDetailActivity.class);
 
                 return false;
             }
@@ -59,8 +59,8 @@ public class LigaTabelle extends BaseActivity {
         textView.setText(liga.getName());
     }
 
-    void callMannschaftDetail() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelle.this, LigaMannschaftDetailActivity.class) {
+    void callMannschaftDetail(Class targetClz) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelle.this, targetClz) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
@@ -83,7 +83,7 @@ public class LigaTabelle extends BaseActivity {
     }
 
     public void ligaResults(MenuItem item) {
-
+        callMannschaftDetail(LigaAllResultsActivity.class);
     }
 
     class LigaAdapter extends ArrayAdapter<Mannschaft> {
@@ -116,7 +116,7 @@ public class LigaTabelle extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     MyApplication.selectedMannschaft = mannschaft;
-                    callMannschaftDetail();
+                    callMannschaftDetail(LigaMannschaftDetailActivity.class);
                 }
             });
             return rowView;
