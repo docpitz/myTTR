@@ -32,6 +32,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="btn_new_player">Spieler eingeben und suchen</string>
+    <string name="btn_bilanz">Bilanzen ansehen</string>
+    <string name="btn_results">Aktuelle Ergebnisse ansehen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string>
     <!--<string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltfläche rechts</string>-->
     <string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltflächen oben</string>
@@ -49,6 +51,7 @@
     <string name="pref_user">Benutzer / Passwort speichern</string>
     <string name="pref_user_summ">Der Benutzer und das Passwort werden für die nächste Benutzung gespeichert und ein automatisches Login durchgeführt.</string>
     <string name="next_appointments_search">Über nächste Termine suchen</string>
+    <string name="action_mannschafts_info">Mannschaftsinfo</string>
     <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
         kannst du einen Spieler aus gegnerischen Mannschaft auswählen
     </string>
@@ -96,6 +99,7 @@
     <string name="info">Info</string>
     <string name="logout">Abmelden</string>
     <string name="simulation">Simulation</string>
+    <string name="arrow_desc">Pfeil</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

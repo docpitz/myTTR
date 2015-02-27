@@ -115,6 +115,7 @@ public class Liga {
 
     }
 
+
     private List<Mannschaftspiel> filterSpiele(List<Mannschaftspiel> spiele, String mannschaft) {
         List<Mannschaftspiel> retList = new ArrayList<>();
         for (Mannschaftspiel mannschaftspiel : spiele) {

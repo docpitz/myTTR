@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+  <!--  <TextView
+        android:id="@+id/selected_mannschaft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="Borussia Dortmund)"
+        android:layout_marginTop="10dp"
+        android:textSize="22dp"/>
+-->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
+                <!--heading-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="24dp"
+                    android:orientation="horizontal"
+                    android:weightSum="13">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:text="Datum"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:text="Heim"/>
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="4"
+                        android:text="Gast"/>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:text="Erg."/>
+
+
+                </LinearLayout>
+                <!--line-->
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:background="#ffffffff"/>
+                <!--list entries-->
+                <ListView
+                    android:id="@+id/liga_mannschaft_detail_row"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    >
+                </ListView>
+
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_weight="5"-->
+            <!--android:orientation="vertical">-->
+            <!--&lt;!&ndash;heading&ndash;&gt;-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="13">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView11"-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="4"-->
+            <!--android:text="Rang"/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView12"-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="4"-->
+            <!--android:text="Name"/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView13"-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="6dp"-->
+            <!--android:layout_weight="4"-->
+            <!--android:text="Spiele"/>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView14"-->
+            <!--android:layout_width="0px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="6dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Erg."/>-->
+
+
+            <!--</LinearLayout>-->
+            <!--&lt;!&ndash;line&ndash;&gt;-->
+            <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="2dip"-->
+            <!--android:background="#ffffffff"/>-->
+            <!--<ListView-->
+            <!--android:id="@+id/liga_mannschaft_player_row"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!-->-->
+
+            <!--</ListView>-->
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+</LinearLayout>

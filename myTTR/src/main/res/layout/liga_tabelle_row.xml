@@ -1,44 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:weightSum="11" >
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="12"
+    >
 
     <TextView
         android:id="@+id/liga_pos"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="10"
-        android:layout_weight="1.5"
         android:layout_marginRight="10px"
-        android:layout_width="0dp" />
+        android:layout_weight="1.5"
+        android:gravity="left"
+        android:text="10"/>
 
     <TextView
         android:id="@+id/name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/name"
-        android:gravity="left"
-        android:text="Borussia Dortmund"
         android:layout_weight="6"
-        android:layout_width="0dp" />
+        android:gravity="left"
+        android:text="Borussia Dortmund"/>
 
     <TextView
         android:id="@+id/games"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/result"
-        android:gravity="left"
-        android:text="12"
         android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/result"
         android:layout_weight="2"
-        android:layout_width="0dp"/>
+        android:gravity="left"
+        android:text="12"/>
+
     <TextView
         android:id="@+id/points"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/games"
-        android:gravity="left"
-        android:text="12:12"
         android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/games"
         android:layout_weight="2"
-        android:layout_width="0dp"/>
+        android:gravity="left"
+        android:text="12:12"/>
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:src="@drawable/ic_icon_arrow_right_white"
+        android:contentDescription="@string/arrow_desc"
+        android:layout_gravity="right|top"
+        />
 
 </LinearLayout>

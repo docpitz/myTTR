@@ -40,6 +40,7 @@ public class MyApplication extends Application {
     public static List<Liga> topLigen;
     public static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
+    public static Mannschaftspiel selectedMannschaftSpiel;
 
     public static void setLoginUser(User loginUser) {
         MyApplication.loginUser = loginUser;

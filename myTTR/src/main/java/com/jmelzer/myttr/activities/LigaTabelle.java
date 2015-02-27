@@ -4,10 +4,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,22 +49,7 @@ public class LigaTabelle extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 MyApplication.selectedMannschaft = (Mannschaft) parent.getItemAtPosition(position);
-                AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelle.this, LigaMannschaftDetail.class) {
-
-                    @Override
-                    protected void callParser() throws NetworkException, LoginExpiredException {
-                        new ClickTTParser().readVR(MyApplication.selectedLiga);
-                        new ClickTTParser().readRR(MyApplication.selectedLiga);
-                    }
-
-                    @Override
-                    protected boolean dataLoaded() {
-                        return MyApplication.selectedLiga.getSpieleVorrunde().size() > 0;
-                    }
-
-
-                };
-                task.execute();
+                callMannschaftDetail();
 
                 return false;
             }
@@ -68,6 +57,33 @@ public class LigaTabelle extends BaseActivity {
 
         TextView textView = (TextView) findViewById(R.id.selected_liga);
         textView.setText(liga.getName());
+    }
+
+    void callMannschaftDetail() {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelle.this, LigaMannschaftDetailActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                new ClickTTParser().readVR(MyApplication.selectedLiga);
+                new ClickTTParser().readRR(MyApplication.selectedLiga);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedLiga.getSpieleVorrunde().size() > 0;
+            }
+
+
+        };
+        task.execute();
+    }
+
+    public void ligaInfo(MenuItem item) {
+
+    }
+
+    public void ligaResults(MenuItem item) {
+
     }
 
     class LigaAdapter extends ArrayAdapter<Mannschaft> {
@@ -82,7 +98,7 @@ public class LigaTabelle extends BaseActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView = inflater.inflate(R.layout.liga_tabelle_row, parent, false);
-            Mannschaft mannschaft = getItem(position);
+            final Mannschaft mannschaft = getItem(position);
 
             TextView textView = (TextView) rowView.findViewById(R.id.name);
             String txt = mannschaft.getName();
@@ -95,9 +111,21 @@ public class LigaTabelle extends BaseActivity {
             textView = (TextView) rowView.findViewById(R.id.points);
             textView.setText(mannschaft.getPoints());
 
-
+            final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
+            arrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.selectedMannschaft = mannschaft;
+                    callMannschaftDetail();
+                }
+            });
             return rowView;
         }
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.liga_actions, menu);
+        return true;
+    }
 }

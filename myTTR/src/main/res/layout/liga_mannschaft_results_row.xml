@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="13" >
+    android:weightSum="14" >
 
     <TextView
         android:id="@+id/date"
@@ -40,5 +40,10 @@
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:layout_width="0dp"/>
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_icon_arrow_right_white"
+        android:contentDescription="@string/arrow_desc"/>
 </LinearLayout>

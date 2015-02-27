@@ -13,6 +13,12 @@ Offen
             -> Liga
             -> Herren / Damen
             -> ?
+     - Manschaftübersicht . AKtionen
+        - Spieler Statistik
+        - Ergebnisse (Mannschaft und Liga)
+        - Zukünftige Spiele
+        - Restprogramm-Simulator ?
+
 - Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
 - Schriftgröße: Konfiguration
 - Simulationsmodus: Ersatzspieler berücksichtigen
