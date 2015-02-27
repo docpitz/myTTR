@@ -57,7 +57,7 @@ public class LoginManager {
         nvps.add(new BasicNameValuePair("userNameB", username));
         nvps.add(new BasicNameValuePair("userPassWordB", password));
 
-        httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
         HttpResponse response = Client.client.execute(httpPost);
         Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
         response.getEntity().consumeContent();

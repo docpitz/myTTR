@@ -61,17 +61,17 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 //        login();
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
 //        testHomeButton();
-        testPreferences();
-        testTTR();
+        Preferences();
+        TTR();
         gotoHome();
-        testClubList();
+        ClubList();
         gotoHome();
-        testOwnStatistics();
+        OwnStatistics();
         gotoHome();
-        testSearch();
+        Search();
         gotoHome();
-        testPlayerSimulation();
-        testLogOut();
+        PlayerSimulation();
+        LogOut();
     }
 
     private void login() {
@@ -108,7 +108,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnView(homeView);
     }
 
-    private void testSearch() {
+    private void Search() {
         solo.clickOnButton(solo.getString(R.string.search));
         assertTrue(solo.waitForActivity(SearchActivity.class, 5000));
         solo.enterText(2, "Borussia Düsseldorf");
@@ -124,7 +124,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testAutomaticLogin() {
+    private void AutomaticLogin() {
 
 
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
@@ -169,14 +169,14 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         }
     }
 
-    private void testLogOut() {
+    private void LogOut() {
         gotoHome();
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
         solo.clickOnActionBarItem(R.id.action_logout);
         assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
     }
 
-    private void testPlayerSimulation() {
+    private void PlayerSimulation() {
         solo.clickOnButton(solo.getString(R.string.player_sim));
         assertTrue(solo.waitForActivity(SelectTeamPlayerActivity.class, 50000));
 
@@ -191,7 +191,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnText(solo.getString(R.string.enter_manual));
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
         //todo write own test here
-//        testManualEntry();
+//       ManualEntry();
         gotoHome();
 
         solo.clickOnActionBarItem(R.id.action_remove_sim);
@@ -202,7 +202,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testOwnStatistics() {
+    private void OwnStatistics() {
         solo.clickOnButton(solo.getString(R.string.statistik));
         assertTrue(solo.waitForActivity(EventsActivity.class, 50000));
         solo.clickLongInList(1);
@@ -212,7 +212,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue(solo.waitForActivity(HomeActivity.class, 50000));
     }
 
-    private void testClubList() {
+    private void ClubList() {
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
         solo.clickLongInList(0);
@@ -232,7 +232,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testHomeButton() {
+    private void HomeButton() {
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertTrue(solo.waitForActivity(ClubListActivity.class, 50000));
         gotoHome();
@@ -240,17 +240,17 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testTTR() throws InterruptedException {
+    private void TTR() throws InterruptedException {
 
         solo.clickOnText(solo.getString(R.string.enter_manual));
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
 
-        testEmptyTTRList();
-        testManualEntry();
-        testAppointments();
+        EmptyTTRList();
+        ManualEntry();
+        Appointments();
     }
 
-    private void testAppointments() {
+    private void Appointments() {
         MyApplication.manualClub = "TTG St. Augustin";
         assertNull(MyApplication.teamAppointments);
         solo.clickOnView(solo.getView(R.id.next_appointments_search));
@@ -259,13 +259,13 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         //select first appointment
         solo.clickLongInList(0);
-        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
+        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 50000));
 
         solo.clickOnCheckBox(0);
         solo.clickOnCheckBox(1);
 
         solo.clickOnButton(solo.getString(R.string.select));
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 50000));
 
         assertEquals("2 selected", 2, MyApplication.getPlayers().size());
 
@@ -277,7 +277,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("all removed", 0, MyApplication.getPlayers().size());
 
         solo.clickOnView(solo.getView(R.id.next_appointments_search));
-        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 5000));
+        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 50000));
         assertNotNull(MyApplication.teamAppointments);
 
         //select first appointment
@@ -293,14 +293,14 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("none selected", 0, MyApplication.getPlayers().size());
     }
 
-    private void testEmptyTTRList() {
+    private void EmptyTTRList() {
         solo.clickOnText("Berechnen");
         assertTrue("no entries in the list", solo.waitForText(solo.getString(R.string.select_player_first)));
 
         assertNull(MyApplication.actualPlayer);
     }
 
-    private void testManualEntry() {
+    private void ManualEntry() {
         assertEquals(0, MyApplication.getPlayers().size());
 
         View homeView = solo.getView(R.id.action_new_player);
@@ -312,7 +312,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("", solo.getEditText(1).getText().toString());
         assertEquals("", solo.getEditText(2).getText().toString());
 
-        testEmptyName();
+        EmptyName();
 
 
         //vor und nachname
@@ -426,7 +426,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     }
 
-    private void testEmptyName() {
+    private void EmptyName() {
         //fill up only vorname
         solo.getCurrentActivity().runOnUiThread(new Runnable() {
             @Override
@@ -450,7 +450,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue("last name only no allowed", solo.waitForText(solo.getString(R.string.error_search_required_fields)));
     }
 
-    private void testPreferences() {
+    private void Preferences() {
 
         solo.sendKey(Solo.MENU);
         solo.clickOnText(solo.getString(R.string.menu_settings));

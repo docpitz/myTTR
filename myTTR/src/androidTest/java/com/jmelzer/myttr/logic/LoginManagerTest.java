@@ -24,6 +24,7 @@ public class LoginManagerTest extends TestCase {
     public void testlogin() throws IOException {
         LoginManager loginManager = new LoginManager();
         Assert.assertFalse(loginManager.login("error", "error"));
+        Assert.assertTrue(loginManager.login("KKöhler", "pass123."));
         Assert.assertTrue(loginManager.login("chokdee", "fuckyou123"));
 
     }

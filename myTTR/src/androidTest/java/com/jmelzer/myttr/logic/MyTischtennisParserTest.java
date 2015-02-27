@@ -222,7 +222,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
 
-        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1700);
+        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1600);
         List<Player> p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.get(0).getLastname());
         assertEquals("Christian", p.get(0).getFirstname());
