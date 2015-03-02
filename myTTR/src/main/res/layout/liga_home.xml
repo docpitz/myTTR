@@ -9,33 +9,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewVerband"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="@string/verband_label"/>
 
         <Spinner
-            android:id="@+id/verband_spinner"
-            android:layout_width="wrap_content"
+            android:id="@+id/spinner_verband"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_weight="4"
+            android:layout_marginLeft="10dp"
             />
     </LinearLayout>
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewBezirk"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/bezirk_label"/>
@@ -50,14 +48,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView10"
             android:layout_height="wrap_content"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_weight="1"
             android:text="@string/kat_label"/>
 
@@ -71,7 +69,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 

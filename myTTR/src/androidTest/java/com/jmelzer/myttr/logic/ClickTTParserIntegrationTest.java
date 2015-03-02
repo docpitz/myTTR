@@ -17,11 +17,9 @@ import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
-import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Verband;
 
-import java.io.IOException;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
@@ -62,7 +60,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         Bezirk bezirk = nrw.getBezirkList().get(2);
         assertEquals("Mittelrhein", bezirk.getName());
         assertNotNull(bezirk.getUrl());
-        parser.readKreise(bezirk);
+        parser.readKreiseAndLigen(bezirk);
         assertEquals(9, bezirk.getKreise().size());
         Kreis rheinSieg = bezirk.getKreise().get(5);
         assertEquals("Rhein-Sieg", rheinSieg.getName());

@@ -15,24 +15,24 @@ public class Verband {
     static {
         verbaende.add(dttb);
         verbaende.add(new Verband("Badischer TTV", "http://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+Bad.+14/15"));
-        verbaende.add(new Verband("Bayerischer TTV", "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15"));
-//        verbaende.add(new Verband("Berliner TTV", "http://bettv.tischtennislive.de/"));
-//        verbaende.add(new Verband("TTV Brandenburg", "http://www.tt-info.net"));
-        verbaende.add(new Verband("FTT Bremen", "http://fttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN+14/15"));
-//        verbaende.add(new Verband("Hamburger TTV", "http://www.tt-maximus.de/pdpages/ttmaximus/herren_staffeln.php"));
-        verbaende.add(new Verband("Hessischer TTV", "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15"));
-//        verbaende.add(new Verband("TTV Mecklenburg-Vorpommern", "http://www.tt-info.net"));
-        verbaende.add(new Verband("TTV Niedersachsen", "http://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15"));
-//        verbaende.add(new Verband("Pfälzischer TTV", "http://www.tt-info.net/"));
-        verbaende.add(new Verband("Rheinhessischer TTV", "http://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=RTTV+14/15"));
-        verbaende.add(new Verband("TTV Rheinland", "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15"));
-//        verbaende.add(new Verband("Saarländischer TTB", "http://www.sttb.de/index.php?id=tabellen"));
-//        verbaende.add(new Verband("Sächsischer TTV", "http://sttv.tischtennislive.de/"));
-        verbaende.add(new Verband("TTV Sachsen-Anhalt", "http://ttvsa.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVSA+14/15"));
-//        verbaende.add(new Verband("TTV Schleswig-Holstein", "http://ttvsh.tischtennislive.de/"));
-        verbaende.add(new Verband("Südbadischer Tischtennis-Verband", "http://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+SbTTV+14/15"));
-//        verbaende.add(new Verband("Thüringer TTV", "http://www.tttv.info/index.php?option=com_content&view=category&layout=blog&id=3&Itemid=15"));
-        verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "http://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15"));
+//        verbaende.add(new Verband("Bayerischer TTV", "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15"));
+////        verbaende.add(new Verband("Berliner TTV", "http://bettv.tischtennislive.de/"));
+////        verbaende.add(new Verband("TTV Brandenburg", "http://www.tt-info.net"));
+//        verbaende.add(new Verband("FTT Bremen", "http://fttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN+14/15"));
+////        verbaende.add(new Verband("Hamburger TTV", "http://www.tt-maximus.de/pdpages/ttmaximus/herren_staffeln.php"));
+//        verbaende.add(new Verband("Hessischer TTV", "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15"));
+////        verbaende.add(new Verband("TTV Mecklenburg-Vorpommern", "http://www.tt-info.net"));
+//        verbaende.add(new Verband("TTV Niedersachsen", "http://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15"));
+////        verbaende.add(new Verband("Pfälzischer TTV", "http://www.tt-info.net/"));
+//        verbaende.add(new Verband("Rheinhessischer TTV", "http://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=RTTV+14/15"));
+//        verbaende.add(new Verband("TTV Rheinland", "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15"));
+////        verbaende.add(new Verband("Saarländischer TTB", "http://www.sttb.de/index.php?id=tabellen"));
+////        verbaende.add(new Verband("Sächsischer TTV", "http://sttv.tischtennislive.de/"));
+//        verbaende.add(new Verband("TTV Sachsen-Anhalt", "http://ttvsa.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVSA+14/15"));
+////        verbaende.add(new Verband("TTV Schleswig-Holstein", "http://ttvsh.tischtennislive.de/"));
+//        verbaende.add(new Verband("Südbadischer Tischtennis-Verband", "http://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+SbTTV+14/15"));
+////        verbaende.add(new Verband("Thüringer TTV", "http://www.tttv.info/index.php?option=com_content&view=category&layout=blog&id=3&Itemid=15"));
+//        verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "http://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15"));
         verbaende.add(new Verband("Westdeutscher TTV", "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15"));
     }
 //    static {

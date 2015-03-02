@@ -431,7 +431,10 @@ public class ClickTTParser extends AbstractBaseParser {
         return bezirkList;
     }
 
-    public void readKreise(Bezirk bezirk) throws NetworkException {
+    public void readKreiseAndLigen(Bezirk bezirk) throws NetworkException {
+        if (bezirk == null || bezirk.getUrl() == null) {
+            return;
+        }
         String url = bezirk.getVerband().getHttpAndDomain() + bezirk.getUrl();
         String page = Client.getPage(url);
         List<Kreis> list = parseLinksKreise(page);

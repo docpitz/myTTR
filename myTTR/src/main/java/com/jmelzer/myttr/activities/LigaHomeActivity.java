@@ -21,6 +21,8 @@ import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by J. Melzer on 20.02.2015.
@@ -30,38 +32,24 @@ public class LigaHomeActivity extends BaseActivity {
 
     private CharSequence selectedKategorie;
     private Bezirk selectedBezirk;
+    private List<Liga> ligaList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liga_home);
 
-        Spinner spinnerVerband = (Spinner) findViewById(R.id.verband_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                getVerbaendeAsStrings()
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVerband.setAdapter(adapter);
+        Spinner spinnerVerband = (Spinner) findViewById(R.id.spinner_verband);
+        VerbandAdapter adapterVerband = new VerbandAdapter(this, android.R.layout.simple_spinner_item, Verband.verbaende);
+        spinnerVerband.setAdapter(adapterVerband);
         spinnerVerband.setOnItemSelectedListener(new VerbandListener());
-//        spinnerVerband.setOnItemSelectedListener(new SpinnerKategorieListener());
 
 
-        Spinner spinnerBezirke = (Spinner) findViewById(R.id.spinner_bezirk);
-        adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                getBezirkeAsString()
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBezirke.setAdapter(adapter);
-        spinnerBezirke.setOnItemSelectedListener(new SpinnerBezirkListener());
+        configBezirkAdapter();
+        configLigAdapter();
 
         Spinner spinnerKat = (Spinner) findViewById(R.id.kategorie_spinner);
-        adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                Liga.alleKategorien
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        KategorieAdapter adapter = new KategorieAdapter(this, android.R.layout.simple_spinner_item, filterKategorien());
 
         spinnerKat.setAdapter(adapter);
         spinnerKat.setOnItemSelectedListener(new SpinnerKategorieListener());
@@ -69,21 +57,21 @@ public class LigaHomeActivity extends BaseActivity {
 
     }
 
-    private List<String> getBezirkeAsString() {
+    private List<String> filterKategorien() {
         List<String> list = new ArrayList<>();
-        for (Bezirk bezirk : MyApplication.selectedVerband.getBezirkList()) {
-            list.add(bezirk.getName());
+
+        if (ligaList == null) return list;
+
+        Set<String> set = new TreeSet<>();
+
+        for (Liga liga : ligaList) {
+            set.add(liga.getKategorie());
         }
+        list.addAll(set);
         return list;
+
     }
 
-    List<String> getVerbaendeAsStrings() {
-        List<String> list = new ArrayList<>();
-        for (Verband verband : Verband.verbaende) {
-            list.add(verband.getName());
-        }
-        return list;
-    }
 
     public void tabelle(View view) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelle.class) {
@@ -103,18 +91,17 @@ public class LigaHomeActivity extends BaseActivity {
         task.execute();
     }
 
+    public List<Bezirk> getBezirkList() {
+        List<Bezirk> list = MyApplication.selectedVerband.getBezirkList();
+        list.add(new Bezirk("", null));
+        return list;
+    }
+
 
     class LigaListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String s = (String) parent.getItemAtPosition(position);
-            Liga l = null;
-            for (Liga liga : MyApplication.selectedVerband.getLigaList()) {
-                if (s.equals(liga.getName())) {
-                    l = liga;
-                    break;
-                }
-            }
+            Liga l = (Liga) parent.getItemAtPosition(position);
             MyApplication.selectedLiga = l;
         }
 
@@ -128,13 +115,7 @@ public class LigaHomeActivity extends BaseActivity {
     class VerbandListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String vAsS = (String) parent.getItemAtPosition(position);
-            for (Verband verband : Verband.verbaende) {
-                if (verband.getName().equals(vAsS)) {
-                    MyApplication.selectedVerband = verband;
-                    break;
-                }
-            }
+            MyApplication.selectedVerband = (Verband) parent.getItemAtPosition(position);
             if (MyApplication.selectedVerband == null)
                 return;
 
@@ -195,6 +176,25 @@ public class LigaHomeActivity extends BaseActivity {
                         break;
                     }
                 }
+                if (selectedBezirk == null || selectedBezirk.getUrl() == null) return;
+
+                AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
+                    @Override
+                    protected void callParser() throws NetworkException, LoginExpiredException {
+                        new ClickTTParser().readKreiseAndLigen(selectedBezirk);
+                    }
+
+                    @Override
+                    protected boolean dataLoaded() {
+                        return selectedBezirk.getLigen().size() > 0;
+                    }
+
+                    @Override
+                    protected void startNextActivity() {
+                        configLigAdapter();
+                    }
+                };
+                task.execute();
                 configLigAdapter();
             }
         }
@@ -207,51 +207,109 @@ public class LigaHomeActivity extends BaseActivity {
 
     void configLigAdapter() {
         Spinner spinnerLiga = (Spinner) findViewById(R.id.spinner_liga);
-        List<String> list;
-        if (selectedBezirk != null) {
-            list = filterKategorie(selectedBezirk.getLigen(), selectedKategorie);
+        if (selectedBezirk != null && selectedBezirk.getUrl() != null) {
+            ligaList = filterKategorie(selectedBezirk.getLigen(), selectedKategorie);
         } else {
-            list = filterKategorie(MyApplication.selectedVerband.getLigaList(), selectedKategorie);
+            ligaList = filterKategorie(MyApplication.selectedVerband.getLigaList(), selectedKategorie);
         }
-        final ArrayAdapter<String> ligaAdapter = new ArrayAdapter<>(this,
+        final LigaAdapter ligaAdapter = new LigaAdapter(this,
                 android.R.layout.simple_spinner_item,
-                list);
-        ligaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ligaList);
+
         spinnerLiga.setAdapter(ligaAdapter);
 
         spinnerLiga.setOnItemSelectedListener(new LigaListener());
     }
 
     void configBezirkAdapter() {
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_bezirk);
-        final ArrayAdapter<String> ligaAdapter = new ArrayAdapter<>(this,
+        Spinner spinnerBezirke = (Spinner) findViewById(R.id.spinner_bezirk);
+        BezirkAdapter bezirkAdapter = new BezirkAdapter(this,
                 android.R.layout.simple_spinner_item,
-                getBezirkeAsString());
-        ligaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(ligaAdapter);
-
-        spinner.setOnItemSelectedListener(new SpinnerBezirkListener());
+                getBezirkList());
+        spinnerBezirke.setAdapter(bezirkAdapter);
+        spinnerBezirke.setOnItemSelectedListener(new SpinnerBezirkListener());
     }
 
-    private List<String> filterKategorie(List<Liga> topLigen, CharSequence text) {
-        List<String> filteredList = new ArrayList<>();
+    private List<Liga> filterKategorie(List<Liga> topLigen, CharSequence text) {
+        List<Liga> filteredList = new ArrayList<>();
         for (Liga liga : topLigen) {
-            if (liga.getKategorie().equals(text)) {
-                filteredList.add(liga.getName());
+            if (text == null || liga.getKategorie().equals(text)) {
+                filteredList.add(liga);
             }
         }
         return filteredList;
     }
 
-    private class LigaAdapter<T> extends ArrayAdapter<Liga> {
+    private class LigaAdapter extends ArrayAdapter<Liga> {
         public LigaAdapter(Context context, int resource, List<Liga> list) {
             super(context, resource, list);
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView label = new TextView(getContext());
             label.setText(getItem(position).getName());
+            return label;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            return getView(position, convertView, parent);
+        }
+    }
+
+    private class VerbandAdapter extends ArrayAdapter<Verband> {
+        public VerbandAdapter(Context context, int resource, List<Verband> list) {
+            super(context, resource, list);
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView label = new TextView(getContext());
+            label.setText(getItem(position).getName());
+            return label;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            return getView(position, convertView, parent);
+        }
+    }
+
+    private class BezirkAdapter extends ArrayAdapter<Bezirk> {
+        public BezirkAdapter(Context context, int resource, List<Bezirk> list) {
+            super(context, resource, list);
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView label = new TextView(getContext());
+            label.setText(getItem(position).getName());
+            return label;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            return getView(position, convertView, parent);
+        }
+    }
+
+    private class KategorieAdapter extends ArrayAdapter<String> {
+        public KategorieAdapter(Context context, int resource, List<String> list) {
+            super(context, resource, list);
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView label = new TextView(getContext());
+            label.setText(getItem(position));
             return label;
         }
 
