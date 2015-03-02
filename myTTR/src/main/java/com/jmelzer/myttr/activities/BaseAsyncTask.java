@@ -73,9 +73,11 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     }
 
     protected void startNextActivity() {
-        Intent target = new Intent(parent, targetClz);
-        putExtra(target);
-        parent.startActivity(target);
+        if (targetClz != null) {
+            Intent target = new Intent(parent, targetClz);
+            putExtra(target);
+            parent.startActivity(target);
+        }
     }
 
     protected void putExtra(Intent target) {

@@ -64,8 +64,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void liga(View view) {
-        MyApplication.topLigen = null;
-        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaMain.class);
+        MyApplication.selectedVerband = null;
+        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaHomeActivity.class);
         task.execute();
     }
 

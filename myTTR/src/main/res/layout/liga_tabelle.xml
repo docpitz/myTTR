@@ -7,14 +7,14 @@
               android:weightSum="10"
               android:padding="10dp">
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/selected_liga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:text="Regionaliga (West)"/>
-
+-->
 
     <LinearLayout
         android:layout_width="fill_parent"

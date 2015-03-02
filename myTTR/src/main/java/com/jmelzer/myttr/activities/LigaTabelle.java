@@ -55,8 +55,10 @@ public class LigaTabelle extends BaseActivity {
             }
         });
 
-        TextView textView = (TextView) findViewById(R.id.selected_liga);
-        textView.setText(liga.getName());
+//        TextView textView = (TextView) findViewById(R.id.selected_liga);
+//        textView.setText(liga.getName());
+
+        setTitle(getTitle() + " - " + liga.getName());
     }
 
     void callMannschaftDetail(Class targetClz) {

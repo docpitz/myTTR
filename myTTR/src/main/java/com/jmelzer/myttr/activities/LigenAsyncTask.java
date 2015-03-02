@@ -2,12 +2,9 @@ package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
 
-import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 
 /**
@@ -22,12 +19,14 @@ public class LigenAsyncTask extends BaseAsyncTask {
 
     @Override
     protected void callParser() throws NetworkException, LoginExpiredException {
-            MyApplication.topLigen = new ClickTTParser().readTopLigen();
+        ClickTTParser parser = new ClickTTParser();
+        MyApplication.selectedVerband = parser.readTopLigen();
     }
 
     @Override
     protected boolean dataLoaded() {
-        return MyApplication.topLigen != null;
+        return MyApplication.selectedVerband != null &&
+                MyApplication.selectedVerband.getLigaList().size() > 0;
     }
 
 }

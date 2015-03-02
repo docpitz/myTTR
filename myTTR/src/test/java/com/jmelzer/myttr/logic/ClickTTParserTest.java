@@ -38,7 +38,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = "src/main/AndroidManifest.xml", emulateSdk = 18)
-public class ClickTTParserTest  {
+public class ClickTTParserTest {
 
     ClickTTParser parser;
 
@@ -46,8 +46,9 @@ public class ClickTTParserTest  {
     public void setUp() throws Exception {
         parser = new ClickTTParser();
     }
+
     protected String readFile(String file) throws IOException {
-        InputStream in = new FileInputStream("src/androidTest/" +  file);
+        InputStream in = new FileInputStream("src/androidTest/" + file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String line = null;
         StringBuilder stringBuilder = new StringBuilder();
@@ -60,11 +61,12 @@ public class ClickTTParserTest  {
 
         return StringEscapeUtils.unescapeHtml4(stringBuilder.toString());
     }
+
     @Test
-    public void testReadTopligen() throws Exception{
+    public void testReadTopligen() throws Exception {
         String page = readFile("assets/clicktt/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
-        List<Liga> ligen = parser.parseLinksUntilOberliga(page);
+        List<Liga> ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
             Log.d(Constants.LOG_TAG, "liga = " + liga);
@@ -73,7 +75,75 @@ public class ClickTTParserTest  {
     }
 
     @Test
-    public void testReadStaffel() throws Exception{
+    public void testParseLigaLinks() throws Exception {
+        String page = readFile("assets/clicktt/dttb-click-TT-Ligen.htm");
+        assertNotNull(page);
+        List<Liga> ligen = parser.parseLigaLinks(page);
+
+        for (Liga liga : ligen) {
+            Log.d(Constants.LOG_TAG, "liga = " + liga);
+        }
+        assertEquals("must be 34 ", 34, ligen.size());
+        assertEquals(17, count(ligen, "Herren"));
+        assertEquals(17, count(ligen, "Damen"));
+        page = readFile("assets/clicktt/liga-level2-wttv.htm");
+        assertNotNull(page);
+        ligen = parser.parseLigaLinks(page);
+
+        for (Liga liga : ligen) {
+            Log.d(Constants.LOG_TAG, "liga = " + liga);
+        }
+        assertEquals("must be 47 ", 47, ligen.size());
+        assertEquals(18, count(ligen, "Herren"));
+        assertEquals(6, count(ligen, "Damen"));
+        assertEquals(4, count(ligen, "Jungen"));
+        assertEquals(2, count(ligen, "Mädchen"));
+        assertEquals(3, count(ligen, "Senioren 40"));
+        assertEquals(1, count(ligen, "Seniorinnen 40"));
+        assertEquals(3, count(ligen, "Senioren 50"));
+        assertEquals(3, count(ligen, "Seniorinnen 50"));
+        assertEquals(3, count(ligen, "Senioren 60"));
+        assertEquals(1, count(ligen, "Seniorinnen 60"));
+        assertEquals(3, count(ligen, "Senioren 70"));
+
+        page = readFile("assets/clicktt/liga-level2-bremen.htm");
+        assertNotNull(page);
+        ligen = parser.parseLigaLinks(page);
+
+        for (Liga liga : ligen) {
+            Log.d(Constants.LOG_TAG, "liga = " + liga);
+        }
+        assertEquals("must be 13 ", 13, ligen.size());
+        assertEquals(10, count(ligen, "Herren"));
+        assertEquals(1, count(ligen, "Damen"));
+        assertEquals(1, count(ligen, "Jungen"));
+        assertEquals(1, count(ligen, "Senioren"));
+    }
+
+    int count(List<Liga> ligen, String kat) {
+        int c = 0;
+        for (Liga liga : ligen) {
+            if (kat.equals(liga.getKategorie())) {
+                c++;
+            }
+        }
+        return c;
+    }
+
+    @Test
+    public void testParseLinksSubLigen() throws Exception {
+        String page = readFile("assets/clicktt/dttb-click-TT-Ligen.htm");
+        assertNotNull(page);
+        List<Verband> verbandList = parser.parseLinksSubLigen(page);
+        for (Verband verband : verbandList) {
+            Log.d(Constants.LOG_TAG, "verband = " + verband);
+        }
+        assertEquals("must be 11 ", 11, verbandList.size());
+    }
+
+
+    @Test
+    public void testReadStaffel() throws Exception {
         String page = readFile("assets/clicktt/staffel.htm");
         assertNotNull(page);
         Liga liga = new Liga();
@@ -83,6 +153,7 @@ public class ClickTTParserTest  {
             Log.d(Constants.LOG_TAG, "m = " + m);
         }
     }
+
     @Test
     public void testParseErgebnisse() throws Exception {
         Liga liga = ergebnisse();

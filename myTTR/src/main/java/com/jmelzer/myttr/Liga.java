@@ -1,6 +1,7 @@
 package com.jmelzer.myttr;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -8,7 +9,12 @@ import java.util.List;
  * Represents a Liga like TTBL, 2. Bundesliga etc.
  */
 public class Liga {
-    String sex;
+    public static List<String> alleKategorien =  Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
+                "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
+               "Senioren 60", "Seniorinnen 60", "Senioren 70" , "Senioren");
+
+    /** Herren , Damen Jungen etc.*/
+    String kategorie;
     String name;
     String url;
 
@@ -18,10 +24,10 @@ public class Liga {
     private String urlRR;
     private String urlVR;
 
-    public Liga(String name, String url, String sex) {
+    public Liga(String name, String url, String kategorie) {
         this.name = name;
         this.url = url;
-        this.sex = sex;
+        this.kategorie = kategorie;
     }
 
     public Liga() {
@@ -44,12 +50,12 @@ public class Liga {
         this.url = url;
     }
 
-    public String getSex() {
-        return sex;
+    public String getKategorie() {
+        return kategorie;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setKategorie(String kategorie) {
+        this.kategorie = kategorie;
     }
 
     public List<Mannschaft> getMannschaften() {
@@ -79,7 +85,7 @@ public class Liga {
     @Override
     public String toString() {
         return "Liga{" +
-                "sex='" + sex + '\'' +
+                "kategorie='" + kategorie + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", spieleVorrunde=" + spieleVorrunde +

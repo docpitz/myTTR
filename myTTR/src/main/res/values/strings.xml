@@ -100,6 +100,11 @@
     <string name="logout">Abmelden</string>
     <string name="simulation">Simulation</string>
     <string name="arrow_desc">Pfeil</string>
+    <string name="verband_label">Verband:</string>
+    <string name="kat_label">Kategorie:</string>
+    <string name="liga_label">Liga:</string>
+    <string name="bezirk_label">Bezirk:</string>
+    <string name="kreis_label">Kreis:</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

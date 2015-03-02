@@ -32,13 +32,14 @@ public class AbstractBaseParser {
 
     /**
      * read string between 2 tag first tag can be opened e.g. <td but we seach after the closing >
-     * @param page to search threw
-     * @param start index to start
+     *
+     * @param page     to search threw
+     * @param start    index to start
      * @param tagStart
      * @param tagEnd
      */
     ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd) {
-       ParseResult result = readBetween(page, start, tagStart, tagEnd);
+        ParseResult result = readBetween(page, start, tagStart, tagEnd);
         if (result != null) {
             ParseResult result2 = readBetween(result.result, 0, ">", null);
             result2.end = result.end;
@@ -46,6 +47,7 @@ public class AbstractBaseParser {
         }
         return null;
     }
+
     ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
         int s = start;
         int l = 0;
@@ -60,12 +62,16 @@ public class AbstractBaseParser {
         int end = 0;
 
         if (tagEnd != null) {
-            idxEndTag = page.indexOf(tagEnd, s + l) ;
-            end = idxEndTag + + tagEnd.length();
+            idxEndTag = page.indexOf(tagEnd, s + l);
+            end = idxEndTag + tagEnd.length();
         } else {
             end = idxEndTag = page.length();
         }
-        return new ParseResult(page.substring(s + l, idxEndTag), end);
+        if (idxEndTag == -1) {
+            return new ParseResult(null, end);
+        } else {
+            return new ParseResult(page.substring(s + l, idxEndTag), end);
+        }
     }
 
 }
