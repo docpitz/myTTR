@@ -105,6 +105,7 @@
     <string name="liga_label">Liga:</string>
     <string name="bezirk_label">Bezirk:</string>
     <string name="kreis_label">Kreis:</string>
+    <string name="ueberschrift_liga">Ligen</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

@@ -30,7 +30,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     protected void onPreExecute() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(parent);
-            progressDialog.setMessage("Lade Daten von myTischtennis.de, bitte warten...");
+            progressDialog.setMessage("Lade Daten, bitte warten...");
             progressDialog.setIndeterminate(false);
             progressDialog.setCancelable(false);
             progressDialog.show();

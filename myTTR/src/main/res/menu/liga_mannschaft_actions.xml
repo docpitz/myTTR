@@ -20,7 +20,7 @@
     <item
         android:id="@+id/action_info"
         android:text="@string/action_mannschafts_info"
-        android:onClick="bilanz"
+        android:onClick="info"
         android:showAsAction="always"
         android:icon="@drawable/ic_info_action"
         android:title="@string/action_mannschafts_info"/>

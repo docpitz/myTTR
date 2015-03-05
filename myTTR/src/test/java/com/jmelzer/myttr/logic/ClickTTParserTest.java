@@ -18,6 +18,8 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Verband;
 
+import junit.framework.Assert;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +71,7 @@ public class ClickTTParserTest {
         List<Liga> ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            Log.d(Constants.LOG_TAG, "liga = " + liga);
+            System.out.println( "liga = " + liga);
         }
         assertTrue("must be > 10 not " + ligen.size(), ligen.size() > 10);
     }
@@ -81,7 +83,7 @@ public class ClickTTParserTest {
         List<Liga> ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            Log.d(Constants.LOG_TAG, "liga = " + liga);
+            System.out.println( "liga = " + liga);
         }
         assertEquals("must be 34 ", 34, ligen.size());
         assertEquals(17, count(ligen, "Herren"));
@@ -91,7 +93,7 @@ public class ClickTTParserTest {
         ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            Log.d(Constants.LOG_TAG, "liga = " + liga);
+            System.out.println( "liga = " + liga);
         }
         assertEquals("must be 47 ", 47, ligen.size());
         assertEquals(18, count(ligen, "Herren"));
@@ -111,7 +113,7 @@ public class ClickTTParserTest {
         ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            Log.d(Constants.LOG_TAG, "liga = " + liga);
+            System.out.println( "liga = " + liga);
         }
         assertEquals("must be 13 ", 13, ligen.size());
         assertEquals(10, count(ligen, "Herren"));
@@ -136,7 +138,7 @@ public class ClickTTParserTest {
         assertNotNull(page);
         List<Verband> verbandList = parser.parseLinksSubLigen(page);
         for (Verband verband : verbandList) {
-            Log.d(Constants.LOG_TAG, "verband = " + verband);
+            System.out.println( "verband = " + verband);
         }
         assertEquals("must be 11 ", 11, verbandList.size());
     }
@@ -150,17 +152,33 @@ public class ClickTTParserTest {
         liga = parser.parseLiga(liga, page);
 
         for (Mannschaft m : liga.getMannschaften()) {
-            Log.d(Constants.LOG_TAG, "m = " + m);
+            System.out.println( "m = " + m);
         }
     }
 
+    @Test
+    public void testReadStaffeErrorIntl() throws Exception {
+        String page = readFile("assets/clicktt/staffel-2.bl-d.htm");
+        assertNotNull(page);
+        Liga liga = new Liga();
+        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
+        liga = parser.parseLiga(liga, page);
+
+        for (Mannschaft m : liga.getMannschaften()) {
+            System.out.println("m = " + m);
+        }
+    }
     @Test
     public void testParseErgebnisse() throws Exception {
         Liga liga = ergebnisse();
 
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
-            Log.d(Constants.LOG_TAG, "sp = " + mannschaftspiel);
+            System.out.println("sp = " + mannschaftspiel);
+            if (mannschaftspiel.getErgebnis() != null)
+                assertNotNull(mannschaftspiel.getUrlDetail());
+            assertNotNull(mannschaftspiel.getHeimMannschaft());
+            assertNotNull(mannschaftspiel.getGastMannschaft());
         }
     }
 
@@ -181,9 +199,23 @@ public class ClickTTParserTest {
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
         parser.parseMannschaftspiel(page, mannschaftspiel);
-        Log.d(Constants.LOG_TAG, "sp = " + mannschaftspiel);
+        System.out.println( "sp = " + mannschaftspiel);
     }
+    @Test
+    public void testUnencodeMail() throws Exception {
+        assertEquals("mailto:manfred.und.petra.hildebrandt@t-online.de", parser.unencodeMail("'de', 'manfred', 't-online', 'und.petra.hildebrandt'"));
+        assertEquals("mailto:m.pfender@gmx.de", parser.unencodeMail("'de', 'm', 'gmx', 'pfender'"));
+        assertEquals("mailto:bundesliga@borussia-duesseldorf.com", parser.unencodeMail("'com', 'bundesliga', 'borussia-duesseldorf', ''"));
 
+    }
+    @Test
+    public void testMannschaftDetail() throws Exception {
+        String page = readFile("assets/clicktt/mannschafts-detail.htm");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseDetail(page, mannschaft);
+        assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
+        assertEquals("mailto:manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
+    }
 }
 
 

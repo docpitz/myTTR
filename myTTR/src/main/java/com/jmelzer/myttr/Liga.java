@@ -17,7 +17,7 @@ public class Liga {
     String kategorie;
     String name;
     String url;
-
+    Verband verband;
     List<Mannschaft> mannschaften = new ArrayList<>();
     List<Mannschaftspiel> spieleVorrunde = new ArrayList<>();
     List<Mannschaftspiel> spieleRueckrunde = new ArrayList<>();
@@ -32,6 +32,14 @@ public class Liga {
 
     public Liga() {
 
+    }
+
+    public Verband getVerband() {
+        return verband;
+    }
+
+    public void setVerband(Verband verband) {
+        this.verband = verband;
     }
 
     public String getName() {

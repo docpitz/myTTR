@@ -38,8 +38,12 @@ public class Kreis {
         return ligen;
     }
 
-    public void setLigen(List<Liga> ligen) {
-        this.ligen = ligen;
+    public void addAllLigen(List<Liga> l) {
+        ligen.clear();
+        ligen.addAll(l);
+        for (Liga liga : l) {
+            liga.setVerband(bezirk.getVerband());
+        }
     }
 
     public Bezirk getBezirk() {

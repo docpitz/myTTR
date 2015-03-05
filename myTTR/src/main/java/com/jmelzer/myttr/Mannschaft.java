@@ -18,6 +18,9 @@ public class Mannschaft {
     String points;
     String url;
 
+    String kontakt;
+    private String mailTo;
+
     public Mannschaft(String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
         this.position = position;
@@ -29,6 +32,14 @@ public class Mannschaft {
         this.sum = sum;
         this.points = points;
         this.url = url;
+    }
+
+    public Mannschaft() {
+
+    }
+
+    public Mannschaft(String n) {
+        this.name = n;
     }
 
     public String getName() {
@@ -71,6 +82,14 @@ public class Mannschaft {
         return url;
     }
 
+    public String getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(String kontakt) {
+        this.kontakt = kontakt;
+    }
+
     @Override
     public String toString() {
         return "Mannschaft{" +
@@ -85,5 +104,17 @@ public class Mannschaft {
                 ", points='" + points + '\'' +
                 ", url='" + url + '\'' +
                 '}';
+    }
+
+    public void setMailTo(String mailTo) {
+        this.mailTo = mailTo;
+    }
+
+    public String getMailTo() {
+        return mailTo;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

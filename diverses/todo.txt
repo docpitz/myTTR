@@ -9,12 +9,14 @@ Offen
 - Neu: Favoriten / Spieler merken
 - Neu: Ligaergebnisse
     - Navigation:
-            -> Saison
-            -> Verband
-            -> Liga
-            -> Herren / Damen
-            -> ?
-     - Manschaftübersicht . Aktionen
+            -> Saison (fertig)
+            -> Verband (fertig)
+            -> Liga (fertig)
+            -> Herren / Damen (fertig)
+            -> Kategorie (fertig)
+            -> Links auf click tt etc. einbinden
+     - Manschaftübersicht .
+         Aktionen
         - Spieler Statistik
         - Ergebnisse (Mannschaft und Liga) (fertig - Layout noch bisschen)
         - Zukünftige Spiele (P5)

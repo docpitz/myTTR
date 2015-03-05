@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:weightSum="12"
-    >
+              android:layout_height="fill_parent">
 
     <TextView
         android:id="@+id/liga_pos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10px"
         android:layout_weight="1.5"
         android:gravity="left"
         android:text="10"/>
@@ -18,7 +15,6 @@
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/name"
         android:layout_weight="6"
         android:gravity="left"
         android:text="Borussia Dortmund"/>
@@ -27,9 +23,7 @@
         android:id="@+id/games"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/result"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:gravity="left"
         android:text="12"/>
 
@@ -37,8 +31,6 @@
         android:id="@+id/points"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/games"
         android:layout_weight="2"
         android:gravity="left"
         android:text="12:12"/>
@@ -47,10 +39,10 @@
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:src="@drawable/ic_icon_arrow_right_white"
-        android:contentDescription="@string/arrow_desc"
         android:layout_gravity="right|top"
+        android:layout_weight="0.5"
+        android:contentDescription="@string/arrow_desc"
+        android:src="@drawable/ic_icon_arrow_right_white"
         />
 
 </LinearLayout>

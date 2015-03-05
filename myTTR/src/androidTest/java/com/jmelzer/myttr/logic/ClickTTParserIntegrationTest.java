@@ -22,8 +22,6 @@ import com.jmelzer.myttr.Verband;
 
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
-
 public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     ClickTTParser parser;
@@ -67,23 +65,30 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
         parser.readLigen(rheinSieg);
 
+        Liga liga = rheinSieg.getLigen().get(0);
+        ligaTest(liga, "Kreisliga", 12);
+
         //selecting one liga
-        Liga liga = verband.getLigaList().get(5);
+        liga = verband.getLigaList().get(5);
+        ligaTest(liga, "Regionalliga West", 10);
+
+    }
+
+    void ligaTest(Liga liga, String name, int mcount) throws NetworkException {
         parser.readLiga(liga);
         Log.d(Constants.LOG_TAG, "liga = " + liga);
 
-        assertEquals("Regionalliga West", liga.getName());
-        assertEquals(10, liga.getMannschaften().size());
+        assertEquals(name, liga.getName());
+        assertEquals(mcount, liga.getMannschaften().size());
 
         parser.readVR(liga);
 
         assertTrue(liga.getSpieleVorrunde().size() > 5);
 
         Mannschaftspiel spiel = liga.getSpieleVorrunde().get(5);
-        parser.readDetail(spiel);
+        parser.readDetail(liga, spiel);
 
         assertTrue(spiel.getSpiele().size() > 0);
-
     }
 }
 

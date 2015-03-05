@@ -8,6 +8,8 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Verband;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class ClickTTParser extends AbstractBaseParser {
         int idx = 0;
         String lastDate = null;
         liga.clearSpiele(vorrunde);
+        boolean hasNrInHeader = true;
         while (true) {
             ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
 
@@ -37,12 +40,13 @@ public class ClickTTParser extends AbstractBaseParser {
             }
             if (c++ == 0) {
                 idx = resultrow.end;
+                hasNrInHeader = resultrow.result.contains("Nr");
                 continue;//skip first row
 
             }
             idx = resultrow.end - 1;
 
-            Mannschaftspiel m = parseSpieleTableRow(liga, resultrow);
+            Mannschaftspiel m = parseSpieleTableRow(liga, resultrow, hasNrInHeader);
             if (m.getDate() == null || m.getDate().equals(" ")) {
                 m.setDate(lastDate);
             } else {
@@ -55,7 +59,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return liga;
     }
 
-    private Mannschaftspiel parseSpieleTableRow(Liga liga, ParseResult resultrow) {
+    private Mannschaftspiel parseSpieleTableRow(Liga liga, ParseResult resultrow, boolean hasNrInHeaser) {
         //tag
         ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
         String datum = result.result;
@@ -66,8 +70,10 @@ public class ClickTTParser extends AbstractBaseParser {
         result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
         //halle: we don't use
         result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //nr: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+        if (hasNrInHeaser) {
+            //nr: we don't use
+            result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+        }
         //Heim
         result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
         String heimMannsschaft = result.result;
@@ -123,6 +129,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 continue;//skip first row
             }
             Mannschaft m = parseLigaTableRow(resultrow);
+            m.setUrl(liga.getVerband().getHttpAndDomain() + m.getUrl());
             liga.addMannschaft(m);
             idx = resultrow.end;
 
@@ -156,7 +163,10 @@ public class ClickTTParser extends AbstractBaseParser {
         String url = result2.result;
 
         String name = readBetween(result.result, result2.end, ">", "</a>").result;
-
+        if (resultrow.result.contains("zurückgezogen")) {
+            //todo make it better
+            return new Mannschaft(name + " --- zurückgezogen");
+        }
         result = readBetween(resultrow.result, result.end, "<td", "</td>");
         int nGamesCount = readIntFromNextTd(result);
 
@@ -184,7 +194,12 @@ public class ClickTTParser extends AbstractBaseParser {
 
     private int readIntFromNextTd(ParseResult result) {
         String win = readBetween(result.result, 0, ">", null).result;
-        return Integer.valueOf(win);
+        try {
+            return Integer.valueOf(win);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     List<Verband> parseLinksSubLigen(String page) {
@@ -351,29 +366,29 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public void readLiga(Liga liga) throws NetworkException {
-        String url = HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getUrl();
+        String url = "";//HTTP_DTTB_CLICK_TT_DE;
+        url += liga.getVerband().getHttpAndDomain() + liga.getUrl();
         String page = Client.getPage(url);
         parseLiga(liga, page);
     }
 
     public void readVR(Liga liga) throws NetworkException {
-        String url = HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getUrlVR();
+        String url = "";//HTTP_DTTB_CLICK_TT_DE;
+        url += liga.getVerband().getHttpAndDomain() + liga.getUrlVR();
         String page = Client.getPage(url);
         parseErgebnisse(liga, page, true);
     }
 
-    public void readDetail(Mannschaftspiel spiel) throws NetworkException {
-        String url = HTTP_DTTB_CLICK_TT_DE;
+    public void readDetail(Liga liga, Mannschaftspiel spiel) throws NetworkException {
+        String url = liga.getVerband().getHttpAndDomain();
         url += spiel.getUrlDetail();
         String page = Client.getPage(url);
         parseMannschaftspiel(page, spiel);
     }
 
     public void readRR(Liga liga) throws NetworkException {
-        String url = HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getUrlRR();
+        String url = "";//HTTP_DTTB_CLICK_TT_DE;
+        url += liga.getVerband().getHttpAndDomain() + liga.getUrlRR();
         String page = Client.getPage(url);
         parseErgebnisse(liga, page, false);
     }
@@ -440,7 +455,7 @@ public class ClickTTParser extends AbstractBaseParser {
         List<Kreis> list = parseLinksKreise(page);
         bezirk.setKreise(list);
         List<Liga> listLiga = parseLigaLinks(page);
-        bezirk.setLigen(listLiga);
+        bezirk.addAllLigen(listLiga);
     }
 
     private List<Kreis> parseLinksKreise(String page) {
@@ -465,6 +480,7 @@ public class ClickTTParser extends AbstractBaseParser {
         }
         return kreisList;
     }
+
     /**
      * read the ligen from the url inside the verband
      */
@@ -472,6 +488,49 @@ public class ClickTTParser extends AbstractBaseParser {
         String url = kreis.getBezirk().getVerband().getHttpAndDomain() + kreis.getUrl();
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
-        kreis.setLigen(ligen);
+        kreis.addAllLigen(ligen);
+    }
+
+    public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException {
+        String page = Client.getPage(mannschaft.getUrl());
+        parseDetail(page, mannschaft);
+    }
+    public void parseDetail(String page, Mannschaft mannschaft) {
+        ParseResult result = readBetween(page, 0, "Mannschaftskontakt", null);
+        result = readBetween(result.result, 0, "<td>", "</td>");
+        if (result != null && !result.isEmpty()) {
+            String k = result.result;
+//            remove mail
+            k = k.replaceAll("<script.*", "");
+            k = k.replaceAll("<br />", "\n");
+            if (k.endsWith("\n")) {
+                k = k.substring(0, k.length() - 1);
+            }
+            mannschaft.setKontakt(k);
+            result = readBetween(result.result, 0, "encodeEmail(", ")");
+            if (result != null && !result.isEmpty()) {
+                mannschaft.setMailTo(unencodeMail(result.result));
+            }
+        }
+    }
+
+    String unencodeMail(String s) {
+        //var concatString = m1+delimiter2+m2+delimiter1+domain+delimiter2+topLevelDomain;
+        String result = "";
+        String[] parts = StringUtils.split(s, ",");
+        if (parts.length == 4) {
+            result += parts[1];
+            if (!parts[3].equals(" ''")) {
+                result += ".";
+                result += parts[3];
+            }
+            result += "@";
+            result += parts[2];
+            result += ".";
+            result += parts[0];
+            result = result.replaceAll("'", "").replaceAll(" ", "");
+        }
+        return result;
+
     }
 }

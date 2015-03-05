@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="top">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="TTG St. Augustin 2. Herren"
+        android:textSize="22sp"
+        android:id="@+id/textViewMName"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Mannschaftskontakt:"
+            android:id="@+id/textView12"
+            android:textStyle="bold"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:lines="2"
+                android:text="Fritz Karl von Kenn ich nicht\n0211/8772266"
+                android:id="@+id/textViewKName"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageButton
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:visibility="invisible"
+                android:src="@drawable/ic_action_email_icon_hi"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
