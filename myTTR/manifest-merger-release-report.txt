@@ -1,0 +1,209 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:8:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:8:11
+	package
+		ADDED from AndroidManifest.xml:9:11
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionCode
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-sdk
+ADDED from AndroidManifest.xml:12:5
+MERGED from com.android.support:appcompat-v7:21.0.3:15:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.getbase:floatingactionbutton:1.7.0:8:5
+	android:targetSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:maxSdkVersion
+		ADDED from AndroidManifest.xml:13:9
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
+application
+ADDED from AndroidManifest.xml:19:5
+MERGED from com.android.support:appcompat-v7:21.0.3:16:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.getbase:floatingactionbutton:1.7.0:12:5
+	android:label
+		ADDED from AndroidManifest.xml:22:9
+	android:icon
+		ADDED from AndroidManifest.xml:23:9
+	android:theme
+		ADDED from AndroidManifest.xml:21:9
+	android:name
+		ADDED from AndroidManifest.xml:20:9
+activity#com.jmelzer.myttr.activities.LoginActivity
+ADDED from AndroidManifest.xml:24:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:25:13
+	android:label
+		ADDED from AndroidManifest.xml:27:13
+	android:name
+		ADDED from AndroidManifest.xml:26:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:28:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:29:17
+	android:name
+		ADDED from AndroidManifest.xml:29:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:30:17
+	android:name
+		ADDED from AndroidManifest.xml:30:27
+activity#com.jmelzer.myttr.activities.HomeActivity
+ADDED from AndroidManifest.xml:33:9
+	android:label
+		ADDED from AndroidManifest.xml:35:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:36:13
+	android:name
+		ADDED from AndroidManifest.xml:34:13
+intent-filter#android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:37:13
+action#android.intent.action.VIEW
+ADDED from AndroidManifest.xml:38:17
+	android:name
+		ADDED from AndroidManifest.xml:38:25
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:39:17
+	android:name
+		ADDED from AndroidManifest.xml:39:27
+activity#com.jmelzer.myttr.activities.TTRCalculatorActivity
+ADDED from AndroidManifest.xml:42:9
+	android:label
+		ADDED from AndroidManifest.xml:44:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:45:13
+	android:name
+		ADDED from AndroidManifest.xml:43:13
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from AndroidManifest.xml:50:13
+	android:name
+		ADDED from AndroidManifest.xml:51:17
+	android:value
+		ADDED from AndroidManifest.xml:52:17
+activity#com.jmelzer.myttr.activities.SearchActivity
+ADDED from AndroidManifest.xml:54:9
+	android:label
+		ADDED from AndroidManifest.xml:56:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:57:13
+	android:name
+		ADDED from AndroidManifest.xml:55:13
+activity#com.jmelzer.myttr.activities.NextAppointmentsActivity
+ADDED from AndroidManifest.xml:66:9
+	android:label
+		ADDED from AndroidManifest.xml:68:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:69:13
+	android:name
+		ADDED from AndroidManifest.xml:67:13
+activity#com.jmelzer.myttr.activities.NextAppointmentPlayersActivity
+ADDED from AndroidManifest.xml:79:9
+	android:label
+		ADDED from AndroidManifest.xml:81:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:82:13
+	android:name
+		ADDED from AndroidManifest.xml:80:13
+activity#com.jmelzer.myttr.activities.ResultActivity
+ADDED from AndroidManifest.xml:91:9
+	android:label
+		ADDED from AndroidManifest.xml:93:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:94:13
+	android:name
+		ADDED from AndroidManifest.xml:92:13
+activity#com.jmelzer.myttr.activities.EnterTTRActivity
+ADDED from AndroidManifest.xml:103:9
+	android:label
+		ADDED from AndroidManifest.xml:105:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:106:13
+	android:name
+		ADDED from AndroidManifest.xml:104:13
+activity#com.jmelzer.myttr.activities.EnterClubNameActivity
+ADDED from AndroidManifest.xml:115:9
+	android:label
+		ADDED from AndroidManifest.xml:117:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:118:13
+	android:name
+		ADDED from AndroidManifest.xml:116:13
+intent-filter#ManualClubName+android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:119:13
+action#ManualClubName
+ADDED from AndroidManifest.xml:121:17
+	android:name
+		ADDED from AndroidManifest.xml:121:25
+activity#com.jmelzer.myttr.activities.EnterAKActivity
+ADDED from AndroidManifest.xml:129:9
+	android:label
+		ADDED from AndroidManifest.xml:131:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:132:13
+	android:name
+		ADDED from AndroidManifest.xml:130:13
+intent-filter#AK+android.intent.action.VIEW+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:133:13
+action#AK
+ADDED from AndroidManifest.xml:135:17
+	android:name
+		ADDED from AndroidManifest.xml:135:25
+activity#com.jmelzer.myttr.activities.ClubListActivity
+ADDED from AndroidManifest.xml:143:9
+	android:label
+		ADDED from AndroidManifest.xml:145:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:146:13
+	android:name
+		ADDED from AndroidManifest.xml:144:13
+activity#com.jmelzer.myttr.activities.MySettingsActivity
+ADDED from AndroidManifest.xml:155:9
+	android:label
+		ADDED from AndroidManifest.xml:157:13
+	android:name
+		ADDED from AndroidManifest.xml:156:13
+activity#com.jmelzer.myttr.activities.EventsActivity
+ADDED from AndroidManifest.xml:165:9
+	android:label
+		ADDED from AndroidManifest.xml:167:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:168:13
+	android:name
+		ADDED from AndroidManifest.xml:166:13
+activity#com.jmelzer.myttr.activities.EventDetailActivity
+ADDED from AndroidManifest.xml:177:9
+	android:label
+		ADDED from AndroidManifest.xml:179:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:180:13
+	android:name
+		ADDED from AndroidManifest.xml:178:13
+activity#com.jmelzer.myttr.activities.SelectTeamPlayerActivity
+ADDED from AndroidManifest.xml:189:9
+	android:label
+		ADDED from AndroidManifest.xml:191:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:192:13
+	android:name
+		ADDED from AndroidManifest.xml:190:13
+activity#com.jmelzer.myttr.activities.SearchResultActivity
+ADDED from AndroidManifest.xml:201:9
+	android:label
+		ADDED from AndroidManifest.xml:203:13
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:204:13
+	android:name
+		ADDED from AndroidManifest.xml:202:13
