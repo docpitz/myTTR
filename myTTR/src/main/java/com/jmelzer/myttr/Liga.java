@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,6 @@ public class Liga {
     String kategorie;
     String name;
     String url;
-    Verband verband;
     List<Mannschaft> mannschaften = new ArrayList<>();
     List<Mannschaftspiel> spieleVorrunde = new ArrayList<>();
     List<Mannschaftspiel> spieleRueckrunde = new ArrayList<>();
@@ -34,12 +35,9 @@ public class Liga {
 
     }
 
-    public Verband getVerband() {
-        return verband;
-    }
-
-    public void setVerband(Verband verband) {
-        this.verband = verband;
+    public Liga(String name, String url) {
+        this.name = name;
+        this.url = url;
     }
 
     public String getName() {
@@ -155,5 +153,8 @@ public class Liga {
         } else {
             spieleRueckrunde.clear();
         }
+    }
+    public String getHttpAndDomain() {
+        return UrlUtil.getHttpAndDomain(url);
     }
 }

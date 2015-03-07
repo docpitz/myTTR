@@ -26,6 +26,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.User;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 public class MySettingsActivity extends Activity {
 

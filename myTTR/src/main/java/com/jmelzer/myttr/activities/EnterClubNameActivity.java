@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClubParser;
 
 import java.util.List;

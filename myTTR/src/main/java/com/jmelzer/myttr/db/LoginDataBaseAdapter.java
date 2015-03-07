@@ -4,7 +4,7 @@
  * 2013.
  */
 
-package com.jmelzer.myttr.activities;
+package com.jmelzer.myttr.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,27 +21,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LoginDataBaseAdapter {
-    public static final int NAME_COLUMN = 1;
-    static final String DATABASE_NAME = "login.db";
-    static final int DATABASE_VERSION = 6;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
-    // SQL Statement to create a new database.
-    static final String DATABASE_CREATE = "create table " + "LOGIN" +
-            "( " + "ID" + " integer primary key autoincrement," +
-            "REALNAME text, USERNAME  text,PASSWORD text, " +
-            "POINTS NUMERIC, AK NUMERIC, CLUB_NAME text, CHANGED_AT date); ";
-    // Context of the application using the database.
-    private final Context context;
+
     // Variable to hold the database instance
     static SQLiteDatabase db;
     // Database open/upgrade helper
     private static DataBaseHelper dbHelper;
 
     public LoginDataBaseAdapter(Context _context) {
-        context = _context;
         if (dbHelper == null) {
-            dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+            dbHelper = new DataBaseHelper(_context);
         }
     }
 

@@ -1,15 +1,25 @@
 package com.jmelzer.myttr.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Kreis;
@@ -17,11 +27,13 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -111,6 +123,8 @@ public class LigaHomeActivity extends BaseActivity {
         }
         return new ArrayList<>();
     }
+
+
 
 
     class VerbandListener implements AdapterView.OnItemSelectedListener {
@@ -400,5 +414,48 @@ public class LigaHomeActivity extends BaseActivity {
                                     ViewGroup parent) {
             return getView(position, convertView, parent);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.liga_home_actions, menu);
+        //see http://stackoverflow.com/questions/7042958/android-adding-a-submenu-to-a-menuitem-where-is-addsubmenu
+        SubMenu subm = menu.getItem(0).getSubMenu(); // get my MenuItem with placeholder submenu
+        subm.clear(); // delete place holder
+        List<Liga> list = getLigaList();
+        int id = 0;
+        for (Liga liga : list) {
+            subm.add(0,id++, Menu.NONE, liga.getName());
+        }
+        return true;
+    }
+
+    List<Liga> getLigaList() {
+        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+        adapter.open();
+        return adapter.getAllEntries();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        List<Liga> list = getLigaList();
+        MyApplication.selectedLiga = list.get(item.getItemId());
+        tabelle();
+        return super.onOptionsItemSelected(item);
+    }
+    /**
+     * shows the favorite entries
+     */
+    public void favorite(MenuItem item) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setItems(new String[] {"TTG St. Augustin"}, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //search liga?
+//            }
+//        });
+//        AlertDialog dlg = builder.create();
+//        dlg.show();
     }
 }

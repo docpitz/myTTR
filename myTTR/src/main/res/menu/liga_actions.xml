@@ -17,11 +17,11 @@
         android:showAsAction="always"
         android:title="@string/btn_results"
         tools:ignore="AppCompatResource"/>
-   <!-- <item
+    <item
         android:id="@+id/action_info"
-        android:text="@string/action_mannschafts_info"
-        android:onClick="ligaInfo"
+        android:text="@string/action_favorite"
+        android:onClick="favorite"
         android:showAsAction="always"
-        android:icon="@drawable/ic_info_action"
-        android:title="@string/action_mannschafts_info"/>-->
+        android:icon="@drawable/ic_action_favorite"
+        android:title="@string/action_favorite"/>
 </menu>

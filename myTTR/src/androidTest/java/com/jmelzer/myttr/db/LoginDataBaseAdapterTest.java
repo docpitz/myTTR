@@ -11,7 +11,7 @@
 */
 
 
-package com.jmelzer.myttr.activities;
+package com.jmelzer.myttr.db;
 
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
@@ -19,6 +19,7 @@ import android.util.Log;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 import junit.framework.TestCase;
 

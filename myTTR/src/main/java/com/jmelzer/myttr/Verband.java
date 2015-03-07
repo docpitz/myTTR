@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +68,7 @@ public class Verband {
         this.url = url;
     }
     public String getHttpAndDomain() {
-        return url.substring(0, url.indexOf(".de")+3);
+        return UrlUtil.getHttpAndDomain(url);
     }
     public void addBezirk(Bezirk d) {
         bezirkList.add(d);
@@ -79,7 +81,7 @@ public class Verband {
     public void setBezirkList(List<Bezirk> bezirkList) {
         this.bezirkList = bezirkList;
         for (Bezirk bezirk : bezirkList) {
-            bezirk.setVerband(this);
+            bezirk.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , bezirk.getUrl()));
         }
     }
 
@@ -103,7 +105,7 @@ public class Verband {
         ligaList.clear();
         ligaList.addAll(ligen);
         for (Liga liga : ligen) {
-            liga.setVerband(this);
+            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , liga.getUrl()));
         }
     }
 }

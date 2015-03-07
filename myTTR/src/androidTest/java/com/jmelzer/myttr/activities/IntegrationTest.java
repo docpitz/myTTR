@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.robotium.solo.Solo;
 
 /**

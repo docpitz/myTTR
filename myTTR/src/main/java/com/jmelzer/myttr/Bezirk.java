@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,6 @@ public class Bezirk {
     String url;
     List<Kreis> kreise = new ArrayList<>();
     List<Liga> ligen = new ArrayList<>();
-    private Verband verband;
 
     public Bezirk(String name, String url) {
         this.name = name;
@@ -27,10 +28,18 @@ public class Bezirk {
         return url;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getHttpAndDomain() {
+        return UrlUtil.getHttpAndDomain(url);
+    }
     public void setKreise(List<Kreis> kreise) {
         this.kreise = kreise;
         for (Kreis kreis : kreise) {
             kreis.setBezirk(this);
+            kreis.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , kreis.getUrl()));
         }
     }
 
@@ -42,7 +51,7 @@ public class Bezirk {
         ligen.clear();
         ligen.addAll(l);
         for (Liga liga : ligen) {
-            liga.setVerband(verband);
+            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , liga.getUrl()));
         }
     }
 
@@ -50,11 +59,4 @@ public class Bezirk {
         return kreise;
     }
 
-    public void setVerband(Verband verband) {
-        this.verband = verband;
-    }
-
-    public Verband getVerband() {
-        return verband;
-    }
 }

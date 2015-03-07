@@ -3,7 +3,7 @@
  *
  * 2013.
  */
-package com.jmelzer.myttr.activities;
+package com.jmelzer.myttr.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,18 +12,32 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public DataBaseHelper(Context context, String name, CursorFactory factory, int version) {
-        super(context, name, factory, version);
+
+    static final int DBVERSION = 10;
+
+    // SQL Statement to create a new database.
+    static final String LOGIN_CREATE = "create table " + "LOGIN" +
+            "( " + "ID" + " integer primary key autoincrement," +
+            "REALNAME text, USERNAME  text,PASSWORD text, " +
+            "POINTS NUMERIC, AK NUMERIC, CLUB_NAME text, CHANGED_AT date); ";
+    static final String FAV_LIGA_CREATE = "create table " + "FAV_LIGA" +
+            "( " + "ID" + " integer primary key autoincrement," +
+            "LIGA_NAME text, URL  text, CHANGED_AT date); ";
+
+    public DataBaseHelper(Context context) {
+        super(context, "myttr", null, DBVERSION);
     }
 
     // Called when no database exists in disk and the helper class needs
     // to create a new one.
     @Override
     public void onCreate(SQLiteDatabase _db) {
-        _db.execSQL(LoginDataBaseAdapter.DATABASE_CREATE);
+        _db.execSQL(LOGIN_CREATE);
+        _db.execSQL(FAV_LIGA_CREATE);
 
     }
 

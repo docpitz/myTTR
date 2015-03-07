@@ -1,6 +1,9 @@
 package com.jmelzer.myttr.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +17,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
@@ -80,12 +85,17 @@ public class LigaTabelle extends BaseActivity {
         task.execute();
     }
 
-    public void ligaInfo(MenuItem item) {
-
-    }
-
     public void ligaResults(MenuItem item) {
         callMannschaftDetail(LigaAllResultsActivity.class);
+    }
+
+    public void favorite(MenuItem item) {
+        //todo notify menu changes
+        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+        adapter.open();
+        adapter.insertEntry(MyApplication.selectedLiga.getName(), MyApplication.selectedLiga.getUrl());
+        Toast.makeText(this, getString(R.string.favorite_added),
+                Toast.LENGTH_LONG).show();
     }
 
     class LigaAdapter extends ArrayAdapter<Mannschaft> {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 public class EnterAKActivity extends BaseActivity {
     @Override

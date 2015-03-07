@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +44,12 @@ public class Kreis {
         ligen.clear();
         ligen.addAll(l);
         for (Liga liga : l) {
-            liga.setVerband(bezirk.getVerband());
+            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , liga.getUrl()));
         }
     }
-
+    public String getHttpAndDomain() {
+        return UrlUtil.getHttpAndDomain(url);
+    }
     public Bezirk getBezirk() {
         return bezirk;
     }

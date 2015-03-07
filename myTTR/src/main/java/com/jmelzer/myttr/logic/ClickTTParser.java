@@ -7,6 +7,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.util.UrlUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -129,7 +130,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 continue;//skip first row
             }
             Mannschaft m = parseLigaTableRow(resultrow);
-            m.setUrl(liga.getVerband().getHttpAndDomain() + m.getUrl());
+            m.setUrl(UrlUtil.safeUrl(liga.getHttpAndDomain(), m.getUrl()));
             liga.addMannschaft(m);
             idx = resultrow.end;
 
@@ -366,21 +367,19 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public void readLiga(Liga liga) throws NetworkException {
-        String url = "";//HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getVerband().getHttpAndDomain() + liga.getUrl();
+        String url = liga.getUrl();
         String page = Client.getPage(url);
         parseLiga(liga, page);
     }
 
     public void readVR(Liga liga) throws NetworkException {
-        String url = "";//HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getVerband().getHttpAndDomain() + liga.getUrlVR();
+        String url = liga.getHttpAndDomain() + liga.getUrlVR();
         String page = Client.getPage(url);
         parseErgebnisse(liga, page, true);
     }
 
     public void readDetail(Liga liga, Mannschaftspiel spiel) throws NetworkException {
-        String url = liga.getVerband().getHttpAndDomain();
+        String url = liga.getHttpAndDomain();
         url += spiel.getUrlDetail();
         String page = Client.getPage(url);
         parseMannschaftspiel(page, spiel);
@@ -388,7 +387,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     public void readRR(Liga liga) throws NetworkException {
         String url = "";//HTTP_DTTB_CLICK_TT_DE;
-        url += liga.getVerband().getHttpAndDomain() + liga.getUrlRR();
+        url += liga.getHttpAndDomain() + liga.getUrlRR();
         String page = Client.getPage(url);
         parseErgebnisse(liga, page, false);
     }
@@ -450,7 +449,7 @@ public class ClickTTParser extends AbstractBaseParser {
         if (bezirk == null || bezirk.getUrl() == null) {
             return;
         }
-        String url = bezirk.getVerband().getHttpAndDomain() + bezirk.getUrl();
+        String url = bezirk.getUrl();
         String page = Client.getPage(url);
         List<Kreis> list = parseLinksKreise(page);
         bezirk.setKreise(list);
@@ -485,7 +484,7 @@ public class ClickTTParser extends AbstractBaseParser {
      * read the ligen from the url inside the verband
      */
     public void readLigen(Kreis kreis) throws NetworkException {
-        String url = kreis.getBezirk().getVerband().getHttpAndDomain() + kreis.getUrl();
+        String url = kreis.getUrl();
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         kreis.addAllLigen(ligen);
