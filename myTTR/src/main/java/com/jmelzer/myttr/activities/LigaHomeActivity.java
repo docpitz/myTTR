@@ -1,6 +1,7 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -116,8 +117,6 @@ public class LigaHomeActivity extends BaseActivity {
         }
         return new ArrayList<>();
     }
-
-
 
 
     class VerbandListener implements AdapterView.OnItemSelectedListener {
@@ -419,7 +418,10 @@ public class LigaHomeActivity extends BaseActivity {
         List<Liga> list = getLigaList();
         int id = 0;
         for (Liga liga : list) {
-            subm.add(0,id++, Menu.NONE, liga.getName());
+            subm.add(0, id++, Menu.NONE, liga.getName());
+        }
+        if (list.size() > 0) {
+            subm.add(0, id, Menu.NONE, "Bearbeiten...");
         }
         return true;
     }
@@ -433,22 +435,18 @@ public class LigaHomeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         List<Liga> list = getLigaList();
-        MyApplication.setSelectedLiga(list.get(item.getItemId()));
-        tabelle();
+        if (item.getItemId() < list.size()) {
+            MyApplication.setSelectedLiga(list.get(item.getItemId()));
+            tabelle();
+        } else if (item.getTitle().equals("Bearbeiten...")) {
+            favoriteEdit();
+        }
         return super.onOptionsItemSelected(item);
     }
-    /**
-     * shows the favorite entries
-     */
-    public void favorite(MenuItem item) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setItems(new String[] {"TTG St. Augustin"}, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //search liga?
-//            }
-//        });
-//        AlertDialog dlg = builder.create();
-//        dlg.show();
+
+    private void favoriteEdit() {
+        Intent target = new Intent(this, EditFavoritesActivity.class);
+        startActivity(target);
     }
+
 }

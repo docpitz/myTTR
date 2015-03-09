@@ -6,18 +6,19 @@
   ~ 2014 - 2015.
   -->
 
-<menu xmlns:tools="http://schemas.android.com/tools"
-      xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_fav"
-        android:text="@string/action_edit_favorites"
-        android:onClick="favorite"
-        android:showAsAction="always"
         android:icon="@drawable/ic_action_favorite"
+        android:showAsAction="always"
+        android:text="@string/action_edit_favorites"
         android:title="@string/action_edit_favorites">
         <menu>
-            <item android:id="@+id/item1" android:title="Placeholder"></item>
+            <item
+                android:id="@+id/item1"
+                android:title="Placeholder"></item>
         </menu>
-        </item>
+    </item>
 </menu>

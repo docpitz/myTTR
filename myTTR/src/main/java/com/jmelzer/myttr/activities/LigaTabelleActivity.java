@@ -1,6 +1,7 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -87,10 +88,9 @@ public class LigaTabelleActivity extends BaseActivity {
     }
 
     public void favorite(MenuItem item) {
-        //todo notify menu changes
         FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
         adapter.open();
-        adapter.insertEntry(liga.getName(), liga.getUrl());
+        adapter.insertEntry(liga.getNameForFav(), liga.getUrl());
         Toast.makeText(this, getString(R.string.favorite_added),
                 Toast.LENGTH_LONG).show();
     }
@@ -136,5 +136,10 @@ public class LigaTabelleActivity extends BaseActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.liga_actions, menu);
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        Intent target = new Intent(this, LigaHomeActivity.class);
+        startActivity(target);
     }
 }

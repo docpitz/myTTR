@@ -44,6 +44,12 @@ public class Liga {
     public String getName() {
         return name;
     }
+    public String getNameForFav() {
+        return name + " - " + getKategorie();
+    }
+    public static String parseNameFromFav(String name) {
+        return name.substring(0, name.indexOf(" - "));
+    }
 
     public void setName(String name) {
         this.name = name;

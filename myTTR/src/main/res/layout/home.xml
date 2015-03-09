@@ -92,8 +92,8 @@
                 android:layout_column="2"
                 android:layout_row="1"
                 android:onClick="liga"
-                android:drawableTop="@drawable/ic_info"
-                android:text="@string/info"
+                android:drawableTop="@drawable/ic_click_tt"
+                android:text="@string/liga"
 
                 />
 
