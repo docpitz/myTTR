@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class ClickTTParser extends AbstractBaseParser {
 
-    public static final String HTTP_DTTB_CLICK_TT_DE = "http://dttb.click-tt.de";
 
     /**
      * parsed die Ergebnisse, und füllt das Liga objekt
@@ -94,13 +93,6 @@ public class ClickTTParser extends AbstractBaseParser {
                 findMannschaft(liga, heimMannsschaft),
                 findMannschaft(liga, gastMannsschaft),
                 ergebnis, url, genehmigt);
-    }
-
-    private String safeResult(ParseResult parseResult) {
-        if (parseResult != null) {
-            return parseResult.result;
-        }
-        return null;
     }
 
     private Mannschaft findMannschaft(Liga liga, String name) {
@@ -322,18 +314,35 @@ public class ClickTTParser extends AbstractBaseParser {
         mannschaftspiel.addSpiel(spielbericht);
         spielbericht.setName(posName);
 
-        ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
-        String url = safeResult(result2);
-        spielbericht.setSpieler1Url(url);
-        result2 = readBetweenOpenTag(resultrow.result, result.end + 1, "<a", "</a>");
-        spielbericht.setSpieler1Name(safeResult(result2));
-
+        //todo read doppel correctly
+        if (posName.startsWith("D")) {
+            String line = result.result;
+            String[] ahref = readHrefAndATag(line);
+            spielbericht.setSpieler1Url(ahref[0]);
+            spielbericht.setSpieler1Name(ahref[1]);
+            line = line.substring(line.indexOf("<br"));
+            ahref = readHrefAndATag(line);
+            spielbericht.setSpieler1Name(spielbericht.getSpieler1Name() +" / " + ahref[1]);
+        } else {
+            String[] ahref = readHrefAndATag(result.result);
+            spielbericht.setSpieler1Url(ahref[0]);
+            spielbericht.setSpieler1Name(ahref[1]);
+        }
         result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        result2 = readBetween(result.result, 0, "href=\"", "\">");
-        url = safeResult(result2);
-        spielbericht.setSpieler2Url(url);
-        result2 = readBetweenOpenTag(result.result, 0, "<a", "</a>");
-        spielbericht.setSpieler2Name(safeResult(result2));
+        if (posName.startsWith("D")) {
+            String line = result.result;
+            String[] ahref = readHrefAndATag(line);
+            spielbericht.setSpieler2Url(ahref[0]);
+            spielbericht.setSpieler2Name(ahref[1]);
+            line = line.substring(line.indexOf("<br"));
+            ahref = readHrefAndATag(line);
+            spielbericht.setSpieler2Name(spielbericht.getSpieler2Name() + " / " + ahref[1]);
+        } else {
+            String[] ahref = readHrefAndATag(result.result);
+            spielbericht.setSpieler2Url(ahref[0]);
+            spielbericht.setSpieler2Name(ahref[1]);
+        }
+
 
         for (int i = 1; i < 6; i++) {
             result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");

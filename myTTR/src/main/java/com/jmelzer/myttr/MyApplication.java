@@ -37,7 +37,7 @@ public class MyApplication extends Application {
         createEmptyUser();
     }
 
-    public static Liga selectedLiga;
+    private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband; //todo do we need this?
@@ -50,6 +50,14 @@ public class MyApplication extends Application {
         super.onCreate();
         MyApplication.context = getApplicationContext();
         createEmptyUser();
+    }
+
+    public static void setSelectedLiga(Liga selectedLiga) {
+        MyApplication.selectedLiga = selectedLiga;
+    }
+
+    public static Liga getSelectedLiga() {
+        return selectedLiga;
     }
 
     public static User getLoginUser() {

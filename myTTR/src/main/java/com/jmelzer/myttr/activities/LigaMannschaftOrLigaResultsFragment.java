@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,14 +22,16 @@ import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by J. Melzer on 27.02.2015.
  * <p/>
- * Fragment for showibng results of a liga or a club
+ * Fragment for showing results of a liga or a club.
+ * Depends what was set (mannschaft / liga)
  */
-public class LigaMannschaftResultsFragment extends Fragment {
+public class LigaMannschaftOrLigaResultsFragment extends Fragment {
     Mannschaft mannschaft;
     Liga liga;
     SpielAdapter adapter;
@@ -52,10 +55,12 @@ public class LigaMannschaftResultsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.liga_mannschaft_results, container, false);
 
+        boolean vr = !existRRSpiele();
         final ListView listview = (ListView) rootView.findViewById(R.id.liga_mannschaft_detail_row);
+        //create emtpty list
         adapter = new SpielAdapter(getActivity(),
                 android.R.layout.simple_list_item_1,
-                getSpiele(true /* todo*/));
+                new ArrayList<Mannschaftspiel>());
         listview.setAdapter(adapter);
 
 
@@ -70,32 +75,36 @@ public class LigaMannschaftResultsFragment extends Fragment {
                 return false;
             }
         });
-
+        // the list will be filled
         configList(pos == 0);
 
         return rootView;
     }
 
+    private boolean existRRSpiele() {
+        return getSpiele(false).size() > 0;
+
+    }
+
     List<Mannschaftspiel> getSpiele(boolean vr) {
         if (mannschaft != null) {
-            return MyApplication.selectedLiga.getSpieleFor(mannschaft.getName(), vr);
+            return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), vr);
         } else {
-            return MyApplication.selectedLiga.getSpieleFor(null, vr);
+            return MyApplication.getSelectedLiga().getSpieleFor(null, vr);
         }
     }
 
     private void callMannschaftSpielDetail() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaMannschaftSpielAction.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtAction.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readVR(MyApplication.selectedLiga);
-                new ClickTTParser().readRR(MyApplication.selectedLiga);
+                new ClickTTParser().readDetail(MyApplication.getSelectedLiga(), MyApplication.selectedMannschaftSpiel);
             }
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedLiga.getSpieleVorrunde().size() > 0;
+                return MyApplication.selectedMannschaftSpiel.getSpiele().size() > 0;
             }
 
 
@@ -110,12 +119,12 @@ public class LigaMannschaftResultsFragment extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, final ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView = inflater.inflate(R.layout.liga_mannschaft_results_row, parent, false);
-            Mannschaftspiel spiel = getItem(position);
+            final Mannschaftspiel spiel = getItem(position);
 
             TextView textView = (TextView) rowView.findViewById(R.id.date);
             textView.setText(spiel.getDate());
@@ -127,7 +136,14 @@ public class LigaMannschaftResultsFragment extends Fragment {
             textView = (TextView) rowView.findViewById(R.id.result);
             textView.setText(spiel.getErgebnis());
 
-
+            final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
+            arrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.selectedMannschaftSpiel = spiel;
+                    callMannschaftSpielDetail();
+                }
+            });
             return rowView;
         }
     }
@@ -135,7 +151,8 @@ public class LigaMannschaftResultsFragment extends Fragment {
     void configList(boolean vr) {
         if (adapter != null) {
             adapter.clear();
-            adapter.addAll(getSpiele(vr));
+            //create a copy otherwise clear will remove all entries
+            adapter.addAll(new ArrayList(getSpiele(vr)));
             // fire the event
             adapter.notifyDataSetChanged();
         }

@@ -44,7 +44,6 @@ public class Mannschaftspiel {
                 "date='" + date + '\'' +
                 ", heimMannschaft=" + heimMannschaft +
                 ", gastMannschaft=" + gastMannschaft +
-                ", ergebnis='" + ergebnis + '\'' +
                 ", urlDetail='" + urlDetail + '\'' +
                 ", genehmigt=" + genehmigt +
                 ", baelle='" + baelle + '\'' +

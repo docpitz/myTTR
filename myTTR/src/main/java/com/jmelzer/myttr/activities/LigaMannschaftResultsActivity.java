@@ -19,9 +19,9 @@ import java.lang.reflect.Method;
 
 /**
  * Created by J. Melzer on 21.02.2015.
+ * Shows the results of a team in a saison.
  */
-public class LigaMannschaftDetailActivity extends AbstractLigaResultActivity {
-
+public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -32,14 +32,18 @@ public class LigaMannschaftDetailActivity extends AbstractLigaResultActivity {
 
         setTitle(MyApplication.selectedMannschaft.getName() + " - Ergebnisse");
 
-
-
     }
+
+    @Override
+    boolean startWithRR() {
+        return MyApplication.getSelectedLiga().getSpieleFor(MyApplication.selectedMannschaft.getName(),
+                false).size() > 0;
+    }
+
     protected TabsPagerAdapter createTabsAdapter() {
         return new TabsPagerAdapter(getSupportFragmentManager(),
                 MyApplication.selectedMannschaft);
     }
-
 
 
     public void bilanz(MenuItem item) {

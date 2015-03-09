@@ -6,12 +6,14 @@ package com.jmelzer.myttr.util;
  */
 public final class UrlUtil {
     public static String safeUrl(String http, String relUrl) {
-        if (relUrl.startsWith("http")) {
+        if (relUrl == null || relUrl.startsWith("http")) {
             return relUrl;
         }
         return http + relUrl;
     }
     public static String getHttpAndDomain(String url) {
+        if (url == null)
+            return null;
         return url.substring(0, url.indexOf(".de")+3);
     }
 }

@@ -16,6 +16,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Verband;
 
 import junit.framework.Assert;
@@ -36,6 +37,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(RobolectricTestRunner.class)
@@ -161,7 +163,7 @@ public class ClickTTParserTest {
         String page = readFile("assets/clicktt/staffel-2.bl-d.htm");
         assertNotNull(page);
         Liga liga = new Liga();
-        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
+//        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
         liga = parser.parseLiga(liga, page);
 
         for (Mannschaft m : liga.getMannschaften()) {
@@ -172,7 +174,8 @@ public class ClickTTParserTest {
     public void testParseErgebnisse() throws Exception {
         Liga liga = ergebnisse();
 
-        assertTrue(liga.getSpieleVorrunde().size() > 0);
+        assertEquals(45, liga.getSpieleVorrunde().size());
+        assertEquals(45, liga.getSpieleRueckrunde().size());
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("sp = " + mannschaftspiel);
             if (mannschaftspiel.getErgebnis() != null)
@@ -186,9 +189,12 @@ public class ClickTTParserTest {
         String page = readFile("assets/clicktt/staffel.htm");
         assertNotNull(page);
         Liga liga = new Liga();
+//        liga.setUrl("http://bla.de");
         liga = parser.parseLiga(liga, page);
         page = readFile("assets/clicktt/spiele.htm");
         parser.parseErgebnisse(liga, page, true);
+        page = readFile("assets/clicktt/spiele-rr.htm");
+        parser.parseErgebnisse(liga, page, false);
         return liga;
     }
 
@@ -200,6 +206,10 @@ public class ClickTTParserTest {
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
         parser.parseMannschaftspiel(page, mannschaftspiel);
         System.out.println( "sp = " + mannschaftspiel);
+        for (Spielbericht spielbericht : mannschaftspiel.getSpiele()) {
+            System.out.println("spielbericht = " + spielbericht);
+            assertNotEquals(spielbericht.getSpieler1Name(), spielbericht.getSpieler2Name());
+        }
     }
     @Test
     public void testUnencodeMail() throws Exception {

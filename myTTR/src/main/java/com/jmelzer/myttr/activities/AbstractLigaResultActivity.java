@@ -23,8 +23,6 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
 
     protected void init() {
 
-
-
         final ActionBar actionBar = getActionBar();
         viewPager = (ViewPager) findViewById(R.id.pager);
         TabsPagerAdapter mAdapter = createTabsAdapter();
@@ -69,11 +67,11 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
                 // probably ignore this event
             }
         };
-
-        actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener));
-        actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener));
+        boolean b = startWithRR();
+        actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
+        actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
     }
-
+    abstract boolean startWithRR();
     abstract protected TabsPagerAdapter createTabsAdapter();
 
     // This is where the magic happens!

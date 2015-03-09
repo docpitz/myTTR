@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical"
-              android:padding="10dp"
-              android:weightSum="10">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!--heading-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="TTC Bonn-Duisdorf III - TTF Lengsdorf 4:9"
+        android:id="@+id/textHeader"
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,53 +22,54 @@
             android:id="@+id/textView1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Platz"/>
+            android:layout_weight="2"
+            android:text="Paarung"/>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:text="Mannschaft"/>
+            android:layout_marginLeft="5dp"
+            android:layout_weight="4"
+            android:text="Heim"/>
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="0px"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_weight="1.5"
-            android:text="Spiele"/>
+            android:layout_marginLeft="10dp"
+            android:layout_weight="4"
+            android:text="Gast"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_weight="2"
-            android:text="Punkte"/>
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Erg."/>
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.5"
-            android:text="  "/>
+            android:layout_weight="1"
+            android:text="   "/>
 
 
     </LinearLayout>
-
+    <!--line-->
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dip"
         android:background="#ffffffff"/>
-
+    <!--list entries-->
     <ListView
-        android:id="@+id/liga_tabelle_rows"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/liga_spielbericht_row"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
+        android:layout_height="fill_parent"
+        >
     </ListView>
+
+
 </LinearLayout>

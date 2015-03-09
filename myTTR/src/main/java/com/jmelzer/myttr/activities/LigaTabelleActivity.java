@@ -1,9 +1,6 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -34,18 +31,18 @@ import java.util.List;
  * Created by J. Melzer on 21.02.2015.
  *
  */
-public class LigaTabelle extends BaseActivity {
+public class LigaTabelleActivity extends BaseActivity {
     Liga liga;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liga_tabelle);
 
-        liga = MyApplication.selectedLiga;
+        liga = MyApplication.getSelectedLiga();
         final ListView listview = (ListView) findViewById(R.id.liga_tabelle_rows);
         final LigaAdapter adapter = new LigaAdapter(this,
                 android.R.layout.simple_list_item_1,
-                MyApplication.selectedLiga.getMannschaften());
+                liga.getMannschaften());
         listview.setAdapter(adapter);
 
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -54,7 +51,7 @@ public class LigaTabelle extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 MyApplication.selectedMannschaft = (Mannschaft) parent.getItemAtPosition(position);
-                callMannschaftDetail(LigaMannschaftDetailActivity.class);
+                callMannschaftDetail(LigaMannschaftResultsActivity.class);
 
                 return false;
             }
@@ -67,17 +64,17 @@ public class LigaTabelle extends BaseActivity {
     }
 
     void callMannschaftDetail(Class targetClz) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelle.this, targetClz) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelleActivity.this, targetClz) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readVR(MyApplication.selectedLiga);
-                new ClickTTParser().readRR(MyApplication.selectedLiga);
+                new ClickTTParser().readVR(liga);
+                new ClickTTParser().readRR(liga);
             }
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedLiga.getSpieleVorrunde().size() > 0;
+                return liga.getSpieleVorrunde().size() > 0;
             }
 
 
@@ -93,7 +90,7 @@ public class LigaTabelle extends BaseActivity {
         //todo notify menu changes
         FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
         adapter.open();
-        adapter.insertEntry(MyApplication.selectedLiga.getName(), MyApplication.selectedLiga.getUrl());
+        adapter.insertEntry(liga.getName(), liga.getUrl());
         Toast.makeText(this, getString(R.string.favorite_added),
                 Toast.LENGTH_LONG).show();
     }
@@ -128,7 +125,7 @@ public class LigaTabelle extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     MyApplication.selectedMannschaft = mannschaft;
-                    callMannschaftDetail(LigaMannschaftDetailActivity.class);
+                    callMannschaftDetail(LigaMannschaftResultsActivity.class);
                 }
             });
             return rowView;

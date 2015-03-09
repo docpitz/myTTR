@@ -4,6 +4,7 @@ import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -73,11 +74,11 @@ public class Liga {
     }
 
     public List<Mannschaftspiel> getSpieleVorrunde() {
-        return spieleVorrunde;
+        return Collections.unmodifiableList(spieleVorrunde);
     }
 
     public List<Mannschaftspiel> getSpieleRueckrunde() {
-        return spieleRueckrunde;
+        return Collections.unmodifiableList(spieleRueckrunde);
     }
 
     public void addSpiel(Mannschaftspiel s, boolean vorrunde) {

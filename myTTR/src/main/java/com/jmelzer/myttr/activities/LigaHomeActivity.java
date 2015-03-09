@@ -1,9 +1,6 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,11 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Kreis;
@@ -33,7 +27,6 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -90,16 +83,16 @@ public class LigaHomeActivity extends BaseActivity {
 
 
     public void tabelle() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelle.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readLiga(MyApplication.selectedLiga);
+                new ClickTTParser().readLiga(MyApplication.getSelectedLiga());
             }
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedLiga.getMannschaften().size() > 0;
+                return MyApplication.getSelectedLiga().getMannschaften().size() > 0;
             }
 
 
@@ -262,7 +255,7 @@ public class LigaHomeActivity extends BaseActivity {
     void configLigAdapter() {
         final ListView listview = (ListView) findViewById(R.id.liga_detail_list);
         if (selectedBezirk != null && selectedBezirk.getUrl() != null) {
-            if (selectedKreis != null)
+            if (selectedKreis != null && selectedKreis.getUrl() != null)
                 ligaList = filterKategorie(selectedKreis.getLigen(), selectedKategorie);
             else
                 ligaList = filterKategorie(selectedBezirk.getLigen(), selectedKategorie);
@@ -280,7 +273,7 @@ public class LigaHomeActivity extends BaseActivity {
                                            int position, long id) {
                 view.setSelected(true);
 
-                MyApplication.selectedLiga = (Liga) parent.getItemAtPosition(position);
+                MyApplication.setSelectedLiga((Liga) parent.getItemAtPosition(position));
                 tabelle();
                 return false;
             }
@@ -440,7 +433,7 @@ public class LigaHomeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         List<Liga> list = getLigaList();
-        MyApplication.selectedLiga = list.get(item.getItemId());
+        MyApplication.setSelectedLiga(list.get(item.getItemId()));
         tabelle();
         return super.onOptionsItemSelected(item);
     }

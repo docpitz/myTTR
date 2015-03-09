@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 
-
+//todo rename
 public class TabsPagerAdapter extends FragmentPagerAdapter {
     Mannschaft mannschaft;
     Liga liga;
@@ -24,8 +24,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int index) {
-        LigaMannschaftResultsFragment f;
-        f = new LigaMannschaftResultsFragment();
+        LigaMannschaftOrLigaResultsFragment f;
+        f = new LigaMannschaftOrLigaResultsFragment();
         f.setPos(index);
         f.setLiga(liga);
         f.setMannschaft(mannschaft);
