@@ -95,7 +95,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
     }
 
     private void callMannschaftSpielDetail() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtAction.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {

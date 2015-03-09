@@ -271,7 +271,7 @@
                 android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
         </activity>
         <activity
-            android:name=".activities.LigaSpielberichtAction"
+            android:name=".activities.LigaSpielberichtActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
