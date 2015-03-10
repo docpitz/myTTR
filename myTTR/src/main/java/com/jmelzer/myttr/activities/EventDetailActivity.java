@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
@@ -55,31 +57,42 @@ public class EventDetailActivity extends BaseActivity {
 
     }
 
+    private static class ViewHolder {
+        TextView textName;
+        TextView textResult;
+        TextView textSets;
+    }
+
     class EventDetailAdapter extends ArrayAdapter<Game> {
+        private LayoutInflater layoutInflater;
 
         public EventDetailAdapter(Context context, int resource, List<Game> list) {
             super(context, resource, list);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewHolder holder;
 
-            View rowView = inflater.inflate(R.layout.eventdetailrow_linear, parent, false);
-            Game game = MyApplication.currentDetail.getGames().get(position);
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.eventdetailrow_linear, null);
+                holder = new ViewHolder();
+                holder.textName = (TextView) convertView.findViewById(R.id.name);
+                holder.textResult = (TextView) convertView.findViewById(R.id.result);
+                holder.textSets = (TextView) convertView.findViewById(R.id.sets);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
 
-            TextView textView = (TextView) rowView.findViewById(R.id.name);
-            String txt = game.getPlayerWithPoints();
-            textView.setText(txt);
+            Game game =  getItem(position);
 
-            textView = (TextView) rowView.findViewById(R.id.result);
-            textView.setText(game.getResult());
-            textView = (TextView) rowView.findViewById(R.id.sets);
-            textView.setText(game.getSetsInARow());
+            holder.textName.setText(game.getPlayerWithPoints());
+            holder.textResult.setText(game.getResult());
+            holder.textSets.setText(game.getSetsInARow());
 
-
-            return rowView;
+            return convertView;
         }
     }
 

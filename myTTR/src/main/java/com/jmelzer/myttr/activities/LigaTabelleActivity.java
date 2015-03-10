@@ -94,41 +94,53 @@ public class LigaTabelleActivity extends BaseActivity {
         Toast.makeText(this, getString(R.string.favorite_added),
                 Toast.LENGTH_LONG).show();
     }
-
+    private static class ViewHolder {
+        ImageView arrow;
+        TextView textName;
+        TextView textPos;
+        TextView textGames;
+        TextView textPoints;
+    }
     class LigaAdapter extends ArrayAdapter<Mannschaft> {
+        private LayoutInflater layoutInflater;
 
         public LigaAdapter(Context context, int resource, List<Mannschaft> mannschaftList) {
             super(context, resource, mannschaftList);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewHolder holder;
 
-            View rowView = inflater.inflate(R.layout.liga_tabelle_row, parent, false);
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.liga_tabelle_row, null);
+                holder = new ViewHolder();
+                holder.textName = (TextView) convertView.findViewById(R.id.name);
+                holder.textPos = (TextView) convertView.findViewById(R.id.liga_pos);
+                holder.textGames = (TextView) convertView.findViewById(R.id.games);
+                holder.textPoints = (TextView) convertView.findViewById(R.id.points);
+                holder.arrow = (ImageView) convertView.findViewById(R.id.arrow);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
             final Mannschaft mannschaft = getItem(position);
 
-            TextView textView = (TextView) rowView.findViewById(R.id.name);
-            String txt = mannschaft.getName();
-            textView.setText(txt);
+            holder.textName.setText(mannschaft.getName());
+            holder.textPos.setText("" + mannschaft.getPosition());
+            holder.textGames.setText(""  + mannschaft.getGamesCount() );
+            holder.textPoints.setText(mannschaft.getPoints());
 
-            textView = (TextView) rowView.findViewById(R.id.liga_pos);
-            textView.setText("" + mannschaft.getPosition());
-            textView = (TextView) rowView.findViewById(R.id.games);
-            textView.setText(""  + mannschaft.getGamesCount() );
-            textView = (TextView) rowView.findViewById(R.id.points);
-            textView.setText(mannschaft.getPoints());
-
-            final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
-            arrow.setOnClickListener(new View.OnClickListener() {
+            holder.arrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MyApplication.selectedMannschaft = mannschaft;
                     callMannschaftDetail(LigaMannschaftResultsActivity.class);
                 }
             });
-            return rowView;
+            return convertView;
         }
     }
     @Override

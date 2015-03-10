@@ -59,37 +59,52 @@ public class EventsActivity extends BaseActivity {
         }
     }
 
+    private static class ViewHolder {
+        TextView textDate;
+        TextView textEvent;
+        TextView textSp;
+        TextView textAk;
+        TextView textTtr;
+        TextView textDiff;
+    }
+
     class EventAdapter extends ArrayAdapter<Event> {
+        private LayoutInflater layoutInflater;
 
         public EventAdapter(Context context, int resource, List<Event> appointments) {
             super(context, resource, appointments);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View rowView = inflater.inflate(R.layout.eventrow_linear, parent, false);
-            Event event = events.get(position);
+            ViewHolder holder;
 
-            TextView textView = (TextView) rowView.findViewById(R.id.date);
-            String txt = event.getDate();
-            textView.setText(txt);
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.eventrow_linear, null);
+                holder = new ViewHolder();
+                holder.textDate = (TextView) convertView.findViewById(R.id.date);
+                holder.textEvent = (TextView) convertView.findViewById(R.id.event);
+                holder.textSp = (TextView) convertView.findViewById(R.id.sp);
+                holder.textAk = (TextView) convertView.findViewById(R.id.ak);
+                holder.textTtr = (TextView) convertView.findViewById(R.id.ttr);
+                holder.textDiff = (TextView) convertView.findViewById(R.id.diff);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
 
-            textView = (TextView) rowView.findViewById(R.id.event);
-            textView.setText(event.getEvent());
-            textView = (TextView) rowView.findViewById(R.id.sp);
-            textView.setText(event.getWon() + "/" + event.getPlayCount());
-            textView = (TextView) rowView.findViewById(R.id.ak);
-            textView.setText(event.getAk());
-            textView = (TextView) rowView.findViewById(R.id.ttr);
-            textView.setText(event.getTtrAsString());
-            textView = (TextView) rowView.findViewById(R.id.diff);
-            textView.setText("" + event.getSum());
+            Event event = getItem(position);
 
+            holder.textDate.setText(event.getDate());
+            holder.textEvent.setText(event.getEvent());
+            holder.textSp.setText(event.getWon() + "/" + event.getPlayCount());
+            holder.textAk.setText(event.getAk());
+            holder.textTtr.setText(event.getTtrAsString());
+            holder.textDiff.setText("" + event.getSum());
 
-            return rowView;
+            return convertView;
         }
     }
 
