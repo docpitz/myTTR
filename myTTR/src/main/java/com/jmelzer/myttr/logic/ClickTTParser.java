@@ -109,6 +109,13 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     Liga parseLiga(Liga liga, String page) {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
+        if (table == null) {
+            return liga;
+        }
+        if (!page.contains("Begegnungen")) {
+            return liga;
+        }
+
         int c = 0;
         int idx = 0;
         parseSpielplanLinks(liga, page);
@@ -153,13 +160,20 @@ public class ClickTTParser extends AbstractBaseParser {
         result = readBetween(resultrow.result, result.end, "<td", "</td>");
         //fix a
         ParseResult result2 = readBetween(result.result, 0, "href=\"", "\"");
-        String url = result2.result;
+        String url = null;
+        String name = null;
+        if (result2 != null) {
+            url = result2.result;
 
-        String name = readBetween(result.result, result2.end, ">", "</a>").result;
-        if (resultrow.result.contains("zurückgezogen")) {
+            name = readBetween(result.result, result2.end, ">", "</a>").result;
+        } else {
+            name = result.result;
+        }
+        if (resultrow.result.contains("zurückgezogen") || resultrow.result.contains("aufgelöst")) {
             //todo make it better
             return new Mannschaft(name + " --- zurückgezogen");
         }
+
         result = readBetween(resultrow.result, result.end, "<td", "</td>");
         int nGamesCount = readIntFromNextTd(result);
 
@@ -322,7 +336,7 @@ public class ClickTTParser extends AbstractBaseParser {
             spielbericht.setSpieler1Name(ahref[1]);
             line = line.substring(line.indexOf("<br"));
             ahref = readHrefAndATag(line);
-            spielbericht.setSpieler1Name(spielbericht.getSpieler1Name() +" / " + ahref[1]);
+            spielbericht.setSpieler1Name(spielbericht.getSpieler1Name() + " / " + ahref[1]);
         } else {
             String[] ahref = readHrefAndATag(result.result);
             spielbericht.setSpieler1Url(ahref[0]);
@@ -375,6 +389,12 @@ public class ClickTTParser extends AbstractBaseParser {
         return Verband.dttb;
     }
 
+    /**
+     * reads the table (mannschaften and results) of the liga and some urls.
+     *
+     * @param liga to read
+     * @throws NetworkException
+     */
     public void readLiga(Liga liga) throws NetworkException {
         String url = liga.getUrl();
         String page = Client.getPage(url);
@@ -503,6 +523,7 @@ public class ClickTTParser extends AbstractBaseParser {
         String page = Client.getPage(mannschaft.getUrl());
         parseDetail(page, mannschaft);
     }
+
     public void parseDetail(String page, Mannschaft mannschaft) {
         ParseResult result = readBetween(page, 0, "Mannschaftskontakt", null);
         result = readBetween(result.result, 0, "<td>", "</td>");
@@ -520,6 +541,39 @@ public class ClickTTParser extends AbstractBaseParser {
                 mannschaft.setMailTo(unencodeMail(result.result));
             }
         }
+        mannschaft.removeAllSpielLokale();
+        result = readBetween(page, 0, "<b>Verein</b>", null);
+        //block with spiellokale
+        result = readBetween(result.result, 0, "<td>", "</td>");
+        if (result != null && !result.isEmpty()) {
+            int idx = 0;
+            while (true) {
+
+                ParseResult resultLokal = readBetween(result.result, idx, "<b>", "<b>");
+                if (resultLokal == null || resultLokal.isEmpty()) {
+                    //last entry
+                    resultLokal = readBetween(result.result, idx, "<b>", null);
+                    if (resultLokal == null || resultLokal.isEmpty()) {
+                        break;
+                    }
+                }
+                idx = resultLokal.end - 3;
+                String lokal = cleanupSpielLokalHtml(resultLokal.result);
+//                resultLokal = readBetween(result.result, idx, "</b>", "<br />");
+                mannschaft.addSpielLokal(lokal);
+            }
+        }
+    }
+
+    String cleanupSpielLokalHtml(String s) {
+//        String result = s.replaceAll("</b>\[ ]{2,}", "");
+        String result = s.replaceAll( "\\s{2,}", " ").replace("</b>", "");
+        result = result.replaceAll("<br />", "\n");
+        //remove the last \n
+        if (result.lastIndexOf('\n') == result.length()-1) {
+            result = result.substring(0, result.length()-1);
+        }
+        return result.trim();
     }
 
     String unencodeMail(String s) {

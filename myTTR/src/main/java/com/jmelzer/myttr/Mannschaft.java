@@ -1,5 +1,9 @@
 package com.jmelzer.myttr;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by J. Melzer on 19.02.2015.
  * Mannschaft in Liga.
@@ -20,6 +24,8 @@ public class Mannschaft {
 
     String kontakt;
     private String mailTo;
+
+    List<String> spielLokale = new ArrayList<>();
 
     public Mannschaft(String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
@@ -116,5 +122,17 @@ public class Mannschaft {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<String> getSpielLokale() {
+        return Collections.unmodifiableList(spielLokale);
+    }
+
+    public void addSpielLokal(String spielLokal) {
+        spielLokale.add(spielLokal);
+    }
+
+    public void removeAllSpielLokale() {
+        spielLokale.clear();
     }
 }

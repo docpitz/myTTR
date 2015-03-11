@@ -44,6 +44,9 @@ public class FavoriteLigaDataBaseAdapterTest extends TestCase {
         list = adapter.getAllEntries();
         assertEquals(2, list.size());
 
+        assertFalse(adapter.existsEntry("noone"));
+        assertTrue(adapter.existsEntry("liga2"));
+
         adapter.deleteAllEntries();
         list = adapter.getAllEntries();
         assertEquals(0, list.size());

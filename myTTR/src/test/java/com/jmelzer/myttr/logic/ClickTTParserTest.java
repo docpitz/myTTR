@@ -159,6 +159,18 @@ public class ClickTTParserTest {
     }
 
     @Test
+    public void testReadStaffelHttv() throws Exception {
+        String page = readFile("assets/clicktt/staffel-hl-httv.htm");
+        assertNotNull(page);
+        Liga liga = new Liga();
+        liga = parser.parseLiga(liga, page);
+
+        for (Mannschaft m : liga.getMannschaften()) {
+            System.out.println( "m = " + m);
+        }
+    }
+
+    @Test
     public void testReadStaffeErrorIntl() throws Exception {
         String page = readFile("assets/clicktt/staffel-2.bl-d.htm");
         assertNotNull(page);
@@ -225,7 +237,32 @@ public class ClickTTParserTest {
         parser.parseDetail(page, mannschaft);
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
         assertEquals("mailto:manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
+
     }
+    @Test
+    public void testMannschaftDetailSpielLokale() throws Exception {
+        String page = readFile("assets/clicktt/mannschafts_detail_niederkassel.htm");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseDetail(page, mannschaft);
+        List<String> lokale = mannschaft.getSpielLokale();
+        for (String s : lokale) {
+            System.out.println("s = " + s);
+        }
+        assertEquals(3, lokale.size());
+        assertEquals("Spiellokal 1: Sporthalle Nord\nEingang vom Parkplatz an der Premnitzer Straße, 53859 Niederkassel-Lülsdorf",
+                lokale.get(0));
+        assertEquals("Spiellokal 2: Sporthalle Süd\nEifelstr., 53859 Niederkassel-Mondorf",
+                lokale.get(1));
+        assertEquals("Spiellokal 3: Turnhalle GS Rheidt\nHoher Rain, 53859 Niederkassel-Rheidt",
+                lokale.get(2));
+    }
+    @Test
+    public void testcleanupSpielLokalHtml() throws Exception {
+        assertEquals("Spiellokal 1: Sporthalle Nord\nBla blubP remnitzer Straße, 53859 Niederkassel-Lülsdorf",
+                parser.cleanupSpielLokalHtml("Spiellokal 1:</b>              Sporthalle Nord<br />Bla blubP remnitzer Straße, 53859 Niederkassel-Lülsdorf              <br />"));
+
+    }
+
 }
 
 

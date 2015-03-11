@@ -10,6 +10,7 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
@@ -90,6 +91,62 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
         assertTrue(spiel.getSpiele().size() > 0);
     }
+
+    @MediumTest
+    public void testAllVerbaende() throws Exception {
+        List<Verband> verbaende = parser.readVerbaende();
+        for (Verband verband : verbaende) {
+            parser.readLigen(verband);
+            assertTrue(verband.toString(), verband.getLigaList().size() > 0);
+        }
+
+//        Verband dttb = parser.readTopLigen();
+//        parser.readLigen(dttb);
+//        for (Liga liga : dttb.getLigaList()) {
+//            Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
+//            parser.readLiga(liga);
+//            assertTrue(liga.toString(), liga.getMannschaften().size() > 0);
+//            Log.i(Constants.LOG_TAG, "liga mannschaften = " + liga.getMannschaften().size() );
+//        }
+
+        //bezirke
+        for (Verband verband : verbaende) {
+
+//            readLigenAndTest(verband);
+
+            Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
+            parser.readBezirke(verband);
+            if (verband.getBezirkList().size() == 0) {
+                Log.e(Constants.LOG_TAG, "no bezirk in '" + verband.getName() + "'");
+            } else {
+                for (Bezirk bezirk : verband.getBezirkList()) {
+                    Log.i(Constants.LOG_TAG, "read kreis & liga from '" + bezirk.getName() + "'");
+                    parser.readKreiseAndLigen(bezirk);
+                    assertTrue(bezirk.getLigen().size() > 0);
+                    for (Liga liga : bezirk.getLigen()) {
+                        Log.i(Constants.LOG_TAG, "read liga '" + liga + "'");
+                        parser.readLiga(liga);
+                    }
+                    assertTrue(bezirk.getKreise().size() > 0);
+                }
+            }
+        }
+    }
+
+    void readLigenAndTest(Verband verband) throws NetworkException {
+        Log.i(Constants.LOG_TAG, "read ligen from '" + verband.getName() + "'");
+        parser.readLigen(verband);
+        for (Liga liga : verband.getLigaList()) {
+            Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
+            parser.readLiga(liga);
+            if (liga.getMannschaften().size() == 0) {
+                Log.i(Constants.LOG_TAG, "liga don't have any mannschaften :-(");
+            } else {
+                Log.i(Constants.LOG_TAG, "liga mannschaften = " + liga.getMannschaften().size());
+            }
+        }
+    }
+
 }
 
 

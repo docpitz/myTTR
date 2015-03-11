@@ -1,10 +1,7 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,8 +11,6 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
-
-import java.lang.reflect.Method;
 
 /**
  * Created by J. Melzer on 21.02.2015.
@@ -59,7 +54,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     }
 
     public void info(MenuItem item) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaMannschaftInfoAction.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaMannschaftInfoActivity.class) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 new ClickTTParser().readMannschaftsInfo(MyApplication.selectedMannschaft);

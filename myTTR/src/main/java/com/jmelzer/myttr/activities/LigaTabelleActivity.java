@@ -90,9 +90,12 @@ public class LigaTabelleActivity extends BaseActivity {
     public void favorite(MenuItem item) {
         FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
         adapter.open();
-        adapter.insertEntry(liga.getNameForFav(), liga.getUrl());
-        Toast.makeText(this, getString(R.string.favorite_added),
-                Toast.LENGTH_LONG).show();
+        if (adapter.existsEntry(liga.getNameForFav())) {
+            Toast.makeText(this, getString(R.string.favorite_exists), Toast.LENGTH_LONG).show();
+        } else {
+            adapter.insertEntry(liga.getNameForFav(), liga.getUrl());
+            Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_LONG).show();
+        }
     }
     private static class ViewHolder {
         ImageView arrow;
@@ -149,9 +152,13 @@ public class LigaTabelleActivity extends BaseActivity {
         menuInflater.inflate(R.menu.liga_actions, menu);
         return true;
     }
-    @Override
-    public void onBackPressed() {
-        Intent target = new Intent(this, LigaHomeActivity.class);
-        startActivity(target);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (favoritesWereModified) {
+//            Intent target = new Intent(this, LigaHomeActivity.class);
+//            startActivity(target);
+//        } else {
+//
+//        }
+//    }
 }

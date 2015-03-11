@@ -137,13 +137,17 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             textView.setText(spiel.getErgebnis());
 
             final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
-            arrow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MyApplication.selectedMannschaftSpiel = spiel;
-                    callMannschaftSpielDetail();
-                }
-            });
+            if (spiel.getUrlDetail() == null) {
+                arrow.setVisibility(View.INVISIBLE);
+            } else {
+                arrow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MyApplication.selectedMannschaftSpiel = spiel;
+                        callMannschaftSpielDetail();
+                    }
+                });
+            }
             return rowView;
         }
     }

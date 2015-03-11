@@ -98,6 +98,7 @@
     <string name="reset">Zurücksetzen</string>
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
     <string name="favorite_added">Die Liga wurde zu deinen Favoriten hinzugefügt. Du kannst sie bei der Ligaauswahl bearbeiten</string>
+    <string name="favorite_exists">Die Liga existiert bereits in deinen Favoriten</string>
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
     <string name="info">Info</string>
     <string name="liga">Liga</string>
@@ -110,6 +111,8 @@
     <string name="bezirk_label">Bezirk:</string>
     <string name="kreis_label">Kreis:</string>
     <string name="ueberschrift_liga">Ligen</string>
+    <string name="label_kontakt">Kontakt:</string>
+    <string name="sample_kontakt">von Thurn und Taxis, Johannes\nMobil: 0177 0000000\nkalr.hans@gmx.de</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

@@ -91,4 +91,14 @@ public class FavoriteLigaDataBaseAdapter {
         cursor.close();
         return list;
     }
+
+    public boolean existsEntry(String name) {
+        Cursor cursor = db.query(TABLE_NAME, null, " LIGA_NAME = '" + name + "'", null, null, null, null);
+        if (cursor.getCount() < 1) {
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
 }

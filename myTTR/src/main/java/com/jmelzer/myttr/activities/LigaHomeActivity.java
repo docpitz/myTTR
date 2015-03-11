@@ -42,6 +42,7 @@ public class LigaHomeActivity extends BaseActivity {
     private Bezirk selectedBezirk;
     private List<Liga> ligaList;
     private Kreis selectedKreis;
+    private List<Liga> allLigaList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,12 +58,11 @@ public class LigaHomeActivity extends BaseActivity {
         configBezirkAdapter();
         configKreisAdapter();
         configLigAdapter();
-
-        Spinner spinnerKat = (Spinner) findViewById(R.id.kategorie_spinner);
-        KategorieAdapter adapter = new KategorieAdapter(this, android.R.layout.simple_spinner_item, filterKategorien());
-
-        spinnerKat.setAdapter(adapter);
-        spinnerKat.setOnItemSelectedListener(new KategorieListener());
+        configKategorienAdapter();
+//        Spinner spinnerKat = (Spinner) findViewById(R.id.kategorie_spinner);
+//        KategorieAdapter adapter = new KategorieAdapter(this, android.R.layout.simple_spinner_item, filterKategorien());
+//        spinnerKat.setAdapter(adapter);
+//        spinnerKat.setOnItemSelectedListener(new KategorieListener());
 
 
     }
@@ -70,11 +70,11 @@ public class LigaHomeActivity extends BaseActivity {
     private List<String> filterKategorien() {
         List<String> list = new ArrayList<>();
 
-        if (ligaList == null) return list;
+        if (allLigaList == null) return list;
 
         Set<String> set = new TreeSet<>();
 
-        for (Liga liga : ligaList) {
+        for (Liga liga : allLigaList) {
             set.add(liga.getKategorie());
         }
         list.addAll(set);
@@ -145,6 +145,7 @@ public class LigaHomeActivity extends BaseActivity {
                         configBezirkAdapter();
                         configKreisAdapter();
                         configLigAdapter();
+                        configKategorienAdapter();
                     }
                 };
                 task.execute();
@@ -152,6 +153,7 @@ public class LigaHomeActivity extends BaseActivity {
                 selectedBezirk = null;
                 configBezirkAdapter();
                 configLigAdapter();
+                configKategorienAdapter();
             }
 
         }
@@ -254,13 +256,16 @@ public class LigaHomeActivity extends BaseActivity {
     void configLigAdapter() {
         final ListView listview = (ListView) findViewById(R.id.liga_detail_list);
         if (selectedBezirk != null && selectedBezirk.getUrl() != null) {
-            if (selectedKreis != null && selectedKreis.getUrl() != null)
-                ligaList = filterKategorie(selectedKreis.getLigen(), selectedKategorie);
-            else
-                ligaList = filterKategorie(selectedBezirk.getLigen(), selectedKategorie);
+            if (selectedKreis != null && selectedKreis.getUrl() != null) {
+                allLigaList = selectedKreis.getLigen();
+            }
+            else {
+                allLigaList = selectedBezirk.getLigen();
+            }
         } else {
-            ligaList = filterKategorie(MyApplication.selectedVerband.getLigaList(), selectedKategorie);
+            allLigaList = MyApplication.selectedVerband.getLigaList();
         }
+        ligaList = filterLigenBySelectedKategorie();
 
         final LigaAdapter adapter = new LigaAdapter(this, android.R.layout.simple_list_item_1, ligaList);
         listview.setAdapter(adapter);
@@ -271,12 +276,20 @@ public class LigaHomeActivity extends BaseActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
                 view.setSelected(true);
-
                 MyApplication.setSelectedLiga((Liga) parent.getItemAtPosition(position));
                 tabelle();
                 return false;
             }
         });
+    }
+
+    void configKategorienAdapter() {
+        Spinner spinner = (Spinner) findViewById(R.id.kategorie_spinner);
+        KategorieAdapter adapter = new KategorieAdapter(this,
+                android.R.layout.simple_spinner_item,
+                filterKategorien());
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new KategorieListener());
     }
 
     void configBezirkAdapter() {
@@ -297,10 +310,10 @@ public class LigaHomeActivity extends BaseActivity {
         spinner.setOnItemSelectedListener(new KreisListener());
     }
 
-    private List<Liga> filterKategorie(List<Liga> topLigen, CharSequence text) {
+    private List<Liga> filterLigenBySelectedKategorie() {
         List<Liga> filteredList = new ArrayList<>();
-        for (Liga liga : topLigen) {
-            if (text == null || liga.getKategorie().equals(text)) {
+        for (Liga liga : allLigaList) {
+            if (selectedKategorie == null || liga.getKategorie().equals(selectedKategorie)) {
                 filteredList.add(liga);
             }
         }
@@ -449,4 +462,9 @@ public class LigaHomeActivity extends BaseActivity {
         startActivity(target);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
+    }
 }
