@@ -1,5 +1,7 @@
 package com.jmelzer.myttr.logic;
 
+import java.util.Locale;
+
 /**
  * Created by J. Melzer on 19.02.2015.
  */
@@ -17,7 +19,7 @@ public class AbstractBaseParser {
         private void trim(String result) {
             if (result != null) {
                 //non-breaking space
-                this.result = result.trim().replace("\u00A0", "");
+                this.result = result.trim().replace("\u00A0", " ");
             }
         }
 
@@ -32,27 +34,37 @@ public class AbstractBaseParser {
 
     /**
      * read string between 2 tag first tag can be opened e.g. <td but we seach after the closing >
+     * The start tag shall not be closed with >
      *
      * @param page     to search threw
      * @param start    index to start
-     * @param tagStart
-     * @param tagEnd
+     * @param tagStart to search for, can be null
+     * @param tagEnd to search for, can be null
      */
     ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd) {
-        ParseResult result = readBetween(page, start, tagStart, tagEnd);
+        return readBetweenOpenTag(page, start, tagStart, tagEnd, false);
+    }
+
+    ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
+        ParseResult result = readBetween(page, start, tagStart, tagEnd, ignoreCase);
         if (result != null) {
-            ParseResult result2 = readBetween(result.result, 0, ">", null);
+            ParseResult result2 = readBetween(result.result, 0, ">", null, ignoreCase);
             result2.end = result.end;
             return result2;
         }
         return null;
     }
-
-    ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
+    ParseResult readBetween(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
+        String toSearch = "";
+        if (ignoreCase) {
+            toSearch = page.toLowerCase(Locale.GERMAN);
+        } else {
+            toSearch = page;
+        }
         int s = start;
         int l = 0;
         if (tagStart != null) {
-            s = page.indexOf(tagStart, start);
+            s = toSearch.indexOf(tagStart, start);
             if (s == -1) {
                 return null;
             }
@@ -62,7 +74,7 @@ public class AbstractBaseParser {
         int end = 0;
 
         if (tagEnd != null) {
-            idxEndTag = page.indexOf(tagEnd, s + l);
+            idxEndTag = toSearch.indexOf(tagEnd, s + l);
             end = idxEndTag + tagEnd.length();
         } else {
             end = idxEndTag = page.length();
@@ -73,6 +85,10 @@ public class AbstractBaseParser {
             return new ParseResult(page.substring(s + l, idxEndTag), end);
         }
     }
+    ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
+        return readBetween(page, start, tagStart, tagEnd, false);
+    }
+
     protected String safeResult(ParseResult parseResult) {
         if (parseResult != null) {
             return parseResult.result;

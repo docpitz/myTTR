@@ -1,11 +1,14 @@
 package com.jmelzer.myttr.logic;
 
+import android.text.Html;
+
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
+import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.util.UrlUtil;
 
@@ -567,13 +570,18 @@ public class ClickTTParser extends AbstractBaseParser {
 
     String cleanupSpielLokalHtml(String s) {
 //        String result = s.replaceAll("</b>\[ ]{2,}", "");
-        String result = s.replaceAll( "\\s{2,}", " ").replace("</b>", "");
+        String result = s.replaceAll("\\s{2,}", " ").replace("</b>", "");
         result = result.replaceAll("<br />", "\n");
         //remove the last \n
-        if (result.lastIndexOf('\n') == result.length()-1) {
-            result = result.substring(0, result.length()-1);
-        }
+        result = removeLastNewLine(result);
         return result.trim();
+    }
+
+    private String removeLastNewLine(String result) {
+        if (result.lastIndexOf('\n') == result.length() - 1) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
     }
 
     String unencodeMail(String s) {
@@ -594,5 +602,136 @@ public class ClickTTParser extends AbstractBaseParser {
         }
         return result;
 
+    }
+
+    /**
+     * parse the result of the click tt detail
+     * e.g. http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425
+     *
+     * @param page to be parsed
+     * @return spieler never null, maybe empty
+     */
+    public Spieler parseSpieler(String page) {
+        Spieler spieler = new Spieler();
+        //starting point
+        ParseResult result = readBetween(page, 0, "Mannschaftsmeldung", null);
+        result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
+        spieler.setMeldung(cleanHtml(result));
+
+        result = readBetween(page, 0, "Mannschaftseinsätze", null);
+        result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
+        String einsaetze = result.result;
+        while (true) {
+            ParseResult r = readBetween(einsaetze, 0, null, ":</b>");
+            if (r == null) break;
+            String kat = r.result;
+            String[] aref = readHrefAndATag(einsaetze);
+
+            spieler.addEinsatz(kat, aref[1], aref[0]);
+            int idx = einsaetze.indexOf("<b>");
+            if (idx == -1) break;
+            einsaetze = einsaetze.substring(idx + 3);
+        }
+        result = readBetween(page, 0, "Einzelbilanzen", null);
+        result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
+        String bilanz = result.result;
+        while (true) {
+            ParseResult r = readBetween(bilanz, 0, null, ":</b>");
+            if (r == null) break;
+            String kat = r.result;
+            ParseResult ergebnis = readBetween(bilanz, 0, "</b>", "<br />");
+
+            spieler.addBilanz(kat, ergebnis.result);
+            int idx = bilanz.indexOf("<b>");
+            if (idx == -1) break;
+            bilanz = bilanz.substring(idx + 3);
+        }
+        parseEinzelSpiele(spieler, page);
+        return spieler;
+    }
+
+    private void parseEinzelSpiele(Spieler spieler, String page) {
+        ParseResult resultStart = readBetween(page, 0, "Einzel-Spiele", null);
+        if (resultStart == null) return;
+        ParseResult resultTable = readBetweenOpenTag(resultStart.result, 0, "<table class=\"result-set\"", "</table>");
+        if (resultTable == null) return;
+
+        int idx = 0;
+        while (true) {
+            //every child table have a header in h2
+            ParseResult resultE = readBetweenOpenTag(resultTable.result, idx, "<h2", "</h2>");
+            if (resultE == null) break;
+            System.out.println("Next header " + resultE.result);
+            Spieler.LigaErgebnisse ergebnisse = new Spieler.LigaErgebnisse(replaceMultipleSpaces(resultE.result));
+            spieler.addLigaErgebnisse(ergebnisse);
+            idx = resultE.end;
+
+            int idxT = idx + 1;
+            int c = 0;
+            String lastDatum = "";
+            while (true) {
+                //go threw einspiele in current table
+                ParseResult resultrow = readBetweenOpenTag(resultTable.result, idxT, "<tr", "</tr>");
+//                ParseResult resultrow = readBetween(resultTable.result, idxT, "<tr>", "</tr>");
+                if (isEmpty(resultrow) || resultrow.result.contains("<h2>")) {
+                    break;
+                }
+                if (c++ < 1) {
+                    idxT = resultrow.end;
+                    continue;//skip first 1 row
+                }
+//                System.out.println("resultrow = " + safeResult(resultrow));
+                Spieler.EinzelSpiel einzelSpiel = parseEinzelspielTableRow(resultrow);
+                if (einzelSpiel.getDatum().isEmpty()) {
+                    einzelSpiel.setDatum(lastDatum);
+                } else {
+                    lastDatum = einzelSpiel.getDatum();
+                }
+                ergebnisse.addSpiel(einzelSpiel);
+                idxT = resultrow.end;
+            }
+        }
+    }
+
+    private Spieler.EinzelSpiel parseEinzelspielTableRow(ParseResult resultrow) {
+        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>", true);
+        String datum = safeResult(result);
+        result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
+        String pos = safeResult(result);
+        result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
+        String gegner = readHrefAndATag(safeResult(result))[1];
+        result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
+        String erg = safeResult(result);
+        erg = Html.fromHtml(erg).toString();
+        String saetze = "";
+        for (int i = 1; i < 6; i++) {
+            result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
+            saetze += safeResult(result);
+            saetze += " ";
+        }
+        result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
+        String gegnerM = safeResult(result);
+        Spieler.EinzelSpiel spiel = new Spieler.EinzelSpiel(datum, pos, gegner, erg, saetze.trim(), gegnerM);
+        return spiel;
+    }
+
+    private String cleanHtml(ParseResult result) {
+        if (result == null) {
+            return null;
+        }
+        String ret = result.result;
+        ret = ret.replaceAll("<b>", " ");
+        ret = ret.replaceAll("</b>", " ");
+        ret = replaceMultipleSpaces(ret);
+        ret = ret.replaceAll("<br />", "\n");
+        ret = ret.replaceAll("\n ", "\n");
+        ret = ret.replaceAll(" \n", "\n");
+        ret = removeLastNewLine(ret);
+        return ret;
+    }
+
+    protected String replaceMultipleSpaces(String s) {
+        s = s.replaceAll("\\s{2,}", " ");
+        return s;
     }
 }

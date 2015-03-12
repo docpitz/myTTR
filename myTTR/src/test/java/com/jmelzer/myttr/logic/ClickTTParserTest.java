@@ -17,7 +17,9 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
+import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.utils.StringUtils;
 
 import junit.framework.Assert;
 
@@ -63,7 +65,7 @@ public class ClickTTParserTest {
             stringBuilder.append(ls);
         }
 
-        return StringEscapeUtils.unescapeHtml4(stringBuilder.toString());
+        return StringUtils.unescapeHtml3(stringBuilder.toString());
     }
 
     @Test
@@ -262,7 +264,39 @@ public class ClickTTParserTest {
                 parser.cleanupSpielLokalHtml("Spiellokal 1:</b>              Sporthalle Nord<br />Bla blubP remnitzer Straße, 53859 Niederkassel-Lülsdorf              <br />"));
 
     }
+    @Test
+    public void testParseSpieler() throws Exception {
+        assertEquals(" ", StringUtils.unescapeHtml3("&nbsp;"));
 
+        String page = readFile("assets/clicktt/spielerportrait.htm");
+        assertNotNull(page);
+        Spieler spieler = parser.parseSpieler(page);
+        assertEquals("Herren: VR 1.2 RR 1.3\n" +
+                "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
+
+        assertEquals(2, spieler.getEinsaetze().size());
+        for (Spieler.Einsatz einsatz : spieler.getEinsaetze()) {
+            System.out.println("einsatz = " + einsatz);
+        }
+        Spieler.Einsatz einsatz = spieler.getEinsaetze().get(0);
+        assertEquals("Herren", einsatz.getKategorie());
+        assertEquals("Herren-Bezirksliga 2", einsatz.getLigaName());
+        assertTrue(einsatz.getUrl().startsWith("/cgi-bin"));
+        einsatz = spieler.getEinsaetze().get(1);
+        assertEquals("Jungen", einsatz.getKategorie());
+        assertEquals("Jungen-Verbandsliga 4", einsatz.getLigaName());
+        assertTrue(einsatz.getUrl().startsWith("/cgi-bin"));
+
+        assertEquals(2, spieler.getBilanzen().size());
+        for (Spieler.Bilanz bilanz : spieler.getBilanzen()) {
+            System.out.println("bilanz = " + bilanz);
+        }
+
+        List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
+        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
+            System.out.println("ligaErgebnisse = " + ligaErgebnisse);
+        }
+    }
 }
 
 
