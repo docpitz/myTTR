@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,5 +115,8 @@ public class Mannschaftspiel {
 
     public List<Spielbericht> getSpiele() {
         return spiele;
+    }
+    public String getHttpAndDomain() {
+        return UrlUtil.getHttpAndDomain(urlDetail);
     }
 }

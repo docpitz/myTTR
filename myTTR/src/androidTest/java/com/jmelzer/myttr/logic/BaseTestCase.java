@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
  */
 public class BaseTestCase extends TestCase {
     //switch wether we read html from file system or calling mytt.de
-    boolean offline = true;
+    boolean offline = false;
     protected MockHttpClient mockHttpClient;
 
     protected void prepareMocks() {

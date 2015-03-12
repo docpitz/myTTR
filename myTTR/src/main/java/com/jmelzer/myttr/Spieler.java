@@ -27,6 +27,14 @@ public class Spieler {
                     ", spiele=" + spiele +
                     '}';
         }
+
+        public List<EinzelSpiel> getSpiele() {
+            return Collections.unmodifiableList(spiele);
+        }
+
+        public String getName() {
+            return name;
+        }
     }
     public static class EinzelSpiel {
         String datum;
@@ -59,6 +67,10 @@ public class Spieler {
 
         public String getGegner() {
             return gegner;
+        }
+
+        public String getGegnerMannschaft() {
+            return gegnerMannschaft;
         }
 
         @Override
@@ -140,10 +152,20 @@ public class Spieler {
             return url;
         }
     }
+
+    String name;
     String meldung;
     List<Einsatz> einsaetze = new ArrayList<>();
     List<Bilanz> bilanzen = new ArrayList<>();
     List<LigaErgebnisse> ergebnisse = new ArrayList<>();
+
+    public Spieler(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public String getMeldung() {
         return meldung;

@@ -227,9 +227,9 @@ public class ClickTTParserTest {
     }
     @Test
     public void testUnencodeMail() throws Exception {
-        assertEquals("mailto:manfred.und.petra.hildebrandt@t-online.de", parser.unencodeMail("'de', 'manfred', 't-online', 'und.petra.hildebrandt'"));
-        assertEquals("mailto:m.pfender@gmx.de", parser.unencodeMail("'de', 'm', 'gmx', 'pfender'"));
-        assertEquals("mailto:bundesliga@borussia-duesseldorf.com", parser.unencodeMail("'com', 'bundesliga', 'borussia-duesseldorf', ''"));
+        assertEquals("manfred.und.petra.hildebrandt@t-online.de", parser.unencodeMail("'de', 'manfred', 't-online', 'und.petra.hildebrandt'"));
+        assertEquals("m.pfender@gmx.de", parser.unencodeMail("'de', 'm', 'gmx', 'pfender'"));
+        assertEquals("bundesliga@borussia-duesseldorf.com", parser.unencodeMail("'com', 'bundesliga', 'borussia-duesseldorf', ''"));
 
     }
     @Test
@@ -238,7 +238,7 @@ public class ClickTTParserTest {
         Mannschaft mannschaft = new Mannschaft();
         parser.parseDetail(page, mannschaft);
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
-        assertEquals("mailto:manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
+        assertEquals("manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
 
     }
     @Test
@@ -266,11 +266,11 @@ public class ClickTTParserTest {
     }
     @Test
     public void testParseSpieler() throws Exception {
-        assertEquals(" ", StringUtils.unescapeHtml3("&nbsp;"));
 
         String page = readFile("assets/clicktt/spielerportrait.htm");
         assertNotNull(page);
-        Spieler spieler = parser.parseSpieler(page);
+        Spieler spieler = parser.parseSpieler("Fritz, Heinz", page);
+        assertEquals("Fritz. Heinz", spieler.getName());
         assertEquals("Herren: VR 1.2 RR 1.3\n" +
                 "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
 

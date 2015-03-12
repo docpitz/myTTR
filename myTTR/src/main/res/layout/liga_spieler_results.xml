@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="Spieler: Fritz von Thurn und Taxis"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <!--meldungen-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Meldung:"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textMeldungen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Herren: VR 1.2  RR 1.3\nJungen: VR 1.1  RR 1.1 "/>
+    </LinearLayout>
+
+    <!--einsaetze-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textLabelEinsatz"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Einsätze:"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textEinsaetze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Herren : Herren-Bezirksliga 2\nJungen : Jungen-Verbandsliga 4 "/>
+
+    </LinearLayout>
+    <!--Bilanzen-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textLabelBilanzen"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Bilanzen:"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textBilanzen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Herren : VR 5:15 RR 6:8 gesamt 11:23\nJungen : VR 17:8 RR 10:4 gesamt 27:12"/>
+
+    </LinearLayout>
+
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

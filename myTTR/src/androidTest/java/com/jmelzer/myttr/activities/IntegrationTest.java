@@ -59,7 +59,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     public void testit() throws InterruptedException {
 //        testAutomaticLogin();
 
-//        login();
+        login();
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
 //        testHomeButton();
         testPreferences();

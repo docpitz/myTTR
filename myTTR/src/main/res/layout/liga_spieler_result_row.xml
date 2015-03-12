@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/datum"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="31.12.2012"
+        android:layout_weight="2"
+        android:layout_width="0dp" />
+    <TextView
+        android:id="@+id/pos"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="1.1-1.2"
+        android:layout_weight="1"
+        android:layout_width="0dp" />
+    <TextView
+        android:id="@+id/gegner"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="Karl von Zumwinkel"
+        android:layout_weight="2"
+        android:layout_width="0dp" />
+    <TextView
+        android:id="@+id/ergebnis"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="3:2"
+        android:layout_weight="0.5"
+        android:layout_width="0dp" />
+   <!-- <TextView
+        android:id="@+id/saetze"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="14:12 11:9 9:11 9:11 17:15"
+        android:layout_weight="4"
+        android:layout_width="0dp" />-->
+    <TextView
+        android:id="@+id/gegnerM"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="Borussia Düsseldorf"
+        android:layout_weight="2"
+        android:layout_width="0dp" />
+</LinearLayout>

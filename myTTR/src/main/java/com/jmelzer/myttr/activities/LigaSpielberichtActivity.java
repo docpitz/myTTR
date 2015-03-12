@@ -1,6 +1,8 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,12 +14,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Spielbericht;
+import com.jmelzer.myttr.logic.ClickTTParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.List;
 
@@ -39,39 +45,92 @@ public class LigaSpielberichtActivity extends BaseActivity {
         tv.setText(MyApplication.selectedMannschaftSpiel.getHeimMannschaft().getName() + " - " +
                 MyApplication.selectedMannschaftSpiel.getGastMannschaft().getName() +  "    " + MyApplication.selectedMannschaftSpiel.getErgebnis());
     }
+    private static class ViewHolder {
+        TextView textPaarung;
+        TextView textHeim;
+        TextView textGast;
+        TextView textSets;
+        ImageView arrow;
+    }
     class SpielberichtAdapter extends ArrayAdapter<Spielbericht> {
+        private LayoutInflater layoutInflater;
 
         public SpielberichtAdapter(Context context, int resource, List<Spielbericht> list) {
             super(context, resource, list);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewHolder holder;
 
-            View rowView = inflater.inflate(R.layout.liga_spielbericht_row, parent, false);
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.liga_spielbericht_row, null);
+                holder = new ViewHolder();
+                holder.textPaarung = (TextView) convertView.findViewById(R.id.paarung);
+                holder.textHeim = (TextView) convertView.findViewById(R.id.heim);
+                holder.textGast = (TextView) convertView.findViewById(R.id.gast);
+                holder.textSets = (TextView) convertView.findViewById(R.id.set_result);
+                holder.arrow = (ImageView) convertView.findViewById(R.id.arrow);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+
             final Spielbericht spielbericht = getItem(position);
 
-            TextView textView = (TextView) rowView.findViewById(R.id.paarung);
-            textView.setText(spielbericht.getName());
+            holder.textPaarung.setText(spielbericht.getName());
+            holder.textHeim.setText(spielbericht.getSpieler1Name());
+            if (!spielbericht.getName().startsWith("D")) {
+                holder.textHeim.setTypeface(null, Typeface.ITALIC);
+                holder.textHeim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startSpielerDetail(spielbericht.getSpieler1Name(), spielbericht.getSpieler1Url());
+                    }
+                });
+            }
+            holder.textGast.setText(spielbericht.getSpieler2Name());
+            if (!spielbericht.getName().startsWith("D")) {
+                holder.textGast.setTypeface(null, Typeface.ITALIC);
+                holder.textGast.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startSpielerDetail(spielbericht.getSpieler2Name(), spielbericht.getSpieler2Url());
+                    }
+                });
+            }
+            holder.textSets.setText(spielbericht.getResult());
 
-            textView = (TextView) rowView.findViewById(R.id.heim);
-            textView.setText(spielbericht.getSpieler1Name());
-            textView = (TextView) rowView.findViewById(R.id.gast);
-            textView.setText(spielbericht.getSpieler2Name());
-            textView = (TextView) rowView.findViewById(R.id.set_result);
-            textView.setText(spielbericht.getResult());
-            final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
-            arrow.setOnClickListener(new View.OnClickListener() {
+            holder.arrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showPopup(v, spielbericht);
                 }
             });
-            return rowView;
+            return convertView;
         }
     }
+
+    private void startSpielerDetail(final String name, final String url) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaSpielerResultsActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.selectedLigaSpieler = new ClickTTParser().readSpielerDetail(name, url);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedLigaSpieler != null;
+            }
+
+
+        };
+        task.execute();
+    }
+
     public void showPopup(View v, Spielbericht spielbericht) {
         PopupMenu popup = new PopupMenu(this, v);
         Menu menu = popup.getMenu();

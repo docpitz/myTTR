@@ -18,7 +18,8 @@
         android:text="von Hellendall, Herbert"
         android:layout_weight="4"
         android:layout_marginLeft="5dp"
-        android:layout_width="0dp" />
+        android:layout_width="0dp"
+        />
 
     <TextView
         android:id="@+id/gast"
@@ -26,7 +27,8 @@
         android:text="von Fritzhausen, Walter"
         android:layout_marginLeft="10dp"
         android:layout_weight="4"
-        android:layout_width="0dp"/>
+        android:layout_width="0dp"
+        />
     <TextView
         android:id="@+id/set_result"
         android:layout_height="wrap_content"

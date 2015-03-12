@@ -18,7 +18,8 @@ Offen
             -> Bestimmte Ebenen fixen
      - Manschaftübersicht .
          Aktionen
-        - Spieler Statistik
+        - Spieler Statistik (90%)
+            - Link auf mytt
         - Ergebnisse (Mannschaft und Liga) (fertig)
         - Zukünftige Spiele (P5)
         - Restprogramm-Simulator ? (P5)

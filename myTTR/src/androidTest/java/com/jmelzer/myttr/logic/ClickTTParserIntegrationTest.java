@@ -19,6 +19,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
         parser.readLigen(nrw);
-        assertEquals(47, nrw.getLigaList().size());
+        assertEquals(52, nrw.getLigaList().size());
 
         parser.readBezirke(nrw);
         assertEquals(5, nrw.getBezirkList().size());
@@ -146,7 +147,18 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
         }
     }
+    @SmallTest
+    public void testSpielerDetail() throws Exception {
+        Spieler spieler = parser.readSpielerDetail("Himel, Michael ", "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425");
+        assertEquals("Herren: VR 1.2 RR 1.3\n" +
+                "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
+        assertEquals(2, spieler.getEinsaetze().size());
+        List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
+        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
+            Log.i(Constants.LOG_TAG, "ligaErgebnisse = " + ligaErgebnisse);
+        }
 
+    }
 }
 
 

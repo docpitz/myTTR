@@ -95,7 +95,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return new Mannschaftspiel(datum,
                 findMannschaft(liga, heimMannsschaft),
                 findMannschaft(liga, gastMannsschaft),
-                ergebnis, url, genehmigt);
+                ergebnis, liga.getHttpAndDomain() + url, genehmigt);
     }
 
     private Mannschaft findMannschaft(Liga liga, String name) {
@@ -291,7 +291,6 @@ public class ClickTTParser extends AbstractBaseParser {
         ParseResult table = readBetween(page, 0, "<table class=\"result-set\"", "</table>");
         int c = 0;
         int idx = 0;
-        String lastDate = null;
         while (true) {
             ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
             if (isEmpty(resultrow)) {
@@ -306,6 +305,10 @@ public class ClickTTParser extends AbstractBaseParser {
                 parseMannschaftsspielTableRow(mannschaftspiel, resultrow);
             } else {
                 parseMannschaftsspielStatistik(mannschaftspiel, resultrow);
+            }
+            for (Spielbericht spielbericht : mannschaftspiel.getSpiele()) {
+                spielbericht.setSpieler1Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain() , spielbericht.getSpieler1Url()));
+                spielbericht.setSpieler2Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain() , spielbericht.getSpieler2Url()));
             }
             idx = resultrow.end;
 
@@ -411,8 +414,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public void readDetail(Liga liga, Mannschaftspiel spiel) throws NetworkException {
-        String url = liga.getHttpAndDomain();
-        url += spiel.getUrlDetail();
+        String url = spiel.getUrlDetail();
         String page = Client.getPage(url);
         parseMannschaftspiel(page, spiel);
     }
@@ -603,7 +605,10 @@ public class ClickTTParser extends AbstractBaseParser {
         return result;
 
     }
-
+    public Spieler readSpielerDetail(String name, String url) throws NetworkException{
+        String page = Client.getPage(url);
+        return parseSpieler(name , page);
+    }
     /**
      * parse the result of the click tt detail
      * e.g. http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425
@@ -611,8 +616,8 @@ public class ClickTTParser extends AbstractBaseParser {
      * @param page to be parsed
      * @return spieler never null, maybe empty
      */
-    public Spieler parseSpieler(String page) {
-        Spieler spieler = new Spieler();
+    public Spieler parseSpieler(String name, String page) {
+        Spieler spieler = new Spieler(name);
         //starting point
         ParseResult result = readBetween(page, 0, "Mannschaftsmeldung", null);
         result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
