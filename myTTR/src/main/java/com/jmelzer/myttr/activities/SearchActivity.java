@@ -31,6 +31,7 @@ import java.util.List;
 public class SearchActivity extends BaseActivity {
 
     public static final String BACK_TO = "BACK_TO";
+    public static final String INTENT_LIGA_PLAYER = "lp";
     Class goBackToClass = TTRCalculatorActivity.class;
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -40,20 +41,29 @@ public class SearchActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ttr_player_search);
-        EditText editText = (EditText) findViewById(R.id.detail_firstname);
-        editText.setText("");
-        editText = (EditText) findViewById(R.id.detail_lastname);
-        editText.setText("");
-        clubEdit = (EditText) findViewById(R.id.detail_club);
-//        clubEdit.setText(MyApplication.actualPlayer.getClub());
-        clubEdit.setText("");
-
         Intent i = getIntent();
-        if (i != null && i.getExtras() != null) {
+
+
+        clubEdit = (EditText) findViewById(R.id.detail_club);
+
+        if (i != null && i.getExtras() != null && i.getExtras().getSerializable(BACK_TO) != null) {
             goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
         }
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (i != null && i.getExtras() != null && i.getExtras().getBoolean(INTENT_LIGA_PLAYER, false)) {
+            EditText firstNameText = (EditText) findViewById(R.id.detail_firstname);
+            EditText lastNameText = (EditText) findViewById(R.id.detail_lastname);
+            String n = MyApplication.selectedLigaSpieler.getName();
+            int idx = n.indexOf(',');
+            if (idx > -1) {
+                firstNameText.setText(n.substring(idx+1).trim());
+                lastNameText.setText(n.substring(0, idx).trim());
+                clubEdit.setText(MyApplication.selectedLigaSpieler.getClubName());
+                search(null);
+            }
+        }
     }
 
     public void search(final View view) {

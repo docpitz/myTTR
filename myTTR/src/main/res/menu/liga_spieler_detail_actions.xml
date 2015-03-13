@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2014 - 2015.
+  -->
+
+<menu xmlns:tools="http://schemas.android.com/tools"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_details"
+        android:text="Details"
+        android:onClick="details"
+        android:icon="@drawable/ic_actionbar_stat"
+        android:showAsAction="always"
+        android:title="Details"
+        tools:ignore="AppCompatResource"/>
+
+</menu>

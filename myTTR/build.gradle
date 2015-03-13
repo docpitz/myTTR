@@ -39,7 +39,7 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-integration:1.1'
 
     // TODO: requires special build of robolectric right now. working on this...
-    testCompile('org.robolectric:robolectric:2.3') {
+    testCompile('org.robolectric:robolectric:2.4') {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
         exclude module: 'httpclient'

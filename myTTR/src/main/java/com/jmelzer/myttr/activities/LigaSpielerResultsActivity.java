@@ -1,8 +1,12 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -24,13 +28,11 @@ import java.util.List;
 public class LigaSpielerResultsActivity extends BaseActivity {
 
 
-    private Spieler spieler;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liga_spieler_results);
 
-        spieler = MyApplication.selectedLigaSpieler;
+        Spieler spieler = MyApplication.selectedLigaSpieler;
 
         TextView textView = (TextView) findViewById(R.id.textName);
         textView.setText(MyApplication.selectedLigaSpieler.getName());
@@ -65,6 +67,8 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         }
         listView.setAdapter(new ErgebnissAdapter(this, groupList, children));
     }
+
+
 
     class ErgebnissAdapter extends BaseExpandableListAdapter {
         List<String> groupList;
@@ -138,7 +142,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
             textView.setText(childElem.getPos());
             textView = (TextView) convertView.findViewById(R.id.gegner);
             textView.setText(childElem.getGegner());
-            //todo add menu here for detail sets
+            //todo add context menu here for detail sets
             textView = (TextView) convertView.findViewById(R.id.ergebnis);
             textView.setText(childElem.getErgebnis());
 //            textView = (TextView) convertView.findViewById(R.id.saetze);
@@ -155,4 +159,17 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.liga_spieler_detail_actions, menu);
+        return true;
+    }
+
+    public void details(MenuItem item) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
+        intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
+        startActivity(intent);
+    }
 }

@@ -18,8 +18,8 @@ Offen
             -> Bestimmte Ebenen fixen
      - Manschaftübersicht .
          Aktionen
-        - Spieler Statistik (90%)
-            - Link auf mytt
+        - Spieler Statistik (fertig)
+            - Link auf mytt-suche (fertig)
         - Ergebnisse (Mannschaft und Liga) (fertig)
         - Zukünftige Spiele (P5)
         - Restprogramm-Simulator ? (P5)
@@ -32,7 +32,7 @@ Offen
     - Favoriten
         - Merken (fertig)
         - Notification
-
+- Todos entfernen
 - Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
 - Schriftgröße: Konfiguration
 - Simulationsmodus: Ersatzspieler berücksichtigen

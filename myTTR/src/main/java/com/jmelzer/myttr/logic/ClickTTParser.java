@@ -618,6 +618,9 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public Spieler parseSpieler(String name, String page) {
         Spieler spieler = new Spieler(name);
+        ParseResult ligaResult = readBetween(page, 0, "<h1", "</h1>");
+        ligaResult = readBetween(ligaResult.result, 0, "<br />", "<br />");
+        spieler.setClubName(ligaResult.result);
         //starting point
         ParseResult result = readBetween(page, 0, "Mannschaftsmeldung", null);
         result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
@@ -666,7 +669,6 @@ public class ClickTTParser extends AbstractBaseParser {
             //every child table have a header in h2
             ParseResult resultE = readBetweenOpenTag(resultTable.result, idx, "<h2", "</h2>");
             if (resultE == null) break;
-            System.out.println("Next header " + resultE.result);
             Spieler.LigaErgebnisse ergebnisse = new Spieler.LigaErgebnisse(replaceMultipleSpaces(resultE.result));
             spieler.addLigaErgebnisse(ergebnisse);
             idx = resultE.end;

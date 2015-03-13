@@ -10,16 +10,20 @@ import java.util.List;
  */
 public class Spieler {
     public static class LigaErgebnisse {
-        /** e.g. Oberliga Herren West 2  (Vorrunde) */
+        /**
+         * e.g. Oberliga Herren West 2  (Vorrunde)
+         */
         String name;
         List<EinzelSpiel> spiele = new ArrayList<>();
 
         public LigaErgebnisse(String name) {
             this.name = name;
         }
+
         public void addSpiel(EinzelSpiel spiel) {
             spiele.add(spiel);
         }
+
         @Override
         public String toString() {
             return "LigaErgebnisse{" +
@@ -36,6 +40,7 @@ public class Spieler {
             return name;
         }
     }
+
     public static class EinzelSpiel {
         String datum;
         String pos;
@@ -94,6 +99,7 @@ public class Spieler {
         }
 
     }
+
     public static class Bilanz {
         String kategorie;
         String ergebnis;
@@ -135,7 +141,7 @@ public class Spieler {
         public String toString() {
             return "Einsatz{" +
                     "kategorie='" + kategorie + '\'' +
-                    ", ligaName='" + ligaName + '\'' +
+                    ", clubName='" + ligaName + '\'' +
                     ", url='" + url + '\'' +
                     '}';
         }
@@ -154,10 +160,19 @@ public class Spieler {
     }
 
     String name;
+    String clubName;
     String meldung;
     List<Einsatz> einsaetze = new ArrayList<>();
     List<Bilanz> bilanzen = new ArrayList<>();
     List<LigaErgebnisse> ergebnisse = new ArrayList<>();
+
+    public String getClubName() {
+        return clubName;
+    }
+
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
 
     public Spieler(String name) {
         this.name = name;

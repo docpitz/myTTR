@@ -21,9 +21,9 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/home_self"/>
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <!--<ScrollView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent">-->
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -132,5 +132,5 @@
                  android:id="@+id/imageView2"
                  android:src="@drawable/ic_sim"/>-->
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 </LinearLayout>

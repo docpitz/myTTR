@@ -10,9 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.util.Log;
-
-import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -21,9 +18,6 @@ import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.utils.StringUtils;
 
-import junit.framework.Assert;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -270,7 +264,8 @@ public class ClickTTParserTest {
         String page = readFile("assets/clicktt/spielerportrait.htm");
         assertNotNull(page);
         Spieler spieler = parser.parseSpieler("Fritz, Heinz", page);
-        assertEquals("Fritz. Heinz", spieler.getName());
+        assertEquals("Fritz, Heinz", spieler.getName());
+        assertEquals("SSF Bonn 1905 e.V.", spieler.getClubName());
         assertEquals("Herren: VR 1.2 RR 1.3\n" +
                 "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
 
