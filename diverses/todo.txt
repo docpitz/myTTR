@@ -25,6 +25,7 @@ Offen
         - Restprogramm-Simulator ? (P5)
         - Kontakt (fertig)
         - Spiellokale mit Maps (fertig)
+        - Integrations-Tests schreiben
     - Verein
         - Aktuelle Spiele siehe http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/clubInfoDisplay?club=7592
         - Kontakt
@@ -36,7 +37,7 @@ Offen
 - Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
 - Schriftgröße: Konfiguration
 - Simulationsmodus: Ersatzspieler berücksichtigen
-- About Dialog überarbeiten (hat auch Bugs)
+- About Dialog überarbeiten (hat auch Bugs) (fertig)
 
 Erledigt
 ------------

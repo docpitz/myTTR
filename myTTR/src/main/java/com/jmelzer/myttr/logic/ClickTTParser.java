@@ -95,7 +95,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return new Mannschaftspiel(datum,
                 findMannschaft(liga, heimMannsschaft),
                 findMannschaft(liga, gastMannsschaft),
-                ergebnis, liga.getHttpAndDomain() + url, genehmigt);
+                ergebnis, UrlUtil.safeUrl(liga.getHttpAndDomain() , url), genehmigt);
     }
 
     private Mannschaft findMannschaft(Liga liga, String name) {
@@ -104,7 +104,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 return mannschaft;
             }
         }
-        return null;
+        return new Mannschaft(name);
     }
 
     /**

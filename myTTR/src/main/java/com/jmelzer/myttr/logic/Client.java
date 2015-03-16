@@ -35,7 +35,7 @@ import java.util.zip.GZIPInputStream;
 public class Client {
     public static HttpClient client;
     public static CookieStoreDelegate cookieStoreDelegate;
-
+    public static String lastUrl = null;
     static {
         HttpParams httpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
@@ -61,6 +61,7 @@ public class Client {
         long start = System.currentTimeMillis();
         HttpGet httpGet = prepareGet(url);
         try {
+            lastUrl = url;
             Log.i(Constants.LOG_TAG, "calling url '" + url + "'");
             HttpResponse response = Client.client.execute(httpGet);
             Log.i(Constants.LOG_TAG, "execute time " + (System.currentTimeMillis() - start) + " ms");
@@ -69,7 +70,7 @@ public class Client {
             Log.i(Constants.LOG_TAG, "request time " + (System.currentTimeMillis() - start)
                     + " ms , returncode = " + response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == 500) {
-                throw new NetworkException("mytischtennis meldet zur Zeit einen Fehler zurück :-(");
+                throw new NetworkException("die Webseite meldet zur Zeit einen Fehler zurück :-(");
             }
             return s;
         } catch (Exception e) {

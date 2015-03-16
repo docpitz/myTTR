@@ -19,10 +19,9 @@
 			android:id="@+id/info_text"
 			android:gravity="center"
             android:text="myTTR
-
-Version 0.12.2
-
-Copyright 2014-2015"
+Version 1.0.1
+Copyright 2014-2015
+Juergen Melzer"
 			android:layout_gravity="center"
 			android:layout_width="fill_parent"
             android:layout_height="150dp"/>

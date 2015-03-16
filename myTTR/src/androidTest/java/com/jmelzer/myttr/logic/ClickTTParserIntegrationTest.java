@@ -18,6 +18,7 @@ import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
+import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
@@ -101,19 +102,23 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             assertTrue(verband.toString(), verband.getLigaList().size() > 0);
         }
 
-//        Verband dttb = parser.readTopLigen();
-//        parser.readLigen(dttb);
-//        for (Liga liga : dttb.getLigaList()) {
-//            Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
-//            parser.readLiga(liga);
-//            assertTrue(liga.toString(), liga.getMannschaften().size() > 0);
-//            Log.i(Constants.LOG_TAG, "liga mannschaften = " + liga.getMannschaften().size() );
-//        }
+        Verband dttb = parser.readTopLigen();
+        parser.readLigen(dttb);
+        for (Liga liga : dttb.getLigaList()) {
+            Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
+            parser.readLiga(liga);
+            assertTrue(liga.toString(), liga.getMannschaften().size() > 0);
+            Log.i(Constants.LOG_TAG, "liga mannschaften = " + liga.getMannschaften().size());
+            readSpieleAndTest(liga);
+        }
 
         //bezirke
         for (Verband verband : verbaende) {
 
-//            readLigenAndTest(verband);
+//            readLigenAndTest(verband); //allready ok
+            if (verband == dttb) {
+                continue;
+            }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
             parser.readBezirke(verband);
@@ -127,10 +132,59 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                     for (Liga liga : bezirk.getLigen()) {
                         Log.i(Constants.LOG_TAG, "read liga '" + liga + "'");
                         parser.readLiga(liga);
+                        readSpieleAndTest(liga);
                     }
-                    assertTrue(bezirk.getKreise().size() > 0);
+                    if (bezirk.getKreise().size() == 0) {
+                        Log.e(Constants.LOG_TAG, "bezirk don't have kreise " + bezirk.getName());
+                    } else {
+                        for (Kreis kreis : bezirk.getKreise()) {
+                            parser.readLigen(kreis);
+                            for (Liga liga : kreis.getLigen()) {
+                                Log.i(Constants.LOG_TAG, "read liga in kreise '" + liga + "'");
+                                try {
+                                    parser.readLiga(liga);
+                                } catch (NullPointerException e) {
+                                    Log.e(Constants.LOG_TAG, "NPE in  " + liga);
+                                }
+                                readSpieleAndTest(liga);
+
+                            }
+                        }
+                    }
+//                    assertTrue(bezirk.getKreise().size() > 0);
                 }
             }
+        }
+    }
+
+    void readSpieleAndTest(Liga liga) throws NetworkException {
+        if (liga.getUrlRR() == null || liga.getUrlVR() == null) {
+            Log.e(Constants.LOG_TAG, "keine vorrunde / rueckrunde fuer  " + liga);
+            return;
+        }
+        try {
+            parser.readVR(liga);
+            parser.readRR(liga);
+            assertTrue(liga.toString(), liga.getMannschaften().size() > 0);
+
+            for (Mannschaft mannschaft : liga.getMannschaften()) {
+                assertNotNull(mannschaft.getName());
+            }
+            assertTrue(liga.toString(), liga.getSpieleVorrunde().size() > 0);
+            assertTrue(liga.toString(), liga.getSpieleRueckrunde().size() > 0);
+            for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+    //                Log.i(Constants.LOG_TAG, "mannschaftspiel = " + mannschaftspiel);
+                assertNotNull(mannschaftspiel);
+                assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getGastMannschaft());
+                assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getHeimMannschaft());
+            }
+            for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
+                assertNotNull(mannschaftspiel);
+                assertNotNull(mannschaftspiel.getGastMannschaft());
+                assertNotNull(mannschaftspiel.getHeimMannschaft());
+            }
+        } catch (NullPointerException e) {
+            Log.e(Constants.LOG_TAG, "NPE in  " + liga);
         }
     }
 
@@ -147,6 +201,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
         }
     }
+
     @SmallTest
     public void testSpielerDetail() throws Exception {
         Spieler spieler = parser.readSpielerDetail("Himel, Michael ", "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425");

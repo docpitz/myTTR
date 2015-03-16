@@ -95,6 +95,9 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
     }
 
     private void callMannschaftSpielDetail() {
+        if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null) {
+            return;
+        }
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtActivity.class) {
 
             @Override

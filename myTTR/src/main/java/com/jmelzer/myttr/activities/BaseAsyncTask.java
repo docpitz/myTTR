@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
@@ -51,6 +52,9 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                 errorMessage = "Das erneute Anmelden war nicht erfolgreich";
                 Log.e(Constants.LOG_TAG, "", e2);
             }
+        } catch (Exception e) {
+//            catch all others
+            errorMessage = "Fehler beim Lesen der Webseite " + Client.lastUrl;
         }
         return null;
     }

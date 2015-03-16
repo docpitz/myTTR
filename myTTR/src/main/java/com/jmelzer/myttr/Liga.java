@@ -12,11 +12,13 @@ import java.util.List;
  * Represents a Liga like TTBL, 2. Bundesliga etc.
  */
 public class Liga {
-    public static List<String> alleKategorien =  Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
-                "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
-               "Senioren 60", "Seniorinnen 60", "Senioren 70" , "Senioren");
+    public static List<String> alleKategorien = Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
+            "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
+            "Senioren 60", "Seniorinnen 60", "Senioren 70", "Senioren");
 
-    /** Herren , Damen Jungen etc.*/
+    /**
+     * Herren , Damen Jungen etc.
+     */
     String kategorie;
     String name;
     String url;
@@ -44,9 +46,11 @@ public class Liga {
     public String getName() {
         return name;
     }
+
     public String getNameForFav() {
         return name + " - " + getKategorie();
     }
+
     public static String parseNameFromFav(String name) {
         return name.substring(0, name.indexOf(" - "));
     }
@@ -146,8 +150,10 @@ public class Liga {
     private List<Mannschaftspiel> filterSpiele(List<Mannschaftspiel> spiele, String mannschaft) {
         List<Mannschaftspiel> retList = new ArrayList<>();
         for (Mannschaftspiel mannschaftspiel : spiele) {
-            if (mannschaftspiel.getGastMannschaft().getName().equals(mannschaft) ||
-                    mannschaftspiel.getHeimMannschaft().getName().equals(mannschaft)) {
+            if ((mannschaftspiel.getGastMannschaft() != null &&
+                    mannschaft.equals(mannschaftspiel.getGastMannschaft().getName())) ||
+                    (mannschaftspiel.getHeimMannschaft() != null &&
+                            mannschaft.equals(mannschaftspiel.getHeimMannschaft().getName()))) {
                 retList.add(mannschaftspiel);
             }
         }
@@ -161,6 +167,7 @@ public class Liga {
             spieleRueckrunde.clear();
         }
     }
+
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(url);
     }

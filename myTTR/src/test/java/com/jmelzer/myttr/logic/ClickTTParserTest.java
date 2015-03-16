@@ -10,6 +10,9 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.util.Log;
+
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -176,6 +179,21 @@ public class ClickTTParserTest {
 
         for (Mannschaft m : liga.getMannschaften()) {
             System.out.println("m = " + m);
+        }
+    }
+    @Test
+    public void testReadStaffeErrorZ() throws Exception {
+        String page = readFile("assets/clicktt/staffel-zurueckgezogene-mannschaft.htm");
+        assertNotNull(page);
+        Liga liga = new Liga();
+//        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
+        liga = parser.parseErgebnisse(liga, page, true);
+
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel);
+            assertNotNull(mannschaftspiel.toString(),mannschaftspiel.getGastMannschaft());
+            assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getHeimMannschaft());
         }
     }
     @Test
