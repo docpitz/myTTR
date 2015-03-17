@@ -7,17 +7,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 
-//todo rename
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+/**
+ * Adapter for the tabs in liga result.
+ */
+public class LigaTabsPagerAdapter extends FragmentPagerAdapter {
     Mannschaft mannschaft;
     Liga liga;
 
-    public TabsPagerAdapter(FragmentManager fm, Mannschaft m) {
+    public LigaTabsPagerAdapter(FragmentManager fm, Mannschaft m) {
         super(fm);
         mannschaft = m;
     }
 
-    public TabsPagerAdapter(FragmentManager fm, Liga l) {
+    public LigaTabsPagerAdapter(FragmentManager fm, Liga l) {
         super(fm);
         liga = l;
     }

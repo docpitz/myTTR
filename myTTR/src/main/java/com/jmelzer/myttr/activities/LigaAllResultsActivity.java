@@ -4,11 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-
-import java.util.List;
 
 /**
  * Created by J. Melzer on 21.02.2015.
@@ -32,8 +29,8 @@ public class LigaAllResultsActivity extends AbstractLigaResultActivity {
         return MyApplication.getSelectedLiga().getSpieleFor(null, false).size() > 0;
     }
 
-    protected TabsPagerAdapter createTabsAdapter() {
-        return new TabsPagerAdapter(getSupportFragmentManager(),
+    protected LigaTabsPagerAdapter createTabsAdapter() {
+        return new LigaTabsPagerAdapter(getSupportFragmentManager(),
                 MyApplication.getSelectedLiga());
     }
 

@@ -2,18 +2,14 @@ package com.jmelzer.myttr.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
-import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 import java.lang.reflect.Method;
 
 /**
+ * Base class for liga results.
  * Created by J. Melzer on 21.02.2015.
  */
 public abstract class AbstractLigaResultActivity extends BaseActivity {
@@ -25,7 +21,7 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
 
         final ActionBar actionBar = getActionBar();
         viewPager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter mAdapter = createTabsAdapter();
+        LigaTabsPagerAdapter mAdapter = createTabsAdapter();
         viewPager.setAdapter(mAdapter);
 
         forceTabs();
@@ -71,8 +67,10 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
         actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
         actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
     }
+
     abstract boolean startWithRR();
-    abstract protected TabsPagerAdapter createTabsAdapter();
+
+    abstract protected LigaTabsPagerAdapter createTabsAdapter();
 
     // This is where the magic happens!
     public void forceTabs() {
@@ -87,7 +85,6 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
             // This error is safe to ignore, standard tabs will appear.
         }
     }
-
 
 
 }

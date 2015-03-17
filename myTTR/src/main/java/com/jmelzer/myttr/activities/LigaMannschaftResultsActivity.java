@@ -35,8 +35,8 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
                 false).size() > 0;
     }
 
-    protected TabsPagerAdapter createTabsAdapter() {
-        return new TabsPagerAdapter(getSupportFragmentManager(),
+    protected LigaTabsPagerAdapter createTabsAdapter() {
+        return new LigaTabsPagerAdapter(getSupportFragmentManager(),
                 MyApplication.selectedMannschaft);
     }
 

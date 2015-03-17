@@ -4,6 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+<!--    <TextView
+        android:id="@+id/textHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TTG St. Augustin - Ergebnisse"/>-->
+
     <!--heading-->
     <LinearLayout style="@style/HeaderListStyle">
 

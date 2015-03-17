@@ -35,7 +35,6 @@ Offen
         - Merken (fertig)
         - Notification
 - Todos entfernen
-- Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
 - Schriftgröße: Konfiguration
 - Simulationsmodus: Ersatzspieler berücksichtigen
 
@@ -60,3 +59,4 @@ Erledigt
  - Bug aus Forum
  - Bug: Robin Malessa Westdeutsche
  - About Dialog überarbeiten (hat auch Bugs) (fertig)
+ - Lange Drücken: Umstellung auf Einfach-Klick (gertig)
