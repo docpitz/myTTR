@@ -7,6 +7,7 @@ Offen
 - Google Analytics einbauen https://developers.google.com/analytics/devguides/collection/android/v4/#manifest
 - Login nicht immer komplett zu sehen
 - Neu: Favoriten / Spieler merken
+- Layout: Listen überall mit > versehen
 - Neu: Ligaergebnisse
     - Navigation:
             -> Saison (fertig)
@@ -37,7 +38,7 @@ Offen
 - Lange Drücken: konfigurierbar machen, dann kann es jeder selbst einstellen :eek:
 - Schriftgröße: Konfiguration
 - Simulationsmodus: Ersatzspieler berücksichtigen
-- About Dialog überarbeiten (hat auch Bugs) (fertig)
+
 
 Erledigt
 ------------
@@ -58,3 +59,4 @@ Erledigt
  - Bug: Keine Daten vorhanden als Ergebnis in Suche
  - Bug aus Forum
  - Bug: Robin Malessa Westdeutsche
+ - About Dialog überarbeiten (hat auch Bugs) (fertig)

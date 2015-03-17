@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:weightSum="10">
+              android:layout_width="match_parent"
+              android:layout_height="?android:attr/listPreferredItemHeight">
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10px"
-        android:layout_weight="2.2"
-        android:gravity="left"
-        android:text="21.03.2014"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  style="@style/RowListStyle">
 
-    <TextView
-        android:id="@+id/event"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/date"
-        android:layout_weight="4.0"
-        android:gravity="left"
-        android:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40"/>
+        <TextView
+            android:id="@+id/date"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="2.5"
+            android:text="@string/sample_date"/>
 
-    <TextView
-        android:id="@+id/ak"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_toRightOf="@+id/event"
-        android:layout_weight="0.7"
-        android:gravity="left"
-        android:text="16"/>
+        <TextView
+            android:id="@+id/event"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_weight="4.0"
+            android:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40"/>
 
-    <TextView
-        android:id="@+id/sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_toRightOf="@+id/event"
-        android:layout_weight="0.8"
-        android:gravity="left"
-        android:text="1/2"/>
+        <TextView
+            android:id="@+id/ak"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.7"
+            android:gravity="left"
+            android:text="16"/>
 
-    <TextView
-        android:id="@+id/ttr"
-        android:layout_width="0dp"
-        android:layout_marginLeft="6dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/sp"
-        android:layout_weight="1.2"
-        android:text="1611"/>
+        <TextView
+            android:id="@+id/sp"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.8"
+            android:gravity="left"
+            android:text="1/2"/>
 
-    <TextView
-        android:id="@+id/diff"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ttr"
-        android:layout_weight="0.9"
-        android:layout_marginRight="2dp"
-        android:gravity="right"
-        android:text="-12"/>
+        <TextView
+            android:id="@+id/ttr"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1.2"
+            android:text="@string/sample_ttr"/>
+
+        <TextView
+            android:id="@+id/diff"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="0.9"
+            android:gravity="right"
+            android:text="-12"/>
 
 
+    </LinearLayout>
 </LinearLayout>

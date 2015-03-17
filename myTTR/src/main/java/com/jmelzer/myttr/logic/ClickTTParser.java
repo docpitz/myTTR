@@ -95,7 +95,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return new Mannschaftspiel(datum,
                 findMannschaft(liga, heimMannsschaft),
                 findMannschaft(liga, gastMannsschaft),
-                ergebnis, UrlUtil.safeUrl(liga.getHttpAndDomain() , url), genehmigt);
+                ergebnis, UrlUtil.safeUrl(liga.getHttpAndDomain(), url), genehmigt);
     }
 
     private Mannschaft findMannschaft(Liga liga, String name) {
@@ -307,8 +307,8 @@ public class ClickTTParser extends AbstractBaseParser {
                 parseMannschaftsspielStatistik(mannschaftspiel, resultrow);
             }
             for (Spielbericht spielbericht : mannschaftspiel.getSpiele()) {
-                spielbericht.setSpieler1Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain() , spielbericht.getSpieler1Url()));
-                spielbericht.setSpieler2Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain() , spielbericht.getSpieler2Url()));
+                spielbericht.setSpieler1Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain(), spielbericht.getSpieler1Url()));
+                spielbericht.setSpieler2Url(UrlUtil.safeUrl(mannschaftspiel.getHttpAndDomain(), spielbericht.getSpieler2Url()));
             }
             idx = resultrow.end;
 
@@ -568,6 +568,80 @@ public class ClickTTParser extends AbstractBaseParser {
                 mannschaft.addSpielLokal(lokal);
             }
         }
+//        Spielerbilanzen
+        result = readBetween(page, 0, "<h2>Spielerbilanzen", null);
+        ParseResult resultTable = readBetweenOpenTag(result.result, 0, "<table class=\"result-set\"", "</table>");
+        int idx = 0;
+        int c = 0;
+        int posCounter = 0;
+        while (true) {
+            //go threw entries in current table
+            ParseResult resultrow = readBetweenOpenTag(resultTable.result, idx, "<tr", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ < 1) {
+                posCounter = countPositionsFromHeader(resultrow.result);
+                idx = resultrow.end;
+                continue;//skip first header row
+            }
+            Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, posCounter);
+            if (bilanz == null) {
+                break;
+            }
+            mannschaft.addBilanz(bilanz);
+            idx = resultrow.end;
+        }
+    }
+
+    private int countPositionsFromHeader(String header) {
+        int posCounter = 0;
+        int idx = 0;
+        while (true) {
+            ParseResult result = readBetweenOpenTag(header, idx, "<th", "</th>", true);
+            if (result == null || result.result.equals("gesamt")) {
+                break;
+            }
+            try {
+                posCounter = Integer.valueOf(result.result);
+            } catch (NumberFormatException e) {
+                //ignore here
+            }
+            idx = result.end - 3;
+        }
+        return posCounter;
+    }
+
+    private Mannschaft.SpielerBilanz parseBilanzRow(String row, int posCounter) {
+        ParseResult result = readBetweenOpenTag(row, 0, "<td", "</td>", true);
+        if (isEmpty(result)) {
+            return null;
+        }
+        String pos = safeResult(result);
+        result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+        String name = readHrefAndATag(safeResult(result))[1];
+        result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+        //skip next empty column
+        result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+        String einsaetze = safeResult(result);
+        int e = Integer.valueOf(einsaetze);
+        if (e > 0) {
+            //skip doppel
+            result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+
+            List<String> posResults = new ArrayList<>(posCounter);
+
+            String saetze = "";
+            for (int i = 0; i < posCounter; i++) {
+                result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+                posResults.add(safeResult(result));
+            }
+            result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
+            String gesamt = safeResult(result);
+            return new Mannschaft.SpielerBilanz(pos, name, einsaetze, posResults, gesamt);
+        } else {
+            return new Mannschaft.SpielerBilanz(pos, name, einsaetze);
+        }
     }
 
     String cleanupSpielLokalHtml(String s) {
@@ -605,10 +679,12 @@ public class ClickTTParser extends AbstractBaseParser {
         return result;
 
     }
-    public Spieler readSpielerDetail(String name, String url) throws NetworkException{
+
+    public Spieler readSpielerDetail(String name, String url) throws NetworkException {
         String page = Client.getPage(url);
-        return parseSpieler(name , page);
+        return parseSpieler(name, page);
     }
+
     /**
      * parse the result of the click tt detail
      * e.g. http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425
@@ -631,13 +707,17 @@ public class ClickTTParser extends AbstractBaseParser {
         String einsaetze = result.result;
         while (true) {
             ParseResult r = readBetween(einsaetze, 0, null, ":</b>");
-            if (r == null) break;
+            if (r == null) {
+                break;
+            }
             String kat = r.result;
             String[] aref = readHrefAndATag(einsaetze);
 
             spieler.addEinsatz(kat, aref[1], aref[0]);
             int idx = einsaetze.indexOf("<b>");
-            if (idx == -1) break;
+            if (idx == -1) {
+                break;
+            }
             einsaetze = einsaetze.substring(idx + 3);
         }
         result = readBetween(page, 0, "Einzelbilanzen", null);
@@ -645,13 +725,17 @@ public class ClickTTParser extends AbstractBaseParser {
         String bilanz = result.result;
         while (true) {
             ParseResult r = readBetween(bilanz, 0, null, ":</b>");
-            if (r == null) break;
+            if (r == null) {
+                break;
+            }
             String kat = r.result;
             ParseResult ergebnis = readBetween(bilanz, 0, "</b>", "<br />");
 
             spieler.addBilanz(kat, ergebnis.result);
             int idx = bilanz.indexOf("<b>");
-            if (idx == -1) break;
+            if (idx == -1) {
+                break;
+            }
             bilanz = bilanz.substring(idx + 3);
         }
         parseEinzelSpiele(spieler, page);
@@ -660,15 +744,21 @@ public class ClickTTParser extends AbstractBaseParser {
 
     private void parseEinzelSpiele(Spieler spieler, String page) {
         ParseResult resultStart = readBetween(page, 0, "Einzel-Spiele", null);
-        if (resultStart == null) return;
+        if (resultStart == null) {
+            return;
+        }
         ParseResult resultTable = readBetweenOpenTag(resultStart.result, 0, "<table class=\"result-set\"", "</table>");
-        if (resultTable == null) return;
+        if (resultTable == null) {
+            return;
+        }
 
         int idx = 0;
         while (true) {
             //every child table have a header in h2
             ParseResult resultE = readBetweenOpenTag(resultTable.result, idx, "<h2", "</h2>");
-            if (resultE == null) break;
+            if (resultE == null) {
+                break;
+            }
             Spieler.LigaErgebnisse ergebnisse = new Spieler.LigaErgebnisse(replaceMultipleSpaces(resultE.result));
             spieler.addLigaErgebnisse(ergebnisse);
             idx = resultE.end;

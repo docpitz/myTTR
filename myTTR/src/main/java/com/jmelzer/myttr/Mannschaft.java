@@ -9,6 +9,39 @@ import java.util.List;
  * Mannschaft in Liga.
  */
 public class Mannschaft {
+    public static class SpielerBilanz {
+        String pos;
+        String name;
+        String einsaetze;
+        List<String> posResults = new ArrayList<>(6);
+        String gesamt;
+
+        public SpielerBilanz(String pos, String name, String einsaetze) {
+            this.pos = pos;
+            this.name = name;
+            this.einsaetze = einsaetze;
+        }
+
+        public SpielerBilanz(String pos, String name, String einsaetze, List<String> posResults, String gesamt) {
+            this.pos = pos;
+            this.name = name;
+            this.einsaetze = einsaetze;
+            this.posResults = posResults;
+            this.gesamt = gesamt;
+        }
+
+        @Override
+        public String toString() {
+            return "SpielerBilanz{" +
+                    "pos='" + pos + '\'' +
+                    ", name='" + name + '\'' +
+                    ", einsaetze='" + einsaetze + '\'' +
+                    ", posResults=" + posResults +
+                    ", gesamt='" + gesamt + '\'' +
+                    '}';
+        }
+    }
+
     String name;
     int position;
     int gamesCount;
@@ -26,6 +59,7 @@ public class Mannschaft {
     private String mailTo;
 
     List<String> spielLokale = new ArrayList<>();
+    List<SpielerBilanz> spielerBilanzen = new ArrayList<>();
 
     public Mannschaft(String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
@@ -128,8 +162,16 @@ public class Mannschaft {
         return Collections.unmodifiableList(spielLokale);
     }
 
+    public List<SpielerBilanz> getSpielerBilanzen() {
+        return Collections.unmodifiableList(spielerBilanzen);
+    }
+
     public void addSpielLokal(String spielLokal) {
         spielLokale.add(spielLokal);
+    }
+
+    public void addBilanz(SpielerBilanz b) {
+        spielerBilanzen.add(b);
     }
 
     public void removeAllSpielLokale() {

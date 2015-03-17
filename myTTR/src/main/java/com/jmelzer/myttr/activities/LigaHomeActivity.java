@@ -270,15 +270,14 @@ public class LigaHomeActivity extends BaseActivity {
         final LigaAdapter adapter = new LigaAdapter(this, android.R.layout.simple_list_item_1, ligaList);
         listview.setAdapter(adapter);
 
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
                 view.setSelected(true);
                 MyApplication.setSelectedLiga((Liga) parent.getItemAtPosition(position));
                 tabelle();
-                return false;
             }
         });
     }

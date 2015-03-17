@@ -1,11 +1,16 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -13,6 +18,8 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+
+import java.util.List;
 
 /**
  * Showing own team players
@@ -37,18 +44,16 @@ public class SelectTeamPlayerActivity extends BaseActivity {
         if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
                 view.setSelected(true);
                 if (position > -1 && position < MyApplication.myTeamPlayers.size()) {
                     MyApplication.simPlayer = MyApplication.myTeamPlayers.get(position);
                     new SimPlayerAsyncTask(SelectTeamPlayerActivity.this, HomeActivity.class, MyApplication.simPlayer).execute();
-                    return true;
                 }
-                return false;
             }
         });
 
@@ -80,6 +85,28 @@ public class SelectTeamPlayerActivity extends BaseActivity {
         @Override
         protected boolean dataLoaded() {
             return MyApplication.clubPlayers != null;
+        }
+    }
+
+    class MyTeamPlayerAdapter extends ArrayAdapter<Player> {
+
+        public MyTeamPlayerAdapter(Context context, int resource, List<Player> players) {
+            super(context, resource, players);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.myplayerrow, parent, false);
+            Player player = getItem(position);
+
+
+            TextView textView = (TextView) rowView.findViewById(R.id.firstname);
+            textView.setText(player.getFirstname());
+            textView = (TextView) rowView.findViewById(R.id.lastname);
+            textView.setText(player.getLastname());
+            return rowView;
         }
     }
 }

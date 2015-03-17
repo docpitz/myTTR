@@ -1,23 +1,19 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.TeamAppointment;
-import com.jmelzer.myttr.Util;
-import com.jmelzer.myttr.logic.ClubParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
@@ -25,7 +21,7 @@ import com.jmelzer.myttr.logic.NetworkException;
 import java.util.List;
 
 /**
- * TODO
+ * Class showing the next appointments of the player.
  * User: jmelzer
  * Date: 22.03.14
  * Time: 13:06
@@ -42,11 +38,11 @@ public class NextAppointmentsActivity extends BaseActivity {
                 MyApplication.teamAppointments);
         listview.setAdapter(adapter);
 
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
 
 
                 view.setSelected(true);
@@ -56,9 +52,7 @@ public class NextAppointmentsActivity extends BaseActivity {
 
                     new ClubListAsyncTask(NextAppointmentsActivity.this,
                             NextAppointmentPlayersActivity.class, teamid).execute();
-                    return true;
                 }
-                return false;
             }
         });
 

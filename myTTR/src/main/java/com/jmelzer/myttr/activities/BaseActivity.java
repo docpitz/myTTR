@@ -25,7 +25,9 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+        if (MyApplication.getLoginUser().getUsername().equals("chokdee")) {
+            setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
+        }
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowHomeEnabled(true);

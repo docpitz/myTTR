@@ -16,7 +16,7 @@
     <string name="select_player_first">Bitte zunächst einen Spieler auswählen</string>
     <string name="after_login_text">Der Login war erfolgreich.\n\nFolgende Möglichkeiten hast du:</string>
     <string name="main_text">Bitte Login für myTischtennis.de eingeben</string>
-    <string name="not_registered_text">Wenn du noch keinen mytischtennis Premium Zugang hast. Kannst du bei
+    <string name="not_registered_text">Wenn du noch keinen mytischtennis Premium Zugang hast, kannst du bei
      www.mytischtennis.de/community/register einen Zugang beantragen.</string>
     <string name="player_1">Spieler 1:</string>
     <string name="player_1_hint">Namen eingeben</string>
@@ -113,6 +113,8 @@
     <string name="ueberschrift_liga">Ligen</string>
     <string name="label_kontakt">Kontakt:</string>
     <string name="sample_kontakt">von Thurn und Taxis, Johannes\nMobil: 0177 0000000\nkalr.hans@gmx.de</string>
+    <string name="sample_date">21.03.2014</string>
+    <string name="sample_ttr">1611</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

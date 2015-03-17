@@ -64,15 +64,14 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         listview.setAdapter(adapter);
 
 
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
                 MyApplication.selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
                 callMannschaftSpielDetail();
 
-                return false;
             }
         });
         // the list will be filled

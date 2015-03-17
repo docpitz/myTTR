@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="24dp"
-    android:orientation="horizontal"
-    android:weightSum="10">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="?android:attr/listPreferredItemHeight">
 
-    <TextView
-        android:id="@+id/firstname"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:text="Peter"
-        android:layout_weight="5"
-        android:layout_width="0dp"
-        android:layout_marginLeft="10dp" />
-    <TextView
-        android:id="@+id/lastname"
-        android:layout_height="wrap_content"
-        android:text="Muster"
-        android:layout_weight="5"
-        android:layout_width="0dp" />
+    <LinearLayout
+        style="@style/RowListStyle"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/firstname"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="5"
+            android:gravity="start"
+            android:text="Peter"/>
+
+        <TextView
+            android:id="@+id/lastname"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_weight="5"
+            android:text="Muster"/>
 
 
-
+    </LinearLayout>
 </LinearLayout>

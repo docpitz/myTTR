@@ -34,19 +34,16 @@ public class EventsActivity extends BaseActivity {
                 MyApplication.events);
         listview.setAdapter(adapter);
         events = MyApplication.events;
-
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
                 view.setSelected(true);
                 if (position > -1 && position < MyApplication.events.size()) {
                     Event event = events.get(position);
                     new DetailAsyncTask(event, EventsActivity.this, EventDetailActivity.class).execute();
-                    return true;
                 }
-                return false;
             }
         });
 

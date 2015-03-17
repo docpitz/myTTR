@@ -252,6 +252,10 @@ public class ClickTTParserTest {
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
         assertEquals("manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
 
+        List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
+        for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
+            System.out.println("spielerBilanz = " + spielerBilanz);
+        }
     }
     @Test
     public void testMannschaftDetailSpielLokale() throws Exception {

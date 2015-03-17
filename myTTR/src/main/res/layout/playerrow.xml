@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent" >
+              android:layout_height="?android:attr/listPreferredItemHeight">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  style="@style/RowListStyle"
+                  tools:ignore="UselessParent">
+
+        <TextView
             android:id="@+id/number"
             android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:text="100"
-            android:textSize="18sp"
+            style="@style/TextListStyle"
+            android:layout_weight=".10"
             android:gravity="left"
-            android:layout_weight=".10">
-    </TextView>
+            android:text="100">
+        </TextView>
 
-    <TextView
+        <TextView
             android:id="@+id/firstname"
             android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:text="Wolfgang"
+            style="@style/TextListStyle"
             android:layout_weight=".30"
-            android:textSize="18sp"
-            android:gravity="left">
-    </TextView>
+            android:gravity="left"
+            android:text="Wolfgang">
+        </TextView>
 
-    <TextView
+        <TextView
             android:id="@+id/lastname"
             android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:text="Tamimzadeh"
+            style="@style/TextListStyle"
             android:layout_weight=".40"
-            android:textSize="18sp"
-            >
-    </TextView>
+            android:text="Tamimzadeh">
+        </TextView>
 
 
-    <TextView
+        <TextView
             android:id="@+id/points"
             android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:text="2000"
-            android:paddingRight="5dp"
+            style="@style/TextListStyle"
             android:layout_weight=".20"
-            android:textSize="18sp"
-            android:gravity="right">
-    </TextView>
+            android:gravity="right"
+            android:paddingRight="5dp"
+            android:text="2000">
+        </TextView>
 
+    </LinearLayout>
 </LinearLayout>
