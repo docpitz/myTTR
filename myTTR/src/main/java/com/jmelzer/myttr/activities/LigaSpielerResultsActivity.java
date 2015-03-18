@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
@@ -121,7 +120,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
                 LayoutInflater layInflator = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = layInflator.inflate(R.layout.liga_spieler_result_group, null);
+                convertView = layInflator.inflate(R.layout.liga_spieler_result_header, null);
             }
             TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupName);
             lblListHeader.setText(headerTitle);

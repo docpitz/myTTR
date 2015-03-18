@@ -1,5 +1,6 @@
 package com.jmelzer.myttr.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,19 +43,12 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
 
     public void bilanz(MenuItem item) {
+        readInfoAndStartActivity(LigaMannschaftBilanzActivity.class);
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.liga_mannschaft_actions, menu);
-        return true;
-    }
-
-    public void info(MenuItem item) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaMannschaftInfoActivity.class) {
+    private void readInfoAndStartActivity(Class clz) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, clz) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 new ClickTTParser().readMannschaftsInfo(MyApplication.selectedMannschaft);
@@ -67,5 +61,17 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
         };
         task.execute();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.liga_mannschaft_actions, menu);
+        return true;
+    }
+
+    public void info(MenuItem item) {
+        readInfoAndStartActivity(LigaMannschaftInfoActivity.class);
     }
 }

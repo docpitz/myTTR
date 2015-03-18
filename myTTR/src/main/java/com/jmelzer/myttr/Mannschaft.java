@@ -30,6 +30,26 @@ public class Mannschaft {
             this.gesamt = gesamt;
         }
 
+        public String getPos() {
+            return pos;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getEinsaetze() {
+            return einsaetze;
+        }
+
+        public List<String> getPosResults() {
+            return posResults;
+        }
+
+        public String getGesamt() {
+            return gesamt;
+        }
+
         @Override
         public String toString() {
             return "SpielerBilanz{" +

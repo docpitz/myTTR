@@ -31,4 +31,23 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:padding">4dp</item>
     </style>
+    <style name="ListLine">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">2dip</item>
+        <item name="android:background">#ffffffff</item>
+    </style>
+
+    <style name="BilanzLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BilanzText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
 </resources>

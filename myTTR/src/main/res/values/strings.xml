@@ -112,6 +112,9 @@
     <string name="kreis_label">Kreis:</string>
     <string name="ueberschrift_liga">Ligen</string>
     <string name="label_kontakt">Kontakt:</string>
+    <string name="label_position">Position:</string>
+    <string name="label_name">Name, Vorname:</string>
+    <string name="label_einsaetze">Einsätze:</string>
     <string name="sample_kontakt">von Thurn und Taxis, Johannes\nMobil: 0177 0000000\nkalr.hans@gmx.de</string>
     <string name="sample_date">21.03.2014</string>
     <string name="sample_ttr">1611</string>
