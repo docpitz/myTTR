@@ -263,7 +263,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         ParseResult result = readBetween(pageU, startIdx, "<td style=\"text-align:center;\">", "</td>");
         try {
             return Integer.valueOf(result.result.trim());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return 0;
         }
     }
