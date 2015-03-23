@@ -7,6 +7,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
@@ -49,6 +50,7 @@
         android:id="@+id/playerlistview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        tools:listitem="@layout/playerrow"
         />
 
 

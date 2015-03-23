@@ -21,9 +21,9 @@
     <style name="RowListStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:padding">4dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:padding">5dp</item>
     </style>
     <style name="HeaderListStyle">
         <item name="android:layout_width">fill_parent</item>
@@ -42,6 +42,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">3</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MyLabel">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="BilanzText">

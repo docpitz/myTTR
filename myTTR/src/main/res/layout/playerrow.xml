@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="fill_parent"
-              android:layout_height="?android:attr/listPreferredItemHeight">
+              android:layout_height="wrap_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   style="@style/RowListStyle"
@@ -13,8 +13,8 @@
             android:layout_width="0px"
             style="@style/TextListStyle"
             android:layout_weight=".10"
-            android:gravity="left"
-            android:text="100">
+            android:text="100"
+            >
         </TextView>
 
         <TextView
@@ -22,7 +22,6 @@
             android:layout_width="0px"
             style="@style/TextListStyle"
             android:layout_weight=".30"
-            android:gravity="left"
             android:text="Wolfgang">
         </TextView>
 

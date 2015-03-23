@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="?android:attr/listPreferredItemHeight">
+              android:layout_height="wrap_content">
 
     <LinearLayout
         style="@style/RowListStyle"
@@ -13,9 +13,7 @@
             android:id="@+id/firstname"
             android:layout_width="0dp"
             style="@style/TextListStyle"
-            android:layout_marginLeft="10dp"
             android:layout_weight="5"
-            android:gravity="start"
             android:text="Peter"/>
 
         <TextView
