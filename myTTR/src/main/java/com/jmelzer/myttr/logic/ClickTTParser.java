@@ -457,7 +457,11 @@ public class ClickTTParser extends AbstractBaseParser {
         while (true) {
             ParseResult resultUl = readBetween(result.result, idx, "<h2 class=\"liga-layer-down\">", "</h2>");
             if (resultUl == null || resultUl.isEmpty()) {
-                break;
+                //sometime there is no h2, check another one
+                resultUl = readBetween(result.result, idx, "<li>", "</li>");
+                if (resultUl == null || resultUl.isEmpty()) {
+                    break;
+                }
             }
             idx = resultUl.end;
             //collect all href links
@@ -494,7 +498,7 @@ public class ClickTTParser extends AbstractBaseParser {
     private List<Kreis> parseLinksKreise(String page) {
         List<Kreis> kreisList = new ArrayList<>();
         ParseResult result = readBetween(page, 0, "Untergeordnete Spielklassen", "</ul>");
-        if (result.isEmpty()) {
+        if (result == null || result.isEmpty()) {
             return kreisList;
         }
         int idxL = 0;
@@ -573,7 +577,7 @@ public class ClickTTParser extends AbstractBaseParser {
         ParseResult resultTable = readBetweenOpenTag(result.result, 0, "<table class=\"result-set\"", "</table>");
         int idx = 0;
         int c = 0;
-        int posCounter = 0;
+        List<String> header = null;
         while (true) {
             //go threw entries in current table
             ParseResult resultrow = readBetweenOpenTag(resultTable.result, idx, "<tr", "</tr>");
@@ -581,11 +585,11 @@ public class ClickTTParser extends AbstractBaseParser {
                 break;
             }
             if (c++ < 1) {
-                posCounter = countPositionsFromHeader(resultrow.result);
+                header = readHeaderBilanzen(resultrow.result);
                 idx = resultrow.end;
                 continue;//skip first header row
             }
-            Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, posCounter);
+            Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, header);
             if (bilanz == null) {
                 break;
             }
@@ -594,25 +598,42 @@ public class ClickTTParser extends AbstractBaseParser {
         }
     }
 
-    private int countPositionsFromHeader(String header) {
-        int posCounter = 0;
+    /**
+     * parse the header like<br>
+     * Rang 	Name, Vorname 	  	Einsätze 	Einzel/Doppel 	1+2 	3+4 	5+6 	gesamt<br>
+     * or <br>
+     * Rang 	Name, Vorname 	  	Einsätze 	Einzel/Doppel 	1 	2 	3 	4 	5 	6 	gesamt
+     *
+     * @param header to parse
+     * @return list of paarkreuz results 1+2 or 1 2
+     */
+    private List<String> readHeaderBilanzen(String header) {
+        List<String> entries = new ArrayList<>();
         int idx = 0;
         while (true) {
+            String entry = null;
             ParseResult result = readBetweenOpenTag(header, idx, "<th", "</th>", true);
             if (result == null || result.result.equals("gesamt")) {
                 break;
             }
             try {
-                posCounter = Integer.valueOf(result.result);
+                entry = Integer.valueOf(result.result).toString();
             } catch (NumberFormatException e) {
                 //ignore here
+                if (result.result.contains("+")) {
+                    entry = result.result;
+                }
             }
+            if (entry != null) {
+                entries.add(entry);
+            }
+
             idx = result.end - 3;
         }
-        return posCounter;
+        return entries;
     }
 
-    private Mannschaft.SpielerBilanz parseBilanzRow(String row, int posCounter) {
+    private Mannschaft.SpielerBilanz parseBilanzRow(String row, List<String> header) {
         ParseResult result = readBetweenOpenTag(row, 0, "<td", "</td>", true);
         if (isEmpty(result)) {
             return null;
@@ -629,12 +650,14 @@ public class ClickTTParser extends AbstractBaseParser {
             //skip doppel
             result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
 
-            List<String> posResults = new ArrayList<>(posCounter);
+            List<String[]> posResults = new ArrayList<>();
 
             String saetze = "";
-            for (int i = 0; i < posCounter; i++) {
+            for (int i = 0; i < header.size(); i++) {
                 result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
-                posResults.add(safeResult(result));
+                if (result != null && !result.isEmpty()) {
+                    posResults.add(new String[]{header.get(i), safeResult(result)});
+                }
             }
             result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
             String gesamt = safeResult(result);

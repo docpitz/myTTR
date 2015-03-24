@@ -13,7 +13,7 @@ public class Mannschaft {
         String pos;
         String name;
         String einsaetze;
-        List<String> posResults = new ArrayList<>(6);
+        List<String[]> posResults = new ArrayList<>(6);
         String gesamt;
 
         public SpielerBilanz(String pos, String name, String einsaetze) {
@@ -22,7 +22,7 @@ public class Mannschaft {
             this.einsaetze = einsaetze;
         }
 
-        public SpielerBilanz(String pos, String name, String einsaetze, List<String> posResults, String gesamt) {
+        public SpielerBilanz(String pos, String name, String einsaetze, List<String[]> posResults, String gesamt) {
             this.pos = pos;
             this.name = name;
             this.einsaetze = einsaetze;
@@ -42,7 +42,7 @@ public class Mannschaft {
             return einsaetze;
         }
 
-        public List<String> getPosResults() {
+        public List<String[]> getPosResults() {
             return posResults;
         }
 
@@ -56,7 +56,6 @@ public class Mannschaft {
                     "pos='" + pos + '\'' +
                     ", name='" + name + '\'' +
                     ", einsaetze='" + einsaetze + '\'' +
-                    ", posResults=" + posResults +
                     ", gesamt='" + gesamt + '\'' +
                     '}';
         }

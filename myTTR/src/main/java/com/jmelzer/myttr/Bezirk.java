@@ -59,4 +59,13 @@ public class Bezirk {
         return kreise;
     }
 
+    @Override
+    public String toString() {
+        return "Bezirk{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", kreise=" + kreise +
+                ", ligen=" + ligen +
+                '}';
+    }
 }

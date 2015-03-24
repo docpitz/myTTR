@@ -114,20 +114,18 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.liga_mannschaft_bilanz_detail_row, null);
 
-//            TextView textView = (TextView) convertView.findViewById(R.id.pos);
-//            textView.setText(childElem.getPos());
             TextView textView = (TextView) convertView.findViewById(R.id.einsaetze);
             textView.setText(childElem.getEinsaetze());
-            List<String> posResults = childElem.getPosResults();
+            List<String[]> posResults = childElem.getPosResults();
             TableLayout tableLayout = (TableLayout) convertView.findViewById(R.id.table);
             int i = 1;
-            for (String posResult : posResults) {
-                if (posResult != null && !posResult.isEmpty()) {
+            for (String[] posResult : posResults) {
+                if (posResult != null && posResult.length == 2) {
                     TableRow row = (TableRow) layInflator.inflate(R.layout.tv_bilanz_row_template, null);
                     TextView txtView = (TextView) row.getVirtualChildAt(0);
-                    txtView.setText("Position " + i + ":");
+                    txtView.setText("Position " + posResult[0] + " : ");
                     txtView = (TextView) row.getVirtualChildAt(1);
-                    txtView.setText(posResult);
+                    txtView.setText(posResult[1]);
 
                     tableLayout.addView(row);
                 }

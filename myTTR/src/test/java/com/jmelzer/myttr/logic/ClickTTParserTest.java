@@ -12,6 +12,7 @@ package com.jmelzer.myttr.logic;
 
 import android.util.Log;
 
+import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -20,6 +21,8 @@ import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.utils.StringUtils;
+
+import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -255,6 +258,23 @@ public class ClickTTParserTest {
         List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
         for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
             System.out.println("spielerBilanz = " + spielerBilanz);
+            for (String[] strings : spielerBilanz.getPosResults()) {
+                System.out.println(strings[0] + " : " + strings[1]);
+            }
+        }
+    }
+    @Test
+    public void testMannschaftDetailBezirkDonau() throws Exception {
+        String page = readFile("assets/clicktt/mannschafts-detail-donau.htm");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseDetail(page, mannschaft);
+
+        List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
+        for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
+            System.out.println("spielerBilanz = " + spielerBilanz);
+            for (String[] strings : spielerBilanz.getPosResults()) {
+                System.out.println(strings[0] + " : " + strings[1]);
+            }
         }
     }
     @Test
@@ -314,6 +334,27 @@ public class ClickTTParserTest {
             System.out.println("ligaErgebnisse = " + ligaErgebnisse);
         }
     }
+    @Test
+    public void testParseLinksBezirke() throws Exception {
+        String page = readFile("assets/clicktt/liga-level2-wttv.htm");
+        assertNotNull(page);
+        List<Bezirk> bezirke = parser.parseLinksBezirke(page);
+        assertNotNull(bezirke);
+        assertTrue(bezirke.size() > 0);
+        for (Bezirk bezirk : bezirke) {
+            System.out.println("bezirk = " + bezirk);
+        }
+
+        page = readFile("assets/clicktt/ttvwh-ligen-no-bezirk.htm");
+        assertNotNull(page);
+        bezirke = parser.parseLinksBezirke(page);
+        assertNotNull(bezirke);
+        assertTrue(bezirke.size() > 0);
+        for (Bezirk bezirk : bezirke) {
+            System.out.println("bezirk = " + bezirk);
+        }
+    }
+
 }
 
 

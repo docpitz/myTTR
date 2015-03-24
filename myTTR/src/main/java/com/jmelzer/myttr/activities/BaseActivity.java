@@ -25,7 +25,7 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        if (MyApplication.getLoginUser().getUsername().equals("chokdee")) {
+        if (MyApplication.getLoginUser().getUsername().equals("chokdee-")) {
             setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
         }
         ActionBar actionBar = getActionBar();
@@ -34,13 +34,9 @@ public abstract class BaseActivity extends FragmentActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        Log.d(Constants.LOG_TAG, "activity " + this + " in oncreate");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Log.d(Constants.LOG_TAG, "back pressed in " + this);
-    }
 
 
 }
