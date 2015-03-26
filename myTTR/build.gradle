@@ -1,19 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 22
     buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 13
         versionName "1.5.1"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,7 +27,7 @@ android {
 }
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'org.apache.commons:commons-lang3:3.3.2'
@@ -37,7 +37,6 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-core:1.1'
     testCompile 'org.hamcrest:hamcrest-library:1.1'
     testCompile 'org.hamcrest:hamcrest-integration:1.1'
-
     // TODO: requires special build of robolectric right now. working on this...
     testCompile('org.robolectric:robolectric:2.4') {
         exclude module: 'classworlds'
