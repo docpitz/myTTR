@@ -55,7 +55,6 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.liga_mannschaft_results, container, false);
 
-        boolean vr = !existRRSpiele();
         final ListView listview = (ListView) rootView.findViewById(R.id.liga_mannschaft_detail_row);
         //create emtpty list
         adapter = new SpielAdapter(getActivity(),
@@ -75,21 +74,25 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             }
         });
         // the list will be filled
-        configList(pos == 0);
+        Liga.Spielplan spielplan = Liga.Spielplan.GESAMT;
+        if ((liga != null && liga.getUrlGesamt() == null) ||
+                MyApplication.getSelectedLiga().getUrlGesamt() == null) {
+            if (pos == 0) {
+                spielplan = Liga.Spielplan.VR;
+            } else {
+                spielplan = Liga.Spielplan.RR;
+            }
+        }
+        configList(spielplan);
 
         return rootView;
     }
 
-    private boolean existRRSpiele() {
-        return getSpiele(false).size() > 0;
-
-    }
-
-    List<Mannschaftspiel> getSpiele(boolean vr) {
+    List<Mannschaftspiel> getSpiele(Liga.Spielplan spielplan) {
         if (mannschaft != null) {
-            return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), vr);
+            return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), spielplan);
         } else {
-            return MyApplication.getSelectedLiga().getSpieleFor(null, vr);
+            return MyApplication.getSelectedLiga().getSpieleFor(null, spielplan);
         }
     }
 
@@ -101,7 +104,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readDetail(MyApplication.getSelectedLiga(), MyApplication.selectedMannschaftSpiel);
+                new ClickTTParser().readDetail(MyApplication.selectedMannschaftSpiel);
             }
 
             @Override
@@ -154,11 +157,11 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         }
     }
 
-    void configList(boolean vr) {
+    void configList(Liga.Spielplan spielplan) {
         if (adapter != null) {
             adapter.clear();
             //create a copy otherwise clear will remove all entries
-            adapter.addAll(new ArrayList(getSpiele(vr)));
+            adapter.addAll(new ArrayList<>(getSpiele(spielplan)));
             // fire the event
             adapter.notifyDataSetChanged();
         }

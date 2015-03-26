@@ -185,6 +185,17 @@ public class ClickTTParserTest {
         }
     }
     @Test
+    public void testReadStaffelGesamtSpielPlan() throws Exception {
+        String page = readFile("assets/clicktt/staffel-gesamt-spiel-plan.htm");
+        assertNotNull(page);
+        Liga liga = new Liga();
+//        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
+        liga = parser.parseLiga(liga, page);
+        System.out.println("liga.getUrlGesamt() = " + liga.getUrlGesamt());
+        assertNotNull(liga.getUrlGesamt());
+    }
+
+    @Test
     public void testReadStaffeErrorZ() throws Exception {
         String page = readFile("assets/clicktt/staffel-zurueckgezogene-mannschaft.htm");
         assertNotNull(page);

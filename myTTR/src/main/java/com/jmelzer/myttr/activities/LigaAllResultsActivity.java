@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
@@ -26,7 +27,7 @@ public class LigaAllResultsActivity extends AbstractLigaResultActivity {
 
     @Override
     boolean startWithRR() {
-        return MyApplication.getSelectedLiga().getSpieleFor(null, false).size() > 0;
+        return MyApplication.getSelectedLiga().getSpieleFor(null, Liga.Spielplan.RR).size() > 0;
     }
 
     protected LigaTabsPagerAdapter createTabsAdapter() {

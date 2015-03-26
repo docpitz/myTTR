@@ -96,6 +96,11 @@ public class AbstractBaseParser {
         return null;
     }
 
+    /**
+     * read the <a tag an return the url and the description inside the a tag
+     * @param line to be parsed
+     * @return first url, second value inside the tag
+     */
     protected String[] readHrefAndATag(String line) {
         ParseResult result2 = readBetween(line, 0, "href=\"", "\">");
         String url = safeResult(result2);

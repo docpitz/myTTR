@@ -12,6 +12,12 @@ import java.util.List;
  * Represents a Liga like TTBL, 2. Bundesliga etc.
  */
 public class Liga {
+    public enum Spielplan {
+        VR,
+        RR,
+        GESAMT
+    }
+
     public static List<String> alleKategorien = Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
             "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
             "Senioren 60", "Seniorinnen 60", "Senioren 70", "Senioren");
@@ -25,8 +31,11 @@ public class Liga {
     List<Mannschaft> mannschaften = new ArrayList<>();
     List<Mannschaftspiel> spieleVorrunde = new ArrayList<>();
     List<Mannschaftspiel> spieleRueckrunde = new ArrayList<>();
+    //in manchen Ligen gibt es kein VR & RR
+    List<Mannschaftspiel> spieleGesamt = new ArrayList<>();
     private String urlRR;
     private String urlVR;
+    private String urlGesamt;
 
     public Liga(String name, String url, String kategorie) {
         this.name = name;
@@ -91,12 +100,29 @@ public class Liga {
         return Collections.unmodifiableList(spieleRueckrunde);
     }
 
-    public void addSpiel(Mannschaftspiel s, boolean vorrunde) {
-        if (vorrunde) {
-            spieleVorrunde.add(s);
-        } else {
-            spieleRueckrunde.add(s);
+    public void addSpiel(Mannschaftspiel s, Spielplan spielplan) {
+        switch (spielplan) {
+            case VR:
+                spieleVorrunde.add(s);
+                break;
+            case RR:
+                spieleRueckrunde.add(s);
+                break;
+            case GESAMT:
+                spieleGesamt.add(s);
         }
+    }
+
+    public void addSpielGesamt(Mannschaftspiel s) {
+        spieleGesamt.add(s);
+    }
+
+    public String getUrlGesamt() {
+        return urlGesamt;
+    }
+
+    public void setUrlGesamt(String urlGesamt) {
+        this.urlGesamt = urlGesamt;
     }
 
     @Override
@@ -117,6 +143,10 @@ public class Liga {
         this.urlRR = urlRR;
     }
 
+    public List<Mannschaftspiel> getSpieleGesamt() {
+        return Collections.unmodifiableList(spieleGesamt);
+    }
+
     public String getUrlRR() {
         return urlRR;
     }
@@ -129,18 +159,24 @@ public class Liga {
         return urlVR;
     }
 
-    public List<Mannschaftspiel> getSpieleFor(String mannschaft, boolean vr) {
-        if (vr) {
+    public List<Mannschaftspiel> getSpieleFor(String mannschaft,Spielplan spielplan) {
+        if (spielplan == Spielplan.VR) {
             if (mannschaft != null) {
                 return filterSpiele(spieleVorrunde, mannschaft);
             } else {
                 return getSpieleVorrunde();
             }
-        } else {
+        } else if (spielplan == Spielplan.RR) {
             if (mannschaft != null) {
                 return filterSpiele(spieleRueckrunde, mannschaft);
             } else {
                 return getSpieleRueckrunde();
+            }
+        } else {
+            if (mannschaft != null) {
+                return filterSpiele(spieleGesamt, mannschaft);
+            } else {
+                return getSpieleGesamt();
             }
         }
 
@@ -160,11 +196,16 @@ public class Liga {
         return retList;
     }
 
-    public void clearSpiele(boolean vorrunde) {
-        if (vorrunde) {
-            spieleVorrunde.clear();
-        } else {
-            spieleRueckrunde.clear();
+    public void clearSpiele(Spielplan spielplan) {
+        switch (spielplan) {
+            case VR:
+                spieleVorrunde.clear();
+                break;
+            case RR:
+                spieleRueckrunde.clear();
+                break;
+            case GESAMT:
+                spieleGesamt.clear();
         }
     }
 

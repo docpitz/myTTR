@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 import java.lang.reflect.Method;
@@ -63,12 +64,19 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
                 // probably ignore this event
             }
         };
-        boolean b = startWithRR();
-        actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
-        actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
+        if (!hasGesamt()) {
+            boolean b = startWithRR();
+            actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
+            actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
+        } else {
+            actionBar.addTab(actionBar.newTab().setText("Gesamt").setTabListener(tabListener), true);
+        }
     }
 
     abstract boolean startWithRR();
+    boolean hasGesamt() {
+        return MyApplication.getSelectedLiga().getUrlGesamt() != null;
+    }
 
     abstract protected LigaTabsPagerAdapter createTabsAdapter();
 

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClickTTParser;
@@ -33,7 +34,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     @Override
     boolean startWithRR() {
         return MyApplication.getSelectedLiga().getSpieleFor(MyApplication.selectedMannschaft.getName(),
-                false).size() > 0;
+                Liga.Spielplan.RR).size() > 0;
     }
 
     protected LigaTabsPagerAdapter createTabsAdapter() {

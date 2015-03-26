@@ -297,6 +297,7 @@ public class LigaHomeActivity extends BaseActivity {
         BezirkAdapter bezirkAdapter = new BezirkAdapter(this,
                 R.layout.liga_home_spinner_item,
                 getBezirkList());
+        bezirkAdapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerBezirke.setAdapter(bezirkAdapter);
         spinnerBezirke.setOnItemSelectedListener(new BezirkListener());
     }
@@ -306,6 +307,7 @@ public class LigaHomeActivity extends BaseActivity {
         KreisAdapter adapter = new KreisAdapter(this,
                 R.layout.liga_home_spinner_item,
                 getKreisList());
+        adapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new KreisListener());
     }

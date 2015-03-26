@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
+import com.jmelzer.myttr.MyApplication;
 
 /**
  * Adapter for the tabs in liga result.
@@ -38,6 +39,9 @@ public class LigaTabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
+        if (MyApplication.getSelectedLiga().getUrlGesamt() != null) {
+            return 1;
+        }
         return 2;
     }
 
