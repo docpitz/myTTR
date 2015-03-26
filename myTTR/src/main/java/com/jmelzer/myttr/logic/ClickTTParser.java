@@ -600,6 +600,7 @@ public class ClickTTParser extends AbstractBaseParser {
         int idx = 0;
         int c = 0;
         List<String> header = null;
+        mannschaft.clearBilanzen();
         while (true) {
             //go threw entries in current table
             ParseResult resultrow = readBetweenOpenTag(resultTable.result, idx, "<tr", "</tr>");

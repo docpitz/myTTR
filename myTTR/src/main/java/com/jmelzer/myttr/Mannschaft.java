@@ -9,6 +9,8 @@ import java.util.List;
  * Mannschaft in Liga.
  */
 public class Mannschaft {
+
+
     public static class SpielerBilanz {
         String pos;
         String name;
@@ -192,7 +194,9 @@ public class Mannschaft {
     public void addBilanz(SpielerBilanz b) {
         spielerBilanzen.add(b);
     }
-
+    public void clearBilanzen() {
+        spielerBilanzen.clear();
+    }
     public void removeAllSpielLokale() {
         spielLokale.clear();
     }
