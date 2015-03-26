@@ -51,7 +51,9 @@ public class LigaHomeActivity extends BaseActivity {
         setContentView(R.layout.liga_home);
 
         Spinner spinnerVerband = (Spinner) findViewById(R.id.spinner_verband);
-        VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_item, Verband.verbaende);
+        VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_selected_item,
+                Verband.verbaende);
+        adapterVerband.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerVerband.setAdapter(adapterVerband);
         spinnerVerband.setOnItemSelectedListener(new VerbandListener());
 
@@ -105,7 +107,9 @@ public class LigaHomeActivity extends BaseActivity {
     public List<Bezirk> getBezirkList() {
         List<Bezirk> list = MyApplication.selectedVerband.getBezirkList();
         List<Bezirk> listC = new ArrayList<>(list);
-        listC.add(0, new Bezirk("", null));
+        if (list.size() > 0) {
+            listC.add(0, new Bezirk("", null));
+        }
         return listC;
     }
 
@@ -268,7 +272,7 @@ public class LigaHomeActivity extends BaseActivity {
         }
         ligaList = filterLigenBySelectedKategorie();
 
-        final ResultAdapter adapter = new ResultAdapter(this, android.R.layout.simple_list_item_1, ligaList);
+        final ResultAdapter adapter = new ResultAdapter(this, R.layout.liga_home_spinner_selected_item, ligaList);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -286,8 +290,9 @@ public class LigaHomeActivity extends BaseActivity {
     void configKategorienAdapter() {
         Spinner spinner = (Spinner) findViewById(R.id.kategorie_spinner);
         ArrayAdapter adapter = new ArrayAdapter<>(this,
-                R.layout.liga_home_spinner_item,
+                R.layout.liga_home_spinner_selected_item,
                 filterKategorien());
+        adapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new KategorieListener());
     }
@@ -295,7 +300,7 @@ public class LigaHomeActivity extends BaseActivity {
     void configBezirkAdapter() {
         Spinner spinnerBezirke = (Spinner) findViewById(R.id.spinner_bezirk);
         BezirkAdapter bezirkAdapter = new BezirkAdapter(this,
-                R.layout.liga_home_spinner_item,
+                R.layout.liga_home_spinner_selected_item,
                 getBezirkList());
         bezirkAdapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerBezirke.setAdapter(bezirkAdapter);
@@ -305,7 +310,7 @@ public class LigaHomeActivity extends BaseActivity {
     void configKreisAdapter() {
         Spinner spinner = (Spinner) findViewById(R.id.spinner_kreise);
         KreisAdapter adapter = new KreisAdapter(this,
-                R.layout.liga_home_spinner_item,
+                R.layout.liga_home_spinner_selected_item,
                 getKreisList());
         adapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinner.setAdapter(adapter);
@@ -367,7 +372,9 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            return getView(position, convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            label.setText(getItem(position).getName());
+            return label;
         }
     }
 
@@ -379,7 +386,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView label = new TextView(getContext());
+            TextView label = (TextView) super.getView(position,convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
@@ -387,7 +394,9 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            return getView(position, convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            label.setText(getItem(position).getName());
+            return label;
         }
     }
 
@@ -399,7 +408,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView label = new TextView(getContext());
+            TextView label = (TextView) super.getView(position,convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
@@ -407,7 +416,9 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            return getView(position, convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            label.setText(getItem(position).getName());
+            return label;
         }
     }
 
