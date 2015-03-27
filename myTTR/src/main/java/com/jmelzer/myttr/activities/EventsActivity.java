@@ -24,8 +24,18 @@ import java.util.List;
 public class EventsActivity extends BaseActivity {
     List<Event> events;
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.events != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.events);
 
         final ListView listview = (ListView) findViewById(R.id.eventlist);

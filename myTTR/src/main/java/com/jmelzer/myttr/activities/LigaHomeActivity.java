@@ -46,8 +46,18 @@ public class LigaHomeActivity extends BaseActivity {
     private List<Liga> allLigaList;
 
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_home);
 
         Spinner spinnerVerband = (Spinner) findViewById(R.id.spinner_verband);
@@ -105,10 +115,13 @@ public class LigaHomeActivity extends BaseActivity {
     }
 
     public List<Bezirk> getBezirkList() {
-        List<Bezirk> list = MyApplication.selectedVerband.getBezirkList();
-        List<Bezirk> listC = new ArrayList<>(list);
-        if (list.size() > 0) {
-            listC.add(0, new Bezirk("", null));
+        List<Bezirk> listC = new ArrayList<>();
+        if (MyApplication.selectedVerband != null) {
+            List<Bezirk> list = MyApplication.selectedVerband.getBezirkList();
+            if (list.size() > 0) {
+                listC.addAll(list);
+                listC.add(0, new Bezirk("", null));
+            }
         }
         return listC;
     }
@@ -259,6 +272,9 @@ public class LigaHomeActivity extends BaseActivity {
     }
 
     void configLigAdapter() {
+        if (MyApplication.selectedVerband == null) {
+            return;
+        }
         final ListView listview = (ListView) findViewById(R.id.liga_detail_list);
         if (selectedBezirk != null && selectedBezirk.getUrl() != null) {
             if (selectedKreis != null && selectedKreis.getUrl() != null) {
@@ -364,7 +380,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView label = (TextView) super.getView(position,convertView, parent);
+            TextView label = (TextView) super.getView(position, convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }

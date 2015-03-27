@@ -9,6 +9,7 @@ package com.jmelzer.myttr;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,9 +49,15 @@ public class MyApplication extends Application {
     }
 
     public void onCreate() {
+        Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
         MyApplication.context = getApplicationContext();
         createEmptyUser();
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
     }
 
     public static void setSelectedLiga(Liga selectedLiga) {
@@ -63,6 +70,10 @@ public class MyApplication extends Application {
 
     public static User getLoginUser() {
         return loginUser;
+    }
+
+    public static boolean userIsEmpty() {
+        return loginUser == null || loginUser.getUsername().isEmpty();
     }
 
     public static int getPoints() {
@@ -78,7 +89,7 @@ public class MyApplication extends Application {
     }
 
     public static String getTitle() {
-        return "TTR: " + loginUser.getPoints();
+        return "TTR: " + getPoints();
     }
 
     public static int calcActualDiff() {
@@ -105,5 +116,9 @@ public class MyApplication extends Application {
 
     public static int getAk() {
         return getLoginUser().getAk();
+    }
+
+    public static String stringit() {
+        return getLoginUser().toString();
     }
 }

@@ -28,8 +28,18 @@ import java.util.List;
  */
 public class NextAppointmentsActivity extends BaseActivity {
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.teamAppointments != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.nextappointments);
 
         final ListView listview = (ListView) findViewById(R.id.listview);

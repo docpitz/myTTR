@@ -32,10 +32,19 @@ import com.jmelzer.myttr.Util;
 import java.util.List;
 
 public class ClubListActivity extends BaseActivity {
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.clubPlayers != null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.clublist);
 
         final ListView listview = (ListView) findViewById(R.id.listview);

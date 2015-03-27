@@ -29,9 +29,20 @@ import com.jmelzer.myttr.logic.SyncManager;
  * will be aclled after the user press the notification for new points.
  */
 public class NewPointsActivity extends BaseActivity {
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         int n = SyncManager.newTTRPoints;
 
         setContentView(R.layout.newpointsreceived);

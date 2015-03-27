@@ -14,9 +14,18 @@ import com.jmelzer.myttr.R;
  */
 public class LigaAllResultsActivity extends AbstractLigaResultActivity {
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.getSelectedLiga() != null;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_mannschaft_detail);
 
         init();

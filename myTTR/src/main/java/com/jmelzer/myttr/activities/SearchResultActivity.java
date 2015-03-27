@@ -26,8 +26,18 @@ public class SearchResultActivity extends BaseActivity {
     Class goBackToClass;
 
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.searchResult != null;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.search_result);
 
         final ListView listview = (ListView) findViewById(R.id.playerlistview);

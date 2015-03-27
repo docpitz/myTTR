@@ -20,6 +20,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClubParser;
+import com.jmelzer.myttr.logic.LoginManager;
 
 import java.util.List;
 
@@ -28,8 +29,18 @@ public class EnterClubNameActivity extends BaseActivity {
     Club selectedClub;
 
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.enter_club_name);
         final EditText txtField = (EditText) findViewById(R.id.name);
         if (MyApplication.manualClub != null) {
@@ -73,8 +84,7 @@ public class EnterClubNameActivity extends BaseActivity {
                     "Der Verein wurde auf " + selectedClub.getName() + " ge\u00E4ndert",
                     Toast.LENGTH_SHORT).show();
             MyApplication.manualClub = selectedClub.getName();
-            LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(MyApplication.getAppContext());
-            adapter.storeClub(selectedClub.getName());
+            new LoginManager().storeClub(selectedClub.getName());
             Intent target = new Intent(this, HomeActivity.class);
             startActivity(target);
         }

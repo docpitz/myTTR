@@ -25,8 +25,18 @@ import java.util.List;
 public class LigaMannschaftBilanzActivity extends BaseActivity {
 
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.selectedMannschaft != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_mannschaft_bilanz);
 
         Mannschaft mannschaft = MyApplication.selectedMannschaft;

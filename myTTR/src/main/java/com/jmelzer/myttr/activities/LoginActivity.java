@@ -21,7 +21,6 @@ import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 public class LoginActivity extends Activity {
-    Button btnSignIn;
     public static String NOAUTOLOGIN;
 
     LoginDataBaseAdapter loginDataBaseAdapter;
@@ -32,22 +31,16 @@ public class LoginActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+
         requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
-//        userNameTextField.setText("-");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-//        pwTextField.setText("-");
-
 
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
         loginDataBaseAdapter = loginDataBaseAdapter.open();
-
-        // Get The Refference Of Buttons
-        btnSignIn = (Button) findViewById(R.id.button_login);
 
         loginDataBaseAdapter.deleteAllEntriesIfErrors();
 
@@ -95,13 +88,8 @@ public class LoginActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
-
-    @Override
     public void onBackPressed() {
         //do nothing in login
+        //todo close the app, see myttr-27
     }
 }

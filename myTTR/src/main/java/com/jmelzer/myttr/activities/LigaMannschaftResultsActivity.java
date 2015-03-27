@@ -21,8 +21,19 @@ import com.jmelzer.myttr.logic.NetworkException;
 public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.getSelectedLiga() != null;
+    }
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+        
         setContentView(R.layout.liga_mannschaft_detail);
 
         init();

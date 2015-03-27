@@ -27,8 +27,18 @@ import java.util.List;
 public class EventDetailActivity extends BaseActivity {
     EventDetail currentDetail;
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.currentDetail != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.event_detail);
 
         currentDetail = MyApplication.currentDetail;

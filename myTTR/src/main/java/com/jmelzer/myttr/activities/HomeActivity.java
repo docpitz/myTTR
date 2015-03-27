@@ -26,10 +26,19 @@ import com.jmelzer.myttr.logic.NetworkException;
 
 public class HomeActivity extends BaseActivity {
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.home);
 
 

@@ -28,8 +28,18 @@ import java.util.List;
 public class SelectTeamPlayerActivity extends BaseActivity {
 
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.myTeamPlayers != null;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.selectplayer);
 
         final ListView listview = (ListView) findViewById(R.id.playerlistview);

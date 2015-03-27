@@ -19,8 +19,18 @@ import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 public class EnterAKActivity extends BaseActivity {
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return !MyApplication.userIsEmpty();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.enter_ak);
 
         EditText txtField = (EditText) findViewById(R.id.enter_ak);

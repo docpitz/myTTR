@@ -36,8 +36,18 @@ public class TTRCalculatorActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.getPlayers() != null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.ttr_calc);
 
         final ListView listview = (ListView) findViewById(R.id.playerlistview);

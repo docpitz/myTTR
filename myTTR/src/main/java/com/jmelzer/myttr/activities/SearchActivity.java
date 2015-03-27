@@ -37,9 +37,18 @@ public class SearchActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.ttr_player_search);
         Intent i = getIntent();
 

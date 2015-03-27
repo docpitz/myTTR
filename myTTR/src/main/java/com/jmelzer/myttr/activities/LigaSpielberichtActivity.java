@@ -32,8 +32,19 @@ import java.util.List;
  * Show the Detail of an game.
  */
 public class LigaSpielberichtActivity extends BaseActivity {
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.selectedMannschaftSpiel != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_spielbericht);
 
         final ListView listview = (ListView) findViewById(R.id.liga_spielbericht_row);

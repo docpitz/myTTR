@@ -18,8 +18,18 @@ import com.jmelzer.myttr.R;
 
 public class EnterTTRActivity extends BaseActivity {
     @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.enterttr);
     }
 

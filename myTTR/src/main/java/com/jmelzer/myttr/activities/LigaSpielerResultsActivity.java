@@ -26,9 +26,18 @@ import java.util.List;
  */
 public class LigaSpielerResultsActivity extends BaseActivity {
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.selectedLigaSpieler != null;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_spieler_results);
 
         Spieler spieler = MyApplication.selectedLigaSpieler;

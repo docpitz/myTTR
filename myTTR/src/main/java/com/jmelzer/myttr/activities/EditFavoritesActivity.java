@@ -25,9 +25,20 @@ import java.util.List;
  */
 public class EditFavoritesActivity extends BaseActivity {
     FavAdapter adapter;
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.edit_favorite_liga);
 
         final ListView listview = (ListView) findViewById(R.id.listFavs);

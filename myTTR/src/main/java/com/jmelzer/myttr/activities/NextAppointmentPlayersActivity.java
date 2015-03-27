@@ -19,11 +19,22 @@ import com.jmelzer.myttr.logic.TooManyPlayersFound;
  * User: jmelzer
  */
 public class NextAppointmentPlayersActivity extends BaseActivity {
+
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.foreignTeamPlayers != null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.nextappointmentplayer);
 
         final ListView listview = (ListView) findViewById(R.id.nextappointmentplayerlistview);

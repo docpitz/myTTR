@@ -35,8 +35,19 @@ import java.util.List;
 public class LigaTabelleActivity extends BaseActivity {
     Liga liga;
 
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.getSelectedLiga() != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_tabelle);
 
         liga = MyApplication.getSelectedLiga();

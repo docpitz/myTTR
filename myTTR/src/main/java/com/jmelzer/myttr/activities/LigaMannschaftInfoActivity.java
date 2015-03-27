@@ -25,8 +25,19 @@ import java.util.List;
  * Show the Detail of the mannschaft.
  */
 public class LigaMannschaftInfoActivity extends BaseActivity {
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return MyApplication.selectedMannschaft != null;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.liga_mannschaft_info);
         final Mannschaft m = MyApplication.selectedMannschaft;
         if (m == null) {

@@ -17,9 +17,20 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 public class ResultActivity extends BaseActivity {
+
+    @Override
+    protected boolean checkIfNeccessryDataIsAvaible() {
+        return !MyApplication.userIsEmpty();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (toLoginIfNeccassry()) {
+            return;
+        }
+
         setContentView(R.layout.result);
         setTitle(MyApplication.getTitle());
 
