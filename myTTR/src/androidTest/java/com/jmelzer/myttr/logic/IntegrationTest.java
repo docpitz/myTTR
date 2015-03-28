@@ -37,7 +37,7 @@ public class IntegrationTest extends BaseTestCase {
         System.out.println("ttrB = " + p.get(0).getTtrPoints());
         assertTrue(p.get(0).getTtrPoints() > 0);
         TTRCalculator calculator = new TTRCalculator();
-        assertEquals(11, calculator.calcPoints(myPoints, p.get(0).getTtrPoints(), true, 16));
+//        assertEquals(11, calculator.calcPoints(myPoints, p.get(0).getTtrPoints(), true, 16));
     }
 
     @SmallTest

@@ -57,17 +57,17 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     @MediumTest
     public void testit() throws InterruptedException {
-//        testAutomaticLogin();
+        testAutomaticLogin();
 
-//        login();
+        login();
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
-//        testHomeButton();
-//        testPreferences();
+        testHomeButton();
+        testPreferences();
         testTTR();
-//        gotoHome();
-//        testClubList();
-//        gotoHome();
-//        testOwnStatistics();
+        gotoHome();
+        testClubList();
+        gotoHome();
+        testOwnStatistics();
         gotoHome();
         testSearch();
         gotoHome();
@@ -115,12 +115,12 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.enterText(2, "Borussia Düsseldorf");
         solo.clickOnText(solo.getString(R.string.detail_search));
         assertTrue(solo.waitForActivity(SearchResultActivity.class, 50000));
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
         assertTrue(solo.searchText("Boll"));
-        solo.clickLongInList(3);
+        solo.clickInList(3);
         assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
 
     }
@@ -182,7 +182,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertTrue(solo.waitForActivity(SelectTeamPlayerActivity.class, 50000));
 
         assertTrue(solo.searchText("Schmidt"));
-        solo.clickLongInList(8);
+        solo.clickInList(8);
 
         assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
         assertTrue("Manni is selected as player", solo.searchText("Manfred"));
@@ -206,7 +206,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     private void testOwnStatistics() {
         solo.clickOnButton(solo.getString(R.string.statistik));
         assertTrue(solo.waitForActivity(EventsActivity.class, 50000));
-        solo.clickLongInList(1);
+        solo.clickInList(1);
         assertTrue(solo.waitForActivity(EventDetailActivity.class, 50000));
 
         gotoHome();
@@ -216,16 +216,16 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     private void testClubList() {
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
-        assertTrue(solo.searchText("Vester"));
-        solo.clickLongInList(0);
+        assertTrue(solo.searchText("Weißenberg"));
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
 
         assertTrue(solo.searchText("11 : ") || solo.searchText(" : 11"));
         assertFalse(solo.searchText("div"));
 
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
 
         gotoHome();
@@ -259,7 +259,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertNotNull(MyApplication.teamAppointments);
 
         //select first appointment
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
 
         solo.clickOnCheckBox(0);
@@ -282,10 +282,10 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertNotNull(MyApplication.teamAppointments);
 
         //select first appointment
-        solo.clickLongInList(0);
+        solo.clickInList(0);
         assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
         solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
-        solo.clickLongInList(3);
+        solo.clickInList(3);
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
 
         assertEquals("one selected", 1, MyApplication.getPlayers().size());
@@ -366,7 +366,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
 
-        solo.clickLongInList(3); //real Timo
+        solo.clickInList(3); //real Timo
 
         assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 20000));
 
