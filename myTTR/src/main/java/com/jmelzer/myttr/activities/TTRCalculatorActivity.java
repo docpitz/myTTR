@@ -27,6 +27,9 @@ import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TTRCalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TTRCalculatorActivity extends BaseActivity {
 
     TTRCalculator calculator = new TTRCalculator();
@@ -92,15 +95,19 @@ public class TTRCalculatorActivity extends BaseActivity {
                     getString(R.string.select_player_first), Toast.LENGTH_SHORT).show();
             return;
         }
-        int newV = MyApplication.getPoints();
+        int actualPoints = MyApplication.getPoints();
         if (MyApplication.simPlayer != null) {
-            newV = MyApplication.simPlayer.getTtrPoints();
+            actualPoints = MyApplication.simPlayer.getTtrPoints();
         }
+        List<TTRCalculator.Game> list = new ArrayList<>();
+
         for (Player player : MyApplication.getPlayers()) {
-            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked(),
-                    MyApplication.getAk());
+            list.add(new TTRCalculator.Game(player.getTtrPoints(), player.isChecked()));
+//            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked(),
+//                    MyApplication.getAk());
         }
-        MyApplication.result = newV;
+        actualPoints += calculator.calcPoints(actualPoints, list, MyApplication.getAk());
+        MyApplication.result = actualPoints;
         Intent target = new Intent(TTRCalculatorActivity.this, ResultActivity.class);
         startActivity(target);
     }

@@ -201,7 +201,7 @@ public class ClickTTParserTest {
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
-        liga = parser.parseErgebnisse(liga, page, true);
+        liga = parser.parseErgebnisse(liga, page, Liga.Spielplan.VR);
 
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
@@ -232,9 +232,9 @@ public class ClickTTParserTest {
 //        liga.setUrl("http://bla.de");
         liga = parser.parseLiga(liga, page);
         page = readFile("assets/clicktt/spiele.htm");
-        parser.parseErgebnisse(liga, page, true);
+        parser.parseErgebnisse(liga, page, Liga.Spielplan.VR);
         page = readFile("assets/clicktt/spiele-rr.htm");
-        parser.parseErgebnisse(liga, page, false);
+        parser.parseErgebnisse(liga, page, Liga.Spielplan.RR);
         return liga;
     }
 
