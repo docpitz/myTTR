@@ -89,7 +89,7 @@ public class LoginActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        //do nothing in login
-        //todo close the app, see myttr-27
+        //close the app, see myttr-27
+        super.onBackPressed();
     }
 }
