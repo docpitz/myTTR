@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -13,14 +14,14 @@
             android:layout_width="0dp"
             android:layout_marginRight="6dp"
             android:layout_weight="2.5"
-            android:text="@string/sample_date"/>
+            tools:text="@string/sample_date"/>
 
         <TextView
             android:id="@+id/event"
             style="@style/TextListStyle"
             android:layout_width="0dp"
             android:layout_weight="4.0"
-            android:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40"/>
+            tools:text="Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40"/>
 
         <TextView
             android:id="@+id/ak"
@@ -29,7 +30,7 @@
             android:layout_marginLeft="6dp"
             android:layout_weight="0.7"
             android:gravity="left"
-            android:text="16"/>
+            tools:text="16"/>
 
         <TextView
             android:id="@+id/sp"
@@ -38,7 +39,7 @@
             android:layout_marginLeft="6dp"
             android:layout_weight="0.8"
             android:gravity="left"
-            android:text="1/2"/>
+            tools:text="1/2"/>
 
         <TextView
             android:id="@+id/ttr"
@@ -46,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_marginLeft="6dp"
             android:layout_weight="1.2"
-            android:text="@string/sample_ttr"/>
+            tools:text="@string/sample_ttr"/>
 
         <TextView
             android:id="@+id/diff"
@@ -56,8 +57,6 @@
             android:layout_marginRight="2dp"
             android:layout_weight="0.9"
             android:gravity="right"
-            android:text="-12"/>
-
-
+            tools:text="-12"/>
     </LinearLayout>
 </LinearLayout>

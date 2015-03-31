@@ -118,6 +118,19 @@
     <string name="sample_kontakt">von Thurn und Taxis, Johannes\nMobil: 0177 0000000\nkalr.hans@gmx.de</string>
     <string name="sample_date">21.03.2014</string>
     <string name="sample_ttr">1611</string>
+    <string name="text_favorite_liga">Lösche nicht mehr benötigte Favoriten</string>
+    <string name="hint_ak">Wert zwischen 16 und 28</string>
+    <string name="hint_club_name">Hier den Namen eingeben</string>
+    <string name="header_event_name">Name</string>
+    <string name="header_event_result">Erg.</string>
+    <string name="header_event_sets">Sätze</string>
+    <string name="header_event_date">Datum</string>
+    <string name="header_event_event">Begegnung</string>
+    <string name="header_event_ak">AK</string>
+    <string name="header_event_games">Sp</string>
+    <string name="header_event_ttr">TTR</string>
+    <string name="header_event_sum">+/-</string>
+    <string name="image_remove">Remove</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

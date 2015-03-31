@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:text="Bla Blun (1200)"/>
+        tools:text="Bla Blun (1200)"/>
 
     <TextView
         android:id="@+id/textView"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="2.5"
-            android:text="Datum"/>
+            android:text="@string/header_event_date"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="4.0"
-            android:text="Begegnung"/>
+            android:text="@string/header_event_event"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -49,7 +49,7 @@
             android:layout_gravity="center"
             android:layout_weight="0.7"
             android:layout_marginLeft="6dp"
-            android:text="AK"/>
+            android:text="@string/header_event_ak"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.8"
-            android:text="Sp"/>
+            android:text="@string/header_event_games"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1.2"
-            android:text="TTR"/>
+            android:text="@string/header_event_ttr"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -77,7 +77,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="0.9"
             android:gravity="right"
-            android:text="+/-"/>
+            android:text="@string/header_event_sum"/>
     </LinearLayout>
 
     <View style="@style/ListLine"/>

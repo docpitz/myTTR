@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:hint="Hier den Namen eingeben"/>
+        android:hint="@string/hint_club_name"/>
 
     <LinearLayout
         android:orientation="horizontal"

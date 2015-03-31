@@ -41,7 +41,7 @@ public class MyApplication extends Application {
     private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
     public static Mannschaftspiel selectedMannschaftSpiel;
-    public static Verband selectedVerband; //todo do we need this?
+    public static Verband selectedVerband;
     public static Spieler selectedLigaSpieler;
 
     public static void setLoginUser(User loginUser) {

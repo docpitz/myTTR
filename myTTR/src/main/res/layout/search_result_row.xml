@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              tools:ignore="HardcodedText">
 
     <LinearLayout
         style="@style/RowListStyle"
@@ -16,14 +17,14 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="5"
             android:gravity="start"
-            android:text="Peter"/>
+            tools:text="Peter"/>
 
         <TextView
             android:id="@+id/lastname"
             android:layout_width="0dp"
             style="@style/TextListStyle"
             android:layout_weight="5"
-            android:text="Muster"/>
+            tools:text="Muster"/>
 
         <TextView
             android:id="@+id/club"
@@ -38,6 +39,5 @@
             style="@style/TextListStyle"
             android:layout_weight="5"
             android:text="2000"/>
-
     </LinearLayout>
 </LinearLayout>

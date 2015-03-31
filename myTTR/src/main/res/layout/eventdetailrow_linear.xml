@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -12,29 +13,26 @@
             android:id="@+id/name"
             android:layout_width="0dp"
             style="@style/TextListStyle"
-            android:layout_marginRight="10px"
             android:layout_weight="3"
             android:gravity="left"
-            android:text="Peter Muster"/>
+            tools:text="Peter Muster"/>
 
         <TextView
             android:id="@+id/result"
             android:layout_width="0dp"
             style="@style/TextListStyle"
-            android:layout_toRightOf="@+id/name"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="3:2"/>
+            tools:text="3:2"/>
 
         <TextView
             android:id="@+id/sets"
             android:layout_width="0dp"
             style="@style/TextListStyle"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/result"
             android:layout_weight="6"
             android:gravity="left"
-            android:text="	4:11 3:11 11:7 	2:11 "/>
+            tools:text="	4:11 3:11 11:7 	2:11 "/>
 
 
     </LinearLayout>

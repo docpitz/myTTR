@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/enter_ak"
         android:layout_gravity="center"
-        android:hint="Wert zwischen 16 und 28"
+        android:hint="@string/hint_ak"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
 

@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Lösche nicht mehr benötigte Favoriten"
+        android:text="@string/text_favorite_liga"
         android:id="@+id/textView11"
         android:layout_marginBottom="20dp"/>
 
