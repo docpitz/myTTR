@@ -95,6 +95,8 @@
     <string name="enter_clubname">Verein eingeben</string>
     <string name="enter_ak_sum">Hier kannst du deine Änderungskonstante eingeben, wenn sie nicht 16 ist.</string>
     <string name="enter_ak">Änderungskonstante eingeben</string>
+    <string name="enter_time_sum">Einstellung des Zeitintervalls für neue Punkte etc..</string>
+    <string name="enter_time">Zeitintervall eingeben</string>
     <string name="reset">Zurücksetzen</string>
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
     <string name="favorite_added">Die Liga wurde zu deinen Favoriten hinzugefügt. Du kannst sie bei der Ligaauswahl bearbeiten</string>

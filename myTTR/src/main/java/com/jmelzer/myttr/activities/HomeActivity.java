@@ -23,6 +23,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.SyncManager;
 
 public class HomeActivity extends BaseActivity {
 
@@ -42,7 +43,7 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.home);
 
 
-//        startService(new Intent(this, SyncManager.class));
+        startService(new Intent(this, SyncManager.class));
 //        new SyncManager().startService();
 
     }

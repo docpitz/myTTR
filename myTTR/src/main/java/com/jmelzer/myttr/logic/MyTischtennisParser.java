@@ -20,6 +20,8 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -36,14 +38,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     ClubParser clubParser = new ClubParser();
 
     public int getPoints() throws PlayerNotWellRegistered {
-//        if (debugCounter++ % 10 == 0) {
-//            Log.i(Constants.LOG_TAG, "getPoints() = " + (1600 + debugCounter));
-//            return 1600 + debugCounter;
-//        } else {
-//            Log.i(Constants.LOG_TAG, "getPoints() = " + 1565);
-//            return 1565;
-//        }
-//
+
         String url = "http://www.mytischtennis.de/community/index";
 
         try {
@@ -63,22 +58,30 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //                if (true) throw new NumberFormatException();
                 return Integer.valueOf(page.substring(start, end));
             } catch (NumberFormatException e) {
-//                String filename = "myttr-debug.html";
-//                FileOutputStream outputStream;
-//
-//                File file = new File(getLogDir(), filename);
-//                outputStream = new FileOutputStream(file);
-//                outputStream.write(page.getBytes());
-//                outputStream.close();
-//                file.setReadable(true);
-//                Log.i(Constants.LOG_TAG, "wrote log to " + file.getAbsolutePath());
                 return -3;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(Constants.LOG_TAG, "error parsing page", e);
         }
 
         return 0;
+    }
+
+    void writeDebugFile(String page) {
+        try {
+            String filename = "myttr-debug.html";
+            FileOutputStream outputStream;
+
+            File file = new File(getLogDir(), filename);
+            outputStream = new FileOutputStream(file);
+            outputStream.write(page.getBytes());
+            outputStream.close();
+            file.setReadable(true);
+            Log.i(Constants.LOG_TAG, "wrote log to " + file.getAbsolutePath());
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, "error writing page", e);
+        }
+
     }
 
     File getLogDir() {
@@ -616,13 +619,13 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 eventDetail.getGames().add(game);
                 game.setPlayerId(Long.valueOf(result.result));
 
-                n = result.end-1;
+                n = result.end - 1;
                 result = readBetween(page, n, ";", ";");
                 //not interersting number, skip
-                n = result.end-1;
+                n = result.end - 1;
                 result = readBetween(page, n, ";", ";");
                 game.setPlayer(result.result);
-                n = result.end-1;
+                n = result.end - 1;
 
                 result = readBetween(page, n, "bigtooltip'});\">", "</span>");
                 game.setPlayerWithPoints(result.result);
@@ -704,7 +707,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //        return parseForPlayer(firstName, lastName, page);
         return null;
     }
-
 
 
     class Helper {

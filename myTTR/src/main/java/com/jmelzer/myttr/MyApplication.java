@@ -9,7 +9,15 @@ package com.jmelzer.myttr;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.jmelzer.myttr.activities.MySettingsActivity;
+import com.jmelzer.myttr.db.DataBaseHelper;
+import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
+import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +60,10 @@ public class MyApplication extends Application {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
         MyApplication.context = getApplicationContext();
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
+        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
+        dataBaseHelper.registerAdapter(new LoginDataBaseAdapter(this));
+        dataBaseHelper.registerAdapter(new NotificationDataBaseAdapter(this));
         createEmptyUser();
     }
 
@@ -120,5 +132,36 @@ public class MyApplication extends Application {
 
     public static String stringit() {
         return getLoginUser().toString();
+    }
+
+    /**
+     * getting the index of EnterTimeactivity.interval.
+     *
+     * @return idx , default is 3
+     */
+    public int getTimerSetting() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPref.getInt(MySettingsActivity.KEY_PREF_TIMER, 3);
+    }
+
+    public void storeTimerSetting(int timer) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(MySettingsActivity.KEY_PREF_TIMER, timer);
+        editor.apply();
+    }
+
+
+    public int getTimerSettingInMinutes() {
+        //in minutes
+        int[] interval = new int[]{
+                1, 10, 30, 60, 24 * 60, 24 * 60 * 7};
+
+        int idx = getTimerSetting();
+        if (idx <= interval.length - 1) {
+            return interval[idx] * 1000 * 60;
+        } else {
+            return -1;
+        }
     }
 }

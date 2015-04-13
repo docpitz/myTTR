@@ -23,20 +23,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FavoriteLigaDataBaseAdapter {
-    static final int DATABASE_VERSION = 1;
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+public class FavoriteLigaDataBaseAdapter implements DbAdapter{
 
     static final String TABLE_NAME = "FAV_LIGA";
+
+    static final String FAV_LIGA_CREATE = "create table " + TABLE_NAME +
+            "( " + "ID" + " integer primary key autoincrement," +
+            "LIGA_NAME text, URL  text, CHANGED_AT date); ";
+
     // Variable to hold the database instance
     static SQLiteDatabase db;
     // Database open/upgrade helper
-    private static DataBaseHelper dbHelper;
+    private DataBaseHelper dbHelper;
 
     public FavoriteLigaDataBaseAdapter(Context _context) {
-        if (dbHelper == null) {
-            dbHelper = new DataBaseHelper(_context);
-        }
+        dbHelper = DataBaseHelper.getInstance(_context);
     }
 
     public FavoriteLigaDataBaseAdapter open() throws SQLException {
@@ -50,7 +51,7 @@ public class FavoriteLigaDataBaseAdapter {
         // Assign values for each row.
         newValues.put("LIGA_NAME", name);
         newValues.put("URL", url);
-        newValues.put("CHANGED_AT", formatter.format(new Date()));
+        newValues.put("CHANGED_AT", DbUtil.formatter.format(new Date()));
 
         // Insert the row into your table
         long l = db.insert(TABLE_NAME, null, newValues);
@@ -100,5 +101,15 @@ public class FavoriteLigaDataBaseAdapter {
         }
         cursor.close();
         return true;
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(FAV_LIGA_CREATE);
     }
 }

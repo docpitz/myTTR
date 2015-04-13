@@ -20,6 +20,11 @@
         android:title="@string/enter_ak">
         <intent android:action="AK"/>
     </PreferenceScreen>
+    <PreferenceScreen
+        android:summary="@string/enter_time_sum"
+        android:title="@string/enter_time">
+        <intent android:action="Time"/>
+    </PreferenceScreen>
     <!--<EditTextPreference android:key="MANUAL_CLUB"
                         android:title="Verein eingeben"
                         android:summary="Verein eingeben2"  />-->

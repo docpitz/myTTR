@@ -31,6 +31,7 @@ import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 public class MySettingsActivity extends Activity {
 
     public static final String KEY_PREF_SAVE_USER = "SAVE_USER";
+    public static final String KEY_PREF_TIMER    = "TIMER";
     public static final String KEY_PREF_SYNC_TTR = "SYNC_TTR";
 
     @Override

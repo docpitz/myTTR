@@ -14,13 +14,43 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.Event;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.TeamAppointment;
+import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
+import com.jmelzer.myttr.model.LastNotification;
 
 import java.io.IOException;
 import java.util.List;
 
 public class IntegrationTest extends BaseTestCase {
+
+    @SmallTest
+    public void testNewEventsReceived() throws Exception {
+        login();
+        MyTischtennisParser parser = new MyTischtennisParser();
+        NotificationDataBaseAdapter adapter = new NotificationDataBaseAdapter(MyApplication.getAppContext());
+        adapter.open();
+        adapter.deleteAllEntries();
+
+        assertNull(adapter.getEntryByType("inttest"));
+
+        //prepare the start point
+        List<Event> events = parser.readEvents();
+        int ttr = parser.getPoints();
+
+        assertTrue(adapter.insertEntry("inttest", LastNotification.convertToJson(events, ttr)) > 0);
+
+        LastNotification lastNotification = adapter.getEntryByType("inttest");
+        assertNotNull(lastNotification.getJsonData());
+        assertEquals(events.size(), lastNotification.convertEventSizeFromJson());
+        assertEquals(ttr, lastNotification.convertTTRFromJson());
+
+
+
+
+    }
 
     @SmallTest
     public void test() throws TooManyPlayersFound, PlayerNotWellRegistered, IOException, NetworkException {

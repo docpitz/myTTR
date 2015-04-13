@@ -20,19 +20,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class LoginDataBaseAdapter {
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+public class LoginDataBaseAdapter implements DbAdapter{
 
+    static final String LOGIN_CREATE = "create table " + "LOGIN" +
+            "( " + "ID" + " integer primary key autoincrement," +
+            "REALNAME text, USERNAME  text,PASSWORD text, " +
+            "POINTS NUMERIC, AK NUMERIC, CLUB_NAME text, CHANGED_AT date); ";
 
     // Variable to hold the database instance
     static SQLiteDatabase db;
     // Database open/upgrade helper
-    private static DataBaseHelper dbHelper;
+    private DataBaseHelper dbHelper;
 
     public LoginDataBaseAdapter(Context _context) {
-        if (dbHelper == null) {
-            dbHelper = new DataBaseHelper(_context);
-        }
+        dbHelper = DataBaseHelper.getInstance(_context);
     }
 
     public LoginDataBaseAdapter open() throws SQLException {
@@ -54,7 +55,7 @@ public class LoginDataBaseAdapter {
         newValues.put("POINTS", points);
         newValues.put("AK", ak);
         newValues.put("CLUB_NAME", clubName);
-        newValues.put("CHANGED_AT", formatter.format(new Date()));
+        newValues.put("CHANGED_AT", DbUtil.formatter.format(new Date()));
 
         // Insert the row into your table
         long l = db.insert("LOGIN", null, newValues);
@@ -114,24 +115,28 @@ public class LoginDataBaseAdapter {
         String clubName = cursor.getString(cursor.getColumnIndex("CLUB_NAME"));
         int points = cursor.getInt(cursor.getColumnIndex("POINTS"));
         int ak = cursor.getInt(cursor.getColumnIndex("AK"));
-        String changed = cursor.getString(cursor.getColumnIndex("CHANGED_AT"));
-        Date changedAt = new Date(); //prevent NPE
-        if (changed != null) {
-            try {
-                changedAt = formatter.parse(changed);
-            } catch (ParseException e) {
-                //ignore
-            }
-        }
+        Date changedAt = DbUtil.getSafeDate(cursor, "CHANGED_AT");
         cursor.close();
         User u = new User(realName, username, password, points, changedAt, clubName, ak);
         return u;
     }
+
+
 
     public void storeAk(int ak) {
         db.beginTransaction();
         db.execSQL("update LOGIN set AK=" + ak);
         db.setTransactionSuccessful();
         db.endTransaction();
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(LOGIN_CREATE);
     }
 }
