@@ -124,8 +124,8 @@ public class SyncManager extends Service {
                     PendingIntent pIntent = PendingIntent.getActivity(SyncManager.this, 0, eventIntent, 0);
 
                     Notification n = new Notification.Builder(SyncManager.this)
-                            .setContentTitle("Neue Punkte von myTischtennis!")
-                            .setContentText("Du hast neue Punkte erhalten, schau sie dir an.")
+                            .setContentTitle("Neue Ergebnisse von myTischtennis!")
+                            .setContentText("Du hast neue Ergebnisse erhalten, schau sie dir an.")
                             .setSmallIcon(R.drawable.myttr)
                             .setContentIntent(pIntent)
                             .setAutoCancel(true)

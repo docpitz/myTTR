@@ -137,11 +137,11 @@ public class MyApplication extends Application {
     /**
      * getting the index of EnterTimeactivity.interval.
      *
-     * @return idx , default is 3
+     * @return idx , default is 4 (daily)
      */
     public int getTimerSetting() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPref.getInt(MySettingsActivity.KEY_PREF_TIMER, 3);
+        return sharedPref.getInt(MySettingsActivity.KEY_PREF_TIMER, 4);
     }
 
     public void storeTimerSetting(int timer) {
@@ -155,7 +155,7 @@ public class MyApplication extends Application {
     public int getTimerSettingInMinutes() {
         //in minutes
         int[] interval = new int[]{
-                1, 10, 30, 60, 24 * 60, 24 * 60 * 7};
+                5, 10, 30, 60, 24 * 60, 24 * 60 * 7};
 
         int idx = getTimerSetting();
         if (idx <= interval.length - 1) {
