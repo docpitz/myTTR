@@ -128,7 +128,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     private void testAutomaticLogin() {
 
 
-        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
+        assertTrue(solo.waitForActivity(HomeActivity.class, 60000));
         //automatic login must be sucessfull
 
         solo.sendKey(Solo.MENU);

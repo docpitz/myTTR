@@ -18,6 +18,7 @@ import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.User;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,14 +38,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     ClubParser clubParser = new ClubParser();
 
-    public int getPoints() throws PlayerNotWellRegistered {
-
-        String url = "http://www.mytischtennis.de/community/index";
-
+    public int parsePoints(String page) throws PlayerNotWellRegistered {
+        checkIfPlayerRegisteredWithClub(page);
         try {
-            String page = Client.getPage(url);
 
-            checkIfPlayerRegisteredWithClub(page);
 
             int start = page.indexOf(ZUR_TTR_HISTORIE) + ZUR_TTR_HISTORIE.length();
             if (start < 0) {
@@ -65,6 +62,22 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
 
         return 0;
+    }
+
+    public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException {
+        String url = "http://www.mytischtennis.de/community/index";
+
+        String page = Client.getPage(url);
+        return new User(parseRealName(page), parsePoints(page));
+    }
+    public int getPoints() throws PlayerNotWellRegistered, NetworkException {
+
+        String url = "http://www.mytischtennis.de/community/index";
+
+        String page = Client.getPage(url);
+
+        return parsePoints(page);
+
     }
 
     void writeDebugFile(String page) {

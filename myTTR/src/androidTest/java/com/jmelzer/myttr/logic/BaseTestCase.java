@@ -32,13 +32,13 @@ public class BaseTestCase extends TestCase {
         }
     }
 
-    protected void login() throws IOException {
+    protected void login() throws Exception {
 
         LoginManager loginManager = new LoginManager();
         //prepare cookies
         prepareMocks();
         prepareCookiesForLogin();
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou123"));
+        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
     }
 
     private void prepareCookiesForLogin() {

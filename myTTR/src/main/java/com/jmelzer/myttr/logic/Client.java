@@ -57,7 +57,7 @@ public class Client {
 
 
 
-    public static String getPage(String url) throws NetworkException {
+    public synchronized static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
         HttpGet httpGet = prepareGet(url);
         try {
@@ -136,8 +136,10 @@ public class Client {
     }
 
     public static HttpResponse execute(HttpPost httpPost) throws IOException {
-
-        return client.execute(httpPost);
+        long start = System.currentTimeMillis();
+        HttpResponse response = client.execute(httpPost);
+        Log.d(Constants.LOG_TAG, "post execute takes " + (System.currentTimeMillis() - start) + " ms");
+        return response;
     }
 
     public static void setHttpClient(HttpClient sClient) {

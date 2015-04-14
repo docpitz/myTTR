@@ -53,7 +53,7 @@ public class IntegrationTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void test() throws TooManyPlayersFound, PlayerNotWellRegistered, IOException, NetworkException {
+    public void test() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -71,7 +71,7 @@ public class IntegrationTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testReadPointsFromNextAppointment() throws TooManyPlayersFound, PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+    public void testReadPointsFromNextAppointment() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();

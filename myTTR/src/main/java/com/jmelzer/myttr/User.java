@@ -24,6 +24,16 @@ public class User {
     Date changedAt;
     int ak;
 
+    public User(String realName, int points) {
+        this.realName = realName;
+        this.points = points;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String realName, String username, String password, int points, Date changedAt, String clubName, int ak) {
         this.realName = realName;
         this.username = username;
@@ -32,6 +42,18 @@ public class User {
         this.changedAt = changedAt;
         this.clubName = clubName;
         this.ak = ak;
+    }
+
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {

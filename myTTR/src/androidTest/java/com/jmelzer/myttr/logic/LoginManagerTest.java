@@ -21,10 +21,15 @@ import java.io.IOException;
 public class LoginManagerTest extends TestCase {
 
     @SmallTest
-    public void testlogin() throws IOException {
+    public void testlogin() throws Exception {
         LoginManager loginManager = new LoginManager();
-        Assert.assertTrue(loginManager.login("KKöhler", "pass123."));
-        Assert.assertTrue(loginManager.login("chokdee", "fuckyou123"));
+        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
+        try {
+            loginManager.login("KKöhler", "pass123.");
+            fail("PlayerNotWellRegistered");
+        } catch (PlayerNotWellRegistered e) {
+            //expexted
+        }
 
     }
 }

@@ -42,7 +42,7 @@ public class HomeActivity extends BaseActivity {
 
         setContentView(R.layout.home);
 
-
+//todo check wether it is started thrw boot
         startService(new Intent(this, SyncManager.class));
 //        new SyncManager().startService();
 

@@ -90,31 +90,39 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (IOException e) {
             errorMessage = NetworkException.translate(e);
             Log.d(Constants.LOG_TAG, "", e);
+        } catch (NetworkException e) {
+            errorMessage = e.getMessage();
+            Log.d(Constants.LOG_TAG, "", e);
         }
 
         return null;
     }
 
-    private void login(String username, String pw) throws IOException {
-        if (loginManager.login(username, pw)) {
+    private void login(String username, String pw) throws IOException, NetworkException {
+        User user = null;
+        try {
+            if ((user = loginManager.login(username, pw)) != null) {
 
-            loginSuccess = true;
-            MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-
-            try {
-                ttr = myTischtennisParser.getPoints();
-            } catch (PlayerNotWellRegistered e) {
-                playerNotWellRegistered = true;
+                loginSuccess = true;
+                ttr = user.getPoints();
+//                try {
+//                    ttr = myTischtennisParser.getPoints();
+//                } catch (PlayerNotWellRegistered e) {
+//                    playerNotWellRegistered = true;
+//                }
+                store(user, new MyTischtennisParser());
             }
-            store(username, pw, myTischtennisParser);
+        } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
+            playerNotWellRegistered = true;
+            store(new User(username, pw), new MyTischtennisParser());
         }
     }
 
-    private void store(String username, String pw, MyTischtennisParser myTischtennisParser) {
+    private void store(User user, MyTischtennisParser myTischtennisParser) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(parent);
         Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
 
-        loginManager.loadUserIntoMemoryAndStore(username, pw, ttr, saveUser, myTischtennisParser);
+        loginManager.loadUserIntoMemoryAndStore(user, saveUser, myTischtennisParser);
 //        String name = myTischtennisParser.getRealName();
 //        User userDb = loginDataBaseAdapter.getSinlgeEntry();
 //        int ak = 16;

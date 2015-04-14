@@ -48,7 +48,7 @@ public class LoginManager {
         return loginDataBaseAdapter;
     }
 
-    public boolean relogin() throws IOException {
+    public boolean relogin() throws IOException, NetworkException {
         if (un == null || pw == null) {
             User user = readUserFromDB();
             if (user != null) {
@@ -59,7 +59,12 @@ public class LoginManager {
                 throw new IllegalArgumentException("login must be called befor relogin");
             }
         }
-        return login(un, pw);
+        try {
+            return login(un, pw) != null;
+        } catch (PlayerNotWellRegistered playerNotWellRegistered) {
+            //shall not be possible on relogin
+            return false;
+        }
 
     }
 
@@ -71,14 +76,15 @@ public class LoginManager {
         Client.getCookieStore().clear();
     }
 
-    public boolean login(String username, String password) throws IOException {
+    public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered {
+        long start = System.currentTimeMillis();
         logout();
         HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
 
-        HttpGet httpGet2 = new HttpGet("http://www.mytischtennis.de/community/index");
+//        HttpGet httpGet2 = new HttpGet("http://www.mytischtennis.de/community/index");
         HttpParams gethttpParams = new BasicHttpParams();
         gethttpParams.setParameter("fromLogin", null);
-        httpGet2.setParams(gethttpParams);
+//        httpGet2.setParams(gethttpParams);
 
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("userNameB", username));
@@ -86,20 +92,25 @@ public class LoginManager {
 
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
         HttpResponse response = Client.execute(httpPost);
-        Log.d(Constants.LOG_TAG, "status code 1=" + response.getStatusLine().getStatusCode());
+        Log.d(Constants.LOG_TAG, "status code login =" + response.getStatusLine().getStatusCode());
         response.getEntity().consumeContent();
-        response = Client.client.execute(httpGet2);
-        Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
-        response.getEntity().consumeContent();
+
+        User user = new MyTischtennisParser().getPointsAndRealName();
+        user.setPassword(password);
+        user.setUsername(username);
+//        response = Client.client.execute(httpGet2);
+//        Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
+//        response.getEntity().consumeContent();
         for (Cookie cookie : Client.getCookieStore().getCookies()) {
             if (LOGGEDINAS.equals(cookie.getName())) {
                 un = username;
                 pw = password;
-                return true;
+                Log.d(Constants.LOG_TAG, "login time = " + (System.currentTimeMillis() - start) + " ms");
+                return user;
             }
         }
 
-        return false;
+        return null;
     }
 
     void p() {
@@ -108,22 +119,25 @@ public class LoginManager {
         }
     }
 
-    public User loadUserIntoMemoryAndStore(String username, String pw, int ttr,
+    public User loadUserIntoMemoryAndStore(User user,
                                            Boolean saveUser, MyTischtennisParser myTischtennisParser) {
-        String name = myTischtennisParser.getRealName();
+//        String name = myTischtennisParser.getRealName();
         User userDb = getLoginDataBaseAdapter().getSinlgeEntry();
         int ak = 16;
         if (userDb != null) {
             MyApplication.manualClub = userDb.getClubName();
+            user.setClubName(userDb.getClubName());
             ak = userDb.getAk();
         }
-        MyApplication.setLoginUser(new User(name, username, pw, ttr, new Date(), MyApplication.manualClub, ak));
-        getLoginDataBaseAdapter().deleteEntry(username);
+        user.setAk(ak);
+        MyApplication.setLoginUser(user);
+        getLoginDataBaseAdapter().deleteEntry(user.getUsername());
 
         if (saveUser) {
-            getLoginDataBaseAdapter().insertEntry(name, username, pw, ttr, MyApplication.manualClub, ak);
+            getLoginDataBaseAdapter().insertEntry(user.getRealName(), user.getUsername(),
+                    user.getPassword(), user.getPoints(), MyApplication.manualClub, ak);
         }
-        return new User(name, username, pw, ttr, new Date(), MyApplication.manualClub, ak);
+        return user;
     }
 
     public void storeClub(String name) {

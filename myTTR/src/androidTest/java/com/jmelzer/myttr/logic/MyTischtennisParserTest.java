@@ -25,7 +25,7 @@ import java.util.List;
 public class MyTischtennisParserTest extends BaseTestCase {
 
     @SmallTest
-    public void testgetPoints() throws PlayerNotWellRegistered, IOException {
+    public void testgetPoints() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -44,7 +44,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadGames() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+    public void testreadGames() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -61,7 +61,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadGamesForForeignPlayer() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+    public void testreadGamesForForeignPlayer() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -76,7 +76,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadDetailGame() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+    public void testreadDetailGame() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -90,7 +90,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadDetailGameError1() throws PlayerNotWellRegistered, IOException, NetworkException, LoginExpiredException {
+    public void testreadDetailGameError1() throws Exception {
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String page = readFile("assets/eventDetails_error1.htm");
@@ -127,7 +127,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadPlayersFromTeam() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testreadPlayersFromTeam() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.readPlayersFromTeam("1411599");
@@ -143,7 +143,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testparsePlayerFromTeam() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testparsePlayerFromTeam() throws Exception {
         String rueckrunde = readFile("assets/mannschaft-rueckrunde.html");
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.parsePlayerFromTeam(rueckrunde);
@@ -171,7 +171,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadPlayersFromTeamNoId() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testreadPlayersFromTeamNoId() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -188,7 +188,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
 
     @SmallTest
-    public void testGetRealName() throws TooManyPlayersFound, IOException {
+    public void testGetRealName() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getRealName();
@@ -196,7 +196,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testgetNameOfOwnClub() throws TooManyPlayersFound, IOException {
+    public void testgetNameOfOwnClub() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         String name = myTischtennisParser.getNameOfOwnClub();
@@ -204,7 +204,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testSearch() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testSearch() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -216,7 +216,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testSearchError() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testSearchError() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -231,7 +231,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testFindPlayer() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testFindPlayer() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -260,7 +260,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testFindPlayer1() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testFindPlayer1() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.findPlayer("achim ", "hugo", "");
@@ -271,7 +271,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testFindPlayerUmlaut() throws TooManyPlayersFound, IOException, NetworkException {
+    public void testFindPlayerUmlaut() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.findPlayer("timo ", "boll", "");
