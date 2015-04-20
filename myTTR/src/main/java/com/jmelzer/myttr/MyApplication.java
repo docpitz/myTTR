@@ -13,6 +13,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
@@ -41,6 +43,9 @@ public class MyApplication extends Application {
     public static String selectedPlayer;
     public static Player simPlayer;
     public static String manualClub;
+
+    // The following line should be changed to include the correct property id.
+    private static final String PROPERTY_ID = "UA-59824393-1";
 
     static {
         createEmptyUser();
@@ -163,5 +168,11 @@ public class MyApplication extends Application {
         } else {
             return -1;
         }
+    }
+
+    public static synchronized Tracker getTracker() {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(getAppContext());
+        Tracker t = analytics.newTracker(R.xml.app_tracker);
+        return t;
     }
 }
