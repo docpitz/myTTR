@@ -109,7 +109,7 @@ public class SyncManager extends Service {
         Log.d(Constants.LOG_TAG, "timer set to " + period);
 
         if (period == -1) {
-            return Service.START_NOT_STICKY; //todo ?
+            return Service.START_NOT_STICKY;
         }
 
         timer = new Timer();
