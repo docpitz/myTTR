@@ -7,11 +7,14 @@
 
 package com.jmelzer.myttr;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Player implements Comparable<Player> {
     String firstname;
-
     String lastname;
-
+    String fullName;
     String club;
     String teamName;
     long personId;
@@ -20,6 +23,8 @@ public class Player implements Comparable<Player> {
     boolean isChecked;
 
     int rank = 0;
+
+    List<Event> events = new ArrayList<>(0);
 
     public Player() {
     }
@@ -74,6 +79,10 @@ public class Player implements Comparable<Player> {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String visualize() {
@@ -185,6 +194,18 @@ public class Player implements Comparable<Player> {
 
 
     public String getFullName() {
-        return firstname + " " + lastname + " (" + ttrPoints + ")";
+        if (fullName != null) {
+            return fullName + " (" + ttrPoints + ")";
+        } else {
+            return firstname + " " + lastname + " (" + ttrPoints + ")";
+        }
+    }
+
+    public List<Event> getEvents() {
+        return Collections.unmodifiableList(events);
+    }
+
+    public void addEvents(List<Event> events) {
+        this.events.addAll(events);
     }
 }

@@ -60,7 +60,7 @@ public class SyncManager extends Service {
         try {
             LastNotification lastNotification = getDBAdapter().getEntryByType(LastNotification.EVENT_TYPE);
             if (lastNotification == null) {
-                List<Event> events = parser.readEvents();
+                List<Event> events = parser.readEvents().getEvents();
                 int ttr = parser.getPoints();
                 storeNewEvent(events, ttr);
                 return false;
@@ -68,7 +68,7 @@ public class SyncManager extends Service {
                 int oldSize = lastNotification.convertEventSizeFromJson();
                 int oldTTR = lastNotification.convertTTRFromJson();
                 //tod
-                List<Event> events = parser.readEvents();
+                List<Event> events = parser.readEvents().getEvents();
                 int newSize = events.size();
                 int newTTR = parser.getPoints();
                 MyApplication.events = events;

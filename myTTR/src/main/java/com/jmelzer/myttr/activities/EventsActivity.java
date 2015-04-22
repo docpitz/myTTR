@@ -59,7 +59,6 @@ public class EventsActivity extends BaseActivity {
 
         TextView textView = (TextView) findViewById(R.id.selected_player);
         if (MyApplication.selectedPlayer != null) {
-            //todo spieler namen verbessern (Melzer, Jürgen (1611) etc.
             textView.setText("Statistiken für den Spieler " + MyApplication.selectedPlayer);
         } else {
             textView.setText("Statistiken für den Spieler " + MyApplication.getLoginUser().getInfo());

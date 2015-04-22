@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotEquals;
@@ -53,20 +54,7 @@ public class ClickTTParserTest {
         parser = new ClickTTParser();
     }
 
-    protected String readFile(String file) throws IOException {
-        InputStream in = new FileInputStream("src/androidTest/" + file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String line = null;
-        StringBuilder stringBuilder = new StringBuilder();
-        String ls = System.getProperty("line.separator");
 
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
-        }
-
-        return StringUtils.unescapeHtml3(stringBuilder.toString());
-    }
 
     @Test
     public void testReadTopligen() throws Exception {

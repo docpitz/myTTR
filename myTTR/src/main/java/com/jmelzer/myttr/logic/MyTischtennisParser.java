@@ -70,6 +70,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         String page = Client.getPage(url);
         return new User(parseRealName(page), parsePoints(page));
     }
+
     public int getPoints() throws PlayerNotWellRegistered, NetworkException {
 
         String url = "http://www.mytischtennis.de/community/index";
@@ -406,17 +407,20 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     }
 
-    public List<Event> readEvents() throws NetworkException, LoginExpiredException {
+    public Player readEvents() throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        return parseEvents(page);
+        return parseEvents(page, true);
     }
 
-    private List<Event> parseEvents(String page) {
+    Player parseEvents(String page, boolean own) {
         List<Event> events = new ArrayList<Event>();
+
+        Player player = parsePlayerFromEventPage(page, own);
+
         String startTag = "coolTable";
         boolean endoflist = false;
 
@@ -467,8 +471,37 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
         }
+        player.addEvents(events);
+        return player;
+    }
 
-        return events;
+    private Player parsePlayerFromEventPage(String page, boolean own) {
+        Player p = new Player();
+        ParseResult result = readBetween(page, 0, "<strong>TTR: </strong>", "</p>");
+        p.setTtrPoints(Integer.valueOf(result.result.trim()));
+
+        if (!own) {
+            result = readBetween(page, 0, "<h3 class=\"white\">", "<span class=\"tooltip\">");
+            p.setFirstname(parseFirstnameFromBadName(result.result));
+            p.setLastname(parseLastNameFromBadName(result.result));
+        } else {
+            result = readBetween(page, 0, "<span class=\"usertext_ontopbar\">", "</span>");
+            p.setFullName(result.result);
+
+        }
+        return p;
+    }
+
+    //samples: Michel, Dennis'
+//    Lüdinghausen, Jakob vons
+    String parseFirstnameFromBadName(String line) {
+        String s = line.substring(line.indexOf(",") + 2);
+        //strip possible s oder '
+        return s.substring(0, s.length() - 1);
+    }
+
+    String parseLastNameFromBadName(String line) {
+        return line.substring(0, line.indexOf(","));
     }
 
     String stripTags(String s) {
@@ -666,14 +699,15 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return eventDetail;
     }
 
-    public List<Event> readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
+    //getting points and events
+    public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
 
         String url = "http://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        return parseEvents(page);
+        return parseEvents(page, false);
     }
 
     public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException {

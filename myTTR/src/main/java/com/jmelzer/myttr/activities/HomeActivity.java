@@ -8,15 +8,19 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
@@ -42,10 +46,21 @@ public class HomeActivity extends BaseActivity {
 
         setContentView(R.layout.home);
 
-//todo check wether it is started thrw boot
-        startService(new Intent(this, SyncManager.class));
-//        new SyncManager().startService();
+        if (!isMyServiceRunning(SyncManager.class)) {
+            Log.d(Constants.LOG_TAG, "SyncManager will be started");
+            startService(new Intent(this, SyncManager.class));
+        }
 
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void manual(final View view) {
