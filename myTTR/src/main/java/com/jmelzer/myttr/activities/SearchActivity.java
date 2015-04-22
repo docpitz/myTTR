@@ -120,7 +120,6 @@ public class SearchActivity extends BaseActivity {
 
     private void findPlayer(final String club, final String firstname, final String lastname) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, goBackToClass) {
-            int ttr = 0;
             Player foundSinglePlayer;
 
             @Override
@@ -131,13 +130,11 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 List<Player> p = null;
-                //todo remove ttr handling here, use errormessage
                 errorMessage = null;
                 try {
                     p = myTischtennisParser.findPlayer(firstname, lastname, club);
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
                     errorMessage = "Es wurden zu viele Spieler gefunden.";
-                    ttr = 0;
                     return;
                 }
                 if (p != null) {
@@ -151,19 +148,15 @@ public class SearchActivity extends BaseActivity {
                             MyApplication.actualPlayer = p1;
                         }
                         MyApplication.addPlayer(p1);
-                        ttr = p1.getTtrPoints();
                         foundSinglePlayer = p1;
 
                     } else if (p.size() > 1) {
                         targetClz = SearchResultActivity.class;
                         MyApplication.searchResult = p;
-                        ttr = 1;
                     } else {
-                        ttr = 0;
                         errorMessage = "Es wurden keine Spieler gefunden.";
                     }
                 }
-//                MyApplication.actualPlayer.setTtrPoints(ttr);
             }
 
             @Override
@@ -177,7 +170,7 @@ public class SearchActivity extends BaseActivity {
 
             @Override
             protected boolean dataLoaded() {
-                return ttr > 0;
+                return errorMessage == null;
             }
 
         };
