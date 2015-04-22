@@ -74,7 +74,7 @@ public class ClubParser {
     public Club getClubExact(String name) {
 
         readClubs();
-        //todo better parser e.g. matcher
+
         return clubHashMap.get(name);
     }
 
