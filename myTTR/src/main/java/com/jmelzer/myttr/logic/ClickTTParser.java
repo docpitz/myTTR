@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class ClickTTParser extends AbstractBaseParser {
 
+    private static final String[] retiredStrings = new String[] {"zurückgezogen", "aufgelöst"};
 
     /**
      * parsed die Ergebnisse, und füllt das Liga objekt
@@ -185,8 +186,7 @@ public class ClickTTParser extends AbstractBaseParser {
         } else {
             name = result.result;
         }
-        if (resultrow.result.contains("zurückgezogen") || resultrow.result.contains("aufgelöst")) {
-            //todo make it better
+        if (containsRetiredString(resultrow.result)) {
             return new Mannschaft(name + " --- zurückgezogen");
         }
 
@@ -213,6 +213,14 @@ public class ClickTTParser extends AbstractBaseParser {
         String points = result.result;
 
         return new Mannschaft(name, nPos, nGamesCount, nWin, nTied, nLose, gameStat, sum, points, url);
+    }
+
+    private boolean containsRetiredString(String line) {
+        for (String retiredString : retiredStrings) {
+            if (line.contains(retiredString))
+                return true;
+        }
+        return false;
     }
 
     private int readIntFromNextTd(ParseResult result) {
