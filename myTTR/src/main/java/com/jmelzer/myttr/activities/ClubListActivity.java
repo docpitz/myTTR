@@ -27,7 +27,7 @@ import android.widget.TextView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.Util;
+import com.jmelzer.myttr.UIUtil;
 
 import java.util.List;
 
@@ -106,7 +106,7 @@ public class ClubListActivity extends BaseActivity {
             String txt = player.getFirstname();
             String firstName = txt;
             //max 15 characters
-            holder.textFirstName.setText(Util.abbreviate(txt, 0, 15));
+            holder.textFirstName.setText(UIUtil.abbreviate(txt, 0, 15));
             txt = player.getLastname();
             String name = firstName + " " + txt;
             if (name.equals(MyApplication.getLoginUser().getRealName())) {
@@ -118,9 +118,9 @@ public class ClubListActivity extends BaseActivity {
             }
 
             if (player.getTtrPoints() > 0) {
-                holder.textLastname.setText(Util.abbreviate(txt, 0, 15));
+                holder.textLastname.setText(UIUtil.abbreviate(txt, 0, 15));
             } else {
-                holder.textLastname.setText(Util.abbreviate(txt, 0, 30));
+                holder.textLastname.setText(UIUtil.abbreviate(txt, 0, 30));
             }
 
             if (player.getTtrPoints() > 0) {

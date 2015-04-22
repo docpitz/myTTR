@@ -1,12 +1,12 @@
 package com.jmelzer.myttr;
 
 /**
- * TODO
+ * Util class for helper methods
  * User: jmelzer
  * Date: 23.03.14
  * Time: 13:33
  */
-public class Util {
+public class UIUtil {
     public static String abbreviate(final String str, int offset, final int maxWidth) {
         int offset1 = offset;
         if (str == null) {

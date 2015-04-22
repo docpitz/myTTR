@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.Util;
+import com.jmelzer.myttr.UIUtil;
 
 import java.util.List;
 
@@ -40,12 +40,12 @@ public class TeamPlayerAdapter extends ArrayAdapter<Player> {
         TextView textViewFirstName = textView;
         String txt = player.getFirstname();
         //max 15 characters
-        textView.setText(Util.abbreviate(txt, 0, 20));
+        textView.setText(UIUtil.abbreviate(txt, 0, 20));
         textView = (TextView) rowView.findViewById(R.id.lastname);
         txt = player.getLastname();
         textView.setTypeface(null, Typeface.NORMAL);
         textViewFirstName.setTypeface(null, Typeface.NORMAL);
-        textView.setText(Util.abbreviate(txt, 0, 15));
+        textView.setText(UIUtil.abbreviate(txt, 0, 15));
         final CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.checkBox);
         checkBox.setId(position);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
