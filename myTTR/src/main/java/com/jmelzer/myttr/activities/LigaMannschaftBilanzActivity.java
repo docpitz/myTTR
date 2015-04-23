@@ -144,8 +144,6 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
             textView = (TextView) convertView.findViewById(R.id.gesamt);
             textView.setText(childElem.getGesamt());
 
-            //todo add links to spieler statistiken
-
             return convertView;
         }
 
