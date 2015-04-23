@@ -408,7 +408,6 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public Verband readTopLigen() throws NetworkException {
-        //todo saison
         String url = "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
