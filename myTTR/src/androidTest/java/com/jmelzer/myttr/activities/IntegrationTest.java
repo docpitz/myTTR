@@ -56,7 +56,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     }
 
     @MediumTest
-    public void testit() throws InterruptedException {
+    public void testAll() throws InterruptedException {
         testAutomaticLogin();
 
         login();

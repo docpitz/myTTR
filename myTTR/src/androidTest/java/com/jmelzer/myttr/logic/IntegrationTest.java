@@ -37,7 +37,7 @@ public class IntegrationTest extends BaseTestCase {
         assertNull(adapter.getEntryByType("inttest"));
 
         //prepare the start point
-        List<Event> events = parser.readEvents();
+        List<Event> events = parser.readEvents().getEvents();
         int ttr = parser.getPoints();
 
         assertTrue(adapter.insertEntry("inttest", LastNotification.convertToJson(events, ttr)) > 0);

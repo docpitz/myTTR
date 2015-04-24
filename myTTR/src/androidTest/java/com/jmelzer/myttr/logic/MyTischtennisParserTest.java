@@ -48,7 +48,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Event> events = myTischtennisParser.readEvents();
+        List<Event> events = myTischtennisParser.readEvents().getEvents();
         boolean found = false;
         for (Event event : events) {
             String s = event.toString();
@@ -65,7 +65,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Event> events = myTischtennisParser.readEventsForForeignPlayer(425165L);
+        List<Event> events = myTischtennisParser.readEventsForForeignPlayer(425165L).getEvents();
         boolean found = false;
         for (Event event : events) {
             if (event.getEvent().equals("RL-Herren | TTC RG Porz : TTC Elz")) {
@@ -80,7 +80,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Event> events = myTischtennisParser.readEvents();
+        List<Event> events = myTischtennisParser.readEvents().getEvents();
         assertTrue(events.size() > 0);
         for (Event event : events) {
             Log.i(Constants.LOG_TAG, event.toString());
