@@ -39,6 +39,7 @@ import java.util.TreeSet;
  */
 public class LigaHomeActivity extends BaseActivity {
 
+    public static final String BEARBEITEN = "Bearbeiten...";
     private CharSequence selectedKategorie;
     private Bezirk selectedBezirk;
     private List<Liga> ligaList;
@@ -452,7 +453,7 @@ public class LigaHomeActivity extends BaseActivity {
             subm.add(0, id++, Menu.NONE, liga.getName());
         }
         if (list.size() > 0) {
-            subm.add(0, id, Menu.NONE, "Bearbeiten...");
+            subm.add(0, id, Menu.NONE, BEARBEITEN);
         }
         return true;
     }
@@ -469,7 +470,7 @@ public class LigaHomeActivity extends BaseActivity {
         if (item.getItemId() < list.size()) {
             MyApplication.setSelectedLiga(list.get(item.getItemId()));
             tabelle();
-        } else if (item.getTitle().equals("Bearbeiten...")) {
+        } else if (item.getTitle().equals(BEARBEITEN)) {
             favoriteEdit();
         }
         return super.onOptionsItemSelected(item);

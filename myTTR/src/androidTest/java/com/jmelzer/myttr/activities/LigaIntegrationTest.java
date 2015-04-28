@@ -3,17 +3,19 @@ package com.jmelzer.myttr.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.view.View;
+import android.util.Log;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.robotium.solo.Solo;
 
@@ -51,6 +53,7 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
 
 
     }
+
     private void login() {
         assertEquals("", MyApplication.getLoginUser().getUsername());
 
@@ -95,18 +98,125 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
         testLigaHome();
 
         solo.clickOnText("Kreisliga");
+//        testLigaMannschaftResultsActivity();
+//        //we have 3 actions here after that
+//        testMannschaftsInfo();
+//
+//        solo.goBack();
+//        testMannschaftsBilanzen();
+//
+//        solo.goBack();
+//        testSpielbericht();
+//
+//        solo.goBack();
+//        solo.goBack();
+        testFavorite();
+    }
+
+    private void testFavorite() throws InterruptedException {
+        //lets prepare the database to have the same setup everytime
+        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
+        adapter.open();
+        adapter.deleteAllEntries();
+
+        assertTrue(solo.waitForActivity(LigaTabelleActivity.class, STANDARD_TIMEOUT));
+        solo.clickOnActionBarItem(R.id.action_info);
+        assertTrue(solo.waitForText(solo.getString(R.string.favorite_added)));
+
+        //one entry in the db
+        assertEquals(1, adapter.getAllEntries().size());
+
+
+        solo.clickOnActionBarItem(R.id.action_info);
+        assertTrue("we cannot add the same liga twice", solo.waitForText(solo.getString(R.string.favorite_exists)));
+        //one entry in the db
+        assertEquals(1, adapter.getAllEntries().size());
+
+        solo.goBack();
+        assertTrue(solo.waitForActivity(LigaHomeActivity.class, STANDARD_TIMEOUT));
+        solo.clickOnActionBarItem(1);
+        //ok try to do remove it,
+        assertTrue(solo.waitForActivity(EditFavoritesActivity.class, STANDARD_TIMEOUT));
+        Thread.sleep(1000);
+        assertTrue(solo.searchText("Kreisliga"));
+        solo.clickOnImage(0);
+
+        Log.d(Constants.LOG_TAG, "sleeping cause event is asynchron");
+        Thread.sleep(1000);
+
+        //one entry in the db
+        adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
+        adapter.open();
+        assertEquals(0, adapter.getAllEntries().size());
+    }
+
+    private void testSpielbericht() {
+        solo.clickInList(0); //first game
+        assertTrue(solo.waitForActivity(LigaSpielberichtActivity.class, STANDARD_TIMEOUT));
+        assertTrue("Mannschaftsname must be shown", solo.searchText(MANNSCHAFT_TO_CLICK));
+        assertTrue("Jens must be shown", solo.searchText("Pohl"));
+        assertTrue("3:0 must be shown?", solo.searchText("3:0"));
+
+    }
+
+    private void testMannschaftsBilanzen() {
+        solo.clickOnActionBarItem(R.id.action_bilanz);
+        assertTrue(solo.waitForActivity(LigaMannschaftBilanzActivity.class, STANDARD_TIMEOUT));
+        assertTrue("Thorsten must be shown", solo.searchText("Kopp"));
+        assertTrue("Jens must be shown", solo.searchText("Pohl"));
+        solo.clickOnText("Pohl");
+        assertTrue("Label must be show", solo.searchText("Einsätze"));
+    }
+
+    private void testMannschaftsInfo() {
+        solo.clickOnActionBarItem(R.id.action_info);
+        assertTrue(solo.waitForActivity(LigaMannschaftInfoActivity.class, STANDARD_TIMEOUT));
+        assertTrue("Mannschaftsfueher must be shown", solo.searchText("Panknin"));
+        assertTrue("Spiellokal must be shown", solo.searchText("Menden"));
+    }
+
+    private void testLigaMannschaftResultsActivity() {
         assertTrue(solo.waitForActivity(LigaTabelleActivity.class, STANDARD_TIMEOUT));
         assertTrue(solo.searchText(MANNSCHAFT_TO_CLICK));
         solo.clickOnText(MANNSCHAFT_TO_CLICK);
 
         assertTrue(solo.waitForActivity(LigaMannschaftResultsActivity.class, STANDARD_TIMEOUT));
+        ListView listView = (ListView) solo.getView(R.id.liga_mannschaft_detail_row);
+        ListAdapter listAdapter = listView.getAdapter();
+        assertTrue(listAdapter.getCount() > 0);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            Mannschaftspiel spiel = (Mannschaftspiel) listAdapter.getItem(i);
+
+            assertTrue("Only " + MANNSCHAFT_TO_CLICK + " shall be in the list",
+                    spiel.getGastMannschaft().getName().equals(MANNSCHAFT_TO_CLICK) ||
+                            spiel.getHeimMannschaft().getName().equals(MANNSCHAFT_TO_CLICK));
+        }
+
+        LigaMannschaftResultsActivity activity = (LigaMannschaftResultsActivity) solo.getCurrentActivity();
+        if (activity.startWithRR()) {
+            solo.scrollToSide(Solo.LEFT);
+        } else {
+            solo.scrollToSide(Solo.RIGHT);
+        }
+        listView = (ListView) solo.getView(R.id.liga_mannschaft_detail_row);
+        listAdapter = listView.getAdapter();
+        assertTrue(listAdapter.getCount() > 0);
+
+        //go back
+        if (activity.startWithRR()) {
+            solo.scrollToSide(Solo.RIGHT);
+        } else {
+            solo.scrollToSide(Solo.LEFT);
+        }
+
+
     }
 
-    private void testLigaHome() {
+    private void testLigaHome() throws InterruptedException {
         solo.clickOnButton(solo.getString(R.string.liga));
-        assertTrue(solo.waitForActivity(LigaHomeActivity.class, 5000));
+        assertTrue(solo.waitForActivity(LigaHomeActivity.class, 50000));
         assertEquals(LigaHomeActivity.class, solo.getCurrentActivity().getClass());
-
+        Thread.sleep(1000);
         assertTrue(solo.searchText("1. Bundesliga"));
 
         selectSpinnerItem(R.id.spinner_verband, "Westdeutscher TTV");

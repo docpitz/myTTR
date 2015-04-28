@@ -15,15 +15,12 @@ import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
-import com.jmelzer.myttr.User;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FavoriteLigaDataBaseAdapter implements DbAdapter{
+public class FavoriteLigaDataBaseAdapter implements DbAdapter {
 
     static final String TABLE_NAME = "FAV_LIGA";
 
@@ -37,11 +34,13 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter{
     private DataBaseHelper dbHelper;
 
     public FavoriteLigaDataBaseAdapter(Context _context) {
-        dbHelper = DataBaseHelper.getInstance(_context);
+        dbHelper = DataBaseHelper.getInstance(_context.getApplicationContext());
     }
 
     public FavoriteLigaDataBaseAdapter open() throws SQLException {
-        db = dbHelper.getWritableDatabase();
+        if (db == null) {
+            db = dbHelper.getWritableDatabase();
+        }
         return this;
     }
 
@@ -66,6 +65,7 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter{
         int numberOFEntriesDeleted = db.delete(TABLE_NAME, where, new String[]{name});
         db.setTransactionSuccessful();
         db.endTransaction();
+        Log.d(Constants.LOG_TAG, "removed " + numberOFEntriesDeleted + " from the table " + TABLE_NAME );
         return numberOFEntriesDeleted;
     }
 
@@ -75,6 +75,7 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter{
         db.setTransactionSuccessful();
         db.endTransaction();
     }
+
     public List<Liga> getAllEntries() {
         Cursor cursor = db.query(TABLE_NAME, null, " LIGA_NAME is not null", null, null, null, null);
         List<Liga> list = new ArrayList<>();
