@@ -15,8 +15,10 @@ import java.io.InputStreamReader;
  */
 public class TestUtil {
 
-    public static String readFile(String file, boolean absolute) throws IOException {
-        String fn = absolute ? file : "src/androidTest/" + file;
+    public static String readFile(String file) throws IOException {
+        File currentDir = new File(".");
+//        String fn = absolute ? file : "src/androidTest/" + file;
+        String fn = currentDir.getAbsolutePath() + "/src/androidTest/" + file;
         System.out.println("open file " + fn);
         if (!new File(fn).exists()) throw new IOException("File "+ fn + " doesn't exists");
 

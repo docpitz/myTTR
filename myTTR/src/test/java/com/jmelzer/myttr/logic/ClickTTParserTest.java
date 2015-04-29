@@ -38,7 +38,7 @@ import static org.junit.Assert.assertNotNull;
 public class ClickTTParserTest {
 
     ClickTTParser parser;
-    final String ASSETS_DIR = "C:\\ws\\myTTR-master\\myTTR\\src\\androidTest\\assets\\clicktt";
+    final String ASSETS_DIR = "assets/clicktt";
 
     @Before
     public void setUp() throws Exception {
@@ -49,7 +49,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadTopligen() throws Exception {
-        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm", true);
+        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
         List<Liga> ligen = parser.parseLigaLinks(page);
 
@@ -61,7 +61,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testParseLigaLinks() throws Exception {
-        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm", true);
+        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
         List<Liga> ligen = parser.parseLigaLinks(page);
 
@@ -71,7 +71,7 @@ public class ClickTTParserTest {
         assertEquals("must be 34 ", 34, ligen.size());
         assertEquals(17, count(ligen, "Herren"));
         assertEquals(17, count(ligen, "Damen"));
-        page = readFile(ASSETS_DIR + "/liga-level2-wttv.htm", true);
+        page = readFile(ASSETS_DIR + "/liga-level2-wttv.htm");
         assertNotNull(page);
         ligen = parser.parseLigaLinks(page);
 
@@ -91,7 +91,7 @@ public class ClickTTParserTest {
         assertEquals(1, count(ligen, "Seniorinnen 60"));
         assertEquals(3, count(ligen, "Senioren 70"));
 
-        page = readFile(ASSETS_DIR + "/liga-level2-bremen.htm", true);
+        page = readFile(ASSETS_DIR + "/liga-level2-bremen.htm");
         assertNotNull(page);
         ligen = parser.parseLigaLinks(page);
 
@@ -117,7 +117,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testParseLinksSubLigen() throws Exception {
-        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm", true);
+        String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
         List<Verband> verbandList = parser.parseLinksSubLigen(page);
         for (Verband verband : verbandList) {
@@ -129,7 +129,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadStaffel() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel.htm");
         assertNotNull(page);
         Liga liga = new Liga();
         liga = parser.parseLiga(liga, page);
@@ -141,7 +141,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadStaffelHttv() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel-hl-httv.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel-hl-httv.htm");
         assertNotNull(page);
         Liga liga = new Liga();
         liga = parser.parseLiga(liga, page);
@@ -153,7 +153,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadStaffeErrorIntl() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel-2.bl-d.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel-2.bl-d.htm");
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
@@ -165,7 +165,7 @@ public class ClickTTParserTest {
     }
     @Test
     public void testReadStaffelGesamtSpielPlan() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel-gesamt-spiel-plan.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel-gesamt-spiel-plan.htm");
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
@@ -176,7 +176,7 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadStaffeErrorZ() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel-zurueckgezogene-mannschaft.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel-zurueckgezogene-mannschaft.htm");
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
@@ -205,14 +205,14 @@ public class ClickTTParserTest {
     }
 
     Liga ergebnisse() throws IOException {
-        String page = readFile(ASSETS_DIR + "/staffel.htm", true);
+        String page = readFile(ASSETS_DIR + "/staffel.htm");
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setUrl("http://bla.de");
         liga = parser.parseLiga(liga, page);
-        page = readFile(ASSETS_DIR + "/spiele.htm", true);
+        page = readFile(ASSETS_DIR + "/spiele.htm");
         parser.parseErgebnisse(liga, page, Liga.Spielplan.VR);
-        page = readFile(ASSETS_DIR + "/spiele-rr.htm", true);
+        page = readFile(ASSETS_DIR + "/spiele-rr.htm");
         parser.parseErgebnisse(liga, page, Liga.Spielplan.RR);
         return liga;
     }
@@ -220,7 +220,7 @@ public class ClickTTParserTest {
     @Test
     public void testParseMannschaftspiel() throws Exception {
         Liga liga = ergebnisse();
-        String page = readFile(ASSETS_DIR + "/mannschafts-spiel.htm", true);
+        String page = readFile(ASSETS_DIR + "/mannschafts-spiel.htm");
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
         parser.parseMannschaftspiel(page, mannschaftspiel);
@@ -239,7 +239,7 @@ public class ClickTTParserTest {
     }
     @Test
     public void testMannschaftDetail() throws Exception {
-        String page = readFile(ASSETS_DIR + "/mannschafts-detail.htm", true);
+        String page = readFile(ASSETS_DIR + "/mannschafts-detail.htm");
         Mannschaft mannschaft = new Mannschaft();
         parser.parseDetail(page, mannschaft);
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
@@ -255,7 +255,7 @@ public class ClickTTParserTest {
     }
     @Test
     public void testMannschaftDetailBezirkDonau() throws Exception {
-        String page = readFile(ASSETS_DIR + "/mannschafts-detail-donau.htm", true);
+        String page = readFile(ASSETS_DIR + "/mannschafts-detail-donau.htm");
         Mannschaft mannschaft = new Mannschaft();
         parser.parseDetail(page, mannschaft);
 
@@ -269,7 +269,7 @@ public class ClickTTParserTest {
     }
     @Test
     public void testMannschaftDetailSpielLokale() throws Exception {
-        String page = readFile(ASSETS_DIR + "/mannschafts_detail_niederkassel.htm", true);
+        String page = readFile(ASSETS_DIR + "/mannschafts_detail_niederkassel.htm");
         Mannschaft mannschaft = new Mannschaft();
         parser.parseDetail(page, mannschaft);
         List<String> lokale = mannschaft.getSpielLokale();
@@ -293,7 +293,7 @@ public class ClickTTParserTest {
     @Test
     public void testParseSpieler() throws Exception {
 
-        String page = readFile(ASSETS_DIR + "/spielerportrait.htm", true);
+        String page = readFile(ASSETS_DIR + "/spielerportrait.htm");
         assertNotNull(page);
         Spieler spieler = parser.parseSpieler("Fritz, Heinz", page);
         assertEquals("Fritz, Heinz", spieler.getName());
@@ -326,7 +326,7 @@ public class ClickTTParserTest {
     }
     @Test
     public void testParseLinksBezirke() throws Exception {
-        String page = readFile(ASSETS_DIR + "/liga-level2-wttv.htm", true);
+        String page = readFile(ASSETS_DIR + "/liga-level2-wttv.htm");
         assertNotNull(page);
         List<Bezirk> bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);
@@ -335,7 +335,7 @@ public class ClickTTParserTest {
             System.out.println("bezirk = " + bezirk);
         }
 
-        page = readFile(ASSETS_DIR + "/ttvwh-ligen-no-bezirk.htm", true);
+        page = readFile(ASSETS_DIR + "/ttvwh-ligen-no-bezirk.htm");
         assertNotNull(page);
         bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);

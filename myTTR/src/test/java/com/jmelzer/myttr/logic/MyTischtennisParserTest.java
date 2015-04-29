@@ -22,8 +22,7 @@ import static org.junit.Assert.assertNotNull;
 public class MyTischtennisParserTest {
     MyTischtennisParser parser;
 
-    //todo: configure in gradle
-    final String ASSETS_DIR = "C:\\ws\\myTTR-master\\myTTR\\src\\androidTest\\assets";
+    final String ASSETS_DIR = "assets";
 
     @Before
     public void setUp() throws Exception {
@@ -36,7 +35,7 @@ public class MyTischtennisParserTest {
     }
     @Test
     public void testParseEventsWithPlayerId() throws Exception {
-        String page = readFile(ASSETS_DIR + "/events_425165.htm", true);
+        String page = readFile(ASSETS_DIR + "/events_425165.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, false);
         assertEquals(1893, player.getTtrPoints());
@@ -48,7 +47,7 @@ public class MyTischtennisParserTest {
 
     @Test
     public void testParseOwnEvents() throws Exception {
-        String page = readFile(ASSETS_DIR + "/events.htm", true);
+        String page = readFile(ASSETS_DIR + "/events.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, true);
         assertEquals(1645, player.getTtrPoints());
