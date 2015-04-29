@@ -14,6 +14,6 @@ public class UrlUtilTest {
     public void testGeoFormatForMaps() throws Exception {
         String s = UrlUtil.formatAddressToGoogleMaps("Spiellokal 2: Sporthalle Süd\n" +
                 "Eifelstr., 53859 Niederkassel-Mondorf");
-        assertEquals("geo:0,0?q=Sporthalle%20Süd+Eifelstr.+53859%20Niederkassel-Mondorf", s);
+        assertEquals("geo:0,0?q=Sporthalle%20Süd%20Eifelstr.,%2053859%20Niederkassel-Mondorf", s);
     }
 }

@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.logic;
 
-import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Player;
 
 import org.junit.Before;
@@ -8,8 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
-import java.util.List;
 
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertTrue;
@@ -25,6 +22,9 @@ import static org.junit.Assert.assertNotNull;
 public class MyTischtennisParserTest {
     MyTischtennisParser parser;
 
+    //todo: configure in gradle
+    final String ASSETS_DIR = "C:\\ws\\myTTR-master\\myTTR\\src\\androidTest\\assets";
+
     @Before
     public void setUp() throws Exception {
         parser = new MyTischtennisParser();
@@ -36,7 +36,7 @@ public class MyTischtennisParserTest {
     }
     @Test
     public void testParseEventsWithPlayerId() throws Exception {
-        String page = readFile("assets/events_425165.htm");
+        String page = readFile(ASSETS_DIR + "/events_425165.htm", true);
         assertNotNull(page);
         Player player = parser.parseEvents(page, false);
         assertEquals(1893, player.getTtrPoints());
@@ -48,7 +48,7 @@ public class MyTischtennisParserTest {
 
     @Test
     public void testParseOwnEvents() throws Exception {
-        String page = readFile("assets/events.htm");
+        String page = readFile(ASSETS_DIR + "/events.htm", true);
         assertNotNull(page);
         Player player = parser.parseEvents(page, true);
         assertEquals(1645, player.getTtrPoints());

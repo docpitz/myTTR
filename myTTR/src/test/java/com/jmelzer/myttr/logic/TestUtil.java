@@ -3,6 +3,7 @@ package com.jmelzer.myttr.logic;
 import com.jmelzer.myttr.utils.StringUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,9 +15,13 @@ import java.io.InputStreamReader;
  */
 public class TestUtil {
 
-    public static String readFile(String file) throws IOException {
-        InputStream in = new FileInputStream("src/androidTest/" + file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+    public static String readFile(String file, boolean absolute) throws IOException {
+        String fn = absolute ? file : "src/androidTest/" + file;
+        System.out.println("open file " + fn);
+        if (!new File(fn).exists()) throw new IOException("File "+ fn + " doesn't exists");
+
+        InputStream in = new FileInputStream(fn);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
         String line = null;
         StringBuilder stringBuilder = new StringBuilder();
         String ls = System.getProperty("line.separator");
