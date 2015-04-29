@@ -55,8 +55,9 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
     }
 
     private void login() {
-        assertEquals("", MyApplication.getLoginUser().getUsername());
+//        assertEquals("", MyApplication.getLoginUser().getUsername());
 
+        assertTrue(solo.waitForActivity(LoginActivity.class));
         Activity loginActivity = solo.getCurrentActivity();
         final EditText loginTxt = (EditText) loginActivity.findViewById(R.id.username);
         loginActivity.runOnUiThread(new Runnable() {
@@ -95,25 +96,25 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
 
         login();
 
-        testLigaHome();
+        ligaHome();
 
         solo.clickOnText("Kreisliga");
-//        testLigaMannschaftResultsActivity();
+        ligaMannschaftResultsActivity();
 //        //we have 3 actions here after that
-//        testMannschaftsInfo();
-//
-//        solo.goBack();
-//        testMannschaftsBilanzen();
-//
-//        solo.goBack();
-//        testSpielbericht();
-//
-//        solo.goBack();
-//        solo.goBack();
-        testFavorite();
+        mannschaftsInfo();
+
+        solo.goBack();
+        mannschaftsBilanzen();
+
+        solo.goBack();
+        spielbericht();
+
+        solo.goBack();
+        solo.goBack();
+        favorite();
     }
 
-    private void testFavorite() throws InterruptedException {
+    private void favorite() throws InterruptedException {
         //lets prepare the database to have the same setup everytime
         FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
@@ -150,7 +151,7 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
         assertEquals(0, adapter.getAllEntries().size());
     }
 
-    private void testSpielbericht() {
+    private void spielbericht() {
         solo.clickInList(0); //first game
         assertTrue(solo.waitForActivity(LigaSpielberichtActivity.class, STANDARD_TIMEOUT));
         assertTrue("Mannschaftsname must be shown", solo.searchText(MANNSCHAFT_TO_CLICK));
@@ -159,7 +160,7 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
 
     }
 
-    private void testMannschaftsBilanzen() {
+    private void mannschaftsBilanzen() {
         solo.clickOnActionBarItem(R.id.action_bilanz);
         assertTrue(solo.waitForActivity(LigaMannschaftBilanzActivity.class, STANDARD_TIMEOUT));
         assertTrue("Thorsten must be shown", solo.searchText("Kopp"));
@@ -168,14 +169,14 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
         assertTrue("Label must be show", solo.searchText("Einsätze"));
     }
 
-    private void testMannschaftsInfo() {
+    private void mannschaftsInfo() {
         solo.clickOnActionBarItem(R.id.action_info);
         assertTrue(solo.waitForActivity(LigaMannschaftInfoActivity.class, STANDARD_TIMEOUT));
         assertTrue("Mannschaftsfueher must be shown", solo.searchText("Panknin"));
         assertTrue("Spiellokal must be shown", solo.searchText("Menden"));
     }
 
-    private void testLigaMannschaftResultsActivity() {
+    private void ligaMannschaftResultsActivity() {
         assertTrue(solo.waitForActivity(LigaTabelleActivity.class, STANDARD_TIMEOUT));
         assertTrue(solo.searchText(MANNSCHAFT_TO_CLICK));
         solo.clickOnText(MANNSCHAFT_TO_CLICK);
@@ -212,7 +213,7 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
 
     }
 
-    private void testLigaHome() throws InterruptedException {
+    private void ligaHome() throws InterruptedException {
         solo.clickOnButton(solo.getString(R.string.liga));
         assertTrue(solo.waitForActivity(LigaHomeActivity.class, 50000));
         assertEquals(LigaHomeActivity.class, solo.getCurrentActivity().getClass());

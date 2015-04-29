@@ -483,15 +483,21 @@ public class ClickTTParser extends AbstractBaseParser {
             return bezirkList;
         }
         int idx = 0;
+        //prevent from parsing wrong tags
+        boolean hasRealBezirke = false;
         while (true) {
             ParseResult resultUl = readBetween(result.result, idx, "<h2 class=\"liga-layer-down\">", "</h2>");
-            if (resultUl == null || resultUl.isEmpty()) {
+            if (!hasRealBezirke && (resultUl == null || resultUl.isEmpty())) {
                 //sometime there is no h2, check another one
                 resultUl = readBetween(result.result, idx, "<li>", "</li>");
                 if (resultUl == null || resultUl.isEmpty()) {
                     break;
                 }
+            } else {
+                hasRealBezirke = true;
             }
+            if (resultUl == null) break;
+
             idx = resultUl.end;
             //collect all href links
             int idxL = 0;

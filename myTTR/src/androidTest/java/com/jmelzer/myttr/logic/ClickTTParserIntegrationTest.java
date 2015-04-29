@@ -46,12 +46,13 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         //first one is dttp
         Verband verband = parser.readTopLigen();
         assertSame(Verband.dttb, verband);
-        assertEquals("must be 35 ", 35, verband.getLigaList().size());
+        assertEquals("must be 62 ", 62, verband.getLigaList().size());
 
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
         parser.readLigen(nrw);
-        assertEquals(52, nrw.getLigaList().size());
+        assertTrue("must be greater than 20, we don't exactly the size",
+                nrw.getLigaList().size() > 20);
 
         parser.readBezirke(nrw);
         assertEquals(5, nrw.getBezirkList().size());
@@ -70,7 +71,8 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         ligaTest(liga, "Kreisliga", 12);
 
         //selecting one liga
-        liga = verband.getLigaList().get(5);
+        //todo better to find by name here
+        liga = verband.getLigaList().get(8);
         ligaTest(liga, "Regionalliga West", 10);
 
     }

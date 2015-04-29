@@ -330,19 +330,19 @@ public class ClickTTParserTest {
         assertNotNull(page);
         List<Bezirk> bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);
-        assertTrue(bezirke.size() > 0);
-        for (Bezirk bezirk : bezirke) {
-            System.out.println("bezirk = " + bezirk);
-        }
+        assertEquals(5, bezirke.size() );
+//        for (Bezirk bezirk : bezirke) {
+//            System.out.println("bezirk = " + bezirk);
+//        }
 
         page = readFile(ASSETS_DIR + "/ttvwh-ligen-no-bezirk.htm");
         assertNotNull(page);
         bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);
-        assertTrue(bezirke.size() > 0);
-        for (Bezirk bezirk : bezirke) {
-            System.out.println("bezirk = " + bezirk);
-        }
+        assertEquals(15, bezirke.size() );
+//        for (Bezirk bezirk : bezirke) {
+//            System.out.println("bezirk = " + bezirk);
+//        }
     }
 
 }
