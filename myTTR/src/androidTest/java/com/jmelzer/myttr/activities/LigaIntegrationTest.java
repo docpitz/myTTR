@@ -76,14 +76,14 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
         assertTrue(solo.waitForActivity(LoginActivity.class));
         Activity loginActivity = solo.getCurrentActivity();
-        final EditText loginTxt = (EditText) loginActivity.findViewById(R.id.username);
+        final EditText loginTxt = (EditText) solo.getView(R.id.username);
         loginActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 loginTxt.setText("chokdee");
             }
         });
-        final EditText pwTxt = (EditText) loginActivity.findViewById(R.id.password);
+        final EditText pwTxt = (EditText) solo.getView(R.id.password);
         loginActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
