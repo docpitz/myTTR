@@ -3,6 +3,7 @@ package com.jmelzer.myttr.activities;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.WindowManager;
 
 import com.jmelzer.myttr.MockHttpClient;
 import com.jmelzer.myttr.MockResponses;
@@ -43,7 +44,14 @@ public class BaseActivityInstrumentationTestCase<T extends Activity> extends Act
     protected void setUp() throws Exception {
         super.setUp();
         prepareMocks();
-        KeyguardManager keyGuardManager = (KeyguardManager) getActivity().getSystemService(Activity.KEYGUARD_SERVICE);
-        keyGuardManager.newKeyguardLock("activity_classname").disableKeyguard();
+//        KeyguardManager keyGuardManager = (KeyguardManager) getActivity().getSystemService(Activity.KEYGUARD_SERVICE);
+//        keyGuardManager.newKeyguardLock("activity_classname").disableKeyguard();
+//        getInstrumentation().runOnMainSync(new Runnable() {
+//            @Override
+//            public void run() {
+//                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+//            }
+//        });
+
     }
 }
