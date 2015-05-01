@@ -19,7 +19,6 @@ import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Player;
 
-import java.io.IOException;
 import java.util.List;
 
 public class MyTischtennisParserTest extends BaseTestCase {
@@ -38,9 +37,25 @@ public class MyTischtennisParserTest extends BaseTestCase {
         super.prepareMocks();
         MockResponses.forRequestDoAnswer(".*/events", "events.htm");
         MockResponses.forRequestDoAnswer(".*personId=425165", "events_425165.htm");
-        MockResponses.forRequestDoAnswer(".*eventDetails.*", "eventDetails.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Astrid&nachname=Schulz.*", "search_schulz.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Marco&nachname=Vester.*", "search_vester.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Jens&nachname=Bauer.*", "search_bauer.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Christian&nachname=Hinrichs.*", "search_hinni.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Manfred&nachname=Hildebrand.*", "search_manfred.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Patrick&nachname=Kaufmann.*", "search_kaufmann.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Johannes&nachname=Hinrichs.*", "search_joh_hinrichs.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Achim&nachname=Hugo.*", "search_hugo.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Timo&nachname=Boll.*", "search_boll.htm");
+        MockResponses.forRequestDoAnswer(".*verein=TV.Bergheim.*", "search_bergheim.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Michael.Stefan&nachname=Keller.*", "search_keller.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Peter&nachname=Meyers.*", "search_meyers.htm");
         MockResponses.forRequestDoAnswer(".*showclubinfo.*", "showclubinfo.htm");
         MockResponses.forRequestDoAnswer(".*vereinid=3147.*", "ranking_verein.htm");
+        MockResponses.forRequestDoAnswer(".*userMasterPage.*", "userMasterPage.htm");
+        MockResponses.forRequestDoAnswer(".*62679901.*", "62679901.htm");
+        MockResponses.forRequestDoAnswer(".*62656668.*", "62679901.htm");
+        MockResponses.forRequestDoAnswer(".*1411599.*", "team_id_1411599.htm");
+        MockResponses.forRequestDoAnswer(".*teamplayers.*", "teamplayers.htm");
     }
 
     @SmallTest
@@ -82,11 +97,9 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents().getEvents();
         assertTrue(events.size() > 0);
-        for (Event event : events) {
-            Log.i(Constants.LOG_TAG, event.toString());
-            EventDetail eventDetail = myTischtennisParser.readEventDetail(event);
-            Log.i(Constants.LOG_TAG, eventDetail.toString());
-        }
+        Log.i(Constants.LOG_TAG, events.get(0).toString());
+        EventDetail eventDetail = myTischtennisParser.readEventDetail(events.get(0));
+        Log.i(Constants.LOG_TAG, eventDetail.toString());
     }
 
     @SmallTest

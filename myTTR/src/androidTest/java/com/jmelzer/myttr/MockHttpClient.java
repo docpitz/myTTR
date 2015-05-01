@@ -34,7 +34,10 @@ public class MockHttpClient implements HttpClient, CookieStoreDelegate.CookieSto
     public HttpResponse execute(HttpUriRequest request) throws IOException,
             ClientProtocolException {
         InputStream in = this.getClass().getClassLoader().getResourceAsStream(MockResponses.forRequest(request));
-//        InputStream mockInputStream = context.getAssets().open(MockResponses.forRequest(request));
+        if (in == null) {
+            throw new IllegalArgumentException(
+                    "Couldn't find resource: " + MockResponses.forRequest(request));
+        }
         return new MockHttpResponse(in);
     }
 
@@ -89,7 +92,7 @@ public class MockHttpClient implements HttpClient, CookieStoreDelegate.CookieSto
         if (cookieStore != null) {
             return cookieStore;
         }
-        
+
         cookieStore = new CookieStore() {
             List<Cookie> cookies = new ArrayList<>();
 

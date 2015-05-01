@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
@@ -22,7 +23,7 @@ import com.robotium.solo.Solo;
 /**
  * Simulate the workflow of the app
  */
-public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginActivity> {
+public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<LoginActivity> {
 
     private static final int STANDARD_TIMEOUT = 50000;
     public static final String MANNSCHAFT_TO_CLICK = "TTG St. Augustin III";
@@ -30,6 +31,22 @@ public class LigaIntegrationTest extends ActivityInstrumentationTestCase2<LoginA
 
     public LigaIntegrationTest() {
         super(LoginActivity.class);
+    }
+
+    @Override
+    protected void prepareMocks() {
+        super.prepareMocks();
+        MockResponses.forRequestDoAnswer(".*championship=DTTB.14/15", "clicktt/dttb_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*championship=WTTV.*14/15", "clicktt/wttv_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*meeting=7371117.*", "clicktt/mannschafts_detail_kreisliga.htm");
+        MockResponses.forRequestDoAnswer(".*championship=B15.14%2F15", "clicktt/mittelrhein_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*displayTyp=vorrunde.*", "clicktt/kreisliga_vorrunde.htm");
+        MockResponses.forRequestDoAnswer(".*displayTyp=rueckrunde.*", "clicktt/kreisliga_vorrunde.htm");
+        MockResponses.forRequestDoAnswer(".*teamPortrait.teamtable=1831640.*", "clicktt/mannschafts_info.htm");
+        MockResponses.forRequestDoAnswer(".*meeting=7371089.*", "clicktt/mannschafts_spiel_7371089.htm");
+        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15", "clicktt/rhein_sieg_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15&group=225345", "clicktt/kreisliga.htm");
+        MockResponses.forRequestDoAnswer("http://www.mytischtennis.de/community/events", "events.htm");
     }
 
     @Override

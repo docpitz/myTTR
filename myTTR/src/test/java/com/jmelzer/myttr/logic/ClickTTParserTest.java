@@ -320,9 +320,9 @@ public class ClickTTParserTest {
         }
 
         List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
-        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
-            System.out.println("ligaErgebnisse = " + ligaErgebnisse);
-        }
+//        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
+//            System.out.println("ligaErgebnisse = " + ligaErgebnisse);
+//        }
     }
     @Test
     public void testParseLinksBezirke() throws Exception {

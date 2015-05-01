@@ -20,6 +20,7 @@ import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 
@@ -33,6 +34,21 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     @Override
     protected void setUp() throws Exception {
         parser = new ClickTTParser();
+        prepareMocks();
+    }
+
+    @Override
+    protected void prepareMocks() {
+        super.prepareMocks();
+        MockResponses.forRequestDoAnswer(".*championship=DTTB.14/15", "clicktt/dttb_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*championship=WTTV.*14/15", "clicktt/wttv_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*meeting=7371117.*", "clicktt/mannschafts_detail_kreisliga.htm");
+        MockResponses.forRequestDoAnswer(".*championship=B15.14%2F15", "clicktt/mittelrhein_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*displayTyp=vorrunde.*", "clicktt/kreisliga_vorrunde.htm");
+        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15", "clicktt/rhein_sieg_ligen_plan.htm");
+        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15&group=225345", "clicktt/kreisliga.htm");
+        MockResponses.forRequestDoAnswer(".*person=974254.*", "clicktt/player_974254.htm");
+        MockResponses.forRequestDoAnswer(".*RL-OL.West.*", "clicktt/regional_west.htm");
     }
 
     @SmallTest
@@ -230,9 +246,9 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                 "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
         assertEquals(2, spieler.getEinsaetze().size());
         List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
-        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
-            Log.i(Constants.LOG_TAG, "ligaErgebnisse = " + ligaErgebnisse);
-        }
+//        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
+//            Log.i(Constants.LOG_TAG, "ligaErgebnisse = " + ligaErgebnisse);
+//        }
 
     }
 }

@@ -14,21 +14,20 @@ package com.jmelzer.myttr.logic;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
-import java.io.IOException;
-
-public class LoginManagerTest extends TestCase {
+public class LoginManagerTest extends BaseTestCase {
 
     @SmallTest
     public void testlogin() throws Exception {
         LoginManager loginManager = new LoginManager();
         Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
-        try {
-            loginManager.login("KKöhler", "pass123.");
-            fail("PlayerNotWellRegistered");
-        } catch (PlayerNotWellRegistered e) {
-            //expexted
+        if (!offline) {
+            try {
+                loginManager.login("KKöhler", "pass123.");
+                fail("PlayerNotWellRegistered");
+            } catch (PlayerNotWellRegistered e) {
+                //expexted
+            }
         }
 
     }

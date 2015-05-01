@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
+import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.TeamAppointment;
@@ -25,6 +26,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class IntegrationTest extends BaseTestCase {
+    @Override
+    protected void prepareMocks() {
+        super.prepareMocks();
+        MockResponses.forRequestDoAnswer(".*userMasterPage.*", "userMasterPage.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Jens&nachname=Bauer.*", "search_bauer.htm");
+        MockResponses.forRequestDoAnswer(".*/events", "events.htm");
+    }
 
     @SmallTest
     public void testNewEventsReceived() throws Exception {

@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import android.util.Log;
+
 import org.apache.http.client.methods.HttpUriRequest;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class MockResponses {
         final String requestString = request.getURI().toString();
         for (final String[] mapping : responseMapping) {
             if (requestString.matches(mapping[0])) {
+                Log.d(Constants.LOG_TAG, requestString + " ==>>> " + BASE + mapping[1]);
                 return BASE + mapping[1];
             }
         }

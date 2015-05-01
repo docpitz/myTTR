@@ -144,6 +144,7 @@ public class Client {
 
     public static void setHttpClient(HttpClient sClient) {
         client = sClient;
+        cookieStoreDelegate.setHttpClient(client);
     }
 
     public static CookieStore getCookieStore() {
