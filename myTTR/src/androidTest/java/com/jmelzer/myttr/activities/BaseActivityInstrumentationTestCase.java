@@ -16,7 +16,7 @@ import org.apache.http.impl.cookie.BasicClientCookie;
  * Created by J. Melzer on 01.05.2015.
  * Base class handle
  */
-public class BaseActivityInstrumentationTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T> {
+public abstract class BaseActivityInstrumentationTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T> {
 
     //switch wether we read html from file system or calling mytt.de
     boolean offline = true;
