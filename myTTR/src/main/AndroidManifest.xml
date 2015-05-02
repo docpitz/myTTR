@@ -333,6 +333,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
         </activity>
+        <activity android:name=".activities.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <service android:name=".logic.SyncManager" android:label="myTTR Background Sync"
                  android:icon="@drawable/ic_action_actionbar">
         </service>
