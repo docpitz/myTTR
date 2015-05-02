@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -108,6 +108,12 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
     @MediumTest
     public void testAll() throws InterruptedException {
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+            }
+        });
 
         assertEquals(LoginActivity.class, solo.getCurrentActivity().getClass());
 
