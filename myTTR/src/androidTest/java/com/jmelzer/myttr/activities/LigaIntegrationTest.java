@@ -91,8 +91,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
             }
         });
 
-
-        solo.clickOnButton(0);
+        solo.clickOnView(solo.getView(R.id.button_login));
 
         assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
 
