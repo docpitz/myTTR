@@ -36,3 +36,4 @@ before_script:
 
 script:
   - gradle build createDebugCoverageReport --info
+  - echo finshed
