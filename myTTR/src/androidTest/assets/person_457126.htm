@@ -1,0 +1,7184 @@
+<!DOCTYPE html>
+<html><head>
+<title>Ranglisten + Statistiken | Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="" />
+<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+<script type="text/javascript" charset="utf-8">
+var tooltipdataSaved;
+var tooltipdataSavedHtml;
+var tooltipdataString;
+var positionOfTooltip;
+var writeToDB = false;
+var ajaxTooltipConfig = {
+over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+};
+function ajaxTooliIn() {
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if(tooltipdata[3]!= undefined){
+writeToDB = true;
+}
+//console.log(writeToDB);
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+var positionOfTooltip = jQuery(this).next(".bigtooltip");
+//console.log(positionOfTooltip);
+if(tooltipdataString != tooltipdataSaved) {
+jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+tooltipdataSaved = tooltipdataString;
+jQuery.ajax({
+url: url,
+cache: false,
+success: function(html){
+tooltipdataSavedHtml = html;
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+});
+}
+else {
+//use last call again
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+}
+function ajaxTooliOut() {
+// do nothing
+}
+function initToolTips () {
+//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+//use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+}
+function reInitToolTips() {
+console.log('jetzt');
+jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+}
+jQuery(document).ready(function($) {
+$(".openoverlay[rel]").overlay({
+mask: {
+color: '#000'
+},
+//fixed: false,
+top: '20%'
+});
+initToolTips();
+/* Local Scroll */
+$.localScroll();
+/* Back to Top */
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+jQuery().UItoTop({ easingType: 'easeOutQuart' });
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<!-- Start: GPT Sync -->
+<script src="http://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+</script>
+<script type='text/javascript'>
+var gptadslots=[];
+(function(){
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+<script type="text/javascript">
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+//Adslot 2 declaration
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+//Adslot 3 declaration
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+var crtg_split = (crtg_content || '').split(';');
+var pubads = googletag.pubads();
+for (var i=1;i<crtg_split.length;i++){
+pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+}
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>
+<!-- End: GPT -->
+<style>
+/**center fix for super banner**/
+#ligatusframe_47919{
+width: auto!important;
+}
+</style>
+<script type="text/javascript"> var sdm_vers = 2 ; </script>
+<script 
+type="text/javascript" 
+src="//cdn.stroeerdigitalmedia.de/praeludium/praeludium_mytischtennis.js">
+</script>
+</head>
+<body class="community">
+<!-- Version: 3.1.5 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"comm", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/events.cfm?personId=457126" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="ontopbar_fx bg_ci_orange">
+<div class="grid">
+<div class="ontopbar">
+<div class="grid_3 fl">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+Premium bis 09.11.2015
+</a>
+</div>
+<div class="grid_9 fr right">
+<a href="/community/friends" class="btn link_ontopbar orange">
+<i class="icon-group"></i> 
+</a>
+<a href="/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="btn link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<span class="usertext_ontopbar">Jürgen Melzer</span>
+</a>
+<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx">
+<div class="grid clearfix">
+<div class="header_container">
+<div class="col_12">
+<div class="grid_7">
+<h1 class="mt_30">
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png">
+</a>
+</h1>
+<div class="wfm_logo"></div>
+</div>
+<div class="grid_5">
+<ul class="nav_ontop">
+<li class="mr_5">
+<a href="http://www.mytischtennis.de/public/" class="nav_01" title="Portal">Portal</a>
+</li>
+<li>
+<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navi_fx" id="sticky_navigation">
+<div class="grid">
+<div class="navi_container">
+<ul class="menu ml_10 noprint">
+<li id="Home"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a>
+</li>
+<li id="Profil"><a href="http://www.mytischtennis.de/community/personalprofil" title="Profil">Profil</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+<li><a href="http://www.mytischtennis.de/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/userSettings.cfm" title="Einstellungen">Einstellungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+</ul>
+</li>
+<li id="Teamsport"><a href="http://www.mytischtennis.de/community/showclubinfo" title="Teamsport">Teamsport</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/showclubinfo" title="Verein">Verein</a></li>
+<li><a href="http://www.mytischtennis.de/community/group" title="Liga">Liga</a></li>
+<li><a href="http://www.mytischtennis.de/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</li>
+<li id="Ranglisten" class="current"><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+<li><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li><a href="http://www.mytischtennis.de/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+<li><a href="http://www.mytischtennis.de/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+</ul>
+</li>
+<li id="Kalender"><a href="http://www.mytischtennis.de/community/eventcalendar" title="Turniere">Turniere</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li>
+<a name="" title="Turnierserien">Turnierserien</a>
+<ul>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+Bavarian TT-Race
+</a>
+</li>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+Rheinland Cup
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="Training"><a href="http://www.mytischtennis.de/community/uebungen" title="Training">Training</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/uebungen" title="Übungen">Übungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/elearning" title="E-Learning">E-Learning</a></li>
+<li><a href="http://www.mytischtennis.de/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+<li><a href="http://www.mytischtennis.de/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+</ul>
+</li>
+<li id="Community"><a href="http://www.mytischtennis.de/community/friends" title="Community">Community
+</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/friends" title="Freunde">Freunde</a></li>
+<li><a href="http://www.mytischtennis.de/community/pendingrequests" title="Anfragen">Anfragen </a></li>
+<li><a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+<li><a href="http://www.mytischtennis.de/community/searchPerson" title="Suche">Suche</a></li>
+<li><a href="http://www.mytischtennis.de/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+</ul>
+</li>
+<li id="Services"><a href="http://www.mytischtennis.de/community/holzassistent" title="Services">Services</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+<li><a href="http://www.mytischtennis.de/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+<li><a href="http://www.mytischtennis.de/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+<li><a href="http://www.mytischtennis.de/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+</ul>
+</li>
+<li id="Premium"><a href="http://www.mytischtennis.de/community/premium" title="Premium">Premium</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/premium" title="Infos">Infos</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/premiumsubscription.cfm" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+<li><a href="http://www.mytischtennis.de/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid pl_15 mb_10">
+<ul class="breadcrumbs">
+<li class="first"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
+</ul>
+</div>
+<div class="grid center ontopbanner" id="topBanner">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+<div id='div-gpt-ad-995246123125863230-1'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-1');
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<div id='div-gpt-ad-995246123125863230-2'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-2');
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+<div class="content_fx">
+<div class="grid clearfix">
+<div class="content_container">
+<script>
+jQuery(function () {
+Highcharts.setOptions({
+lang: {
+shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+thousandsSep: "",
+exportButtonTitle:"Download Grafik",
+printButtonTitle: "Grafik drucken"
+}
+}); 
+var chart;
+jQuery(document).ready(function() {
+chart = new Highcharts.Chart({
+chart: {
+renderTo: 'container',
+type: 'spline'
+},
+title: {
+text: ' '
+},
+xAxis: {
+startOnTick:false,
+endOnTick:false,
+tickInterval: 7,
+categories: [
+"Sep 06",	
+"Sep 06",	
+"Sep 06",	
+"Sep 06",	
+"Okt 06",	
+"Okt 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Dez 06",	
+"Jan 07",	
+"Jan 07",	
+"Jan 07",	
+"Feb 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Apr 07",	
+"Apr 07",	
+"Aug 07",	
+"Sep 07",	
+"Sep 07",	
+"Okt 07",	
+"Okt 07",	
+"Okt 07",	
+"Okt 07",	
+"Nov 07",	
+"Nov 07",	
+"Nov 07",	
+"Nov 07",	
+"Dez 07",	
+"Jan 08",	
+"Jan 08",	
+"Jan 08",	
+"Feb 08",	
+"Feb 08",	
+"Feb 08",	
+"Mrz 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Mai 08",	
+"Aug 08",	
+"Sep 08",	
+"Sep 08",	
+"Sep 08",	
+"Sep 08",	
+"Okt 08",	
+"Okt 08",	
+"Okt 08",	
+"Nov 08",	
+"Nov 08",	
+"Nov 08",	
+"Dez 08",	
+"Jan 09",	
+"Jan 09",	
+"Jan 09",	
+"Jan 09",	
+"Feb 09",	
+"Feb 09",	
+"Feb 09",	
+"Feb 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Apr 09",	
+"Aug 09",	
+"Sep 09",	
+"Sep 09",	
+"Sep 09",	
+"Okt 09",	
+"Okt 09",	
+"Okt 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Jan 10",	
+"Jan 10",	
+"Jan 10",	
+"Jan 10",	
+"Jan 10",	
+"Feb 10",	
+"Feb 10",	
+"Feb 10",	
+"Mrz 10",	
+"Mrz 10",	
+"Apr 10",	
+"Sep 10",	
+"Sep 10",	
+"Sep 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Nov 10",	
+"Nov 10",	
+"Nov 10",	
+"Nov 10",	
+"Nov 10",	
+"Dez 10",	
+"Jan 11",	
+"Jan 11",	
+"Jan 11",	
+"Feb 11",	
+"Feb 11",	
+"Feb 11",	
+"Feb 11",	
+"Feb 11",	
+"Mrz 11",	
+"Mrz 11",	
+"Mrz 11",	
+"Apr 11",	
+"Apr 11",	
+"Jun 11",	
+"Jun 11",	
+"Jun 11",	
+"Jun 11",	
+"Sep 11",	
+"Sep 11",	
+"Sep 11",	
+"Okt 11",	
+"Okt 11",	
+"Okt 11",	
+"Okt 11",	
+"Okt 11",	
+"Nov 11",	
+"Nov 11",	
+"Nov 11",	
+"Nov 11",	
+"Dez 11",	
+"Dez 11",	
+"Jan 12",	
+"Jan 12",	
+"Jan 12",	
+"Feb 12",	
+"Feb 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Apr 12",	
+"Apr 12",	
+"Mai 12",	
+"Jun 12",	
+"Jun 12",	
+"Jun 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Okt 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Dez 12",	
+"Dez 12",	
+"Jan 13",	
+"Jan 13",	
+"Jan 13",	
+"Feb 13",	
+"Feb 13",	
+"Feb 13",	
+"Mrz 13",	
+"Mrz 13",	
+"Mrz 13",	
+"Apr 13",	
+"Mai 13",	
+"Jun 13",	
+"Jun 13",	
+"Jun 13",	
+"Sep 13",	
+"Sep 13",	
+"Sep 13",	
+"Okt 13",	
+"Okt 13",	
+"Okt 13",	
+"Nov 13",	
+"Nov 13",	
+"Nov 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Jan 14",	
+"Jan 14",	
+"Jan 14",	
+"Feb 14",	
+"Mrz 14",	
+"Mrz 14",	
+"Mrz 14",	
+"Mrz 14",	
+"Apr 14",	
+"Apr 14",	
+"Apr 14",	
+"Apr 14",	
+"Mai 14",	
+"Mai 14",	
+"Jun 14",	
+"Jun 14",	
+"Jun 14",	
+"Jun 14",	
+"Aug 14",	
+"Sep 14",	
+"Sep 14",	
+"Sep 14",	
+"Sep 14",	
+"Okt 14",	
+"Okt 14",	
+"Okt 14",	
+"Nov 14",	
+"Nov 14",	
+"Nov 14",	
+"Nov 14",	
+"Nov 14",	
+"Dez 14",	
+"Dez 14",	
+"Jan 15",	
+"Jan 15",	
+"Jan 15",	
+"Jan 15",	
+"Feb 15",	
+"Feb 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Apr 15",	
+"heute"
+]
+}, 
+yAxis: {
+title: {
+text: ' '
+},
+min: 1277,
+max: 1810	
+},
+credits: {
+enabled: false	
+},
+plotOptions: {
+spline: { 
+lineWidth: 4,
+showInLegend:false, 
+marker: {
+symbol: 'circle',
+radius: 4
+}
+}
+}, 
+series: [{	
+name: "Neumüller, Mirko",
+color: '#0095d8',	
+data: [ 
+["02.09.2006"
+, 1400],
+["16.09.2006"
+, 1446],
+["23.09.2006"
+, 1469],
+["30.09.2006"
+, 1442],
+["21.10.2006"
+, 1413],
+["29.10.2006"
+, 1378],
+["04.11.2006"
+, 1394],
+["11.11.2006"
+, 1390],
+["18.11.2006"
+, 1377],
+["25.11.2006"
+, 1388],
+["02.12.2006"
+, 1420],
+["13.01.2007"
+, 1424],
+["20.01.2007"
+, 1427],
+["27.01.2007"
+, 1416],
+["24.02.2007"
+, 1413],
+["03.03.2007"
+, 1396],
+["09.03.2007"
+, 1411],
+["24.03.2007"
+, 1405],
+["31.03.2007"
+, 1394],
+["14.04.2007"
+, 1397],
+["22.04.2007"
+, 1411],
+["30.08.2007"
+, 1419],
+["15.09.2007"
+, 1445],
+["22.09.2007"
+, 1452],
+["06.10.2007"
+, 1474],
+["07.10.2007"
+, 1459],
+["21.10.2007"
+, 1458],
+["27.10.2007"
+, 1465],
+["03.11.2007"
+, 1477],
+["04.11.2007"
+, 1476],
+["17.11.2007"
+, 1473],
+["24.11.2007"
+, 1477],
+["01.12.2007"
+, 1489],
+["07.01.2008"
+, 1485],
+["19.01.2008"
+, 1457],
+["26.01.2008"
+, 1448],
+["16.02.2008"
+, 1432],
+["23.02.2008"
+, 1441],
+["29.02.2008"
+, 1470],
+["08.03.2008"
+, 1481],
+["05.04.2008"
+, 1489],
+["12.04.2008"
+, 1485],
+["13.04.2008"
+, 1478],
+["19.04.2008"
+, 1461],
+["26.04.2008"
+, 1472],
+["03.05.2008"
+, 1470],
+["30.08.2008"
+, 1468],
+["06.09.2008"
+, 1481],
+["20.09.2008"
+, 1465],
+["26.09.2008"
+, 1481],
+["27.09.2008"
+, 1484],
+["17.10.2008"
+, 1475],
+["18.10.2008"
+, 1470],
+["24.10.2008"
+, 1473],
+["08.11.2008"
+, 1471],
+["15.11.2008"
+, 1463],
+["21.11.2008"
+, 1471],
+["05.12.2008"
+, 1475],
+["10.01.2009"
+, 1484],
+["24.01.2009"
+, 1493],
+["30.01.2009"
+, 1503],
+["31.01.2009"
+, 1494],
+["07.02.2009"
+, 1491],
+["14.02.2009"
+, 1483],
+["25.02.2009"
+, 1478],
+["28.02.2009"
+, 1469],
+["07.03.2009"
+, 1479],
+["14.03.2009"
+, 1490],
+["22.03.2009"
+, 1497],
+["28.03.2009"
+, 1505],
+["03.04.2009"
+, 1500],
+["29.08.2009"
+, 1492],
+["04.09.2009"
+, 1486],
+["19.09.2009"
+, 1482],
+["26.09.2009"
+, 1481],
+["02.10.2009"
+, 1479],
+["10.10.2009"
+, 1476],
+["31.10.2009"
+, 1476],
+["06.11.2009"
+, 1491],
+["07.11.2009"
+, 1482],
+["14.11.2009"
+, 1483],
+["20.11.2009"
+, 1481],
+["21.11.2009"
+, 1475],
+["28.11.2009"
+, 1475],
+["30.11.2009"
+, 1467],
+["08.01.2010"
+, 1466],
+["16.01.2010"
+, 1458],
+["23.01.2010"
+, 1472],
+["29.01.2010"
+, 1467],
+["31.01.2010"
+, 1463],
+["05.02.2010"
+, 1483],
+["19.02.2010"
+, 1480],
+["27.02.2010"
+, 1479],
+["05.03.2010"
+, 1477],
+["19.03.2010"
+, 1475],
+["16.04.2010"
+, 1477],
+["04.09.2010"
+, 1468],
+["18.09.2010"
+, 1482],
+["25.09.2010"
+, 1476],
+["02.10.2010"
+, 1491],
+["03.10.2010"
+, 1487],
+["09.10.2010"
+, 1486],
+["30.10.2010"
+, 1497],
+["06.11.2010"
+, 1494],
+["13.11.2010"
+, 1498],
+["20.11.2010"
+, 1488],
+["26.11.2010"
+, 1478],
+["28.11.2010"
+, 1477],
+["04.12.2010"
+, 1480],
+["15.01.2011"
+, 1488],
+["22.01.2011"
+, 1503],
+["29.01.2011"
+, 1494],
+["05.02.2011"
+, 1486],
+["06.02.2011"
+, 1486],
+["12.02.2011"
+, 1467],
+["19.02.2011"
+, 1475],
+["20.02.2011"
+, 1487],
+["12.03.2011"
+, 1502],
+["19.03.2011"
+, 1499],
+["26.03.2011"
+, 1502],
+["02.04.2011"
+, 1509],
+["09.04.2011"
+, 1516],
+["12.06.2011"
+, 1520],
+["24.06.2011"
+, 1527],
+["25.06.2011"
+, 1553],
+["26.06.2011"
+, 1559],
+["10.09.2011"
+, 1559],
+["18.09.2011"
+, 1563],
+["24.09.2011"
+, 1563],
+["01.10.2011"
+, 1584],
+["02.10.2011"
+, 1591],
+["08.10.2011"
+, 1583],
+["15.10.2011"
+, 1596],
+["22.10.2011"
+, 1589],
+["13.11.2011"
+, 1583],
+["18.11.2011"
+, 1577],
+["19.11.2011"
+, 1580],
+["27.11.2011"
+, 1592],
+["03.12.2011"
+, 1603],
+["10.12.2011"
+, 1605],
+["14.01.2012"
+, 1599],
+["21.01.2012"
+, 1577],
+["28.01.2012"
+, 1565],
+["04.02.2012"
+, 1567],
+["25.02.2012"
+, 1570],
+["03.03.2012"
+, 1569],
+["03.03.2012"
+, 1583],
+["09.03.2012"
+, 1581],
+["17.03.2012"
+, 1574],
+["18.03.2012"
+, 1579],
+["24.03.2012"
+, 1592],
+["15.04.2012"
+, 1593],
+["21.04.2012"
+, 1596],
+["12.05.2012"
+, 1608],
+["08.06.2012"
+, 1614],
+["10.06.2012"
+, 1617],
+["24.06.2012"
+, 1616],
+["01.09.2012"
+, 1608],
+["08.09.2012"
+, 1608],
+["15.09.2012"
+, 1597],
+["22.09.2012"
+, 1573],
+["29.09.2012"
+, 1603],
+["27.10.2012"
+, 1601],
+["03.11.2012"
+, 1617],
+["05.11.2012"
+, 1622],
+["10.11.2012"
+, 1633],
+["17.11.2012"
+, 1615],
+["24.11.2012"
+, 1624],
+["01.12.2012"
+, 1608],
+["08.12.2012"
+, 1616],
+["12.01.2013"
+, 1614],
+["19.01.2013"
+, 1626],
+["25.01.2013"
+, 1633],
+["02.02.2013"
+, 1630],
+["16.02.2013"
+, 1631],
+["23.02.2013"
+, 1627],
+["01.03.2013"
+, 1616],
+["09.03.2013"
+, 1599],
+["16.03.2013"
+, 1615],
+["20.04.2013"
+, 1622],
+["19.05.2013"
+, 1636],
+["01.06.2013"
+, 1616],
+["02.06.2013"
+, 1599],
+["23.06.2013"
+, 1627],
+["08.09.2013"
+, 1639],
+["21.09.2013"
+, 1643],
+["29.09.2013"
+, 1623],
+["05.10.2013"
+, 1620],
+["06.10.2013"
+, 1612],
+["20.10.2013"
+, 1600],
+["10.11.2013"
+, 1597],
+["23.11.2013"
+, 1587],
+["30.11.2013"
+, 1578],
+["01.12.2013"
+, 1578],
+["07.12.2013"
+, 1591],
+["14.12.2013"
+, 1609],
+["15.12.2013"
+, 1607],
+["12.01.2014"
+, 1604],
+["19.01.2014"
+, 1601],
+["25.01.2014"
+, 1590],
+["02.02.2014"
+, 1595],
+["07.03.2014"
+, 1591],
+["16.03.2014"
+, 1593],
+["23.03.2014"
+, 1583],
+["29.03.2014"
+, 1588],
+["06.04.2014"
+, 1582],
+["12.04.2014"
+, 1590],
+["20.04.2014"
+, 1580],
+["26.04.2014"
+, 1578],
+["17.05.2014"
+, 1621],
+["30.05.2014"
+, 1628],
+["08.06.2014"
+, 1640],
+["15.06.2014"
+, 1642],
+["21.06.2014"
+, 1646],
+["22.06.2014"
+, 1650],
+["31.08.2014"
+, 1668],
+["05.09.2014"
+, 1672],
+["06.09.2014"
+, 1676],
+["21.09.2014"
+, 1686],
+["26.09.2014"
+, 1674],
+["05.10.2014"
+, 1677],
+["11.10.2014"
+, 1663],
+["24.10.2014"
+, 1657],
+["02.11.2014"
+, 1656],
+["09.11.2014"
+, 1656],
+["15.11.2014"
+, 1666],
+["21.11.2014"
+, 1671],
+["30.11.2014"
+, 1672],
+["05.12.2014"
+, 1685],
+["06.12.2014"
+, 1683],
+["17.01.2015"
+, 1692],
+["25.01.2015"
+, 1691],
+["30.01.2015"
+, 1694],
+["31.01.2015"
+, 1697],
+["08.02.2015"
+, 1705],
+["20.02.2015"
+, 1710],
+["06.03.2015"
+, 1710],
+["13.03.2015"
+, 1695],
+["14.03.2015"
+, 1690],
+["21.03.2015"
+, 1698],
+["22.03.2015"
+, 1676],
+["28.03.2015"
+, 1670],
+["12.04.2015"
+, 1681],
+["heute", 1694]
+]
+}] 
+});
+});
+});
+</script> 
+<script type="text/javascript">
+function popup(url) {
+fenster = window.open(url, "Popupfenster", "width=600,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
+fenster.focus();
+return false;
+}
+</script>
+<style type="text/css" media="screen">
+tr, td {
+vertical-align: top !important;
+}
+#closealllink {
+display: none;
+float:right;
+color: white;
+}
+.toggle_container {
+/*overflow: hidden;*/
+}
+.disabledlabel {
+color: #999;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+jQuery(function($){
+var tooltipdataSaved = '';
+// we need to define this here again, for the tooltips inside the ajax event details
+$(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+$('body').on('mouseover', '.myttFeaturesTooltip', function(){
+// url param for _tooltippStuff telling if head to head should be written in db or not
+var writeToDB = false;
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var myClickTTId = 1429844;
+var myUserId = 104598;
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+var url = '/community/ajax/_tooltippstuff.cfm?writeToDB='+writeToDB+'&currentUserClickTTId='+myClickTTId+'&otherUsersClickTTId='+otherClickTTId+'&myUserid='+myUserId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+if(tooltipdataString != tooltipdataSaved) {
+tooltipdataSaved = tooltipdataString;
+jQuery(this).next(".bigtooltip").load(url);
+}
+});
+})
+</script>
+<div>	
+<div class="grid_12 mb_10">
+<a href="javascript:history.back()" class="btn small" >Zurück</a>
+</div>
+</div>
+<form action="" method="post" class="vertical">
+<div class="grid_12 contentbox mb_20">
+<div class="contentbox_top bg_ci_orange fl"><span>TTR-Historie
+(Neumüller, Mirko)
+</span></div>
+<div class="content fl">
+<div class="col_12 center prefix_4">	
+<div class="fr"><a href="premium" class="thisispremium tooltip fr" title="Auswahl der Zeiträume ist eine Premium-Funktion">premium</a></div>
+<label class="fl mr_15">Zeitraum: </label>	
+<select name="timeInterval" onchange="this.form.submit();" class=" col_3">
+<option value="1">letzte 3 Monate</option>
+<option value="2">letzte 6 Monate</option>	
+<option value="3">letzte 12 Monate</option>
+<option value="4" selected>alle vorhandenen Daten</option>
+<option value="5">aktuelle Saison</option>
+<option value="6">letzte Quartalsberechnung</option>	
+</select>
+</div>
+</form>
+<script type="text/javascript" charset="utf-8">
+function openmoreinfos(clttfeednr,div) {
+var theelement = document.getElementById(div);
+if(theelement.style.display == 'none') {
+$( theelement ).load( "eventDetails?fq=false&eventId="+clttfeednr, function() {
+jQuery(theelement).slideDown("slow");
+});
+}
+else
+{
+jQuery(theelement).toggleClass("active").slideUp("slow");
+}
+document.getElementById('closealllink').style.display="inline";
+}
+function closeall() {
+document.getElementById('closealllink').style.display="none";
+jQuery(".toggle_container").slideUp("slow");
+}
+</script>
+<div style="clear:both;"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/modules/exporting.js"></script>
+<div id="container"></div>
+<div style="float: right; border: 0px solid blue; padding-top: 11px;">
+</div>
+<div style="clear:both;"></div>
+<div class="ttr_banner_box center">
+<a href="eventsCompare.cfm" alt="zum TTR-Vergleich" title="zum TTR-Vergleich">
+<img src="images/ttr_vergleich.jpg" alt="zum TTR-Vergleich" />
+<div class="ttr_class">
+<p>
+<strong>TTR: </strong>
+1694
+</p>
+</div>	
+</a>
+</div>
+<div class="col_full mt_20 mb_20">
+<div class="col_10 center bg_ci_orange p_all_5">
+<h3 class="white">
+Neumüller, Mirkos
+<span class="tooltip">TTR:</span> 1694
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>
+und
+<span class="tooltip">Q-TTR:</span> 1710
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>	
+<span style="color: white; font-size: 0.8em; font-weight:normal;" class="tooltip" title="
+Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)">(i)</span>
+</h3>
+</div>
+<div class="col_2 pt_10 right">
+<span>
+<a href="matches?userid=457126" class="btn" title="Statistiken anzeigen">Statistiken »</a>
+</span>
+</div>
+</div>
+<table class="coolTable" border="0">
+<tr>
+<th>Datum</th>
+<th>Veranstaltung <a href="javascript:closeall()" id="closealllink" title="alle Detailinformationen ausblenden">[&uarr;&uarr;]</a></th>
+<th class="tooltip" title="&Auml;nderungskonstante">&Auml;k</th>
+<th class="tooltip" title="Spiele">Sp</th>
+<th class="tooltip" title="Siege">Si</th>
+<th class="tooltip" title="Gewinnerwartung">GE</th>
+<th>Typ</th>
+<th>TTR</th>
+<th style="font-weight: bold; text-align: center; width: 30px;">+/-</th>
+</tr>
+<tr>
+<td>12.04.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302216001,'eventdiv1');" class="trigger2" title="Details anzeigen">DRIVE 2015 - 32. Holzbüttgener Tischtennisturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>7</td>
+<td>5</td>
+<td>4,189</td>
+<td>
+Turnier
+</td>
+<td>1681</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv1" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302083170,'eventdiv2');" class="trigger2" title="Details anzeigen">BK-Herren | TTVg. GW Porz-Eil : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,292</td>
+<td>
+Team
+</td>
+<td>1670</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv2" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301983617,'eventdiv3');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTF Lengsdorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,366</td>
+<td>
+Team
+</td>
+<td>1676</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv3" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301966619,'eventdiv4');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : TTC Bonn-Duisdorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,398</td>
+<td>
+Team
+</td>
+<td>1698</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv4" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301830322,'eventdiv5');" class="trigger2" title="Details anzeigen">LL-Herren | TV Bergheim : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,504</td>
+<td>
+Team
+</td>
+<td>1690</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv5" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301790247,'eventdiv6');" class="trigger2" title="Details anzeigen">BK-Herren | SC Fortuna Bonn II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,305</td>
+<td>
+Team
+</td>
+<td>1695</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv6" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301634214,'eventdiv7');" class="trigger2" title="Details anzeigen">BK-Herren | TTC DJK Hennef II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,949</td>
+<td>
+Team
+</td>
+<td>1710</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv7" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.02.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301369671,'eventdiv8');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,989</td>
+<td>
+Team
+</td>
+<td>1710</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv8" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.02.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301261321,'eventdiv9');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTG Niederkassel III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,674</td>
+<td>
+Team
+</td>
+<td>1705</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv9" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301126151,'eventdiv10');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : TuRa Oberdrees II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,527</td>
+<td>
+Team
+</td>
+<td>1697</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv10" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301075013,'eventdiv11');" class="trigger2" title="Details anzeigen">BK-Herren | TV Geislar : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,782</td>
+<td>
+Team
+</td>
+<td>1694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv11" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301016686,'eventdiv12');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Bonn-Duisdorf III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,832</td>
+<td>
+Team
+</td>
+<td>1691</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv12" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300886528,'eventdiv13');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,080</td>
+<td>
+Team
+</td>
+<td>1692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv13" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300570309,'eventdiv14');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : TTG Niederkassel II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,454</td>
+<td>
+Team
+</td>
+<td>1683</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv14" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300514330,'eventdiv15');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Plittersdorf : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,118</td>
+<td>
+Team
+</td>
+<td>1685</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv15" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300456736,'eventdiv16');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTVg. GW Porz-Eil</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,196</td>
+<td>
+Team
+</td>
+<td>1672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv16" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300229159,'eventdiv17');" class="trigger2" title="Details anzeigen">BK-Herren | TTF Lengsdorf : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,916</td>
+<td>
+Team
+</td>
+<td>1671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv17" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300133550,'eventdiv18');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : SC Fortuna Bonn II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,715</td>
+<td>
+Team
+</td>
+<td>1666</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv18" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300016061,'eventdiv19');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC DJK Hennef II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,348</td>
+<td>
+Team
+</td>
+<td>1656</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv19" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299894695,'eventdiv20');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,004</td>
+<td>
+Team
+</td>
+<td>1656</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv20" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299781177,'eventdiv21');" class="trigger2" title="Details anzeigen">LL-Herren | TTF Bad Honnef : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,065</td>
+<td>
+Team
+</td>
+<td>1657</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv21" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299576278,'eventdiv22');" class="trigger2" title="Details anzeigen">35. Tischtennis-Jubiläumsturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>1,347</td>
+<td>
+Turnier
+</td>
+<td>1663</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv22" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299494448,'eventdiv23');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Troisdorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,849</td>
+<td>
+Team
+</td>
+<td>1677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv23" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299258042,'eventdiv24');" class="trigger2" title="Details anzeigen">BK-Herren | TTG Niederkassel III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,823</td>
+<td>
+Team
+</td>
+<td>1674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv24" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299198702,'eventdiv25');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Geislar</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,772</td>
+<td>
+Team
+</td>
+<td>1686</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv25" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299062903,'eventdiv26');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : ESV BR Bonn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,376</td>
+<td>
+Team
+</td>
+<td>1676</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv26" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299051340,'eventdiv27');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Bonn-Duisdorf III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,774</td>
+<td>
+Team
+</td>
+<td>1672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv27" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.08.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299036312,'eventdiv28');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Bergheim II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,775</td>
+<td>
+Team
+</td>
+<td>1668</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv28" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>22.06.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298925855,'eventdiv29');" class="trigger2" title="Details anzeigen">7. Porzer Tischtennis- und Fußballturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>3,885</td>
+<td>
+Turnier
+</td>
+<td>1650</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv29" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.06.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298924009,'eventdiv30');" class="trigger2" title="Details anzeigen">7. Porzer Tischtennis- und Fußballturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>0,768</td>
+<td>
+Turnier
+</td>
+<td>1646</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv30" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.06.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298920961,'eventdiv31');" class="trigger2" title="Details anzeigen">53. Grevenbroicher Frühjahrsturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>4</td>
+<td>3,725</td>
+<td>
+Turnier
+</td>
+<td>1642</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv31" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.06.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298916560,'eventdiv32');" class="trigger2" title="Details anzeigen">21. Internationales ERKA-Pfingstturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>9</td>
+<td>7</td>
+<td>6,874</td>
+<td>
+Turnier
+</td>
+<td>1640</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv32" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.05.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298908090,'eventdiv33');" class="trigger2" title="Details anzeigen">6. Aggertaler Schinkenturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,239</td>
+<td>
+Turnier
+</td>
+<td>1628</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv33" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.05.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298893447,'eventdiv34');" class="trigger2" title="Details anzeigen">12. offene Stadtmeisterschaften der Stadt Kreuztal - Herren</a>
+</td>
+<td>16</td>	
+<td>7</td>
+<td>5</td>
+<td>4,578</td>
+<td>
+Turnier
+</td>
+<td>1621</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv34" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(270253879,'eventdiv35');" class="trigger2" title="Details anzeigen">DRIVE 2014 - 31. Holzbüttgener Tischtennisturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>8</td>
+<td>7</td>
+<td>4,327</td>
+<td>
+Turnier
+</td>
+<td>1578</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+43
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv35" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(248892884,'eventdiv36');" class="trigger2" title="Details anzeigen">29. Stolberger Frühjahrsturnier - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>2,121</td>
+<td>
+Turnier
+</td>
+<td>1580</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv36" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(221011158,'eventdiv37');" class="trigger2" title="Details anzeigen">Gladbeck-Süd Open - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>1,648</td>
+<td>
+Turnier
+</td>
+<td>1590</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv37" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(200065654,'eventdiv38');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Pesch</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,508</td>
+<td>
+Team
+</td>
+<td>1582</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv38" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(171426583,'eventdiv39');" class="trigger2" title="Details anzeigen">BK-Herren | DJK spinfactory Köln II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,361</td>
+<td>
+Team
+</td>
+<td>1588</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv39" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(153228069,'eventdiv40');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TG Mülheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,706</td>
+<td>
+Team
+</td>
+<td>1583</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv40" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(127765795,'eventdiv41');" class="trigger2" title="Details anzeigen">BK-Herren | TSV Kenten : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,642</td>
+<td>
+Team
+</td>
+<td>1593</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv41" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(95053177,'eventdiv42');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Quettingen II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,902</td>
+<td>
+Team
+</td>
+<td>1591</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv42" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(30137543,'eventdiv43');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : Spfr. Leverkusen II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,243</td>
+<td>
+Team
+</td>
+<td>1595</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv43" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29988076,'eventdiv44');" class="trigger2" title="Details anzeigen">BK-Herren | TTG Vogelsang : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,715</td>
+<td>
+Team
+</td>
+<td>1590</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv44" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.01.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29879465,'eventdiv45');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TuS Roland Bürrig</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,711</td>
+<td>
+Team
+</td>
+<td>1601</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv45" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.01.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29778298,'eventdiv46');" class="trigger2" title="Details anzeigen">BK-Herren | 1. TTC Köln III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,196</td>
+<td>
+Team
+</td>
+<td>1604</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv46" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29630340,'eventdiv47');" class="trigger2" title="Details anzeigen">70. Tischtennis-Stadtmeisterschaften von Grevenbroich - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>1,161</td>
+<td>
+Turnier
+</td>
+<td>1607</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv47" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29622065,'eventdiv48');" class="trigger2" title="Details anzeigen">5. Leverkusener Niesen Advents Cup - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>1,149</td>
+<td>
+Turnier
+</td>
+<td>1609</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv48" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29575491,'eventdiv49');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Pesch : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,869</td>
+<td>
+Team
+</td>
+<td>1591</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv49" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29462862,'eventdiv50');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK spinfactory Köln II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,194</td>
+<td>
+Team
+</td>
+<td>1578</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv50" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29446193,'eventdiv51');" class="trigger2" title="Details anzeigen">VL-Herren | TTC RG Porz II : DJK spinfactory Köln</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,005</td>
+<td>
+Team
+</td>
+<td>1578</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv51" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29310083,'eventdiv52');" class="trigger2" title="Details anzeigen">BK-Herren | TG Mülheim : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,544</td>
+<td>
+Team
+</td>
+<td>1587</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv52" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29026512,'eventdiv53');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK Quettingen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,623</td>
+<td>
+Team
+</td>
+<td>1597</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv53" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28722564,'eventdiv54');" class="trigger2" title="Details anzeigen">BK-Herren | TTC BR Geyen : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,199</td>
+<td>
+Team
+</td>
+<td>1600</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv54" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28498265,'eventdiv55');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Dellbrück III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,726</td>
+<td>
+Team
+</td>
+<td>1612</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv55" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28482848,'eventdiv56');" class="trigger2" title="Details anzeigen">BK-Herren | Spfr. Leverkusen II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,524</td>
+<td>
+Team
+</td>
+<td>1620</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv56" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28301289,'eventdiv57');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTG Vogelsang</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,209</td>
+<td>
+Team
+</td>
+<td>1623</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv57" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28150277,'eventdiv58');" class="trigger2" title="Details anzeigen">BK-Herren | TuS Roland Bürrig : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,281</td>
+<td>
+Team
+</td>
+<td>1643</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv58" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27967135,'eventdiv59');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : 1. TTC Köln III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,750</td>
+<td>
+Team
+</td>
+<td>1639</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv59" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>23.06.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27782825,'eventdiv60');" class="trigger2" title="Details anzeigen">Jubiläumsturnier der DJK Quettingen 1963 e.V. - Damen/Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>1,257</td>
+<td>
+Turnier
+</td>
+<td>1627</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv60" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.06.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27769237,'eventdiv61');" class="trigger2" title="Details anzeigen">6. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>3,240</td>
+<td>
+Turnier
+</td>
+<td>1599</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+28
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv61" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.06.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27766714,'eventdiv62');" class="trigger2" title="Details anzeigen">6. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>0</td>
+<td>1,058</td>
+<td>
+Turnier
+</td>
+<td>1616</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv62" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.05.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27756561,'eventdiv63');" class="trigger2" title="Details anzeigen">65. Hückeswagener TT-Stadtmeisterschaften (Gerd-Hess-Gedächtnisturnier) - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>2,228</td>
+<td>
+Turnier
+</td>
+<td>1636</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv63" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27691826,'eventdiv64');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : SV 02/29 Morsbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,096</td>
+<td>
+Team
+</td>
+<td>1622</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv64" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27220841,'eventdiv65');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTVg. GW Porz-Eil</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,549</td>
+<td>
+Team
+</td>
+<td>1615</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv65" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27075678,'eventdiv66');" class="trigger2" title="Details anzeigen">BK-Herren | SV Leuscheid : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,004</td>
+<td>
+Team
+</td>
+<td>1599</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv66" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26862074,'eventdiv67');" class="trigger2" title="Details anzeigen">BK-Herren | Aggertaler TTC II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,064</td>
+<td>
+Team
+</td>
+<td>1616</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv67" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26766083,'eventdiv68');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Klaswipper</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,711</td>
+<td>
+Team
+</td>
+<td>1627</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv68" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26638516,'eventdiv69');" class="trigger2" title="Details anzeigen">BK-Herren | SV Eintracht Hohkeppel : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,251</td>
+<td>
+Team
+</td>
+<td>1631</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv69" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26453164,'eventdiv70');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Bomig</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,909</td>
+<td>
+Team
+</td>
+<td>1630</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv70" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26266516,'eventdiv71');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Schwalbe Bergneustadt IV : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,206</td>
+<td>
+Team
+</td>
+<td>1633</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv71" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.01.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26192571,'eventdiv72');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Wipperfürth</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,568</td>
+<td>
+Team
+</td>
+<td>1626</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv72" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.01.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26080889,'eventdiv73');" class="trigger2" title="Details anzeigen">BK-Herren | CVJM Waldbröl-Bröltal : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,225</td>
+<td>
+Team
+</td>
+<td>1614</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv73" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25867742,'eventdiv74');" class="trigger2" title="Details anzeigen">BK-Herren | SV 02/29 Morsbach : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,115</td>
+<td>
+Team
+</td>
+<td>1616</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv74" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25737133,'eventdiv75');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TSV Seelscheid II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,478</td>
+<td>
+Team
+</td>
+<td>1608</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv75" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25624996,'eventdiv76');" class="trigger2" title="Details anzeigen">BK-Herren | TTVg. GW Porz-Eil : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,019</td>
+<td>
+Team
+</td>
+<td>1624</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv76" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25445389,'eventdiv77');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : SV Leuscheid</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,446</td>
+<td>
+Team
+</td>
+<td>1615</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv77" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25319271,'eventdiv78');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : Aggertaler TTC II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,135</td>
+<td>
+Team
+</td>
+<td>1633</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv78" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25209269,'eventdiv79');" class="trigger2" title="Details anzeigen">Ranglistenturnier 1. Runde Kreis Köln rechtsrh. Herren A - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>3</td>
+<td>2,304</td>
+<td>
+Turnier
+</td>
+<td>1622</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv79" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25187730,'eventdiv80');" class="trigger2" title="Details anzeigen">BK-Herren | TV Klaswipper : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,697</td>
+<td>
+Team
+</td>
+<td>1617</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv80" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.10.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25090048,'eventdiv81');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : SV Eintracht Hohkeppel</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,019</td>
+<td>
+Team
+</td>
+<td>1601</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv81" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24575300,'eventdiv82');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Bomig : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,133</td>
+<td>
+Team
+</td>
+<td>1603</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv82" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24437222,'eventdiv83');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Schwalbe Bergneustadt IV</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,134</td>
+<td>
+Team
+</td>
+<td>1573</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+30
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv83" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24326659,'eventdiv84');" class="trigger2" title="Details anzeigen">BK-Herren | TV Wipperfürth : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,490</td>
+<td>
+Team
+</td>
+<td>1597</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-24
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv84" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24229274,'eventdiv85');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Köln rrh. (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>1</td>
+<td>1,663</td>
+<td>
+Turnier
+</td>
+<td>1608</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv85" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24189090,'eventdiv86');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : CVJM Waldbröl-Bröltal</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,011</td>
+<td>
+Team
+</td>
+<td>1608</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv86" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>24.06.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24032023,'eventdiv87');" class="trigger2" title="Details anzeigen">Tischtennis-Turnier des TV 08 Lohmar e.V. (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,488</td>
+<td>
+Turnier
+</td>
+<td>1616</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv87" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.06.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24025412,'eventdiv88');" class="trigger2" title="Details anzeigen">5. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,045</td>
+<td>
+Turnier
+</td>
+<td>1617</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv88" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.06.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24022621,'eventdiv89');" class="trigger2" title="Details anzeigen">5. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a>
+</td>
+<td>16</td>	
+<td>7</td>
+<td>6</td>
+<td>5,820</td>
+<td>
+Turnier
+</td>
+<td>1614</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv89" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.05.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23997735,'eventdiv90');" class="trigger2" title="Details anzeigen">BK-Herren | TV Wipperfürth : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,642</td>
+<td>
+Team
+</td>
+<td>1608</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv90" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.04.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23933120,'eventdiv91');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : SV Neubrück</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,229</td>
+<td>
+Team
+</td>
+<td>1596</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv91" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.04.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23852631,'eventdiv92');" class="trigger2" title="Details anzeigen">KL-Herren | TV Dellbrück IV : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,797</td>
+<td>
+Team
+</td>
+<td>1593</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv92" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23666455,'eventdiv93');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TTV Bergisch-Gladbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,949</td>
+<td>
+Team
+</td>
+<td>1592</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv93" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23526001,'eventdiv94');" class="trigger2" title="Details anzeigen">KL-Herren | Spfr. Leverkusen III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,162</td>
+<td>
+Team
+</td>
+<td>1579</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv94" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23509781,'eventdiv95');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : DJK Eintracht Eitorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,663</td>
+<td>
+Team
+</td>
+<td>1574</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv95" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23287024,'eventdiv96');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : TTC BW Brühl-Vochem III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,432</td>
+<td>
+Team
+</td>
+<td>1581</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv96" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23206269,'eventdiv97');" class="trigger2" title="Details anzeigen">LL-Herren | DJK BW Friesdorf : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,112</td>
+<td>
+Team
+</td>
+<td>1583</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv97" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23185210,'eventdiv98');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : DJK Quettingen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,130</td>
+<td>
+Team
+</td>
+<td>1569</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv98" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.02.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23044535,'eventdiv99');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Köln-Stammheim : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,038</td>
+<td>
+Team
+</td>
+<td>1570</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv99" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.02.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22733992,'eventdiv100');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TG Mülheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,787</td>
+<td>
+Team
+</td>
+<td>1567</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv100" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22594764,'eventdiv101');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Bensberg II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,862</td>
+<td>
+Team
+</td>
+<td>1565</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv101" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22461939,'eventdiv102');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TV Refrath II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,730</td>
+<td>
+Team
+</td>
+<td>1577</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv102" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22347451,'eventdiv103');" class="trigger2" title="Details anzeigen">KL-Herren | TV Ensen-Westhoven : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,381</td>
+<td>
+Team
+</td>
+<td>1599</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv103" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.12.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22123246,'eventdiv104');" class="trigger2" title="Details anzeigen">KL-Herren | SV Neubrück : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,360</td>
+<td>
+Team
+</td>
+<td>1605</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv104" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.12.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22023778,'eventdiv105');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TV Dellbrück IV</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,882</td>
+<td>
+Team
+</td>
+<td>1603</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv105" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21894691,'eventdiv106');" class="trigger2" title="Details anzeigen">KL-Herren | TTV Bergisch-Gladbach : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,321</td>
+<td>
+Team
+</td>
+<td>1592</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv106" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21736552,'eventdiv107');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : Spfr. Leverkusen III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,258</td>
+<td>
+Team
+</td>
+<td>1580</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv107" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21654172,'eventdiv108');" class="trigger2" title="Details anzeigen">Ranglistenturnier 1. Runde Kreis Köln rechtsrh. Herren B - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>4,793</td>
+<td>
+Turnier
+</td>
+<td>1577</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv108" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21593635,'eventdiv109');" class="trigger2" title="Details anzeigen">LL-Herren | DJK Eintracht Eitorf : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,404</td>
+<td>
+Team
+</td>
+<td>1583</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv109" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21261205,'eventdiv110');" class="trigger2" title="Details anzeigen">KL-Herren | DJK Quettingen II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,386</td>
+<td>
+Team
+</td>
+<td>1589</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv110" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21144707,'eventdiv111');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TTC Köln-Stammheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,418</td>
+<td>
+Team
+</td>
+<td>1596</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv111" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21009399,'eventdiv112');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RG Porz II : ESV BR Bonn II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,160</td>
+<td>
+Team
+</td>
+<td>1583</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv112" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20893007,'eventdiv113');" class="trigger2" title="Details anzeigen">LL-Herren | TTG Witterschlick : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,476</td>
+<td>
+Team
+</td>
+<td>1591</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv113" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20886303,'eventdiv114');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TTC Bensberg II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,576</td>
+<td>
+Team
+</td>
+<td>1584</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv114" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20661462,'eventdiv115');" class="trigger2" title="Details anzeigen">KL-Herren | TV Refrath II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,700</td>
+<td>
+Team
+</td>
+<td>1563</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+21
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv115" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20550741,'eventdiv116');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Köln rrh. - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>2,980</td>
+<td>
+Turnier
+</td>
+<td>1563</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv116" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20457500,'eventdiv117');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz III : TV Ensen-Westhoven</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,747</td>
+<td>
+Team
+</td>
+<td>1559</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv117" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>26.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20253574,'eventdiv118');" class="trigger2" title="Details anzeigen">4. Porzer Tischtennis- und Fußballturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>0,985</td>
+<td>
+Turnier
+</td>
+<td>1559</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv118" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20252789,'eventdiv119');" class="trigger2" title="Details anzeigen">4. Porzer Tischtennis- und Fußballturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>0,643</td>
+<td>
+Turnier
+</td>
+<td>1553</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv119" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20252152,'eventdiv120');" class="trigger2" title="Details anzeigen">4. Porzer Tischtennis- und Fußballturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>3,380</td>
+<td>
+Turnier
+</td>
+<td>1527</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+26
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv120" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20248924,'eventdiv121');" class="trigger2" title="Details anzeigen">18. ERKA-Pfingstturnier - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>1,547</td>
+<td>
+Turnier
+</td>
+<td>1520</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv121" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20146400,'eventdiv122');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC BR Geyen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,731</td>
+<td>
+Team
+</td>
+<td>1516</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv122" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20021910,'eventdiv123');" class="trigger2" title="Details anzeigen">BK-Herren | TTVg. GW Porz-Eil : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,556</td>
+<td>
+Team
+</td>
+<td>1509</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv123" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19803773,'eventdiv124');" class="trigger2" title="Details anzeigen">KL-Herren | DJK SSV Ommerborn Sand : TTC RG Porz IV</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,545</td>
+<td>
+Team
+</td>
+<td>1502</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv124" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19655078,'eventdiv125');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TV Ensen-Westhoven</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,823</td>
+<td>
+Team
+</td>
+<td>1499</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv125" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19500411,'eventdiv126');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK Löwe Köln</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,182</td>
+<td>
+Team
+</td>
+<td>1502</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv126" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19207245,'eventdiv127');" class="trigger2" title="Details anzeigen">BK-Herren | TTC GW Brauweiler III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,087</td>
+<td>
+Team
+</td>
+<td>1487</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv127" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19198325,'eventdiv128');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TV Refrath II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,272</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv128" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19056646,'eventdiv129');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Köln-Stammheim : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,469</td>
+<td>
+Team
+</td>
+<td>1467</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv129" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18945089,'eventdiv130');" class="trigger2" title="Details anzeigen">KL-Herren | TG Mülheim : TTC RG Porz IV</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,166</td>
+<td>
+Team
+</td>
+<td>1486</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-19
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv130" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18928371,'eventdiv131');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : 1. FC Köln V</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,006</td>
+<td>
+Team
+</td>
+<td>1486</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv131" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18787800,'eventdiv132');" class="trigger2" title="Details anzeigen">BK-Herren | 1. FC Köln VI : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,469</td>
+<td>
+Team
+</td>
+<td>1494</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv132" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18654848,'eventdiv133');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Dellbrück III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,572</td>
+<td>
+Team
+</td>
+<td>1503</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv133" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18532482,'eventdiv134');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Hermannia Dünnwald II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,045</td>
+<td>
+Team
+</td>
+<td>1488</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv134" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.12.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18260469,'eventdiv135');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC Köln-Stammheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,523</td>
+<td>
+Team
+</td>
+<td>1480</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv135" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18138740,'eventdiv136');" class="trigger2" title="Details anzeigen">BK-Herren | TTC BR Geyen II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,794</td>
+<td>
+Team
+</td>
+<td>1477</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv136" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18063093,'eventdiv137');" class="trigger2" title="Details anzeigen">LL-Herren | SV Ennert : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,066</td>
+<td>
+Team
+</td>
+<td>1478</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv137" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17981164,'eventdiv138');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTVg. GW Porz-Eil</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,645</td>
+<td>
+Team
+</td>
+<td>1488</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv138" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17828290,'eventdiv139');" class="trigger2" title="Details anzeigen">BK-Herren | TuS Roland Bürrig : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,647</td>
+<td>
+Team
+</td>
+<td>1498</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv139" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17681746,'eventdiv140');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : SV RW Zollstock</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,744</td>
+<td>
+Team
+</td>
+<td>1494</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv140" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17566470,'eventdiv141');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Löwe Köln : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,191</td>
+<td>
+Team
+</td>
+<td>1497</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv141" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17256821,'eventdiv142');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC GW Brauweiler III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,301</td>
+<td>
+Team
+</td>
+<td>1486</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv142" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17136116,'eventdiv143');" class="trigger2" title="Details anzeigen">BK-Herren | 1. FC Köln V : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,074</td>
+<td>
+Team
+</td>
+<td>1487</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv143" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17124161,'eventdiv144');" class="trigger2" title="Details anzeigen">LL-Herren | TTC RW Oberlar : TTC RG Porz II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,243</td>
+<td>
+Team
+</td>
+<td>1491</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv144" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16894672,'eventdiv145');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : 1. FC Köln VI</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,045</td>
+<td>
+Team
+</td>
+<td>1476</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv145" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16776311,'eventdiv146');" class="trigger2" title="Details anzeigen">BK-Herren | TV Dellbrück III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,373</td>
+<td>
+Team
+</td>
+<td>1482</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv146" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16617141,'eventdiv147');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK Hermannia Dünnwald II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,121</td>
+<td>
+Team
+</td>
+<td>1468</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv147" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>16.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16311019,'eventdiv148');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTG St. Augustin II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,538</td>
+<td>
+Team
+</td>
+<td>1477</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv148" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15910922,'eventdiv149');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTVg. GW Porz-Eil</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,880</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv149" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15613267,'eventdiv150');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTC Troisdorf II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,144</td>
+<td>
+Team
+</td>
+<td>1477</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv150" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15527507,'eventdiv151');" class="trigger2" title="Details anzeigen">BL-Herren | TV Hackenberg : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,095</td>
+<td>
+Team
+</td>
+<td>1479</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv151" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15295662,'eventdiv152');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTV Bielstein 04 II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,072</td>
+<td>
+Team
+</td>
+<td>1480</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv152" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15104325,'eventdiv153');" class="trigger2" title="Details anzeigen">BL-Herren | DJK Quettingen : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,211</td>
+<td>
+Team
+</td>
+<td>1483</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv153" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15050225,'eventdiv154');" class="trigger2" title="Details anzeigen">KL-Herren | TV Mülheim : TTC RG Porz IV</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,775</td>
+<td>
+Team
+</td>
+<td>1463</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv154" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14977580,'eventdiv155');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : Heiligenhauser SV</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,269</td>
+<td>
+Team
+</td>
+<td>1467</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv155" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14905740,'eventdiv156');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTC Bensberg II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,329</td>
+<td>
+Team
+</td>
+<td>1472</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv156" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14769795,'eventdiv157');" class="trigger2" title="Details anzeigen">BL-Herren | TTVg. Phönix Biesfeld : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,140</td>
+<td>
+Team
+</td>
+<td>1458</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv157" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14676442,'eventdiv158');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTC Bomig</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,519</td>
+<td>
+Team
+</td>
+<td>1466</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv158" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14352968,'eventdiv159');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TTVg. Phönix Biesfeld</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,045</td>
+<td>
+Team
+</td>
+<td>1467</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv159" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14329229,'eventdiv160');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,515</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv160" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14185974,'eventdiv161');" class="trigger2" title="Details anzeigen">VL-Herren | TTC RG Porz II : TTC Vernich</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,013</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv161" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14113983,'eventdiv162');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TV Refrath</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,365</td>
+<td>
+Team
+</td>
+<td>1481</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv162" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14038641,'eventdiv163');" class="trigger2" title="Details anzeigen">BL-Herren | TTVg. GW Porz-Eil : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,097</td>
+<td>
+Team
+</td>
+<td>1483</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv163" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13885203,'eventdiv164');" class="trigger2" title="Details anzeigen">VL-Herren | TTC RG Porz II : TTC RW Oberlar</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,912</td>
+<td>
+Team
+</td>
+<td>1482</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv164" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13832646,'eventdiv165');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : DJK Quettingen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,536</td>
+<td>
+Team
+</td>
+<td>1491</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv165" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13765455,'eventdiv166');" class="trigger2" title="Details anzeigen">BL-Herren | TTC Troisdorf II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,081</td>
+<td>
+Team
+</td>
+<td>1476</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv166" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13422254,'eventdiv167');" class="trigger2" title="Details anzeigen">VL-Herren | TTC RG Porz II : TuRa Oberdrees</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,012</td>
+<td>
+Team
+</td>
+<td>1476</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv167" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13272321,'eventdiv168');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TV Hackenberg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,182</td>
+<td>
+Team
+</td>
+<td>1479</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv168" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13123001,'eventdiv169');" class="trigger2" title="Details anzeigen">BL-Herren | TTV Bielstein 04 II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,096</td>
+<td>
+Team
+</td>
+<td>1481</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv169" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13001996,'eventdiv170');" class="trigger2" title="Details anzeigen">BL-Herren | Heiligenhauser SV : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,035</td>
+<td>
+Team
+</td>
+<td>1482</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv170" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12858415,'eventdiv171');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : Aggertaler TTC</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,237</td>
+<td>
+Team
+</td>
+<td>1486</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv171" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.08.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12819629,'eventdiv172');" class="trigger2" title="Details anzeigen">BL-Herren | TTC Bomig : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,369</td>
+<td>
+Team
+</td>
+<td>1492</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv172" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>03.04.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12533762,'eventdiv173');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,479</td>
+<td>
+Team
+</td>
+<td>1500</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv173" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12390653,'eventdiv174');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC DJK Hennef</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,304</td>
+<td>
+Team
+</td>
+<td>1505</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv174" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12255059,'eventdiv175');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Eintracht Eitorf : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,493</td>
+<td>
+Team
+</td>
+<td>1497</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv175" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12091184,'eventdiv176');" class="trigger2" title="Details anzeigen">BK-Herren | TTVg. GW Porz-Eil : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,538</td>
+<td>
+Team
+</td>
+<td>1490</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv176" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11941170,'eventdiv177');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTC RW Oberlar II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,330</td>
+<td>
+Team
+</td>
+<td>1479</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv177" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11800271,'eventdiv178');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Geislar II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,393</td>
+<td>
+Team
+</td>
+<td>1469</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv178" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11716128,'eventdiv179');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TG Mülheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,567</td>
+<td>
+Team
+</td>
+<td>1478</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv179" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11607393,'eventdiv180');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,320</td>
+<td>
+Team
+</td>
+<td>1483</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv180" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11462312,'eventdiv181');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTG Niederkassel III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,527</td>
+<td>
+Team
+</td>
+<td>1491</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv181" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11325143,'eventdiv182');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : Post SV Opladen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,203</td>
+<td>
+Team
+</td>
+<td>1494</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv182" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11254632,'eventdiv183');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf III : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,587</td>
+<td>
+Team
+</td>
+<td>1503</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv183" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11179272,'eventdiv184');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TuS Thomasberg-Ittenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,358</td>
+<td>
+Team
+</td>
+<td>1493</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv184" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10971099,'eventdiv185');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Stallberg-Wolsdorf : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,416</td>
+<td>
+Team
+</td>
+<td>1484</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv185" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.12.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10709009,'eventdiv186');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RW Oberlar II : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,430</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv186" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10425981,'eventdiv187');" class="trigger2" title="Details anzeigen">BK-Herren | TTC DJK Hennef : TTC RG Porz III</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,721</td>
+<td>
+Team
+</td>
+<td>1471</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv187" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10342562,'eventdiv188');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK Eintracht Eitorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,473</td>
+<td>
+Team
+</td>
+<td>1463</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv188" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10205980,'eventdiv189');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTVg. GW Porz-Eil</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,515</td>
+<td>
+Team
+</td>
+<td>1471</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv189" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9913908,'eventdiv190');" class="trigger2" title="Details anzeigen">BK-Herren | TV Geislar II : TTC RG Porz III</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,118</td>
+<td>
+Team
+</td>
+<td>1473</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv190" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9845664,'eventdiv191');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TV Bergheim</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,829</td>
+<td>
+Team
+</td>
+<td>1470</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv191" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9797583,'eventdiv192');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Köln-Stammheim II : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>0,242</td>
+<td>
+Team
+</td>
+<td>1475</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv192" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9482994,'eventdiv193');" class="trigger2" title="Details anzeigen">BK-Herren | TuS Thomasberg-Ittenbach : TTC RG Porz III</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,431</td>
+<td>
+Team
+</td>
+<td>1484</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv193" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9434247,'eventdiv194');" class="trigger2" title="Details anzeigen">BK-Herren | TTG Niederkassel III : TTC RG Porz III</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,865</td>
+<td>
+Team
+</td>
+<td>1481</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv194" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9364867,'eventdiv195');" class="trigger2" title="Details anzeigen">KL-Herren | Post SV Opladen : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,182</td>
+<td>
+Team
+</td>
+<td>1465</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv195" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9205855,'eventdiv196');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TV Dellbrück IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>0,789</td>
+<td>
+Team
+</td>
+<td>1481</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv196" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.08.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9131169,'eventdiv197');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : DJK Stallberg-Wolsdorf</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,372</td>
+<td>
+Team
+</td>
+<td>1468</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv197" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>03.05.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8984012,'eventdiv198');" class="trigger2" title="Details anzeigen">BK-Herren | BC Efferen : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,079</td>
+<td>
+Team
+</td>
+<td>1470</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv198" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8974244,'eventdiv199');" class="trigger2" title="Details anzeigen">KL-Herren | TV Refrath III : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>1,086</td>
+<td>
+Team
+</td>
+<td>1472</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv199" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8929673,'eventdiv200');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTVg. GW Porz-Eil</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,473</td>
+<td>
+Team
+</td>
+<td>1461</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv200" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8862801,'eventdiv201');" class="trigger2" title="Details anzeigen">KL-Herren | TuS Roland Bürrig : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>0,850</td>
+<td>
+Team
+</td>
+<td>1478</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv201" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8851710,'eventdiv202');" class="trigger2" title="Details anzeigen">BL-Herren | TTC RG Porz III : TV Hackenberg</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,351</td>
+<td>
+Team
+</td>
+<td>1485</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv202" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8712682,'eventdiv203');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : SC Germania Reusrath II</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,177</td>
+<td>
+Team
+</td>
+<td>1489</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv203" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.03.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8309933,'eventdiv204');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Bensberg II : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,585</td>
+<td>
+Team
+</td>
+<td>1481</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv204" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.02.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8096916,'eventdiv205');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTVg. Phönix Biesfeld II</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,454</td>
+<td>
+Team
+</td>
+<td>1470</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv205" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.02.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8001493,'eventdiv206');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTV Bergisch-Gladbach</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>0,545</td>
+<td>
+Team
+</td>
+<td>1441</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+29
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv206" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.02.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7847579,'eventdiv207');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Bärbroich III : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,531</td>
+<td>
+Team
+</td>
+<td>1432</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv207" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7546653,'eventdiv208');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : Heiligenhauser SV II</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>0,787</td>
+<td>
+Team
+</td>
+<td>1448</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv208" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7419940,'eventdiv209');" class="trigger2" title="Details anzeigen">KL-Herren | TG Mülheim : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>0,434</td>
+<td>
+Team
+</td>
+<td>1457</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv209" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7256131,'eventdiv210');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : DJK SSV Ommerborn-Sand</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>0</td>
+<td>1,385</td>
+<td>
+Team
+</td>
+<td>1485</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-28
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv210" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7045787,'eventdiv211');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TV Refrath III</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>1,203</td>
+<td>
+Team
+</td>
+<td>1489</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv211" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6896480,'eventdiv212');" class="trigger2" title="Details anzeigen">KL-Herren | TTVg. GW Porz-Eil : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,377</td>
+<td>
+Team
+</td>
+<td>1477</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv212" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6758425,'eventdiv213');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TuS Roland Bürrig</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,794</td>
+<td>
+Team
+</td>
+<td>1473</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv213" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6489750,'eventdiv214');" class="trigger2" title="Details anzeigen">BL-Herren | TTC BR Geyen : TTC RG Porz III</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,150</td>
+<td>
+Team
+</td>
+<td>1476</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv214" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6477491,'eventdiv215');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTC Bensberg II</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>1,056</td>
+<td>
+Team
+</td>
+<td>1477</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv215" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6380948,'eventdiv216');" class="trigger2" title="Details anzeigen">KL-Herren | TTVg. Phönix Biesfeld II : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,379</td>
+<td>
+Team
+</td>
+<td>1465</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv216" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6254620,'eventdiv217');" class="trigger2" title="Details anzeigen">KL-Herren | TTV Bergisch-Gladbach : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,636</td>
+<td>
+Team
+</td>
+<td>1458</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv217" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6021013,'eventdiv218');" class="trigger2" title="Details anzeigen">BL-Herren | TTC GW Brauweiler II : TTC RG Porz III</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,071</td>
+<td>
+Team
+</td>
+<td>1459</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv218" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6009274,'eventdiv219');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTC Bärbroich III</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,728</td>
+<td>
+Team
+</td>
+<td>1474</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv219" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5716864,'eventdiv220');" class="trigger2" title="Details anzeigen">KL-Herren | Heiligenhauser SV II : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>0,920</td>
+<td>
+Team
+</td>
+<td>1452</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv220" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5574230,'eventdiv221');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TG Mülheim</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,672</td>
+<td>
+Team
+</td>
+<td>1445</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv221" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.08.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5423031,'eventdiv222');" class="trigger2" title="Details anzeigen">KL-Herren | DJK SSV Ommerborn-Sand : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>0,703</td>
+<td>
+Team
+</td>
+<td>1419</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+26
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv222" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>22.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5296193,'eventdiv223');" class="trigger2" title="Details anzeigen">KL-Herren | TuS Roland Bürrig : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,613</td>
+<td>
+Team
+</td>
+<td>1411</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv223" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5225485,'eventdiv224');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : Spfr. Leverkusen</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,290</td>
+<td>
+Team
+</td>
+<td>1397</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv224" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5088521,'eventdiv225');" class="trigger2" title="Details anzeigen">KL-Herren | DJK Quettingen II : TTC RG Porz IV</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>0,846</td>
+<td>
+Team
+</td>
+<td>1394</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv225" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4968374,'eventdiv226');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : DJK Köln-Ostheim</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>0</td>
+<td>0,440</td>
+<td>
+Team
+</td>
+<td>1405</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv226" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4632332,'eventdiv227');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : SV Union Rösrath</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>0</td>
+<td>0,270</td>
+<td>
+Team
+</td>
+<td>1411</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv227" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4537701,'eventdiv228');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTV Bergisch-Gladbach</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>1</td>
+<td>0,375</td>
+<td>
+Team
+</td>
+<td>1396</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv228" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4389278,'eventdiv229');" class="trigger2" title="Details anzeigen">KL-Herren | DJK SSV Ommerborn-Sand : TTC RG Porz IV</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>0</td>
+<td>0,713</td>
+<td>
+Team
+</td>
+<td>1413</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv229" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.01.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3957870,'eventdiv230');" class="trigger2" title="Details anzeigen">KL-Herren | TV Refrath III : TTC RG Porz IV</a>
+</td>
+<td>24</td>	
+<td>1</td>
+<td>0</td>
+<td>0,106</td>
+<td>
+Team
+</td>
+<td>1416</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv230" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.01.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3827987,'eventdiv231');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTVg. GW Porz-Eil II</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>0</td>
+<td>0,456</td>
+<td>
+Team
+</td>
+<td>1427</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv231" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.01.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3722647,'eventdiv232');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Bärbroich III : TTC RG Porz IV</a>
+</td>
+<td>24</td>	
+<td>1</td>
+<td>1</td>
+<td>0,884</td>
+<td>
+Team
+</td>
+<td>1424</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv232" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.12.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3463485,'eventdiv233');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TuS Roland Bürrig</a>
+</td>
+<td>24</td>	
+<td>1</td>
+<td>1</td>
+<td>0,854</td>
+<td>
+Team
+</td>
+<td>1420</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv233" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3326961,'eventdiv234');" class="trigger2" title="Details anzeigen">KL-Herren | Spfr. Leverkusen : TTC RG Porz IV</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>0,665</td>
+<td>
+Team
+</td>
+<td>1388</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+32
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv234" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3183677,'eventdiv235');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : DJK Quettingen II</a>
+</td>
+<td>28</td>	
+<td>1</td>
+<td>1</td>
+<td>0,620</td>
+<td>
+Team
+</td>
+<td>1377</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv235" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3050905,'eventdiv236');" class="trigger2" title="Details anzeigen">KL-Herren | DJK Köln-Ostheim : TTC RG Porz IV</a>
+</td>
+<td>28</td>	
+<td>1</td>
+<td>0</td>
+<td>0,454</td>
+<td>
+Team
+</td>
+<td>1390</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv236" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2930144,'eventdiv237');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : SV Union Rösrath</a>
+</td>
+<td>28</td>	
+<td>1</td>
+<td>0</td>
+<td>0,152</td>
+<td>
+Team
+</td>
+<td>1394</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv237" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2832732,'eventdiv238');" class="trigger2" title="Details anzeigen">KL-Herren | TTV Bergisch-Gladbach : TTC RG Porz IV</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>1</td>
+<td>0,437</td>
+<td>
+Team
+</td>
+<td>1378</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv238" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2698314,'eventdiv239');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : DJK SSV Ommerborn-Sand</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>0</td>
+<td>1,233</td>
+<td>
+Team
+</td>
+<td>1413</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-35
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv239" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2328959,'eventdiv240');" class="trigger2" title="Details anzeigen">KL-Herren | SSV Lützenkirchen III : TTC RG Porz IV</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>0</td>
+<td>1,047</td>
+<td>
+Team
+</td>
+<td>1442</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-29
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv240" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2194795,'eventdiv241');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TV Refrath III</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>0</td>
+<td>0,958</td>
+<td>
+Team
+</td>
+<td>1469</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-27
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv241" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2078147,'eventdiv242');" class="trigger2" title="Details anzeigen">KL-Herren | TTVg. GW Porz-Eil II : TTC RG Porz IV</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>2</td>
+<td>1,193</td>
+<td>
+Team
+</td>
+<td>1446</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+23
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv242" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1957488,'eventdiv243');" class="trigger2" title="Details anzeigen">KL-Herren | TTC RG Porz IV : TTC Bärbroich III</a>
+</td>
+<td>28</td>	
+<td>2</td>
+<td>2</td>
+<td>0,363</td>
+<td>
+Team
+</td>
+<td>1400</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+46
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv243" ></div> 
+</td>
+</tr>	
+</table>
+<script type="text/javascript" charset="utf-8">
+jQuery(".toggle_container").hide();
+// jQuery(".trigger2").click(function(){
+// jQuery(this).toggleClass("active").next().delay(300).slideToggle("slow");
+// });
+</script>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="whitebox_fx mt_30">
+<div class="grid">
+<div class="whitebox_container">
+<div class="grid_12">
+<div class="bg_spon_top"></div>
+<div class="sponbox">
+<a href="http://www.mytischtennis.de/countandredirect/2-0001/" class="spon01">Joola</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0185/" class="spon03">Schöler Micke</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0186/" class="spon04">andro</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="bg_spon_bottom"></div>
+</div> 
+</div>
+</div>
+</div>
+<div class="graybox_fx">
+<div class="grid">
+<div class="graybox_container">
+<div class="graybox_content">
+<div class="graybox_list01">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+<li><a href="faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+</ul>
+</div>
+<div class="graybox_list02">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx bg_ci_orange">
+<div class="grid">
+<div class="onbottomnavi">
+<div class="center">
+<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div> 
+</div>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html> 

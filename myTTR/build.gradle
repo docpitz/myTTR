@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 22
@@ -15,6 +17,9 @@ android {
         release {
             minifyEnabled true
         }
+        debug {
+            testCoverageEnabled = true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -22,6 +27,9 @@ android {
     }
     lintOptions {
         abortOnError false
+    }
+    jacoco {
+        version = "0.7.1.201405082137"
     }
 }
 dependencies {
@@ -55,3 +63,6 @@ dependencies {
     }
     //    compile group: 'ch.acra' , name: 'acra' , version: '4.5.0'
 }
+
+coveralls.jacocoReportPath = 'build/reports/coverage/debug/report.xml'
+

@@ -1,0 +1,7402 @@
+<!DOCTYPE html>
+<html><head>
+<title>Ranglisten + Statistiken | Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="" />
+<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+<script type="text/javascript" charset="utf-8">
+var tooltipdataSaved;
+var tooltipdataSavedHtml;
+var tooltipdataString;
+var positionOfTooltip;
+var writeToDB = false;
+var ajaxTooltipConfig = {
+over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+};
+function ajaxTooliIn() {
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if(tooltipdata[3]!= undefined){
+writeToDB = true;
+}
+//console.log(writeToDB);
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+var positionOfTooltip = jQuery(this).next(".bigtooltip");
+//console.log(positionOfTooltip);
+if(tooltipdataString != tooltipdataSaved) {
+jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+tooltipdataSaved = tooltipdataString;
+jQuery.ajax({
+url: url,
+cache: false,
+success: function(html){
+tooltipdataSavedHtml = html;
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+});
+}
+else {
+//use last call again
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+}
+function ajaxTooliOut() {
+// do nothing
+}
+function initToolTips () {
+//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+//use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+}
+function reInitToolTips() {
+console.log('jetzt');
+jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+}
+jQuery(document).ready(function($) {
+$(".openoverlay[rel]").overlay({
+mask: {
+color: '#000'
+},
+//fixed: false,
+top: '20%'
+});
+initToolTips();
+/* Local Scroll */
+$.localScroll();
+/* Back to Top */
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+jQuery().UItoTop({ easingType: 'easeOutQuart' });
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<!-- Start: GPT Sync -->
+<script src="http://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+</script>
+<script type='text/javascript'>
+var gptadslots=[];
+(function(){
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+<script type="text/javascript">
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+//Adslot 2 declaration
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+//Adslot 3 declaration
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+var crtg_split = (crtg_content || '').split(';');
+var pubads = googletag.pubads();
+for (var i=1;i<crtg_split.length;i++){
+pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+}
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>
+<!-- End: GPT -->
+<style>
+/**center fix for super banner**/
+#ligatusframe_47919{
+width: auto!important;
+}
+</style>
+<script type="text/javascript"> var sdm_vers = 2 ; </script>
+<script 
+type="text/javascript" 
+src="//cdn.stroeerdigitalmedia.de/praeludium/praeludium_mytischtennis.js">
+</script>
+</head>
+<body class="community">
+<!-- Version: 3.1.5 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"comm", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/events.cfm?personId=17741" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="ontopbar_fx bg_ci_orange">
+<div class="grid">
+<div class="ontopbar">
+<div class="grid_3 fl">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+Premium bis 09.11.2015
+</a>
+</div>
+<div class="grid_9 fr right">
+<a href="/community/friends" class="btn link_ontopbar orange">
+<i class="icon-group"></i> 
+</a>
+<a href="/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="btn link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<span class="usertext_ontopbar">Jürgen Melzer</span>
+</a>
+<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx">
+<div class="grid clearfix">
+<div class="header_container">
+<div class="col_12">
+<div class="grid_7">
+<h1 class="mt_30">
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png">
+</a>
+</h1>
+<div class="wfm_logo"></div>
+</div>
+<div class="grid_5">
+<ul class="nav_ontop">
+<li class="mr_5">
+<a href="http://www.mytischtennis.de/public/" class="nav_01" title="Portal">Portal</a>
+</li>
+<li>
+<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navi_fx" id="sticky_navigation">
+<div class="grid">
+<div class="navi_container">
+<ul class="menu ml_10 noprint">
+<li id="Home"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a>
+</li>
+<li id="Profil"><a href="http://www.mytischtennis.de/community/personalprofil" title="Profil">Profil</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+<li><a href="http://www.mytischtennis.de/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/userSettings.cfm" title="Einstellungen">Einstellungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+</ul>
+</li>
+<li id="Teamsport"><a href="http://www.mytischtennis.de/community/showclubinfo" title="Teamsport">Teamsport</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/showclubinfo" title="Verein">Verein</a></li>
+<li><a href="http://www.mytischtennis.de/community/group" title="Liga">Liga</a></li>
+<li><a href="http://www.mytischtennis.de/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</li>
+<li id="Ranglisten" class="current"><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+<li><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li><a href="http://www.mytischtennis.de/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+<li><a href="http://www.mytischtennis.de/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+</ul>
+</li>
+<li id="Kalender"><a href="http://www.mytischtennis.de/community/eventcalendar" title="Turniere">Turniere</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li>
+<a name="" title="Turnierserien">Turnierserien</a>
+<ul>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+Bavarian TT-Race
+</a>
+</li>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+Rheinland Cup
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="Training"><a href="http://www.mytischtennis.de/community/uebungen" title="Training">Training</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/uebungen" title="Übungen">Übungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/elearning" title="E-Learning">E-Learning</a></li>
+<li><a href="http://www.mytischtennis.de/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+<li><a href="http://www.mytischtennis.de/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+</ul>
+</li>
+<li id="Community"><a href="http://www.mytischtennis.de/community/friends" title="Community">Community
+</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/friends" title="Freunde">Freunde</a></li>
+<li><a href="http://www.mytischtennis.de/community/pendingrequests" title="Anfragen">Anfragen </a></li>
+<li><a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+<li><a href="http://www.mytischtennis.de/community/searchPerson" title="Suche">Suche</a></li>
+<li><a href="http://www.mytischtennis.de/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+</ul>
+</li>
+<li id="Services"><a href="http://www.mytischtennis.de/community/holzassistent" title="Services">Services</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+<li><a href="http://www.mytischtennis.de/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+<li><a href="http://www.mytischtennis.de/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+<li><a href="http://www.mytischtennis.de/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+</ul>
+</li>
+<li id="Premium"><a href="http://www.mytischtennis.de/community/premium" title="Premium">Premium</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/premium" title="Infos">Infos</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/premiumsubscription.cfm" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+<li><a href="http://www.mytischtennis.de/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid pl_15 mb_10">
+<ul class="breadcrumbs">
+<li class="first"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
+</ul>
+</div>
+<div class="grid center ontopbanner" id="topBanner">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+<div id='div-gpt-ad-995246123125863230-1'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-1');
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<div id='div-gpt-ad-995246123125863230-2'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-2');
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+<div class="content_fx">
+<div class="grid clearfix">
+<div class="content_container">
+<script>
+jQuery(function () {
+Highcharts.setOptions({
+lang: {
+shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+thousandsSep: "",
+exportButtonTitle:"Download Grafik",
+printButtonTitle: "Grafik drucken"
+}
+}); 
+var chart;
+jQuery(document).ready(function() {
+chart = new Highcharts.Chart({
+chart: {
+renderTo: 'container',
+type: 'spline'
+},
+title: {
+text: ' '
+},
+xAxis: {
+startOnTick:false,
+endOnTick:false,
+tickInterval: 7,
+categories: [
+"Sep 05",	
+"Sep 05",	
+"Sep 05",	
+"Okt 05",	
+"Okt 05",	
+"Okt 05",	
+"Nov 05",	
+"Nov 05",	
+"Jan 06",	
+"Feb 06",	
+"Mrz 06",	
+"Aug 06",	
+"Sep 06",	
+"Sep 06",	
+"Sep 06",	
+"Sep 06",	
+"Okt 06",	
+"Okt 06",	
+"Okt 06",	
+"Okt 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Dez 06",	
+"Dez 06",	
+"Dez 06",	
+"Jan 07",	
+"Feb 07",	
+"Feb 07",	
+"Feb 07",	
+"Feb 07",	
+"Mrz 07",	
+"Apr 07",	
+"Apr 07",	
+"Apr 07",	
+"Mai 07",	
+"Aug 07",	
+"Aug 07",	
+"Sep 07",	
+"Sep 07",	
+"Okt 07",	
+"Okt 07",	
+"Okt 07",	
+"Nov 07",	
+"Nov 07",	
+"Nov 07",	
+"Nov 07",	
+"Nov 07",	
+"Dez 07",	
+"Dez 07",	
+"Dez 07",	
+"Dez 07",	
+"Jan 08",	
+"Jan 08",	
+"Feb 08",	
+"Mrz 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Mai 08",	
+"Mai 08",	
+"Mai 08",	
+"Jun 08",	
+"Jun 08",	
+"Aug 08",	
+"Aug 08",	
+"Sep 08",	
+"Sep 08",	
+"Okt 08",	
+"Okt 08",	
+"Okt 08",	
+"Nov 08",	
+"Nov 08",	
+"Nov 08",	
+"Nov 08",	
+"Nov 08",	
+"Dez 08",	
+"Jan 09",	
+"Jan 09",	
+"Feb 09",	
+"Feb 09",	
+"Feb 09",	
+"Feb 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Apr 09",	
+"Mai 09",	
+"Mai 09",	
+"Jun 09",	
+"Aug 09",	
+"Sep 09",	
+"Okt 09",	
+"Okt 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Dez 09",	
+"Dez 09",	
+"Dez 09",	
+"Jan 10",	
+"Jan 10",	
+"Feb 10",	
+"Feb 10",	
+"Feb 10",	
+"Mrz 10",	
+"Mrz 10",	
+"Mrz 10",	
+"Mrz 10",	
+"Apr 10",	
+"Apr 10",	
+"Apr 10",	
+"Mai 10",	
+"Mai 10",	
+"Jun 10",	
+"Jun 10",	
+"Jun 10",	
+"Jul 10",	
+"Aug 10",	
+"Aug 10",	
+"Aug 10",	
+"Sep 10",	
+"Sep 10",	
+"Sep 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Nov 10",	
+"Dez 10",	
+"Dez 10",	
+"Jan 11",	
+"Jan 11",	
+"Jan 11",	
+"Jan 11",	
+"Feb 11",	
+"Feb 11",	
+"Mrz 11",	
+"Mrz 11",	
+"Mrz 11",	
+"Apr 11",	
+"Apr 11",	
+"Apr 11",	
+"Apr 11",	
+"Apr 11",	
+"Mai 11",	
+"Mai 11",	
+"Jun 11",	
+"Jun 11",	
+"Sep 11",	
+"Sep 11",	
+"Sep 11",	
+"Sep 11",	
+"Sep 11",	
+"Sep 11",	
+"Okt 11",	
+"Okt 11",	
+"Okt 11",	
+"Nov 11",	
+"Nov 11",	
+"Jan 12",	
+"Jan 12",	
+"Mrz 12",	
+"Apr 12",	
+"Apr 12",	
+"Mai 12",	
+"Mai 12",	
+"Jun 12",	
+"Jul 12",	
+"Aug 12",	
+"Aug 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Okt 12",	
+"Okt 12",	
+"Okt 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Dez 12",	
+"Dez 12",	
+"Dez 12",	
+"Dez 12",	
+"Jan 13",	
+"Feb 13",	
+"Mrz 13",	
+"Mrz 13",	
+"Apr 13",	
+"Apr 13",	
+"Mai 13",	
+"Mai 13",	
+"Jun 13",	
+"Aug 13",	
+"Sep 13",	
+"Okt 13",	
+"Okt 13",	
+"Nov 13",	
+"Nov 13",	
+"Nov 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Dez 13",	
+"Jan 14",	
+"Feb 14",	
+"Feb 14",	
+"Feb 14",	
+"Feb 14",	
+"Mrz 14",	
+"Mrz 14",	
+"Apr 14",	
+"Apr 14",	
+"Apr 14",	
+"Jun 14",	
+"Aug 14",	
+"Sep 14",	
+"Sep 14",	
+"Sep 14",	
+"Sep 14",	
+"Sep 14",	
+"Okt 14",	
+"Okt 14",	
+"Okt 14",	
+"Okt 14",	
+"Nov 14",	
+"Nov 14",	
+"Nov 14",	
+"Nov 14",	
+"Dez 14",	
+"Dez 14",	
+"Dez 14",	
+"Jan 15",	
+"Jan 15",	
+"Jan 15",	
+"Feb 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Apr 15",	
+"Apr 15",	
+"heute"
+]
+}, 
+yAxis: {
+title: {
+text: ' '
+},
+min: 2480,
+max: 2853	
+},
+credits: {
+enabled: false	
+},
+plotOptions: {
+spline: { 
+lineWidth: 4,
+showInLegend:false, 
+marker: {
+symbol: 'circle',
+radius: 4
+}
+}
+}, 
+series: [{	
+name: "Boll, Timo",
+color: '#0095d8',	
+data: [ 
+["02.09.2005"
+, 2580],
+["09.09.2005"
+, 2601],
+["11.09.2005"
+, 2619],
+["03.10.2005"
+, 2632],
+["08.10.2005"
+, 2645],
+["16.10.2005"
+, 2654],
+["06.11.2005"
+, 2655],
+["27.11.2005"
+, 2636],
+["08.01.2006"
+, 2637],
+["26.02.2006"
+, 2647],
+["10.03.2006"
+, 2656],
+["27.08.2006"
+, 2660],
+["03.09.2006"
+, 2668],
+["08.09.2006"
+, 2672],
+["17.09.2006"
+, 2659],
+["24.09.2006"
+, 2703],
+["03.10.2006"
+, 2711],
+["08.10.2006"
+, 2713],
+["13.10.2006"
+, 2715],
+["29.10.2006"
+, 2718],
+["02.11.2006"
+, 2701],
+["04.11.2006"
+, 2703],
+["12.11.2006"
+, 2705],
+["19.11.2006"
+, 2726],
+["03.12.2006"
+, 2746],
+["17.12.2006"
+, 2748],
+["21.12.2006"
+, 2737],
+["14.01.2007"
+, 2732],
+["04.02.2007"
+, 2733],
+["17.02.2007"
+, 2726],
+["22.02.2007"
+, 2735],
+["25.02.2007"
+, 2734],
+["02.03.2007"
+, 2719],
+["01.04.2007"
+, 2720],
+["09.04.2007"
+, 2743],
+["29.04.2007"
+, 2743],
+["27.05.2007"
+, 2746],
+["18.08.2007"
+, 2737],
+["26.08.2007"
+, 2739],
+["02.09.2007"
+, 2733],
+["30.09.2007"
+, 2733],
+["14.10.2007"
+, 2733],
+["21.10.2007"
+, 2736],
+["28.10.2007"
+, 2731],
+["04.11.2007"
+, 2732],
+["11.11.2007"
+, 2731],
+["18.11.2007"
+, 2733],
+["20.11.2007"
+, 2735],
+["25.11.2007"
+, 2721],
+["02.12.2007"
+, 2723],
+["08.12.2007"
+, 2725],
+["16.12.2007"
+, 2728],
+["22.12.2007"
+, 2724],
+["06.01.2008"
+, 2718],
+["13.01.2008"
+, 2688],
+["03.02.2008"
+, 2688],
+["28.03.2008"
+, 2662],
+["13.04.2008"
+, 2647],
+["18.04.2008"
+, 2649],
+["20.04.2008"
+, 2650],
+["26.04.2008"
+, 2657],
+["03.05.2008"
+, 2660],
+["17.05.2008"
+, 2663],
+["24.05.2008"
+, 2669],
+["01.06.2008"
+, 2659],
+["08.06.2008"
+, 2650],
+["23.08.2008"
+, 2665],
+["31.08.2008"
+, 2662],
+["19.09.2008"
+, 2669],
+["28.09.2008"
+, 2670],
+["12.10.2008"
+, 2679],
+["19.10.2008"
+, 2684],
+["25.10.2008"
+, 2684],
+["02.11.2008"
+, 2686],
+["04.11.2008"
+, 2691],
+["16.11.2008"
+, 2691],
+["23.11.2008"
+, 2695],
+["30.11.2008"
+, 2703],
+["27.12.2008"
+, 2710],
+["11.01.2009"
+, 2711],
+["25.01.2009"
+, 2704],
+["08.02.2009"
+, 2694],
+["15.02.2009"
+, 2710],
+["21.02.2009"
+, 2717],
+["22.02.2009"
+, 2740],
+["06.03.2009"
+, 2741],
+["22.03.2009"
+, 2742],
+["05.04.2009"
+, 2749],
+["15.05.2009"
+, 2750],
+["31.05.2009"
+, 2751],
+["07.06.2009"
+, 2752],
+["29.08.2009"
+, 2753],
+["20.09.2009"
+, 2753],
+["18.10.2009"
+, 2725],
+["20.10.2009"
+, 2729],
+["01.11.2009"
+, 2729],
+["03.11.2009"
+, 2716],
+["08.11.2009"
+, 2716],
+["29.11.2009"
+, 2717],
+["20.12.2009"
+, 2720],
+["27.12.2009"
+, 2729],
+["27.12.2009"
+, 2729],
+["10.01.2010"
+, 2730],
+["29.01.2010"
+, 2720],
+["07.02.2010"
+, 2706],
+["12.02.2010"
+, 2719],
+["14.02.2010"
+, 2721],
+["05.03.2010"
+, 2708],
+["21.03.2010"
+, 2694],
+["26.03.2010"
+, 2687],
+["30.03.2010"
+, 2688],
+["05.04.2010"
+, 2677],
+["16.04.2010"
+, 2678],
+["30.04.2010"
+, 2679],
+["15.05.2010"
+, 2680],
+["30.05.2010"
+, 2682],
+["06.06.2010"
+, 2688],
+["09.06.2010"
+, 2676],
+["30.06.2010"
+, 2680],
+["04.07.2010"
+, 2671],
+["15.08.2010"
+, 2687],
+["22.08.2010"
+, 2677],
+["28.08.2010"
+, 2676],
+["06.09.2010"
+, 2677],
+["19.09.2010"
+, 2677],
+["24.09.2010"
+, 2691],
+["10.10.2010"
+, 2691],
+["12.10.2010"
+, 2692],
+["16.10.2010"
+, 2693],
+["24.10.2010"
+, 2696],
+["27.10.2010"
+, 2686],
+["31.10.2010"
+, 2689],
+["28.11.2010"
+, 2697],
+["01.12.2010"
+, 2697],
+["05.12.2010"
+, 2713],
+["02.01.2011"
+, 2714],
+["02.01.2011"
+, 2717],
+["07.01.2011"
+, 2718],
+["16.01.2011"
+, 2719],
+["13.02.2011"
+, 2719],
+["27.02.2011"
+, 2723],
+["01.03.2011"
+, 2730],
+["11.03.2011"
+, 2727],
+["24.03.2011"
+, 2733],
+["06.04.2011"
+, 2732],
+["10.04.2011"
+, 2717],
+["16.04.2011"
+, 2702],
+["24.04.2011"
+, 2704],
+["30.04.2011"
+, 2705],
+["15.05.2011"
+, 2706],
+["21.05.2011"
+, 2710],
+["05.06.2011"
+, 2712],
+["25.06.2011"
+, 2698],
+["02.09.2011"
+, 2705],
+["03.09.2011"
+, 2707],
+["11.09.2011"
+, 2707],
+["16.09.2011"
+, 2692],
+["18.09.2011"
+, 2679],
+["30.09.2011"
+, 2681],
+["02.10.2011"
+, 2681],
+["16.10.2011"
+, 2681],
+["23.10.2011"
+, 2695],
+["13.11.2011"
+, 2696],
+["15.11.2011"
+, 2692],
+["15.01.2012"
+, 2693],
+["22.01.2012"
+, 2694],
+["09.03.2012"
+, 2695],
+["01.04.2012"
+, 2696],
+["28.04.2012"
+, 2702],
+["17.05.2012"
+, 2704],
+["25.05.2012"
+, 2706],
+["10.06.2012"
+, 2708],
+["14.07.2012"
+, 2692],
+["08.08.2012"
+, 2693],
+["26.08.2012"
+, 2679],
+["05.09.2012"
+, 2674],
+["07.09.2012"
+, 2676],
+["20.09.2012"
+, 2678],
+["23.09.2012"
+, 2680],
+["30.09.2012"
+, 2683],
+["03.10.2012"
+, 2693],
+["21.10.2012"
+, 2694],
+["28.10.2012"
+, 2698],
+["04.11.2012"
+, 2699],
+["16.11.2012"
+, 2693],
+["18.11.2012"
+, 2696],
+["25.11.2012"
+, 2697],
+["30.11.2012"
+, 2688],
+["14.12.2012"
+, 2689],
+["29.12.2012"
+, 2690],
+["30.12.2012"
+, 2692],
+["30.12.2012"
+, 2698],
+["12.01.2013"
+, 2698],
+["10.02.2013"
+, 2687],
+["01.03.2013"
+, 2687],
+["17.03.2013"
+, 2672],
+["07.04.2013"
+, 2673],
+["21.04.2013"
+, 2657],
+["05.05.2013"
+, 2643],
+["20.05.2013"
+, 2647],
+["16.06.2013"
+, 2649],
+["31.08.2013"
+, 2647],
+["20.09.2013"
+, 2651],
+["20.10.2013"
+, 2636],
+["27.10.2013"
+, 2623],
+["03.11.2013"
+, 2616],
+["17.11.2013"
+, 2622],
+["24.11.2013"
+, 2627],
+["01.12.2013"
+, 2628],
+["06.12.2013"
+, 2620],
+["08.12.2013"
+, 2605],
+["15.12.2013"
+, 2612],
+["28.12.2013"
+, 2602],
+["29.12.2013"
+, 2603],
+["29.12.2013"
+, 2611],
+["19.01.2014"
+, 2619],
+["02.02.2014"
+, 2619],
+["07.02.2014"
+, 2620],
+["23.02.2014"
+, 2624],
+["28.02.2014"
+, 2631],
+["09.03.2014"
+, 2628],
+["16.03.2014"
+, 2630],
+["13.04.2014"
+, 2636],
+["20.04.2014"
+, 2641],
+["28.04.2014"
+, 2644],
+["08.06.2014"
+, 2662],
+["23.08.2014"
+, 2668],
+["05.09.2014"
+, 2668],
+["07.09.2014"
+, 2669],
+["14.09.2014"
+, 2671],
+["21.09.2014"
+, 2672],
+["24.09.2014"
+, 2673],
+["03.10.2014"
+, 2672],
+["11.10.2014"
+, 2672],
+["19.10.2014"
+, 2672],
+["24.10.2014"
+, 2658],
+["21.11.2014"
+, 2667],
+["23.11.2014"
+, 2668],
+["28.11.2014"
+, 2671],
+["30.11.2014"
+, 2672],
+["20.12.2014"
+, 2674],
+["21.12.2014"
+, 2674],
+["21.12.2014"
+, 2674],
+["04.01.2015"
+, 2677],
+["15.01.2015"
+, 2679],
+["23.01.2015"
+, 2666],
+["27.02.2015"
+, 2670],
+["06.03.2015"
+, 2673],
+["18.03.2015"
+, 2675],
+["11.04.2015"
+, 2675],
+["19.04.2015"
+, 2660],
+["heute", 2661]
+]
+}] 
+});
+});
+});
+</script> 
+<script type="text/javascript">
+function popup(url) {
+fenster = window.open(url, "Popupfenster", "width=600,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
+fenster.focus();
+return false;
+}
+</script>
+<style type="text/css" media="screen">
+tr, td {
+vertical-align: top !important;
+}
+#closealllink {
+display: none;
+float:right;
+color: white;
+}
+.toggle_container {
+/*overflow: hidden;*/
+}
+.disabledlabel {
+color: #999;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+jQuery(function($){
+var tooltipdataSaved = '';
+// we need to define this here again, for the tooltips inside the ajax event details
+$(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+$('body').on('mouseover', '.myttFeaturesTooltip', function(){
+// url param for _tooltippStuff telling if head to head should be written in db or not
+var writeToDB = false;
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var myClickTTId = 1429844;
+var myUserId = 104598;
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+var url = '/community/ajax/_tooltippstuff.cfm?writeToDB='+writeToDB+'&currentUserClickTTId='+myClickTTId+'&otherUsersClickTTId='+otherClickTTId+'&myUserid='+myUserId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+if(tooltipdataString != tooltipdataSaved) {
+tooltipdataSaved = tooltipdataString;
+jQuery(this).next(".bigtooltip").load(url);
+}
+});
+})
+</script>
+<div>	
+<div class="grid_12 mb_10">
+<a href="javascript:history.back()" class="btn small" >Zurück</a>
+</div>
+</div>
+<form action="" method="post" class="vertical">
+<div class="grid_12 contentbox mb_20">
+<div class="contentbox_top bg_ci_orange fl"><span>TTR-Historie
+(Boll, Timo)
+</span></div>
+<div class="content fl">
+<div class="col_12 center prefix_4">	
+<div class="fr"><a href="premium" class="thisispremium tooltip fr" title="Auswahl der Zeiträume ist eine Premium-Funktion">premium</a></div>
+<label class="fl mr_15">Zeitraum: </label>	
+<select name="timeInterval" onchange="this.form.submit();" class=" col_3">
+<option value="1">letzte 3 Monate</option>
+<option value="2">letzte 6 Monate</option>	
+<option value="3">letzte 12 Monate</option>
+<option value="4" selected>alle vorhandenen Daten</option>
+<option value="5">aktuelle Saison</option>
+<option value="6">letzte Quartalsberechnung</option>	
+</select>
+</div>
+</form>
+<script type="text/javascript" charset="utf-8">
+function openmoreinfos(clttfeednr,div) {
+var theelement = document.getElementById(div);
+if(theelement.style.display == 'none') {
+$( theelement ).load( "eventDetails?fq=false&eventId="+clttfeednr, function() {
+jQuery(theelement).slideDown("slow");
+});
+}
+else
+{
+jQuery(theelement).toggleClass("active").slideUp("slow");
+}
+document.getElementById('closealllink').style.display="inline";
+}
+function closeall() {
+document.getElementById('closealllink').style.display="none";
+jQuery(".toggle_container").slideUp("slow");
+}
+</script>
+<div style="clear:both;"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/modules/exporting.js"></script>
+<div id="container"></div>
+<div style="float: right; border: 0px solid blue; padding-top: 11px;">
+</div>
+<div style="clear:both;"></div>
+<div class="ttr_banner_box center">
+<a href="eventsCompare.cfm" alt="zum TTR-Vergleich" title="zum TTR-Vergleich">
+<img src="images/ttr_vergleich.jpg" alt="zum TTR-Vergleich" />
+<div class="ttr_class">
+<p>
+<strong>TTR: </strong>
+2661
+</p>
+</div>	
+</a>
+</div>
+<div class="col_full mt_20 mb_20">
+<div class="col_10 center bg_ci_orange p_all_5">
+<h3 class="white">
+Boll, Timos
+<span class="tooltip">TTR:</span> 2661
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>
+und
+<span class="tooltip">Q-TTR:</span> 2671
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>	
+<span style="color: white; font-size: 0.8em; font-weight:normal;" class="tooltip" title="
+Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)">(i)</span>
+</h3>
+</div>
+<div class="col_2 pt_10 right">
+<span>
+<a href="matches?userid=17741" class="btn" title="Statistiken anzeigen">Statistiken »</a>
+</span>
+</div>
+</div>
+<table class="coolTable" border="0">
+<tr>
+<th>Datum</th>
+<th>Veranstaltung <a href="javascript:closeall()" id="closealllink" title="alle Detailinformationen ausblenden">[&uarr;&uarr;]</a></th>
+<th class="tooltip" title="&Auml;nderungskonstante">&Auml;k</th>
+<th class="tooltip" title="Spiele">Sp</th>
+<th class="tooltip" title="Siege">Si</th>
+<th class="tooltip" title="Gewinnerwartung">GE</th>
+<th>Typ</th>
+<th>TTR</th>
+<th style="font-weight: bold; text-align: center; width: 30px;">+/-</th>
+</tr>
+<tr>
+<td>19.04.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302315716,'eventdiv1');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken-TT</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,908</td>
+<td>
+Team
+</td>
+<td>2660</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv1" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.04.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302212729,'eventdiv2');" class="trigger2" title="Details anzeigen">BL1-Herren | 1. FC Saarbrücken-TT : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,940</td>
+<td>
+Team
+</td>
+<td>2675</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv2" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301876029,'eventdiv3');" class="trigger2" title="Details anzeigen">German Open - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>1,973</td>
+<td>
+Turnier
+</td>
+<td>2675</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv3" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301618273,'eventdiv4');" class="trigger2" title="Details anzeigen">Nationale Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>4,882</td>
+<td>
+Turnier
+</td>
+<td>2673</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv4" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.02.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301496795,'eventdiv5');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RhönSprudel Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,804</td>
+<td>
+Team
+</td>
+<td>2670</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv5" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300943585,'eventdiv6');" class="trigger2" title="Details anzeigen">ETTU European Champions League Viertelfinale Borussia Düsseldorf vs. Pontoise Cergy - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,731</td>
+<td>
+Turnier
+</td>
+<td>2666</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv6" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300830141,'eventdiv7');" class="trigger2" title="Details anzeigen">ETTU European Champions League Viertelfinale Pontoise Cergy vs Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,814</td>
+<td>
+Turnier
+</td>
+<td>2679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv7" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300762612,'eventdiv8');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,860</td>
+<td>
+Team
+</td>
+<td>2677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv8" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300671602,'eventdiv9');" class="trigger2" title="Details anzeigen">Pokal-Herren | TTC RhönSprudel Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,833</td>
+<td>
+Team
+</td>
+<td>2674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv9" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300671234,'eventdiv10');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,992</td>
+<td>
+Team
+</td>
+<td>2674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv10" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300668527,'eventdiv11');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : Post SV Mühlhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,989</td>
+<td>
+Team
+</td>
+<td>2674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv11" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300460652,'eventdiv12');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Schwalbe Bergneustadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,868</td>
+<td>
+Team
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv12" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300372306,'eventdiv13');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs GV Hennebont - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,946</td>
+<td>
+Turnier
+</td>
+<td>2671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv13" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300317853,'eventdiv14');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC RhönSprudel Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,823</td>
+<td>
+Team
+</td>
+<td>2668</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv14" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300228525,'eventdiv15');" class="trigger2" title="Details anzeigen">ETTU European Champions League Bogoria Grodzisk Mazowiecki vs Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,924</td>
+<td>
+Turnier
+</td>
+<td>2667</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv15" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299768597,'eventdiv16');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>2,433</td>
+<td>
+Turnier
+</td>
+<td>2658</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv16" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299728411,'eventdiv17');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,888</td>
+<td>
+Team
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv17" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299602319,'eventdiv18');" class="trigger2" title="Details anzeigen">ETTU European Champions League Spg Walter Wels vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,985</td>
+<td>
+Turnier
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv18" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299453347,'eventdiv19');" class="trigger2" title="Details anzeigen">ETTU European Champions League GV Hennebont vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,974</td>
+<td>
+Turnier
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv19" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299224170,'eventdiv20');" class="trigger2" title="Details anzeigen">European Team Championships - Herren</a>
+</td>
+<td>16</td>	
+<td>10</td>
+<td>9</td>
+<td>9,092</td>
+<td>
+Turnier
+</td>
+<td>2673</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv20" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299201337,'eventdiv21');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken-TT</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,954</td>
+<td>
+Team
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv21" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299106432,'eventdiv22');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,935</td>
+<td>
+Team
+</td>
+<td>2671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv22" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299070551,'eventdiv23');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,850</td>
+<td>
+Team
+</td>
+<td>2669</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv23" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299046776,'eventdiv24');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Bogoria Grodzisk Mazowiecki - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,958</td>
+<td>
+Turnier
+</td>
+<td>2668</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv24" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.08.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299010050,'eventdiv25');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC matec Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,977</td>
+<td>
+Team
+</td>
+<td>2668</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv25" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>08.06.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(298916900,'eventdiv26');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RhönSprudel Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,654</td>
+<td>
+Team
+</td>
+<td>2662</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv26" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(277407255,'eventdiv27');" class="trigger2" title="Details anzeigen">World Team Table Tennis Championships - Herren</a>
+</td>
+<td>16</td>	
+<td>8</td>
+<td>7</td>
+<td>5,890</td>
+<td>
+Turnier
+</td>
+<td>2644</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv27" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(248893015,'eventdiv28');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC matec Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,816</td>
+<td>
+Team
+</td>
+<td>2641</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv28" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.04.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(224492841,'eventdiv29');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC matec Frickenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,698</td>
+<td>
+Team
+</td>
+<td>2636</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv29" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(127772313,'eventdiv30');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC matec Frickenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,621</td>
+<td>
+Team
+</td>
+<td>2630</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv30" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(102330613,'eventdiv31');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,854</td>
+<td>
+Team
+</td>
+<td>2628</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv31" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(73435849,'eventdiv32');" class="trigger2" title="Details anzeigen">Nationale Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,163</td>
+<td>
+Turnier
+</td>
+<td>2631</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv32" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(55783883,'eventdiv33');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC RhönSprudel Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,541</td>
+<td>
+Team
+</td>
+<td>2624</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv33" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(30179763,'eventdiv34');" class="trigger2" title="Details anzeigen">DHS Europe Table Tennis Cup - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>2,764</td>
+<td>
+Turnier
+</td>
+<td>2620</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv34" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(30141280,'eventdiv35');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Plüderhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,924</td>
+<td>
+Team
+</td>
+<td>2619</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv35" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.01.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29881863,'eventdiv36');" class="trigger2" title="Details anzeigen">BL1-Herren | Post SV Mühlhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,978</td>
+<td>
+Team
+</td>
+<td>2619</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv36" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29641504,'eventdiv37');" class="trigger2" title="Details anzeigen">Pokal-Herren | TTC RhönSprudel Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,481</td>
+<td>
+Team
+</td>
+<td>2611</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv37" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29641231,'eventdiv38');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,478</td>
+<td>
+Team
+</td>
+<td>2603</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv38" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29640553,'eventdiv39');" class="trigger2" title="Details anzeigen">Pokal-Herren | Post SV Mühlhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,956</td>
+<td>
+Team
+</td>
+<td>2602</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv39" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29631338,'eventdiv40');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,608</td>
+<td>
+Team
+</td>
+<td>2612</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv40" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29593321,'eventdiv41');" class="trigger2" title="Details anzeigen">BL1-Herren | 1. FC Saarbrücken TT : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,571</td>
+<td>
+Team
+</td>
+<td>2605</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv41" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29514770,'eventdiv42');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. SVS Niederösterreich - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,929</td>
+<td>
+Turnier
+</td>
+<td>2620</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv42" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29467040,'eventdiv43');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,485</td>
+<td>
+Team
+</td>
+<td>2628</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv43" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29326207,'eventdiv44');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC matec Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,935</td>
+<td>
+Team
+</td>
+<td>2627</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv44" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29172982,'eventdiv45');" class="trigger2" title="Details anzeigen">GAC Group German Open 2013 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,680</td>
+<td>
+Turnier
+</td>
+<td>2622</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv45" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28902812,'eventdiv46');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,598</td>
+<td>
+Team
+</td>
+<td>2616</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv46" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28815803,'eventdiv47');" class="trigger2" title="Details anzeigen">Men's World Cup 2013 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>3</td>
+<td>3,431</td>
+<td>
+Turnier
+</td>
+<td>2623</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv47" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28724969,'eventdiv48');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RhönSprudel Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,806</td>
+<td>
+Team
+</td>
+<td>2636</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv48" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28093024,'eventdiv49');" class="trigger2" title="Details anzeigen">ETTU European Champions League Chartres ASTT vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,931</td>
+<td>
+Turnier
+</td>
+<td>2651</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv49" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.08.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27903681,'eventdiv50');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,772</td>
+<td>
+Team
+</td>
+<td>2647</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv50" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>16.06.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27778475,'eventdiv51');" class="trigger2" title="Details anzeigen">China Open 2013 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>2,133</td>
+<td>
+Turnier
+</td>
+<td>2649</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv51" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.05.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27758202,'eventdiv52');" class="trigger2" title="Details anzeigen">LIEBHERR World Table Tennis Championships 2013 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,905</td>
+<td>
+Turnier
+</td>
+<td>2647</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv52" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.05.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27739885,'eventdiv53');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,727</td>
+<td>
+Team
+</td>
+<td>2643</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv53" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27704762,'eventdiv54');" class="trigger2" title="Details anzeigen">BL1-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,844</td>
+<td>
+Team
+</td>
+<td>2657</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv54" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27486217,'eventdiv55');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken TT</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,992</td>
+<td>
+Team
+</td>
+<td>2673</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv55" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27238732,'eventdiv56');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC matec Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,909</td>
+<td>
+Team
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv56" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26853123,'eventdiv57');" class="trigger2" title="Details anzeigen">Nationale Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,955</td>
+<td>
+Turnier
+</td>
+<td>2687</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv57" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26548518,'eventdiv58');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,969</td>
+<td>
+Team
+</td>
+<td>2687</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv58" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.01.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26074365,'eventdiv59');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,666</td>
+<td>
+Team
+</td>
+<td>2698</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv59" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25925194,'eventdiv60');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,984</td>
+<td>
+Team
+</td>
+<td>2698</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv60" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25924876,'eventdiv61');" class="trigger2" title="Details anzeigen">Pokal-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,634</td>
+<td>
+Team
+</td>
+<td>2692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv61" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25923890,'eventdiv62');" class="trigger2" title="Details anzeigen">Pokal-Herren | 1. FC Saarbrücken TT : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,877</td>
+<td>
+Team
+</td>
+<td>2690</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv62" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25896838,'eventdiv63');" class="trigger2" title="Details anzeigen">European Super Cup - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,918</td>
+<td>
+Turnier
+</td>
+<td>2689</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv63" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25697928,'eventdiv64');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. SVS Niederösterreich - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,927</td>
+<td>
+Turnier
+</td>
+<td>2688</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv64" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25636563,'eventdiv65');" class="trigger2" title="Details anzeigen">Volkswagen China vs World Challenge Match 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,587</td>
+<td>
+Turnier
+</td>
+<td>2697</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv65" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25491876,'eventdiv66');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC matec Frickenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,947</td>
+<td>
+Team
+</td>
+<td>2696</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv66" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25395103,'eventdiv67');" class="trigger2" title="Details anzeigen">ETTU European Champions Bogoria Grodzisk vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,830</td>
+<td>
+Turnier
+</td>
+<td>2693</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv67" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25197597,'eventdiv68');" class="trigger2" title="Details anzeigen">GAC GROUP German Open 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>5,369</td>
+<td>
+Turnier
+</td>
+<td>2699</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv68" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.10.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25105626,'eventdiv69');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,936</td>
+<td>
+Team
+</td>
+<td>2698</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv69" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24989705,'eventdiv70');" class="trigger2" title="Details anzeigen">European Championships 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,762</td>
+<td>
+Turnier
+</td>
+<td>2694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv70" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24695718,'eventdiv71');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,924</td>
+<td>
+Team
+</td>
+<td>2693</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv71" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24581304,'eventdiv72');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,347</td>
+<td>
+Turnier
+</td>
+<td>2683</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv72" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24452202,'eventdiv73');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RhönSprudel Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,788</td>
+<td>
+Team
+</td>
+<td>2680</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv73" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24371040,'eventdiv74');" class="trigger2" title="Details anzeigen">ETTU European Champions League SVS Niederösterreich vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,851</td>
+<td>
+Turnier
+</td>
+<td>2678</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv74" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24216480,'eventdiv75');" class="trigger2" title="Details anzeigen">ETTU European Champions Borussia Düsseldorf vs. Bogoria Grodzisk - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,856</td>
+<td>
+Turnier
+</td>
+<td>2676</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv75" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24206334,'eventdiv76');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,900</td>
+<td>
+Team
+</td>
+<td>2674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv76" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.08.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24142606,'eventdiv77');" class="trigger2" title="Details anzeigen">GAC GROUP Harmony China Open 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,322</td>
+<td>
+Turnier
+</td>
+<td>2679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv77" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.08.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24117737,'eventdiv78');" class="trigger2" title="Details anzeigen">Olympic Games 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>7</td>
+<td>5</td>
+<td>5,847</td>
+<td>
+Turnier
+</td>
+<td>2693</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv78" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.07.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24115759,'eventdiv79');" class="trigger2" title="Details anzeigen">JOOLA European Championships Qualification - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,964</td>
+<td>
+Turnier
+</td>
+<td>2692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv79" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>10.06.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24024691,'eventdiv80');" class="trigger2" title="Details anzeigen">GAC GROUP Japan Open 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,979</td>
+<td>
+Turnier
+</td>
+<td>2708</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv80" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.05.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24012437,'eventdiv81');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken TT</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,857</td>
+<td>
+Team
+</td>
+<td>2706</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv81" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.05.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24006360,'eventdiv82');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,872</td>
+<td>
+Team
+</td>
+<td>2704</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv82" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.04.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23971524,'eventdiv83');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC RS Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,872</td>
+<td>
+Team
+</td>
+<td>2702</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv83" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.04.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23787243,'eventdiv84');" class="trigger2" title="Details anzeigen">LIEBHERR World Team Championships 2012 - Herren</a>
+</td>
+<td>16</td>	
+<td>8</td>
+<td>7</td>
+<td>6,624</td>
+<td>
+Turnier
+</td>
+<td>2696</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv84" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23285126,'eventdiv85');" class="trigger2" title="Details anzeigen">ETTU ETTU Cup GV Hennebont - Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,956</td>
+<td>
+Turnier
+</td>
+<td>2695</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv85" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22473842,'eventdiv86');" class="trigger2" title="Details anzeigen">BL1-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,968</td>
+<td>
+Team
+</td>
+<td>2694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv86" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22358562,'eventdiv87');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken TT</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,913</td>
+<td>
+Team
+</td>
+<td>2693</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv87" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21615303,'eventdiv88');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Ruhrstadt Herne : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,940</td>
+<td>
+Team
+</td>
+<td>2692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv88" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21588865,'eventdiv89');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,265</td>
+<td>
+Turnier
+</td>
+<td>2696</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv89" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21274784,'eventdiv90');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC matec Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,928</td>
+<td>
+Team
+</td>
+<td>2695</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv90" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21153054,'eventdiv91');" class="trigger2" title="Details anzeigen">European Championships 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>14</td>
+<td>14</td>
+<td>13,106</td>
+<td>
+Turnier
+</td>
+<td>2681</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv91" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20900150,'eventdiv92');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,969</td>
+<td>
+Team
+</td>
+<td>2681</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv92" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20732686,'eventdiv93');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Istres - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,983</td>
+<td>
+Turnier
+</td>
+<td>2681</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv93" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20554689,'eventdiv94');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Werder Bremen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,885</td>
+<td>
+Team
+</td>
+<td>2679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv94" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20500859,'eventdiv95');" class="trigger2" title="Details anzeigen">ETTU European Champions League Bogoria vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,785</td>
+<td>
+Turnier
+</td>
+<td>2692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv95" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20466012,'eventdiv96');" class="trigger2" title="Details anzeigen">BL1-Herren | 1. FC Saarbrücken TT : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,914</td>
+<td>
+Team
+</td>
+<td>2707</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv96" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20395658,'eventdiv97');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Plüderhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,974</td>
+<td>
+Team
+</td>
+<td>2707</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv97" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20379293,'eventdiv98');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Niederösterreich - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,882</td>
+<td>
+Turnier
+</td>
+<td>2705</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv98" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>25.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20252443,'eventdiv99');" class="trigger2" title="Details anzeigen">VOLKSWAGEN China vs World Challenge 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,579</td>
+<td>
+Turnier
+</td>
+<td>2698</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv99" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.06.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20247046,'eventdiv100');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,891</td>
+<td>
+Team
+</td>
+<td>2712</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv100" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.05.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20238864,'eventdiv101');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,894</td>
+<td>
+Team
+</td>
+<td>2710</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv101" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.05.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20233707,'eventdiv102');" class="trigger2" title="Details anzeigen">GAC GROUP World Championships 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,740</td>
+<td>
+Turnier
+</td>
+<td>2706</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv102" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20215102,'eventdiv103');" class="trigger2" title="Details anzeigen">ETTU European Champions League Finale 1 Borussia Düsseldorf vs. Gazproma Fakel Orenburg - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,949</td>
+<td>
+Turnier
+</td>
+<td>2705</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv103" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20209667,'eventdiv104');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,968</td>
+<td>
+Team
+</td>
+<td>2704</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv104" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20201463,'eventdiv105');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. SVS Niederösterreich - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,896</td>
+<td>
+Turnier
+</td>
+<td>2702</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv105" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20163421,'eventdiv106');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,940</td>
+<td>
+Team
+</td>
+<td>2717</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv106" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20065430,'eventdiv107');" class="trigger2" title="Details anzeigen">ETTU European Champions League SVS Niederösterreich vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,950</td>
+<td>
+Turnier
+</td>
+<td>2732</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv107" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19709646,'eventdiv108');" class="trigger2" title="Details anzeigen">Volkswagen Cup 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>2,049</td>
+<td>
+Turnier
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv108" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19436821,'eventdiv109');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. TTSC Jekaterinburg UMMC - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,606</td>
+<td>
+Turnier
+</td>
+<td>2727</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv109" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19350196,'eventdiv110');" class="trigger2" title="Details anzeigen">Euro vs. Asia Hinspiel 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,198</td>
+<td>
+Turnier
+</td>
+<td>2730</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv110" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19330490,'eventdiv111');" class="trigger2" title="Details anzeigen">German Open 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,537</td>
+<td>
+Turnier
+</td>
+<td>2723</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv111" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19065049,'eventdiv112');" class="trigger2" title="Details anzeigen">Qatar Open 2011 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,751</td>
+<td>
+Turnier
+</td>
+<td>2719</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv112" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18541244,'eventdiv113');" class="trigger2" title="Details anzeigen">BL1-Herren | SV Plüderhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,982</td>
+<td>
+Team
+</td>
+<td>2719</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv113" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18461901,'eventdiv114');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,934</td>
+<td>
+Team
+</td>
+<td>2718</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv114" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18459794,'eventdiv115');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,958</td>
+<td>
+Team
+</td>
+<td>2717</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv115" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18459733,'eventdiv116');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,835</td>
+<td>
+Team
+</td>
+<td>2714</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv116" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.12.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18276592,'eventdiv117');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,966</td>
+<td>
+Team
+</td>
+<td>2713</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv117" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18170885,'eventdiv118');" class="trigger2" title="Details anzeigen">Volkswagen Cup-2 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>3</td>
+<td>1,977</td>
+<td>
+Turnier
+</td>
+<td>2697</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv118" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18144748,'eventdiv119');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Plüderhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,998</td>
+<td>
+Team
+</td>
+<td>2697</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv119" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17574879,'eventdiv120');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,473</td>
+<td>
+Turnier
+</td>
+<td>2689</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv120" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17478363,'eventdiv121');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : TTC Ruhrstadt Herne</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,812</td>
+<td>
+Team
+</td>
+<td>2686</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv121" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17441140,'eventdiv122');" class="trigger2" title="Details anzeigen">LIEBHERR Austrian Open 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>5,640</td>
+<td>
+Turnier
+</td>
+<td>2696</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv122" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17349322,'eventdiv123');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,825</td>
+<td>
+Team
+</td>
+<td>2693</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv123" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17280692,'eventdiv124');" class="trigger2" title="Details anzeigen">ITTF Euro Asia Cup - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,949</td>
+<td>
+Turnier
+</td>
+<td>2692</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv124" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17273119,'eventdiv125');" class="trigger2" title="Details anzeigen">ETTU European Champions League SF El Nino Prag vs. Borussia Düsseldorf - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,957</td>
+<td>
+Turnier
+</td>
+<td>2691</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv125" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16844163,'eventdiv126');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Angers Vaillante T.T. - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,992</td>
+<td>
+Turnier
+</td>
+<td>2691</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv126" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16783449,'eventdiv127');" class="trigger2" title="Details anzeigen">European Championships 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>16</td>
+<td>16</td>
+<td>15,110</td>
+<td>
+Turnier
+</td>
+<td>2677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv127" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16629571,'eventdiv128');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. SF El Nino Prag - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,987</td>
+<td>
+Turnier
+</td>
+<td>2677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv128" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.08.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16562870,'eventdiv129');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,962</td>
+<td>
+Team
+</td>
+<td>2676</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv129" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.08.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16538429,'eventdiv130');" class="trigger2" title="Details anzeigen">Harmony China Open 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,072</td>
+<td>
+Turnier
+</td>
+<td>2677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv130" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.08.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16535867,'eventdiv131');" class="trigger2" title="Details anzeigen">KRA Korea Open 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,601</td>
+<td>
+Turnier
+</td>
+<td>2687</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv131" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.07.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16531755,'eventdiv132');" class="trigger2" title="Details anzeigen">Japan Open 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>4,987</td>
+<td>
+Turnier
+</td>
+<td>2671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv132" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>30.06.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16451477,'eventdiv133');" class="trigger2" title="Details anzeigen">VOLKSWAGEN China vs World Challenge 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,571</td>
+<td>
+Turnier
+</td>
+<td>2680</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv133" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.06.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16448322,'eventdiv134');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Rückspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,765</td>
+<td>
+Turnier
+</td>
+<td>2676</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv134" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.06.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16448296,'eventdiv135');" class="trigger2" title="Details anzeigen">ETTU European Champions League Finale 2 Borussia Düsseldorf vs. Villette Charleroi - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,779</td>
+<td>
+Turnier
+</td>
+<td>2688</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv135" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.05.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16446789,'eventdiv136');" class="trigger2" title="Details anzeigen">LIEBHERR World Team Championships 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>10</td>
+<td>8</td>
+<td>7,651</td>
+<td>
+Turnier
+</td>
+<td>2682</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv136" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.05.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16442628,'eventdiv137');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Hinspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,868</td>
+<td>
+Turnier
+</td>
+<td>2680</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv137" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16427544,'eventdiv138');" class="trigger2" title="Details anzeigen">Play-off-Runde / Halbfinale-Rückspiel 1 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,924</td>
+<td>
+Turnier
+</td>
+<td>2679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv138" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16308409,'eventdiv139');" class="trigger2" title="Details anzeigen">Play-off-Runde / Halbfinale-Hinspiel 1 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,929</td>
+<td>
+Turnier
+</td>
+<td>2678</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv139" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16213701,'eventdiv140');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,958</td>
+<td>
+Team
+</td>
+<td>2677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv140" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16122674,'eventdiv141');" class="trigger2" title="Details anzeigen">Volkswagen Cup (1) 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,718</td>
+<td>
+Turnier
+</td>
+<td>2688</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv141" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16051598,'eventdiv142');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Sterilgarda Castelgofffredo - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,942</td>
+<td>
+Turnier
+</td>
+<td>2687</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv142" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15991396,'eventdiv143');" class="trigger2" title="Details anzeigen">German Open 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,463</td>
+<td>
+Turnier
+</td>
+<td>2694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv143" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15602271,'eventdiv144');" class="trigger2" title="Details anzeigen">Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,891</td>
+<td>
+Turnier
+</td>
+<td>2708</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv144" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15257067,'eventdiv145');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,840</td>
+<td>
+Team
+</td>
+<td>2721</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv145" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15223541,'eventdiv146');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Roskilde Bordtennis BTK 61 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,856</td>
+<td>
+Turnier
+</td>
+<td>2719</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv146" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15173271,'eventdiv147');" class="trigger2" title="Details anzeigen">Europe TOP 12 Tournament 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>4,190</td>
+<td>
+Turnier
+</td>
+<td>2706</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv147" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14974777,'eventdiv148');" class="trigger2" title="Details anzeigen">ETTU European Champions League Borussia Düsseldorf vs. Roskilde Bordtennis BTK 61 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,886</td>
+<td>
+Turnier
+</td>
+<td>2720</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv148" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14693007,'eventdiv149');" class="trigger2" title="Details anzeigen">ITTF Pro Tour Grand Finals 2010 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,595</td>
+<td>
+Turnier
+</td>
+<td>2730</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv149" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.12.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14583008,'eventdiv150');" class="trigger2" title="Details anzeigen">Pokal-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,959</td>
+<td>
+Team
+</td>
+<td>2729</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv150" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.12.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14582996,'eventdiv151');" class="trigger2" title="Details anzeigen">Pokal-Herren | Borussia Düsseldorf : SV Plüderhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,972</td>
+<td>
+Team
+</td>
+<td>2729</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv151" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.12.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14581234,'eventdiv152');" class="trigger2" title="Details anzeigen">VOLKSWAGEN Tournament of Champions 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>1,465</td>
+<td>
+Turnier
+</td>
+<td>2720</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv152" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14340200,'eventdiv153');" class="trigger2" title="Details anzeigen">Pro Tour Polish Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,825</td>
+<td>
+Turnier
+</td>
+<td>2717</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv153" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13900178,'eventdiv154');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,927</td>
+<td>
+Team
+</td>
+<td>2716</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv154" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13797722,'eventdiv155');" class="trigger2" title="Details anzeigen">Pokal-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,972</td>
+<td>
+Team
+</td>
+<td>2716</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv155" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13776658,'eventdiv156');" class="trigger2" title="Details anzeigen">Pro Tour English Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,839</td>
+<td>
+Turnier
+</td>
+<td>2729</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv156" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13533661,'eventdiv157');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,996</td>
+<td>
+Team
+</td>
+<td>2729</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv157" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13516859,'eventdiv158');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>2,765</td>
+<td>
+Turnier
+</td>
+<td>2725</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv158" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13004575,'eventdiv159');" class="trigger2" title="Details anzeigen">LIEBHERR European Championships 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>14</td>
+<td>12</td>
+<td>13,759</td>
+<td>
+Turnier
+</td>
+<td>2753</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-28
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv159" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.08.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12822483,'eventdiv160');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : 1. FC Saarbrücken</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,976</td>
+<td>
+Team
+</td>
+<td>2753</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv160" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>07.06.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12684303,'eventdiv161');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Rückspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,965</td>
+<td>
+Turnier
+</td>
+<td>2752</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv161" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.05.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12683756,'eventdiv162');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Hinspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,932</td>
+<td>
+Turnier
+</td>
+<td>2751</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv162" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.05.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12679978,'eventdiv163');" class="trigger2" title="Details anzeigen">Play-off-Runde / Halbfinale-Hinspiel 2 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,933</td>
+<td>
+Turnier
+</td>
+<td>2750</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv163" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.04.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12597911,'eventdiv164');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,913</td>
+<td>
+Team
+</td>
+<td>2749</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv164" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12254153,'eventdiv165');" class="trigger2" title="Details anzeigen">Pro Tour German Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,541</td>
+<td>
+Turnier
+</td>
+<td>2742</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv165" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11871663,'eventdiv166');" class="trigger2" title="Details anzeigen">Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>4,916</td>
+<td>
+Turnier
+</td>
+<td>2741</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv166" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11701348,'eventdiv167');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Müller Frickenhausen/Würzburg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,925</td>
+<td>
+Team
+</td>
+<td>2740</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv167" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11687308,'eventdiv168');" class="trigger2" title="Details anzeigen">Pro Tour Qatar Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>4,541</td>
+<td>
+Turnier
+</td>
+<td>2717</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+23
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv168" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11617314,'eventdiv169');" class="trigger2" title="Details anzeigen">Pro Tour Kuwait Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,571</td>
+<td>
+Turnier
+</td>
+<td>2710</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv169" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.02.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11473561,'eventdiv170');" class="trigger2" title="Details anzeigen">LIEBHERR European Top-12 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>3,997</td>
+<td>
+Turnier
+</td>
+<td>2694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+16
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv170" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11190750,'eventdiv171');" class="trigger2" title="Details anzeigen">Pro Tour Danish Open 2009 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,626</td>
+<td>
+Turnier
+</td>
+<td>2704</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv171" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10976824,'eventdiv172');" class="trigger2" title="Details anzeigen">3rd ITTF Tournament of Champions 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,428</td>
+<td>
+Turnier
+</td>
+<td>2711</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv172" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.12.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10849339,'eventdiv173');" class="trigger2" title="Details anzeigen">Pokal-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,953</td>
+<td>
+Team
+</td>
+<td>2710</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv173" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10643339,'eventdiv174');" class="trigger2" title="Details anzeigen">Pro Tour Polish Open 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,567</td>
+<td>
+Turnier
+</td>
+<td>2703</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv174" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10501451,'eventdiv175');" class="trigger2" title="Details anzeigen">Pro Tour ERKE German Open 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,497</td>
+<td>
+Turnier
+</td>
+<td>2695</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv175" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10359151,'eventdiv176');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Müller Frickenhausen/Würzburg : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,724</td>
+<td>
+Team
+</td>
+<td>2691</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv176" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10114447,'eventdiv177');" class="trigger2" title="Details anzeigen">Pokal-Herren | TTC RS Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,991</td>
+<td>
+Team
+</td>
+<td>2691</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv177" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10091341,'eventdiv178');" class="trigger2" title="Details anzeigen">ERKE Austrian Open 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>5,688</td>
+<td>
+Turnier
+</td>
+<td>2686</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv178" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9972773,'eventdiv179');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,885</td>
+<td>
+Team
+</td>
+<td>2684</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv179" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9861984,'eventdiv180');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,994</td>
+<td>
+Team
+</td>
+<td>2684</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv180" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9744118,'eventdiv181');" class="trigger2" title="Details anzeigen">European Championships 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>16</td>
+<td>14</td>
+<td>13,694</td>
+<td>
+Turnier
+</td>
+<td>2679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv181" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9492471,'eventdiv182');" class="trigger2" title="Details anzeigen">LIEBHERR Men's World Cup 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>4</td>
+<td>3,468</td>
+<td>
+Turnier
+</td>
+<td>2670</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv182" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9306718,'eventdiv183');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,936</td>
+<td>
+Team
+</td>
+<td>2669</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv183" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.08.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9140681,'eventdiv184');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,557</td>
+<td>
+Team
+</td>
+<td>2662</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv184" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.08.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9077168,'eventdiv185');" class="trigger2" title="Details anzeigen">Olympic Games 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>8</td>
+<td>6</td>
+<td>6,211</td>
+<td>
+Turnier
+</td>
+<td>2665</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv185" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>08.06.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8993549,'eventdiv186');" class="trigger2" title="Details anzeigen">Pro Tour VOLKSWAGEN Singapore Open 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,071</td>
+<td>
+Turnier
+</td>
+<td>2650</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv186" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.06.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8992883,'eventdiv187');" class="trigger2" title="Details anzeigen">Pro Tour VOLKSWAGEN Korea Open 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,543</td>
+<td>
+Turnier
+</td>
+<td>2659</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv187" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.05.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8991732,'eventdiv188');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Rückspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,650</td>
+<td>
+Turnier
+</td>
+<td>2669</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv188" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.05.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8989459,'eventdiv189');" class="trigger2" title="Details anzeigen">Play-off-Runde / Finale-Hinspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,616</td>
+<td>
+Turnier
+</td>
+<td>2663</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv189" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.05.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8981934,'eventdiv190');" class="trigger2" title="Details anzeigen">Play-off-Runde / Halbfinale-Rückspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,822</td>
+<td>
+Turnier
+</td>
+<td>2660</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv190" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8967519,'eventdiv191');" class="trigger2" title="Details anzeigen">Play-off-Runde / Halbfinale-Hinspiel - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,798</td>
+<td>
+Turnier
+</td>
+<td>2657</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv191" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8947826,'eventdiv192');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,571</td>
+<td>
+Team
+</td>
+<td>2650</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv192" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8896201,'eventdiv193');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : SV Plüderhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,916</td>
+<td>
+Team
+</td>
+<td>2649</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv193" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8866806,'eventdiv194');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,876</td>
+<td>
+Team
+</td>
+<td>2647</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv194" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.03.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8465910,'eventdiv195');" class="trigger2" title="Details anzeigen">Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,945</td>
+<td>
+Turnier
+</td>
+<td>2662</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv195" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.02.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7623406,'eventdiv196');" class="trigger2" title="Details anzeigen">European Top-12 2008 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,633</td>
+<td>
+Turnier
+</td>
+<td>2688</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-26
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv196" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7323746,'eventdiv197');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : Müller Würzburg</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>1,000</td>
+<td>
+Team
+</td>
+<td>2688</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv197" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7254288,'eventdiv198');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,863</td>
+<td>
+Team
+</td>
+<td>2718</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-30
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv198" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7170063,'eventdiv199');" class="trigger2" title="Details anzeigen">2nd ITTF Tournament of Champions 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,391</td>
+<td>
+Turnier
+</td>
+<td>2724</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv199" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7168341,'eventdiv200');" class="trigger2" title="Details anzeigen">Volkswagen Pro Tour Grand Finals 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,234</td>
+<td>
+Turnier
+</td>
+<td>2728</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv200" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7119762,'eventdiv201');" class="trigger2" title="Details anzeigen">Deutsche Pokalmeisterschaften Herren Final Four - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>4</td>
+<td>3,782</td>
+<td>
+Turnier
+</td>
+<td>2725</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv201" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7059630,'eventdiv202');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC RS Fulda-Maberzell : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,890</td>
+<td>
+Team
+</td>
+<td>2723</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv202" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6923035,'eventdiv203');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Frickenhausen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,858</td>
+<td>
+Team
+</td>
+<td>2721</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv203" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6791534,'eventdiv204');" class="trigger2" title="Details anzeigen">Deutsche Pokalmeisterschaften Herren Viertelfinale 3 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,887</td>
+<td>
+Turnier
+</td>
+<td>2735</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv204" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6773711,'eventdiv205');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,880</td>
+<td>
+Team
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv205" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6620628,'eventdiv206');" class="trigger2" title="Details anzeigen">Pro Tour LIEBHERR German Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,873</td>
+<td>
+Turnier
+</td>
+<td>2731</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv206" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6485064,'eventdiv207');" class="trigger2" title="Details anzeigen">Pro Tour LIEBHERR French Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>3</td>
+<td>3,066</td>
+<td>
+Turnier
+</td>
+<td>2732</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv207" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6399528,'eventdiv208');" class="trigger2" title="Details anzeigen">BL1-Herren | SV Werder Bremen : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,918</td>
+<td>
+Team
+</td>
+<td>2731</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv208" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6251068,'eventdiv209');" class="trigger2" title="Details anzeigen">Pro Tour EUROSIB Russian Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,284</td>
+<td>
+Turnier
+</td>
+<td>2736</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv209" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6118697,'eventdiv210');" class="trigger2" title="Details anzeigen">LIEBHERR World Cup 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>4</td>
+<td>3,842</td>
+<td>
+Turnier
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv210" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5832005,'eventdiv211');" class="trigger2" title="Details anzeigen">BL1-Herren | Müller Würzburg : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,970</td>
+<td>
+Team
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv211" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5464815,'eventdiv212');" class="trigger2" title="Details anzeigen">Pro Tour PANASONIC China Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,997</td>
+<td>
+Turnier
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv212" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.08.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5407621,'eventdiv213');" class="trigger2" title="Details anzeigen">Pro Tour Chinese Taipei Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>5,369</td>
+<td>
+Turnier
+</td>
+<td>2739</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv213" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.08.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5404505,'eventdiv214');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTC RS Fulda-Maberzell</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,904</td>
+<td>
+Team
+</td>
+<td>2737</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv214" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>27.05.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5327762,'eventdiv215');" class="trigger2" title="Details anzeigen">LIEBHERR 49th World Championships 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,586</td>
+<td>
+Turnier
+</td>
+<td>2746</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv215" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5317351,'eventdiv216');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : Müller Würzburg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,819</td>
+<td>
+Team
+</td>
+<td>2743</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv216" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5183924,'eventdiv217');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TSV Schwalbe Tündern</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,994</td>
+<td>
+Team
+</td>
+<td>2743</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv217" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5168646,'eventdiv218');" class="trigger2" title="Details anzeigen">LIEBHERR European Championships 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>12</td>
+<td>12</td>
+<td>10,532</td>
+<td>
+Turnier
+</td>
+<td>2720</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+23
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv218" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4454520,'eventdiv219');" class="trigger2" title="Details anzeigen">Deutsche Meisterschaften Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>5</td>
+<td>4,919</td>
+<td>
+Turnier
+</td>
+<td>2719</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv219" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4404563,'eventdiv220');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,928</td>
+<td>
+Team
+</td>
+<td>2734</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv220" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4314199,'eventdiv221');" class="trigger2" title="Details anzeigen">Pro Tour Salwa Cup Kuwait Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,080</td>
+<td>
+Turnier
+</td>
+<td>2735</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv221" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4284755,'eventdiv222');" class="trigger2" title="Details anzeigen">Pro Tour LIEBHERR Qatar Open 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,442</td>
+<td>
+Turnier
+</td>
+<td>2726</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv222" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4100565,'eventdiv223');" class="trigger2" title="Details anzeigen">European Top-12 2007 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>2</td>
+<td>2,419</td>
+<td>
+Turnier
+</td>
+<td>2733</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv223" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.01.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3731703,'eventdiv224');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : Borussia Düsseldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,908</td>
+<td>
+Team
+</td>
+<td>2732</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv224" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.12.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3584688,'eventdiv225');" class="trigger2" title="Details anzeigen">1st ITTF Tournament of Champions 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,324</td>
+<td>
+Turnier
+</td>
+<td>2737</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv225" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.12.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3582982,'eventdiv226');" class="trigger2" title="Details anzeigen">Volkswagen Pro Tour Grand Finals 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,661</td>
+<td>
+Turnier
+</td>
+<td>2748</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv226" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.12.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3477093,'eventdiv227');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC RS Fulda-Maberzell : TTV Gönnern</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,899</td>
+<td>
+Team
+</td>
+<td>2746</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv227" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3191474,'eventdiv228');" class="trigger2" title="Details anzeigen">Pro Tour LIEBHERR Polish Open 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>4,751</td>
+<td>
+Turnier
+</td>
+<td>2726</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv228" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3054429,'eventdiv229');" class="trigger2" title="Details anzeigen">Pro Tour LIEBHERR German Open 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>6</td>
+<td>4,675</td>
+<td>
+Turnier
+</td>
+<td>2705</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+21
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv229" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2900352,'eventdiv230');" class="trigger2" title="Details anzeigen">Deutsche Pokalmeisterschaften Herren Finalrunde - Herren</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,866</td>
+<td>
+Turnier
+</td>
+<td>2703</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv230" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2861742,'eventdiv231');" class="trigger2" title="Details anzeigen">BL1-Herren | Müller Würzburg : TTV Gönnern</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,873</td>
+<td>
+Team
+</td>
+<td>2701</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv231" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2829775,'eventdiv232');" class="trigger2" title="Details anzeigen">LIEBHERR World Cup 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>1</td>
+<td>2,087</td>
+<td>
+Turnier
+</td>
+<td>2718</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv232" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2545186,'eventdiv233');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC Frickenhausen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,833</td>
+<td>
+Team
+</td>
+<td>2715</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv233" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2497611,'eventdiv234');" class="trigger2" title="Details anzeigen">BL1-Herren | TTF Liebherr Ochsenhausen : TTV Gönnern</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,895</td>
+<td>
+Team
+</td>
+<td>2713</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv234" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2414636,'eventdiv235');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC Zugbrücke Grenzau</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,869</td>
+<td>
+Team
+</td>
+<td>2711</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv235" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2201983,'eventdiv236');" class="trigger2" title="Details anzeigen">Pro Tour VOLKSWAGEN Japan Open 2006 - Herren</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>3,506</td>
+<td>
+Turnier
+</td>
+<td>2703</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv236" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2082696,'eventdiv237');" class="trigger2" title="Details anzeigen">Pro Tour PANASONIC China Open 2006 - Herren</a>
+</td>
+<td>20</td>	
+<td>6</td>
+<td>6</td>
+<td>3,819</td>
+<td>
+Turnier
+</td>
+<td>2659</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+44
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv237" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1980576,'eventdiv238');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTV Gönnern</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>1</td>
+<td>1,654</td>
+<td>
+Team
+</td>
+<td>2672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv238" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1963990,'eventdiv239');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : SV Plüderhausen</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,800</td>
+<td>
+Team
+</td>
+<td>2668</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv239" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.08.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1915095,'eventdiv240');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC RS Fulda-Maberzell</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,581</td>
+<td>
+Team
+</td>
+<td>2660</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv240" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>10.03.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1544329,'eventdiv241');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC Zugbrücke Grenzau</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,796</td>
+<td>
+Team
+</td>
+<td>2656</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv241" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1482111,'eventdiv242');" class="trigger2" title="Details anzeigen">BL1-Herren | Müller Würzburger Hofbräu : TTV Gönnern</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,543</td>
+<td>
+Team
+</td>
+<td>2647</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv242" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.01.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1092734,'eventdiv243');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTF Liebherr Ochsenhausen</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,511</td>
+<td>
+Team
+</td>
+<td>2637</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv243" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.11.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(964162,'eventdiv244');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TSV Schwalbe Tündern</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,950</td>
+<td>
+Team
+</td>
+<td>2636</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv244" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.11.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(778120,'eventdiv245');" class="trigger2" title="Details anzeigen">BL1-Herren | Borussia Düsseldorf : TTV Gönnern</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>1</td>
+<td>1,775</td>
+<td>
+Team
+</td>
+<td>2655</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-19
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv245" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(620573,'eventdiv246');" class="trigger2" title="Details anzeigen">BL1-Herren | SV Werder Bremen : TTV Gönnern</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,974</td>
+<td>
+Team
+</td>
+<td>2654</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv246" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(545848,'eventdiv247');" class="trigger2" title="Details anzeigen">BL1-Herren | TTC Zugbrücke Grenzau : TTV Gönnern</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,622</td>
+<td>
+Team
+</td>
+<td>2645</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv247" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(500367,'eventdiv248');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : Müller Würzburger Hofbräu</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,455</td>
+<td>
+Team
+</td>
+<td>2632</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv248" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.09.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(309387,'eventdiv249');" class="trigger2" title="Details anzeigen">BL1-Herren | SIG Combibloc Jülich/Hoengen : TTV Gönnern</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,454</td>
+<td>
+Team
+</td>
+<td>2619</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv249" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.09.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301005,'eventdiv250');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC RS Fulda-Maberzell</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,234</td>
+<td>
+Team
+</td>
+<td>2601</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv250" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.09.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(287260,'eventdiv251');" class="trigger2" title="Details anzeigen">BL1-Herren | TTV Gönnern : TTC Frickenhausen</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,106</td>
+<td>
+Team
+</td>
+<td>2580</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+21
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv251" ></div> 
+</td>
+</tr>	
+</table>
+<script type="text/javascript" charset="utf-8">
+jQuery(".toggle_container").hide();
+// jQuery(".trigger2").click(function(){
+// jQuery(this).toggleClass("active").next().delay(300).slideToggle("slow");
+// });
+</script>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="whitebox_fx mt_30">
+<div class="grid">
+<div class="whitebox_container">
+<div class="grid_12">
+<div class="bg_spon_top"></div>
+<div class="sponbox">
+<a href="http://www.mytischtennis.de/countandredirect/2-0001/" class="spon01">Joola</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0185/" class="spon03">Schöler Micke</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0186/" class="spon04">andro</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="bg_spon_bottom"></div>
+</div> 
+</div>
+</div>
+</div>
+<div class="graybox_fx">
+<div class="grid">
+<div class="graybox_container">
+<div class="graybox_content">
+<div class="graybox_list01">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+<li><a href="faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+</ul>
+</div>
+<div class="graybox_list02">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx bg_ci_orange">
+<div class="grid">
+<div class="onbottomnavi">
+<div class="center">
+<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div> 
+</div>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html> 

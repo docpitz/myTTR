@@ -1,14 +1,20 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
-import android.app.KeyguardManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
-import android.view.WindowManager;
+import android.widget.EditText;
 
 import com.jmelzer.myttr.MockHttpClient;
 import com.jmelzer.myttr.MockResponses;
+import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginManager;
+import com.robotium.solo.Solo;
 
 import org.apache.http.impl.cookie.BasicClientCookie;
 
@@ -21,12 +27,45 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     //switch wether we read html from file system or calling mytt.de
     boolean offline = true;
 
+    protected static final int STANDARD_TIMEOUT = 50000;
+
 
     public BaseActivityInstrumentationTestCase(Class<T> activityClass) {
         super(activityClass);
     }
 
     protected MockHttpClient mockHttpClient;
+    protected Solo solo;
+
+    public boolean waitForActivity(Class<? extends Activity> activityClass) {
+        return solo.waitForActivity(activityClass, STANDARD_TIMEOUT);
+    }
+    protected void login() {
+
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        Activity loginActivity = solo.getCurrentActivity();
+        final EditText loginTxt = (EditText) solo.getView(R.id.username);
+        loginActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loginTxt.setText("chokdee");
+            }
+        });
+        final EditText pwTxt = (EditText) solo.getView(R.id.password);
+        loginActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pwTxt.setText("fuckyou123");
+            }
+        });
+
+        solo.clickOnView(solo.getView(R.id.button_login));
+
+        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
+
+        assertNotNull(MyApplication.getLoginUser());
+        assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
+    }
 
     protected void prepareMocks() {
         if (offline) {
@@ -44,6 +83,23 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     protected void setUp() throws Exception {
         super.setUp();
         prepareMocks();
+
+        setActivityInitialTouchMode(false);
+        Context context = getInstrumentation().getTargetContext();
+        LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(context);
+        adapter.open();
+        adapter.deleteAllEntries();
+
+        //prepare the db and prefs to automatic
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPref.edit().putBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, false).commit();
+
+//        adapter.insertEntry("Ich bins", "chokdee", "fuckyou123",
+//                2000, "TTG St. Augustin", 16);
+
+        solo = new Solo(getInstrumentation(), getActivity());
+
 //        KeyguardManager keyGuardManager = (KeyguardManager) getActivity().getSystemService(Activity.KEYGUARD_SERVICE);
 //        keyGuardManager.newKeyguardLock("activity_classname").disableKeyguard();
 //        getInstrumentation().runOnMainSync(new Runnable() {

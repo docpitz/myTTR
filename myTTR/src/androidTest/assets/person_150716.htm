@@ -1,0 +1,4864 @@
+<!DOCTYPE html>
+<html><head>
+<title>Ranglisten + Statistiken | Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="" />
+<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+<script type="text/javascript" charset="utf-8">
+var tooltipdataSaved;
+var tooltipdataSavedHtml;
+var tooltipdataString;
+var positionOfTooltip;
+var writeToDB = false;
+var ajaxTooltipConfig = {
+over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+};
+function ajaxTooliIn() {
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if(tooltipdata[3]!= undefined){
+writeToDB = true;
+}
+//console.log(writeToDB);
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+var positionOfTooltip = jQuery(this).next(".bigtooltip");
+//console.log(positionOfTooltip);
+if(tooltipdataString != tooltipdataSaved) {
+jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+tooltipdataSaved = tooltipdataString;
+jQuery.ajax({
+url: url,
+cache: false,
+success: function(html){
+tooltipdataSavedHtml = html;
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+});
+}
+else {
+//use last call again
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+}
+function ajaxTooliOut() {
+// do nothing
+}
+function initToolTips () {
+//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+//use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+}
+function reInitToolTips() {
+console.log('jetzt');
+jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+}
+jQuery(document).ready(function($) {
+$(".openoverlay[rel]").overlay({
+mask: {
+color: '#000'
+},
+//fixed: false,
+top: '20%'
+});
+initToolTips();
+/* Local Scroll */
+$.localScroll();
+/* Back to Top */
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+jQuery().UItoTop({ easingType: 'easeOutQuart' });
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<!-- Start: GPT Sync -->
+<script src="http://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+</script>
+<script type='text/javascript'>
+var gptadslots=[];
+(function(){
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+<script type="text/javascript">
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+//Adslot 2 declaration
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+//Adslot 3 declaration
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+var crtg_split = (crtg_content || '').split(';');
+var pubads = googletag.pubads();
+for (var i=1;i<crtg_split.length;i++){
+pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+}
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>
+<!-- End: GPT -->
+<style>
+/**center fix for super banner**/
+#ligatusframe_47919{
+width: auto!important;
+}
+</style>
+<script type="text/javascript"> var sdm_vers = 2 ; </script>
+<script 
+type="text/javascript" 
+src="//cdn.stroeerdigitalmedia.de/praeludium/praeludium_mytischtennis.js">
+</script>
+</head>
+<body class="community">
+<!-- Version: 3.1.5 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"comm", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/events.cfm?personId=150716" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="ontopbar_fx bg_ci_orange">
+<div class="grid">
+<div class="ontopbar">
+<div class="grid_3 fl">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+Premium bis 09.11.2015
+</a>
+</div>
+<div class="grid_9 fr right">
+<a href="/community/friends" class="btn link_ontopbar orange">
+<i class="icon-group"></i> 
+</a>
+<a href="/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="btn link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<span class="usertext_ontopbar">Jürgen Melzer</span>
+</a>
+<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx">
+<div class="grid clearfix">
+<div class="header_container">
+<div class="col_12">
+<div class="grid_7">
+<h1 class="mt_30">
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png">
+</a>
+</h1>
+<div class="wfm_logo"></div>
+</div>
+<div class="grid_5">
+<ul class="nav_ontop">
+<li class="mr_5">
+<a href="http://www.mytischtennis.de/public/" class="nav_01" title="Portal">Portal</a>
+</li>
+<li>
+<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navi_fx" id="sticky_navigation">
+<div class="grid">
+<div class="navi_container">
+<ul class="menu ml_10 noprint">
+<li id="Home"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a>
+</li>
+<li id="Profil"><a href="http://www.mytischtennis.de/community/personalprofil" title="Profil">Profil</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+<li><a href="http://www.mytischtennis.de/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/userSettings.cfm" title="Einstellungen">Einstellungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+</ul>
+</li>
+<li id="Teamsport"><a href="http://www.mytischtennis.de/community/showclubinfo" title="Teamsport">Teamsport</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/showclubinfo" title="Verein">Verein</a></li>
+<li><a href="http://www.mytischtennis.de/community/group" title="Liga">Liga</a></li>
+<li><a href="http://www.mytischtennis.de/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</li>
+<li id="Ranglisten" class="current"><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+<li><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li><a href="http://www.mytischtennis.de/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+<li><a href="http://www.mytischtennis.de/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+</ul>
+</li>
+<li id="Kalender"><a href="http://www.mytischtennis.de/community/eventcalendar" title="Turniere">Turniere</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li>
+<a name="" title="Turnierserien">Turnierserien</a>
+<ul>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+Bavarian TT-Race
+</a>
+</li>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+Rheinland Cup
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="Training"><a href="http://www.mytischtennis.de/community/uebungen" title="Training">Training</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/uebungen" title="Übungen">Übungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/elearning" title="E-Learning">E-Learning</a></li>
+<li><a href="http://www.mytischtennis.de/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+<li><a href="http://www.mytischtennis.de/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+</ul>
+</li>
+<li id="Community"><a href="http://www.mytischtennis.de/community/friends" title="Community">Community
+</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/friends" title="Freunde">Freunde</a></li>
+<li><a href="http://www.mytischtennis.de/community/pendingrequests" title="Anfragen">Anfragen </a></li>
+<li><a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+<li><a href="http://www.mytischtennis.de/community/searchPerson" title="Suche">Suche</a></li>
+<li><a href="http://www.mytischtennis.de/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+</ul>
+</li>
+<li id="Services"><a href="http://www.mytischtennis.de/community/holzassistent" title="Services">Services</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+<li><a href="http://www.mytischtennis.de/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+<li><a href="http://www.mytischtennis.de/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+<li><a href="http://www.mytischtennis.de/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+</ul>
+</li>
+<li id="Premium"><a href="http://www.mytischtennis.de/community/premium" title="Premium">Premium</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/premium" title="Infos">Infos</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/premiumsubscription.cfm" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+<li><a href="http://www.mytischtennis.de/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid pl_15 mb_10">
+<ul class="breadcrumbs">
+<li class="first"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
+</ul>
+</div>
+<div class="grid center ontopbanner" id="topBanner">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+<div id='div-gpt-ad-995246123125863230-1'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-1');
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<div id='div-gpt-ad-995246123125863230-2'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-2');
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+<div class="content_fx">
+<div class="grid clearfix">
+<div class="content_container">
+<script>
+jQuery(function () {
+Highcharts.setOptions({
+lang: {
+shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+thousandsSep: "",
+exportButtonTitle:"Download Grafik",
+printButtonTitle: "Grafik drucken"
+}
+}); 
+var chart;
+jQuery(document).ready(function() {
+chart = new Highcharts.Chart({
+chart: {
+renderTo: 'container',
+type: 'spline'
+},
+title: {
+text: ' '
+},
+xAxis: {
+startOnTick:false,
+endOnTick:false,
+tickInterval: 7,
+categories: [
+"Sep 05",	
+"Sep 05",	
+"Okt 05",	
+"Okt 05",	
+"Okt 05",	
+"Okt 05",	
+"Nov 05",	
+"Nov 05",	
+"Dez 05",	
+"Feb 06",	
+"Feb 06",	
+"Feb 06",	
+"Feb 06",	
+"Feb 06",	
+"Mrz 06",	
+"Mrz 06",	
+"Mrz 06",	
+"Apr 06",	
+"Apr 06",	
+"Sep 06",	
+"Okt 06",	
+"Okt 06",	
+"Okt 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Nov 06",	
+"Dez 06",	
+"Jan 07",	
+"Feb 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Mrz 07",	
+"Apr 07",	
+"Apr 07",	
+"Sep 07",	
+"Sep 07",	
+"Sep 07",	
+"Okt 07",	
+"Nov 07",	
+"Nov 07",	
+"Dez 07",	
+"Dez 07",	
+"Jan 08",	
+"Feb 08",	
+"Mrz 08",	
+"Apr 08",	
+"Apr 08",	
+"Apr 08",	
+"Sep 08",	
+"Sep 08",	
+"Okt 08",	
+"Okt 08",	
+"Nov 08",	
+"Nov 08",	
+"Jan 09",	
+"Jan 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Mrz 09",	
+"Sep 09",	
+"Sep 09",	
+"Okt 09",	
+"Okt 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Nov 09",	
+"Jan 10",	
+"Jan 10",	
+"Feb 10",	
+"Feb 10",	
+"Feb 10",	
+"Mrz 10",	
+"Mrz 10",	
+"Apr 10",	
+"Apr 10",	
+"Apr 10",	
+"Sep 10",	
+"Sep 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Okt 10",	
+"Nov 10",	
+"Nov 10",	
+"Jan 11",	
+"Jan 11",	
+"Feb 11",	
+"Feb 11",	
+"Feb 11",	
+"Mrz 11",	
+"Mrz 11",	
+"Apr 11",	
+"Aug 11",	
+"Sep 11",	
+"Sep 11",	
+"Okt 11",	
+"Okt 11",	
+"Nov 11",	
+"Nov 11",	
+"Dez 11",	
+"Dez 11",	
+"Jan 12",	
+"Jan 12",	
+"Feb 12",	
+"Feb 12",	
+"Mrz 12",	
+"Mrz 12",	
+"Apr 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Sep 12",	
+"Okt 12",	
+"Nov 12",	
+"Nov 12",	
+"Nov 12",	
+"Dez 12",	
+"Feb 13",	
+"Feb 13",	
+"Feb 13",	
+"Feb 13",	
+"Mrz 13",	
+"Mrz 13",	
+"Apr 13",	
+"Apr 13",	
+"Apr 13",	
+"Mai 13",	
+"Sep 13",	
+"Sep 13",	
+"Okt 13",	
+"Nov 13",	
+"Nov 13",	
+"Dez 13",	
+"Jan 14",	
+"Feb 14",	
+"Feb 14",	
+"Sep 14",	
+"Sep 14",	
+"Okt 14",	
+"Okt 14",	
+"Okt 14",	
+"Okt 14",	
+"Nov 14",	
+"Dez 14",	
+"Jan 15",	
+"Jan 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Mrz 15",	
+"Apr 15",	
+"Mai 15",	
+"heute"
+]
+}, 
+yAxis: {
+title: {
+text: ' '
+},
+min: 1680,
+max: 2083	
+},
+credits: {
+enabled: false	
+},
+plotOptions: {
+spline: { 
+lineWidth: 4,
+showInLegend:false, 
+marker: {
+symbol: 'circle',
+radius: 4
+}
+}
+}, 
+series: [{	
+name: "Müller, Marc",
+color: '#0095d8',	
+data: [ 
+["17.09.2005"
+, 1780],
+["25.09.2005"
+, 1800],
+["08.10.2005"
+, 1815],
+["15.10.2005"
+, 1826],
+["23.10.2005"
+, 1837],
+["29.10.2005"
+, 1848],
+["04.11.2005"
+, 1860],
+["26.11.2005"
+, 1866],
+["10.12.2005"
+, 1872],
+["03.02.2006"
+, 1878],
+["04.02.2006"
+, 1882],
+["08.02.2006"
+, 1885],
+["18.02.2006"
+, 1889],
+["19.02.2006"
+, 1879],
+["04.03.2006"
+, 1879],
+["18.03.2006"
+, 1885],
+["25.03.2006"
+, 1894],
+["01.04.2006"
+, 1898],
+["08.04.2006"
+, 1920],
+["23.09.2006"
+, 1921],
+["08.10.2006"
+, 1922],
+["21.10.2006"
+, 1923],
+["28.10.2006"
+, 1900],
+["04.11.2006"
+, 1908],
+["18.11.2006"
+, 1913],
+["19.11.2006"
+, 1906],
+["25.11.2006"
+, 1912],
+["02.12.2006"
+, 1918],
+["27.01.2007"
+, 1919],
+["03.02.2007"
+, 1897],
+["04.03.2007"
+, 1910],
+["10.03.2007"
+, 1919],
+["17.03.2007"
+, 1914],
+["24.03.2007"
+, 1921],
+["31.03.2007"
+, 1923],
+["14.04.2007"
+, 1925],
+["21.04.2007"
+, 1926],
+["16.09.2007"
+, 1927],
+["29.09.2007"
+, 1924],
+["30.09.2007"
+, 1925],
+["21.10.2007"
+, 1925],
+["24.11.2007"
+, 1920],
+["25.11.2007"
+, 1921],
+["02.12.2007"
+, 1926],
+["08.12.2007"
+, 1932],
+["27.01.2008"
+, 1938],
+["03.02.2008"
+, 1947],
+["09.03.2008"
+, 1950],
+["06.04.2008"
+, 1945],
+["12.04.2008"
+, 1943],
+["20.04.2008"
+, 1945],
+["13.09.2008"
+, 1953],
+["14.09.2008"
+, 1951],
+["04.10.2008"
+, 1969],
+["05.10.2008"
+, 1969],
+["22.11.2008"
+, 1956],
+["29.11.2008"
+, 1957],
+["24.01.2009"
+, 1953],
+["25.01.2009"
+, 1956],
+["07.03.2009"
+, 1945],
+["14.03.2009"
+, 1936],
+["15.03.2009"
+, 1933],
+["05.09.2009"
+, 1954],
+["12.09.2009"
+, 1933],
+["03.10.2009"
+, 1947],
+["25.10.2009"
+, 1932],
+["01.11.2009"
+, 1931],
+["06.11.2009"
+, 1948],
+["15.11.2009"
+, 1944],
+["22.11.2009"
+, 1936],
+["28.11.2009"
+, 1941],
+["23.01.2010"
+, 1930],
+["30.01.2010"
+, 1919],
+["06.02.2010"
+, 1937],
+["21.02.2010"
+, 1959],
+["27.02.2010"
+, 1955],
+["20.03.2010"
+, 1954],
+["28.03.2010"
+, 1963],
+["17.04.2010"
+, 1960],
+["18.04.2010"
+, 1962],
+["24.04.2010"
+, 1940],
+["04.09.2010"
+, 1930],
+["05.09.2010"
+, 1927],
+["02.10.2010"
+, 1945],
+["09.10.2010"
+, 1931],
+["10.10.2010"
+, 1931],
+["24.10.2010"
+, 1943],
+["06.11.2010"
+, 1939],
+["07.11.2010"
+, 1943],
+["22.01.2011"
+, 1926],
+["30.01.2011"
+, 1927],
+["05.02.2011"
+, 1937],
+["06.02.2011"
+, 1942],
+["20.02.2011"
+, 1949],
+["20.03.2011"
+, 1951],
+["27.03.2011"
+, 1957],
+["10.04.2011"
+, 1955],
+["20.08.2011"
+, 1948],
+["03.09.2011"
+, 1949],
+["04.09.2011"
+, 1948],
+["08.10.2011"
+, 1958],
+["09.10.2011"
+, 1957],
+["19.11.2011"
+, 1946],
+["20.11.2011"
+, 1957],
+["03.12.2011"
+, 1963],
+["10.12.2011"
+, 1965],
+["15.01.2012"
+, 1955],
+["28.01.2012"
+, 1953],
+["04.02.2012"
+, 1947],
+["25.02.2012"
+, 1940],
+["03.03.2012"
+, 1948],
+["17.03.2012"
+, 1941],
+["15.04.2012"
+, 1934],
+["01.09.2012"
+, 1930],
+["09.09.2012"
+, 1942],
+["29.09.2012"
+, 1935],
+["30.09.2012"
+, 1945],
+["06.10.2012"
+, 1938],
+["03.11.2012"
+, 1943],
+["04.11.2012"
+, 1943],
+["18.11.2012"
+, 1945],
+["01.12.2012"
+, 1954],
+["02.02.2013"
+, 1947],
+["03.02.2013"
+, 1937],
+["23.02.2013"
+, 1940],
+["24.02.2013"
+, 1949],
+["23.03.2013"
+, 1942],
+["24.03.2013"
+, 1953],
+["07.04.2013"
+, 1958],
+["14.04.2013"
+, 1953],
+["21.04.2013"
+, 1949],
+["04.05.2013"
+, 1952],
+["28.09.2013"
+, 1951],
+["29.09.2013"
+, 1941],
+["05.10.2013"
+, 1949],
+["17.11.2013"
+, 1956],
+["30.11.2013"
+, 1948],
+["01.12.2013"
+, 1957],
+["25.01.2014"
+, 1966],
+["16.02.2014"
+, 1964],
+["22.02.2014"
+, 1973],
+["12.09.2014"
+, 1964],
+["27.09.2014"
+, 1965],
+["11.10.2014"
+, 1977],
+["12.10.2014"
+, 1983],
+["19.10.2014"
+, 1973],
+["31.10.2014"
+, 1949],
+["15.11.2014"
+, 1940],
+["13.12.2014"
+, 1949],
+["24.01.2015"
+, 1945],
+["31.01.2015"
+, 1942],
+["01.03.2015"
+, 1950],
+["08.03.2015"
+, 1942],
+["12.03.2015"
+, 1935],
+["15.03.2015"
+, 1942],
+["12.04.2015"
+, 1934],
+["01.05.2015"
+, 1934],
+["heute", 1914]
+]
+}] 
+});
+});
+});
+</script> 
+<script type="text/javascript">
+function popup(url) {
+fenster = window.open(url, "Popupfenster", "width=600,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
+fenster.focus();
+return false;
+}
+</script>
+<style type="text/css" media="screen">
+tr, td {
+vertical-align: top !important;
+}
+#closealllink {
+display: none;
+float:right;
+color: white;
+}
+.toggle_container {
+/*overflow: hidden;*/
+}
+.disabledlabel {
+color: #999;
+}
+</style>
+<script type="text/javascript" charset="utf-8">
+jQuery(function($){
+var tooltipdataSaved = '';
+// we need to define this here again, for the tooltips inside the ajax event details
+$(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+$('body').on('mouseover', '.myttFeaturesTooltip', function(){
+// url param for _tooltippStuff telling if head to head should be written in db or not
+var writeToDB = false;
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var myClickTTId = 1429844;
+var myUserId = 104598;
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+var url = '/community/ajax/_tooltippstuff.cfm?writeToDB='+writeToDB+'&currentUserClickTTId='+myClickTTId+'&otherUsersClickTTId='+otherClickTTId+'&myUserid='+myUserId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+if(tooltipdataString != tooltipdataSaved) {
+tooltipdataSaved = tooltipdataString;
+jQuery(this).next(".bigtooltip").load(url);
+}
+});
+})
+</script>
+<div>	
+<div class="grid_12 mb_10">
+<a href="javascript:history.back()" class="btn small" >Zurück</a>
+</div>
+</div>
+<form action="" method="post" class="vertical">
+<div class="grid_12 contentbox mb_20">
+<div class="contentbox_top bg_ci_orange fl"><span>TTR-Historie
+(Müller, Marc)
+</span></div>
+<div class="content fl">
+<div class="col_12 center prefix_4">	
+<div class="fr"><a href="premium" class="thisispremium tooltip fr" title="Auswahl der Zeiträume ist eine Premium-Funktion">premium</a></div>
+<label class="fl mr_15">Zeitraum: </label>	
+<select name="timeInterval" onchange="this.form.submit();" class=" col_3">
+<option value="1">letzte 3 Monate</option>
+<option value="2">letzte 6 Monate</option>	
+<option value="3">letzte 12 Monate</option>
+<option value="4" selected>alle vorhandenen Daten</option>
+<option value="5">aktuelle Saison</option>
+<option value="6">letzte Quartalsberechnung</option>	
+</select>
+</div>
+</form>
+<script type="text/javascript" charset="utf-8">
+function openmoreinfos(clttfeednr,div) {
+var theelement = document.getElementById(div);
+if(theelement.style.display == 'none') {
+$( theelement ).load( "eventDetails?fq=false&eventId="+clttfeednr, function() {
+jQuery(theelement).slideDown("slow");
+});
+}
+else
+{
+jQuery(theelement).toggleClass("active").slideUp("slow");
+}
+document.getElementById('closealllink').style.display="inline";
+}
+function closeall() {
+document.getElementById('closealllink').style.display="none";
+jQuery(".toggle_container").slideUp("slow");
+}
+</script>
+<div style="clear:both;"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/modules/exporting.js"></script>
+<div id="container"></div>
+<div style="float: right; border: 0px solid blue; padding-top: 11px;">
+</div>
+<div style="clear:both;"></div>
+<div class="ttr_banner_box center">
+<a href="eventsCompare.cfm" alt="zum TTR-Vergleich" title="zum TTR-Vergleich">
+<img src="images/ttr_vergleich.jpg" alt="zum TTR-Vergleich" />
+<div class="ttr_class">
+<p>
+<strong>TTR: </strong>
+1914
+</p>
+</div>	
+</a>
+</div>
+<div class="col_full mt_20 mb_20">
+<div class="col_10 center bg_ci_orange p_all_5">
+<h3 class="white">
+Müller, Marcs
+<span class="tooltip">TTR:</span> 1914
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>
+und
+<span class="tooltip">Q-TTR:</span> 1950
+<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>	
+<span style="color: white; font-size: 0.8em; font-weight:normal;" class="tooltip" title="
+Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)">(i)</span>
+</h3>
+</div>
+<div class="col_2 pt_10 right">
+<span>
+<a href="matches?userid=150716" class="btn" title="Statistiken anzeigen">Statistiken »</a>
+</span>
+</div>
+</div>
+<table class="coolTable" border="0">
+<tr>
+<th>Datum</th>
+<th>Veranstaltung <a href="javascript:closeall()" id="closealllink" title="alle Detailinformationen ausblenden">[&uarr;&uarr;]</a></th>
+<th class="tooltip" title="&Auml;nderungskonstante">&Auml;k</th>
+<th class="tooltip" title="Spiele">Sp</th>
+<th class="tooltip" title="Siege">Si</th>
+<th class="tooltip" title="Gewinnerwartung">GE</th>
+<th>Typ</th>
+<th>TTR</th>
+<th style="font-weight: bold; text-align: center; width: 30px;">+/-</th>
+</tr>
+<tr>
+<td>01.05.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302352620,'eventdiv1');" class="trigger2" title="Details anzeigen">Deutsche Einzelmeisterschaften Senioren - Senioren 40</a>
+</td>
+<td>16</td>	
+<td>3</td>
+<td>0</td>
+<td>1,271</td>
+<td>
+Turnier
+</td>
+<td>1934</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv1" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.04.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(302217600,'eventdiv2');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : TTC Langen 1950 II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,981</td>
+<td>
+Team
+</td>
+<td>1934</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv2" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301842574,'eventdiv3');" class="trigger2" title="Details anzeigen">Hessische Einzelmeisterschaften Senioren - Senioren 40</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>4</td>
+<td>4,487</td>
+<td>
+Turnier
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv3" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301756865,'eventdiv4');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : TV 1874 Bergen-Enkheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,548</td>
+<td>
+Team
+</td>
+<td>1935</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv4" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301709204,'eventdiv5');" class="trigger2" title="Details anzeigen">VL-Herren | SV Al. 1907 Königstädten : TSV Nieder-Ramstadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,430</td>
+<td>
+Team
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv5" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.03.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301568050,'eventdiv6');" class="trigger2" title="Details anzeigen">VL-Herren | TTC Nieder-Roden II : TSV Nieder-Ramstadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,523</td>
+<td>
+Team
+</td>
+<td>1950</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv6" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(301124416,'eventdiv7');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : TV 1874 Bergen-Enkheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,493</td>
+<td>
+Team
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv7" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.01.2015</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300992404,'eventdiv8');" class="trigger2" title="Details anzeigen">VL-Herren | SV Darmstadt 98 : TSV Nieder-Ramstadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,203</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv8" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.12.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300647666,'eventdiv9');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : TTC Langen 1950 II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,221</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv9" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.11.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(300159993,'eventdiv10');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : SV Al. 1907 Königstädten</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,433</td>
+<td>
+Team
+</td>
+<td>1940</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv10" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299863295,'eventdiv11');" class="trigger2" title="Details anzeigen">Bezirkseinzelmeisterschaften Süd Erwachsene - Senioren 40</a>
+</td>
+<td>16</td>	
+<td>5</td>
+<td>4</td>
+<td>4,580</td>
+<td>
+Turnier
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv11" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299725871,'eventdiv12');" class="trigger2" title="Details anzeigen">VL-Herren | SV Vikt. Preußen II : TSV Nieder-Ramstadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,507</td>
+<td>
+Team
+</td>
+<td>1973</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-24
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv12" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299613395,'eventdiv13');" class="trigger2" title="Details anzeigen">VL-Herren | TV 1874 Bergen-Enkheim : TSV Nieder-Ramstadt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,652</td>
+<td>
+Team
+</td>
+<td>1983</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv13" ></div> 
+</td>
+</tr>	
+<tr>
+<td>11.10.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299595273,'eventdiv14');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : TTC Nieder-Roden II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,601</td>
+<td>
+Team
+</td>
+<td>1977</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv14" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299308104,'eventdiv15');" class="trigger2" title="Details anzeigen">VL-Herren | TSV Nieder-Ramstadt : SV Darmstadt 98</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,243</td>
+<td>
+Team
+</td>
+<td>1965</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv15" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.09.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(299085518,'eventdiv16');" class="trigger2" title="Details anzeigen">Kreiseinzelmeisterschaften Darmstadt-Dieburg Erwachsene - Senioren 40</a>
+</td>
+<td>16</td>	
+<td>4</td>
+<td>4</td>
+<td>3,915</td>
+<td>
+Turnier
+</td>
+<td>1964</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv16" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>22.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(52252226,'eventdiv17');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC Langen 1950</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,565</td>
+<td>
+Team
+</td>
+<td>1973</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv17" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.02.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(30390250,'eventdiv18');" class="trigger2" title="Details anzeigen">OL-Herren | TuS 1884 Kriftel : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,450</td>
+<td>
+Team
+</td>
+<td>1964</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv18" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2014</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29992923,'eventdiv19');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC RhönSprudel Fulda-Maberzell II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,150</td>
+<td>
+Team
+</td>
+<td>1966</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv19" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29462976,'eventdiv20');" class="trigger2" title="Details anzeigen">OL-Herren | TTC RhönSprudel Fulda-Maberzell II : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,439</td>
+<td>
+Team
+</td>
+<td>1957</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv20" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29438812,'eventdiv21');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TSV Besse</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,462</td>
+<td>
+Team
+</td>
+<td>1948</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv21" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.11.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(29178132,'eventdiv22');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TG 05 Nieder-Roden II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,531</td>
+<td>
+Team
+</td>
+<td>1956</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv22" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.10.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28487533,'eventdiv23');" class="trigger2" title="Details anzeigen">OL-Herren | DJK Blau-Weiß Münster : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,546</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv23" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28304251,'eventdiv24');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TuS 1884 Kriftel</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,508</td>
+<td>
+Team
+</td>
+<td>1941</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv24" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.09.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(28286574,'eventdiv25');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : SVH 1945 Kassel</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,608</td>
+<td>
+Team
+</td>
+<td>1951</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv25" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>04.05.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27735111,'eventdiv26');" class="trigger2" title="Details anzeigen">Zweier-Mannschafts-Turnier für Jugendliche und Zweier-Mannschafts-Nachtturnier für Erwachsene - Herren A</a>
+</td>
+<td>16</td>	
+<td>8</td>
+<td>7</td>
+<td>7,032</td>
+<td>
+Turnier
+</td>
+<td>1952</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv26" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27703990,'eventdiv27');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TV 1846 Erbenheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,823</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv27" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27612849,'eventdiv28');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC 1947 Elz</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,229</td>
+<td>
+Team
+</td>
+<td>1953</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv28" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.04.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27485637,'eventdiv29');" class="trigger2" title="Details anzeigen">OL-Herren | TG 1860 Obertshausen : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,337</td>
+<td>
+Team
+</td>
+<td>1958</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv29" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27339847,'eventdiv30');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : DJK Blau-Weiß Münster</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,659</td>
+<td>
+Team
+</td>
+<td>1953</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv30" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.03.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(27323542,'eventdiv31');" class="trigger2" title="Details anzeigen">OL-Herren | SV Vikt. Preußen II : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,282</td>
+<td>
+Team
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv31" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26806379,'eventdiv32');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TuS 1884 Kriftel</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,416</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv32" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26777970,'eventdiv33');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Langen 1950 : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,454</td>
+<td>
+Team
+</td>
+<td>1940</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv33" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26473409,'eventdiv34');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC Dorchheim-H.</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,797</td>
+<td>
+Team
+</td>
+<td>1937</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv34" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.02.2013</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(26458147,'eventdiv35');" class="trigger2" title="Details anzeigen">OL-Herren | TTC RW 1921 Biebrich : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,642</td>
+<td>
+Team
+</td>
+<td>1947</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv35" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.12.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25744073,'eventdiv36');" class="trigger2" title="Details anzeigen">OL-Herren | DJK Blau-Weiß Münster : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,446</td>
+<td>
+Team
+</td>
+<td>1954</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv36" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25490684,'eventdiv37');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC Langen 1950</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,416</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv37" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25203005,'eventdiv38');" class="trigger2" title="Details anzeigen">OL-Herren | TuS 1884 Kriftel : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,904</td>
+<td>
+Team
+</td>
+<td>1943</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv38" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.11.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(25169289,'eventdiv39');" class="trigger2" title="Details anzeigen">OL-Herren | TV 1846 Erbenheim : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>1,000</td>
+<td>
+Team
+</td>
+<td>1943</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv39" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.10.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24764566,'eventdiv40');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Dorchheim-H. : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,696</td>
+<td>
+Team
+</td>
+<td>1938</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv40" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24589413,'eventdiv41');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : TTC RW 1921 Biebrich</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,465</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv41" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24564213,'eventdiv42');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1947 Elz : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,405</td>
+<td>
+Team
+</td>
+<td>1935</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv42" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24249167,'eventdiv43');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : SV Vikt. Preußen II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,413</td>
+<td>
+Team
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv43" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.09.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(24186213,'eventdiv44');" class="trigger2" title="Details anzeigen">VL-Herren | TTC 1957 Lampertheim II : TTV TOPSPIN Lorsch</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,271</td>
+<td>
+Team
+</td>
+<td>1930</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv44" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>15.04.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23855005,'eventdiv45');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC RW 1921 Biebrich</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,248</td>
+<td>
+Team
+</td>
+<td>1934</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv45" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23477463,'eventdiv46');" class="trigger2" title="Details anzeigen">OL-Herren | TuS 1884 Kriftel : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,443</td>
+<td>
+Team
+</td>
+<td>1941</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv46" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.03.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23213620,'eventdiv47');" class="trigger2" title="Details anzeigen">OL-Herren | TTC G.-W. Staffel 1953 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,425</td>
+<td>
+Team
+</td>
+<td>1948</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv47" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.02.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(23046909,'eventdiv48');" class="trigger2" title="Details anzeigen">OL-Herren | TG 1860 Obertshausen II : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,524</td>
+<td>
+Team
+</td>
+<td>1940</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv48" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.02.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22733097,'eventdiv49');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC Langen 1950</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,434</td>
+<td>
+Team
+</td>
+<td>1947</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv49" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22593926,'eventdiv50');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC 1947 Elz</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,383</td>
+<td>
+Team
+</td>
+<td>1953</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv50" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.01.2012</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22358897,'eventdiv51');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC Ober-Erlenbach 1987</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,102</td>
+<td>
+Team
+</td>
+<td>1955</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv51" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.12.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22117568,'eventdiv52');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1947 Elz : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,613</td>
+<td>
+Team
+</td>
+<td>1965</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv52" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.12.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(22023313,'eventdiv53');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TuS 1884 Kriftel</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,863</td>
+<td>
+Team
+</td>
+<td>1963</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv53" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21747182,'eventdiv54');" class="trigger2" title="Details anzeigen">OL-Herren | TTC RW 1921 Biebrich : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,617</td>
+<td>
+Team
+</td>
+<td>1957</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv54" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.11.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21735756,'eventdiv55');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC G.-W. Staffel 1953</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,324</td>
+<td>
+Team
+</td>
+<td>1946</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv55" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21030352,'eventdiv56');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Langen 1950 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,705</td>
+<td>
+Team
+</td>
+<td>1957</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv56" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(21013651,'eventdiv57');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : DJK Blau-Weiß Münster</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,084</td>
+<td>
+Team
+</td>
+<td>1958</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv57" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20398252,'eventdiv58');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TG 1860 Obertshausen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,345</td>
+<td>
+Team
+</td>
+<td>1948</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv58" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.09.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20394260,'eventdiv59');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Ober-Erlenbach 1987 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,046</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv59" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.08.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20343040,'eventdiv60');" class="trigger2" title="Details anzeigen">Kreiseinzelmeisterschaften Bergstraße Damen/Herren - Herren</a>
+</td>
+<td>16</td>	
+<td>6</td>
+<td>5</td>
+<td>4,960</td>
+<td>
+Turnier
+</td>
+<td>1948</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv60" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>10.04.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(20162686,'eventdiv61');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Langen 1950 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,411</td>
+<td>
+Team
+</td>
+<td>1955</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv61" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19818428,'eventdiv62');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TuS 1884 Kriftel</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,140</td>
+<td>
+Team
+</td>
+<td>1957</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv62" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.03.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19672696,'eventdiv63');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC 1947 Elz</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,602</td>
+<td>
+Team
+</td>
+<td>1951</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv63" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(19212996,'eventdiv64');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC Blau Gold Bad Homburg</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,870</td>
+<td>
+Team
+</td>
+<td>1949</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv64" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18949984,'eventdiv65');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : SG 1862 Anspach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,580</td>
+<td>
+Team
+</td>
+<td>1942</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv65" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.02.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18923315,'eventdiv66');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Ober-Erlenbach 1987 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,695</td>
+<td>
+Team
+</td>
+<td>1937</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv66" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18804554,'eventdiv67');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,402</td>
+<td>
+Team
+</td>
+<td>1927</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv67" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.01.2011</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(18649913,'eventdiv68');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : DJK B.-W. 1956 Münster</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,966</td>
+<td>
+Team
+</td>
+<td>1926</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv68" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17698852,'eventdiv69');" class="trigger2" title="Details anzeigen">OL-Herren | TuS 1884 Kriftel : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,072</td>
+<td>
+Team
+</td>
+<td>1943</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv69" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.11.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17677461,'eventdiv70');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1947 Elz : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,771</td>
+<td>
+Team
+</td>
+<td>1939</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv70" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17447114,'eventdiv71');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TG 05 Nieder-Roden</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,237</td>
+<td>
+Team
+</td>
+<td>1943</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv71" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17271536,'eventdiv72');" class="trigger2" title="Details anzeigen">OL-Herren | SG 1862 Anspach : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,274</td>
+<td>
+Team
+</td>
+<td>1931</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv72" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17249258,'eventdiv73');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Blau Gold Bad Homburg : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,004</td>
+<td>
+Team
+</td>
+<td>1931</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv73" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.10.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(17121403,'eventdiv74');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC Ober-Erlenbach 1987</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,868</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv74" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16625632,'eventdiv75');" class="trigger2" title="Details anzeigen">OL-Herren | DJK B.-W. 1956 Münster : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,875</td>
+<td>
+Team
+</td>
+<td>1927</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv75" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.09.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16613615,'eventdiv76');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,189</td>
+<td>
+Team
+</td>
+<td>1930</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv76" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>24.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16413823,'eventdiv77');" class="trigger2" title="Details anzeigen">OL-Herren | SG 1862 Anspach : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,629</td>
+<td>
+Team
+</td>
+<td>1940</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv77" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16367342,'eventdiv78');" class="trigger2" title="Details anzeigen">OL-Herren | SV Darmstadt 98 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,359</td>
+<td>
+Team
+</td>
+<td>1962</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv78" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.04.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16352553,'eventdiv79');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1947 Elz II : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,883</td>
+<td>
+Team
+</td>
+<td>1960</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv79" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(16118102,'eventdiv80');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC Blau Gold Bad Homburg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,170</td>
+<td>
+Team
+</td>
+<td>1963</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv80" ></div> 
+</td>
+</tr>	
+<tr>
+<td>20.03.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15985358,'eventdiv81');" class="trigger2" title="Details anzeigen">OL-Herren | DJK B.-W. 1956 Münster : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,431</td>
+<td>
+Team
+</td>
+<td>1954</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv81" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15519196,'eventdiv82');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : SV RW 1921 Biebrich</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,094</td>
+<td>
+Team
+</td>
+<td>1955</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv82" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15382671,'eventdiv83');" class="trigger2" title="Details anzeigen">OL-Herren | Spvgg. 07 Hochheim : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,221</td>
+<td>
+Team
+</td>
+<td>1959</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv83" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.02.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15158833,'eventdiv84');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC 1957 Lampertheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,631</td>
+<td>
+Team
+</td>
+<td>1937</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv84" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(15041992,'eventdiv85');" class="trigger2" title="Details anzeigen">OL-Herren | TTC G.-W. Staffel 1953 : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,893</td>
+<td>
+Team
+</td>
+<td>1919</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv85" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.01.2010</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14895273,'eventdiv86');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TG 05 Nieder-Roden</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,682</td>
+<td>
+Team
+</td>
+<td>1930</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv86" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14321380,'eventdiv87');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : SG 1862 Anspach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,702</td>
+<td>
+Team
+</td>
+<td>1941</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv87" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14196269,'eventdiv88');" class="trigger2" title="Details anzeigen">OL-Herren | TTC 1957 Lampertheim : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,669</td>
+<td>
+Team
+</td>
+<td>1936</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv88" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(14054418,'eventdiv89');" class="trigger2" title="Details anzeigen">OL-Herren | SV RW 1921 Biebrich : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,501</td>
+<td>
+Team
+</td>
+<td>1944</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv89" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13860670,'eventdiv90');" class="trigger2" title="Details anzeigen">RL-Herren | SV 1896 Mörlenbach : TTC RW 1921 Biebrich</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,269</td>
+<td>
+Team
+</td>
+<td>1948</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv90" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.11.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13780706,'eventdiv91');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC 1947 Elz II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,932</td>
+<td>
+Team
+</td>
+<td>1931</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+17
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv91" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13631330,'eventdiv92');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : DJK B.-W. 1956 Münster</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,080</td>
+<td>
+Team
+</td>
+<td>1932</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv92" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.10.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(13303294,'eventdiv93');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Blau Gold Bad Homburg : SV 1896 Mörlenbach</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,917</td>
+<td>
+Team
+</td>
+<td>1947</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv93" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12947061,'eventdiv94');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : TTC G.-W. Staffel 1953</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,117</td>
+<td>
+Team
+</td>
+<td>1933</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv94" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.09.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12888892,'eventdiv95');" class="trigger2" title="Details anzeigen">OL-Herren | SV 1896 Mörlenbach : SV Darmstadt 98</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,339</td>
+<td>
+Team
+</td>
+<td>1954</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-21
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv95" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>15.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12104668,'eventdiv96');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : TTF Liebherr Ochsenhausen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,663</td>
+<td>
+Team
+</td>
+<td>1933</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+21
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv96" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(12091339,'eventdiv97');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : TTC Gnadental</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,183</td>
+<td>
+Team
+</td>
+<td>1936</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv97" ></div> 
+</td>
+</tr>	
+<tr>
+<td>07.03.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11935225,'eventdiv98');" class="trigger2" title="Details anzeigen">OL-Herren | SV Ottenau : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,569</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv98" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11197699,'eventdiv99');" class="trigger2" title="Details anzeigen">OL-Herren | TTF Rastatt : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,666</td>
+<td>
+Team
+</td>
+<td>1956</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv99" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.01.2009</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(11179382,'eventdiv100');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : SC Buchenbach</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,823</td>
+<td>
+Team
+</td>
+<td>1953</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv100" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10636651,'eventdiv101');" class="trigger2" title="Details anzeigen">OL-Herren | TTF Liebherr Ochsenhausen II : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,235</td>
+<td>
+Team
+</td>
+<td>1957</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv101" ></div> 
+</td>
+</tr>	
+<tr>
+<td>22.11.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(10489461,'eventdiv102');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : VFR Birkmannsweiler</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,948</td>
+<td>
+Team
+</td>
+<td>1956</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv102" ></div> 
+</td>
+</tr>	
+<tr>
+<td>05.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9657374,'eventdiv103');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : TTC Müller Frickenhausen/Würzburg II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,801</td>
+<td>
+Team
+</td>
+<td>1969</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv103" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.10.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9649508,'eventdiv104');" class="trigger2" title="Details anzeigen">OL-Herren | TV Mosbach : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,970</td>
+<td>
+Team
+</td>
+<td>1969</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv104" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9267930,'eventdiv105');" class="trigger2" title="Details anzeigen">OL-Herren | SC Buchenbach : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>0,877</td>
+<td>
+Team
+</td>
+<td>1951</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv105" ></div> 
+</td>
+</tr>	
+<tr>
+<td>13.09.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(9255008,'eventdiv106');" class="trigger2" title="Details anzeigen">OL-Herren | TSG 1845 Heilbronn : TTF Rastatt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,155</td>
+<td>
+Team
+</td>
+<td>1953</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv106" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>20.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8947371,'eventdiv107');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : TSV Untermberg Tischtennis</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,494</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv107" ></div> 
+</td>
+</tr>	
+<tr>
+<td>12.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8839704,'eventdiv108');" class="trigger2" title="Details anzeigen">RL-Herren | DJK SPORTBUND Stuttgart : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,854</td>
+<td>
+Team
+</td>
+<td>1943</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv108" ></div> 
+</td>
+</tr>	
+<tr>
+<td>06.04.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8729321,'eventdiv109');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : ITTC Sachsen Döbeln III</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,132</td>
+<td>
+Team
+</td>
+<td>1945</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv109" ></div> 
+</td>
+</tr>	
+<tr>
+<td>09.03.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(8327082,'eventdiv110');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : SV Neckarsulm</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,311</td>
+<td>
+Team
+</td>
+<td>1950</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv110" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.02.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7625275,'eventdiv111');" class="trigger2" title="Details anzeigen">RL-Herren | DJK Offenburg : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,811</td>
+<td>
+Team
+</td>
+<td>1947</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv111" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.01.2008</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7559949,'eventdiv112');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : Post SV Traunstein</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,418</td>
+<td>
+Team
+</td>
+<td>1938</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv112" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7133737,'eventdiv113');" class="trigger2" title="Details anzeigen">RL-Herren | Post SV Traunstein : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,602</td>
+<td>
+Team
+</td>
+<td>1932</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv113" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.12.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(7061154,'eventdiv114');" class="trigger2" title="Details anzeigen">RL-Herren | SV Neckarsulm : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>1</td>
+<td>0,620</td>
+<td>
+Team
+</td>
+<td>1926</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv114" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6921371,'eventdiv115');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : DJK Offenburg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,678</td>
+<td>
+Team
+</td>
+<td>1921</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv115" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.11.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6911612,'eventdiv116');" class="trigger2" title="Details anzeigen">RL-Herren | TSV Untermberg Tischtennis : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,954</td>
+<td>
+Team
+</td>
+<td>1920</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv116" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(6258376,'eventdiv117');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : DJK SPORTBUND Stuttgart</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>0,290</td>
+<td>
+Team
+</td>
+<td>1925</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv117" ></div> 
+</td>
+</tr>	
+<tr>
+<td>30.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5829598,'eventdiv118');" class="trigger2" title="Details anzeigen">RL-Herren | ITTC Sachsen Döbeln II : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,014</td>
+<td>
+Team
+</td>
+<td>1925</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv118" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5812734,'eventdiv119');" class="trigger2" title="Details anzeigen">RL-Herren | ITTC Sachsen Döbeln III : TSG 1845 Heilbronn</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>0,960</td>
+<td>
+Team
+</td>
+<td>1924</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv119" ></div> 
+</td>
+</tr>	
+<tr>
+<td>16.09.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5609545,'eventdiv120');" class="trigger2" title="Details anzeigen">RL-Herren | TSG 1845 Heilbronn : TTC Weinheim </a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,173</td>
+<td>
+Team
+</td>
+<td>1927</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv120" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>21.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5291541,'eventdiv121');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : TSG 1845 Heilbronn II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,947</td>
+<td>
+Team
+</td>
+<td>1926</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv121" ></div> 
+</td>
+</tr>	
+<tr>
+<td>14.04.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5218799,'eventdiv122');" class="trigger2" title="Details anzeigen">LL-Herren | SV Horrheim : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,952</td>
+<td>
+Team
+</td>
+<td>1925</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv122" ></div> 
+</td>
+</tr>	
+<tr>
+<td>31.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(5079709,'eventdiv123');" class="trigger2" title="Details anzeigen">LL-Herren | TGV Eintracht Abstatt : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,870</td>
+<td>
+Team
+</td>
+<td>1923</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv123" ></div> 
+</td>
+</tr>	
+<tr>
+<td>24.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4970559,'eventdiv124');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : TSV Weinsberg</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,867</td>
+<td>
+Team
+</td>
+<td>1921</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv124" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4820508,'eventdiv125');" class="trigger2" title="Details anzeigen">LL-Herren | VFL Brackenheim : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,538</td>
+<td>
+Team
+</td>
+<td>1914</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv125" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4690992,'eventdiv126');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : SV Neckarsulm II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>1</td>
+<td>1,328</td>
+<td>
+Team
+</td>
+<td>1919</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv126" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.03.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4544980,'eventdiv127');" class="trigger2" title="Details anzeigen">LL-Herren | TGV Eintracht Beilstein : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,433</td>
+<td>
+Team
+</td>
+<td>1910</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv127" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.02.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(4095364,'eventdiv128');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : SpVgg Gröningen-Satteldorf</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,192</td>
+<td>
+Team
+</td>
+<td>1897</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv128" ></div> 
+</td>
+</tr>	
+<tr>
+<td>27.01.2007</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3949024,'eventdiv129');" class="trigger2" title="Details anzeigen">LL-Herren | TSV Schwieberdingen : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,386</td>
+<td>
+Team
+</td>
+<td>1919</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv129" ></div> 
+</td>
+</tr>	
+<tr>
+<td>02.12.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3466308,'eventdiv130');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : SV Horrheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,943</td>
+<td>
+Team
+</td>
+<td>1918</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv130" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3330486,'eventdiv131');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : TGV Eintracht Beilstein</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,615</td>
+<td>
+Team
+</td>
+<td>1912</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv131" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3192402,'eventdiv132');" class="trigger2" title="Details anzeigen">LL-Herren | TSV Weinsberg : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,614</td>
+<td>
+Team
+</td>
+<td>1906</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv132" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(3181662,'eventdiv133');" class="trigger2" title="Details anzeigen">LL-Herren | SpVgg Gröningen-Satteldorf : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>1</td>
+<td>0</td>
+<td>0,458</td>
+<td>
+Team
+</td>
+<td>1913</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-7
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv133" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2932608,'eventdiv134');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : TGV Eintracht Abstatt</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,706</td>
+<td>
+Team
+</td>
+<td>1908</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+5
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv134" ></div> 
+</td>
+</tr>	
+<tr>
+<td>28.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2824836,'eventdiv135');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : VFL Brackenheim</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,512</td>
+<td>
+Team
+</td>
+<td>1900</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv135" ></div> 
+</td>
+</tr>	
+<tr>
+<td>21.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2701170,'eventdiv136');" class="trigger2" title="Details anzeigen">LL-Herren | TSG Steinheim/M. II : TSV Schwieberdingen</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>0</td>
+<td>1,435</td>
+<td>
+Team
+</td>
+<td>1923</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-23
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv136" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2493850,'eventdiv137');" class="trigger2" title="Details anzeigen">LL-Herren | SV Neckarsulm II : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,934</td>
+<td>
+Team
+</td>
+<td>1922</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv137" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.09.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(2193150,'eventdiv138');" class="trigger2" title="Details anzeigen">LL-Herren | TSG 1845 Heilbronn II : TSG Steinheim/M. II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,925</td>
+<td>
+Team
+</td>
+<td>1921</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv138" ></div> 
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
+<tr>
+<td>08.04.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1858198,'eventdiv139');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : KSG Gerlingen II</a>
+</td>
+<td>16</td>	
+<td>2</td>
+<td>2</td>
+<td>1,923</td>
+<td>
+Team
+</td>
+<td>1920</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv139" ></div> 
+</td>
+</tr>	
+<tr>
+<td>01.04.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1811993,'eventdiv140');" class="trigger2" title="Details anzeigen">OL-Herren | TSG Steinheim/M. : ESV Weil</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>0,887</td>
+<td>
+Team
+</td>
+<td>1898</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+22
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv140" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.03.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1714886,'eventdiv141');" class="trigger2" title="Details anzeigen">BL-Herren | GSV Hemmingen : TSG Steinheim/M. II</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,787</td>
+<td>
+Team
+</td>
+<td>1894</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv141" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.03.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1652434,'eventdiv142');" class="trigger2" title="Details anzeigen">OL-Herren | TSG Steinheim/M. : TSV Untermberg Tischtennis</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,550</td>
+<td>
+Team
+</td>
+<td>1885</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+9
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv142" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.03.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1514309,'eventdiv143');" class="trigger2" title="Details anzeigen">OL-Herren | TSG Steinheim/M. : SV Ottenau</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,690</td>
+<td>
+Team
+</td>
+<td>1879</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv143" ></div> 
+</td>
+</tr>	
+<tr>
+<td>19.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1452862,'eventdiv144');" class="trigger2" title="Details anzeigen">BL-Herren | TTC73 Oberderdingen : TSG Steinheim/M. II</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>1</td>
+<td>0,978</td>
+<td>
+Team
+</td>
+<td>1879</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="normal">
+0
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv144" ></div> 
+</td>
+</tr>	
+<tr>
+<td>18.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1448829,'eventdiv145');" class="trigger2" title="Details anzeigen">OL-Herren | TTC Lippoldsweiler : TSG Steinheim/M.</a>
+</td>
+<td>20</td>	
+<td>1</td>
+<td>0</td>
+<td>0,477</td>
+<td>
+Team
+</td>
+<td>1889</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv145" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1343428,'eventdiv146');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : SPVGG. Besigheim</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,818</td>
+<td>
+Team
+</td>
+<td>1885</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv146" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1318681,'eventdiv147');" class="trigger2" title="Details anzeigen">BL-Herren | TSV Korntal II : TSG Steinheim/M. II</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,855</td>
+<td>
+Team
+</td>
+<td>1882</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+3
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv147" ></div> 
+</td>
+</tr>	
+<tr>
+<td>03.02.2006</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1296817,'eventdiv148');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : TSV Bietigheim</a>
+</td>
+<td>20</td>	
+<td>2</td>
+<td>2</td>
+<td>1,812</td>
+<td>
+Team
+</td>
+<td>1878</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv148" ></div> 
+</td>
+</tr>	
+<tr>
+<td>10.12.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(1050784,'eventdiv149');" class="trigger2" title="Details anzeigen">BL-Herren | KSG Gerlingen II : TSG Steinheim/M. II</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,736</td>
+<td>
+Team
+</td>
+<td>1872</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv149" ></div> 
+</td>
+</tr>	
+<tr>
+<td>26.11.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(958457,'eventdiv150');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : TV Markgröningen</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,767</td>
+<td>
+Team
+</td>
+<td>1866</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv150" ></div> 
+</td>
+</tr>	
+<tr>
+<td>04.11.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(755659,'eventdiv151');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : TTV Kirchheim/N.</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,730</td>
+<td>
+Team
+</td>
+<td>1860</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv151" ></div> 
+</td>
+</tr>	
+<tr>
+<td>29.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(735035,'eventdiv152');" class="trigger2" title="Details anzeigen">BL-Herren | TSV Bietigheim : TSG Steinheim/M. II</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,506</td>
+<td>
+Team
+</td>
+<td>1848</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv152" ></div> 
+</td>
+</tr>	
+<tr>
+<td>23.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(679771,'eventdiv153');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : GSV Hemmingen</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,531</td>
+<td>
+Team
+</td>
+<td>1837</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv153" ></div> 
+</td>
+</tr>	
+<tr>
+<td>15.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(610718,'eventdiv154');" class="trigger2" title="Details anzeigen">BL-Herren | TSF Ditzingen : TSG Steinheim/M. II</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,549</td>
+<td>
+Team
+</td>
+<td>1826</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv154" ></div> 
+</td>
+</tr>	
+<tr>
+<td>08.10.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(547259,'eventdiv155');" class="trigger2" title="Details anzeigen">BL-Herren | TSG Steinheim/M. II : TSV Korntal II</a>
+</td>
+<td>24</td>	
+<td>2</td>
+<td>2</td>
+<td>1,533</td>
+<td>
+Team
+</td>
+<td>1815</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv155" ></div> 
+</td>
+</tr>	
+<tr>
+<td>25.09.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(407122,'eventdiv156');" class="trigger2" title="Details anzeigen">OL-Herren | TSG Steinheim/M. : TTF Rastatt</a>
+</td>
+<td>24</td>	
+<td>1</td>
+<td>1</td>
+<td>0,394</td>
+<td>
+Team
+</td>
+<td>1800</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+15
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv156" ></div> 
+</td>
+</tr>	
+<tr>
+<td>17.09.2005</td>
+<td style="width: 550px;"><a href="javascript:openmoreinfos(338999,'eventdiv157');" class="trigger2" title="Details anzeigen">OL-Herren | SV Ottenau : TSG Steinheim/M.</a>
+</td>
+<td>24</td>	
+<td>1</td>
+<td>1</td>
+<td>0,177</td>
+<td>
+Team
+</td>
+<td>1780</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+20
+</span>
+</td>
+</tr>	
+<tr><td colspan="9" style="display: none;"></td></tr>
+<tr>
+<td colspan="9" style="margin: 0; padding: 0;">
+<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv157" ></div> 
+</td>
+</tr>	
+</table>
+<script type="text/javascript" charset="utf-8">
+jQuery(".toggle_container").hide();
+// jQuery(".trigger2").click(function(){
+// jQuery(this).toggleClass("active").next().delay(300).slideToggle("slow");
+// });
+</script>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="whitebox_fx mt_30">
+<div class="grid">
+<div class="whitebox_container">
+<div class="grid_12">
+<div class="bg_spon_top"></div>
+<div class="sponbox">
+<a href="http://www.mytischtennis.de/countandredirect/2-0001/" class="spon01">Joola</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0185/" class="spon03">Schöler Micke</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0186/" class="spon04">andro</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="bg_spon_bottom"></div>
+</div> 
+</div>
+</div>
+</div>
+<div class="graybox_fx">
+<div class="grid">
+<div class="graybox_container">
+<div class="graybox_content">
+<div class="graybox_list01">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+<li><a href="faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+</ul>
+</div>
+<div class="graybox_list02">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx bg_ci_orange">
+<div class="grid">
+<div class="onbottomnavi">
+<div class="center">
+<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div> 
+</div>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html> 

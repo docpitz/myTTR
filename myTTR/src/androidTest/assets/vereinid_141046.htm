@@ -1,0 +1,3158 @@
+<!DOCTYPE html>
+<html><head>
+<title>JOOLA-Rangliste | Ranglisten + Statistiken
+| Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="" />
+<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+<script type="text/javascript" charset="utf-8">
+var tooltipdataSaved;
+var tooltipdataSavedHtml;
+var tooltipdataString;
+var positionOfTooltip;
+var writeToDB = false;
+var ajaxTooltipConfig = {
+over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+};
+function ajaxTooliIn() {
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if(tooltipdata[3]!= undefined){
+writeToDB = true;
+}
+//console.log(writeToDB);
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+var positionOfTooltip = jQuery(this).next(".bigtooltip");
+//console.log(positionOfTooltip);
+if(tooltipdataString != tooltipdataSaved) {
+jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+tooltipdataSaved = tooltipdataString;
+jQuery.ajax({
+url: url,
+cache: false,
+success: function(html){
+tooltipdataSavedHtml = html;
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+});
+}
+else {
+//use last call again
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+}
+function ajaxTooliOut() {
+// do nothing
+}
+function initToolTips () {
+//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+//use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+}
+function reInitToolTips() {
+console.log('jetzt');
+jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+}
+jQuery(document).ready(function($) {
+$(".openoverlay[rel]").overlay({
+mask: {
+color: '#000'
+},
+//fixed: false,
+top: '20%'
+});
+initToolTips();
+/* Local Scroll */
+$.localScroll();
+/* Back to Top */
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+jQuery().UItoTop({ easingType: 'easeOutQuart' });
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<!-- Start: GPT Sync -->
+<script src="http://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+</script>
+<script type='text/javascript'>
+var gptadslots=[];
+(function(){
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+<script type="text/javascript">
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+//Adslot 2 declaration
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+//Adslot 3 declaration
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+var crtg_split = (crtg_content || '').split(';');
+var pubads = googletag.pubads();
+for (var i=1;i<crtg_split.length;i++){
+pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+}
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>
+<!-- End: GPT -->
+<style>
+/**center fix for super banner**/
+#ligatusframe_47919{
+width: auto!important;
+}
+</style>
+<script type="text/javascript"> var sdm_vers = 2 ; </script>
+<script 
+type="text/javascript" 
+src="//cdn.stroeerdigitalmedia.de/praeludium/praeludium_mytischtennis.js">
+</script>
+</head>
+<body class="community">
+<!-- Version: 3.1.5 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"comm", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/ranking.cfm?verein=Borussia+D%C3%BCsseldorf&vereinId=141046%2CWTTV" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="ontopbar_fx bg_ci_orange">
+<div class="grid">
+<div class="ontopbar">
+<div class="grid_3 fl">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+Premium bis 09.11.2015
+</a>
+</div>
+<div class="grid_9 fr right">
+<a href="/community/friends" class="btn link_ontopbar orange">
+<i class="icon-group"></i> 
+</a>
+<a href="/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="btn link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<span class="usertext_ontopbar">Jürgen Melzer</span>
+</a>
+<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx">
+<div class="grid clearfix">
+<div class="header_container">
+<div class="col_12">
+<div class="grid_7">
+<h1 class="mt_30">
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png">
+</a>
+</h1>
+<div class="wfm_logo"></div>
+</div>
+<div class="grid_5">
+<ul class="nav_ontop">
+<li class="mr_5">
+<a href="http://www.mytischtennis.de/public/" class="nav_01" title="Portal">Portal</a>
+</li>
+<li>
+<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navi_fx" id="sticky_navigation">
+<div class="grid">
+<div class="navi_container">
+<ul class="menu ml_10 noprint">
+<li id="Home"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a>
+</li>
+<li id="Profil"><a href="http://www.mytischtennis.de/community/personalprofil" title="Profil">Profil</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+<li><a href="http://www.mytischtennis.de/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/userSettings.cfm" title="Einstellungen">Einstellungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+</ul>
+</li>
+<li id="Teamsport"><a href="http://www.mytischtennis.de/community/showclubinfo" title="Teamsport">Teamsport</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/showclubinfo" title="Verein">Verein</a></li>
+<li><a href="http://www.mytischtennis.de/community/group" title="Liga">Liga</a></li>
+<li><a href="http://www.mytischtennis.de/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</li>
+<li id="Ranglisten" class="current"><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+<ul>
+<li class="current"><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+<li><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li><a href="http://www.mytischtennis.de/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+<li><a href="http://www.mytischtennis.de/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+</ul>
+</li>
+<li id="Kalender"><a href="http://www.mytischtennis.de/community/eventcalendar" title="Turniere">Turniere</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li>
+<a name="" title="Turnierserien">Turnierserien</a>
+<ul>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+Bavarian TT-Race
+</a>
+</li>
+<li>
+<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+Rheinland Cup
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="Training"><a href="http://www.mytischtennis.de/community/uebungen" title="Training">Training</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/uebungen" title="Übungen">Übungen</a></li>
+<li><a href="http://www.mytischtennis.de/community/elearning" title="E-Learning">E-Learning</a></li>
+<li><a href="http://www.mytischtennis.de/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+<li><a href="http://www.mytischtennis.de/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+</ul>
+</li>
+<li id="Community"><a href="http://www.mytischtennis.de/community/friends" title="Community">Community
+</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/friends" title="Freunde">Freunde</a></li>
+<li><a href="http://www.mytischtennis.de/community/pendingrequests" title="Anfragen">Anfragen </a></li>
+<li><a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+<li><a href="http://www.mytischtennis.de/community/searchPerson" title="Suche">Suche</a></li>
+<li><a href="http://www.mytischtennis.de/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+</ul>
+</li>
+<li id="Services"><a href="http://www.mytischtennis.de/community/holzassistent" title="Services">Services</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+<li><a href="http://www.mytischtennis.de/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+<li><a href="http://www.mytischtennis.de/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+<li><a href="http://www.mytischtennis.de/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+</ul>
+</li>
+<li id="Premium"><a href="http://www.mytischtennis.de/community/premium" title="Premium">Premium</a>
+<ul>
+<li><a href="http://www.mytischtennis.de/community/premium" title="Infos">Infos</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/premiumsubscription.cfm" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+<li><a href="http://www.mytischtennis.de/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid pl_15 mb_10">
+<ul class="breadcrumbs">
+<li class="first"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
+<li><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+</ul>
+</div>
+<div class="grid center ontopbanner" id="topBanner">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+<div id='div-gpt-ad-995246123125863230-1'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-1');
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<div id='div-gpt-ad-995246123125863230-2'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-2');
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+<div class="content_fx">
+<div class="grid clearfix">
+<div class="content_container">
+<style type="text/css" media="screen">
+#vereinBoxWrapper, #vereinBoxWrapperP {
+position: relative;
+}
+#vereinbox, #vereinboxP {
+position: absolute;
+z-index:9999;
+top: 120px;
+width: 90%;
+left: 5%;
+}
+#vereinboxP {
+top: 110px;
+}
+</style>
+<script type="text/javascript">
+function popup(url) {
+fenster = window.open(url, "Popupfenster", "width=600,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
+fenster.focus();
+return false;
+}
+</script>
+<div id="vereininfoboxjetztanderername" class="simple_overlay"/>
+<h1>Verein suchen</h1>
+Damit wir den Verein genau zuordnen k&ouml;nnen, m&uuml;ssen Sie Ihren Verein suchen und aus der sich &ouml;ffnenden Liste ausw&auml;hlen.<br>
+<br>
+<h2>Ich finde meinen Verein nicht</h2>
+Vielleicht unterscheidet sich die Schreibweise die Sie benutzen, von der Schreibweise wie der Verein in der Datenbank angelegt ist.<br>
+<b>Beispiel</b>: Sie sind im Verein 'Gr&uuml;n Wei&szlig; Musterstadt' und suchen deshalb nach 'Gr&uuml;n Wei&szlig;' und finden Ihren Verein nicht. Vielleicht weil er in der Datenbank mit GW Musterstadt angelegt ist.<br>
+<i><b>Suchen Sie deshalb am besten nach einem Teil aus dem Verein, der i.d.R. nicht abgek&uuml;rzt wird</b></i> und w&auml;hlen dann Ihren Verein aus der Liste aus, in dem Beispiel also Musterstadt.
+</div>
+<script type="text/javascript">
+// ----------- search verein -start -----------
+function removeVereinId() {
+document.getElementById('vereinId').value = "";
+}
+jQuery(document).ready(function(){
+jQuery("#verein").livesearch({
+searchCallback: searchFunction,
+queryDelay: 500,
+innerText: "Borussia Düsseldorf",
+minimumSearchLength: 3
+});	
+});
+function searchFunction(searchTerm) {
+if(document.getElementById('verein').value!="")
+{
+jQuery('#vereinBoxWrapper').load('ajax/_vereinbox.cfm?withCssPosition=0&d='+encodeURIComponent(searchTerm), function()
+{
+// alert(encodeURIComponent(searchTerm));
+});
+setTimeout("document.getElementById('vereinbox').style.display='block';",100);
+}
+if(document.getElementById('verein').value=="")
+setTimeout("document.getElementById('vereinbox').style.display='none';",100);
+}
+function setVereinValue(typedvalue, aid) {
+document.getElementById('verein').value=typedvalue;
+document.getElementById('vereinId').value= aid;
+document.getElementById('vereinbox').style.display='none';
+}
+function deleteSelectedVerein() {
+document.getElementById('vereinId').value= "";
+document.getElementById('verein').value= "";
+$('#vereinbox').hide();
+showHideDeleteVereinButton();
+}
+function showHideDeleteVereinButton() {
+var len = $('#verein').val().length;
+if (len > 0) {
+document.getElementById('removeVereinButton').style.display = 'block';
+} else {
+document.getElementById('removeVereinButton').style.display = 'none';
+}
+}
+function removeVereinIdP() {
+document.getElementById('vereinIdPersonenSuche').value = "";
+}
+jQuery(document).ready(function(){
+jQuery("#vereinPersonenSuche").livesearch({
+searchCallback: searchFunctionP,
+queryDelay: 500,
+innerText: "",
+minimumSearchLength: 3
+});	
+});
+function searchFunctionP(searchTerm) {
+if(document.getElementById('vereinPersonenSuche').value!="")
+{
+jQuery('#vereinBoxWrapperP').load('ajax/_vereinbox.cfm?withCssPosition=0&useP=1&d='+encodeURIComponent(searchTerm), function()
+{
+// alert(encodeURIComponent(searchTerm));
+});
+setTimeout("document.getElementById('vereinboxP').style.display='block';",100);
+}
+if(document.getElementById('vereinPersonenSuche').value=="")
+setTimeout("document.getElementById('vereinboxP').style.display='none';",100);
+}
+function setVereinValueP(typedvalue, aid) {
+document.getElementById('vereinPersonenSuche').value=typedvalue;
+document.getElementById('vereinIdPersonenSuche').value= aid;
+document.getElementById('vereinboxP').style.display='none';
+}
+function deleteSelectedVereinP() {
+document.getElementById('vereinIdPersonenSuche').value= "";
+document.getElementById('vereinPersonenSuche').value= "";
+showHideDeleteVereinButtonP();
+$('#vereinboxP').hide();
+}
+function showHideDeleteVereinButtonP() {
+var len = $('#vereinPersonenSuche').val().length;
+if (len > 0) {
+document.getElementById('removeVereinButtonP').style.display = 'block';
+} else {
+document.getElementById('removeVereinButtonP').style.display = 'none';
+}
+}
+// ----------- search verein -end -----------
+function handleVerbandVereinBoxWhenEU_DE() {
+if (document.getElementById('kontinent').value == "Europa" && document.getElementById('land').value == "DE") {
+// add BG color to Box and Selector
+jQuery('#spielberechtigteDIV').addClass('markSelectedRegionVereinBox');
+jQuery('#regionVereinBox').addClass('markSelectedRegionVereinBox');
+// enable checkboxes for spielberechtigung and germansRanking
+jQuery('input[name=deutschePlusGleichgest]').removeAttr("disabled");
+jQuery('input[name=alleSpielberechtigen]').removeAttr("disabled");
+// open Verein Verband Box and make BG color
+jQuery('#regionVereinBox').slideDown();
+// if spielberechtigung is checked then verband/verein can be selected and used
+if (jQuery('input[name=alleSpielberechtigen]').is(':checked')) {
+// activate the regions selectors depending on prefilled data
+jQuery('select[name=regionPattern123]').attr('disabled', false);
+if (jQuery('select[name=regionPattern123]').val() != '') {
+jQuery('select[name=regionPattern4]').attr('disabled', false);
+if (jQuery('select[name=regionPattern4]').val() != '') {
+jQuery('select[name=regionPattern5]').attr('disabled', false);
+}
+}	
+// make the related selects data fill	
+jQuery("#rankingfilterRegion").relatedSelects({
+onChangeLoad: 'ajax/_rankingRegionSuplier.cfm?regionPattern123Marker=',
+//defaultOptionText: 'Choose an Option',
+selects: {
+'land':{ loadingMessage:'Lade' },
+'regionPattern123':{ loadingMessage:'Lade' },
+'regionPattern4':{ loadingMessage:'Lade' },
+'regionPattern5':{ loadingMessage:'Lade' }
+},
+disableIfEmpty:true,
+dataType:'html',
+onLoadingStart: function(){	
+},
+onLoadingEnd: function(){
+//used to populate hidden fields to give it back for ranking print
+jQuery("#verband").val(jQuery("#regionPattern123 option:selected").text());
+jQuery("#bezirk").val(jQuery("#regionPattern4 option:selected").text());
+jQuery("#kreis").val(jQuery("#regionPattern5 option:selected").text());
+}
+});
+// enable verein input
+jQuery('#verein').attr('disabled', false);
+} else {
+// disable selector for regions
+jQuery('select[name=regionPattern123]').attr('disabled', true);
+jQuery('select[name=regionPattern4]').attr('disabled', true);
+jQuery('select[name=regionPattern5]').attr('disabled', true);
+// disable verein input
+jQuery('#verein').attr('disabled', true);
+// empty inputs
+jQuery('#verein').val('');
+jQuery('#vereinId').val('');
+// remove delete verein button if there
+showHideDeleteVereinButton();
+}
+} else {
+jQuery('#spielberechtigteDIV').removeClass('markSelectedRegionVereinBox');
+jQuery('#regionVereinBox').removeClass('markSelectedRegionVereinBox');
+// disable and uncheck checkboxes for spielberechtigung and germansRanking
+jQuery('input[name=deutschePlusGleichgest]').attr('disabled', true);
+jQuery('input[name=deutschePlusGleichgest]').attr('checked', false);
+jQuery('input[name=alleSpielberechtigen]').attr('disabled', true);
+jQuery('input[name=alleSpielberechtigen]').attr('checked', false);
+// close Verein Verband Box and make BG color
+jQuery('#regionVereinBox').slideUp();
+}
+}
+</script>
+<style type"text/css">
+/*
+label {
+width: 80px !important;
+}
+select {
+width: 200px;
+}
+.buttons {
+margin: 5px 0px 0 0;
+text-align: right;
+}
+.rechterBereich {
+padding: 0 0 0 20px;
+}
+#verein {
+width: 165px !important;
+}
+#vereinPersonenSuche {
+width: 185px !important;
+}
+#vereinbox {
+width: 160px !important;
+border: 1px solid #ccc;
+background: #F9F9F9;
+margin-top: -4px;
+margin-left: 95px !important;
+margin-bottom: 10px;
+}
+*/
+.liausblenden {display:none;}
+/*
+.inputtext {
+width: 185px !important;
+}
+#rechteSpalte {
+margin-right: 47px;
+}
+.germansRankingDIV { width:140px;float:left;padding:10px 5px 10px 0; }
+.spielberechtigteDIV { width:140px;float:right;padding:10px 5px 10px 10px; }
+.regionVereinBoxDIV { padding: 15px 10px 5px 10px; }
+.markSelectedRegionVereinBox {
+background: #D0D0D0;
+}
+*/
+.hideOwn1429844 { display: none !important; }
+</style>
+<style type="text/css" media="screen">
+.makered1429844 {
+color: red !important;
+}
+.makered1429844 strong {
+color: red !important;
+}
+</style>
+<div class="fl grid_5">
+<div class="contentbox mb_15">
+<div class="contentbox_top bg_ci_orange fl"></div>
+<div class="content fl">
+<div class="col_full center">
+<a href="http://www.mytischtennis.de/public/ranking.cfm" style="display: block; margin-bottom: 8px;" onClick="_gaq.push(['_trackEvent', 'Community Ads', 'ranking.cfm','Joola Rangliste C']);" class=""><img src="http://www.mytischtennis.de/public/imagedata/Joola_rangliste_325x55px.png"></a>
+</div>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+<div class="contentbox mb_15">
+<div class="contentbox_top bg_ci_orange fl"><span>Triff deine Auswahl</span></div>
+<div class="content fl">
+<form id="rankingfilterRegion" action="" method="get" name="rankingfilterRegion" onSubmit="" class="vertical">
+<div class="col_2 mr_10">
+<label class="left" for="kontinent">Kontinent</label>
+</div>
+<div class="col_3">
+<select name="kontinent" id="kontinent" onChange="handleVerbandVereinBoxWhenEU_DE()">
+<option value="">Alle</option>
+<option value="Afrika">	
+Afrika
+</option>
+<option value="Asien">	
+Asien
+</option>
+<option value="Europa" selected>
+Europa
+</option>
+<option value="Lateinamerika">	
+Lateinamerika
+</option>
+<option value="Nordamerika">	
+Nordamerika
+</option>
+<option value="Ozeanien">	
+Ozeanien
+</option>
+</select>
+</div>
+<hr class="alt2 mb_15" />	
+<div class="col_2 mr_10">
+<label class="left" for="regionPattern1">Land</label>
+</div>
+<div class="col_3">
+<select name="land" id="land" onChange="handleVerbandVereinBoxWhenEU_DE()">
+<option value="">Alle</option>
+<option value="Albanien">	
+Albanien</option>
+<option value="Andorra">	
+Andorra</option>
+<option value="Armenien">	
+Armenien</option>
+<option value="Aserbaidschan">	
+Aserbaidschan</option>
+<option value="Belgien">	
+Belgien</option>
+<option value="Bosnien und Herzegowina">	
+Bosnien und Herzegowina</option>
+<option value="Bulgarien">	
+Bulgarien</option>
+<option value="Dänemark">	
+Dänemark</option>
+<option value="DE" selected>
+Deutschland</option>
+<option value="Estland">	
+Estland</option>
+<option value="Finnland">	
+Finnland</option>
+<option value="Frankreich">	
+Frankreich</option>
+<option value="Georgien">	
+Georgien</option>
+<option value="Griechenland">	
+Griechenland</option>
+<option value="Irland">	
+Irland</option>
+<option value="Island">	
+Island</option>
+<option value="Israel">	
+Israel</option>
+<option value="Italien">	
+Italien</option>
+<option value="Kosovo">	
+Kosovo</option>
+<option value="Kroatien">	
+Kroatien</option>
+<option value="Lettland">	
+Lettland</option>
+<option value="Liechtenstein">	
+Liechtenstein</option>
+<option value="Litauen">	
+Litauen</option>
+<option value="Luxemburg">	
+Luxemburg</option>
+<option value="Malta">	
+Malta</option>
+<option value="Mazedonien">	
+Mazedonien</option>
+<option value="Moldawien">	
+Moldawien</option>
+<option value="Monaco">	
+Monaco</option>
+<option value="Montenegro">	
+Montenegro</option>
+<option value="Niederlande">	
+Niederlande</option>
+<option value="Norwegen">	
+Norwegen</option>
+<option value="Österreich">	
+Österreich</option>
+<option value="Polen">	
+Polen</option>
+<option value="Portugal">	
+Portugal</option>
+<option value="Rumänien">	
+Rumänien</option>
+<option value="Russland">	
+Russland</option>
+<option value="San Marino">	
+San Marino</option>
+<option value="Schweden">	
+Schweden</option>
+<option value="Schweiz">	
+Schweiz</option>
+<option value="Serbien">	
+Serbien</option>
+<option value="Slowakei">	
+Slowakei</option>
+<option value="Slowenien">	
+Slowenien</option>
+<option value="Spanien">	
+Spanien</option>
+<option value="Tschechien">	
+Tschechien</option>
+<option value="Türkei">	
+Türkei</option>
+<option value="Ukraine">	
+Ukraine</option>
+<option value="Ungarn">	
+Ungarn</option>
+<option value="Vereinigtes Königreich">	
+Vereinigtes Königreich</option>
+<option value="Weißrussland">	
+Weißrussland</option>
+<option value="Zypern">	
+Zypern</option>
+</select>
+</div>
+<hr class="alt2 mb_15" />
+<script type="text/javascript">
+jQuery(function(){
+jQuery("#rankingfilterRegion").relatedSelects({
+onChangeLoad: 'ajax/_rankingRegionSuplier.cfm',
+//defaultOptionText: 'Choose an Option',
+selects: {
+'kontinent':{ loadingMessage:'Lade' },
+'land':{ loadingMessage:'Lade' }
+},
+disableIfEmpty:true,
+//dataType:'html',
+onLoadingStart: function(){	
+}
+});	
+});
+</script>
+<div class="germansRankingDIV col_full ml_10 mb_10">
+<input type="checkbox" name="deutschePlusGleichgest" value="yes">
+<span class="ml_10">Deutsche + gleichgest.</span>
+</div>
+<hr class="alt2" />
+<div id="spielberechtigteDIV" class="col_full pt_10 pl_10 pb_15 bg_gray spielberechtigteDIV">
+<input type="checkbox" name="alleSpielberechtigen" value="yes" onChange="handleVerbandVereinBoxWhenEU_DE()">
+<span class="ml_10">alle Spielberechtigten</span>	
+</div>
+<div id="regionVereinBox" class="col_full bg_gray regionVereinBoxDIV" style="display:none;">
+<input type="hidden" name="verband" value="" id="verband">
+<input type="hidden" name="bezirk" value="" id="bezirk">
+<input type="hidden" name="kreis" value="" id="kreis">
+<div class="col_2 mr_10 pl_10">
+<label class="left" for="regionPattern123">Verband</label>
+</div>
+<div class="col_3">
+<select name="regionPattern123" id="regionPattern123">
+</select>
+</div>
+<div class="col_2 mr_10 pl_10">
+<label class="left" for="regionPattern4">Bezirk</label>
+</div>
+<div class="col_3">
+<select name="regionPattern4" id="regionPattern4">
+</select>
+</div>
+<div class="col_2 mr_10 pl_10">
+<label class="left" for="regionPattern5">Kreis</label>
+</div>
+<div class="col_3">
+<select name="regionPattern5" id="regionPattern5">
+</select>
+</div>
+<input type="hidden" name="vereinId" value="141046,WTTV" id="vereinId" class="mt_20">
+<div class="col_2 mt_10 mr_10 pl_10" style="position:relative;">
+<label class="left" for="verein">Verein<span style="position: absolute; top:0px; left: 46px;" class="openoverlay" rel="#vereininfoboxjetztanderername" title="Klicken Sie auf das i-Symbol für weitere Informationen zur Vereinssuche">
+<img src="/images/Icon_Info.png" border="0"></span></label>
+</div>
+<div class="col_3 mt_5 pr_20 relative">
+<div class="fl relative"><button class="pill small tooltip" id="removeVereinButton" onClick="deleteSelectedVerein(); return false;" title="L&ouml;sche den gew&auml;hlten Verein aus der Auswahl."><i class="icon-remove"></i></button></div>
+<div><input type="text" name="verein" value="Borussia Düsseldorf" id="verein" class="asearchbox" style="width: 161px; background-position: 140px center!important; padding: 5px;" onChange="removeVereinId();" onKeyUp="showHideDeleteVereinButton();" autocomplete="off"></div>
+</div>
+<div id="vereinBoxWrapper"></div>
+<div class="clear"></div>
+<div class="mt_15"></div>
+</div>
+<script type="text/javascript">
+handleVerbandVereinBoxWhenEU_DE();
+</script>
+<hr class="alt2" />
+<div class="col_2 mr_10 mt_20">
+<label class="left" for="sex">Geschlecht</label>
+</div>
+<div class="col_3 mt_20">
+<select name="geschlecht" style="width:210px;">
+<option value="">Alle</option>
+<option value="female">	
+Damen</option>
+<option value="male">	
+Herren</option>
+</select>
+</div>
+<hr class="alt2" />
+<div class="col_2 mr_10 mt_20">
+<label class="left" for="searchQueryDOBfrom">Geburtsjahr</label>
+</div>
+<div class="col_3">
+<div class="fl mr_20">
+<label class="">von:</label>
+<select name="geburtsJahrVon">
+<option value="">Alle</option>
+<option value="2010">	
+2010</option>
+<option value="2009">	
+2009</option>
+<option value="2008">	
+2008</option>
+<option value="2007">	
+2007</option>
+<option value="2006">	
+2006</option>
+<option value="2005">	
+2005</option>
+<option value="2004">	
+2004</option>
+<option value="2003">	
+2003</option>
+<option value="2002">	
+2002</option>
+<option value="2001">	
+2001</option>
+<option value="2000">	
+2000</option>
+<option value="1999">	
+1999</option>
+<option value="1998">	
+1998</option>
+<option value="1997">	
+1997</option>
+<option value="1996">	
+1996</option>
+<option value="1995">	
+1995</option>
+<option value="1994">	
+1994</option>
+<option value="1993">	
+1993</option>
+<option value="1992">	
+1992</option>
+<option value="1991">	
+1991</option>
+<option value="1990">	
+1990</option>
+<option value="1989">	
+1989</option>
+<option value="1988">	
+1988</option>
+<option value="1987">	
+1987</option>
+<option value="1986">	
+1986</option>
+<option value="1985">	
+1985</option>
+<option value="1984">	
+1984</option>
+<option value="1983">	
+1983</option>
+<option value="1982">	
+1982</option>
+<option value="1981">	
+1981</option>
+<option value="1980">	
+1980</option>
+<option value="1979">	
+1979</option>
+<option value="1978">	
+1978</option>
+<option value="1977">	
+1977</option>
+<option value="1976">	
+1976</option>
+<option value="1975">	
+1975</option>
+<option value="1974">	
+1974</option>
+<option value="1973">	
+1973</option>
+<option value="1972">	
+1972</option>
+<option value="1971">	
+1971</option>
+<option value="1970">	
+1970</option>
+<option value="1969">	
+1969</option>
+<option value="1968">	
+1968</option>
+<option value="1967">	
+1967</option>
+<option value="1966">	
+1966</option>
+<option value="1965">	
+1965</option>
+<option value="1964">	
+1964</option>
+<option value="1963">	
+1963</option>
+<option value="1962">	
+1962</option>
+<option value="1961">	
+1961</option>
+<option value="1960">	
+1960</option>
+<option value="1959">	
+1959</option>
+<option value="1958">	
+1958</option>
+<option value="1957">	
+1957</option>
+<option value="1956">	
+1956</option>
+<option value="1955">	
+1955</option>
+<option value="1954">	
+1954</option>
+<option value="1953">	
+1953</option>
+<option value="1952">	
+1952</option>
+<option value="1951">	
+1951</option>
+<option value="1950">	
+1950</option>
+<option value="1949">	
+1949</option>
+<option value="1948">	
+1948</option>
+<option value="1947">	
+1947</option>
+<option value="1946">	
+1946</option>
+<option value="1945">	
+1945</option>
+<option value="1944">	
+1944</option>
+<option value="1943">	
+1943</option>
+<option value="1942">	
+1942</option>
+<option value="1941">	
+1941</option>
+<option value="1940">	
+1940</option>
+<option value="1939">	
+1939</option>
+<option value="1938">	
+1938</option>
+<option value="1937">	
+1937</option>
+<option value="1936">	
+1936</option>
+<option value="1935">	
+1935</option>
+<option value="1934">	
+1934</option>
+<option value="1933">	
+1933</option>
+<option value="1932">	
+1932</option>
+<option value="1931">	
+1931</option>
+<option value="1930">	
+1930</option>
+<option value="1929">	
+1929</option>
+<option value="1928">	
+1928</option>
+<option value="1927">	
+1927</option>
+<option value="1926">	
+1926</option>
+<option value="1925">	
+1925</option>
+<option value="1924">	
+1924</option>
+<option value="1923">	
+1923</option>
+<option value="1922">	
+1922</option>
+<option value="1921">	
+1921</option>
+<option value="1920">	
+1920</option>
+<option value="1919">	
+1919</option>
+<option value="1918">	
+1918</option>
+<option value="1917">	
+1917</option>
+<option value="1916">	
+1916</option>
+<option value="1915">	
+1915</option>
+</select>
+</div>
+<div class="fl">
+bis:
+<select name="geburtsJahrBis">
+<option value="">Alle</option>
+<option value="2010">	
+2010</option>
+<option value="2009">	
+2009</option>
+<option value="2008">	
+2008</option>
+<option value="2007">	
+2007</option>
+<option value="2006">	
+2006</option>
+<option value="2005">	
+2005</option>
+<option value="2004">	
+2004</option>
+<option value="2003">	
+2003</option>
+<option value="2002">	
+2002</option>
+<option value="2001">	
+2001</option>
+<option value="2000">	
+2000</option>
+<option value="1999">	
+1999</option>
+<option value="1998">	
+1998</option>
+<option value="1997">	
+1997</option>
+<option value="1996">	
+1996</option>
+<option value="1995">	
+1995</option>
+<option value="1994">	
+1994</option>
+<option value="1993">	
+1993</option>
+<option value="1992">	
+1992</option>
+<option value="1991">	
+1991</option>
+<option value="1990">	
+1990</option>
+<option value="1989">	
+1989</option>
+<option value="1988">	
+1988</option>
+<option value="1987">	
+1987</option>
+<option value="1986">	
+1986</option>
+<option value="1985">	
+1985</option>
+<option value="1984">	
+1984</option>
+<option value="1983">	
+1983</option>
+<option value="1982">	
+1982</option>
+<option value="1981">	
+1981</option>
+<option value="1980">	
+1980</option>
+<option value="1979">	
+1979</option>
+<option value="1978">	
+1978</option>
+<option value="1977">	
+1977</option>
+<option value="1976">	
+1976</option>
+<option value="1975">	
+1975</option>
+<option value="1974">	
+1974</option>
+<option value="1973">	
+1973</option>
+<option value="1972">	
+1972</option>
+<option value="1971">	
+1971</option>
+<option value="1970">	
+1970</option>
+<option value="1969">	
+1969</option>
+<option value="1968">	
+1968</option>
+<option value="1967">	
+1967</option>
+<option value="1966">	
+1966</option>
+<option value="1965">	
+1965</option>
+<option value="1964">	
+1964</option>
+<option value="1963">	
+1963</option>
+<option value="1962">	
+1962</option>
+<option value="1961">	
+1961</option>
+<option value="1960">	
+1960</option>
+<option value="1959">	
+1959</option>
+<option value="1958">	
+1958</option>
+<option value="1957">	
+1957</option>
+<option value="1956">	
+1956</option>
+<option value="1955">	
+1955</option>
+<option value="1954">	
+1954</option>
+<option value="1953">	
+1953</option>
+<option value="1952">	
+1952</option>
+<option value="1951">	
+1951</option>
+<option value="1950">	
+1950</option>
+<option value="1949">	
+1949</option>
+<option value="1948">	
+1948</option>
+<option value="1947">	
+1947</option>
+<option value="1946">	
+1946</option>
+<option value="1945">	
+1945</option>
+<option value="1944">	
+1944</option>
+<option value="1943">	
+1943</option>
+<option value="1942">	
+1942</option>
+<option value="1941">	
+1941</option>
+<option value="1940">	
+1940</option>
+<option value="1939">	
+1939</option>
+<option value="1938">	
+1938</option>
+<option value="1937">	
+1937</option>
+<option value="1936">	
+1936</option>
+<option value="1935">	
+1935</option>
+<option value="1934">	
+1934</option>
+<option value="1933">	
+1933</option>
+<option value="1932">	
+1932</option>
+<option value="1931">	
+1931</option>
+<option value="1930">	
+1930</option>
+<option value="1929">	
+1929</option>
+<option value="1928">	
+1928</option>
+<option value="1927">	
+1927</option>
+<option value="1926">	
+1926</option>
+<option value="1925">	
+1925</option>
+<option value="1924">	
+1924</option>
+<option value="1923">	
+1923</option>
+<option value="1922">	
+1922</option>
+<option value="1921">	
+1921</option>
+<option value="1920">	
+1920</option>
+<option value="1919">	
+1919</option>
+<option value="1918">	
+1918</option>
+<option value="1917">	
+1917</option>
+<option value="1916">	
+1916</option>
+<option value="1915">	
+1915</option>
+</select>
+</div>
+<div style="clear:both;"></div>
+</div>
+<hr class="alt2" />
+<div class="col_2 mr_10 mt_20">
+<label class="left" for="fromTTR">TTR</label>
+</div>
+<div class="col_3">
+<div class="fl mr_20">
+von: <input type="text" name="ttrVon" id="fromTTR" value="" maxLength="4" style="width:70px;">
+</div>
+<div class="fl">
+bis: <input type="text" name="ttrBis" id="toTTR" value="" maxLength="4" style="width:70px;">
+</div>
+</div>
+<hr class="alt2" />
+<div class="col_2 mr_10 mt_20">
+<label class="left" for="test">TTR</label>
+</div>
+<div class="col_3 mt_20">
+<div class="fl mr_15">
+<input type="radio" name="ttrQuartalorAktuell" value="quartal" /> Quartal
+</div>
+<div class="fl">
+<input type="radio" name="ttrQuartalorAktuell" value="aktuell" checked /> Aktuell
+</div>
+</div>
+<hr class="alt2 mt_15" />
+<div class="col_2 mr_10 mt_20">
+<label class="left" for="maxRows">Ergebnisse</label>
+</div>
+<div class="col_3 mt_20">
+<select name="anzahlErgebnisse" style="width:65px;">
+<option value="25">25</option>
+<option value="100" selected>100</option>
+<option value="500">500</option>
+<option value="1000">1000</option>
+</select>
+</div>
+<hr class="alt2 mb_15" />
+<div class="col_full">
+<input type="submit" value="Anzeigen" name="goAssistent" class="highlightlink">
+</div>
+</form>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+<div class="contentbox mb_15">
+<div class="contentbox_top bg_ci_orange fl"><span>oder nach einer Person suchen</span></div>
+<div class="content fl">
+<form id="rankingfilterPerson" action="" method="get" name="rankingfilterPerson" onSubmit="" class="vertical">
+<div class="col_2">
+<label class="" for="vorname">Vorname</label>
+</div>
+<div class="col_3">
+<input type="text" name="vorname" value="" id="vorname" maxlength="200" class="inputtext" />
+</div>
+<div class="col_2">
+<label class="" for="nachname">Nachname</label>
+</div>
+<div class="col_3">
+<input type="text" name="nachname" value="" id="nachname" maxlength="200" class="inputtext" />
+</div>
+<input type="hidden" name="vereinIdPersonenSuche" value="" id="vereinIdPersonenSuche">
+<div class="col_2 mt_10" style="position:relative;"
+<label class="left" for="vereinPersonenSuche">Verein<span style="position: absolute; top:0px; left: 46px;" title="Klicken Sie auf das i-Symbol für weitere Informationen zur Vereinssuche" class="openoverlay" rel="#vereininfoboxjetztanderername">
+<img src="/images/Icon_Info.png" border="0"></span></label>
+</div>
+<div class="col_3 mt_5 pr_20 relative">
+<div class="fl relative"><a href="javascript:void(0);" class="pill small tooltip" id="removeVereinButtonP" onClick="deleteSelectedVereinP();" title="L&ouml;sche den gew&auml;hlten Verein aus der Auswahl."><button style="display: block;" class="pill small tooltip" id="removeVereinButton" onclick="deleteSelectedVerein(); return false;" title=""><i class="icon-remove"></i></button></a></div>
+<div>
+<input type="text" name="vereinPersonenSuche" value="" id="vereinPersonenSuche" class="asearchbox" style="width: 161px; background-position: 140px center!important; padding: 5px;" onChange="removeVereinIdP();" onKeyUp="showHideDeleteVereinButtonP();" autocomplete="off" />
+</div>
+</div>
+<div id="vereinBoxWrapperP"></div>
+<div class="col_full">
+<input type="submit" value="Anzeigen" name="goAssistentP" class="highlightlink" />
+<a href="premium" class="thisispremium tooltip" title="Dies ist eine Premium-Funktion"></a>
+<div style="clear:both;"></div>
+</div>
+<div style="clear:both;"></div>
+</form>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+<div class="contentbox mb_15">
+<div class="contentbox_top bg_ci_orange fl"><span>oder wähle eine Liga</span></div>
+<div class="content fl">
+<form id="rankingfilterLiga" action="" method="get" name="rankingfilterLiga" onSubmit="" class="vertical">
+<div class="col_2" style="position:relative;">
+<label class="left" for="groupid">Ligen
+<img src="/images/Icon_Info.png" border="0" class="tooltip" style="position: absolute; top:0px; left: 40px;" title="Hier kannst du aus den Ligen deiner Mannschaft und deinen gemerkten Ligen auswählen.">
+</label>
+</div>
+<div class="col_3">
+<select name="groupid"
+>
+<option value="">Bitte wählen</option>
+<option value="225121">Herren-Bezirksklasse 5</option>
+<option value="201382">Herren-Bezirksklasse 5</option>
+<option value="225120">Herren-Bezirksliga 2</option>
+</select>
+</div>
+<hr class="alt2 mt_15 mb_15" />
+<div class="col_full">
+<input type="checkbox" name="deutschePlusGleichgest2" value="yes" />	
+<span class="ml_10">nur Deutsche und gleichgestellte Ausl&auml;nder</span>
+</div>
+<hr class="alt2 mt_15 mb_15" />
+<div class="col_2">
+<label class="left" for="test">TTR</label>
+</div>
+<div class="col_3">
+<div style="float:left;margin-top:4px;margin-left:10px;">
+<input type="radio" name="ttrQuartalorAktuell2" value="quartal" /> Quartal
+</div>
+<div style="float:left;margin-top:4px;margin-left:10px;">
+<input type="radio" name="ttrQuartalorAktuell2" value="aktuell" checked /> Aktuell
+</div>
+</div>
+<hr class="alt2 mt_15 mb_15" />
+<div class="col_full ">
+<input type="submit" value="Anzeigen" name="goAssistentG" class="highlightlink">
+</div>	
+</form>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+<div class="contentbox mb_15">
+<div class="contentbox_top bg_ci_orange fl"><span>Informationen</span></div>
+<div class="content fl">
+<p>Du findest in unseren <a href="faq" title="zum FAQ-Bereich">FAQ</a> ausführliche Erläuterungen zur Rangliste
+sowie auch die <a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=1076" title="PDF anzeigen/downloaden" target="_blank">Kurzbeschreibung der Joola-Rangliste</a>.</p>
+<p><a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=1077" title="PDF anzeigen/downloaden" target="_blank">HIER</a> findest du die bisherigen Entwicklungsschritte der TTR-Berechnung für die JOOLA-Rangliste.</p>
+<div></div>
+<div style="text-align: center;">
+<img src="http://www.mytischtennis.de/images/JOOLA_Rangliste.png" width="150">	
+</div>
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div> 
+<div class="grid_7">
+<div class="contentbox">
+<div class="contentbox_top bg_ci_orange fl"></div>
+<div class="content fl">
+<div style="overflow: hidden;">
+<h3>
+Ergebnis deiner Auswahl 
+<span style="font-weight: normal;">
+(100 Treffer)
+</span>
+</h3>
+</div>	
+<table class="coolTable" style="clear: all;">
+<tr>
+<th>Rang</th>
+<th style="white-space:nowrap;">
+<span class="tooltip" title="Platz in deutscher Rangliste">D-Rang</span>
+</th>
+<th>Spieler</th>
+<th>Verein</th>
+<th class="center" style="white-space:nowrap;">TTR</th>
+<th></th>
+</tr>
+<tr>	
+<td>1</td>
+<td>
+1
+</td>
+<td class="relative"><span class="makered17741 openinfos myttFeaturesTooltip" data-tooltipdata="17741;0;Timo Boll">Timo <strong>Boll</strong><span class="hideOwn17741">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+2661
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>
+6
+</td>
+<td class="relative"><span class="makered59787 openinfos myttFeaturesTooltip" data-tooltipdata="59787;0;Patrick Franziska">Patrick <strong>Franziska</strong><span class="hideOwn59787">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+2500
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>3</td>
+<td>
+519
+</td>
+<td class="relative"><span class="makered423332 openinfos myttFeaturesTooltip" data-tooltipdata="423332;0;Johannes Dimmig">Johannes <strong>Dimmig</strong><span class="hideOwn423332">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+2023
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>
+832
+</td>
+<td class="relative"><span class="makered243465 openinfos myttFeaturesTooltip" data-tooltipdata="243465;0;Alexander Knajdek">Alexander <strong>Knajdek</strong><span class="hideOwn243465">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1970
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>5</td>
+<td>
+940
+</td>
+<td class="relative"><span class="makered204185 openinfos myttFeaturesTooltip" data-tooltipdata="204185;0;Vincent Arsand">Vincent <strong>Arsand</strong><span class="hideOwn204185">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1960
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>
+1656
+</td>
+<td class="relative"><span class="makered261235 openinfos myttFeaturesTooltip" data-tooltipdata="261235;0;Amela Novakovic">Amela <strong>Novakovic</strong><span class="hideOwn261235">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1898
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>7</td>
+<td>
+2336
+</td>
+<td class="relative"><span class="makered62319 openinfos myttFeaturesTooltip" data-tooltipdata="62319;0;Dirk Müssig">Dirk <strong>Müssig</strong><span class="hideOwn62319">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1862
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>
+2572
+</td>
+<td class="relative"><span class="makered908768 openinfos myttFeaturesTooltip" data-tooltipdata="908768;0;Jörn Steinwachs">Jörn <strong>Steinwachs</strong><span class="hideOwn908768">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1851
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>9</td>
+<td>
+2701
+</td>
+<td class="relative"><span class="makered237570 openinfos myttFeaturesTooltip" data-tooltipdata="237570;0;Se Hong Jang">Se Hong <strong>Jang</strong><span class="hideOwn237570">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1846
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>
+3562
+</td>
+<td class="relative"><span class="makered236447 openinfos myttFeaturesTooltip" data-tooltipdata="236447;0;Ulrich Hüning">Ulrich <strong>Hüning</strong><span class="hideOwn236447">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1817
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>11</td>
+<td>
+4081
+</td>
+<td class="relative"><span class="makered295899 openinfos myttFeaturesTooltip" data-tooltipdata="295899;0;Jochen Wollmert">Jochen <strong>Wollmert</strong><span class="hideOwn295899">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1802
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>
+5106
+</td>
+<td class="relative"><span class="makered217703 openinfos myttFeaturesTooltip" data-tooltipdata="217703;0;Melissa Dorfmann">Melissa <strong>Dorfmann</strong><span class="hideOwn217703">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1777
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>13</td>
+<td>
+5345
+</td>
+<td class="relative"><span class="makered427130 openinfos myttFeaturesTooltip" data-tooltipdata="427130;0;Christian Belger">Christian <strong>Belger</strong><span class="hideOwn427130">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1772
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>
+5742
+</td>
+<td class="relative"><span class="makered237048 openinfos myttFeaturesTooltip" data-tooltipdata="237048;0;Filip Ishak">Filip <strong>Ishak</strong><span class="hideOwn237048">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1764
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>15</td>
+<td>
+6105
+</td>
+<td class="relative"><span class="makered1123470 openinfos myttFeaturesTooltip" data-tooltipdata="1123470;0;Jona Steingen">Jona <strong>Steingen</strong><span class="hideOwn1123470">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1757
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>
+6326
+</td>
+<td class="relative"><span class="makered222066 openinfos myttFeaturesTooltip" data-tooltipdata="222066;0;Artur Fischer">Artur <strong>Fischer</strong><span class="hideOwn222066">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1753
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>17</td>
+<td>
+6612
+</td>
+<td class="relative"><span class="makered1169930 openinfos myttFeaturesTooltip" data-tooltipdata="1169930;0;Yili Alexander Westhausen">Yili Alexander <strong>Westhausen</strong><span class="hideOwn1169930">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1748
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>
+6965
+</td>
+<td class="relative"><span class="makered213462 openinfos myttFeaturesTooltip" data-tooltipdata="213462;0;Thomas Burchardt">Thomas <strong>Burchardt</strong><span class="hideOwn213462">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1742
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>19</td>
+<td>
+7804
+</td>
+<td class="relative"><span class="makered257961 openinfos myttFeaturesTooltip" data-tooltipdata="257961;0;Matthias Mötsch">Matthias <strong>Mötsch</strong><span class="hideOwn257961">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1728
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>
+9581
+</td>
+<td class="relative"><span class="makered151206 openinfos myttFeaturesTooltip" data-tooltipdata="151206;0;Michael Schnaidt">Michael <strong>Schnaidt</strong><span class="hideOwn151206">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1703
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>21</td>
+<td>
+9790
+</td>
+<td class="relative"><span class="makered266553 openinfos myttFeaturesTooltip" data-tooltipdata="266553;0;Janette Püski">Janette <strong>Püski</strong><span class="hideOwn266553">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1700
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>
+9901
+</td>
+<td class="relative"><span class="makered667724 openinfos myttFeaturesTooltip" data-tooltipdata="667724;0;Florian Weischede">Florian <strong>Weischede</strong><span class="hideOwn667724">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1699
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>23</td>
+<td>
+12238
+</td>
+<td class="relative"><span class="makered265671 openinfos myttFeaturesTooltip" data-tooltipdata="265671;0;Johannes Pörsch">Johannes <strong>Pörsch</strong><span class="hideOwn265671">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1672
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_grau.png" height="14" class="tooli100" title="m&auml;nnlich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>
+12806
+</td>
+<td class="relative"><span class="makered426073 openinfos myttFeaturesTooltip" data-tooltipdata="426073;0;Carsten Schmidt">Carsten <strong>Schmidt</strong><span class="hideOwn426073">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1666
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>25</td>
+<td>
+14184
+</td>
+<td class="relative"><span class="makered1228305 openinfos myttFeaturesTooltip" data-tooltipdata="1228305;0;Rafael Schapiro">Rafael <strong>Schapiro</strong><span class="hideOwn1228305">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1652
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>26</td>
+<td>
+15616
+</td>
+<td class="relative"><span class="makered276122 openinfos myttFeaturesTooltip" data-tooltipdata="276122;0;Matthias Schneider">Matthias <strong>Schneider</strong><span class="hideOwn276122">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1640
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>27</td>
+<td>
+16990
+</td>
+<td class="relative"><span class="makered288522 openinfos myttFeaturesTooltip" data-tooltipdata="288522;0;Carsten Unt">Carsten <strong>Unt</strong><span class="hideOwn288522">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1629
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>
+17019
+</td>
+<td class="relative"><span class="makered774846 openinfos myttFeaturesTooltip" data-tooltipdata="774846;0;Fabian Herhold">Fabian <strong>Herhold</strong><span class="hideOwn774846">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1628
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>29</td>
+<td>
+19614
+</td>
+<td class="relative"><span class="makered291463 openinfos myttFeaturesTooltip" data-tooltipdata="291463;0;Jörg Wassenberg">Jörg <strong>Wassenberg</strong><span class="hideOwn291463">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1609
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>
+19627
+</td>
+<td class="relative"><span class="makered277538 openinfos myttFeaturesTooltip" data-tooltipdata="277538;0;Sabrina Schröder">Sabrina <strong>Schröder</strong><span class="hideOwn277538">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1608
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>31</td>
+<td>
+22503
+</td>
+<td class="relative"><span class="makered292411 openinfos myttFeaturesTooltip" data-tooltipdata="292411;0;Sabrina Weisensee">Sabrina <strong>Weisensee</strong><span class="hideOwn292411">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1588
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td>
+24827
+</td>
+<td class="relative"><span class="makered214120 openinfos myttFeaturesTooltip" data-tooltipdata="214120;0;Armin-Vincenzo Calamusa">Armin-Vincenzo <strong>Calamusa</strong><span class="hideOwn214120">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1574
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>33</td>
+<td>
+28227
+</td>
+<td class="relative"><span class="makered266839 openinfos myttFeaturesTooltip" data-tooltipdata="266839;0;Florian Quinkert">Florian <strong>Quinkert</strong><span class="hideOwn266839">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1555
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>34</td>
+<td>
+28636
+</td>
+<td class="relative"><span class="makered226478 openinfos myttFeaturesTooltip" data-tooltipdata="226478;0;Maximilian Gogolin">Maximilian <strong>Gogolin</strong><span class="hideOwn226478">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1553
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>35</td>
+<td>
+30530
+</td>
+<td class="relative"><span class="makered1096501 openinfos myttFeaturesTooltip" data-tooltipdata="1096501;0;Martin Svoboda">Martin <strong>Svoboda</strong><span class="hideOwn1096501">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1543
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>36</td>
+<td>
+30766
+</td>
+<td class="relative"><span class="makered260802 openinfos myttFeaturesTooltip" data-tooltipdata="260802;0;Felix Nitsche">Felix <strong>Nitsche</strong><span class="hideOwn260802">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1542
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>37</td>
+<td>
+34367
+</td>
+<td class="relative"><span class="makered909828 openinfos myttFeaturesTooltip" data-tooltipdata="909828;0;Lara Usbeck">Lara <strong>Usbeck</strong><span class="hideOwn909828">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1524
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td>
+36338
+</td>
+<td class="relative"><span class="makered988045 openinfos myttFeaturesTooltip" data-tooltipdata="988045;0;Maximilian Müller">Maximilian <strong>Müller</strong><span class="hideOwn988045">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1515
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>39</td>
+<td>
+36916
+</td>
+<td class="relative"><span class="makered888428 openinfos myttFeaturesTooltip" data-tooltipdata="888428;0;Sebastian Liebert">Sebastian <strong>Liebert</strong><span class="hideOwn888428">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1513
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>
+39538
+</td>
+<td class="relative"><span class="makered508439 openinfos myttFeaturesTooltip" data-tooltipdata="508439;0;Natascha Binder">Natascha <strong>Binder</strong><span class="hideOwn508439">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1501
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>41</td>
+<td>
+41408
+</td>
+<td class="relative"><span class="makered224409 openinfos myttFeaturesTooltip" data-tooltipdata="224409;0;Lukas Gaida">Lukas <strong>Gaida</strong><span class="hideOwn224409">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1494
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>42</td>
+<td>
+43025
+</td>
+<td class="relative"><span class="makered227504 openinfos myttFeaturesTooltip" data-tooltipdata="227504;0;Katharina Greis">Katharina <strong>Greis</strong><span class="hideOwn227504">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1487
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>43</td>
+<td>
+43133
+</td>
+<td class="relative"><span class="makered280256 openinfos myttFeaturesTooltip" data-tooltipdata="280256;0;Karl-Heinz Sengewald">Karl-Heinz <strong>Sengewald</strong><span class="hideOwn280256">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1487
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td>
+45307
+</td>
+<td class="relative"><span class="makered204552 openinfos myttFeaturesTooltip" data-tooltipdata="204552;0;Fabio Avvenire">Fabio <strong>Avvenire</strong><span class="hideOwn204552">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+<span class="tooltip ttrPenalty" title="Bzgl. dieses TTR-Wertes der JOOLA-Rangliste gibt es Klärungsbedarf. Der/die Spieler(in) möge sich selbst mit der myTischtennis GmbH in Verbindung setzen.">
+0000 
+<span class="ttrPenaltyI">(i)</span>
+</span>
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_grau.png" height="14" class="tooli100" title="m&auml;nnlich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr>	
+<td>45</td>
+<td>
+46113
+</td>
+<td class="relative"><span class="makered1304344 openinfos myttFeaturesTooltip" data-tooltipdata="1304344;0;Louis Rohrsen">Louis <strong>Rohrsen</strong><span class="hideOwn1304344">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1475
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>46</td>
+<td>
+46590
+</td>
+<td class="relative"><span class="makered460138 openinfos myttFeaturesTooltip" data-tooltipdata="460138;0;Maxime Berg">Maxime <strong>Berg</strong><span class="hideOwn460138">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1473
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>47</td>
+<td>
+46601
+</td>
+<td class="relative"><span class="makered1169931 openinfos myttFeaturesTooltip" data-tooltipdata="1169931;0;Johannes Moerland">Johannes <strong>Moerland</strong><span class="hideOwn1169931">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1473
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td>
+50746
+</td>
+<td class="relative"><span class="makered936550 openinfos myttFeaturesTooltip" data-tooltipdata="936550;0;Jim Billerbeck">Jim <strong>Billerbeck</strong><span class="hideOwn936550">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1458
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>49</td>
+<td>
+53453
+</td>
+<td class="relative"><span class="makered292950 openinfos myttFeaturesTooltip" data-tooltipdata="292950;0;Simon Wenzel">Simon <strong>Wenzel</strong><span class="hideOwn292950">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1449
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_grau.png" height="14" class="tooli100" title="m&auml;nnlich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>
+55989
+</td>
+<td class="relative"><span class="makered250470 openinfos myttFeaturesTooltip" data-tooltipdata="250470;0;Martin Lehnert">Martin <strong>Lehnert</strong><span class="hideOwn250470">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1440
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>51</td>
+<td>
+56023
+</td>
+<td class="relative"><span class="makered720026 openinfos myttFeaturesTooltip" data-tooltipdata="720026;0;Sandra Mikolaschek">Sandra <strong>Mikolaschek</strong><span class="hideOwn720026">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1440
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td>
+68291
+</td>
+<td class="relative"><span class="makered1265434 openinfos myttFeaturesTooltip" data-tooltipdata="1265434;0;Justus von Bandemer">Justus von <strong>Bandemer</strong><span class="hideOwn1265434">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1399
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>53</td>
+<td>
+70242
+</td>
+<td class="relative"><span class="makered274333 openinfos myttFeaturesTooltip" data-tooltipdata="274333;0;Marc Schloeder">Marc <strong>Schloeder</strong><span class="hideOwn274333">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1394
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_grau.png" height="14" class="tooli100" title="m&auml;nnlich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr class="even">
+<td>54</td>
+<td>
+71947
+</td>
+<td class="relative"><span class="makered1117524 openinfos myttFeaturesTooltip" data-tooltipdata="1117524;0;Norrin Reinartz">Norrin <strong>Reinartz</strong><span class="hideOwn1117524">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1389
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>55</td>
+<td>
+73312
+</td>
+<td class="relative"><span class="makered215238 openinfos myttFeaturesTooltip" data-tooltipdata="215238;0;Tammy Cyganik">Tammy <strong>Cyganik</strong><span class="hideOwn215238">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1384
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>56</td>
+<td>
+77239
+</td>
+<td class="relative"><span class="makered697887 openinfos myttFeaturesTooltip" data-tooltipdata="697887;0;Simon Cordes">Simon <strong>Cordes</strong><span class="hideOwn697887">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1373
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>57</td>
+<td>
+77255
+</td>
+<td class="relative"><span class="makered980151 openinfos myttFeaturesTooltip" data-tooltipdata="980151;0;Raul Setzke">Raul <strong>Setzke</strong><span class="hideOwn980151">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1373
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_grau.png" height="14" class="tooli100" title="m&auml;nnlich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td>
+78683
+</td>
+<td class="relative"><span class="makered109134 openinfos myttFeaturesTooltip" data-tooltipdata="109134;0;Karin Pfeil">Karin <strong>Pfeil</strong><span class="hideOwn109134">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1369
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>59</td>
+<td>
+86944
+</td>
+<td class="relative"><span class="makered491052 openinfos myttFeaturesTooltip" data-tooltipdata="491052;0;Helgard Graeve">Helgard <strong>Graeve</strong><span class="hideOwn491052">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1345
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td>
+88810
+</td>
+<td class="relative"><span class="makered1489449 openinfos myttFeaturesTooltip" data-tooltipdata="1489449;0;Andreas Wetzler">Andreas <strong>Wetzler</strong><span class="hideOwn1489449">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1340
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>61</td>
+<td>
+93272
+</td>
+<td class="relative"><span class="makered583129 openinfos myttFeaturesTooltip" data-tooltipdata="583129;0;Phat Duong">Phat <strong>Duong</strong><span class="hideOwn583129">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1327
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td>
+98548
+</td>
+<td class="relative"><span class="makered22257 openinfos myttFeaturesTooltip" data-tooltipdata="22257;0;Laura Stähling">Laura <strong>Stähling</strong><span class="hideOwn22257">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1312
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>63</td>
+<td>
+99357
+</td>
+<td class="relative"><span class="makered276635 openinfos myttFeaturesTooltip" data-tooltipdata="276635;0;Sonja Scholten">Sonja <strong>Scholten</strong><span class="hideOwn276635">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1310
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>
+112006
+</td>
+<td class="relative"><span class="makered256297 openinfos myttFeaturesTooltip" data-tooltipdata="256297;0;Klaus Mewes">Klaus <strong>Mewes</strong><span class="hideOwn256297">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1275
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>65</td>
+<td>
+118989
+</td>
+<td class="relative"><span class="makered424885 openinfos myttFeaturesTooltip" data-tooltipdata="424885;0;Nazia Enk">Nazia <strong>Enk</strong><span class="hideOwn424885">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1255
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>
+119336
+</td>
+<td class="relative"><span class="makered291467 openinfos myttFeaturesTooltip" data-tooltipdata="291467;0;Silvia Wassenberg">Silvia <strong>Wassenberg</strong><span class="hideOwn291467">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1254
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>67</td>
+<td>
+119950
+</td>
+<td class="relative"><span class="makered245245 openinfos myttFeaturesTooltip" data-tooltipdata="245245;0;Leonid Korezkij">Leonid <strong>Korezkij</strong><span class="hideOwn245245">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1253
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>68</td>
+<td>
+121922
+</td>
+<td class="relative"><span class="makered218018 openinfos myttFeaturesTooltip" data-tooltipdata="218018;0;Karin Dreher">Karin <strong>Dreher</strong><span class="hideOwn218018">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1247
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>69</td>
+<td>
+123822
+</td>
+<td class="relative"><span class="makered261489 openinfos myttFeaturesTooltip" data-tooltipdata="261489;0;Georg Oberliessen">Georg <strong>Oberliessen</strong><span class="hideOwn261489">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1242
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td>
+126787
+</td>
+<td class="relative"><span class="makered1169927 openinfos myttFeaturesTooltip" data-tooltipdata="1169927;0;Adrian Becker">Adrian <strong>Becker</strong><span class="hideOwn1169927">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1233
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>71</td>
+<td>
+130196
+</td>
+<td class="relative"><span class="makered1516586 openinfos myttFeaturesTooltip" data-tooltipdata="1516586;0;Malte Zehnpfennig">Malte <strong>Zehnpfennig</strong><span class="hideOwn1516586">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1224
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>72</td>
+<td>
+131414
+</td>
+<td class="relative"><span class="makered259416 openinfos myttFeaturesTooltip" data-tooltipdata="259416;0;Dagmar Hennig">Dagmar <strong>Hennig</strong><span class="hideOwn259416">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1220
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_grau.png" height="14" class="tooli100" title="weiblich, keine Ergebnisse aus den letzten 12 Monaten" style="">
+</td>
+</tr>
+<tr>	
+<td>73</td>
+<td>
+133120
+</td>
+<td class="relative"><span class="makered1547842 openinfos myttFeaturesTooltip" data-tooltipdata="1547842;0;Sascha Kohlmann">Sascha <strong>Kohlmann</strong><span class="hideOwn1547842">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1216
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td>
+134274
+</td>
+<td class="relative"><span class="makered1265432 openinfos myttFeaturesTooltip" data-tooltipdata="1265432;0;Julius von Bandemer">Julius von <strong>Bandemer</strong><span class="hideOwn1265432">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1212
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>75</td>
+<td>
+139175
+</td>
+<td class="relative"><span class="makered231525 openinfos myttFeaturesTooltip" data-tooltipdata="231525;0;Regina Hein">Regina <strong>Hein</strong><span class="hideOwn231525">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1198
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td>
+146578
+</td>
+<td class="relative"><span class="makered257949 openinfos myttFeaturesTooltip" data-tooltipdata="257949;0;Mona Möstl">Mona <strong>Möstl</strong><span class="hideOwn257949">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1177
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>77</td>
+<td>
+148379
+</td>
+<td class="relative"><span class="makered1351365 openinfos myttFeaturesTooltip" data-tooltipdata="1351365;0;Simon Steinfort">Simon <strong>Steinfort</strong><span class="hideOwn1351365">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1172
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>78</td>
+<td>
+152741
+</td>
+<td class="relative"><span class="makered217592 openinfos myttFeaturesTooltip" data-tooltipdata="217592;0;Pamela Domnofski">Pamela <strong>Domnofski</strong><span class="hideOwn217592">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1159
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr>	
+<td>79</td>
+<td>
+153363
+</td>
+<td class="relative"><span class="makered1540344 openinfos myttFeaturesTooltip" data-tooltipdata="1540344;0;Marc-André Kerber">Marc-André <strong>Kerber</strong><span class="hideOwn1540344">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1158
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_Stern_bunt.png" height="14" class="tooli100" title="m&auml;nnlich, weniger als 10 Ergebnisse" style="">
+</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>
+155990
+</td>
+<td class="relative"><span class="makered1498939 openinfos myttFeaturesTooltip" data-tooltipdata="1498939;0;Jannik Sauren">Jannik <strong>Sauren</strong><span class="hideOwn1498939">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1150
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>81</td>
+<td>
+157046
+</td>
+<td class="relative"><span class="makered1114205 openinfos myttFeaturesTooltip" data-tooltipdata="1114205;0;Vivian Lau">Vivian <strong>Lau</strong><span class="hideOwn1114205">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1147
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>82</td>
+<td>
+159213
+</td>
+<td class="relative"><span class="makered1326113 openinfos myttFeaturesTooltip" data-tooltipdata="1326113;0;Patric Bodin">Patric <strong>Bodin</strong><span class="hideOwn1326113">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1141
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>83</td>
+<td>
+159785
+</td>
+<td class="relative"><span class="makered211843 openinfos myttFeaturesTooltip" data-tooltipdata="211843;0;Frank Breuers">Frank <strong>Breuers</strong><span class="hideOwn211843">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1139
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>84</td>
+<td>
+161598
+</td>
+<td class="relative"><span class="makered992114 openinfos myttFeaturesTooltip" data-tooltipdata="992114;0;Niklas Reichardt">Niklas <strong>Reichardt</strong><span class="hideOwn992114">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1133
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>85</td>
+<td>
+162263
+</td>
+<td class="relative"><span class="makered1351717 openinfos myttFeaturesTooltip" data-tooltipdata="1351717;0;Nils Rohrsen">Nils <strong>Rohrsen</strong><span class="hideOwn1351717">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1132
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>86</td>
+<td>
+163211
+</td>
+<td class="relative"><span class="makered1593865 openinfos myttFeaturesTooltip" data-tooltipdata="1593865;0;Younes Gürsching">Younes <strong>Gürsching</strong><span class="hideOwn1593865">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1129
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>87</td>
+<td>
+166164
+</td>
+<td class="relative"><span class="makered1431890 openinfos myttFeaturesTooltip" data-tooltipdata="1431890;0;Niklas Bolten">Niklas <strong>Bolten</strong><span class="hideOwn1431890">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1120
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>88</td>
+<td>
+170056
+</td>
+<td class="relative"><span class="makered1431888 openinfos myttFeaturesTooltip" data-tooltipdata="1431888;0;Michael Bolten">Michael <strong>Bolten</strong><span class="hideOwn1431888">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1109
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>89</td>
+<td>
+172767
+</td>
+<td class="relative"><span class="makered1253957 openinfos myttFeaturesTooltip" data-tooltipdata="1253957;0;Pablo Gunkel">Pablo <strong>Gunkel</strong><span class="hideOwn1253957">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1101
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_Stern_bunt.png" height="14" class="tooli100" title="m&auml;nnlich, weniger als 10 Ergebnisse" style="">
+</td>
+</tr>
+<tr class="even">
+<td>90</td>
+<td>
+172881
+</td>
+<td class="relative"><span class="makered1407044 openinfos myttFeaturesTooltip" data-tooltipdata="1407044;0;Can Berid Kahraman">Can Berid <strong>Kahraman</strong><span class="hideOwn1407044">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1100
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>91</td>
+<td>
+177852
+</td>
+<td class="relative"><span class="makered559697 openinfos myttFeaturesTooltip" data-tooltipdata="559697;0;Svenja Kips">Svenja <strong>Kips</strong><span class="hideOwn559697">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1086
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_Stern_bunt.png" height="14" class="tooli100" title="weiblich, weniger als 10 Ergebnisse" style="">
+</td>
+</tr>
+<tr class="even">
+<td>92</td>
+<td>
+182656
+</td>
+<td class="relative"><span class="makered1352398 openinfos myttFeaturesTooltip" data-tooltipdata="1352398;0;Alexander Schilling">Alexander <strong>Schilling</strong><span class="hideOwn1352398">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1071
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>93</td>
+<td>
+185640
+</td>
+<td class="relative"><span class="makered1232381 openinfos myttFeaturesTooltip" data-tooltipdata="1232381;0;Norbert Girock">Norbert <strong>Girock</strong><span class="hideOwn1232381">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1062
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>94</td>
+<td>
+190258
+</td>
+<td class="relative"><span class="makered1304250 openinfos myttFeaturesTooltip" data-tooltipdata="1304250;0;Jonathan Haase">Jonathan <strong>Haase</strong><span class="hideOwn1304250">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1047
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>95</td>
+<td>
+194192
+</td>
+<td class="relative"><span class="makered494266 openinfos myttFeaturesTooltip" data-tooltipdata="494266;0;Anne-Lena Thurn">Anne-Lena <strong>Thurn</strong><span class="hideOwn494266">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1035
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>96</td>
+<td>
+196463
+</td>
+<td class="relative"><span class="makered1226525 openinfos myttFeaturesTooltip" data-tooltipdata="1226525;0;Johannes von Bandemer">Johannes von <strong>Bandemer</strong><span class="hideOwn1226525">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1027
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>97</td>
+<td>
+197143
+</td>
+<td class="relative"><span class="makered1306398 openinfos myttFeaturesTooltip" data-tooltipdata="1306398;0;Constantin Mussaeus">Constantin <strong>Mussaeus</strong><span class="hideOwn1306398">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1025
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>98</td>
+<td>
+198087
+</td>
+<td class="relative"><span class="makered1498941 openinfos myttFeaturesTooltip" data-tooltipdata="1498941;0;Laurenz Maslo">Laurenz <strong>Maslo</strong><span class="hideOwn1498941">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1022
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+<tr>	
+<td>99</td>
+<td>
+201643
+</td>
+<td class="relative"><span class="makered1256542 openinfos myttFeaturesTooltip" data-tooltipdata="1256542;0;Natalie Duong">Natalie <strong>Duong</strong><span class="hideOwn1256542">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1010
+</td>
+<td>
+<img src="../../../images/ranking/Icon_w_bunt.png" height="14" class="tooli100" title="weiblich" style="">
+</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td>
+202417
+</td>
+<td class="relative"><span class="makered1333895 openinfos myttFeaturesTooltip" data-tooltipdata="1333895;0;Sebastian Natusch">Sebastian <strong>Natusch</strong><span class="hideOwn1333895">&nbsp;[...]</span></span>
+</td>
+<td>
+<a href="showclubinfo?isclickTTClub=1&clubid=141046&organisation=WTTV">Borussia Düsseldorf</a>
+</td>
+<td style="text-align:center;">
+1008
+</td>
+<td>
+<img src="../../../images/ranking/Icon_m_bunt.png" height="14" class="tooli100" title="m&auml;nnlich" style="">
+</td>
+</tr>
+</table>
+<div class="col_full position_re">
+<form id="" action="" method="post" name="" onSubmit="" class="center mt_20 mb_20">
+<input type="button" value="QTTR-Druckversion öffnen" name="" class="tooltip" onclick="return popup('rankingPrint?verein=Borussia+D%C3%BCsseldorf&vereinId=141046%2CWTTV');" title="Die Druckversion zeigt Ihnen den Stand der letzten QTTR-Berechnung">
+</form>
+</div>
+<div style="width: 468px; margin: 10px auto;">
+<iframe src="/_ads/googleQuer468Script.cfm" frameborder="0" width="468" height="60" scrolling="no"></iframe>
+</div>	
+</div> 
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div> 
+<script type="text/javascript">	
+showHideDeleteVereinButton();
+showHideDeleteVereinButtonP();
+</script>
+</div>
+</div>
+</div>
+<div class="whitebox_fx mt_30">
+<div class="grid">
+<div class="whitebox_container">
+<div class="grid_12">
+<div class="bg_spon_top"></div>
+<div class="sponbox">
+<a href="http://www.mytischtennis.de/countandredirect/2-0001/" class="spon01">Joola</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0185/" class="spon03">Schöler Micke</a>
+<a href="http://www.mytischtennis.de/countandredirect/2-0186/" class="spon04">andro</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="bg_spon_bottom"></div>
+</div> 
+</div>
+</div>
+</div>
+<div class="graybox_fx">
+<div class="grid">
+<div class="graybox_container">
+<div class="graybox_content">
+<div class="graybox_list01">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+<li><a href="faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+</ul>
+</div>
+<div class="graybox_list02">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx bg_ci_orange">
+<div class="grid">
+<div class="onbottomnavi">
+<div class="center">
+<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div> 
+</div>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>

@@ -1,14 +1,12 @@
 package com.jmelzer.myttr.activities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
-import android.widget.EditText;
 
+import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
@@ -18,10 +16,9 @@ import com.robotium.solo.Solo;
 /**
  * Simulate the workflow of the app
  */
-public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActivity> {
+public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginActivity> {
 
     LoginActivity loginActivity;
-    private Solo solo;
 
     public IntegrationTest() {
         super(LoginActivity.class);
@@ -30,29 +27,36 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-//        setActivityInitialTouchMode(false);
-//        Context context = getInstrumentation().getTargetContext();
-//        LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(context);
-//        adapter.open();
-//        adapter.deleteAllEntries();
-//
-//        //prepare the db and prefs to automatic
-//
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-//        sharedPref.edit().putBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true).commit();
-//
-//        adapter.insertEntry("testi", "chokdee", "fuckyou123",
-//                2000, "TTG St. Augustin", 16);
-//
-//        loginActivity = getActivity();
-//        solo = new Solo(getInstrumentation(), getActivity());
 
 
     }
 
     @Override
+    protected void prepareMocks() {
+        super.prepareMocks();
+        MockResponses.forRequestDoAnswer(".*showclubinfo.*", "showclubinfo.htm");
+        MockResponses.forRequestDoAnswer(".*vereinid=3147.*", "ranking_verein.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Timo&nachname=Boll.*", "search_boll.htm");
+        MockResponses.forRequestDoAnswer(".*vorname=Marco&nachname=Vester.*", "search_vester.htm");
+        MockResponses.forRequestDoAnswer(".*teamId=1409109", "team_id_1409109.htm");
+        MockResponses.forRequestDoAnswer(".*personId=457126", "person_457126.htm");
+        MockResponses.forRequestDoAnswer(".*personId=249366", "person_249366.htm");
+        MockResponses.forRequestDoAnswer(".*personId=289406", "person_289406.htm");
+        MockResponses.forRequestDoAnswer(".*personId=150716", "person_150716.htm");
+        MockResponses.forRequestDoAnswer(".*personId=17741", "person_17741.htm");
+        MockResponses.forRequestDoAnswer(".*personId=980671", "person_980671.htm");
+        MockResponses.forRequestDoAnswer(".*vereinId=153027.*", "vereinid_153027.htm");
+        MockResponses.forRequestDoAnswer(".*eventId=302352639", "eventid_302352639.htm");
+        MockResponses.forRequestDoAnswer(".*eventId=62679901", "eventid_62679901.htm");
+        MockResponses.forRequestDoAnswer(".*eventId=301876029", "eventid_301876029.htm");
+        MockResponses.forRequestDoAnswer(".*vereinId=141046.*", "vereinid_141046.htm");
+        MockResponses.forRequestDoAnswer(".*teamplayers.*", "teamplayers.htm");
+        MockResponses.forRequestDoAnswer(".*/events", "events.htm");
+    }
+
+    @Override
     public void tearDown() throws Exception {
-//        solo.finishOpenedActivities();
+        solo.finishOpenedActivities();
     }
 
     @MediumTest
@@ -60,48 +64,22 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         //todo fixme
 //        automaticLogin();
 //
-//        login();
-//        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
-//        homeButton();
-//        preferences();
-//        TTR();
-//        gotoHome();
-//        clubList();
-//        gotoHome();
-//        ownStatistics();
-//        gotoHome();
-//        search();
-//        gotoHome();
-//        playerSimulation();
-//        logOut();
+        login();
+        assertTrue(waitForActivity(HomeActivity.class));
+        homeButton();
+        preferences();
+        TTR();
+        gotoHome();
+        clubList();
+        gotoHome();
+        ownStatistics();
+        gotoHome();
+        search();
+        gotoHome();
+        playerSimulation();
+        logOut();
     }
 
-    private void login() {
-        assertEquals("", MyApplication.getLoginUser().getUsername());
-
-        final EditText loginTxt = (EditText) loginActivity.findViewById(R.id.username);
-        loginActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                loginTxt.setText("chokdee");
-            }
-        });
-        final EditText pwTxt = (EditText) loginActivity.findViewById(R.id.password);
-        loginActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                pwTxt.setText("fuckyou123");
-            }
-        });
-
-
-        solo.clickOnButton(0);
-
-        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
-
-        assertNotNull(MyApplication.getLoginUser());
-        assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
-    }
 
     private void gotoHome() {
 
@@ -112,24 +90,24 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     private void search() {
         solo.clickOnButton(solo.getString(R.string.search));
-        assertTrue(solo.waitForActivity(SearchActivity.class, 5000));
+        assertTrue(waitForActivity(SearchActivity.class));
         solo.enterText(2, "Borussia Düsseldorf");
         solo.clickOnText(solo.getString(R.string.detail_search));
-        assertTrue(solo.waitForActivity(SearchResultActivity.class, 50000));
+        assertTrue(waitForActivity(SearchResultActivity.class));
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        assertTrue(waitForActivity(EventsActivity.class));
         assertTrue(solo.searchText("Boll"));
         solo.clickInList(3);
-        assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
+        assertTrue(waitForActivity(EventDetailActivity.class));
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        assertTrue(waitForActivity(EventsActivity.class));
 
     }
 
     private void automaticLogin() {
 
 
-        assertTrue(solo.waitForActivity(HomeActivity.class, 60000));
+        assertTrue(waitForActivity(HomeActivity.class));
         //automatic login must be sucessfull
 
         solo.sendKey(Solo.MENU);
@@ -159,7 +137,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.goBack();
 
         solo.clickOnActionBarItem(R.id.action_logout);
-        assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
+        assertTrue(waitForActivity(LoginActivity.class));
 
     }
 
@@ -173,25 +151,25 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     private void logOut() {
         gotoHome();
-        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        assertTrue(waitForActivity(HomeActivity.class));
         solo.clickOnActionBarItem(R.id.action_logout);
-        assertTrue(solo.waitForActivity(LoginActivity.class, 5000));
+        assertTrue(waitForActivity(LoginActivity.class));
     }
 
     private void playerSimulation() {
         solo.clickOnButton(solo.getString(R.string.player_sim));
-        assertTrue(solo.waitForActivity(SelectTeamPlayerActivity.class, 50000));
+        assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
 
         assertTrue(solo.searchText("Schmidt"));
         solo.clickInList(8);
 
-        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        assertTrue(waitForActivity(HomeActivity.class));
         assertTrue("Manni is selected as player", solo.searchText("Manfred"));
         assertNotNull(MyApplication.simPlayer);
         assertTrue(MyApplication.simPlayer.getTtrPoints() > 0);
 
         solo.clickOnText(solo.getString(R.string.enter_manual));
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
         //todo write own test here
 //        manualEntry();
         gotoHome();
@@ -206,46 +184,46 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
     private void ownStatistics() {
         solo.clickOnButton(solo.getString(R.string.statistik));
-        assertTrue(solo.waitForActivity(EventsActivity.class, 50000));
+        assertTrue(waitForActivity(EventsActivity.class));
         solo.clickInList(1);
-        assertTrue(solo.waitForActivity(EventDetailActivity.class, 50000));
+        assertTrue(waitForActivity(EventDetailActivity.class));
 
         gotoHome();
-        assertTrue(solo.waitForActivity(HomeActivity.class, 50000));
+        assertTrue(waitForActivity(HomeActivity.class));
     }
 
     private void clubList() {
         solo.clickOnButton(solo.getString(R.string.clublist));
-        assertTrue(solo.waitForActivity(ClubListActivity.class, 5000));
+        assertTrue(waitForActivity(ClubListActivity.class));
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
-        assertTrue(solo.searchText("Weißenberg"));
+        assertTrue(waitForActivity(EventsActivity.class));
+        assertTrue(solo.searchText("Vester"));
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(EventDetailActivity.class, 5000));
+        assertTrue(waitForActivity(EventDetailActivity.class));
 
         assertTrue(solo.searchText("11 : ") || solo.searchText(" : 11"));
         assertFalse(solo.searchText("div"));
 
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(EventsActivity.class, 5000));
+        assertTrue(waitForActivity(EventsActivity.class));
 
         gotoHome();
-        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        assertTrue(waitForActivity(HomeActivity.class));
 
     }
 
     private void homeButton() {
         solo.clickOnButton(solo.getString(R.string.clublist));
-        assertTrue(solo.waitForActivity(ClubListActivity.class, 50000));
+        assertTrue(waitForActivity(ClubListActivity.class));
         gotoHome();
-        assertTrue(solo.waitForActivity(HomeActivity.class, 50000));
+        assertTrue(waitForActivity(HomeActivity.class));
 
     }
 
     private void TTR() throws InterruptedException {
 
         solo.clickOnText(solo.getString(R.string.enter_manual));
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
         emptyTTRList();
         manualEntry();
@@ -256,18 +234,18 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         MyApplication.manualClub = "TTG St. Augustin";
         assertNull(MyApplication.teamAppointments);
         solo.clickOnView(solo.getView(R.id.next_appointments_search));
-        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 5000));
+        assertTrue(waitForActivity(NextAppointmentsActivity.class));
         assertNotNull(MyApplication.teamAppointments);
 
         //select first appointment
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
+        assertTrue(waitForActivity(NextAppointmentPlayersActivity.class));
 
         solo.clickOnCheckBox(0);
         solo.clickOnCheckBox(1);
 
         solo.clickOnButton(solo.getString(R.string.select));
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
         assertEquals("2 selected", 2, MyApplication.getPlayers().size());
 
@@ -279,15 +257,15 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("all removed", 0, MyApplication.getPlayers().size());
 
         solo.clickOnView(solo.getView(R.id.next_appointments_search));
-        assertTrue(solo.waitForActivity(NextAppointmentsActivity.class, 5000));
+        assertTrue(waitForActivity(NextAppointmentsActivity.class));
         assertNotNull(MyApplication.teamAppointments);
 
         //select first appointment
         solo.clickInList(0);
-        assertTrue(solo.waitForActivity(NextAppointmentPlayersActivity.class, 5000));
+        assertTrue(waitForActivity(NextAppointmentPlayersActivity.class));
         solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
         solo.clickInList(3);
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
         assertEquals("one selected", 1, MyApplication.getPlayers().size());
         solo.clickOnImageButton(0);
@@ -308,7 +286,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         View homeView = solo.getView(R.id.action_new_player);
         solo.clickOnView(homeView);
 //        solo.clickOnText(solo.getString(R.string.btn_new_player));
-        assertTrue(solo.waitForActivity(SearchActivity.class, 20000));
+        assertTrue(waitForActivity(SearchActivity.class));
 
         assertEquals("", solo.getEditText(0).getText().toString());
         assertEquals("", solo.getEditText(1).getText().toString());
@@ -329,7 +307,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         solo.clickOnText(solo.getString(R.string.detail_search));
 
-        assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
+        assertTrue(waitForActivity(SearchResultActivity.class));
 
         assertNotNull(solo.getCurrentActivity());
 
@@ -339,18 +317,18 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         //test case, we get NULLs in list
         solo.goBack();
 
-        assertTrue(solo.waitForActivity(SearchActivity.class, 5000));
+        assertTrue(waitForActivity(SearchActivity.class));
 
         solo.goBack();
 
 
         //back to calc activity
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 5000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
         assertEquals(0, MyApplication.getPlayers().size());
 
         solo.clickOnView(solo.getView(R.id.action_new_player));
 
-        assertTrue(solo.waitForActivity(SearchActivity.class, 10000));
+        assertTrue(waitForActivity(SearchActivity.class));
 
         assertTrue(solo.searchText("Vorname"));
 
@@ -365,11 +343,11 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         solo.clickOnText(solo.getString(R.string.detail_search));
 
-        assertTrue(solo.waitForActivity(SearchResultActivity.class, 20000));
+        assertTrue(waitForActivity(SearchResultActivity.class));
 
         solo.clickInList(3); //real Timo
 
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 20000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
         assertEquals(1, MyApplication.getPlayers().size());
         Player p = MyApplication.getPlayers().get(0);
@@ -380,7 +358,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
 
         //test exact player
         solo.clickOnView(solo.getView(R.id.action_new_player));
-        assertTrue(solo.waitForActivity(SearchActivity.class, 10000));
+        assertTrue(waitForActivity(SearchActivity.class));
 
         assertTrue(solo.searchText("Vorname"));
 
@@ -393,7 +371,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
             }
         });
         solo.clickOnText(solo.getString(R.string.detail_search));
-        assertTrue(solo.waitForActivity(TTRCalculatorActivity.class, 20000));
+        assertTrue(waitForActivity(TTRCalculatorActivity.class));
         assertEquals(2, MyApplication.getPlayers().size());
 
         p = MyApplication.getPlayers().get(1);
@@ -402,14 +380,14 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         assertEquals("TTG St. Augustin", p.getClub());
 
         solo.clickOnText(solo.getString(R.string.calc));
-        assertTrue(solo.waitForActivity(ResultActivity.class, 5000));
+        assertTrue(waitForActivity(ResultActivity.class));
         assertTrue(solo.searchText("Deine Punkte sind gleich geblieben"));
         solo.goBack();
 
         solo.clickOnCheckBox(0);
         solo.clickOnCheckBox(1);
         solo.clickOnText(solo.getString(R.string.calc));
-        assertTrue(solo.waitForActivity(ResultActivity.class, 5000));
+        assertTrue(waitForActivity(ResultActivity.class));
         assertTrue(solo.searchText("32 Punkte dazu gewonnen"));
 
         solo.goBack();
@@ -465,7 +443,7 @@ public class IntegrationTest extends ActivityInstrumentationTestCase2<LoginActiv
         solo.clickOnText("TTG St. Augustin");
         solo.clickOnButton("OK");
 
-        assertTrue(solo.waitForActivity(HomeActivity.class, 5000));
+        assertTrue(waitForActivity(HomeActivity.class));
         assertEquals("TTG St. Augustin", MyApplication.manualClub);
 
 
