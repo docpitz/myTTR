@@ -61,7 +61,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 
         solo.clickOnView(solo.getView(R.id.button_login));
 
-        assertTrue(solo.waitForActivity(HomeActivity.class, 40000));
+        assertTrue(waitForActivity(HomeActivity.class));
 
         assertNotNull(MyApplication.getLoginUser());
         assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
