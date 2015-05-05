@@ -22,6 +22,8 @@ public class TestActivityTests extends ActivityInstrumentationTestCase2<TestActi
         solo.enterText((EditText) solo.getView(R.id.editText1), "my login");
         solo.enterText((EditText) solo.getView(R.id.editText2), "my password");
         solo.clickOnView(solo.getView(R.id.button));
+
+        assertTrue(solo.waitForActivity(HomeActivity.class, 20000));
     }
 
     private Solo solo;

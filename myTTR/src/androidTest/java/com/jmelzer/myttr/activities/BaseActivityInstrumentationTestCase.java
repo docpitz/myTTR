@@ -40,6 +40,14 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     public boolean waitForActivity(Class<? extends Activity> activityClass) {
         return solo.waitForActivity(activityClass, STANDARD_TIMEOUT);
     }
+
+    protected void assertActivity(Class<? extends Activity> activityClass) {
+        boolean b = waitForActivity(HomeActivity.class);
+        if (!b) {
+            fail("activity isn't as expcted: " + solo.getCurrentActivity().getLocalClassName());
+        }
+    }
+
     protected void login() {
 
         assertTrue(solo.waitForActivity(LoginActivity.class));
@@ -58,10 +66,12 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
                 pwTxt.setText("fuckyou123");
             }
         });
-
+//        solo.enterText(loginTxt, "chokdee");
+//        solo.enterText(pwTxt, "fuckyou123");
+//        solo.clickOnButton("Login");
         solo.clickOnView(solo.getView(R.id.button_login));
 
-        assertTrue(waitForActivity(HomeActivity.class));
+        assertActivity(HomeActivity.class);
 
         assertNotNull(MyApplication.getLoginUser());
         assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
