@@ -5,6 +5,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
@@ -18,18 +19,10 @@ import com.robotium.solo.Solo;
  */
 public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginActivity> {
 
-    LoginActivity loginActivity;
-
     public IntegrationTest() {
         super(LoginActivity.class);
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-
-
-    }
 
     @Override
     protected void prepareMocks() {
@@ -61,22 +54,28 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
     @MediumTest
     public void testAll() throws InterruptedException {
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+            }
+        });
         //todo fixme
 //        automaticLogin();
 //
         login();
         assertTrue(waitForActivity(HomeActivity.class));
-//        homeButton();
-//        preferences();
-//        TTR();
-//        gotoHome();
-//        clubList();
-//        gotoHome();
-//        ownStatistics();
-//        gotoHome();
-//        search();
-//        gotoHome();
-//        playerSimulation();
+        homeButton();
+        preferences();
+        TTR();
+        gotoHome();
+        clubList();
+        gotoHome();
+        ownStatistics();
+        gotoHome();
+        search();
+        gotoHome();
+        playerSimulation();
         logOut();
     }
 

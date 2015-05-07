@@ -3,12 +3,9 @@
 buildscript {
     repositories {
         jcenter()
-        mavenCentral ()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
-        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0' // cobertura plugin
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.1'
 //        classpath 'com.github.jcandksolutions.gradle:android-unit-test:2.1.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,3 +17,22 @@ allprojects {
         jcenter()
     }
 }
+
+
+/* PRINT to output configuration details of the build. */
+//println new String(new char[80]).replace("\0", "-")
+//println 'Android Gradle Plugin: ' + Project.GRADLE_PLUGIN
+//println 'Android Build Tools: ' + Project.ANDROID_BUILD_TOOLS_VERSION
+//println 'Android SDK version: ' + Project.ANDROID_BUILD_SDK_VERSION
+//println 'Android Support Library: ' + Project.ANDROID_SUPPORT_LIB_VERSION
+//println 'Target API: ' + Project.ANDROID_BUILD_TARGET_SDK_VERSION
+//println 'Minimal API: ' + Project.ANDROID_BUILD_MIN_SDK_VERSION
+//println 'Use MultiDex: ' + Project.USE_MULTIDEX
+//println 'Use Tests: ' + Project.USE_TDD
+//println 'Use Espresso: ' + Project.USE_ESPRESSO
+//println 'Use Robolectric: ' + Project.USE_ROBOLECTRIC
+//println 'Use JaCoCo: ' + Project.USE_JACOCO
+//println 'JaCoCo Library: ' + Project.JACOCO_VERSION
+//println 'Coveralls Version: ' + Project.COVERALLS_VERSION
+//println 'Source code GIT Revision: ' + "${gitRevision()}"
+//println new String(new char[80]).replace("\0", "-")

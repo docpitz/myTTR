@@ -49,15 +49,6 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         MockResponses.forRequestDoAnswer("http://www.mytischtennis.de/community/events", "events.htm");
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-
-
-
-    }
-
-
 
 
     @Override
@@ -81,20 +72,20 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
         ligaHome();
 
-//        solo.clickOnText("Kreisliga");
-//        ligaMannschaftResultsActivity();
-////        //we have 3 actions here after that
-//        mannschaftsInfo();
-//
-//        solo.goBack();
-//        mannschaftsBilanzen();
-//
-//        solo.goBack();
-//        spielbericht();
-//
-//        solo.goBack();
-//        solo.goBack();
-//        favorite();
+        solo.clickOnText("Kreisliga");
+        ligaMannschaftResultsActivity();
+//        //we have 3 actions here after that
+        mannschaftsInfo();
+
+        solo.goBack();
+        mannschaftsBilanzen();
+
+        solo.goBack();
+        spielbericht();
+
+        solo.goBack();
+        solo.goBack();
+        favorite();
     }
 
     private void favorite() throws InterruptedException {

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 import android.widget.EditText;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MockHttpClient;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
@@ -48,10 +50,10 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
         }
     }
 
-    protected void login() {
+    protected void login() throws InterruptedException {
 
         assertTrue(solo.waitForActivity(LoginActivity.class));
-        Activity loginActivity = solo.getCurrentActivity();
+        LoginActivity loginActivity = (LoginActivity) solo.getCurrentActivity();
         final EditText loginTxt = (EditText) solo.getView(R.id.username);
         loginActivity.runOnUiThread(new Runnable() {
             @Override
@@ -69,7 +71,13 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 //        solo.enterText(loginTxt, "chokdee");
 //        solo.enterText(pwTxt, "fuckyou123");
 //        solo.clickOnButton("Login");
+//        loginActivity.login(null);
+        Thread.sleep(2000);
+        //net statement is very buggy, sometimes it doesn't work
         solo.clickOnView(solo.getView(R.id.button_login));
+        System.out.println("after login");
+        Log.d(Constants.LOG_TAG, "after login");
+//        Thread.sleep(200000);//let the activity do something here
 
         assertActivity(HomeActivity.class);
 
@@ -94,7 +102,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
         super.setUp();
         prepareMocks();
 
-        setActivityInitialTouchMode(false);
+        setActivityInitialTouchMode(true);
         Context context = getInstrumentation().getTargetContext();
         LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(context);
         adapter.open();

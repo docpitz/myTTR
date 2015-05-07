@@ -1,6 +1,5 @@
-apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
@@ -29,11 +28,10 @@ android {
         abortOnError false
     }
     jacoco {
-        version = "0.7.1.201405082137"
+        version = "0.7.2.201409121644"
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
@@ -64,5 +62,36 @@ dependencies {
     //    compile group: 'ch.acra' , name: 'acra' , version: '4.5.0'
 }
 
-coveralls.jacocoReportPath = 'build/reports/coverage/debug/report.xml'
+task jacocoReport << {
+    ant {
+        taskdef(name:'jacocoreport',
+                classname: 'org.jacoco.ant.ReportTask',
+                classpath: configurations.jacocoReport.asPath)
 
+        mkdir dir: "${buildDir}/test-coverage-report"
+        mkdir dir: "${buildDir}/reports/jacoco/test/"
+
+        jacocoreport {
+            executiondata {
+                fileset dir: "${buildDir}/jacoco"
+            }
+
+            structure(name: "${rootProject.name}") {
+                classfiles {
+                    fileset (dir: "${buildDir}/intermediates/classes/debug") {
+                        exclude(name: '**/R.class')
+                        exclude(name: '**/R$*.class')
+                    }
+                }
+
+                sourcefiles {
+                    fileset dir: "src/main/java"
+                    fileset dir: 'build/generated/source/buildConfig/debug'
+                }
+            }
+
+            xml destfile: "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+            html destdir: "${buildDir}/test-coverage-report/"
+        }
+    }
+}
