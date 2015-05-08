@@ -4,9 +4,6 @@ env:
   global:
     - ADB_INSTALL_TIMEOUT=16
     - TERM=dumb
-   matrix:
-      # run 'android list targets & pause' to see list of possible targets for matrix
-      - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a  AVD_NAME='test-api21-arm'
 
 android:
   components:
@@ -45,8 +42,6 @@ script:
 
 # http://docs.travis-ci.com/user/caching/
 cache:
-  gradlew: true
-  gradle: true
   directories:
     - $HOME/.gradle
     - $HOME/.m2
