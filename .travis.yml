@@ -40,6 +40,9 @@ script:
   #- ./gradlew connectedCheck
   - echo finshed
 
+after_script:
+  - adb -e logcat *:W | tee logcat.log > /dev/null 2>&1 &
+
 # http://docs.travis-ci.com/user/caching/
 cache:
   directories:
@@ -49,4 +52,3 @@ cache:
 install:
   # Prevent `gradle assemble` from being invoked by overriding with no-op
   - true
-  
