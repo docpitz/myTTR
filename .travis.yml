@@ -38,7 +38,7 @@ before_script:
 
 script:
   - gradle connectedCheck
-  #- ./gradlew connectedCheck
+  - ./gradlew --info connectedCheck
   - echo finshed
 
 after_script:

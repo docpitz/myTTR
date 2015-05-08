@@ -29,7 +29,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     //switch wether we read html from file system or calling mytt.de
     boolean offline = true;
 
-    protected static final int STANDARD_TIMEOUT = 50000;
+    protected static final int STANDARD_TIMEOUT = 150000;
 
 
     public BaseActivityInstrumentationTestCase(Class<T> activityClass) {
@@ -40,11 +40,15 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     protected Solo solo;
 
     public boolean waitForActivity(Class<? extends Activity> activityClass) {
-        return solo.waitForActivity(activityClass, STANDARD_TIMEOUT);
+        long start = System.currentTimeMillis();
+        boolean b = solo.waitForActivity(activityClass, STANDARD_TIMEOUT);
+        System.out.println("waited for activity " + activityClass.getCanonicalName() + " for " + (System.currentTimeMillis() - start) + "ms - result=" + b);
+        Log.d(Constants.LOG_TAG, "waited for activity " + activityClass.getCanonicalName() + " for " + (System.currentTimeMillis() - start) + "ms - result=" + b);
+        return b;
     }
 
     protected void assertActivity(Class<? extends Activity> activityClass) {
-        boolean b = waitForActivity(HomeActivity.class);
+        boolean b = waitForActivity(activityClass);
         if (!b) {
             fail("activity isn't as expcted: " + solo.getCurrentActivity().getLocalClassName());
         }

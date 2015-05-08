@@ -1,4 +1,4 @@
-apply plugin: 'jacoco'
+//apply plugin: 'jacoco'
 apply plugin: 'com.android.application'
 
 android {
@@ -27,9 +27,9 @@ android {
     lintOptions {
         abortOnError false
     }
-    jacoco {
-        version = "0.7.2.201409121644"
-    }
+//    jacoco {
+//        version = "0.7.2.201409121644"
+//    }
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:22.+'
@@ -61,37 +61,37 @@ dependencies {
     }
     //    compile group: 'ch.acra' , name: 'acra' , version: '4.5.0'
 }
-
-task jacocoReport << {
-    ant {
-        taskdef(name:'jacocoreport',
-                classname: 'org.jacoco.ant.ReportTask',
-                classpath: configurations.jacocoReport.asPath)
-
-        mkdir dir: "${buildDir}/test-coverage-report"
-        mkdir dir: "${buildDir}/reports/jacoco/test/"
-
-        jacocoreport {
-            executiondata {
-                fileset dir: "${buildDir}/jacoco"
-            }
-
-            structure(name: "${rootProject.name}") {
-                classfiles {
-                    fileset (dir: "${buildDir}/intermediates/classes/debug") {
-                        exclude(name: '**/R.class')
-                        exclude(name: '**/R$*.class')
-                    }
-                }
-
-                sourcefiles {
-                    fileset dir: "src/main/java"
-                    fileset dir: 'build/generated/source/buildConfig/debug'
-                }
-            }
-
-            xml destfile: "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-            html destdir: "${buildDir}/test-coverage-report/"
-        }
-    }
-}
+//
+//task jacocoReport << {
+//    ant {
+//        taskdef(name:'jacocoreport',
+//                classname: 'org.jacoco.ant.ReportTask',
+//                classpath: configurations.jacocoReport.asPath)
+//
+//        mkdir dir: "${buildDir}/test-coverage-report"
+//        mkdir dir: "${buildDir}/reports/jacoco/test/"
+//
+//        jacocoreport {
+//            executiondata {
+//                fileset dir: "${buildDir}/jacoco"
+//            }
+//
+//            structure(name: "${rootProject.name}") {
+//                classfiles {
+//                    fileset (dir: "${buildDir}/intermediates/classes/debug") {
+//                        exclude(name: '**/R.class')
+//                        exclude(name: '**/R$*.class')
+//                    }
+//                }
+//
+//                sourcefiles {
+//                    fileset dir: "src/main/java"
+//                    fileset dir: 'build/generated/source/buildConfig/debug'
+//                }
+//            }
+//
+//            xml destfile: "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+//            html destdir: "${buildDir}/test-coverage-report/"
+//        }
+//    }
+//}
