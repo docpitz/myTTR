@@ -30,10 +30,10 @@ android:
 
 # Emulator Management: Create, Start and Wait
 before_script:
-  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  #- emulator -avd test -no-skin -no-audio -no-window &
-  #- android-wait-for-emulator
-  #- adb shell input keyevent 82 &
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
 script:
   - gradle connectedCheck
@@ -46,13 +46,7 @@ cache:
     - $HOME/.gradle
     - $HOME/.m2
 
-before_install:
-  - ls -a
-  - pwd
-  # display list of all possible components
-  - android list sdk --no-ui --all --extended | grep -E '^id:' | awk -F '"' '{$1=""; print $2}'
-  # display list of installed emulators
-  - android list targets | grep -e '^\(\(id:\)\|\( Tag\)\)'
-  # make scripts executable for linux CI
-  - chmod +x gradlew
-  - chmod +x wait-for-avd
+install:
+  # Prevent `gradle assemble` from being invoked by overriding with no-op
+  - true
+  
