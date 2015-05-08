@@ -36,8 +36,8 @@ before_script:
   #- adb shell input keyevent 82 &
 
 script:
-  #- gradle connectedCheck
-  - ./gradlew connectedCheck
+  - gradle connectedCheck
+  #- ./gradlew connectedCheck
   - echo finshed
 
 # http://docs.travis-ci.com/user/caching/
