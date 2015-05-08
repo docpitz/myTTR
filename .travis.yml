@@ -3,6 +3,10 @@ language: android
 env:
   global:
     - ADB_INSTALL_TIMEOUT=16
+    - TERM=dumb
+   matrix:
+      # run 'android list targets & pause' to see list of possible targets for matrix
+      - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a  AVD_NAME='test-api21-arm'
 
 android:
   components:
@@ -29,11 +33,31 @@ android:
 
 # Emulator Management: Create, Start and Wait
 before_script:
-  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  #- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  #- emulator -avd test -no-skin -no-audio -no-window &
+  #- android-wait-for-emulator
+  #- adb shell input keyevent 82 &
 
 script:
-  - gradle connectedCheck
+  #- gradle connectedCheck
+  - ./gradlew connectedCheck
   - echo finshed
+
+# http://docs.travis-ci.com/user/caching/
+cache:
+  gradlew: true
+  gradle: true
+  directories:
+    - $HOME/.gradle
+    - $HOME/.m2
+
+before_install:
+  - ls -a
+  - pwd
+  # display list of all possible components
+  - android list sdk --no-ui --all --extended | grep -E '^id:' | awk -F '"' '{$1=""; print $2}'
+  # display list of installed emulators
+  - android list targets | grep -e '^\(\(id:\)\|\( Tag\)\)'
+  # make scripts executable for linux CI
+  - chmod +x gradlew
+  - chmod +x wait-for-avd
