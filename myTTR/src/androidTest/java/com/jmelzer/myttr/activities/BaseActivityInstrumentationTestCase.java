@@ -50,10 +50,17 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     protected void assertActivity(Class<? extends Activity> activityClass) {
         boolean b = waitForActivity(activityClass);
         if (!b) {
-            fail("activity isn't as expcted: " + solo.getCurrentActivity().getLocalClassName());
+            fail("activity " + activityClass.getName() + " isn't as expected: " + solo.getCurrentActivity().getLocalClassName() + "\n" +
+                    st());
         }
     }
-
+    String st() {
+        String s = "";
+        for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+            s += ste + "\n";
+        }
+        return s;
+    }
     protected void login() throws InterruptedException {
 
         assertTrue(solo.waitForActivity(LoginActivity.class));

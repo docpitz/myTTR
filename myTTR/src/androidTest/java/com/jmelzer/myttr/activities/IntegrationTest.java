@@ -212,10 +212,11 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
     }
 
     private void homeButton() {
+        assertActivity(HomeActivity.class);
         solo.clickOnButton(solo.getString(R.string.clublist));
-        assertTrue(waitForActivity(ClubListActivity.class));
+        assertActivity(ClubListActivity.class);
         gotoHome();
-        assertTrue(waitForActivity(HomeActivity.class));
+        assertActivity(HomeActivity.class);
 
     }
 
