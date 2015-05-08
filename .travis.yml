@@ -34,6 +34,7 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+  - adb -e logcat *:W | tee logcat.log > /dev/null 2>&1 &
 
 script:
   - gradle connectedCheck
@@ -41,7 +42,7 @@ script:
   - echo finshed
 
 after_script:
-  - adb -e logcat *:W | tee logcat.log > /dev/null 2>&1 &
+
 
 # http://docs.travis-ci.com/user/caching/
 cache:
@@ -49,6 +50,4 @@ cache:
     - $HOME/.gradle
     - $HOME/.m2
 
-install:
-  # Prevent `gradle assemble` from being invoked by overriding with no-op
-  - true
+
