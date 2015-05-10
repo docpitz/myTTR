@@ -62,20 +62,20 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         //todo fixme
 //        automaticLogin();
 //
-        login();
-        assertTrue(waitForActivity(HomeActivity.class));
-        homeButton();
-        preferences();
-        TTR();
-        gotoHome();
-        clubList();
-        gotoHome();
-        ownStatistics();
-        gotoHome();
-        search();
-        gotoHome();
-        playerSimulation();
-        logOut();
+//        login();
+//        assertTrue(waitForActivity(HomeActivity.class));
+//        homeButton();
+//        preferences();
+//        TTR();
+//        gotoHome();
+//        clubList();
+//        gotoHome();
+//        ownStatistics();
+//        gotoHome();
+//        search();
+//        gotoHome();
+//        playerSimulation();
+//        logOut();
     }
 
 
