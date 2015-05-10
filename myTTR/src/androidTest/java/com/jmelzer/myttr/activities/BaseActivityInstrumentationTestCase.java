@@ -16,6 +16,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginManager;
+import com.jmelzer.myttr.logic.SyncManager;
 import com.robotium.solo.Solo;
 
 import org.apache.http.impl.cookie.BasicClientCookie;
@@ -50,17 +51,19 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     protected void assertActivity(Class<? extends Activity> activityClass) {
         boolean b = waitForActivity(activityClass);
         if (!b) {
-            fail("activity " + activityClass.getName() + " isn't as expected: " + solo.getCurrentActivity().getLocalClassName() + "\n" +
-                    st());
+            fail("current activity " + solo.getCurrentActivity().getLocalClassName() + " isn't as expected: " +
+                    activityClass.getName() + "\n" + st());
         }
     }
+
     String st() {
-        String s = "";
+        String s = "-----------------\n";
         for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
             s += ste + "\n";
         }
-        return s;
+        return s + "-----------------";
     }
+
     protected void login() throws InterruptedException {
 
         assertTrue(solo.waitForActivity(LoginActivity.class));
@@ -109,8 +112,17 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     }
 
     @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+        solo.finishOpenedActivities();
+        Log.d(Constants.LOG_TAG, "------  end test " + getClass().getCanonicalName() + " ----- ");
+    }
+
+    @Override
     protected void setUp() throws Exception {
         super.setUp();
+        SyncManager.testIsRun = true;
+        Log.d(Constants.LOG_TAG, "------  starting test " + getClass().getCanonicalName() + " ----- ");
         prepareMocks();
 
         setActivityInitialTouchMode(true);
@@ -123,6 +135,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPref.edit().putBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, false).commit();
+        sharedPref.edit().putInt(MySettingsActivity.KEY_PREF_TIMER, 10).commit();
 
 //        adapter.insertEntry("Ich bins", "chokdee", "fuckyou123",
 //                2000, "TTG St. Augustin", 16);

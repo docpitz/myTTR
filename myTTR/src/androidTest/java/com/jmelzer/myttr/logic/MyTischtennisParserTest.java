@@ -67,7 +67,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         boolean found = false;
         for (Event event : events) {
             String s = event.toString();
-            Log.i(Constants.LOG_TAG, s);
+//            Log.i(Constants.LOG_TAG, s);
             if (event.getEvent().equals("Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40")) {
                 found = true;
             }
@@ -97,9 +97,10 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Event> events = myTischtennisParser.readEvents().getEvents();
         assertTrue(events.size() > 0);
-        Log.i(Constants.LOG_TAG, events.get(0).toString());
+//        Log.i(Constants.LOG_TAG, events.get(0).toString());
         EventDetail eventDetail = myTischtennisParser.readEventDetail(events.get(0));
-        Log.i(Constants.LOG_TAG, eventDetail.toString());
+        assertNotNull(eventDetail);
+//        Log.i(Constants.LOG_TAG, eventDetail.toString());
     }
 
     @SmallTest
@@ -110,7 +111,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         EventDetail eventDetail = myTischtennisParser.parseDetail(page);
         assertNotNull(eventDetail);
         assertEquals(6, eventDetail.getGames().size());
-        Log.i(Constants.LOG_TAG, eventDetail.toString());
+//        Log.i(Constants.LOG_TAG, eventDetail.toString());
     }
 
     @SmallTest
@@ -133,7 +134,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
-            Log.i(Constants.LOG_TAG, player.toString());
+//            Log.i(Constants.LOG_TAG, player.toString());
             assertTrue(player.getPersonId() > 0);
             assertTrue(player.toString(), player.getTtrPoints() > 0);
         }
@@ -146,7 +147,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         List<Player> players = myTischtennisParser.readPlayersFromTeam("1411599");
         boolean found = false;
         for (Player player : players) {
-            Log.i(Constants.LOG_TAG, player.toString());
+//            Log.i(Constants.LOG_TAG, player.toString());
             if (player.getLastname().equals("Werner")) {
                 assertFalse("player should be found once " + player, found);
                 found = true;
@@ -162,7 +163,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         List<Player> players = myTischtennisParser.parsePlayerFromTeam(rueckrunde);
         boolean found = false;
         for (Player player : players) {
-            Log.i(Constants.LOG_TAG, player.toString());
+//            Log.i(Constants.LOG_TAG, player.toString());
             if (player.getLastname().equals("Melzer")) {
                 assertFalse("player should be found once " + player, found);
                 found = true;
@@ -191,7 +192,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         List<Player> players = myTischtennisParser.readPlayersFromTeam(null);
         boolean found = false;
         for (Player player : players) {
-            Log.i(Constants.LOG_TAG, player.toString());
+//            Log.i(Constants.LOG_TAG, player.toString());
             if (player.getLastname().equals("Kraut")) {
                 found = true;
             }
@@ -223,9 +224,10 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.findPlayer(null, null, "TV Bergheim/Sieg");
         assertTrue(players.size() > 20);
-        for (Player player : players) {
-            Log.i(Constants.LOG_TAG, player.toString());
-        }
+        //todo add chekcs
+//        for (Player player : players) {
+//            Log.i(Constants.LOG_TAG, player.toString());
+//        }
     }
 
     @SmallTest
@@ -235,9 +237,10 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> players = myTischtennisParser.findPlayer("Michael Stefan", "Keller", null);
         assertTrue(players.size() > 0);
-        for (Player player : players) {
-            Log.i(Constants.LOG_TAG, player.toString());
-        }
+        //todo add checks
+//        for (Player player : players) {
+//            Log.i(Constants.LOG_TAG, player.toString());
+//        }
         myTischtennisParser = new MyTischtennisParser();
         players = myTischtennisParser.findPlayer("Peter", "Meyers", null);
         assertEquals(0, players.size());

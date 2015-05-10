@@ -51,11 +51,6 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
 
 
-    @Override
-    public void tearDown() throws Exception {
-        solo.finishOpenedActivities();
-    }
-
     @MediumTest
     public void testAll() throws InterruptedException {
 //        if (true) return;
@@ -66,26 +61,27 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
             }
         });
 
-        assertEquals(LoginActivity.class, solo.getCurrentActivity().getClass());
+        assertActivity(LoginActivity.class);
 
         login();
 
-//        ligaHome();
-//
-//        solo.clickOnText("Kreisliga");
-//        ligaMannschaftResultsActivity();
-////        //we have 3 actions here after that
-//        mannschaftsInfo();
-//
-//        solo.goBack();
-//        mannschaftsBilanzen();
-//
-//        solo.goBack();
-//        spielbericht();
-//
-//        solo.goBack();
-//        solo.goBack();
-//        favorite();
+        ligaHome();
+
+        solo.clickOnText("Kreisliga");
+        ligaMannschaftResultsActivity();
+//        //we have 3 actions here after that
+        mannschaftsInfo();
+
+        solo.goBack();
+        mannschaftsBilanzen();
+
+        solo.goBack();
+        spielbericht();
+
+        solo.goBack();
+        solo.goBack();
+        favorite();
+        Log.d(Constants.LOG_TAG, "End of LigaintegrationTest");
     }
 
     private void favorite() throws InterruptedException {

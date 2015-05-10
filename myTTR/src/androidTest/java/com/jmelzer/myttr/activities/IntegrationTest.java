@@ -4,15 +4,19 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.test.suitebuilder.annotation.MediumTest;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.robotium.solo.Solo;
+
+import java.util.ArrayList;
 
 /**
  * Simulate the workflow of the app
@@ -47,11 +51,6 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         MockResponses.forRequestDoAnswer(".*/events", "events.htm");
     }
 
-    @Override
-    public void tearDown() throws Exception {
-        solo.finishOpenedActivities();
-    }
-
     @MediumTest
     public void testAll() throws InterruptedException {
         getInstrumentation().runOnMainSync(new Runnable() {
@@ -66,17 +65,17 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         login();
         assertTrue(waitForActivity(HomeActivity.class));
         homeButton();
-//        preferences();
-//        TTR();
-//        gotoHome();
-//        clubList();
-//        gotoHome();
-//        ownStatistics();
-//        gotoHome();
-//        search();
-//        gotoHome();
-//        playerSimulation();
-//        logOut();
+        preferences();
+        TTR();
+        gotoHome();
+        clubList();
+        gotoHome();
+        ownStatistics();
+        gotoHome();
+        search();
+        gotoHome();
+        playerSimulation();
+        logOut();
     }
 
 
@@ -213,6 +212,10 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
     private void homeButton() {
         assertActivity(HomeActivity.class);
+        ArrayList<View> views =  solo.getViews();
+        for (View view : views) {
+            Log.d(Constants.LOG_TAG,view.toString());
+        }
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertActivity(ClubListActivity.class);
         gotoHome();

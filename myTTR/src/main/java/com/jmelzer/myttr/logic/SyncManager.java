@@ -41,7 +41,7 @@ public class SyncManager extends Service {
     private Timer timer;
     MyTischtennisParser parser = new MyTischtennisParser();
     private NotificationDataBaseAdapter adapter;
-
+    public static boolean testIsRun = false;
 
     NotificationDataBaseAdapter getDBAdapter() {
         if (adapter == null) {
@@ -108,7 +108,7 @@ public class SyncManager extends Service {
         int period = ((MyApplication) getApplication()).getTimerSettingInMinutes();
         Log.d(Constants.LOG_TAG, "timer set to " + period);
 
-        if (period == -1) {
+        if (period == -1 || testIsRun) {
             return Service.START_NOT_STICKY;
         }
 
