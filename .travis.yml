@@ -37,8 +37,8 @@ before_script:
   - adb -e logcat *:W | tee logcat.log > /dev/null 2>&1 &
 
 script:
-  - gradle connectedCheck
-  - ./gradlew --info connectedCheck
+  #- gradle connectedCheck
+  - ./gradlew --info --continue connectedCheck coveralls
   - echo finshed
 
 after_script:
