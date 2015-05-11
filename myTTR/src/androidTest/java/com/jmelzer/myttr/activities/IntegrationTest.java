@@ -5,6 +5,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -62,10 +63,10 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         //todo fixme
 //        automaticLogin();
 //
-//        login();
-//        assertTrue(waitForActivity(HomeActivity.class));
+        login();
+        assertTrue(waitForActivity(HomeActivity.class));
 //        homeButton();
-//        preferences();
+        preferences();
 //        TTR();
 //        gotoHome();
 //        clubList();
@@ -75,7 +76,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 //        search();
 //        gotoHome();
 //        playerSimulation();
-//        logOut();
+        logOut();
     }
 
 
@@ -212,9 +213,9 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
     private void homeButton() {
         assertActivity(HomeActivity.class);
-        ArrayList<View> views =  solo.getViews();
+        ArrayList<View> views = solo.getViews();
         for (View view : views) {
-            Log.d(Constants.LOG_TAG,view.toString());
+            Log.d(Constants.LOG_TAG, view.toString());
         }
         solo.clickOnButton(solo.getString(R.string.clublist));
         assertActivity(ClubListActivity.class);
@@ -434,9 +435,11 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
     }
 
     private void preferences() {
-
-        solo.sendKey(Solo.MENU);
-        solo.clickOnText(solo.getString(R.string.menu_settings));
+//        solo.sendKey(Solo.MENU);
+//        solo.sendKey(KeyEvent.KEYCODE_MENU);
+//        sleep(1000); //emulator is very slow
+        solo.clickOnMenuItem(solo.getString(R.string.menu_settings));
+        sleep(1000); //emulator is very slow
         solo.clickOnText(solo.getString(R.string.enter_clubname));
         solo.clearEditText(0);
         assertTrue(solo.searchText(""));

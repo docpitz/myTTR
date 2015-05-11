@@ -37,7 +37,7 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'org.apache.commons:commons-lang3:3.3.2'
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.3.1'
     // Robolectric
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-core:1.1'
