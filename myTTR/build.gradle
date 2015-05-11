@@ -1,6 +1,5 @@
 apply plugin: 'jacoco'
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 22
@@ -96,3 +95,5 @@ task jacocoReport << {
         }
     }
 }
+
+coveralls.jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
