@@ -53,6 +53,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
     @MediumTest
     public void testAll() throws InterruptedException {
+        assertActivity(LoginActivity.class);
 //        if (true) return;
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -61,26 +62,26 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
             }
         });
 
-//        assertActivity(LoginActivity.class);
+
 //
-//        login();
-//
-//        ligaHome();
-//
-//        solo.clickOnText("Kreisliga");
-//        ligaMannschaftResultsActivity();
-////        //we have 3 actions here after that
-//        mannschaftsInfo();
-//
-//        solo.goBack();
-//        mannschaftsBilanzen();
-//
-//        solo.goBack();
-//        spielbericht();
-//
-//        solo.goBack();
-//        solo.goBack();
-//        favorite();
+        login();
+
+        ligaHome();
+
+        solo.clickOnText("Kreisliga");
+        ligaMannschaftResultsActivity();
+//        //we have 3 actions here after that
+        mannschaftsInfo();
+
+        solo.goBack();
+        mannschaftsBilanzen();
+
+        solo.goBack();
+        spielbericht();
+
+        solo.goBack();
+        solo.goBack();
+        favorite();
         Log.d(Constants.LOG_TAG, "End of LigaintegrationTest");
     }
 

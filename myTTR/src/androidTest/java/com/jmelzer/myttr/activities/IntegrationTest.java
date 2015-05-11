@@ -65,17 +65,17 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 //
         login();
         assertTrue(waitForActivity(HomeActivity.class));
-//        homeButton();
+        homeButton();
         preferences();
-//        TTR();
-//        gotoHome();
-//        clubList();
-//        gotoHome();
-//        ownStatistics();
-//        gotoHome();
-//        search();
-//        gotoHome();
-//        playerSimulation();
+        TTR();
+        gotoHome();
+        clubList();
+        gotoHome();
+        ownStatistics();
+        gotoHome();
+        search();
+        gotoHome();
+        playerSimulation();
         logOut();
     }
 
@@ -439,7 +439,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 //        solo.sendKey(KeyEvent.KEYCODE_MENU);
 //        sleep(1000); //emulator is very slow
         solo.clickOnMenuItem(solo.getString(R.string.menu_settings));
-        sleep(1000); //emulator is very slow
+        sleep(2000); //emulator is very slow
         solo.clickOnText(solo.getString(R.string.enter_clubname));
         solo.clearEditText(0);
         assertTrue(solo.searchText(""));

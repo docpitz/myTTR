@@ -30,7 +30,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
     //switch wether we read html from file system or calling mytt.de
     boolean offline = true;
 
-    protected static final int STANDARD_TIMEOUT = 150000;
+    protected static final int STANDARD_TIMEOUT = 20000;
 
 
     public BaseActivityInstrumentationTestCase(Class<T> activityClass) {
