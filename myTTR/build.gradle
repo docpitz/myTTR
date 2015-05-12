@@ -1,6 +1,6 @@
 apply plugin: 'jacoco'
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.kt3k.coveralls'
+//apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 22
@@ -12,6 +12,7 @@ android {
         targetSdkVersion 22
         versionCode 15
         versionName "1.6.0"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {
         release {
@@ -19,6 +20,7 @@ android {
         }
         debug {
             testCoverageEnabled = true
+            debuggable true
         }
     }
     compileOptions {
@@ -31,6 +33,23 @@ android {
     jacoco {
         version = "0.7.2.201409121644"
     }
+    sourceSets {
+        test {
+            // include library sources into tests
+            java.srcDirs android.sourceSets.main.java.srcDirs
+
+            // exclude all files from compilation in case of disabled testing.
+            // 'test' configuration is still exists in this case
+            if (!useTesting) {
+                java.excludes '**/*.java'
+            }
+        }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:22.+'
@@ -97,4 +116,40 @@ task jacocoReport << {
     }
 }
 
-coveralls.jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
+//coveralls.jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
+
+task jacocoResults(type: JacocoReport, dependsOn: ['test', 'connectedCheck']) {
+    description = "Generates Jacoco coverage reports: XML and HTML"
+    group = "Reporting"
+//                outputs.upToDateWhen { false }
+
+    // use hidden configuration, for details look into JacocoPlugin.groovy
+    jacocoClasspath = project.configurations['androidJacocoAnt']
+
+    // exclude auto-generated classes and tests
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*',
+                      'android/**/*.*']
+    def testsTree = fileTree(dir: "${project.buildDir}/intermediates/classes/test/debug", excludes: fileFilter)
+    def testsInstTree = fileTree(dir: "${project.buildDir}/intermediates/classes/testsInstSrc/debug", excludes: fileFilter)
+    def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def releaseTree = fileTree(dir: "${project.buildDir}/intermediates/classes/release", excludes: fileFilter)
+    def testsSrc = "${project.projectDir}/src/test/java"
+    def testsInstSrc = "${project.projectDir}/src/androidTest/java"
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([testsSrc, testsInstSrc, mainSrc])
+    classDirectories = files([testsTree, testsInstTree, debugTree, releaseTree])
+    executionData = fileTree(dir: project.projectDir, includes: ['**/*.exec', '**/*.ec'])
+
+    reports {
+        xml {
+            enabled = true
+            destination = "${project.buildDir}/reports/jacoco/jacoco.xml"
+        }
+        csv.enabled false
+        html {
+            enabled = true
+            destination = "${project.buildDir}/reports/jacoco"
+        }
+    }
+}

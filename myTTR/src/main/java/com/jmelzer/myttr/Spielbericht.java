@@ -20,15 +20,6 @@ public class Spielbericht {
 
     String result;
 
-    public Spielbericht(String posName, String spieler1Name, String spieler1Url, String spieler2Name, String spieler2Url, String result) {
-        this.name = posName;
-        this.spieler1Name = spieler1Name;
-        this.spieler1Url = spieler1Url;
-        this.spieler2Name = spieler2Name;
-        this.spieler2Url = spieler2Url;
-        this.result = result;
-    }
-
     public Spielbericht() {
 
     }
@@ -75,10 +66,6 @@ public class Spielbericht {
 
     public List<String> getSets() {
         return sets;
-    }
-
-    public void setSets(List<String> sets) {
-        this.sets = sets;
     }
 
     public String getResult() {

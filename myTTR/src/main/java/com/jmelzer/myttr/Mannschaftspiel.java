@@ -20,9 +20,6 @@ public class Mannschaftspiel {
     String saetze;
     List<Spielbericht> spiele = new ArrayList<>();
 
-    public Mannschaftspiel() {
-    }
-
     public Mannschaftspiel(String date, Mannschaft heimMannschaft, Mannschaft gastMannschaft, String ergebnis, String urlDetail, boolean genehmigt) {
         this.date = date;
         this.heimMannschaft = heimMannschaft;
@@ -62,25 +59,6 @@ public class Mannschaftspiel {
         this.date = date;
     }
 
-    public void setHeimMannschaft(Mannschaft heimMannschaft) {
-        this.heimMannschaft = heimMannschaft;
-    }
-
-    public void setGastMannschaft(Mannschaft gastMannschaft) {
-        this.gastMannschaft = gastMannschaft;
-    }
-
-    public void setErgebnis(String ergebnis) {
-        this.ergebnis = ergebnis;
-    }
-
-    public void setUrlDetail(String urlDetail) {
-        this.urlDetail = urlDetail;
-    }
-
-    public void setGenehmigt(boolean genehmigt) {
-        this.genehmigt = genehmigt;
-    }
 
     public Mannschaft getHeimMannschaft() {
         return heimMannschaft;
@@ -98,24 +76,15 @@ public class Mannschaftspiel {
         return urlDetail;
     }
 
-    public boolean isGenehmigt() {
-        return genehmigt;
-    }
     public void addSpiel(Spielbericht spielbericht) {
         spiele.add(spielbericht);
     }
 
-    public String getBaelle() {
-        return baelle;
-    }
-
-    public String getSaetze() {
-        return saetze;
-    }
 
     public List<Spielbericht> getSpiele() {
         return spiele;
     }
+
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(urlDetail);
     }

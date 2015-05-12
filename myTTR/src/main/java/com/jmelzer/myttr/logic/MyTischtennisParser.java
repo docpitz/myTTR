@@ -306,15 +306,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 //ignore
             }
 
-//            int idx = 0;
-//            List<Player> list = new ArrayList<Player>();
-//            Helper h = getNextPlayer(page, id, idx);
-//            while (h != null) {
-//                list.add(h.p);
-//                h = getNextPlayer(page, id, h.idx);
-//            }
-//            return list;
-
         }
         return null;
     }
@@ -351,23 +342,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return null;
     }
 
-    private Helper getNextPlayer(String page, String id, int idx) {
-        final String cssBefore = "openinfos myttFeaturesTooltip";
-        int nCssClassBefore = page.indexOf(cssBefore, idx);
-        if (nCssClassBefore <= 0) {
-            return null;
-        }
-        ParseResult result = readBetween(page, nCssClassBefore, "data-tooltipdata=\"", ";");
-
-        int nStart = page.indexOf(">", nCssClassBefore + cssBefore.length());
-        int nEnd = page.indexOf("<span", nStart + 1);
-        String name = page.substring(nStart + 1, nEnd);
-        String firstName = findFirstName(nStart, page);
-        String lastName = findLastName(nStart, page);
-        Player player = new Player(firstName, lastName, id, parsePoints(page, nStart));
-        player.setPersonId(Long.valueOf(result.result));
-        return new Helper(player, nEnd);
-    }
 
     private int parsePoints(String page, int nStartIdx) {
         final String tagStart = "<td style=\"text-align:center;\">";
@@ -723,36 +697,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
         result = readBetween(page, result.end, "</span>", "<div");
         player.setTtrPoints(Integer.valueOf(result.result.trim()));
         return player;
-    }
-
-    List<Player> search(String firstname, String lastname, String clubName) throws NetworkException {
-        Uri.Builder builder = new Uri.Builder()
-                .scheme("http")
-                .authority("www.mytischtennis.de")
-                .path("community/ranking");
-
-
-        if (clubName != null) {
-            Club v = clubParser.getClubExact(clubName);
-            if (v == null) {
-                v = clubParser.getClubNameBestMatch(clubName);
-            }
-            if (v != null) {
-                builder.appendQueryParameter("verein", v.getName());
-                builder.appendQueryParameter("vereinId", v.getId() + "," + v.getVerband());
-            }
-            if (v == null) {
-                Log.i(Constants.LOG_TAG, "club not found in list:" + clubName);
-            }
-        }
-        String url = builder.build().toString();
-        //bad trick for the crap from mytischtennis.de
-        url = url.replace("%20", "+");
-
-
-        String page = Client.getPage(url);
-//        return parseForPlayer(firstName, lastName, page);
-        return null;
     }
 
 

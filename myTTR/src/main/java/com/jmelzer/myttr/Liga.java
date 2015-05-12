@@ -60,10 +60,6 @@ public class Liga {
         return name + " - " + getKategorie();
     }
 
-    public static String parseNameFromFav(String name) {
-        return name.substring(0, name.indexOf(" - "));
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -78,10 +74,6 @@ public class Liga {
 
     public String getKategorie() {
         return kategorie;
-    }
-
-    public void setKategorie(String kategorie) {
-        this.kategorie = kategorie;
     }
 
     public List<Mannschaft> getMannschaften() {
@@ -111,10 +103,6 @@ public class Liga {
             case GESAMT:
                 spieleGesamt.add(s);
         }
-    }
-
-    public void addSpielGesamt(Mannschaftspiel s) {
-        spieleGesamt.add(s);
     }
 
     public String getUrlGesamt() {

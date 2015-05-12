@@ -46,14 +46,6 @@ public class Game {
         this.playerWithPoints = playerWithPoints;
     }
 
-    public List<String> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<String> sets) {
-        this.sets = sets;
-    }
-
     public void addSet(String result) {
         sets.add(result);
     }

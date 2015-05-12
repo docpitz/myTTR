@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.MockResponses;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 
 import java.util.List;
@@ -212,9 +213,16 @@ public class MyTischtennisParserTest extends BaseTestCase {
     @SmallTest
     public void testgetNameOfOwnClub() throws Exception {
         login();
+        MyApplication.manualClub = "Dummy";
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+
         String name = myTischtennisParser.getNameOfOwnClub();
+        assertEquals("Dummy", name);
+
+        MyApplication.manualClub = null;
+        name = myTischtennisParser.getNameOfOwnClub();
         assertEquals("TTG St. Augustin", name);
+
     }
 
     @SmallTest
