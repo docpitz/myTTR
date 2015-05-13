@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
@@ -23,6 +22,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.model.Saison;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,11 +66,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
-        parser.readLigen(nrw);
+        parser.readLigen(nrw, Saison.SAISON_2015);
         assertTrue("must be greater than 20, we don't exactly the size",
                 nrw.getLigaList().size() > 20);
 
-        parser.readBezirke(nrw);
+        parser.readBezirke(nrw, Saison.SAISON_2015);
         assertEquals(5, nrw.getBezirkList().size());
 
         Bezirk bezirk = nrw.getBezirkList().get(2);
@@ -114,7 +114,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     public void _testAllVerbaende() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         for (Verband verband : verbaende) {
-            parser.readLigen(verband);
+            parser.readLigen(verband, Saison.SAISON_2015);
             assertTrue(verband.toString(), verband.getLigaList().size() > 0);
         }
 
@@ -130,7 +130,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
-            parser.readBezirke(verband);
+            parser.readBezirke(verband, Saison.SAISON_2015);
             if (verband.getBezirkList().size() == 0) {
                 Log.e(Constants.LOG_TAG, "no bezirk in '" + verband.getName() + "'");
             } else {
@@ -170,7 +170,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     private Verband testDTTB() throws NetworkException {
         Verband dttb = parser.readTopLigen();
-        parser.readLigen(dttb);
+        parser.readLigen(dttb, Saison.SAISON_2015);
         for (Liga liga : dttb.getLigaList()) {
             Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
             parser.readLiga(liga);
@@ -227,7 +227,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     void readLigenAndTest(Verband verband) throws NetworkException {
         Log.i(Constants.LOG_TAG, "read ligen from '" + verband.getName() + "'");
-        parser.readLigen(verband);
+        parser.readLigen(verband, Saison.SAISON_2015);
         for (Liga liga : verband.getLigaList()) {
             Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
             parser.readLiga(liga);
@@ -246,6 +246,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                 "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
         assertEquals(2, spieler.getEinsaetze().size());
         List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
+        assertTrue(ergebnisse.size() > 0);
 //        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
 //            Log.i(Constants.LOG_TAG, "ligaErgebnisse = " + ligaErgebnisse);
 //        }

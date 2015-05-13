@@ -10,6 +10,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import org.apache.commons.lang3.StringUtils;
@@ -458,19 +459,31 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * read the ligen from the url inside the verband
      */
-    public void readLigen(Verband verband) throws NetworkException {
-        String url = "";//HTTP_DTTB_CLICK_TT_DE;
-        url += verband.getUrl();
+    public void readLigen(Verband verband, Saison saison) throws NetworkException {
+        String url = "";
+        url += verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         verband.addAllLigen(ligen);
     }
 
     /**
+     * read the ligen and Bezirke from the url inside the verband
+     */
+    public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
+        String url = "";
+        url += verband.getUrlFixed(saison);
+        String page = Client.getPage(url);
+        List<Liga> ligen = parseLigaLinks(page);
+        verband.addAllLigen(ligen);
+        List<Bezirk> list = parseLinksBezirke(page);
+        verband.setBezirkList(list);
+    }
+    /**
      * read the ligen from the url inside the verband
      */
-    public void readBezirke(Verband verband) throws NetworkException {
-        String url = verband.getUrl();
+    public void readBezirke(Verband verband, Saison saison) throws NetworkException {
+        String url = verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Bezirk> list = parseLinksBezirke(page);
         verband.setBezirkList(list);

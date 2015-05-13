@@ -1,5 +1,6 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ import java.util.List;
  */
 public class Verband {
     public static Verband dttb = new Verband("DTTB", "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15");
-    //    static Map<String, String> nameMapping = new HashMap<>();
     public static List<Verband> verbaende = new ArrayList<>();
+
 
     static {
         verbaende.add(dttb);
@@ -70,13 +71,6 @@ public class Verband {
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(url);
     }
-    public void addBezirk(Bezirk d) {
-        bezirkList.add(d);
-    }
-
-    public void addLiga(Liga l) {
-        ligaList.add(l);
-    }
 
     public void setBezirkList(List<Bezirk> bezirkList) {
         this.bezirkList = bezirkList;
@@ -89,8 +83,26 @@ public class Verband {
         return name;
     }
 
+    /**
+     * @deprecated use getUrlFixed instead
+     * @return url with wrong year
+     */
     public String getUrl() {
         return url;
+    }
+    public String getUrlFixed(Saison saison) {
+        return replaceYear(url, saison);
+    }
+    String replaceYear(String url, Saison saison) {
+        switch (saison) {
+            case SAISON_2015:
+                return url;
+            case SAISON_2016:
+                return url.replace("14/15", "15/16").replace("2014%2F15", "2015%2F16");
+            default:
+                throw new IllegalArgumentException(saison + " undefined");
+        }
+
     }
 
     public List<Bezirk> getBezirkList() {
@@ -99,6 +111,10 @@ public class Verband {
 
     public List<Liga> getLigaList() {
         return Collections.unmodifiableList(ligaList);
+    }
+
+    public void clearLigaList() {
+        ligaList.clear();
     }
 
     public void addAllLigen(List<Liga> ligen) {

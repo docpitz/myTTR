@@ -27,6 +27,7 @@ import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.model.Saison;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class LigaHomeActivity extends BaseActivity {
     private List<Liga> ligaList;
     private Kreis selectedKreis;
     private List<Liga> allLigaList;
+    Saison selectedSaison = Saison.SAISON_2015;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -61,6 +63,42 @@ public class LigaHomeActivity extends BaseActivity {
 
         setContentView(R.layout.liga_home);
 
+        Spinner spinnerSaison = (Spinner) findViewById(R.id.spinner_saison);
+
+        SaisonAdapter saisonAdapter = new SaisonAdapter(this, R.layout.liga_home_spinner_selected_item,
+                Saison.saisons);
+        saisonAdapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
+        spinnerSaison.setAdapter(saisonAdapter);
+        spinnerSaison.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Saison tmpSaison = Saison.parse((String) parent.getItemAtPosition(position));
+                if (tmpSaison == selectedSaison) {
+                    return;
+                }
+                selectedSaison = tmpSaison;
+                selectedBezirk = null;
+                ligaList = null;
+                selectedKreis = null;
+                allLigaList = null;
+                MyApplication.selectedVerband.clearLigaList();
+                readLigenAndBezirke();
+                configBezirkAdapter();
+                configKreisAdapter();
+                configLigAdapter();
+                configKategorienAdapter();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+//        if (Saison.saisons.size() > 1) {
+//            findViewById(R.id.layoutSaison).setVisibility(View.VISIBLE);
+//        }
+
         Spinner spinnerVerband = (Spinner) findViewById(R.id.spinner_verband);
         VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_selected_item,
                 Verband.verbaende);
@@ -73,10 +111,6 @@ public class LigaHomeActivity extends BaseActivity {
         configKreisAdapter();
         configLigAdapter();
         configKategorienAdapter();
-//        Spinner spinnerKat = (Spinner) findViewById(R.id.kategorie_spinner);
-//        KategorieAdapter adapter = new KategorieAdapter(this, android.R.layout.simple_spinner_item, filterKategorien());
-//        spinnerKat.setAdapter(adapter);
-//        spinnerKat.setOnItemSelectedListener(new KategorieListener());
 
 
     }
@@ -84,7 +118,9 @@ public class LigaHomeActivity extends BaseActivity {
     private List<String> filterKategorien() {
         List<String> list = new ArrayList<>();
 
-        if (allLigaList == null) return list;
+        if (allLigaList == null) {
+            return list;
+        }
 
         Set<String> set = new TreeSet<>();
 
@@ -142,32 +178,12 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             MyApplication.selectedVerband = (Verband) parent.getItemAtPosition(position);
-            if (MyApplication.selectedVerband == null)
+            if (MyApplication.selectedVerband == null) {
                 return;
+            }
 
             if (MyApplication.selectedVerband.getLigaList().size() == 0) {
-                AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
-                    @Override
-                    protected void callParser() throws NetworkException, LoginExpiredException {
-                        new ClickTTParser().readLigen(MyApplication.selectedVerband);
-                        new ClickTTParser().readBezirke(MyApplication.selectedVerband);
-                    }
-
-                    @Override
-                    protected boolean dataLoaded() {
-                        return MyApplication.selectedVerband.getLigaList().size() > 0;
-                    }
-
-                    @Override
-                    protected void startNextActivity() {
-                        selectedBezirk = null;
-                        configBezirkAdapter();
-                        configKreisAdapter();
-                        configLigAdapter();
-                        configKategorienAdapter();
-                    }
-                };
-                task.execute();
+                readLigenAndBezirke();
             } else {
                 selectedBezirk = null;
                 configBezirkAdapter();
@@ -181,6 +197,31 @@ public class LigaHomeActivity extends BaseActivity {
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
+    }
+
+    private void readLigenAndBezirke() {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                new ClickTTParser().readBezirkeAndLigen(MyApplication.selectedVerband, selectedSaison);
+//                new ClickTTParser().readBezirke(MyApplication.selectedVerband, selectedSaison);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedVerband.getLigaList().size() > 0;
+            }
+
+            @Override
+            protected void startNextActivity() {
+                selectedBezirk = null;
+                configBezirkAdapter();
+                configKreisAdapter();
+                configLigAdapter();
+                configKategorienAdapter();
+            }
+        };
+        task.execute();
     }
 
     class KategorieListener implements AdapterView.OnItemSelectedListener {
@@ -203,7 +244,9 @@ public class LigaHomeActivity extends BaseActivity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if (view != null) {
                 selectedBezirk = (Bezirk) parent.getItemAtPosition(position);
-                if (selectedBezirk == null || selectedBezirk.getUrl() == null) return;
+                if (selectedBezirk == null || selectedBezirk.getUrl() == null) {
+                    return;
+                }
                 if (selectedBezirk.getLigen().size() == 0) {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
@@ -241,7 +284,9 @@ public class LigaHomeActivity extends BaseActivity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if (view != null) {
                 selectedKreis = (Kreis) parent.getItemAtPosition(position);
-                if (selectedKreis == null || selectedKreis.getUrl() == null) return;
+                if (selectedKreis == null || selectedKreis.getUrl() == null) {
+                    return;
+                }
 
                 if (selectedKreis.getLigen().size() == 0) {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
@@ -261,8 +306,9 @@ public class LigaHomeActivity extends BaseActivity {
                         }
                     };
                     task.execute();
-                } else
+                } else {
                     configLigAdapter();
+                }
             }
         }
 
@@ -280,8 +326,7 @@ public class LigaHomeActivity extends BaseActivity {
         if (selectedBezirk != null && selectedBezirk.getUrl() != null) {
             if (selectedKreis != null && selectedKreis.getUrl() != null) {
                 allLigaList = selectedKreis.getLigen();
-            }
-            else {
+            } else {
                 allLigaList = selectedBezirk.getLigen();
             }
         } else {
@@ -389,8 +434,30 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position, convertView, parent);
             label.setText(getItem(position).getName());
+            return label;
+        }
+    }
+
+    private class SaisonAdapter extends ArrayAdapter<String> {
+        public SaisonAdapter(Context context, int resource, List<String> list) {
+            super(context, resource, list);
+            setDropDownViewResource(R.layout.liga_home_spinner_item);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView label = (TextView) super.getView(position, convertView, parent);
+            label.setText(getItem(position));
+            return label;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            TextView label = (TextView) super.getDropDownView(position, convertView, parent);
+            label.setText(getItem(position));
             return label;
         }
     }
@@ -403,7 +470,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView label = (TextView) super.getView(position,convertView, parent);
+            TextView label = (TextView) super.getView(position, convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
@@ -411,7 +478,7 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position, convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
@@ -425,7 +492,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView label = (TextView) super.getView(position,convertView, parent);
+            TextView label = (TextView) super.getView(position, convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
@@ -433,7 +500,7 @@ public class LigaHomeActivity extends BaseActivity {
         @Override
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
-            TextView label = (TextView) super.getDropDownView(position,convertView, parent);
+            TextView label = (TextView) super.getDropDownView(position, convertView, parent);
             label.setText(getItem(position).getName());
             return label;
         }
