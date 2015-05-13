@@ -39,7 +39,7 @@ before_script:
 
 script:
   #- gradle connectedCheck
-  - ./gradlew --info --continue connectedCheck coveralls
+  - ./gradlew connectedCheck
   - echo finshed
 
 after_script:
