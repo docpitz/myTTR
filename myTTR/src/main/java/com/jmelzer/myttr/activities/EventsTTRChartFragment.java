@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -14,7 +15,9 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +44,8 @@ public class EventsTTRChartFragment extends BaseActivity {
         // enable value highlighting
         mChart.setHighlightEnabled(true);
         mChart.getAxisRight().setEnabled(true);
-
+        mChart.setDrawGridBackground(false);
+        mChart.setBackgroundColor(Color.BLACK);
 
 
         setData();
@@ -67,32 +71,30 @@ public class EventsTTRChartFragment extends BaseActivity {
 
         //add 20% of the diff to the max and min
         int diff = maxTTR - minTTR;
-        diff = (int)((float)diff * 0.2f);
+        diff = (int) ((float) diff * 0.2f);
         maxTTR += diff;
         minTTR -= diff;
 
         // create a dataset and give it a type
-        LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
+        LineDataSet set1 = new LineDataSet(yVals, MyApplication.getLoginUser().getRealName());
         // set1.setFillAlpha(110);
         // set1.setFillColor(Color.RED);
 
         // set the line to be drawn like this "- - - - - -"
-        set1.enableDashedLine(10f, 5f, 0f);
+//        set1.enableDashedLine(10f, 5f, 0f);
+//        set1.setColor(Color.BLACK);
         set1.setColor(Color.BLACK);
         set1.setCircleColor(Color.BLACK);
-        set1.setLineWidth(1f);
-        set1.setCircleSize(3f);
+        set1.setLineWidth(2f);
+//        set1.setCircleSize(3f);
         set1.setDrawCircleHole(false);
-        set1.setValueTextSize(1f);
-        set1.setFillAlpha(65);
+        set1.setValueTextSize(0f);
+//        set1.setFillAlpha(65);
         set1.setFillColor(Color.BLACK);
         set1.setDrawCircles(false);
+        set1.setColor(Color.WHITE);
 
-//        set1.setDrawFilled(true);
-        // set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
-        // Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
-
-        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+        ArrayList<LineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1); // add the datasets
 
         // create a data object with the datasets
@@ -101,6 +103,13 @@ public class EventsTTRChartFragment extends BaseActivity {
         leftAxis.setAxisMaxValue(maxTTR);
         leftAxis.setAxisMinValue(minTTR);
         leftAxis.setStartAtZero(false);
+        leftAxis.setTextColor(Color.WHITE);
+//        mChart.getXAxis().setValues(Arrays.asList("1", "2"));
+        mChart.getXAxis().setTextColor(Color.WHITE);
+        mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        leftAxis.setDrawGridLines(true);
+        mChart.getAxisRight().setDrawGridLines(false);
+//        mChart.getXAxis().setDrawGridLines(false);
 
         // set data
         mChart.setData(data);
