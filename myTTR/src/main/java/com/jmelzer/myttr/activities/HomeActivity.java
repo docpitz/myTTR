@@ -84,7 +84,8 @@ public class HomeActivity extends BaseActivity {
 
     public void statistik(View view) {
         MyApplication.selectedPlayer = null;
-        AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
+//        AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
+        AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsTTRChartFragment.class);
         task.execute();
     }
 
