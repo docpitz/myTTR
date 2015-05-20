@@ -11,6 +11,8 @@ import android.os.Looper;
 import android.os.StatFs;
 import android.util.Log;
 
+import com.jmelzer.myttr.Constants;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -47,7 +49,7 @@ public class UnCaughtException implements UncaughtExceptionHandler {
         return totalBlocks * blockSize;
     }
 
-    private void addInformation(StringBuilder message) {
+    void addInformation(StringBuilder message) {
         message.append("Locale: ").append(Locale.getDefault()).append('\n');
         try {
             PackageManager pm = context.getPackageManager();
@@ -56,7 +58,7 @@ public class UnCaughtException implements UncaughtExceptionHandler {
             message.append("Version: ").append(pi.versionName).append('\n');
             message.append("Package: ").append(pi.packageName).append('\n');
         } catch (Exception e) {
-            Log.e("CustomExceptionHandler", "Error", e);
+            Log.e(Constants.LOG_TAG, "Error", e);
             message.append("Could not get Version information for ").append(
                     context.getPackageName());
         }
@@ -97,12 +99,10 @@ public class UnCaughtException implements UncaughtExceptionHandler {
             printWriter.close();
             report.append('\n');
             report.append("**** End of current Report ***");
-            Log.e(UnCaughtException.class.getName(),
-                    "Error while sendErrorMail" + report);
+            Log.e(Constants.LOG_TAG, "Got uncaught Exception: " + report);
             sendErrorMail(report);
         } catch (Throwable ignore) {
-            Log.e(UnCaughtException.class.getName(),
-                    "Error while sending error e-mail", ignore);
+            Log.e(Constants.LOG_TAG, "Error while sending error e-mail", ignore);
         }
     }
 

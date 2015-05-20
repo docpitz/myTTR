@@ -134,6 +134,8 @@
     <string name="header_event_ttr">TTR</string>
     <string name="header_event_sum">+/-</string>
     <string name="image_remove">Remove</string>
+    <string name="statistic_text">"Statistiken für den Spieler "</string>
+    <string name="chart_text">"Chart für den Spieler "</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

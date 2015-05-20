@@ -18,11 +18,9 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(Constants.LOG_TAG, "activity " + this + " in oncreate");
 
-
         super.onCreate(savedInstanceState);
 
-//        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
-
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
 
         if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
             setTitle(MyApplication.getTitle() + " - " + MyApplication.manualClub);

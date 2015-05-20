@@ -3,6 +3,11 @@ package com.jmelzer.myttr.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -14,47 +19,51 @@ import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by J. Melzer on 13.05.2015.
  * Page for showing the chart
  */
-public class EventsTTRChartFragment extends BaseActivity {
+public class EventsTTRChartFragment extends Fragment {
     private LineChart mChart;
 
-    @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
-        return true;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.events_chart, container, false);
 
-        setContentView(R.layout.events_chart);
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = (LineChart) rootView.findViewById(R.id.chart1);
         mChart.setDescription("");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
+        mChart.setNoDataTextDescription("TODO.");
 
-        // enable value highlighting
-        mChart.setHighlightEnabled(true);
+        mChart.setHighlightEnabled(false);
         mChart.getAxisRight().setEnabled(true);
         mChart.setDrawGridBackground(false);
         mChart.setBackgroundColor(Color.BLACK);
+        mChart.getLegend().setEnabled(false);
 
 
         setData();
+
+        TextView textView = (TextView) rootView.findViewById(R.id.selected_player);
+        textView.setText(getActivity().getString(R.string.chart_text) + MyApplication.getStatistikTextForPlayer());
+
+        return rootView;
     }
 
     private void setData() {
         List<String> xVals = new ArrayList<>();
-        List<Entry> yVals = new ArrayList<Entry>();
-
+        List<Entry> yVals = new ArrayList<>();
         int i = 0;
         int maxTTR = 0;
         int minTTR = 3000;
@@ -68,7 +77,18 @@ public class EventsTTRChartFragment extends BaseActivity {
             minTTR = Math.min(minTTR, event.getTtr());
             i++;
         }
+        Event lastEvent = MyApplication.events.get(0);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
+        try {
+            Date lastDate = formatter.parse(lastEvent.getDate());
+            Date p1 = DateUtils.addDays(lastDate, 1);
+            xVals.add(formatter.format(p1));
+            yVals.add(new Entry(lastEvent.getTtr() + lastEvent.getSum(), i));
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+        }
         //add 20% of the diff to the max and min
         int diff = maxTTR - minTTR;
         diff = (int) ((float) diff * 0.2f);
