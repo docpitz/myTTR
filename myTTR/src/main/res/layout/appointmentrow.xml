@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tools:RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -10,6 +10,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="21.03 20:00 Uhr"
+            android:layout_alignParentLeft="true"
             android:textSize="18sp"
             android:gravity="left">
     </TextView>
@@ -19,9 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DJK Stallberg-Wolsdorf"
+            android:layout_toRightOf="@+id/date"
             android:textSize="18sp"
             android:gravity="left">
     </TextView>
 
 
-</tools:RelativeLayout>
+</RelativeLayout>
