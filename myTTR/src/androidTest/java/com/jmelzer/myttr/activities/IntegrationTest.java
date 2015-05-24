@@ -44,6 +44,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         MockResponses.forRequestDoAnswer(".*personId=17741", "person_17741.htm");
         MockResponses.forRequestDoAnswer(".*personId=980671", "person_980671.htm");
         MockResponses.forRequestDoAnswer(".*vereinId=153027.*", "vereinid_153027.htm");
+        MockResponses.forRequestDoAnswer(".*vereinId=156012.*", "ranking_verein.htm");
         MockResponses.forRequestDoAnswer(".*eventId=302352639", "eventid_302352639.htm");
         MockResponses.forRequestDoAnswer(".*eventId=62679901", "eventid_62679901.htm");
         MockResponses.forRequestDoAnswer(".*eventId=301876029", "eventid_301876029.htm");
@@ -64,17 +65,17 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 //        automaticLogin();
 //
         login();
-        assertTrue(waitForActivity(HomeActivity.class));
-        homeButton();
-        preferences();
-        TTR();
-        gotoHome();
-        clubList();
-        gotoHome();
-        ownStatistics();
-        gotoHome();
-        search();
-        gotoHome();
+//        assertTrue(waitForActivity(HomeActivity.class));
+//        homeButton();
+//        preferences();
+//        TTR();
+//        gotoHome();
+//        clubList();
+//        gotoHome();
+//        ownStatistics();
+//        gotoHome();
+//        search();
+//        gotoHome();
         playerSimulation();
         logOut();
     }
@@ -172,6 +173,17 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         //todo write own test here
 //        manualEntry();
         gotoHome();
+
+        solo.clickOnButton(solo.getString(R.string.player_sim));
+        assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
+        solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
+        assertTrue(waitForActivity(SearchResultActivity.class));
+
+        assertTrue("Marco must be found", solo.searchText("Vester"));
+
+        solo.clickInList(0);
+        assertTrue(waitForActivity(HomeActivity.class));
+        assertTrue("Marco is selected as player", solo.searchText("Marco"));
 
         solo.clickOnActionBarItem(R.id.action_remove_sim);
         assertTrue(solo.waitForText("wurde beendet"));

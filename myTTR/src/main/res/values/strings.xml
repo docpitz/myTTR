@@ -90,7 +90,7 @@
 \nDie durch die Seitenbetreiber erstellten bzw. verwendeten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
 \n
 </string>
-    <string name="loadplayerfromclub">Alle Spieler aus dem Verein anzeigen</string>
+    <string name="loadplayerfromclub"> Mehr aus dem Verein </string>
     <string name="enter_clubname_sum">Hier kannst du den Namen deines Vereins eingeben, falls er nicht automatisch ermittelt werden konnte.</string>
     <string name="enter_clubname">Verein eingeben</string>
     <string name="enter_ak_sum">Hier kannst du deine Änderungskonstante eingeben, wenn sie nicht 16 ist.</string>
@@ -134,6 +134,8 @@
     <string name="header_event_ttr">TTR</string>
     <string name="header_event_sum">+/-</string>
     <string name="image_remove">Remove</string>
+    <string name="header_firstname">Vorname</string>
+    <string name="header_lastname">Nachname</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

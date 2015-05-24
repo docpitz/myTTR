@@ -166,4 +166,19 @@ public class TTRCalculatorActivity extends BaseActivity {
         menuInflater.inflate(R.menu.ttr_actions, menu);
         return true;
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        Player p = (Player) data.getSerializableExtra("PLAYER");
+//        Toast.makeText(this, p.getFullName(), Toast.LENGTH_LONG).show();
+//        //is this really needed?
+//        if (MyApplication.actualPlayer != null) {
+//            MyApplication.actualPlayer.copy(p);
+//        } else {
+//            MyApplication.actualPlayer = p;
+//        }
+//        MyApplication.addPlayer(MyApplication.actualPlayer);
+//    }
 }

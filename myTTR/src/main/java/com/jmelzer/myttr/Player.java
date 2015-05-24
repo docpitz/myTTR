@@ -7,11 +7,14 @@
 
 package com.jmelzer.myttr;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>, Serializable {
+    private static final long serialVersionUID = 7149709110710420075L;
+
     String firstname;
     String lastname;
     String fullName;

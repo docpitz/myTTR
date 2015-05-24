@@ -37,6 +37,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     protected void prepareMocks() {
         super.prepareMocks();
         MockResponses.forRequestDoAnswer(".*/events", "events.htm");
+        MockResponses.forRequestDoAnswer(".*vereinId=156012.*", "ranking_verein.htm");
         MockResponses.forRequestDoAnswer(".*personId=425165", "events_425165.htm");
         MockResponses.forRequestDoAnswer(".*vorname=Astrid&nachname=Schulz.*", "search_schulz.htm");
         MockResponses.forRequestDoAnswer(".*vorname=Marco&nachname=Vester.*", "search_vester.htm");
@@ -252,6 +253,15 @@ public class MyTischtennisParserTest extends BaseTestCase {
         myTischtennisParser = new MyTischtennisParser();
         players = myTischtennisParser.findPlayer("Peter", "Meyers", null);
         assertEquals(0, players.size());
+    }
+
+    @SmallTest
+    public void testPerf() throws Exception {
+        login();
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        long start = System.currentTimeMillis();
+        myTischtennisParser.findPlayer(null, null, "TTG St. Augustin");
+        Log.i(Constants.LOG_TAG, "findPlayer time " + (System.currentTimeMillis() - start) + " ms");
     }
 
     @SmallTest

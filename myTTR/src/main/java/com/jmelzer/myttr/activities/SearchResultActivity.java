@@ -64,19 +64,27 @@ public class SearchResultActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 view.setSelected(true);
+//                /TODO NOT GENERIC!!!
+                Player p = MyApplication.searchResult.get(position);
                 if (goBackToClass.equals(TTRCalculatorActivity.class)) {
                     if (position > -1 && position < MyApplication.searchResult.size()) {
                         if (MyApplication.actualPlayer != null) {
-                            MyApplication.actualPlayer.copy(MyApplication.searchResult.get(position));
+                            MyApplication.actualPlayer.copy(p);
                         } else {
-                            MyApplication.actualPlayer = MyApplication.searchResult.get(position);
+                            MyApplication.actualPlayer = p;
                         }
                         MyApplication.addPlayer(MyApplication.actualPlayer);
                         Intent target = new Intent(SearchResultActivity.this, goBackToClass);
+                        finish();
                         SearchResultActivity.this.startActivity(target);
                     }
+                } else if (goBackToClass.equals(SelectTeamPlayerActivity.class)) {
+                    Intent intent = new Intent();
+                    intent.putExtra("PLAYER", p);
+                    setResult(1, intent);
+                    finish();
                 } else {
-                    Player p = MyApplication.searchResult.get(position);
+
 
                     new EventsAsyncTask(SearchResultActivity.this, EventsActivity.class, p).execute();
                 }

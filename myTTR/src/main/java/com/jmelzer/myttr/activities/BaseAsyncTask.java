@@ -41,7 +41,9 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     @Override
     protected Integer doInBackground(String... params) {
         try {
+            long start = System.currentTimeMillis();
             callParser();
+            Log.i(Constants.LOG_TAG, "parser time " + (System.currentTimeMillis() - start) + " ms");
         } catch (NetworkException e) {
             errorMessage = e.getMessage();
         } catch (LoginExpiredException e) {
@@ -80,7 +82,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
         if (targetClz != null) {
             Intent target = new Intent(parent, targetClz);
             putExtra(target);
-            parent.startActivity(target);
+            parent.startActivityForResult(target, 1);
         }
     }
 

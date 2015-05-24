@@ -2,6 +2,8 @@ package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -18,6 +21,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.TooManyPlayersFound;
 
 import java.util.List;
 
@@ -67,6 +71,50 @@ public class SelectTeamPlayerActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            Player p = (Player) data.getSerializableExtra("PLAYER");
+            Toast.makeText(this, p.getFullName(), Toast.LENGTH_LONG).show();
+            MyApplication.simPlayer = p;
+            new SimPlayerAsyncTask(SelectTeamPlayerActivity.this, HomeActivity.class, MyApplication.simPlayer).execute();
+        }
+    }
+
+    public void cluplist(View view) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.searchResult = null;
+                try {
+                    MyApplication.searchResult = new MyTischtennisParser().findPlayer(null, null,
+                            MyApplication.myTeamPlayers.get(0).getClub());
+                } catch (TooManyPlayersFound tooManyPlayersFound) {
+                    //ok
+                }
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.searchResult != null;
+            }
+
+            @Override
+            protected void putExtra(Intent target) {
+                target.putExtra(SearchActivity.BACK_TO, SelectTeamPlayerActivity.class);
+            }
+        };
+        task.execute();
+    }
+
+    public void search(View view) {
+        Intent target = new Intent(this, SearchActivity.class);
+        target.putExtra(SearchActivity.BACK_TO, SelectTeamPlayerActivity.class);
+        startActivityForResult(target, 1);
     }
 
     private class SimPlayerAsyncTask extends BaseAsyncTask {
