@@ -9,7 +9,7 @@
     <string name="app_name">myTTR</string>
     <string name="username_message">Usernamen eingeben</string>
     <string name="button_send">Login</string>
-    <string name="button_liga">Oder nur Liga Ergebnisse browsen</string>
+    <string name="button_liga">Oder nur Liga Ergebnisse ansehen</string>
     <string name="password_message">Passwort eingeben</string>
     <string name="read_from_foto">Aus Photo lesen</string>
     <string name="enter_manual">TTR-Rechner</string>
