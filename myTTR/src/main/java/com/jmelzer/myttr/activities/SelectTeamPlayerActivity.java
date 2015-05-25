@@ -76,7 +76,7 @@ public class SelectTeamPlayerActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
+        if (data != null && resultCode == 1) {
             Player p = (Player) data.getSerializableExtra("PLAYER");
             Toast.makeText(this, p.getFullName(), Toast.LENGTH_LONG).show();
             MyApplication.simPlayer = p;
