@@ -17,6 +17,9 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.model.Verein;
+
+import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -343,6 +346,25 @@ public class ClickTTParserTest {
 //        for (Bezirk bezirk : bezirke) {
 //            System.out.println("bezirk = " + bezirk);
 //        }
+    }
+
+    @Test
+    public void testParseVerein() throws Exception {
+        String page = readFile(ASSETS_DIR + "/verein.htm");
+        Verein verein = parser.parseVerein(page);
+
+        assertNotNull(verein);
+        assertEquals("Borussia VfL 1900 e.V. Mönchengladbach", verein.getName());
+        System.out.println("verein.getKontakt() = " + verein.getKontakt());
+        assertEquals("vorstand@borussiatt.de", verein.getKontakt().getMail());
+        assertEquals("http://www.BorussiaTT.de", verein.getKontakt().getUrl());
+        System.out.println("-------------");
+        for (String s : verein.getLokale()) {
+            System.out.println("s = " + s);
+        }
+        System.out.println("-------------");
+        assertEquals(2, verein.getLokale().size());
+        assertTrue(verein.getLokale().get(0).contains("Sporthalle Realschule Volksgarten"));
     }
 
 }

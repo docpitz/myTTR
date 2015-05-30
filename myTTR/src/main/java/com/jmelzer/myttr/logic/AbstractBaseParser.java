@@ -102,7 +102,7 @@ public class AbstractBaseParser {
      * @return first url, second value inside the tag
      */
     protected String[] readHrefAndATag(String line) {
-        ParseResult result2 = readBetween(line, 0, "href=\"", "\">");
+        ParseResult result2 = readBetween(line, 0, "href=\"", "\"");
         String url = safeResult(result2);
         result2 = readBetweenOpenTag(line, 0, "<a", "</a>");
         return new String[]{url, safeResult(result2)};
