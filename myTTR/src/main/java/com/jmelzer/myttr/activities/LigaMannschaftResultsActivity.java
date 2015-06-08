@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.activities;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,7 +32,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         if (toLoginIfNeccassry()) {
             return;
         }
-        
+
         setContentView(R.layout.liga_mannschaft_detail);
 
         init();
@@ -85,5 +84,25 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
     public void info(MenuItem item) {
         readInfoAndStartActivity(LigaMannschaftInfoActivity.class);
+    }
+
+    public void verein(MenuItem item) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                ClickTTParser parser = new ClickTTParser();
+                if (MyApplication.selectedMannschaft.getVereinUrl() == null) {
+                    parser.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                }
+                MyApplication.selectedVerein = parser.readVerein(MyApplication.selectedMannschaft);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedVerein != null;
+            }
+
+        };
+        task.execute();
     }
 }

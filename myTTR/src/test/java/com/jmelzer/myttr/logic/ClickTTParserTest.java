@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotEquals;
@@ -49,7 +50,6 @@ public class ClickTTParserTest {
     }
 
 
-
     @Test
     public void testReadTopligen() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
@@ -57,7 +57,7 @@ public class ClickTTParserTest {
         List<Liga> ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            System.out.println( "liga = " + liga);
+            System.out.println("liga = " + liga);
         }
         assertTrue("must be > 10 not " + ligen.size(), ligen.size() > 10);
     }
@@ -69,7 +69,7 @@ public class ClickTTParserTest {
         List<Liga> ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            System.out.println( "liga = " + liga);
+            System.out.println("liga = " + liga);
         }
         assertEquals("must be 34 ", 34, ligen.size());
         assertEquals(17, count(ligen, "Herren"));
@@ -79,7 +79,7 @@ public class ClickTTParserTest {
         ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            System.out.println( "liga = " + liga);
+            System.out.println("liga = " + liga);
         }
         assertEquals("must be 47 ", 47, ligen.size());
         assertEquals(18, count(ligen, "Herren"));
@@ -99,7 +99,7 @@ public class ClickTTParserTest {
         ligen = parser.parseLigaLinks(page);
 
         for (Liga liga : ligen) {
-            System.out.println( "liga = " + liga);
+            System.out.println("liga = " + liga);
         }
         assertEquals("must be 13 ", 13, ligen.size());
         assertEquals(10, count(ligen, "Herren"));
@@ -124,7 +124,7 @@ public class ClickTTParserTest {
         assertNotNull(page);
         List<Verband> verbandList = parser.parseLinksSubLigen(page);
         for (Verband verband : verbandList) {
-            System.out.println( "verband = " + verband);
+            System.out.println("verband = " + verband);
         }
         assertEquals("must be 11 ", 11, verbandList.size());
     }
@@ -138,7 +138,7 @@ public class ClickTTParserTest {
         liga = parser.parseLiga(liga, page);
 
         for (Mannschaft m : liga.getMannschaften()) {
-            System.out.println( "m = " + m);
+            System.out.println("m = " + m);
         }
     }
 
@@ -150,7 +150,7 @@ public class ClickTTParserTest {
         liga = parser.parseLiga(liga, page);
 
         for (Mannschaft m : liga.getMannschaften()) {
-            System.out.println( "m = " + m);
+            System.out.println("m = " + m);
         }
     }
 
@@ -166,6 +166,7 @@ public class ClickTTParserTest {
             System.out.println("m = " + m);
         }
     }
+
     @Test
     public void testReadStaffelGesamtSpielPlan() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-gesamt-spiel-plan.htm");
@@ -188,10 +189,11 @@ public class ClickTTParserTest {
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
             assertNotNull(mannschaftspiel);
-            assertNotNull(mannschaftspiel.toString(),mannschaftspiel.getGastMannschaft());
+            assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getGastMannschaft());
             assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getHeimMannschaft());
         }
     }
+
     @Test
     public void testParseErgebnisse() throws Exception {
         Liga liga = ergebnisse();
@@ -200,8 +202,9 @@ public class ClickTTParserTest {
         assertEquals(45, liga.getSpieleRueckrunde().size());
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("sp = " + mannschaftspiel);
-            if (mannschaftspiel.getErgebnis() != null)
+            if (mannschaftspiel.getErgebnis() != null) {
                 assertNotNull(mannschaftspiel.getUrlDetail());
+            }
             assertNotNull(mannschaftspiel.getHeimMannschaft());
             assertNotNull(mannschaftspiel.getGastMannschaft());
         }
@@ -227,12 +230,13 @@ public class ClickTTParserTest {
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
         parser.parseMannschaftspiel(page, mannschaftspiel);
-        System.out.println( "sp = " + mannschaftspiel);
+        System.out.println("sp = " + mannschaftspiel);
         for (Spielbericht spielbericht : mannschaftspiel.getSpiele()) {
             System.out.println("spielbericht = " + spielbericht);
             assertNotEquals(spielbericht.getSpieler1Name(), spielbericht.getSpieler2Name());
         }
     }
+
     @Test
     public void testUnencodeMail() throws Exception {
         assertEquals("manfred.und.petra.hildebrandt@t-online.de", parser.unencodeMail("'de', 'manfred', 't-online', 'und.petra.hildebrandt'"));
@@ -240,6 +244,7 @@ public class ClickTTParserTest {
         assertEquals("bundesliga@borussia-duesseldorf.com", parser.unencodeMail("'com', 'bundesliga', 'borussia-duesseldorf', ''"));
 
     }
+
     @Test
     public void testMannschaftDetail() throws Exception {
         String page = readFile(ASSETS_DIR + "/mannschafts-detail.htm");
@@ -247,7 +252,7 @@ public class ClickTTParserTest {
         parser.parseDetail(page, mannschaft);
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
         assertEquals("manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
-
+        assertNotNull(mannschaft.getVereinUrl());
         List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
         for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
             System.out.println("spielerBilanz = " + spielerBilanz);
@@ -256,6 +261,7 @@ public class ClickTTParserTest {
             }
         }
     }
+
     @Test
     public void testMannschaftDetailBezirkDonau() throws Exception {
         String page = readFile(ASSETS_DIR + "/mannschafts-detail-donau.htm");
@@ -270,6 +276,7 @@ public class ClickTTParserTest {
             }
         }
     }
+
     @Test
     public void testMannschaftDetailSpielLokale() throws Exception {
         String page = readFile(ASSETS_DIR + "/mannschafts_detail_niederkassel.htm");
@@ -287,12 +294,14 @@ public class ClickTTParserTest {
         assertEquals("Spiellokal 3: Turnhalle GS Rheidt\nHoher Rain, 53859 Niederkassel-Rheidt",
                 lokale.get(2));
     }
+
     @Test
     public void testcleanupSpielLokalHtml() throws Exception {
         assertEquals("Spiellokal 1: Sporthalle Nord\nBla blubP remnitzer Straße, 53859 Niederkassel-Lülsdorf",
                 parser.cleanupSpielLokalHtml("Spiellokal 1:</b>              Sporthalle Nord<br />Bla blubP remnitzer Straße, 53859 Niederkassel-Lülsdorf              <br />"));
 
     }
+
     @Test
     public void testParseSpieler() throws Exception {
 
@@ -327,13 +336,14 @@ public class ClickTTParserTest {
 //            System.out.println("ligaErgebnisse = " + ligaErgebnisse);
 //        }
     }
+
     @Test
     public void testParseLinksBezirke() throws Exception {
         String page = readFile(ASSETS_DIR + "/liga-level2-wttv.htm");
         assertNotNull(page);
         List<Bezirk> bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);
-        assertEquals(5, bezirke.size() );
+        assertEquals(5, bezirke.size());
 //        for (Bezirk bezirk : bezirke) {
 //            System.out.println("bezirk = " + bezirk);
 //        }
@@ -342,7 +352,7 @@ public class ClickTTParserTest {
         assertNotNull(page);
         bezirke = parser.parseLinksBezirke(page);
         assertNotNull(bezirke);
-        assertEquals(15, bezirke.size() );
+        assertEquals(15, bezirke.size());
 //        for (Bezirk bezirk : bezirke) {
 //            System.out.println("bezirk = " + bezirk);
 //        }
@@ -365,8 +375,38 @@ public class ClickTTParserTest {
         System.out.println("-------------");
         assertEquals(2, verein.getLokale().size());
         assertTrue(verein.getLokale().get(0).contains("Sporthalle Realschule Volksgarten"));
+
+        for (Mannschaftspiel mannschaftspiel : verein.getLetzteSpiele()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+        }
     }
 
+    @Test
+    public void testParseVereinDD() throws Exception {
+        String page = readFile(ASSETS_DIR + "/verein-dd.htm");
+        Verein verein = parser.parseVerein(page);
+
+        assertNotNull(verein);
+        assertEquals("Borussia Düsseldorf", verein.getName());
+        System.out.println("verein.getKontakt() = " + verein.getKontakt());
+        assertEquals("info@borussia-duesseldorf.com", verein.getKontakt().getMail());
+        assertEquals("http://www.borussia-duesseldorf.com", verein.getKontakt().getUrl());
+        System.out.println("-------------");
+        for (String s : verein.getLokale()) {
+            System.out.println("s = " + s);
+            assertFalse(s.contains("script"));
+        }
+        System.out.println("-------------");
+        assertEquals(1, verein.getLokale().size());
+        assertTrue(verein.getLokale().get(0).contains("ARAG "));
+
+        assertEquals(1, verein.getLetzteSpiele().size());
+        Mannschaftspiel mannschaftspiel = verein.getLetzteSpiele().get(0);
+        assertEquals("TTC RhönSprudel Fulda-Maberzell", mannschaftspiel.getHeimMannschaft().getName());
+        assertEquals("Borussia Düsseldorf", mannschaftspiel.getGastMannschaft().getName());
+        assertEquals("1:3", mannschaftspiel.getErgebnis());
+        Assert.assertNotNull(mannschaftspiel.getUrlDetail());
+    }
 }
 
 

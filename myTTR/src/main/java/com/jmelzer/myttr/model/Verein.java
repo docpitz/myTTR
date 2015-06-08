@@ -22,7 +22,9 @@ public class Verein {
     public void removeAllSpielLokale() {
         lokale.clear();
     }
-
+    public void addLetztesSpiel(Mannschaftspiel mannschaftspiel) {
+        letzteSpiele.add(mannschaftspiel);
+    }
     public void addSpielLokal(String lokal) {
         lokale.add(lokal);
     }

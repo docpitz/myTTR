@@ -602,6 +602,8 @@ public class ClickTTParser extends AbstractBaseParser {
         }
         mannschaft.removeAllSpielLokale();
         result = readBetween(page, 0, "<b>Verein</b>", null);
+        String[] aref = readHrefAndATag(result.result);
+        mannschaft.setVereinUrl(UrlUtil.safeUrl(mannschaft.getHttpAndDomain(), aref[0]));
         //block with spiellokale
         result = readBetween(result.result, 0, "<td>", "</td>");
         if (result != null && !result.isEmpty()) {
@@ -733,6 +735,7 @@ public class ClickTTParser extends AbstractBaseParser {
     String cleanupSpielLokalHtml(String s) {
 //        String result = s.replaceAll("</b>\[ ]{2,}", "");
         String result = s.replaceAll("\\s{2,}", " ").replace("</b>", "");
+        result = result.replaceAll("<script.*</script>", "");
         result = result.replaceAll("<br />", "\n");
         result = result.replaceAll("<br/>", "\n");
         //remove the last \n
@@ -918,6 +921,14 @@ public class ClickTTParser extends AbstractBaseParser {
         s = s.replaceAll("\\s{2,}", " ");
         return s;
     }
+    /**
+     * read the ligen from the url inside the verband
+     */
+    public Verein readVerein(Mannschaft mannschaft) throws NetworkException {
+        String url = mannschaft.getVereinUrl();
+        String page = Client.getPage(url);
+        return parseVerein(page);
+    }
 
     Verein parseVerein(String page) {
         ParseResult resultStart = readBetween(page, 0, "<h1>", null);
@@ -963,6 +974,69 @@ public class ClickTTParser extends AbstractBaseParser {
             }
         }
 
+        //spielbetrieb parsen
+        ParseResult table = readBetween(page, 0, "<h2>Spielbetrieb - Rückschau</h2>", "</table>");
+        int c = 0;
+        idx = 0;
+        String lastDate = null;
+        while (table.result != null) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            Mannschaftspiel m = parseVereinSpieleTableRow(resultrow);
+            if (m.getDate() == null || m.getDate().equals(" ")) {
+                m.setDate(lastDate);
+            } else {
+                lastDate = m.getDate();
+            }
+            verein.addLetztesSpiel(m);
+
+
+        }
         return verein;
+    }
+
+    private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow) {
+        //tag
+        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
+        String datum = result.result;
+        //datum/zeit
+        result = readBetweenOpenTag(resultrow.result, result.end, "<td", "</td>");
+        datum += " " + result.result;
+        //Uhrzeit we dont use
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+        //halle: we don't use
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+        //nr: we don't use
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+        //Liga: we don't use
+        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+
+        //Heim
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        String heimMannsschaft = result.result;
+        //Gast
+        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
+        String gastMannsschaft = result.result;
+        //Ergebnis
+        result = readBetween(resultrow.result, result.end, "<td ", "</td>");
+        ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
+        String url = safeResult(result2);
+        result2 = readBetween(result.result, 0, "<span>", "</span>");
+        String ergebnis = safeResult(result2);
+        boolean genehmigt = resultrow.result.contains("genehmigt");
+        return new Mannschaftspiel(datum,
+                new Mannschaft(heimMannsschaft),
+                new Mannschaft(gastMannsschaft),
+                ergebnis, url, genehmigt);
     }
 }

@@ -45,6 +45,7 @@ public class Mannschaftspiel {
                 ", gastMannschaft=" + gastMannschaft +
                 ", urlDetail='" + urlDetail + '\'' +
                 ", genehmigt=" + genehmigt +
+                ", ergebnis='" + ergebnis + '\'' +
                 ", baelle='" + baelle + '\'' +
                 ", saetze='" + saetze + '\'' +
                 ", spiele=" + spiele +
@@ -87,5 +88,9 @@ public class Mannschaftspiel {
 
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(urlDetail);
+    }
+
+    public String oneLine() {
+        return date + "  " + heimMannschaft.getName() + " - " + gastMannschaft.getName() + "  " + ergebnis;
     }
 }

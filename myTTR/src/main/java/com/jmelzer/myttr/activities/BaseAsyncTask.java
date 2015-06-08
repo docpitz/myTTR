@@ -56,6 +56,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             }
         } catch (Exception e) {
 //            catch all others
+            Log.e(Constants.LOG_TAG, "Error reding " + Client.lastUrl, e);
             errorMessage = "Fehler beim Lesen der Webseite " + Client.lastUrl;
         }
         return null;

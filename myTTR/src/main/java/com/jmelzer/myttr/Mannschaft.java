@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.util.UrlUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -75,6 +77,7 @@ public class Mannschaft {
     String sum;
     String points;
     String url;
+    String vereinUrl;
 
     String kontakt;
     private String mailTo;
@@ -177,6 +180,18 @@ public class Mannschaft {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getVereinUrl() {
+        return vereinUrl;
+    }
+
+    public void setVereinUrl(String vereinUrl) {
+        this.vereinUrl = vereinUrl;
+    }
+
+    public String getHttpAndDomain() {
+        return UrlUtil.getHttpAndDomain(url);
     }
 
     public List<String> getSpielLokale() {
