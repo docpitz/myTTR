@@ -3,6 +3,7 @@ package com.jmelzer.myttr.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.ClickTTParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
 
@@ -88,6 +92,7 @@ public class LigaVereinActivity extends BaseActivity {
     public static class Child {
         String name;
         Mannschaftspiel mannschaftspiel;
+
         public Child(String name) {
             this.name = name;
         }
@@ -169,8 +174,7 @@ public class LigaVereinActivity extends BaseActivity {
                 ((TextView) convertView.findViewById(R.id.heim)).setText(childElem.mannschaftspiel.getHeimMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.gast)).setText(childElem.mannschaftspiel.getGastMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.result)).setText(childElem.mannschaftspiel.getErgebnis());
-            }
-            else if (groupPosition == 1) {
+            } else if (groupPosition == 1) {
                 convertView = infalInflater.inflate(R.layout.liga_spiellokal_row, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(childElem.name);
                 convertView.findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
@@ -188,6 +192,18 @@ public class LigaVereinActivity extends BaseActivity {
                 TextView textView = (TextView) convertView.findViewById(R.id.child1);
                 textView.setText(childElem.name);
             }
+            final ImageView arrow = (ImageView) convertView.findViewById(R.id.arrow);
+            if (childElem.mannschaftspiel.getUrlDetail() == null) {
+                arrow.setVisibility(View.INVISIBLE);
+            } else {
+                arrow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MyApplication.selectedMannschaftSpiel = childElem.mannschaftspiel;
+                        callMannschaftSpielDetail();
+                    }
+                });
+            }
             return convertView;
         }
 
@@ -197,4 +213,24 @@ public class LigaVereinActivity extends BaseActivity {
         }
     }
 
+    private void callMannschaftSpielDetail() {
+        if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null) {
+            return;
+        }
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaSpielberichtActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                new ClickTTParser().readDetail(MyApplication.selectedMannschaftSpiel);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedMannschaftSpiel.getSpiele().size() > 0;
+            }
+
+
+        };
+        task.execute();
+    }
 }

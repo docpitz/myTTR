@@ -28,7 +28,7 @@ import org.apache.http.impl.cookie.BasicClientCookie;
 public abstract class BaseActivityInstrumentationTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T> {
 
     //switch wether we read html from file system or calling mytt.de
-    boolean offline = true;
+    boolean offline = false;
 
     protected static final int STANDARD_TIMEOUT = 20000;
 

@@ -55,4 +55,15 @@ public class MyTischtennisParserTest {
         assertNotNull(player);
         assertTrue(player.getEvents().size() > 20);
     }
+
+    @Test
+    public void testParseOwnEvents201506() throws Exception {
+        String page = readFile(ASSETS_DIR + "/myHistory_2015_06.htm");
+        assertNotNull(page);
+        Player player = parser.parseEvents(page, false);
+        assertEquals(1662, player.getTtrPoints());
+        assertEquals("Jürgen Melzer (1662)", player.getFullName());
+        assertNotNull(player);
+        assertTrue(player.getEvents().size() > 20);
+    }
 }

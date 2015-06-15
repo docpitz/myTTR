@@ -99,6 +99,8 @@ public class Verband {
                 return url;
             case SAISON_2016:
                 return url.replace("14/15", "15/16").replace("2014%2F15", "2015%2F16");
+            case SAISON_2014:
+                return url.replace("14/15", "13/14").replace("2014%2F15", "2013%2F14");
             default:
                 throw new IllegalArgumentException(saison + " undefined");
         }
