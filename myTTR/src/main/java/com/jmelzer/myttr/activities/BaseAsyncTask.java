@@ -23,6 +23,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     Class targetClz;
 
     public BaseAsyncTask(Activity parent, Class targetClz) {
+        if (parent == null) throw new IllegalArgumentException("parent must not be null");
         this.parent = parent;
         this.targetClz = targetClz;
     }

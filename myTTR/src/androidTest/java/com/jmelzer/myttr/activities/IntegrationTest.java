@@ -5,7 +5,6 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -209,7 +208,13 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         assertTrue(waitForActivity(ClubListActivity.class));
         solo.clickInList(0);
         assertTrue(waitForActivity(EventsActivity.class));
-        assertTrue(solo.searchText("Vester"));
+        assertTrue(solo.searchText("Statistiken für den Spieler"));
+
+        solo.scrollToSide(Solo.RIGHT);
+        assertTrue("Chart must be shown", solo.searchText("Chart für den Spieler"));
+        solo.scrollToSide(Solo.LEFT);
+        assertTrue(solo.searchText("Statistiken für den Spieler"));
+
         solo.clickInList(0);
         assertTrue(waitForActivity(EventDetailActivity.class));
 

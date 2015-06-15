@@ -1,117 +1,94 @@
 package com.jmelzer.myttr.activities;
 
-import android.content.Context;
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
-import com.jmelzer.myttr.Event;
-import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
-import java.util.List;
+import java.lang.reflect.Method;
 
 /**
- * User: jmelzer
- * Date: 22.03.14
- * Time: 13:06
+ * Created by J. Melzer on 19.05.2015.
  */
 public class EventsActivity extends BaseActivity {
-    List<Event> events;
+    EventsTabsPagerAdapter eventsTabsPagerAdapter;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.events != null;
+        return true;
+
+
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.liga_mannschaft_detail);
 
-        if (toLoginIfNeccassry()) {
-            return;
-        }
+        // ViewPager and its adapters use support library
+        // fragments, so use getSupportFragmentManager.
+        eventsTabsPagerAdapter =
+                new EventsTabsPagerAdapter(
+                        getSupportFragmentManager(), this);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(eventsTabsPagerAdapter);
 
-        setContentView(R.layout.events);
-
-        final ListView listview = (ListView) findViewById(R.id.eventlist);
-        final EventAdapter adapter = new EventAdapter(this,
-                android.R.layout.simple_list_item_1,
-                MyApplication.events);
-        listview.setAdapter(adapter);
-        events = MyApplication.events;
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        forceTabs();
+        final ActionBar actionBar = getActionBar();
+        /**
+         * on swiping the viewpager make respective tab selected
+         * */
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                view.setSelected(true);
-                if (position > -1 && position < MyApplication.events.size()) {
-                    Event event = events.get(position);
-                    new DetailAsyncTask(event, EventsActivity.this, EventDetailActivity.class).execute();
-                }
+            public void onPageSelected(int position) {
+                // on changing the page
+                // make respected tab selected
+//                configList(position == 0);
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
             }
         });
+        // Specify that tabs should be displayed in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        TextView textView = (TextView) findViewById(R.id.selected_player);
-        if (MyApplication.selectedPlayer != null) {
-            textView.setText("Statistiken für den Spieler " + MyApplication.selectedPlayer);
-        } else {
-            textView.setText("Statistiken für den Spieler " + MyApplication.getLoginUser().getInfo());
-        }
-    }
-
-    private static class ViewHolder {
-        TextView textDate;
-        TextView textEvent;
-        TextView textSp;
-        TextView textAk;
-        TextView textTtr;
-        TextView textDiff;
-    }
-
-    class EventAdapter extends ArrayAdapter<Event> {
-        private LayoutInflater layoutInflater;
-
-        public EventAdapter(Context context, int resource, List<Event> appointments) {
-            super(context, resource, appointments);
-            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder holder;
-
-            if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.eventrow_linear, null);
-                holder = new ViewHolder();
-                holder.textDate = (TextView) convertView.findViewById(R.id.date);
-                holder.textEvent = (TextView) convertView.findViewById(R.id.event);
-                holder.textSp = (TextView) convertView.findViewById(R.id.sp);
-                holder.textAk = (TextView) convertView.findViewById(R.id.ak);
-                holder.textTtr = (TextView) convertView.findViewById(R.id.ttr);
-                holder.textDiff = (TextView) convertView.findViewById(R.id.diff);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
+        // Create a tab listener that is called when the user changes tabs.
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
-            Event event = getItem(position);
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+                // hide the given tab
+            }
 
-            holder.textDate.setText(event.getDate());
-            holder.textEvent.setText(event.getEvent());
-            holder.textSp.setText(event.getWon() + "/" + event.getPlayCount());
-            holder.textAk.setText(event.getAk());
-            holder.textTtr.setText(event.getTtrAsString());
-            holder.textDiff.setText("" + event.getSum());
-
-            return convertView;
-        }
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+                // probably ignore this event
+            }
+        };
+        actionBar.addTab(actionBar.newTab().setText("Statistiken").setTabListener(tabListener), 0);
+        actionBar.addTab(actionBar.newTab().setText("Chart").setTabListener(tabListener), 1);
     }
 
+    // This is where the magic happens!
+    public void forceTabs() {
+        try {
+            final ActionBar actionBar = getActionBar();
+            final Method setHasEmbeddedTabsMethod = actionBar.getClass()
+                    .getDeclaredMethod("setHasEmbeddedTabs", boolean.class);
+            setHasEmbeddedTabsMethod.setAccessible(true);
+            setHasEmbeddedTabsMethod.invoke(actionBar, false);
+        } catch (final Exception e) {
+            // Handle issues as needed: log, warn user, fallback etc
+            // This error is safe to ignore, standard tabs will appear.
+        }
+    }
 }

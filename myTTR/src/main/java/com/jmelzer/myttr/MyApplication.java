@@ -151,6 +151,13 @@ public class MyApplication extends Application {
         editor.apply();
     }
 
+    public static int getSelectedTTR() {
+        if (actualPlayer != null) {
+            return actualPlayer.getTtrPoints();
+        } else {
+            return loginUser.getPoints();
+        }
+    }
 
     public int getTimerSettingInMinutes() {
         //in minutes
@@ -162,6 +169,14 @@ public class MyApplication extends Application {
             return interval[idx] * 1000 * 60;
         } else {
             return -1;
+        }
+    }
+
+    public static String getStatistikTextForPlayer() {
+        if (MyApplication.selectedPlayer != null) {
+            return selectedPlayer;
+        } else {
+            return MyApplication.getLoginUser().getInfo();
         }
     }
 }
