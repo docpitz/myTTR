@@ -47,22 +47,8 @@ public class LigaVereinActivity extends BaseActivity {
         setContentView(R.layout.liga_verein);
 
         Verein verein = MyApplication.selectedVerein;
-//
-//        TextView textView = (TextView) findViewById(R.id.textViewHeader);
-//        textView.setText("Bilanzen für die Mannschaft " + mannschaft.getName());
-//
-//        List<String> groupList = new ArrayList<>();
-//        List<Mannschaft.SpielerBilanz> children = new ArrayList<>();
-//
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
         listView.setAdapter(new VereinAdapter(this, prepareData(verein)));
-//
-//        for (Mannschaft.SpielerBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
-//            groupList.add(spielerBilanz.getPos() + " "  + spielerBilanz.getName());
-//
-//        }
-//        children.addAll(mannschaft.getSpielerBilanzen());
-//
     }
 
     private List<Parent> prepareData(Verein verein) {
@@ -193,16 +179,18 @@ public class LigaVereinActivity extends BaseActivity {
                 textView.setText(childElem.name);
             }
             final ImageView arrow = (ImageView) convertView.findViewById(R.id.arrow);
-            if (childElem.mannschaftspiel.getUrlDetail() == null) {
-                arrow.setVisibility(View.INVISIBLE);
-            } else {
-                arrow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MyApplication.selectedMannschaftSpiel = childElem.mannschaftspiel;
-                        callMannschaftSpielDetail();
-                    }
-                });
+            if (childElem.mannschaftspiel != null) {
+                if (childElem.mannschaftspiel.getUrlDetail() == null) {
+                    arrow.setVisibility(View.INVISIBLE);
+                } else {
+                    arrow.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MyApplication.selectedMannschaftSpiel = childElem.mannschaftspiel;
+                            callMannschaftSpielDetail();
+                        }
+                    });
+                }
             }
             return convertView;
         }

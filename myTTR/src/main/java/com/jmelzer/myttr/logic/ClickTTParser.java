@@ -591,13 +591,15 @@ public class ClickTTParser extends AbstractBaseParser {
 
     void parseDetail(String page, Mannschaft mannschaft) {
         ParseResult result = readBetween(page, 0, "Mannschaftskontakt", null);
-        result = readBetween(result.result, 0, "<td>", "</td>");
-        if (result != null && !result.isEmpty()) {
-            String k = cleanKontakt(result);
-            mannschaft.setKontakt(k);
-            result = readBetween(result.result, 0, "encodeEmail(", ")");
+        if (result != null) {
+            result = readBetween(result.result, 0, "<td>", "</td>");
             if (result != null && !result.isEmpty()) {
-                mannschaft.setMailTo(unencodeMail(result.result));
+                String k = cleanKontakt(result);
+                mannschaft.setKontakt(k);
+                result = readBetween(result.result, 0, "encodeEmail(", ")");
+                if (result != null && !result.isEmpty()) {
+                    mannschaft.setMailTo(unencodeMail(result.result));
+                }
             }
         }
         mannschaft.removeAllSpielLokale();
@@ -626,28 +628,30 @@ public class ClickTTParser extends AbstractBaseParser {
         }
 //        Spielerbilanzen
         result = readBetween(page, 0, "<h2>Spielerbilanzen", null);
-        ParseResult resultTable = readBetweenOpenTag(result.result, 0, "<table class=\"result-set\"", "</table>");
-        int idx = 0;
-        int c = 0;
-        List<String> header = null;
-        mannschaft.clearBilanzen();
-        while (true) {
-            //go threw entries in current table
-            ParseResult resultrow = readBetweenOpenTag(resultTable.result, idx, "<tr", "</tr>");
-            if (isEmpty(resultrow)) {
-                break;
-            }
-            if (c++ < 1) {
-                header = readHeaderBilanzen(resultrow.result);
+        if (result != null) {
+            ParseResult resultTable = readBetweenOpenTag(result.result, 0, "<table class=\"result-set\"", "</table>");
+            int idx = 0;
+            int c = 0;
+            List<String> header = null;
+            mannschaft.clearBilanzen();
+            while (true) {
+                //go threw entries in current table
+                ParseResult resultrow = readBetweenOpenTag(resultTable.result, idx, "<tr", "</tr>");
+                if (isEmpty(resultrow)) {
+                    break;
+                }
+                if (c++ < 1) {
+                    header = readHeaderBilanzen(resultrow.result);
+                    idx = resultrow.end;
+                    continue;//skip first header row
+                }
+                Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, header);
+                if (bilanz == null) {
+                    break;
+                }
+                mannschaft.addBilanz(bilanz);
                 idx = resultrow.end;
-                continue;//skip first header row
             }
-            Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, header);
-            if (bilanz == null) {
-                break;
-            }
-            mannschaft.addBilanz(bilanz);
-            idx = resultrow.end;
         }
     }
 
@@ -921,6 +925,7 @@ public class ClickTTParser extends AbstractBaseParser {
         s = s.replaceAll("\\s{2,}", " ");
         return s;
     }
+
     /**
      * read the ligen from the url inside the verband
      */

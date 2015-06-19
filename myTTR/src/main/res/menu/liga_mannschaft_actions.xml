@@ -12,7 +12,7 @@
         android:id="@+id/action_verein"
         android:text="@string/btn_bilanz"
         android:onClick="verein"
-        android:icon="@drawable/ic_action_bilanz"
+        android:icon="@drawable/ic_action_clubinfo"
         android:showAsAction="always"
         android:title="@string/btn_bilanz"
         tools:ignore="AppCompatResource"/>
