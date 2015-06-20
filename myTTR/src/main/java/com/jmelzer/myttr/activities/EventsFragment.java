@@ -25,11 +25,6 @@ import java.util.List;
  */
 public class EventsFragment extends Fragment {
     List<Event> events;
-    Activity parentActivity;
-
-    public void setParentActivity(Activity parentActivity) {
-        this.parentActivity = parentActivity;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +46,7 @@ public class EventsFragment extends Fragment {
                 view.setSelected(true);
                 if (position > -1 && position < MyApplication.events.size()) {
                     Event event = events.get(position);
-                    new DetailAsyncTask(event, parentActivity, EventDetailActivity.class).execute();
+                    new DetailAsyncTask(event, getActivity(), EventDetailActivity.class).execute();
                 }
             }
         });

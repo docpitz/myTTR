@@ -27,9 +27,7 @@ public class EventsTabsPagerAdapter extends FragmentPagerAdapter {
         if (index == 1) {
             return new EventsTTRChartFragment();
         } else {
-            EventsFragment f= new EventsFragment();
-            f.setParentActivity(parentActivity);
-            return f;
+            return new EventsFragment();
         }
     }
 
