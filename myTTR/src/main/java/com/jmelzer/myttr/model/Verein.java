@@ -11,10 +11,26 @@ import java.util.List;
  * Represents the club in click tt, maybe connected to mytt
  */
 public class Verein {
+    public static class SpielLokal {
+        public String text;
+        public String plz;
+        public String city;
+        public String street;
+
+        @Override
+        public String toString() {
+            return "SpielLokal{" +
+                    "text='" + text + '\'' +
+                    ", plz='" + plz + '\'' +
+                    ", city='" + city + '\'' +
+                    ", street='" + street + '\'' +
+                    '}';
+        }
+    }
     String name;
     long nr;
     int gruendungsjahr;
-    List<String> lokale = new ArrayList<>();
+    List<SpielLokal> lokale = new ArrayList<>();
     List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
     List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
     Kontakt kontakt;
@@ -25,7 +41,7 @@ public class Verein {
     public void addLetztesSpiel(Mannschaftspiel mannschaftspiel) {
         letzteSpiele.add(mannschaftspiel);
     }
-    public void addSpielLokal(String lokal) {
+    public void addSpielLokal(SpielLokal lokal) {
         lokale.add(lokal);
     }
 
@@ -95,12 +111,8 @@ public class Verein {
         this.gruendungsjahr = gruendungsjahr;
     }
 
-    public List<String> getLokale() {
+    public List<SpielLokal> getLokale() {
         return Collections.unmodifiableList(lokale);
-    }
-
-    public void setLokale(List<String> lokale) {
-        this.lokale = lokale;
     }
 
     public List<Mannschaftspiel> getLetzteSpiele() {

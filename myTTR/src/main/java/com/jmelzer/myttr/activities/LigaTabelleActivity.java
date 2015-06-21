@@ -79,15 +79,18 @@ public class LigaTabelleActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readVR(liga);
-                new ClickTTParser().readRR(liga);
-                new ClickTTParser().readGesamtSpielplan(liga);
+                ClickTTParser p = new ClickTTParser();
+                p.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                p.readVR(liga);
+                p.readRR(liga);
+                p.readGesamtSpielplan(liga);
             }
 
             @Override
             protected boolean dataLoaded() {
                 return liga.getSpieleVorrunde().size() > 0 ||
-                        liga.getSpieleGesamt().size() > 0;
+                        liga.getSpieleGesamt().size() > 0 || MyApplication.selectedMannschaft.getKontakt() != null ||
+                        MyApplication.selectedMannschaft.getSpielLokale().size() > 0;
             }
 
 

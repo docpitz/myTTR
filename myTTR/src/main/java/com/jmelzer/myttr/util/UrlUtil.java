@@ -34,4 +34,7 @@ public final class UrlUtil {
         return result;
 
     }
+    public static String formatAddressToGoogleMaps(String plz, String city, String street) {
+        return  "geo:0,0?q=" + plz + "%20" + city + "%20" + street;
+    }
 }

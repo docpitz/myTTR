@@ -369,12 +369,15 @@ public class ClickTTParserTest {
         assertEquals("vorstand@borussiatt.de", verein.getKontakt().getMail());
         assertEquals("http://www.BorussiaTT.de", verein.getKontakt().getUrl());
         System.out.println("-------------");
-        for (String s : verein.getLokale()) {
+        for (Verein.SpielLokal s : verein.getLokale()) {
             System.out.println("s = " + s);
         }
         System.out.println("-------------");
         assertEquals(2, verein.getLokale().size());
-        assertTrue(verein.getLokale().get(0).contains("Sporthalle Realschule Volksgarten"));
+        assertTrue(verein.getLokale().get(0).text.contains("Sporthalle Realschule Volksgarten"));
+        assertEquals("Mönchengladbach", verein.getLokale().get(0).city);
+        assertEquals("41065", verein.getLokale().get(0).plz);
+        assertEquals("Luise-Vollmar-Str. - Parkplatz/Zugang gegenüber Hausnr. 40", verein.getLokale().get(0).street);
 
         for (Mannschaftspiel mannschaftspiel : verein.getLetzteSpiele()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
@@ -392,13 +395,13 @@ public class ClickTTParserTest {
         assertEquals("info@borussia-duesseldorf.com", verein.getKontakt().getMail());
         assertEquals("http://www.borussia-duesseldorf.com", verein.getKontakt().getUrl());
         System.out.println("-------------");
-        for (String s : verein.getLokale()) {
+        for (Verein.SpielLokal s : verein.getLokale()) {
             System.out.println("s = " + s);
-            assertFalse(s.contains("script"));
+            assertFalse(s.text.contains("script"));
         }
         System.out.println("-------------");
         assertEquals(1, verein.getLokale().size());
-        assertTrue(verein.getLokale().get(0).contains("ARAG "));
+        assertTrue(verein.getLokale().get(0).text.contains("ARAG "));
 
         assertEquals(1, verein.getLetzteSpiele().size());
         Mannschaftspiel mannschaftspiel = verein.getLetzteSpiele().get(0);

@@ -960,17 +960,27 @@ public class ClickTTParser extends AbstractBaseParser {
 
         //read spiellokale
         verein.removeAllSpielLokale();
-        //find all lokale todo
         ParseResult resultLokale = readBetween(page, 0, "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">", "</table>");
         int idx = 0;
         while (true) {
 
             //block with spiellokale
-            result = readBetween(resultLokale.result, idx, "<p>", "<a ");
+            result = readBetween(resultLokale.result, idx, "<p>", "</p>");
             if (result != null && !result.isEmpty()) {
-
-                String lokal = cleanupSpielLokalHtml(result.result);
-                lokal = lokal.replaceAll("<h2.*<p>", "");
+                String noa = result.result.contains("<a") ?
+                        readBetween(result.result, 0, null, "<a").result : result.result;
+                Verein.SpielLokal lokal = new Verein.SpielLokal();
+                lokal.text = cleanupSpielLokalHtml(noa).replaceAll("<h2.*<p>", "");
+                if (result.result.contains("<a href=\"http://route.web")) {
+                    String ref = readBetween(result.result, 0, "<a href=\"http://route.web", "</a>").result;
+                    try {
+                        lokal.city = readBetween(ref, 0, "tocity=", "&").result;
+                        lokal.street = readBetween(ref, 0, "tostreet=", "&").result;
+                        lokal.plz = readBetween(ref, 0, "toplz=", "&").result;
+                    } catch (NullPointerException  e) {
+                        //ignore
+                    }
+                }
                 verein.addSpielLokal(lokal);
                 idx = result.end;
 
