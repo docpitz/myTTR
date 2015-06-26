@@ -18,6 +18,7 @@ import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
+import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +49,7 @@ public class MyApplication extends Application {
 
     private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
+    public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband;
     public static Spieler selectedLigaSpieler;

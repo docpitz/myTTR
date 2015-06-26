@@ -8,7 +8,14 @@
 
 <menu xmlns:tools="http://schemas.android.com/tools"
       xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/action_verein"
+        android:text="@string/btn_bilanz"
+        android:onClick="verein"
+        android:icon="@drawable/ic_action_clubinfo"
+        android:showAsAction="always"
+        android:title="@string/btn_bilanz"
+        tools:ignore="AppCompatResource"/>
     <item
         android:id="@+id/action_bilanz"
         android:text="@string/btn_bilanz"

@@ -8,14 +8,16 @@ import java.util.List;
  * for every year the app can read from, means shifting the old years
  */
 public enum Saison {
+    SAISON_2014("13/14"),
     SAISON_2015("14/15"),
     SAISON_2016("15/16"),
     SAISON_2017("16/17");
 
     public static List<String> saisons = new ArrayList<>();
     static {
+        saisons.add(SAISON_2016.getName());
         saisons.add(SAISON_2015.getName());
-//        saisons.add(SAISON_2016.getName());
+        saisons.add(SAISON_2014.getName());
     }
     String name;
     Saison(String s) {

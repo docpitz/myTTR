@@ -84,7 +84,7 @@ public class LigaMannschaftInfoActivity extends BaseActivity {
                 convertView = layoutInflater.inflate(R.layout.liga_spiellokal_row, null);
                 holder = new ViewHolder();
                 holder.text = (TextView) convertView.findViewById(R.id.name);
-                holder.arrow = (ImageView) convertView.findViewById(R.id.arrow);
+                holder.arrow = (ImageView) convertView.findViewById(R.id.map);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
