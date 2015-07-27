@@ -161,7 +161,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
 
         assertTrue(solo.searchText("Schmidt"));
-        solo.clickInList(8);
+        solo.clickInList(7);
 
         assertTrue(waitForActivity(HomeActivity.class));
         assertTrue("Manni is selected as player", solo.searchText("Manfred"));

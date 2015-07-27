@@ -390,10 +390,13 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return parseEvents(page, true);
     }
 
-    Player parseEvents(String page, boolean own) {
+    Player parseEvents(String page, final boolean own) {
         List<Event> events = new ArrayList<Event>();
-
-        Player player = parsePlayerFromEventPage(page, own);
+        boolean rown = own;
+        if (!rown && page.indexOf("Dein ") > 0) {
+            rown = true;
+        }
+        Player player = parsePlayerFromEventPage(page, rown);
 
         String startTag = "coolTable";
         boolean endoflist = false;
