@@ -42,7 +42,9 @@ public class EnterTimeActivity extends BaseActivity {
             return;
         }
         final MyApplication app = ((MyApplication)getApplication());
-        final int idx = app.getTimerSetting();
+        int idx = app.getTimerSetting();
+        if (idx > texts.length-1)
+            idx = texts.length-1;
 
         setContentView(R.layout.enter_timer);
 
