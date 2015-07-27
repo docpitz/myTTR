@@ -125,7 +125,7 @@ public class ClickTTParser extends AbstractBaseParser {
         if (!page.contains("Begegnungen")) {
             return liga;
         }
-
+        liga.clearMannschaften();
         int c = 0;
         int idx = 0;
         parseSpielplanLinks(liga, page);

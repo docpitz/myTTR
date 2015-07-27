@@ -12,6 +12,8 @@ import java.util.List;
  * Represents a Liga like TTBL, 2. Bundesliga etc.
  */
 public class Liga {
+
+
     public enum Spielplan {
         VR,
         RR,
@@ -84,6 +86,10 @@ public class Liga {
         mannschaften.add(m);
     }
 
+    public void clearMannschaften() {
+        mannschaften.clear();
+    }
+
     public List<Mannschaftspiel> getSpieleVorrunde() {
         return Collections.unmodifiableList(spieleVorrunde);
     }
@@ -147,7 +153,7 @@ public class Liga {
         return urlVR;
     }
 
-    public List<Mannschaftspiel> getSpieleFor(String mannschaft,Spielplan spielplan) {
+    public List<Mannschaftspiel> getSpieleFor(String mannschaft, Spielplan spielplan) {
         if (spielplan == Spielplan.VR) {
             if (mannschaft != null) {
                 return filterSpiele(spieleVorrunde, mannschaft);
