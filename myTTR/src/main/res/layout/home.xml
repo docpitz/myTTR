@@ -55,7 +55,7 @@
                     style="@style/DashboardButton"
                     android:layout_column="1"
                     android:layout_row="0"
-                    android:drawableTop="@drawable/ic_ttr"
+                    android:drawableTop="@drawable/icon_club_list"
                     android:onClick="clublist"
                     android:text="@string/clublist"
                     />
