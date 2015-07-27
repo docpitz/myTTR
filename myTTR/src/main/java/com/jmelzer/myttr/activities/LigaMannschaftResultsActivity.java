@@ -7,11 +7,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.jmelzer.myttr.Liga;
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+
+import java.util.List;
 
 /**
  * Created by J. Melzer on 21.02.2015.
@@ -43,8 +46,9 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
     @Override
     boolean startWithRR() {
-        return MyApplication.getSelectedLiga().getSpieleFor(MyApplication.selectedMannschaft.getName(),
-                Liga.Spielplan.RR).size() > 0;
+        List<Mannschaftspiel> spiele = MyApplication.getSelectedLiga().getSpieleFor(MyApplication.selectedMannschaft.getName(),
+                Liga.Spielplan.RR);
+        return  (spiele.size() > 0 && spiele.get(0).getErgebnis() != null);
     }
 
     protected LigaTabsPagerAdapter createTabsAdapter() {
