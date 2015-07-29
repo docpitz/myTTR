@@ -39,21 +39,6 @@ public class Verband {
         verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "http://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15"));
         verbaende.add(new Verband("Westdeutscher TTV", "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15"));
     }
-//    static {
-//        nameMapping.put("Baden", "Badischer TTV");
-//        nameMapping.put("Bayern", "Bayerischer TTV");
-//        nameMapping.put("Not Implemented", "Berliner TTV");
-//        //http://www.tt-info.net/TTVB_men.html
-//        nameMapping.put("Brandenburg", "TTV Brandenburg");
-//        nameMapping.put("Bremen",  "FTT Bremen");
-//        nameMapping.put("Not Implemented",  "Hamburger TTV");
-//        nameMapping.put("Hessen", "Hessischer TTV");
-//        nameMapping.put("Not Implemented", "TTV Mecklenburg-Vorpommern");
-//        nameMapping.put("Niedersachsen",  "TTV Niedersachsen");
-////        http://www.tt-info.net/
-//        nameMapping.put("Not Implemented",  "Pfälzischer TTV");
-//        nameMapping.put("Rheinhessen",  "Rheinhessischer TTV");
-//    }
 
 
     String name;
