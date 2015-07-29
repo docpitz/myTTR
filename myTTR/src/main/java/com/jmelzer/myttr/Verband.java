@@ -27,7 +27,7 @@ public class Verband {
         verbaende.add(new Verband("Hessischer TTV", "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15"));
 //        verbaende.add(new Verband("TTV Mecklenburg-Vorpommern", "http://www.tt-info.net"));
         verbaende.add(new Verband("TTV Niedersachsen", "http://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15"));
-//        verbaende.add(new Verband("Pfälzischer TTV", "http://www.tt-info.net/"));
+        verbaende.add(new Verband("Pfälzischer TTV", "http://pttv.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15"));
         verbaende.add(new Verband("Rheinhessischer TTV", "http://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=RTTV+14/15"));
         verbaende.add(new Verband("TTV Rheinland", "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15"));
 //        verbaende.add(new Verband("Saarländischer TTB", "http://www.sttb.de/index.php?id=tabellen"));

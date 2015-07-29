@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class ClickTTParser extends AbstractBaseParser {
 
-    private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst"};
+    private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht"};
 
     /**
      * parsed die Ergebnisse, und füllt das Liga objekt
