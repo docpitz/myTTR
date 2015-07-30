@@ -385,6 +385,21 @@ public class ClickTTParserTest {
     }
 
     @Test
+    public void testParseVereinMannschaften() throws Exception {
+        String page = readFile(ASSETS_DIR + "/verein-mannschaften.htm");
+        Verein verein = new Verein();
+        assertEquals(0, verein.getMannschaften().size());
+
+        parser.parseVereinMannschaften(page, verein);
+        assertEquals(11, verein.getMannschaften().size());
+        for (Verein.Mannschaft mannschaft : verein.getMannschaften()) {
+            assertNotNull(mannschaft.liga);
+            assertNotNull(mannschaft.name);
+            assertNotNull(mannschaft.url);
+        }
+    }
+
+    @Test
     public void testParseVereinDD() throws Exception {
         String page = readFile(ASSETS_DIR + "/verein-dd.htm");
         Verein verein = parser.parseVerein(page);

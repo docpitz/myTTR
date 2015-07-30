@@ -85,6 +85,10 @@ public class LigaVereinActivity extends BaseActivity {
         return list;
     }
 
+    public void ligaResults(MenuItem item) {
+        //todo
+    }
+
     public static class Child {
         Verein.SpielLokal spielLokal;
         String text;

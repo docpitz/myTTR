@@ -27,24 +27,52 @@ public class Verein {
                     '}';
         }
     }
+
+    static public class Mannschaft {
+        //e.g. TTG St. AUgustin II
+        public String name;
+        //e.g. Bezirksliga 3
+        public String liga;
+        //link to the url of the liga
+        public String url;
+
+        @Override
+        public String toString() {
+            return "Mannschaft{" +
+                    "name='" + name + '\'' +
+                    ", liga='" + liga + '\'' +
+                    '}';
+        }
+    }
+
     String name;
     long nr;
     int gruendungsjahr;
     List<SpielLokal> lokale = new ArrayList<>();
     List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
     List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
+    List<Mannschaft> mannschaften = new ArrayList<>();
     Kontakt kontakt;
 
     public void removeAllSpielLokale() {
         lokale.clear();
     }
+
     public void addLetztesSpiel(Mannschaftspiel mannschaftspiel) {
         letzteSpiele.add(mannschaftspiel);
     }
+
     public void addSpielLokal(SpielLokal lokal) {
         lokale.add(lokal);
     }
 
+    public void addMannschaft(Mannschaft m) {
+        mannschaften.add(m);
+    }
+
+    public void removeAllMannschaften() {
+        mannschaften.clear();
+    }
 
     static public class Kontakt {
         String nameAddress;
@@ -117,6 +145,10 @@ public class Verein {
 
     public List<Mannschaftspiel> getLetzteSpiele() {
         return letzteSpiele;
+    }
+
+    public List<Mannschaft> getMannschaften() {
+        return Collections.unmodifiableList(mannschaften);
     }
 
     public void setLetzteSpiele(List<Mannschaftspiel> letzteSpiele) {

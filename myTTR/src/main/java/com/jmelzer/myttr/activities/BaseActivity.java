@@ -27,7 +27,7 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        if (MyApplication.getLoginUser().getUsername().equals("chokdee")) {
+        if (MyApplication.getLoginUser().getUsername().equals("chokdee--")) {
             setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
         }
         ActionBar actionBar = getActionBar();

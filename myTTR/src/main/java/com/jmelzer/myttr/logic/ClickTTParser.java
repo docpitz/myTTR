@@ -977,7 +977,7 @@ public class ClickTTParser extends AbstractBaseParser {
                         lokal.city = readBetween(ref, 0, "tocity=", "&").result;
                         lokal.street = readBetween(ref, 0, "tostreet=", "&").result;
                         lokal.plz = readBetween(ref, 0, "toplz=", "&").result;
-                    } catch (NullPointerException  e) {
+                    } catch (NullPointerException e) {
                         //ignore
                     }
                 }
@@ -1053,5 +1053,55 @@ public class ClickTTParser extends AbstractBaseParser {
                 new Mannschaft(heimMannsschaft),
                 new Mannschaft(gastMannsschaft),
                 ergebnis, url, genehmigt);
+    }
+
+    void parseVereinMannschaften(String page, Verein verein) {
+        ParseResult resultStart = readBetween(page, 0, "Mannschaften und Ligeneinteilung", null);
+        if (resultStart == null) {
+            return;
+        }
+        ParseResult resultHeader = readBetween(resultStart.result, 0, "<h2>", "</h2>");
+        while (resultHeader != null) {
+
+            //Ueberschrift
+            ParseResult trHeader = readBetween(resultStart.result, resultHeader.end, "<tr>", "</tr>");
+            int startIdx = trHeader.end;
+            //Zeile mit Mannschaft -- iterieren
+            ParseResult tr = readBetween(resultStart.result, startIdx, "<tr>", "</tr>");
+            while (true) {
+                if (tr == null) {
+                    break;
+                }
+                Verein.Mannschaft mannschaft = new Verein.Mannschaft();
+                ParseResult td = readBetween(resultStart.result, startIdx, "<td>", "</td>");
+                if (td == null) {
+                    break;
+                }
+                mannschaft.name = td.result;
+                td = readBetween(resultStart.result, td.end, "<td>", "</td>");
+//                System.out.println("url = " + td.result);
+                String aref[] = readHrefAndATag(td.result);
+                mannschaft.url = aref[0];
+                mannschaft.liga = aref[1];
+                //Kontakt
+                td = readBetween(resultStart.result, td.end, "<td>", "</td>");
+                //Pos
+                td = readBetween(resultStart.result, td.end, "<td>", "</td>");
+                //Punkte
+                td = readBetween(resultStart.result, td.end, "<td>", "</td>");
+                //todo add domain to relative url
+//                mannschaft.url = (UrlUtil.safeUrl(verein.getHttpAndDomain() , liga.getUrl()));
+                verein.addMannschaft(mannschaft);
+                ParseResult tr2 = readBetweenOpenTag(resultStart.result, td.end, "<tr", "</tr>");
+                if (tr2 == null || tr2.result.contains("<h2")) {
+                    //next header
+                    break;
+                } else {
+                    startIdx = td.end;
+                }
+            }
+
+            resultHeader = readBetween(resultStart.result, resultHeader.end, "<h2>", "</h2>");
+        }
     }
 }
