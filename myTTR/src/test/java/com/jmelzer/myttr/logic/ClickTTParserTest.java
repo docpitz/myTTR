@@ -396,6 +396,20 @@ public class ClickTTParserTest {
             assertNotNull(mannschaft.liga);
             assertNotNull(mannschaft.name);
             assertNotNull(mannschaft.url);
+            System.out.println("mannschaft = " + mannschaft);
+        }
+
+        page = readFile(ASSETS_DIR + "/verein-mannschaften-2.htm");
+        verein = new Verein();
+        assertEquals(0, verein.getMannschaften().size());
+
+        parser.parseVereinMannschaften(page, verein);
+        assertEquals(4, verein.getMannschaften().size());
+        for (Verein.Mannschaft mannschaft : verein.getMannschaften()) {
+            assertNotNull(mannschaft.liga);
+            assertNotNull(mannschaft.name);
+            assertNotNull(mannschaft.url);
+            System.out.println("mannschaft = " + mannschaft);
         }
     }
 
@@ -423,7 +437,9 @@ public class ClickTTParserTest {
         assertEquals("TTC RhönSprudel Fulda-Maberzell", mannschaftspiel.getHeimMannschaft().getName());
         assertEquals("Borussia Düsseldorf", mannschaftspiel.getGastMannschaft().getName());
         assertEquals("1:3", mannschaftspiel.getErgebnis());
-        Assert.assertNotNull(mannschaftspiel.getUrlDetail());
+        assertNotNull(mannschaftspiel.getUrlDetail());
+
+        assertNotNull(verein.getUrlMannschaften());
     }
 }
 

@@ -82,6 +82,13 @@ public class LigaVereinActivity extends BaseActivity {
         }
         list.add(p);
 
+        p = new Parent();
+        p.name = "Mannschaften";
+        for (Verein.Mannschaft m : verein.getMannschaften()) {
+            p.children.add(new Child(m));
+        }
+        list.add(p);
+
         return list;
     }
 
@@ -91,6 +98,7 @@ public class LigaVereinActivity extends BaseActivity {
 
     public static class Child {
         Verein.SpielLokal spielLokal;
+        Verein.Mannschaft mannschaft;
         String text;
         Mannschaftspiel mannschaftspiel;
 
@@ -100,6 +108,10 @@ public class LigaVereinActivity extends BaseActivity {
 
         public Child(Verein.SpielLokal spielLokal) {
             this.spielLokal = spielLokal;
+        }
+
+        public Child(Verein.Mannschaft mannschaft) {
+            this.mannschaft = mannschaft;
         }
 
         public Child(Mannschaftspiel mannschaftspiel) {
@@ -199,6 +211,12 @@ public class LigaVereinActivity extends BaseActivity {
                 } else {
                     convertView.findViewById(R.id.map).setVisibility(View.INVISIBLE);
                 }
+
+            } else if (groupPosition == 3) {
+                final Verein.Mannschaft m = childElem.mannschaft;
+                convertView = infalInflater.inflate(R.layout.liga_verein_mannschaft_row, null);
+                ((TextView) convertView.findViewById(R.id.name)).setText(m.name);
+                ((TextView) convertView.findViewById(R.id.liga)).setText(m.liga);
 
             } else {
                 //we can not reuse the view here

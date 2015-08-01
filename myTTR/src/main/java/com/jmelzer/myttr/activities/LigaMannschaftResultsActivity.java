@@ -99,6 +99,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
                     parser.readMannschaftsInfo(MyApplication.selectedMannschaft);
                 }
                 MyApplication.selectedVerein = parser.readVerein(MyApplication.selectedMannschaft);
+                MyApplication.selectedVerein = parser.readVerein(MyApplication.selectedMannschaft);
             }
 
             @Override

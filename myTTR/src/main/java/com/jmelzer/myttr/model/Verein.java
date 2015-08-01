@@ -11,6 +11,10 @@ import java.util.List;
  * Represents the club in click tt, maybe connected to mytt
  */
 public class Verein {
+    private String urlMannschaften;
+
+
+
     public static class SpielLokal {
         public String text;
         public String plz;
@@ -161,5 +165,12 @@ public class Verein {
 
     public void setNaechsteSpiele(List<Mannschaftspiel> naechsteSpiele) {
         this.naechsteSpiele = naechsteSpiele;
+    }
+    public void setUrlMannschaften(String urlMannschaften) {
+        this.urlMannschaften = urlMannschaften;
+    }
+
+    public String getUrlMannschaften() {
+        return urlMannschaften;
     }
 }
