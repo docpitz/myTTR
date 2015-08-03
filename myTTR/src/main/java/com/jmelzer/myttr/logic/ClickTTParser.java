@@ -933,6 +933,7 @@ public class ClickTTParser extends AbstractBaseParser {
         String url = mannschaft.getVereinUrl();
         String page = Client.getPage(url);
         Verein v = parseVerein(page);
+        v.setUrl(url);
 
         String urlM = UrlUtil.getHttpAndDomain(url) + v.getUrlMannschaften();
         page = Client.getPage(urlM);

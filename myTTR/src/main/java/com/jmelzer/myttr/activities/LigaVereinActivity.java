@@ -217,6 +217,18 @@ public class LigaVereinActivity extends BaseActivity {
                 convertView = infalInflater.inflate(R.layout.liga_verein_mannschaft_row, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(m.name);
                 ((TextView) convertView.findViewById(R.id.liga)).setText(m.liga);
+                convertView.findViewById(R.id.liga).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gotoLiga(m);
+                    }
+                });
+                convertView.findViewById(R.id.arrow).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gotoLiga(m);
+                    }
+                });
 
             } else {
                 //we can not reuse the view here
@@ -248,6 +260,26 @@ public class LigaVereinActivity extends BaseActivity {
         }
     }
 
+    public void gotoLiga(final Verein.Mannschaft m) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                Liga liga = new Liga();
+                liga.setUrl(UrlUtil.getHttpAndDomain(MyApplication.selectedVerein.getUrl()) + m.url);
+                MyApplication.setSelectedLiga(liga);
+                new ClickTTParser().readLiga(MyApplication.getSelectedLiga());
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.getSelectedLiga().getMannschaften().size() > 0;
+            }
+
+
+        };
+        task.execute();
+    }
     private void callMannschaftSpielDetail() {
         if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null) {
             return;

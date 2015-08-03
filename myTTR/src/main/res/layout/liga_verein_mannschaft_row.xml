@@ -19,5 +19,11 @@
         android:layout_weight="9.5"
         android:text="Regionalliga West"/>
 
-
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="0dp"
+        style="@style/TextListStyle"
+        android:layout_weight="1"
+        android:contentDescription="@string/arrow_desc"
+        android:src="@drawable/ic_icon_arrow_right_white"/>
 </LinearLayout>

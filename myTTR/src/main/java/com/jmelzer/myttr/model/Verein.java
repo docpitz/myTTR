@@ -12,7 +12,15 @@ import java.util.List;
  */
 public class Verein {
     private String urlMannschaften;
+    private String url;
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 
 
     public static class SpielLokal {
