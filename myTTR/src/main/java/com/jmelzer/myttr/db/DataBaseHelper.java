@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    static final int DBVERSION = 15;
+    static final int DBVERSION = 16;
 
     static DataBaseHelper dataBaseHelper;
 

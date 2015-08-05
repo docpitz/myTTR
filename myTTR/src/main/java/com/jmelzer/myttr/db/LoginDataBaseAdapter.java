@@ -16,11 +16,9 @@ import android.util.Log;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.User;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class LoginDataBaseAdapter implements DbAdapter{
+public class LoginDataBaseAdapter implements DbAdapter {
 
     static final String LOGIN_CREATE = "create table " + "LOGIN" +
             "( " + "ID" + " integer primary key autoincrement," +
@@ -122,7 +120,6 @@ public class LoginDataBaseAdapter implements DbAdapter{
     }
 
 
-
     public void storeAk(int ak) {
         db.beginTransaction();
         db.execSQL("update LOGIN set AK=" + ak);
@@ -132,11 +129,13 @@ public class LoginDataBaseAdapter implements DbAdapter{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
+        if (DataBaseHelper.DBVERSION < 10) {
+            db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
+        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(LOGIN_CREATE);
+            db.execSQL(LOGIN_CREATE);
     }
 }

@@ -57,6 +57,14 @@ public class Verein {
         }
     }
 
+    public Verein() {
+    }
+
+    public Verein(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
+
     String name;
     long nr;
     int gruendungsjahr;
