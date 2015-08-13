@@ -184,6 +184,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
         }
+        builder.appendQueryParameter("alleSpielberechtigen", "yes");
 
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
