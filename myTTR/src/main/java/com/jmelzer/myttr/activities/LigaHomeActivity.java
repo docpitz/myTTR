@@ -263,6 +263,7 @@ public class LigaHomeActivity extends BaseActivity {
                         protected void startNextActivity() {
                             configLigAdapter();
                             configKreisAdapter();
+                            configKategorienAdapter();
                         }
                     };
                     task.execute();
@@ -303,11 +304,13 @@ public class LigaHomeActivity extends BaseActivity {
                         @Override
                         protected void startNextActivity() {
                             configLigAdapter();
+                            configKategorienAdapter();
                         }
                     };
                     task.execute();
                 } else {
                     configLigAdapter();
+                    configKategorienAdapter();
                 }
             }
         }
