@@ -30,7 +30,7 @@ public class FavoriteLigaDataBaseAdapterTest extends TestCase {
 
     @SmallTest
     public void testDB() {
-        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
+        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
         adapter.deleteAllEntries();
         assertTrue(adapter.insertEntry("real", "http://bla.de") != -1);

@@ -1001,6 +1001,7 @@ public class ClickTTParser extends AbstractBaseParser {
         int c = 0;
         idx = 0;
         String lastDate = null;
+        boolean hasNr = false;
         while (table.result != null) {
             ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
 
@@ -1008,13 +1009,14 @@ public class ClickTTParser extends AbstractBaseParser {
                 break;
             }
             if (c++ == 0) {
+                hasNr = resultrow.result.contains("Nr.");
                 idx = resultrow.end;
                 continue;//skip first row
 
             }
             idx = resultrow.end - 1;
-
-            Mannschaftspiel m = parseVereinSpieleTableRow(resultrow);
+            ;
+            Mannschaftspiel m = parseVereinSpieleTableRow(resultrow, hasNr);
             if (m.getDate() == null || m.getDate().equals(" ")) {
                 m.setDate(lastDate);
             } else {
@@ -1031,34 +1033,26 @@ public class ClickTTParser extends AbstractBaseParser {
         return verein;
     }
 
-    private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow) {
-        //tag
-        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
-        String datum = result.result;
-        //datum/zeit
-        result = readBetweenOpenTag(resultrow.result, result.end, "<td", "</td>");
-        datum += " " + result.result;
-        //Uhrzeit we dont use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //halle: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //nr: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //Liga: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+    private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow, boolean hasNr) {
+        String cols[] = tableRowAsArray(resultrow.result, hasNr ? 11 : 10);
+        for (String c : cols) {
+            System.out.println("c = " + c);
+        }
+        int idx = 0;
+        String datum = cols[idx++];
+        datum += " " + cols[idx++];
 
-        //Heim
-        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        String heimMannsschaft = result.result;
-        //Gast
-        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        String gastMannsschaft = result.result;
-        //Ergebnis
-        result = readBetween(resultrow.result, result.end, "<td ", "</td>");
-        ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
-        String url = safeResult(result2);
-        result2 = readBetween(result.result, 0, "<span>", "</span>");
-        String ergebnis = safeResult(result2);
+        idx++; //time
+        idx++; //halle
+        if (hasNr) {
+            idx++; //nr
+        }
+        idx++; //Liga
+        String heimMannsschaft = cols[idx++];
+        String gastMannsschaft = cols[idx++];
+        String aref[] = readHrefAndATag(cols[idx]);
+        String url = aref[0];
+        String ergebnis = safeResult(readBetween(aref[1], 0, "<span>", "</span>"));
         boolean genehmigt = resultrow.result.contains("genehmigt");
         return new Mannschaftspiel(datum,
                 new Mannschaft(heimMannsschaft),

@@ -4,13 +4,14 @@ import com.jmelzer.myttr.Mannschaftspiel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by J. Melzer on 30.05.2015.
  * Represents the club in click tt, maybe connected to mytt
  */
-public class Verein {
+public class Verein implements Favorite {
     private String urlMannschaften;
     private String url;
 
@@ -20,6 +21,10 @@ public class Verein {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getNameForFav() {
+        return name;
     }
 
 
@@ -73,6 +78,16 @@ public class Verein {
     List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
     List<Mannschaft> mannschaften = new ArrayList<>();
     Kontakt kontakt;
+    Date changedAt;
+
+    public Date getChangedAt() {
+        return changedAt;
+    }
+
+    @Override
+    public void setChangedAt(Date changedAt) {
+        this.changedAt = changedAt;
+    }
 
     public void removeAllSpielLokale() {
         lokale.clear();
@@ -182,6 +197,7 @@ public class Verein {
     public void setNaechsteSpiele(List<Mannschaftspiel> naechsteSpiele) {
         this.naechsteSpiele = naechsteSpiele;
     }
+
     public void setUrlMannschaften(String urlMannschaften) {
         this.urlMannschaften = urlMannschaften;
     }

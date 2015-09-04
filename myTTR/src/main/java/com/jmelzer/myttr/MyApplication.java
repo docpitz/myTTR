@@ -15,8 +15,7 @@ import android.util.Log;
 
 import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.db.DataBaseHelper;
-import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
-import com.jmelzer.myttr.db.FavoriteVereinDataBaseAdapter;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 import com.jmelzer.myttr.model.Verein;
@@ -64,10 +63,10 @@ public class MyApplication extends Application {
         super.onCreate();
         MyApplication.context = getApplicationContext();
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
-        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
+//        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
         dataBaseHelper.registerAdapter(new LoginDataBaseAdapter(this));
         dataBaseHelper.registerAdapter(new NotificationDataBaseAdapter(this));
-        dataBaseHelper.registerAdapter(new FavoriteVereinDataBaseAdapter(this));
+        dataBaseHelper.registerAdapter(new FavoriteDataBaseAdapter(this));
         createEmptyUser();
     }
 

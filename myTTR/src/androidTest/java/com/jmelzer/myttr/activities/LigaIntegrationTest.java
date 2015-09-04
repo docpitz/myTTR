@@ -1,13 +1,8 @@
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -16,8 +11,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
-import com.jmelzer.myttr.db.LoginDataBaseAdapter;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.robotium.solo.Solo;
 
 /**
@@ -87,7 +81,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
 
     private void favorite() throws InterruptedException {
         //lets prepare the database to have the same setup everytime
-        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
+        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
         adapter.deleteAllEntries();
 
@@ -117,7 +111,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         Thread.sleep(1000);
 
         //one entry in the db
-        adapter = new FavoriteLigaDataBaseAdapter(MyApplication.getAppContext());
+        adapter = new FavoriteDataBaseAdapter(MyApplication.getAppContext());
         adapter.open();
         assertEquals(0, adapter.getAllEntries().size());
     }

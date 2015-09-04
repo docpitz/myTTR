@@ -1,17 +1,19 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by J. Melzer on 19.02.2015.
  * Represents a Liga like TTBL, 2. Bundesliga etc.
  */
-public class Liga {
+public class Liga implements Favorite {
 
 
     public enum Spielplan {
@@ -38,6 +40,7 @@ public class Liga {
     private String urlRR;
     private String urlVR;
     private String urlGesamt;
+    private Date changedAt;
 
     public Liga(String name, String url, String kategorie) {
         this.name = name;
@@ -52,6 +55,15 @@ public class Liga {
     public Liga(String name, String url) {
         this.name = name;
         this.url = url;
+    }
+
+    public Date getChangedAt() {
+        return changedAt;
+    }
+
+    @Override
+    public void setChangedAt(Date changedAt) {
+        this.changedAt = changedAt;
     }
 
     public String getName() {
@@ -206,4 +218,5 @@ public class Liga {
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(url);
     }
+
 }

@@ -3,7 +3,6 @@ package com.jmelzer.myttr.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
+import com.jmelzer.myttr.model.Favorite;
 
 import java.util.List;
 
@@ -48,15 +46,15 @@ public class EditFavoritesActivity extends BaseActivity {
         listview.setAdapter(adapter);
     }
 
-    private List<Liga> load() {
-        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+    private List<Favorite> load() {
+        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
         adapter.open();
         return adapter.getAllEntries();
     }
 
-    class FavAdapter extends ArrayAdapter<Liga> {
+    class FavAdapter extends ArrayAdapter<Favorite> {
 
-        public FavAdapter(Context context, int resource, List<Liga> list) {
+        public FavAdapter(Context context, int resource, List<Favorite> list) {
             super(context, resource, list);
         }
 
@@ -66,15 +64,15 @@ public class EditFavoritesActivity extends BaseActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView = inflater.inflate(R.layout.favorite_row, parent, false);
-            final Liga liga = getItem(position);
+            final Favorite favorite = getItem(position);
             TextView textView = (TextView) rowView.findViewById(R.id.name);
-            textView.setText(liga.getName());
+            textView.setText(favorite.getName());
 
             final ImageView imageView = (ImageView) rowView.findViewById(R.id.imageButton);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteFromDb(liga);
+                    deleteFromDb(favorite);
 
                 }
             });
@@ -82,10 +80,10 @@ public class EditFavoritesActivity extends BaseActivity {
         }
     }
 
-    private void deleteFromDb(Liga liga) {
-        FavoriteLigaDataBaseAdapter dpAdapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+    private void deleteFromDb(Favorite favorite) {
+        FavoriteDataBaseAdapter dpAdapter = new FavoriteDataBaseAdapter(getApplicationContext());
         dpAdapter.open();
-        dpAdapter.deleteEntry(liga.getName());
+        dpAdapter.deleteEntry(favorite.getName());
         adapter.clear();
         adapter.addAll(load());
         adapter.notifyDataSetChanged();
