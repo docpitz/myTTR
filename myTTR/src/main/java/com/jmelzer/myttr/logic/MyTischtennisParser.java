@@ -196,7 +196,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     }
 
-    private List<Player> parseForPlayer(String firstName, String lastName, String page, List<Player> list, int start) throws TooManyPlayersFound {
+    List<Player> parseForPlayer(String firstName, String lastName, String page, List<Player> list, int start) throws TooManyPlayersFound {
         if (list.size() >= 100) {
             return list;
         }

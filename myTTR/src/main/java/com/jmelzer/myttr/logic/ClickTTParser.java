@@ -931,8 +931,16 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public Verein readVerein(Mannschaft mannschaft) throws NetworkException {
         String url = mannschaft.getVereinUrl();
+
+        return readVerein(url);
+    }
+
+    /**
+     * read the ligen from the url inside the verband
+     */
+    public Verein readVerein(String url) throws NetworkException {
         String page = Client.getPage(url);
-        Verein v = parseVerein(page);
+        Verein v = parseVerein(url, page);
         v.setUrl(url);
 
         String urlM = UrlUtil.getHttpAndDomain(url) + v.getUrlMannschaften();
@@ -942,13 +950,14 @@ public class ClickTTParser extends AbstractBaseParser {
         return v;
     }
 
-    Verein parseVerein(String page) {
+    Verein parseVerein(String url, String page) {
         ParseResult resultStart = readBetween(page, 0, "<h1>", null);
         if (resultStart == null) {
             return null;
         }
         ParseResult result = readBetween(resultStart.result, 0, "<br />", "</h1>");
         Verein verein = new Verein();
+        verein.setUrl(url);
         verein.setName(result.result.trim());
 
 
@@ -1022,6 +1031,7 @@ public class ClickTTParser extends AbstractBaseParser {
             } else {
                 lastDate = m.getDate();
             }
+            m.setUrlDetail(UrlUtil.safeUrl(UrlUtil.getHttpAndDomain(verein.getUrl()) , m.getUrlDetail()));
             verein.addLetztesSpiel(m);
 
 
@@ -1052,7 +1062,12 @@ public class ClickTTParser extends AbstractBaseParser {
         String gastMannsschaft = cols[idx++];
         String aref[] = readHrefAndATag(cols[idx]);
         String url = aref[0];
-        String ergebnis = safeResult(readBetween(aref[1], 0, "<span>", "</span>"));
+        String ergebnis = null;
+        try {
+            ergebnis = safeResult(readBetween(aref[1], 0, "<span>", "</span>"));
+        } catch (Exception e) {
+            //ignore
+        }
         boolean genehmigt = resultrow.result.contains("genehmigt");
         return new Mannschaftspiel(datum,
                 new Mannschaft(heimMannsschaft),

@@ -77,6 +77,10 @@ public class Mannschaftspiel {
         return urlDetail;
     }
 
+    public void setUrlDetail(String urlDetail) {
+        this.urlDetail = urlDetail;
+    }
+
     public void addSpiel(Spielbericht spielbericht) {
         spiele.add(spielbericht);
     }

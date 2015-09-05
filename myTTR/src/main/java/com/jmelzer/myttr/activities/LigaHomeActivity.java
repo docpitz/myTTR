@@ -31,6 +31,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
+import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +155,24 @@ public class LigaHomeActivity extends BaseActivity {
         task.execute();
     }
 
+
+    public void verein(final Verein verein) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.selectedVerein = new ClickTTParser().readVerein(verein.getUrl());
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedVerein != null;
+            }
+
+
+        };
+        task.execute();
+    }
     public List<Bezirk> getBezirkList() {
         List<Bezirk> listC = new ArrayList<>();
         if (MyApplication.selectedVerband != null) {
@@ -542,17 +561,28 @@ public class LigaHomeActivity extends BaseActivity {
         List<Favorite> list = getFavorites();
         if (item.getItemId() < list.size()) {
             setFavorite(list.get(item.getItemId()));
-            tabelle();
+            callFavorite(list.get(item.getItemId()));
         } else if (item.getTitle().equals(BEARBEITEN)) {
             favoriteEdit();
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void callFavorite(Favorite favorite) {
+
+        if (favorite instanceof Liga) {
+            tabelle();
+        } else if (favorite instanceof Verein){
+            verein((Verein) favorite);
+        }
+    }
+
     private void setFavorite(Favorite favorite) {
         Log.d(Constants.LOG_TAG, "setting fav to " + favorite.getClass().getName());
         if (favorite instanceof Liga) {
             MyApplication.setSelectedLiga((Liga) favorite);
+        } else if (favorite instanceof Verein){
+            MyApplication.selectedVerein = (Verein) favorite;
         }
     }
 
