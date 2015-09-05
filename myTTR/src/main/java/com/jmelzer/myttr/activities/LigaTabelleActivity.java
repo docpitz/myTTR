@@ -1,7 +1,6 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
@@ -103,12 +102,12 @@ public class LigaTabelleActivity extends BaseActivity {
     }
 
     public void favorite(MenuItem item) {
-        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
         adapter.open();
         if (adapter.existsEntry(liga.getNameForFav())) {
             Toast.makeText(this, getString(R.string.favorite_exists), Toast.LENGTH_LONG).show();
         } else {
-            adapter.insertEntry(liga.getNameForFav(), liga.getUrl());
+            adapter.insertEntry(liga.getNameForFav(), liga.getUrl(), Liga.class.getName());
             Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_LONG).show();
         }
     }

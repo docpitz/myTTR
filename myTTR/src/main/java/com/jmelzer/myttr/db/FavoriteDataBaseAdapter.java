@@ -14,42 +14,45 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Liga;
+import com.jmelzer.myttr.model.Favorite;
+import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FavoriteLigaDataBaseAdapter implements DbAdapter {
+public class FavoriteDataBaseAdapter implements DbAdapter {
 
-    static final String TABLE_NAME = "FAV_LIGA";
+    static final String TABLE_NAME = "FAVS";
+    static final String NAME = "NAME";
 
     static final String FAV_LIGA_CREATE = "create table " + TABLE_NAME +
             "( " + "ID" + " integer primary key autoincrement," +
-            "LIGA_NAME text, URL  text, CHANGED_AT date); ";
+            NAME + " text, URL  text, CLZ, text,  CHANGED_AT date); ";
 
     // Variable to hold the database instance
     static SQLiteDatabase db;
     // Database open/upgrade helper
     private DataBaseHelper dbHelper;
 
-    public FavoriteLigaDataBaseAdapter(Context _context) {
+    public FavoriteDataBaseAdapter(Context _context) {
         dbHelper = DataBaseHelper.getInstance(_context.getApplicationContext());
     }
 
-    public FavoriteLigaDataBaseAdapter open() throws SQLException {
+    public FavoriteDataBaseAdapter open() throws SQLException {
         if (db == null) {
             db = dbHelper.getWritableDatabase();
         }
         return this;
     }
 
-    public long insertEntry(String name, String url) {
+    public long insertEntry(String name, String url, String clz) {
         db.beginTransaction();
         ContentValues newValues = new ContentValues();
         // Assign values for each row.
-        newValues.put("LIGA_NAME", name);
+        newValues.put(NAME, name);
         newValues.put("URL", url);
+        newValues.put("CLZ", clz);
         newValues.put("CHANGED_AT", DbUtil.formatter.format(new Date()));
 
         // Insert the row into your table
@@ -60,12 +63,12 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter {
     }
 
     public int deleteEntry(String name) {
-        String where = "LIGA_NAME=?";
+        String where = NAME + "=?";
         db.beginTransaction();
         int numberOFEntriesDeleted = db.delete(TABLE_NAME, where, new String[]{name});
         db.setTransactionSuccessful();
         db.endTransaction();
-        Log.d(Constants.LOG_TAG, "removed " + numberOFEntriesDeleted + " from the table " + TABLE_NAME );
+        Log.d(Constants.LOG_TAG, "removed " + numberOFEntriesDeleted + " from the table " + TABLE_NAME);
         return numberOFEntriesDeleted;
     }
 
@@ -76,18 +79,32 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter {
         db.endTransaction();
     }
 
-    public List<Liga> getAllEntries() {
-        Cursor cursor = db.query(TABLE_NAME, null, " LIGA_NAME is not null", null, null, null, null);
-        List<Liga> list = new ArrayList<>();
+    public List<Favorite> getAllEntries() {
+        Cursor cursor = db.query(TABLE_NAME, null, NAME + " is not null", null, null, null, null);
+        List<Favorite> list = new ArrayList<>();
         if (cursor.getCount() < 1) {
             cursor.close();
             return list;
         }
         cursor.moveToFirst();
         do {
-            String name = cursor.getString(cursor.getColumnIndex("LIGA_NAME"));
+            String name = cursor.getString(cursor.getColumnIndex(NAME));
             String url = cursor.getString(cursor.getColumnIndex("URL"));
-            list.add(new Liga(name, url));
+            String ds = cursor.getString(cursor.getColumnIndex("CHANGED_AT"));
+            String clzName = cursor.getString(cursor.getColumnIndex("CLZ"));
+            try {
+                Date d = DbUtil.formatter.parse(ds);
+                Class clz = Class.forName(clzName);
+                Favorite fav = (Favorite) clz.newInstance();
+                fav.setName(name);
+                fav.setUrl(url);
+                fav.setChangedAt(d);
+
+            } catch (Exception e) {
+                Log.e(Constants.LOG_TAG, "", e);
+                continue;
+            }
+            list.add(new Verein(name, url));
         } while (cursor.moveToNext());
 
         cursor.close();
@@ -95,7 +112,7 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter {
     }
 
     public boolean existsEntry(String name) {
-        Cursor cursor = db.query(TABLE_NAME, null, " LIGA_NAME = '" + name + "'", null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, null, NAME + " = '" + name + "'", null, null, null, null);
         if (cursor.getCount() < 1) {
             cursor.close();
             return false;
@@ -106,7 +123,8 @@ public class FavoriteLigaDataBaseAdapter implements DbAdapter {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        //todo make a real upgrade
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
     @Override

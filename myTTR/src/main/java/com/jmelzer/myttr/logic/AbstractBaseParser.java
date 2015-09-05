@@ -39,7 +39,7 @@ public class AbstractBaseParser {
      * @param page     to search threw
      * @param start    index to start
      * @param tagStart to search for, can be null
-     * @param tagEnd to search for, can be null
+     * @param tagEnd   to search for, can be null
      */
     ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd) {
         return readBetweenOpenTag(page, start, tagStart, tagEnd, false);
@@ -54,6 +54,7 @@ public class AbstractBaseParser {
         }
         return null;
     }
+
     ParseResult readBetween(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
         String toSearch = "";
         if (ignoreCase) {
@@ -85,6 +86,7 @@ public class AbstractBaseParser {
             return new ParseResult(page.substring(s + l, idxEndTag), end);
         }
     }
+
     ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
         return readBetween(page, start, tagStart, tagEnd, false);
     }
@@ -98,6 +100,7 @@ public class AbstractBaseParser {
 
     /**
      * read the <a tag an return the url and the description inside the a tag
+     *
      * @param line to be parsed
      * @return first url, second value inside the tag
      */
@@ -106,5 +109,27 @@ public class AbstractBaseParser {
         String url = safeResult(result2);
         result2 = readBetweenOpenTag(line, 0, "<a", "</a>");
         return new String[]{url, safeResult(result2)};
+    }
+
+    /**
+     * read all td elements from a tr and store them into a array
+     *
+     * @param tr        tp be parsed
+     * @param validsize valid size of of the columns
+     * @return array, will be filled with emoty string if validsize isn't reached
+     */
+    String[] tableRowAsArray(String tr, int validsize) {
+        String[] arr = new String[validsize];
+        int startIdx = 0;
+        for (int i = 0; i < validsize; i++) {
+            ParseResult td = readBetweenOpenTag(tr, startIdx, "<td", "</td>");
+            if (td != null) {
+                startIdx = td.end;
+                arr[i] = td.result.trim();
+            } else {
+                arr[i] = "";
+            }
+        }
+        return arr;
     }
 }

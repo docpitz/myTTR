@@ -1,5 +1,6 @@
 package com.jmelzer.myttr.logic;
 
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 
 import org.junit.Before;
@@ -7,6 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertTrue;
@@ -57,7 +61,7 @@ public class MyTischtennisParserTest {
     }
 
     @Test
-    public void testParseOwnEvents201506() throws Exception {
+     public void testParseOwnEvents201506() throws Exception {
         String page = readFile(ASSETS_DIR + "/myHistory_2015_06.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, false);
@@ -65,5 +69,14 @@ public class MyTischtennisParserTest {
         assertEquals("Jürgen Melzer (1662)", player.getFullName());
         assertNotNull(player);
         assertTrue(player.getEvents().size() > 20);
+    }
+
+    @Test
+    public void testFindPlaySSF() throws Exception {
+        String page = readFile(ASSETS_DIR + "/ssf-mannschaft.htm");
+        assertNotNull(page);
+        List<Player> list = new ArrayList<>();
+        List<Player> player = parser.parseForPlayer(null, null,page,list, 0);
+        assertEquals(6, player.size());
     }
 }

@@ -1,0 +1,30 @@
+<tr>
+
+            <td>
+
+
+
+
+
+            </td>
+            <td align="center">1</td>
+
+
+          <td nowrap="nowrap">
+            <a alt="Mannschaftsportrait" title="Mannschaftsportrait" href="/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/teamPortrait?teamtable=2031834&amp;pageState=vorrunde&amp;championship=Mittelrhein+15%2F16&amp;group=249747">TSV Seelscheid II</a>
+          </td>
+          <td align="center">0</td>
+          <td align="center">0</td>
+          <td align="center">0</td>
+          <td align="center">0</td>
+          <td align="center">
+
+              <span title="Saetze 0:0 / Baelle 0:0">
+                0:0
+              </span>
+
+
+          </td>
+          <td align="center">0</td>
+          <td align="center">0:0</td>
+        </tr>

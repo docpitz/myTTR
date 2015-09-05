@@ -62,8 +62,10 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
             protected void callParser() throws NetworkException, LoginExpiredException {
                 MyApplication.searchResult = null;
                 try {
-                    MyApplication.searchResult = myTischtennisParser.findPlayer(null, null,
-                            MyApplication.foreignTeamPlayers.get(0).getClub());
+                    if (MyApplication.foreignTeamPlayers.size() > 0) {
+                        MyApplication.searchResult = myTischtennisParser.findPlayer(null, null,
+                                MyApplication.foreignTeamPlayers.get(0).getClub());
+                    }
                 } catch (TooManyPlayersFound tooManyPlayersFound) {
                     //ok
                 }

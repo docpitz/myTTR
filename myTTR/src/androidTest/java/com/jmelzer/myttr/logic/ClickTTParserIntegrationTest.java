@@ -10,6 +10,7 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
@@ -49,6 +50,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15&group=225345", "clicktt/kreisliga.htm");
         MockResponses.forRequestDoAnswer(".*person=974254.*", "clicktt/player_974254.htm");
         MockResponses.forRequestDoAnswer(".*RL-OL.West.*", "clicktt/regional_west.htm");
+        MockResponses.forRequestDoAnswer(".*pttv.click-tt.de.*", "clicktt/pttvmain.htm");
     }
 
     @SmallTest
@@ -110,8 +112,8 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         assertTrue(spiel.getSpiele().size() > 0);
     }
 
-//    @MediumTest
-    public void _testAllVerbaende() throws Exception {
+    @MediumTest
+    public void testAllVerbaende() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         for (Verband verband : verbaende) {
             parser.readLigen(verband, Saison.SAISON_2015);

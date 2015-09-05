@@ -931,17 +931,33 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public Verein readVerein(Mannschaft mannschaft) throws NetworkException {
         String url = mannschaft.getVereinUrl();
-        String page = Client.getPage(url);
-        return parseVerein(page);
+
+        return readVerein(url);
     }
 
-    Verein parseVerein(String page) {
+    /**
+     * read the ligen from the url inside the verband
+     */
+    public Verein readVerein(String url) throws NetworkException {
+        String page = Client.getPage(url);
+        Verein v = parseVerein(url, page);
+        v.setUrl(url);
+
+        String urlM = UrlUtil.getHttpAndDomain(url) + v.getUrlMannschaften();
+        page = Client.getPage(urlM);
+        parseVereinMannschaften(page, v);
+
+        return v;
+    }
+
+    Verein parseVerein(String url, String page) {
         ParseResult resultStart = readBetween(page, 0, "<h1>", null);
         if (resultStart == null) {
             return null;
         }
         ParseResult result = readBetween(resultStart.result, 0, "<br />", "</h1>");
         Verein verein = new Verein();
+        verein.setUrl(url);
         verein.setName(result.result.trim());
 
 
@@ -977,7 +993,7 @@ public class ClickTTParser extends AbstractBaseParser {
                         lokal.city = readBetween(ref, 0, "tocity=", "&").result;
                         lokal.street = readBetween(ref, 0, "tostreet=", "&").result;
                         lokal.plz = readBetween(ref, 0, "toplz=", "&").result;
-                    } catch (NullPointerException  e) {
+                    } catch (NullPointerException e) {
                         //ignore
                     }
                 }
@@ -994,6 +1010,7 @@ public class ClickTTParser extends AbstractBaseParser {
         int c = 0;
         idx = 0;
         String lastDate = null;
+        boolean hasNr = false;
         while (table.result != null) {
             ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
 
@@ -1001,57 +1018,96 @@ public class ClickTTParser extends AbstractBaseParser {
                 break;
             }
             if (c++ == 0) {
+                hasNr = resultrow.result.contains("Nr.");
                 idx = resultrow.end;
                 continue;//skip first row
 
             }
             idx = resultrow.end - 1;
-
-            Mannschaftspiel m = parseVereinSpieleTableRow(resultrow);
+            ;
+            Mannschaftspiel m = parseVereinSpieleTableRow(resultrow, hasNr);
             if (m.getDate() == null || m.getDate().equals(" ")) {
                 m.setDate(lastDate);
             } else {
                 lastDate = m.getDate();
             }
+            m.setUrlDetail(UrlUtil.safeUrl(UrlUtil.getHttpAndDomain(verein.getUrl()) , m.getUrlDetail()));
             verein.addLetztesSpiel(m);
 
 
         }
+        ParseResult resultML = readBetween(page, 0, "<a href=\"/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/clubTeams?club=", "\">");
+        if (resultML != null) {
+            verein.setUrlMannschaften("/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/clubTeams?club=" + resultML.result);
+        }
         return verein;
     }
 
-    private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow) {
-        //tag
-        ParseResult result = readBetweenOpenTag(resultrow.result, 0, "<td", "</td>");
-        String datum = result.result;
-        //datum/zeit
-        result = readBetweenOpenTag(resultrow.result, result.end, "<td", "</td>");
-        datum += " " + result.result;
-        //Uhrzeit we dont use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //halle: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //nr: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
-        //Liga: we don't use
-        result = readBetween(resultrow.result, result.end + 1, "<td", "</td>");
+    private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow, boolean hasNr) {
+        String cols[] = tableRowAsArray(resultrow.result, hasNr ? 11 : 10);
+        for (String c : cols) {
+            System.out.println("c = " + c);
+        }
+        int idx = 0;
+        String datum = cols[idx++];
+        datum += " " + cols[idx++];
 
-        //Heim
-        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        String heimMannsschaft = result.result;
-        //Gast
-        result = readBetweenOpenTag(resultrow.result, result.end + 1, "<td", "</td>");
-        String gastMannsschaft = result.result;
-        //Ergebnis
-        result = readBetween(resultrow.result, result.end, "<td ", "</td>");
-        ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
-        String url = safeResult(result2);
-        result2 = readBetween(result.result, 0, "<span>", "</span>");
-        String ergebnis = safeResult(result2);
+        idx++; //time
+        idx++; //halle
+        if (hasNr) {
+            idx++; //nr
+        }
+        idx++; //Liga
+        String heimMannsschaft = cols[idx++];
+        String gastMannsschaft = cols[idx++];
+        String aref[] = readHrefAndATag(cols[idx]);
+        String url = aref[0];
+        String ergebnis = null;
+        try {
+            ergebnis = safeResult(readBetween(aref[1], 0, "<span>", "</span>"));
+        } catch (Exception e) {
+            //ignore
+        }
         boolean genehmigt = resultrow.result.contains("genehmigt");
         return new Mannschaftspiel(datum,
                 new Mannschaft(heimMannsschaft),
                 new Mannschaft(gastMannsschaft),
                 ergebnis, url, genehmigt);
+    }
+
+    void parseVereinMannschaften(String page, Verein verein) {
+        ParseResult resultStart = readBetween(page, 0, "Mannschaften und Ligeneinteilung", null);
+        if (resultStart == null) {
+            return;
+        }
+        ParseResult resultHeader = readBetween(resultStart.result, 0, "<h2>", "</h2>");
+        if (resultHeader != null) {
+
+            //Ueberschrift
+            ParseResult trHeader = readBetween(resultStart.result, resultHeader.end, "<tr>", "</tr>");
+            int startIdx = trHeader.end;
+            //Zeile mit Mannschaft -- iterieren
+            ParseResult tr = readBetween(resultStart.result, startIdx, "<tr>", "</tr>");
+            while (true) {
+                if (tr == null) {
+                    break;
+                }
+                if (tr.result.contains("href")) {
+
+                    Verein.Mannschaft mannschaft = new Verein.Mannschaft();
+                    String[] columns = tableRowAsArray(tr.result, 5);
+                    mannschaft.name = columns[0];
+                    String aref[] = readHrefAndATag(columns[1]);
+                    mannschaft.url = aref[0];
+                    mannschaft.liga = aref[1];
+                    //todo add domain to relative url
+//                mannschaft.url = (UrlUtil.safeUrl(verein.getHttpAndDomain() , liga.getUrl()));
+                    verein.addMannschaft(mannschaft);
+                }
+                tr = readBetweenOpenTag(resultStart.result, tr.end, "<tr", "</tr>");
+            }
+
+//            resultHeader = readBetween(resultStart.result, resultHeader.end, "<h2>", "</h2>");
+        }
     }
 }

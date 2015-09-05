@@ -364,23 +364,52 @@ public class ClickTTParserTest {
         Verein verein = parser.parseVerein(page);
 
         assertNotNull(verein);
-        assertEquals("Borussia VfL 1900 e.V. Mönchengladbach", verein.getName());
+        assertEquals("TTG St. Augustin", verein.getName());
         System.out.println("verein.getKontakt() = " + verein.getKontakt());
-        assertEquals("vorstand@borussiatt.de", verein.getKontakt().getMail());
-        assertEquals("http://www.BorussiaTT.de", verein.getKontakt().getUrl());
+        assertEquals("erwin-franz@t-online.de", verein.getKontakt().getMail());
+//        assertEquals("http://www.BorussiaTT.de", verein.getKontakt().getUrl());
         System.out.println("-------------");
         for (Verein.SpielLokal s : verein.getLokale()) {
             System.out.println("s = " + s);
         }
         System.out.println("-------------");
-        assertEquals(2, verein.getLokale().size());
-        assertTrue(verein.getLokale().get(0).text.contains("Sporthalle Realschule Volksgarten"));
-        assertEquals("Mönchengladbach", verein.getLokale().get(0).city);
-        assertEquals("41065", verein.getLokale().get(0).plz);
-        assertEquals("Luise-Vollmar-Str. - Parkplatz/Zugang gegenüber Hausnr. 40", verein.getLokale().get(0).street);
+        assertEquals(1, verein.getLokale().size());
+        assertTrue(verein.getLokale().get(0).text.contains("Sportzentrum Menden"));
+        assertEquals("Sankt Augustin", verein.getLokale().get(0).city);
+        assertEquals("53757", verein.getLokale().get(0).plz);
+        assertEquals("Siegstraße 119", verein.getLokale().get(0).street);
 
         for (Mannschaftspiel mannschaftspiel : verein.getLetzteSpiele()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
+        }
+    }
+
+    @Test
+    public void testParseVereinMannschaften() throws Exception {
+        String page = readFile(ASSETS_DIR + "/verein-mannschaften.htm");
+        Verein verein = new Verein();
+        assertEquals(0, verein.getMannschaften().size());
+
+        parser.parseVereinMannschaften(page, verein);
+        assertEquals(11, verein.getMannschaften().size());
+        for (Verein.Mannschaft mannschaft : verein.getMannschaften()) {
+            assertNotNull(mannschaft.liga);
+            assertNotNull(mannschaft.name);
+            assertNotNull(mannschaft.url);
+            System.out.println("mannschaft = " + mannschaft);
+        }
+
+        page = readFile(ASSETS_DIR + "/verein-mannschaften-2.htm");
+        verein = new Verein();
+        assertEquals(0, verein.getMannschaften().size());
+
+        parser.parseVereinMannschaften(page, verein);
+        assertEquals(4, verein.getMannschaften().size());
+        for (Verein.Mannschaft mannschaft : verein.getMannschaften()) {
+            assertNotNull(mannschaft.liga);
+            assertNotNull(mannschaft.name);
+            assertNotNull(mannschaft.url);
+            System.out.println("mannschaft = " + mannschaft);
         }
     }
 
@@ -408,7 +437,9 @@ public class ClickTTParserTest {
         assertEquals("TTC RhönSprudel Fulda-Maberzell", mannschaftspiel.getHeimMannschaft().getName());
         assertEquals("Borussia Düsseldorf", mannschaftspiel.getGastMannschaft().getName());
         assertEquals("1:3", mannschaftspiel.getErgebnis());
-        Assert.assertNotNull(mannschaftspiel.getUrlDetail());
+        assertNotNull(mannschaftspiel.getUrlDetail());
+
+        assertNotNull(verein.getUrlMannschaften());
     }
 }
 

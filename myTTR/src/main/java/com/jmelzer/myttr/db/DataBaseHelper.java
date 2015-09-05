@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    static final int DBVERSION = 15;
+    static final int DBVERSION = 16;
 
     static DataBaseHelper dataBaseHelper;
 
@@ -58,10 +58,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // The simplest case is to drop the old table and create a new one.
 
         for (DbAdapter dbAdapter : adapterList) {
+            Log.i(Constants.LOG_TAG, "upgrading adapter " + dbAdapter.getClass().getSimpleName());
             dbAdapter.onUpgrade(db, oldVersion, newVersion);
+            dbAdapter.onCreate(db);
         }
         // Create a new one.
-        onCreate(db);
+//        onCreate(db);
     }
 
     public void registerAdapter(DbAdapter adapter) {

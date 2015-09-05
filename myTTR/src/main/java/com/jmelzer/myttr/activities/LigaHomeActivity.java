@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,16 +19,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.Bezirk;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Verband;
-import com.jmelzer.myttr.db.FavoriteLigaDataBaseAdapter;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
+import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,6 +155,24 @@ public class LigaHomeActivity extends BaseActivity {
         task.execute();
     }
 
+
+    public void verein(final Verein verein) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.selectedVerein = new ClickTTParser().readVerein(verein.getUrl());
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedVerein != null;
+            }
+
+
+        };
+        task.execute();
+    }
     public List<Bezirk> getBezirkList() {
         List<Bezirk> listC = new ArrayList<>();
         if (MyApplication.selectedVerband != null) {
@@ -517,10 +539,10 @@ public class LigaHomeActivity extends BaseActivity {
         //see http://stackoverflow.com/questions/7042958/android-adding-a-submenu-to-a-menuitem-where-is-addsubmenu
         SubMenu subm = menu.getItem(0).getSubMenu(); // get my MenuItem with placeholder submenu
         subm.clear(); // delete place holder
-        List<Liga> list = getLigaList();
+        List<Favorite> list = getFavorites();
         int id = 0;
-        for (Liga liga : list) {
-            subm.add(0, id++, Menu.NONE, liga.getName());
+        for (Favorite favorite : list) {
+            subm.add(0, id++, Menu.NONE, favorite.getName());
         }
         if (list.size() > 0) {
             subm.add(0, id, Menu.NONE, BEARBEITEN);
@@ -528,22 +550,43 @@ public class LigaHomeActivity extends BaseActivity {
         return true;
     }
 
-    List<Liga> getLigaList() {
-        FavoriteLigaDataBaseAdapter adapter = new FavoriteLigaDataBaseAdapter(getApplicationContext());
+    List<Favorite> getFavorites() {
+        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
         adapter.open();
-        return adapter.getAllEntries();
+        List<Favorite> list = new ArrayList<>();
+        list.addAll(adapter.getAllEntries());
+
+        return list;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        List<Liga> list = getLigaList();
+        List<Favorite> list = getFavorites();
         if (item.getItemId() < list.size()) {
-            MyApplication.setSelectedLiga(list.get(item.getItemId()));
-            tabelle();
+            setFavorite(list.get(item.getItemId()));
+            callFavorite(list.get(item.getItemId()));
         } else if (item.getTitle().equals(BEARBEITEN)) {
             favoriteEdit();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void callFavorite(Favorite favorite) {
+
+        if (favorite instanceof Liga) {
+            tabelle();
+        } else if (favorite instanceof Verein){
+            verein((Verein) favorite);
+        }
+    }
+
+    private void setFavorite(Favorite favorite) {
+        Log.d(Constants.LOG_TAG, "setting fav to " + favorite.getClass().getName());
+        if (favorite instanceof Liga) {
+            MyApplication.setSelectedLiga((Liga) favorite);
+        } else if (favorite instanceof Verein){
+            MyApplication.selectedVerein = (Verein) favorite;
+        }
     }
 
     private void favoriteEdit() {

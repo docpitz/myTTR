@@ -4,13 +4,30 @@ import com.jmelzer.myttr.Mannschaftspiel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by J. Melzer on 30.05.2015.
  * Represents the club in click tt, maybe connected to mytt
  */
-public class Verein {
+public class Verein implements Favorite {
+    private String urlMannschaften;
+    private String url;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getNameForFav() {
+        return name;
+    }
+
+
     public static class SpielLokal {
         public String text;
         public String plz;
@@ -27,24 +44,70 @@ public class Verein {
                     '}';
         }
     }
+
+    static public class Mannschaft {
+        //e.g. TTG St. AUgustin II
+        public String name;
+        //e.g. Bezirksliga 3
+        public String liga;
+        //link to the url of the liga
+        public String url;
+
+        @Override
+        public String toString() {
+            return "Mannschaft{" +
+                    "name='" + name + '\'' +
+                    ", liga='" + liga + '\'' +
+                    '}';
+        }
+    }
+
+    public Verein() {
+    }
+
+    public Verein(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
+
     String name;
     long nr;
     int gruendungsjahr;
     List<SpielLokal> lokale = new ArrayList<>();
     List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
     List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
+    List<Mannschaft> mannschaften = new ArrayList<>();
     Kontakt kontakt;
+    Date changedAt;
+
+    public Date getChangedAt() {
+        return changedAt;
+    }
+
+    @Override
+    public void setChangedAt(Date changedAt) {
+        this.changedAt = changedAt;
+    }
 
     public void removeAllSpielLokale() {
         lokale.clear();
     }
+
     public void addLetztesSpiel(Mannschaftspiel mannschaftspiel) {
         letzteSpiele.add(mannschaftspiel);
     }
+
     public void addSpielLokal(SpielLokal lokal) {
         lokale.add(lokal);
     }
 
+    public void addMannschaft(Mannschaft m) {
+        mannschaften.add(m);
+    }
+
+    public void removeAllMannschaften() {
+        mannschaften.clear();
+    }
 
     static public class Kontakt {
         String nameAddress;
@@ -119,6 +182,10 @@ public class Verein {
         return letzteSpiele;
     }
 
+    public List<Mannschaft> getMannschaften() {
+        return Collections.unmodifiableList(mannschaften);
+    }
+
     public void setLetzteSpiele(List<Mannschaftspiel> letzteSpiele) {
         this.letzteSpiele = letzteSpiele;
     }
@@ -129,5 +196,13 @@ public class Verein {
 
     public void setNaechsteSpiele(List<Mannschaftspiel> naechsteSpiele) {
         this.naechsteSpiele = naechsteSpiele;
+    }
+
+    public void setUrlMannschaften(String urlMannschaften) {
+        this.urlMannschaften = urlMannschaften;
+    }
+
+    public String getUrlMannschaften() {
+        return urlMannschaften;
     }
 }
