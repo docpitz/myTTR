@@ -361,7 +361,7 @@ public class ClickTTParserTest {
     @Test
     public void testParseVerein() throws Exception {
         String page = readFile(ASSETS_DIR + "/verein.htm");
-        Verein verein = parser.parseVerein(page);
+        Verein verein = parser.parseVerein("", page);
 
         assertNotNull(verein);
         assertEquals("TTG St. Augustin", verein.getName());
@@ -416,7 +416,7 @@ public class ClickTTParserTest {
     @Test
     public void testParseVereinDD() throws Exception {
         String page = readFile(ASSETS_DIR + "/verein-dd.htm");
-        Verein verein = parser.parseVerein(page);
+        Verein verein = parser.parseVerein("", page);
 
         assertNotNull(verein);
         assertEquals("Borussia Düsseldorf", verein.getName());

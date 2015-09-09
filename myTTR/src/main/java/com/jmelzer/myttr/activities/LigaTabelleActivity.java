@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * Created by J. Melzer on 21.02.2015.
- *
  */
 public class LigaTabelleActivity extends BaseActivity {
     Liga liga;
@@ -79,7 +78,10 @@ public class LigaTabelleActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 ClickTTParser p = new ClickTTParser();
-                p.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                if (MyApplication.selectedMannschaft != null) {
+                    //todo check wether this is correct here
+                    p.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                }
                 p.readVR(liga);
                 p.readRR(liga);
                 p.readGesamtSpielplan(liga);
@@ -111,6 +113,7 @@ public class LigaTabelleActivity extends BaseActivity {
             Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_LONG).show();
         }
     }
+
     private static class ViewHolder {
         ImageView arrow;
         TextView textName;
@@ -118,6 +121,7 @@ public class LigaTabelleActivity extends BaseActivity {
         TextView textGames;
         TextView textPoints;
     }
+
     class LigaAdapter extends ArrayAdapter<Mannschaft> {
         private LayoutInflater layoutInflater;
 
@@ -147,7 +151,7 @@ public class LigaTabelleActivity extends BaseActivity {
 
             holder.textName.setText(mannschaft.getName());
             holder.textPos.setText("" + mannschaft.getPosition());
-            holder.textGames.setText(""  + mannschaft.getGamesCount() );
+            holder.textGames.setText("" + mannschaft.getGamesCount());
             holder.textPoints.setText(mannschaft.getPoints());
 
             holder.arrow.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +164,7 @@ public class LigaTabelleActivity extends BaseActivity {
             return convertView;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
