@@ -129,13 +129,11 @@ public class LoginDataBaseAdapter implements DbAdapter {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 10) {
-            db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
-        }
+        db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-            db.execSQL(LOGIN_CREATE);
+        db.execSQL(LOGIN_CREATE);
     }
 }

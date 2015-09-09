@@ -99,12 +99,11 @@ public class FavoriteDataBaseAdapter implements DbAdapter {
                 fav.setName(name);
                 fav.setUrl(url);
                 fav.setChangedAt(d);
+                list.add(fav);
 
             } catch (Exception e) {
                 Log.e(Constants.LOG_TAG, "", e);
-                continue;
             }
-            list.add(new Verein(name, url));
         } while (cursor.moveToNext());
 
         cursor.close();
