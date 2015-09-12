@@ -308,11 +308,11 @@ public class MyTischtennisParserTest extends BaseTestCase {
     public void testFindPlayerUmlaut() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Player> players = myTischtennisParser.findPlayer("timo ", "boll", "");
-        assertEquals(4, players.size());
-        assertEquals("Timo", players.get(2).getFirstname());
-        assertEquals("Boll", players.get(2).getLastname());
-        assertEquals("Borussia Düsseldorf", players.get(2).getClub());
+        List<Player> players = myTischtennisParser.findPlayer("Stefan ", "Köhler", "");
+        assertEquals(6, players.size());
+        assertEquals("Stefan", players.get(1).getFirstname());
+        assertEquals("Köhler", players.get(1).getLastname());
+        assertEquals("SC 1904 Nürnberg e.V.", players.get(1).getClub());
     }
 
     @SmallTest

@@ -79,4 +79,16 @@ public class MyTischtennisParserTest {
         List<Player> player = parser.parseForPlayer(null, null,page,list, 0);
         assertEquals(6, player.size());
     }
+
+    @Test
+    public void testFindPlayerUmlaut() throws Exception {
+        String page = readFile(ASSETS_DIR + "/search_koehler.htm");
+        assertNotNull(page);
+        List<Player> list = new ArrayList<>();
+        List<Player> players = parser.parseForPlayer("Stefan ", "Köhler", page, list, 0);
+        assertEquals(6, players.size());
+        assertEquals("Stefan", players.get(1).getFirstname());
+        assertEquals("Köhler", players.get(1).getLastname());
+        assertEquals("SC 1904 Nürnberg e.V.", players.get(1).getClub());
+    }
 }
