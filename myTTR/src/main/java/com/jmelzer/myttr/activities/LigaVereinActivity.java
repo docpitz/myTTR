@@ -303,7 +303,7 @@ public class LigaVereinActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.liga_actions, menu);
+        menuInflater.inflate(R.menu.verein_actions, menu);
         return true;
     }
 
