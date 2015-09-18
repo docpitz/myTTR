@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                tools:ignore="HardcodedText">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  style="@style/RowListStyle"
+                  tools:ignore="UselessParent">
+
+        <TextView
             android:id="@+id/date"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:gravity="left"
             android:text="21.03 20:00 Uhr"
-            android:layout_alignParentLeft="true"
-            android:textSize="18sp"
-            android:gravity="left">
-    </TextView>
+            android:layout_weight="3"
+            >
+        </TextView>
 
-    <TextView
+        <TextView
             android:id="@+id/clubname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DJK Stallberg-Wolsdorf"
-            android:layout_toRightOf="@+id/date"
-            android:textSize="18sp"
-            android:gravity="left">
-    </TextView>
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_weight="4"
+            tools:text="TTG St. Augustin II"
+            >
+        </TextView>
 
+        <TextView
+            android:id="@+id/clubname2"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_weight="4"
+            android:gravity="right"
+            tools:text="Borussia Blabla I"
+            >
+        </TextView>
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -3,36 +3,55 @@ package com.jmelzer.myttr;
 /**
  */
 public class TeamAppointment {
-    String team;
+    String team1;
+    String team2;
 
-    boolean playAway;
+    Boolean playAway;
+    boolean foundTeam;
 
-    String id;
+    String id1;
+    String id2;
 
     String date;
 
-    public String getTeam() {
-        return team;
+    public String getTeam1() {
+        return team1;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setTeam1(String team) {
+        this.team1 = team;
     }
 
-    public boolean isPlayAway() {
+    public boolean isFoundTeam() {
+        return foundTeam;
+    }
+
+    public void setFoundTeam(boolean foundTeam) {
+        this.foundTeam = foundTeam;
+    }
+
+    public Boolean isPlayAway() {
         return playAway;
     }
 
-    public void setPlayAway(boolean playAway) {
+    public void setPlayAway(Boolean playAway) {
         this.playAway = playAway;
     }
 
-    public String getId() {
-        return id;
+    public String getId1() {
+        return id1;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId1(String id) {
+        this.id1 = id;
+    }
+
+    public String getId2() {
+        return id2;
+    }
+
+    public void setId2(String id2) {
+        this.id2 = id2;
     }
 
     public String getDate() {
@@ -43,14 +62,24 @@ public class TeamAppointment {
         this.date = date;
     }
 
+    public String getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(String team2) {
+        this.team2 = team2;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("TeamAppointment{");
-        sb.append("team='").append(team).append('\'');
-        sb.append(", playAway=").append(playAway);
-        sb.append(", id='").append(id).append('\'');
-        sb.append(", date='").append(date).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "TeamAppointment{" +
+                "team='" + team1 + '\'' +
+                ", team2='" + team2 + '\'' +
+                ", playAway=" + playAway +
+                ", foundTeam=" + foundTeam +
+                ", id1='" + id1 + '\'' +
+                ", id2='" + id2 + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }

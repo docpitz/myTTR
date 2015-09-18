@@ -14,6 +14,7 @@ public class AppointmentParser {
     private boolean redirectedToLogin(String page) {
         return page.contains("<title>Login");
     }
+
     public List<TeamAppointment> read(String clubName) throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/index";
         String page = Client.getPage(url);
@@ -59,26 +60,40 @@ public class AppointmentParser {
         appointment.setDate(page.substring(n + td.length(), n2));
 
 
-        n = readTeamName(page, n, appointment);
+        n = readTeamName(page, n, appointment, true);
+        n = readTeamName(page, n, appointment, false);
 
-        if (appointment.getTeam().contains(clubName)) {
-            readTeamName(page, n, appointment);
+        if (appointment.getTeam1().contains(clubName)) {
+//            readTeamName(page, n, appointment);
             appointment.setPlayAway(false);
-        } else {
+            appointment.setFoundTeam(true);
+
+        } else if (appointment.getTeam2().contains(clubName)) {
+            appointment.setFoundTeam(true);
             appointment.setPlayAway(true);
+        } else {
+            appointment.setPlayAway(null);
+            appointment.setFoundTeam(false);
         }
 
 
         return appointment;
     }
 
-    private int readTeamName(String page, int start, TeamAppointment appointment) {
+    private int readTeamName(String page, int start, TeamAppointment appointment, boolean first) {
         String team = "teamId=";
         int n = page.indexOf(team, start);
         int end = page.indexOf("\">", n);
-        appointment.setId(page.substring(n + team.length(), end));
+        String id = page.substring(n + team.length(), end);
         int n2 = page.indexOf("</a>", end);
-        appointment.setTeam(page.substring(end + 2, n2));
+        String name = page.substring(end + 2, n2);
+        if (first) {
+            appointment.setId1(id);
+            appointment.setTeam1(name);
+        } else {
+            appointment.setId2(id);
+            appointment.setTeam2(name);
+        }
         return n2;
     }
 

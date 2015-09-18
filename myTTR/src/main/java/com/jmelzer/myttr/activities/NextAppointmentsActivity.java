@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -48,23 +48,23 @@ public class NextAppointmentsActivity extends BaseActivity {
                 MyApplication.teamAppointments);
         listview.setAdapter(adapter);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-
-                view.setSelected(true);
-
-                if (position > -1 && position < MyApplication.teamAppointments.size()) {
-                    String teamid = MyApplication.teamAppointments.get(position).getId();
-
-                    new ClubListAsyncTask(NextAppointmentsActivity.this,
-                            NextAppointmentPlayersActivity.class, teamid).execute();
-                }
-            }
-        });
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//
+//
+//                view.setSelected(true);
+//
+//                if (position > -1 && position < MyApplication.teamAppointments.size()) {
+//                    String teamid = MyApplication.teamAppointments.get(position).getId1();
+//
+//                    new ClubListAsyncTask(NextAppointmentsActivity.this,
+//                            NextAppointmentPlayersActivity.class, teamid).execute();
+//                }
+//            }
+//        });
 
 
     }
@@ -90,29 +90,70 @@ public class NextAppointmentsActivity extends BaseActivity {
 
     }
 
+    private static class ViewHolder {
+        TextView textDate;
+        TextView textC1;
+        TextView textC2;
+    }
+
     class AppointmentAdapter extends ArrayAdapter<TeamAppointment> {
+        private LayoutInflater layoutInflater;
 
         public AppointmentAdapter(Context context, int resource, List<TeamAppointment> appointments) {
             super(context, resource, appointments);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewHolder holder;
+//            View rowView = inflater.inflate(R.layout.appointmentrow, parent, false);
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.appointmentrow, parent, false);
+                holder = new ViewHolder();
+                holder.textDate = (TextView) convertView.findViewById(R.id.date);
+                holder.textC1 = (TextView) convertView.findViewById(R.id.clubname);
+                holder.textC2 = (TextView) convertView.findViewById(R.id.clubname2);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
 
-            View rowView = inflater.inflate(R.layout.appointmentrow, parent, false);
-            TeamAppointment teamAppointment = MyApplication.teamAppointments.get(position);
+            final TeamAppointment teamAppointment = MyApplication.teamAppointments.get(position);
 
-            TextView textView = (TextView) rowView.findViewById(R.id.date);
             String txt = teamAppointment.getDate();
-            textView.setText(txt);
+            holder.textDate.setText(txt);
 
-            textView = (TextView) rowView.findViewById(R.id.clubname);
-            textView.setText(teamAppointment.getTeam());
+            holder.textC1.setText(teamAppointment.getTeam1());
+            holder.textC1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(NextAppointmentsActivity.this, teamAppointment.getTeam1(), Toast.LENGTH_SHORT).show();
+                    selectTeam(v, teamAppointment.getId1());
+                }
+            });
+            holder.textC2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(NextAppointmentsActivity.this, teamAppointment.getTeam2(), Toast.LENGTH_SHORT).show();
+                    selectTeam(v, teamAppointment.getId2());
+                }
+            });
+            if (!teamAppointment.isFoundTeam()) {
+                holder.textC2.setText(teamAppointment.getTeam2());
+            } else {
+                holder.textC2.setText("");
+            }
 
 
-            return rowView;
+            return convertView;
         }
+    }
+
+    void selectTeam(View view, String teamid) {
+        view.setSelected(true);
+
+        new ClubListAsyncTask(NextAppointmentsActivity.this,
+                NextAppointmentPlayersActivity.class, teamid).execute();
     }
 }

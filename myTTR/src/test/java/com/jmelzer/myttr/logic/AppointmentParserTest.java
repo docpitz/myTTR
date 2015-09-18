@@ -33,7 +33,7 @@ public class AppointmentParserTest {
 
         assertEquals(3, list.size());
         assertFalse("Heimspiel", list.get(0).isPlayAway());
-        assertEquals("TTC Vinnhorst", list.get(0).getTeam());
+        assertEquals("TTC Vinnhorst", list.get(0).getTeam1());
         assertEquals("24.01 11:00 Uh", list.get(0).getDate());
 
         for (TeamAppointment teamAppointment : list) {
@@ -87,15 +87,17 @@ public class AppointmentParserTest {
 
         assertEquals(3, list.size());
         assertFalse(list.get(0).isPlayAway());
-        assertEquals("Spfr. Leverkusen II", list.get(0).getTeam());
+        assertTrue(list.get(0).isFoundTeam());
+        assertFalse(list.get(0).getId1().equals(list.get(0).getId2()));
+        assertEquals("Spfr. Leverkusen II", list.get(0).getTeam2());
         assertEquals("19.09 18:30 Uhr", list.get(0).getDate());
 
         assertTrue(list.get(1).isPlayAway());
-        assertEquals("CTTF Bonn", list.get(1).getTeam());
+        assertEquals("CTTF Bonn", list.get(1).getTeam1());
         assertEquals("25.09 19:30 Uhr", list.get(1).getDate());
 
         assertFalse(list.get(2).isPlayAway());
-        assertEquals("TV Bergheim II", list.get(2).getTeam());
+        assertEquals("TV Bergheim II", list.get(2).getTeam2());
         assertEquals("24.10 18:30 Uhr", list.get(2).getDate());
 
     }

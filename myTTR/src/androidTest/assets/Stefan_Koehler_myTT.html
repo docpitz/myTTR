@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+<html><head>
+<title>Deine persönliche Startseite | Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<base href="https://www.mytischtennis.de/community/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="" />
+<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+<script type="text/javascript" src="https://script.ioam.de/iam.js"> </script>
+<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+<script type="text/javascript" charset="utf-8">
+var tooltipdataSaved;
+var tooltipdataSavedHtml;
+var tooltipdataString;
+var positionOfTooltip;
+var writeToDB = false;
+var ajaxTooltipConfig = {
+over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+};
+function ajaxTooliIn() {
+var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+tooltipdata = tooltipdataString.split(';');
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if(tooltipdata[3]!= undefined){
+writeToDB = true;
+}
+//console.log(writeToDB);
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+var positionOfTooltip = jQuery(this).next(".bigtooltip");
+//console.log(positionOfTooltip);
+if(tooltipdataString != tooltipdataSaved) {
+jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+tooltipdataSaved = tooltipdataString;
+jQuery.ajax({
+url: url,
+cache: false,
+success: function(html){
+tooltipdataSavedHtml = html;
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+});
+}
+else {
+//use last call again
+jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+}
+}
+function ajaxTooliOut() {
+// do nothing
+}
+function initToolTips () {
+//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+//use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+}
+function reInitToolTips() {
+console.log('jetzt');
+jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+}
+jQuery(document).ready(function($) {
+$(".openoverlay[rel]").overlay({
+mask: {
+color: '#000'
+},
+//fixed: false,
+top: '20%'
+});
+initToolTips();
+/* Local Scroll */
+$.localScroll();
+/* Back to Top */
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+jQuery().UItoTop({ easingType: 'easeOutQuart' });
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<!-- Start: GPT Sync -->
+<script src="//commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+</script>
+<script type='text/javascript'>
+var gptadslots=[];
+(function(){
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
+<script type="text/javascript">
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+//Adslot 2 declaration
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+//Adslot 3 declaration
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+var crtg_split = (crtg_content || '').split(';');
+var pubads = googletag.pubads();
+for (var i=1;i<crtg_split.length;i++){
+pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+}
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>
+<!-- End: GPT -->
+<style>
+/**center fix for super banner**/
+#ligatusframe_47919{
+width: auto!important;
+}
+</style>
+</head>
+<body class="community">
+<!-- Version: 4.0.1 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"publUK", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/index.cfm" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="ontopbar_fx bg_ci_orange">
+<div class="grid">
+<div class="ontopbar">
+<div class="grid_3 fl">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+Premium bis 31.12.2015
+</a>
+</div>
+<div class="grid_9 fr right">
+<a href="/community/friends" class="btn link_ontopbar orange">
+<i class="icon-group"></i> 
+</a>
+<a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="btn link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<span class="usertext_ontopbar">Stefan Köhler</span>
+</a>
+<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx">
+<div class="grid clearfix">
+<div class="header_container">
+<div class="col_12">
+<div class="grid_7">
+<h1 class="mt_30">
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png">
+</a>
+</h1>
+</div>
+<div class="grid_5">
+<ul class="nav_ontop">
+<li class="mr_5">
+<a href="http://www.mytischtennis.de/public/home" class="nav_01" title="Portal">Portal</a>
+</li>
+<li>
+<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navi_fx" id="sticky_navigation">
+<div class="grid">
+<div class="navi_container">
+<ul class="menu ml_10 noprint">
+<li id="Home" class="current">
+<a href="/community/index" title="Home">Home</a>
+</li>
+<li id="Profil">
+<a href="/community/personalprofil" title="Profil">Profil</a>
+<ul>
+<li><a href="/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+<li><a href="/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+<li><a href="https://www.mytischtennis.de/community/secure/userSettings" title="Einstellungen">Einstellungen</a></li>
+<li><a href="/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+</ul>
+</li>
+<li id="Teamsport"><a href="/community/showclubinfo" title="Teamsport">Teamsport</a>
+<ul>
+<li><a href="/community/showclubinfo" title="Verein">Verein</a></li>
+<li><a href="/community/group" title="Liga">Liga</a></li>
+<li><a href="/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</li>
+<li id="Ranglisten"><a href="/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+<ul>
+<li>
+<a href="/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+<li>
+<a href="/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li>
+<a href="/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+<li>
+<a href="/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+<li>
+<a href="/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+</ul>
+</li>
+<li id="Kalender">
+<a href="/community/eventcalendar" title="Turniere">Turniere</a>
+<ul>
+<li>
+<a href="/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li>
+<a name="" title="Turnierserien">Turnierserien</a>
+<ul>
+<li>
+<a href="/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+Bavarian TT-Race
+</a>
+</li>
+<li>
+<a href="/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+Rheinland Cup
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="Training">
+<a href="/community/uebungen" title="Training">Training</a>
+<ul>
+<li>
+<a href="/community/uebungen" title="Übungen">Übungen</a></li>
+<li>
+<a href="/community/elearning" title="E-Learning">E-Learning</a></li>
+<li>
+<a href="/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+<li>
+<a href="/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+</ul>
+</li>
+<li id="Community"><a href="/community/friends" title="Community">Community
+</a>
+<ul>
+<li>
+<a href="/community/friends" title="Freunde">Freunde</a></li>
+<li>
+<a href="/community/pendingrequests" title="Anfragen">Anfragen </a></li>
+<li>
+<a href="/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+<li>
+<a href="/community/searchPerson" title="Suche">Suche</a></li>
+<li>
+<a href="/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+</ul>
+</li>
+<li id="Services">
+<a href="/community/holzassistent" title="Services">Services</a>
+<ul>
+<li>
+<a href="/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+<li>
+<a href="/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+<li>
+<a href="/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+<li>
+<a href="/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+</ul>
+</li>
+<li id="Premium">
+<a href="/community/premium" title="Premium">Premium</a>
+<ul>
+<li>
+<a href="/community/premium" title="Infos">Infos</a></li>
+<li>
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+<li>
+<a href="/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid pl_15 mb_10">
+<ul class="breadcrumbs">
+<li class="first"><a href="/community/index" title="Home">Home</a></li>
+<li><a href="/community/index" title="Home">Deine persönliche Startseite</a></li>
+</ul>
+</div>
+<div class="grid center ontopbanner" id="topBanner">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Homepage // Placement: Homepage Superbanner (2834905) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+<div id='div-gpt-ad-995246123125863230-1'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-1');
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Homepage // Placement: Homepage Skyscraper (2834907) // created at: 22 Dec, 2014-->
+<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<div id='div-gpt-ad-995246123125863230-2'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-995246123125863230-2');
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+<div class="content_fx">
+<div class="grid clearfix">
+<div class="content_container">
+<div class="content_col02 fl">
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange fl"><span>JOOLA-Rangliste</span></div>	
+<div class="content fl center dashboard_height01">
+<a href="http://www.mytischtennis.de/public/ranking.cfm" onClick="_gaq.push(['_trackEvent', 'Community Ads', 'ranking.cfm','Joola Rangliste Start C']);" class=""><img src="images/joola_rangliste_logo_231x70.jpg" class="mb_10" /></a>
+<div class="ttr_box">
+<div class="ttr_data01">
+<a href="events" style="color: white;" title="zur TTR-Historie">TTR 1504</a>
+</div>
+<div class="ttr_data02">
+<a href="events" title="zur TTR-Historie">Q-TTR 1484</a>
+<span class="tooltip white" title="
+Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)"><i class="icon-info-sign"></i></span>
+</div>
+</div>
+</div>
+<div class="contentbox_bottom bg_ci_orange fl"></div>
+</div>	
+</div>
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange fl"><span>JOOLA-Vereinsrangliste</span></div>	
+<div class="content fl dashboard_height01">
+<table class="mini" style="width:100%">
+<thead>
+<tr>
+<th style="padding:3px;text-align:left;width:100%;">Spieler</th>
+<th style="padding:3px;">TTR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:3px;">Jörg Brandl</td>
+<td style="padding:3px;text-align:center;white-space: nowrap;">
+1772
+</td>
+</tr>
+<tr>
+<td style="padding:3px;">Jens Wiesner</td>
+<td style="padding:3px;text-align:center;white-space: nowrap;">
+1737
+</td>
+</tr>
+<tr>
+<td style="padding:3px;">Marko Götz</td>
+<td style="padding:3px;text-align:center;white-space: nowrap;">
+1717
+</td>
+</tr>
+<tr>
+<td style="padding:3px;">Dominik Schöpf</td>
+<td style="padding:3px;text-align:center;white-space: nowrap;">
+1712
+</td>
+</tr>
+<tr>
+<td style="padding:3px;">Benjamin Kies</td>
+<td style="padding:3px;text-align:center;white-space: nowrap;">
+1678
+</td>
+</tr>
+</tbody>
+</table>
+<a href="ranking?showmyclub=1" title="Rangliste anzeigen" class="button small orange fr"><i class="icon-plus-sign"></i> Mein&nbsp;Verein&nbsp;(Top&nbsp;5)&nbsp;»</a>
+</div>
+<div class="contentbox_bottom bg_ci_orange fl"></div>
+</div>	
+</div>
+<div class="grid_8">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange fl"><span>Meine Badges (7 von 32)</span></div>	
+<div class="fl pl_15 pr_15 pt_20 dashboard_height02 badges_dashboard">
+<a href="mybadges" title="Straße" class="badges badges_23">
+</a>
+<a href="mybadges" title="Turniere " class="badges badges_27">
+</a>
+<a href="mybadges" title="Sportprofil" class="badges badges_08">
+</a>
+<a href="mybadges" title="Funkspruch" class="badges badges_09">
+</a>
+<a href="mybadges" title="JOOLA-Ranglisten-Hunter" class="badges badges_01">
+</a>
+<a href="mybadges" title="Login" class="badges badges_06">
+</a>
+<a href="mybadges" title="MyTT-Tag" class="badges badges_42">
+</a>
+<a href="mybadges" title="Freunde" class="badges badges_02_gray"></a>
+<a href="mybadges" title="" class="button badges">+</a>
+</div>
+<div class="contentbox_bottom bg_ci_orange fl"></div>
+</div>	
+</div>
+<div class="grid_8">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange fl"><span>Teamsport</span></div>	
+<div class="fl">
+<div class="time_tabs time_contentbox">
+<ul class="teamsportTabs tabs">
+<li class="spielplanTab"><a href="#">Spielplan/Ergebnisse</a></li>
+<li class="termineTab"><a href="#">Termine</a></li>
+</ul>
+</div>
+<div class="teamsportTabsContent">
+<div class="content spielplan" style="position:relative;">	
+<img src="imagesStatic/new_feature.png" border=0 style="position:absolute;top:-10px;left:120px;">
+<h4 style="margin-top:0"><a href="group" title="zu meiner Liga">Zu meiner Liga »</a></h4>
+<table class="coolTable">
+<tr>
+<th>Datum/Zeit</th> 
+<th>Heimmannschaft</th> 
+<th>Gastmannschaft</th> 
+<th class="center">Spiele</th> 
+<th class="center">Ort</th>
+</tr>
+<tr>
+<td>
+24.09.2015 20:00 Uhr
+</td>
+<td>
+<a href="team?teamid=1527121" class="team1527121">
+SC 1904 Nürnberg V
+</a>
+</td>
+<td>
+<a href="team?teamid=1526112" class="team1526112">
+EK Tischtennis Nürnberg
+</a>
+</td>
+<td class="center">
+0&nbsp;:&nbsp;0
+</td>
+<td class="center relative">
+<img src="../images/Icon_noAdresse.png" border="0" title="Kein Ort verfügbar!" class="tooli100left">
+</td> 
+</tr>
+<tr>
+<td>
+25.09.2015 20:00 Uhr
+</td>
+<td>
+<a href="team?teamid=1530463" class="team1530463">
+ATV 1873 Frankonia Nürnberg
+</a>
+</td>
+<td>
+<a href="team?teamid=1526100" class="team1526100">
+TSV Mühlhof 1903 II
+</a>
+</td>
+<td class="center">
+0&nbsp;:&nbsp;0
+</td>
+<td class="center relative">
+<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+<div class="bigtooltip" style="text-align: left;">
+<strong>Nürnberg</strong> 
+<br> Willstätterstr. 4
+<br>90449&nbsp;
+Nürnberg
+</div>
+</td> 
+</tr>
+<tr>
+<td>
+25.09.2015 20:15 Uhr
+</td>
+<td>
+<a href="team?teamid=1527906" class="team1527906">
+TSV Nürnberg-Fischbach II
+</a>
+</td>
+<td>
+<a href="team?teamid=1527338" class="team1527338">
+SF Großgründlach
+</a>
+</td>
+<td class="center">
+0&nbsp;:&nbsp;0
+</td>
+<td class="center relative">
+<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+<div class="bigtooltip" style="text-align: left;">
+<strong>Nürnberg</strong> 
+<br> Fischbacher Hauptstr.118
+<br>90475&nbsp;
+Nürnberg
+</div>
+</td> 
+</tr>
+<tr>
+<td>
+29.09.2015 20:00 Uhr
+</td>
+<td>
+<a href="team?teamid=1526100" class="team1526100">
+TSV Mühlhof 1903 II
+</a>
+</td>
+<td>
+<a href="team?teamid=1527906" class="team1527906">
+TSV Nürnberg-Fischbach II
+</a>
+</td>
+<td class="center">
+0&nbsp;:&nbsp;0
+</td>
+<td class="center relative">
+<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+<div class="bigtooltip" style="text-align: left;">
+<strong>Nürnberg</strong> 
+<br> Auf der Schanz 70
+<br>90453&nbsp;
+Nürnberg
+</div>
+</td> 
+</tr>
+<tr>
+<td>
+02.10.2015 20:00 Uhr
+</td>
+<td>
+<a href="team?teamid=1530463" class="team1530463">
+ATV 1873 Frankonia Nürnberg
+</a>
+</td>
+<td>
+<a href="team?teamid=1527690" class="team1527690">
+DJK Bayern Nürnberg
+</a>
+</td>
+<td class="center">
+0&nbsp;:&nbsp;0
+</td>
+<td class="center relative">
+<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+<div class="bigtooltip" style="text-align: left;">
+<strong>Nürnberg</strong> 
+<br> Willstätterstr. 4
+<br>90449&nbsp;
+Nürnberg
+</div>
+</td> 
+</tr>
+</table>
+</div>
+<div class="content termine" style="padding-top:0;display:none;">
+<h4><a href="team" title="zu meiner Mannschaft">N&auml;chste Mannschafts-Termine »</a></h4>
+<table class="mini">
+<tr>
+<td>24.09 20:00 Uhr</td>
+<td><a href="team?teamId=1527121">SC 1904 Nürnberg V</a></td>
+<td style="text-align: center;">&nbsp;vs.&nbsp;</td>
+<td><a href="team?teamId=1526112">EK Tischtennis Nürnberg</a></td>
+<td><a href="group?groupId=251083" class="tooli100" title="Liga Herren 2. Kreisliga West Nürnberg ansehen">mehr</a></td>
+</tr>
+<tr>
+<td>09.10 20:00 Uhr</td>
+<td><a href="team?teamId=1527338">SF Großgründlach</a></td>
+<td style="text-align: center;">&nbsp;vs.&nbsp;</td>
+<td><a href="team?teamId=1527121">SC 1904 Nürnberg V</a></td>
+<td><a href="group?groupId=251083" class="tooli100" title="Liga Herren 2. Kreisliga West Nürnberg ansehen">mehr</a></td>
+</tr>
+<tr>
+<td>15.10 20:00 Uhr</td>
+<td><a href="team?teamId=1527121">SC 1904 Nürnberg V</a></td>
+<td style="text-align: center;">&nbsp;vs.&nbsp;</td>
+<td><a href="team?teamId=1526320">SB Bayern 07 e.V. Nürnberg III</a></td>
+<td><a href="group?groupId=251083" class="tooli100" title="Liga Herren 2. Kreisliga West Nürnberg ansehen">mehr</a></td>
+</tr>
+</table>
+<div class="mt_10">
+<a href="exportICSCalendar" class="button"><i class="icon-download-alt"></i> Termine herunterladen</a>
+<a href="showclubinfo" class="button" style="float: right;"> Termine anderer Mannschaften</a>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+jQuery(function($){
+$('.teamsportTabs li a').click(function(){
+$('.teamsportTabs li').removeClass('current');
+$('.teamsportTabsContent .content').hide();
+$(this).parents('li').addClass('current');
+if ($(this).parents('li').hasClass('termineTab')){
+$('.termine').show();
+}else if ($(this).parents('li').hasClass('spielplanTab')){
+$('.spielplan').show();
+}
+})
+}) 
+</script>
+</div>
+<div class="contentbox_bottom bg_ci_orange fl"></div>
+</div>	
+</div>
+<div class="grid_8">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange fl"><span>Timeline</span></div>	
+<div class="fl">
+<div class="fl">
+<div class="time_tabs time_contentbox">
+<ul class="tabs internal timelineTabs">
+<li id="statusTimelineTab"><a>Status</a></li>
+<li id="ttrTimelineTab"><a>(Q)TTR</a></li>
+<li id="rankingTimelineTab"><a>JOOLA-Ranglistenplatz</a></li>
+</ul>
+</div>
+<div class="postNewStatus time_status fl time_contentbox">
+<form method="post" class="newPostForm" action="ajax/_postTimelineStatus" autocomplete="off">
+<input type='text' name="newpost" placeholder="neuen Status posten" class="newpost">
+<input type="submit" value="erstellen" id="submitNewPostButton">
+<a class="btn small orange" id="submitNewPostButtonLink"><i class="icon-share"></i></a>
+<div class="mt_10">
+</div>
+</form>
+</div>
+<div class="timeline time_content time_contentbox">
+<div class="timebox timebox_border_left aRow row_393225 prow_187630 sg_2">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_2_187630 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='393225'><i class="icon-warning-sign"></i></a>
+<a data-delme='393225' title="Beitrag löschen" class="deleteButton btn_delete" data-parent='187630'><i class="icon-remove-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body badges_dashboard">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_129468" data-userid="129468"></div>
+<a href="friend.cfm?userid=129468" class="nameOfPostingPerson">Stefan Köhler</a>
+<div class="postedMessage timebox_text fl">
+<p>Straße Badge freigeschaltet!</p>
+<p class="dateOfPosting time_date">(07.09.2015 | 02:04:56 Uhr)</p>
+</div>
+<a href="badgewall.cfm?userid=129468"><div class="badges_23 badges timelinebadge"></div></a>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+<div class="social_box fl">
+<a data-fbme='393225' class="fbButton mr_15 mt_5 social" title="bei Facebook posten">
+<i class="icon-facebook-sign icon-2x"></i>
+</a>
+</div>
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 2_187630" data-likeme='2_187630'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_187630">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_187630" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="2">
+<input type='hidden' name="parentId" value="187630">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_382185 prow_185237 sg_2">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_2_185237 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='382185'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body badges_dashboard">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+<a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a>
+<div class="postedMessage timebox_text fl">
+<p>JOOLA-Ranglisten-Hunter Badge freigeschaltet!</p>
+<p class="dateOfPosting time_date">(14.07.2015 | 15:03:04 Uhr)</p>
+</div>
+<a href="badgewall.cfm?userid=27740"><div class="badges_01 badges timelinebadge"></div></a>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 2_185237" data-likeme='2_185237'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_185237">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_185237" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="2">
+<input type='hidden' name="parentId" value="185237">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_380533 prow_588350 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_588350 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='380533'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_112547" data-userid="112547"></div>
+Wie Asterix und Obelix: <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a> und <a href="friend.cfm?userid=112547" class="nameOfPostingPerson">Oliver Kurmann</a>
+<p class="dateOfPosting time_date">(07.07.2015 | 15:01:56 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_588350" data-likeme='3_588350'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_588350">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_588350" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="588350">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="center">
+<iframe src="/_ads/googleCommunityStartScript.cfm" frameborder="0" width="468" height="60" scrolling="no"></iframe> 
+</div>
+<div class="timebox timebox_border_left aRow row_380223 prow_588182 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_588182 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='380223'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_112636" data-userid="112636"></div>
+Seelenverwandt: <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a> und <a href="friend.cfm?userid=112636" class="nameOfPostingPerson">Thomas Leyh</a>
+<p class="dateOfPosting time_date">(06.07.2015 | 10:31:52 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_588182" data-likeme='3_588182'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_588182">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_588182" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="588182">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_377828 prow_184287 sg_2">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_2_184287 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='377828'><i class="icon-warning-sign"></i></a>
+<a data-delme='377828' title="Beitrag löschen" class="deleteButton btn_delete" data-parent='184287'><i class="icon-remove-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body badges_dashboard">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_129468" data-userid="129468"></div>
+<a href="friend.cfm?userid=129468" class="nameOfPostingPerson">Stefan Köhler</a>
+<div class="postedMessage timebox_text fl">
+<p>Turniere Badge freigeschaltet!</p>
+<p class="dateOfPosting time_date">(24.06.2015 | 02:05:04 Uhr)</p>
+</div>
+<a href="badgewall.cfm?userid=129468"><div class="badges_27 badges timelinebadge"></div></a>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+<div class="social_box fl">
+<a data-fbme='377828' class="fbButton mr_15 mt_5 social" title="bei Facebook posten">
+<i class="icon-facebook-sign icon-2x"></i>
+</a>
+</div>
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 2_184287" data-likeme='2_184287'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_184287">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_184287" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="2">
+<input type='hidden' name="parentId" value="184287">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_377491 prow_587386 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_587386 likeval"> 1</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='377491'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_121860" data-userid="121860"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+Das passt: <a href="friend.cfm?userid=121860" class="nameOfPostingPerson">Uwe Blaufelder</a> und <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a>
+<p class="dateOfPosting time_date">(22.06.2015 | 19:37:29 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_587386" data-likeme='3_587386'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_587386">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_587386" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="587386">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_368030 prow_584242 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_584242 likeval"> 2</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='368030'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_11029" data-userid="11029"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+Wie Siegfried und Roy: <a href="friend.cfm?userid=11029" class="nameOfPostingPerson">Michael Schüller</a> und <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a>
+<p class="dateOfPosting time_date">(19.05.2015 | 19:45:23 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_584242" data-likeme='3_584242'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_584242">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_584242" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="584242">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_352252 prow_578794 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_578794 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='352252'><i class="icon-warning-sign"></i></a>
+<a data-delme='352252' title="Beitrag löschen" class="deleteButton btn_delete" data-parent='578794'><i class="icon-remove-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_129468" data-userid="129468"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+Wie Siegfried und Roy: <a href="friend.cfm?userid=129468" class="nameOfPostingPerson">Stefan Köhler</a> und <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a>
+<p class="dateOfPosting time_date">(07.04.2015 | 11:13:56 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_578794" data-likeme='3_578794'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_578794">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_578794" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="578794">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_351368 prow_578398 sg_3">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_3_578398 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='351368'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body">	
+<div class="friendShipMessage timebox_text fl">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+<div class="timebox_image fl userimage2 userimageJS userImageClassWrapper userimage_74594" data-userid="74594"></div>
+Wahre Freunde: <a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a> und <a href="friend.cfm?userid=74594" class="nameOfPostingPerson">thomas schmuda von trzebiatowski</a>
+<p class="dateOfPosting time_date">(03.04.2015 | 21:34:47 Uhr)</p>
+</div>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 3_578398" data-likeme='3_578398'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="timebox_comment_box prow_578398">
+<div class="timebox_comment">	
+<form method="post" action="ajax/_writeComment" class="answerForm prow_578398" autocomplete="off">
+<input type='text' name="addComment" placeholder="antworten" class="addComment">
+<input type='hidden' name="statusgroupOfParent" value="3">
+<input type='hidden' name="parentId" value="578398">
+<a class="btn small orange commentOnPost"><i class="icon-share"></i></a>
+<input type="submit" value="antworten" class="commentOnPostButton">
+</form>
+</div>
+</div>	
+<div class="timebox timebox_border_left aRow row_342972 prow_166792 sg_2">
+<div class="tools timebox_head">
+<div class="like_nr_box fl">	
+<a title="Cho!" class=""><i class="icon-thumbs-up"></i></a> <span class="like_nr likeval_2_166792 likeval"> 0</span>
+</div>
+<div class="fr">
+<a title="Beitrag melden" class="btn_warning alarmButton" data-alarmme='342972'><i class="icon-warning-sign"></i></a>
+</div>
+<hr class="m_clear" />
+</div>
+<div class="thread timebox_body badges_dashboard">
+<div class="timebox_image fl userimage1 userimageJS userImageClassWrapper userimage_27740" data-userid="27740"></div>
+<a href="friend.cfm?userid=27740" class="nameOfPostingPerson">Stefan Nagler</a>
+<div class="postedMessage timebox_text fl">
+<p>Club der 100er Badge freigeschaltet!</p>
+<p class="dateOfPosting time_date">(01.04.2015 | 13:32:52 Uhr)</p>
+</div>
+<a href="badgewall.cfm?userid=27740"><div class="badges_16 badges timelinebadge"></div></a>
+</div>
+<div class="timebox_footer">
+<div class="fl">
+</div> 
+<div class="fr">
+<a name="" class="btn orange small likeButton 2_166792" data-likeme='2_166792'>
+Cho! <i class="icon-thumbs-up"></i>
+</a>
+</div>
+</div>
+</div>
+<div id="loadmore">
+<br>
+<button class="small orange" id="loadmoreButton"><i class="icon-plus-sign"></i> mehr laden</button>
+</div>
+</div>
+</div>
+<style type="text/css" media="screen">
+/*.timeline { max-height: 700px; overflow: auto; }*/
+.timeline .newTimeineRecord { display: none; }
+.aRow div {}
+.aRow .error, .aRow .error strong {color: red !important; text-align: center;}	
+.deleteButton:hover, .fbButton:hover, .likeButton:hover, .alarmButton:hover, .timelineTabs li {cursor: pointer;}
+.postNewStatus { overflow: hidden;}
+#loadmore {text-align: center;}
+.answerForm {}
+#submitNewPostButton, .commentOnPostButton {display:none !important}
+.like_nr_box { position: relative; width: 50px;}
+.likeval { position: absolute; top: 0px; left: 15px;}
+</style>
+<script src="/community/js/crazytimeline.js" charset="utf-8" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+timelineAdsDisplayed = 1;
+gimmeMoreUrl = 'ajax/_moreTimeLine';
+ttrFortimeline = 1504;
+ttrTypeString = 'TTR'
+numberOfTimelineEventsPerPage = 10;
+lastTimelineEvent = 342972
+var fb = false;
+$(document).ready(function() {
+countNumberOfTimelineEntrys();
+handleAnswerForm(); // append ajax handler to form
+handleNewPostForm(); // append ajax handler to form
+formatThreads();
+addDeleteEventsToTrigger(); // add delete event to spans
+handleStatusTimelineTab();
+handleTtrTimelineTab();
+handleRankingTimelineTab();
+addSubmitEventToAswerForm();
+$('#loadmoreButton').click(function() {
+gimmeMore(this,0); 
+});
+$('#submitNewPostButtonLink').click(function() {
+$('#submitNewPostButton').click();
+});
+getUserImages();
+addFacebookEventsToTrigger();
+addLikeEventsToTrigger();
+addAlarmEventsToTrigger();
+// no need to click button, if button is in viewport automatic reload more events
+$('#loadmoreButton').bind('inview', function (event, visible) {
+if (visible == true) { gimmeMore($('#loadmoreButton'),0) } 
+});
+});
+</script>
+</div>
+<div class="contentbox_bottom bg_ci_orange fl"></div>
+</div>	
+</div>
+</div>
+<div class="content_col01 fl">
+</div>
+<div id="rechteSpalte" class="noprint content_col01">
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Shop Partner
+</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4320" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4320','Shop Partner
+']);" title="Shop Partner
+" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/AND_Textil2015_myTT_270x280.gif" alt="Shop Partner
+"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Millionenchance.de</span>
+</div>
+<div class="content center">
+<div style="width:270px;height:180px;background:#fff url(//www.mytischtennis.de/public/imagedata/bg_Premiumbanner_Lotto_270x180.jpg) no-repeat top left;"><a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4042" onClick="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4042" title="Millionenchance.de" class="adLink" target="_blank" style="text-decoration: none;"><div style="width: 270px; height: 120px;"></div></a><div style="width: 130px; text-align: left; padding: 5px 0 10px 10px; color: #000;" class="fl">mTrxfNv7yt</div><a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4042" onClick="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4042" title="Millionenchance.de" class="adLink" target="_blank" style="text-decoration: none;"><div style="width: 140px; height: 60px; margin-left: 130px;"></div></a></div>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div>	
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>STIGA</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4086" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4086','STIGA']);" title="STIGA" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/Mytischtennis-web-astro.gif" alt="STIGA"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>adidas</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=3729" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=3729','adidas']);" title="adidas" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/GFI_climachill_270x150_mytt.gif" alt="adidas"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>JOOLA
+</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4045" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4045','JOOLA
+']);" title="JOOLA
+" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/katalog-2015-16_230x180px.gif" alt="JOOLA
+"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Twitter
+</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4317 " onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=4317 ','Twitter
+']);" title="Twitter
+" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/twitter_banner_MYTT-1912_270x150.jpg" alt="Twitter
+"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span></span>
+</div>
+<div class="content center">
+<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FmyTischtennis&amp;width=270&amp;height=280&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=true&amp;header=true" scrolling="no" frameborder="0" style="border-bottom:1px solid #000;; overflow:hidden; width:270px; height:280px; background: white;" allowTransparency="true"></iframe>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div>	
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Jetzt anmelden</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2228" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2228','Jetzt anmelden']);" title="Jetzt anmelden" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/banner_mytt-1371_270x150.png" alt="Jetzt anmelden"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Jetzt Premium-Mitglied werden!</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2416" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2416','Jetzt Premium-Mitglied werden!']);" title="Jetzt Premium-Mitglied werden!" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/270x150_Version_1_Premiumvorteil_SF.jpg" alt="Jetzt Premium-Mitglied werden!"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+<div class="grid_4">
+<div class="contentbox mt_15">
+<div class="contentbox_top bg_ci_orange">
+<span>Belagassistent</span>
+</div>
+<div class="content center">
+<a href="http://www.mytischtennis.de/countandredirect/2-0208/" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/countandredirect/2-0208/','Belagassistent']);" title="Belagassistent" class="adLink" target="_blank">
+<img src="//www.mytischtennis.de/public/imagedata/banner_belagassistent_270x180.png" alt="Belagassistent"></a>
+</div>	
+<div class="contentbox_bottom bg_ci_orange"></div>
+</div>	
+</div> 
+</div> 
+<div class="clearfix"></div>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+$( "#tabSpielplan" ).click(function() {
+$( ".teamSportTabs li" ).removeClass('current');
+$( "#tabSpielplan" ).addClass('current');
+$(".tabTermineContent").hide();
+$(".tabSpielplanContent").show();
+});
+$( "#tabTermine" ).click(function() {
+$( ".teamSportTabs li" ).removeClass('current');
+$( "#tabTermine" ).addClass('current');
+$(".tabTermineContent").show();
+$(".tabSpielplanContent").hide();
+});
+});
+</script>
+</div>
+</div>
+</div>
+<div class="whitebox_fx mt_30">
+<div class="grid">
+<div class="whitebox_container">
+<div class="grid_12">
+<div class="bg_spon_top"></div>
+<div class="sponbox">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=1" class="spon01">Joola</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=185" class="spon03">Schöler Micke</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=186" class="spon04">andro</a>
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="bg_spon_bottom"></div>
+</div> 
+</div>
+</div>
+</div>
+<div class="graybox_fx">
+<div class="grid">
+<div class="graybox_container">
+<div class="graybox_content">
+<div class="graybox_list01">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+<li><a href="/community/faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+</ul>
+</div>
+<div class="graybox_list02">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx bg_ci_orange">
+<div class="grid">
+<div class="onbottomnavi">
+<div class="center">
+<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div> 
+</div>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>
