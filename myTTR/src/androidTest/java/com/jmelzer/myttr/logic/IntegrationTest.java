@@ -92,7 +92,7 @@ public class IntegrationTest extends BaseTestCase {
         for (TeamAppointment teamAppointment : list) {
 //            if (i++ == 0) continue;
             Log.d(Constants.LOG_TAG, "teamAppointment = " + teamAppointment);
-            List<Player> players = myTischtennisParser.readPlayersFromTeam(teamAppointment.getId());
+            List<Player> players = myTischtennisParser.readPlayersFromTeam(teamAppointment.getId1());
             for (Player player : players) {
                 List<Player> fp = null;
                 Player fp2 = null;
