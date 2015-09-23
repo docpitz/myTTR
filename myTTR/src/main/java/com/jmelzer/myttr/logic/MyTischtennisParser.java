@@ -149,7 +149,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
                 .authority("www.mytischtennis.de")
-                .path("community/ranking");
+                .path("community/ajax/_rankingList");
         Club v = null;
         if (vereinsName != null && !"".equals(vereinsName)) {
             v = clubParser.getClubExact(vereinsName);
@@ -209,29 +209,47 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
         int idx = start;
         //let start at table tag
+        boolean haveRang = page.indexOf("<th>Rang</th>") > 0;
+
         if (start == 0) {
             idx = page.indexOf("<table class=\"coolTable\"");
             //skipp the header
-            idx = page.indexOf("<tr>", idx);
-            idx = page.indexOf("<tr>", idx + 5);
+            idx = page.indexOf("<tr", idx);
+            idx = page.indexOf("<tr", idx + 5);
         }
         //Indicator if we we have next rows
-        int idx2 = page.indexOf("<tr class=\"even", idx);
-        if (idx2 < 0) {
-            idx2 = page.indexOf("<tr>", idx);
-        }
-        if (idx2 > 0) {
-            //go back to the last row "<tr
-            idx = page.indexOf("<tr", idx);
-            Player player = new Player();
-            player.setTtrPoints(findPoints(idx, page));
-            player.setFirstname(findFirstName(idx, page));
-            player.setLastname(findLastName(idx, page));
-            player.setClub(readClubFromPage(idx, page));
-            player.setPersonId(findPlayerId(idx, page));
-            list.add(player);
-            idx = page.indexOf("</tr>", idx);
-            return parseForPlayer(firstName, lastName, page, list, idx);
+//        int idx2 = page.indexOf("<tr class=\"even", idx);
+//        if (idx2 < 0) {
+//            idx2 = page.indexOf("<tr", idx);
+//        }
+        if (idx > 0) {
+            ParseResult tr = readBetween(page, idx, "<tr", "</tr>");
+            if (tr != null) {
+                String[] rows = tableRowAsArray(tr.result, 5);
+//                for (String r : rows) {
+//                    System.out.println("r = " + r);
+//                }
+                Player player = new Player();
+
+                int i = 0;
+                if (haveRang) {
+                    i++;
+                }
+                i++; //d-rang
+//                next is first and lastname
+                player.setFirstname(findFirstName(0, rows[i]));
+                player.setPersonId(findPlayerId(0, rows[i]));
+                player.setLastname(findLastName(0, rows[i++]));
+                player.setClub(readClubFromPage(0, rows[i++]));
+                list.add(player);
+                try {
+                    player.setTtrPoints(Integer.valueOf(rows[i]));
+                } catch (NumberFormatException e) {
+                    //ignore
+                }
+                idx = page.indexOf("</tr>", idx);
+                return parseForPlayer(firstName, lastName, page, list, tr.end);
+            }
         }
         return list;
     }
@@ -270,15 +288,15 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private String readClubFromPage(int startIdx, String page) {
-        ParseResult result = readBetween(page, startIdx, "<a href=\"showclubinfo", "</a>");
+        ParseResult result = readBetweenOpenTag(page, startIdx, "<a ", "</a>");
         if (result.result.length() > 0) {
-            return result.result.substring(result.result.indexOf("\">") + 2);
+            return result.result;
         }
         return "";
     }
 
     int findPoints(final int startIdx, String pageU) {
-        ParseResult result = readBetween(pageU, startIdx, "<td style=\"text-align:center;\">", "</td>");
+        ParseResult result = readBetween(pageU, startIdx, "<td>", "</td>");
         try {
             return Integer.valueOf(result.result.trim());
         } catch (Exception e) {
@@ -297,7 +315,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             int n2 = page.indexOf("&", n);
             String id = page.substring(n + 9, n2);
 
-            String clubListUrl = "http://www.mytischtennis.de/community/ranking?vereinid=" + id +
+            String clubListUrl = "http://www.mytischtennis.de/community/ajax/_rankingList?vereinid=" + id +
                     "&alleSpielberechtigen=yes";
             page = Client.getPage(clubListUrl);
             List<Player> list = new ArrayList<>();

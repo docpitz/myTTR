@@ -136,6 +136,10 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
+            assertTrue(player.toString(), player.getPersonId()>0);
+            assertNotNull(player.toString(), player.getFirstname());
+            assertNotNull(player.toString(), player.getFullName());
+            assertTrue(player.toString(), player.getTtrPoints() > 0);
 //            Log.i(Constants.LOG_TAG, player.toString());
             assertTrue(player.getPersonId() > 0);
             assertTrue(player.toString(), player.getTtrPoints() > 0);

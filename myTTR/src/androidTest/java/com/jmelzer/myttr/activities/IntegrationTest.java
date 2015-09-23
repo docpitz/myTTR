@@ -181,7 +181,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
         assertTrue("Marco must be found", solo.searchText("Vester"));
 
-        solo.clickInList(0);
+        solo.clickInList(2);
         assertTrue(waitForActivity(HomeActivity.class));
         assertTrue("Marco is selected as player", solo.searchText("Marco"));
 
