@@ -60,7 +60,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         for (DbAdapter dbAdapter : adapterList) {
             Log.i(Constants.LOG_TAG, "upgrading adapter " + dbAdapter.getClass().getSimpleName());
             dbAdapter.onUpgrade(db, oldVersion, newVersion);
-            dbAdapter.onCreate(db);
+//            dbAdapter.onCreate(db);
         }
         // Create a new one.
 //        onCreate(db);

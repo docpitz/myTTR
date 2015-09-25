@@ -315,8 +315,8 @@ public class LigaVereinActivity extends BaseActivity {
         } else {
             adapter.insertEntry(MyApplication.selectedVerein.getNameForFav(),
                     MyApplication.selectedVerein.getUrl(),
-                    Liga.class.getName());
-            Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_LONG).show();
+                    Verein.class.getName());
+            Toast.makeText(this, getString(R.string.favorite_club_added), Toast.LENGTH_LONG).show();
         }
     }
 }
