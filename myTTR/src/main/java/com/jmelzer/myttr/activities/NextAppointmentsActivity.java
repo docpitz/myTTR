@@ -48,25 +48,6 @@ public class NextAppointmentsActivity extends BaseActivity {
                 MyApplication.teamAppointments);
         listview.setAdapter(adapter);
 
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//
-//
-//                view.setSelected(true);
-//
-//                if (position > -1 && position < MyApplication.teamAppointments.size()) {
-//                    String teamid = MyApplication.teamAppointments.get(position).getId1();
-//
-//                    new ClubListAsyncTask(NextAppointmentsActivity.this,
-//                            NextAppointmentPlayersActivity.class, teamid).execute();
-//                }
-//            }
-//        });
-
-
     }
 
     class ClubListAsyncTask extends BaseAsyncTask {
@@ -128,22 +109,20 @@ public class NextAppointmentsActivity extends BaseActivity {
             holder.textC1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(NextAppointmentsActivity.this, teamAppointment.getTeam1(), Toast.LENGTH_SHORT).show();
                     selectTeam(v, teamAppointment.getId1());
                 }
             });
             holder.textC2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(NextAppointmentsActivity.this, teamAppointment.getTeam2(), Toast.LENGTH_SHORT).show();
                     selectTeam(v, teamAppointment.getId2());
                 }
             });
-            if (!teamAppointment.isFoundTeam()) {
+//            if (!teamAppointment.isFoundTeam()) {
                 holder.textC2.setText(teamAppointment.getTeam2());
-            } else {
-                holder.textC2.setText("");
-            }
+//            } else {
+//                holder.textC2.setText("");
+//            }
 
 
             return convertView;

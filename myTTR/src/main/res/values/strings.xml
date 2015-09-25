@@ -66,7 +66,7 @@
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
     <string name="text_event_details">Wähle ein Spieler aus um Details zu sehen</string>
     <string name="text_select_player">Durch die Auswahl eines Teamspielers kannst du TTR Werte auch für ihn berechnen. Du siehst dann oben ein Symbol mit dem du es wieder beenden kannst.</string>
-    <string name="text_select_team">Nach der Auswahl eines Teams kannst du dir die Spieler des Teams auswählen.\nSollten dort zwei Teams erscheinen, so konnte myttr nicht DEIN Team auswählen und du musst manuell die gegnerische Mannschaft selektieren</string>
+    <string name="text_select_team">Nach der Auswahl eines Teams kannst du dir die Spieler des Teams auswählen.</string>
     <string name="text_search_result">Folgende Spieler wurden gefunden.</string>
     <string name="imp_text">Impressum
 \n

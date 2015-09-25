@@ -34,7 +34,7 @@
             android:layout_weight="4"
             android:gravity="right"
             tools:text="Borussia Blabla I"
-            >
+            android:layout_marginRight="20dp">
         </TextView>
     </LinearLayout>
 
