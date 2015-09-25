@@ -92,6 +92,7 @@ public class FavoriteDataBaseAdapter implements DbAdapter {
             String url = cursor.getString(cursor.getColumnIndex("URL"));
             String ds = cursor.getString(cursor.getColumnIndex("CHANGED_AT"));
             String clzName = cursor.getString(cursor.getColumnIndex("CLZ"));
+            Log.i(Constants.LOG_TAG, "clzName="+clzName);
             try {
                 Date d = DbUtil.formatter.parse(ds);
                 Class clz = Class.forName(clzName);
@@ -123,7 +124,20 @@ public class FavoriteDataBaseAdapter implements DbAdapter {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //todo make a real upgrade
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        int upgradeTo = oldVersion + 1;
+        while (upgradeTo <= newVersion)
+        {
+            switch (upgradeTo)
+            {
+                case 16:
+                    db.execSQL(FAV_LIGA_CREATE);
+                    db.execSQL("INSERT INTO FAVS (NAME , URL  , CLZ,  CHANGED_AT) " +
+                            "select LIGA_NAME as name, url as url , 'com.jmelzer.myttr.Liga' as clz, CHANGED_AT as CHANGED_AT from FAV_LIGA");
+                    break;
+            }
+            upgradeTo++;
+        }
+//            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
     @Override

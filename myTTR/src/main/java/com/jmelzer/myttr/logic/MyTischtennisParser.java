@@ -261,8 +261,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
             return result.result.trim();
         }
         return null;
-//
-//        return page.substring(idx, idx2).trim();
     }
 
     private Long findPlayerId(int startIdx, String page) {

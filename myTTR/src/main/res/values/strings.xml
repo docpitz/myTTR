@@ -101,6 +101,7 @@
     <string name="reset">Zurücksetzen</string>
     <string name="error_search_required_fields">Bitte Vornamen und Nachamen oder Verein angeben!</string>
     <string name="favorite_added">Die Liga wurde zu deinen Favoriten hinzugefügt. Du kannst sie bei der Ligaauswahl bearbeiten</string>
+    <string name="favorite_club_added">Der Verein wurde zu deinen Favoriten hinzugefügt. Du kannst sie bei der Ligaauswahl bearbeiten</string>
     <string name="favorite_exists">Die Liga existiert bereits in deinen Favoriten</string>
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
     <string name="info">Info</string>
