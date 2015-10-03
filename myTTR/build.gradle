@@ -53,6 +53,7 @@ android {
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:22.+'
+    compile 'com.google.android.gms:play-services:7.0.0'
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'org.apache.commons:commons-lang3:3.3.2'
