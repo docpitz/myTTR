@@ -1,5 +1,19 @@
-apply plugin: 'jacoco'
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 //apply plugin: 'com.github.kt3k.coveralls'
 
 android {
@@ -29,9 +43,6 @@ android {
     }
     lintOptions {
         abortOnError false
-    }
-    jacoco {
-        version = "0.7.2.201409121644"
     }
     sourceSets {
         test {
@@ -82,76 +93,7 @@ dependencies {
         exclude module: 'wagon-provider-api'
     }
     //    compile group: 'ch.acra' , name: 'acra' , version: '4.5.0'
-}
-//
-task jacocoReport << {
-    ant {
-        taskdef(name:'jacocoreport',
-                classname: 'org.jacoco.ant.ReportTask',
-                classpath: configurations.jacocoReport.asPath)
-
-        mkdir dir: "${buildDir}/test-coverage-report"
-        mkdir dir: "${buildDir}/reports/jacoco/test/"
-
-        jacocoreport {
-            executiondata {
-                fileset dir: "${buildDir}/jacoco"
-            }
-
-            structure(name: "${rootProject.name}") {
-                classfiles {
-                    fileset (dir: "${buildDir}/intermediates/classes/debug") {
-                        exclude(name: '**/R.class')
-                        exclude(name: '**/R$*.class')
-                    }
-                }
-
-                sourcefiles {
-                    fileset dir: "src/main/java"
-                    fileset dir: 'build/generated/source/buildConfig/debug'
-                }
-            }
-
-            xml destfile: "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-            html destdir: "${buildDir}/test-coverage-report/"
-        }
-    }
-}
-
-//coveralls.jacocoReportPath = 'build/outputs/reports/coverage/debug/report.xml'
-
-task jacocoResults(type: JacocoReport, dependsOn: ['test', 'connectedCheck']) {
-    description = "Generates Jacoco coverage reports: XML and HTML"
-    group = "Reporting"
-//                outputs.upToDateWhen { false }
-
-    // use hidden configuration, for details look into JacocoPlugin.groovy
-    jacocoClasspath = project.configurations['androidJacocoAnt']
-
-    // exclude auto-generated classes and tests
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*',
-                      'android/**/*.*']
-    def testsTree = fileTree(dir: "${project.buildDir}/intermediates/classes/test/debug", excludes: fileFilter)
-    def testsInstTree = fileTree(dir: "${project.buildDir}/intermediates/classes/testsInstSrc/debug", excludes: fileFilter)
-    def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def releaseTree = fileTree(dir: "${project.buildDir}/intermediates/classes/release", excludes: fileFilter)
-    def testsSrc = "${project.projectDir}/src/test/java"
-    def testsInstSrc = "${project.projectDir}/src/androidTest/java"
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([testsSrc, testsInstSrc, mainSrc])
-    classDirectories = files([testsTree, testsInstTree, debugTree, releaseTree])
-    executionData = fileTree(dir: project.projectDir, includes: ['**/*.exec', '**/*.ec'])
-
-    reports {
-        xml {
-            enabled = true
-            destination = "${project.buildDir}/reports/jacoco/jacoco.xml"
-        }
-        csv.enabled false
-        html {
-            enabled = true
-            destination = "${project.buildDir}/reports/jacoco"
-        }
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
+        transitive = true;
     }
 }

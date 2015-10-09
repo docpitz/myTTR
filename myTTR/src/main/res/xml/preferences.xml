@@ -25,6 +25,11 @@
         android:title="@string/enter_time">
         <intent android:action="Time"/>
     </PreferenceScreen>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="SEND_ERROR"
+        android:summary="@string/pref_error_summ"
+        android:title="@string/pref_error"/>
     <!--<EditTextPreference android:key="MANUAL_CLUB"
                         android:title="Verein eingeben"
                         android:summary="Verein eingeben2"  />-->

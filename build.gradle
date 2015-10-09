@@ -51,8 +51,6 @@ println 'Use MultiDex: ' + project.USE_MULTIDEX
 println 'Use Tests: ' + project.USE_TDD
 println 'Use Espresso: ' + project.USE_ESPRESSO
 println 'Use Robolectric: ' + project.USE_ROBOLECTRIC
-println 'Use JaCoCo: ' + project.USE_JACOCO
-println 'JaCoCo Library: ' + project.JACOCO_VERSION
 println 'Coveralls Version: ' + project.COVERALLS_VERSION
 println 'Source code GIT Revision: ' + "${gitRevision()}"
 println new String(new char[80]).replace("\0", "-")

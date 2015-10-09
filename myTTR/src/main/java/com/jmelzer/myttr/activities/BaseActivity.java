@@ -23,16 +23,16 @@ public abstract class BaseActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(this));
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException());
 
-        Tracker t = MyApplication.getTracker();
 
-// Build and send an Event.
-        t.send(new HitBuilders.EventBuilder()
-                .setCategory("activity")
-                .setAction("create")
-                .setLabel("todo")
-                .build());
+//        Tracker t = MyApplication.getTracker();
+//
+//        t.send(new HitBuilders.EventBuilder()
+//                .setCategory("activity")
+//                .setAction(getClass().getSimpleName())
+//                .setLabel("oncreate")
+//                .build());
 
 
         if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {

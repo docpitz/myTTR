@@ -13,15 +13,18 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.jmelzer.myttr.activities.MySettingsActivity;
+import com.jmelzer.myttr.activities.UnCaughtException;
 import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 import com.jmelzer.myttr.model.Verein;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -66,6 +69,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         MyApplication.context = getApplicationContext();
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
 //        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
@@ -73,6 +77,8 @@ public class MyApplication extends Application {
         dataBaseHelper.registerAdapter(new NotificationDataBaseAdapter(this));
         dataBaseHelper.registerAdapter(new FavoriteDataBaseAdapter(this));
         createEmptyUser();
+
+        Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException());
     }
 
     @Override
