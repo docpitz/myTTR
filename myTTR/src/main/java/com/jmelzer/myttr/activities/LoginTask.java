@@ -44,8 +44,12 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer integer) {
-        if (progressDialog.isShowing()) {
-            progressDialog.dismiss();
+        try {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        } catch (Exception e) {
+            //ignore see myttr-82
         }
         loginDataBaseAdapter.close();
         if (playerNotWellRegistered) {
