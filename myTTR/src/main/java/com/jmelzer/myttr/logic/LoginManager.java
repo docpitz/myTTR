@@ -56,7 +56,7 @@ public class LoginManager {
                 un = user.getUsername();
                 pw = user.getPassword();
             } else {
-                throw new IllegalArgumentException("login must be called befor relogin");
+                throw new IllegalArgumentException("login must be called before relogin");
             }
         }
         try {

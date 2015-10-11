@@ -86,7 +86,7 @@ public class SyncManager extends Service {
                 new LoginManager().relogin();
                 Log.d(Constants.LOG_TAG, "relogin success");
                 return hasNewEventsOrPoints(true);
-            } catch (NetworkException | IOException e1) {
+            } catch (NetworkException | IOException | IllegalArgumentException e1) {
                 //ignore
                 Log.d(Constants.LOG_TAG, "relogin error", e1);
             }
