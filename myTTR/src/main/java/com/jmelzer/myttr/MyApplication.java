@@ -24,11 +24,12 @@ import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 import com.jmelzer.myttr.model.Verein;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MyApplication extends Application {
 
@@ -192,6 +193,13 @@ public class MyApplication extends Application {
         } else {
             return MyApplication.getLoginUser().getInfo();
         }
+    }
+
+    public static List<Event> getEvents() {
+        if (events == null) {
+            return new ArrayList<>();
+        }
+        return events;
     }
 
     public static synchronized Tracker getTracker() {

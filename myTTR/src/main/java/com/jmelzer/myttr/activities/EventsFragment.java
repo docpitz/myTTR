@@ -35,9 +35,9 @@ public class EventsFragment extends Fragment {
         final ListView listview = (ListView) rootView.findViewById(R.id.eventlist);
         final EventAdapter adapter = new EventAdapter(rootView.getContext(),
                 android.R.layout.simple_list_item_1,
-                MyApplication.events);
+                MyApplication.getEvents());
         listview.setAdapter(adapter);
-        events = MyApplication.events;
+        events = MyApplication.getEvents();
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
