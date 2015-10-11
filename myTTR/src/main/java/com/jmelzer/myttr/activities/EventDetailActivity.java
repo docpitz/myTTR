@@ -52,7 +52,7 @@ public class EventDetailActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 view.setSelected(true);
-                if (position > -1 && position < MyApplication.events.size()) {
+                if (position > -1 && position < MyApplication.getEvents().size()) {
                     Game game = currentDetail.getGames().get(position);
 
                     new EventsAsyncTask(EventDetailActivity.this, EventsActivity.class, game).execute();

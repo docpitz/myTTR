@@ -40,7 +40,7 @@ public class MyApplication extends Application {
     public static List<TeamAppointment> teamAppointments;
     public static int result;
     public static List<Player> clubPlayers;
-    public static List<Event> events;
+    private static List<Event> events;
     public static List<Player> foreignTeamPlayers;
     public static List<Player> myTeamPlayers;
     public static List<Player> searchResult;
@@ -200,6 +200,10 @@ public class MyApplication extends Application {
             return new ArrayList<>();
         }
         return events;
+    }
+
+    public static void setEvents(List<Event> events) {
+        MyApplication.events = events;
     }
 
     public static synchronized Tracker getTracker() {

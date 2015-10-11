@@ -67,7 +67,7 @@ public class EventsTTRChartFragment extends Fragment {
         int i = 0;
         int maxTTR = 0;
         int minTTR = 3000;
-        List<Event> events = new ArrayList<>(MyApplication.events);
+        List<Event> events = new ArrayList<>(MyApplication.getEvents());
         Collections.reverse(events);
         for (Event event : events) {
             xVals.add((event.getDate()) + "");
@@ -77,7 +77,7 @@ public class EventsTTRChartFragment extends Fragment {
             minTTR = Math.min(minTTR, event.getTtr());
             i++;
         }
-        Event lastEvent = MyApplication.events.get(0);
+        Event lastEvent = MyApplication.getEvents().get(0);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
         try {
