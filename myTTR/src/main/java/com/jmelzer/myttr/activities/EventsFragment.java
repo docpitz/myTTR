@@ -35,16 +35,16 @@ public class EventsFragment extends Fragment {
         final ListView listview = (ListView) rootView.findViewById(R.id.eventlist);
         final EventAdapter adapter = new EventAdapter(rootView.getContext(),
                 android.R.layout.simple_list_item_1,
-                MyApplication.events);
+                MyApplication.getEvents());
         listview.setAdapter(adapter);
-        events = MyApplication.events;
+        events = MyApplication.getEvents();
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 view.setSelected(true);
-                if (position > -1 && position < MyApplication.events.size()) {
+                if (position > -1 && position < MyApplication.getEvents().size()) {
                     Event event = events.get(position);
                     new DetailAsyncTask(event, getActivity(), EventDetailActivity.class).execute();
                 }

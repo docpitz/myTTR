@@ -34,22 +34,22 @@ public class EventsAsyncTask extends BaseAsyncTask {
     protected void callParser() throws NetworkException, LoginExpiredException {
         if (game != null) {
             Player p = new MyTischtennisParser().readEventsForForeignPlayer(game.getPlayerId());
-            MyApplication.events = p.getEvents();
+            MyApplication.setEvents(p.getEvents());
             MyApplication.selectedPlayer = p.getFullName();
 
         } else if (player != null) {
             Player p = new MyTischtennisParser().readEventsForForeignPlayer(player.getPersonId());
-            MyApplication.events = p.getEvents();
+            MyApplication.setEvents(p.getEvents());
             MyApplication.selectedPlayer = p.getFullName();
 
         } else {
-            MyApplication.events = new MyTischtennisParser().readEvents().getEvents();
+            MyApplication.setEvents(new MyTischtennisParser().readEvents().getEvents());
         }
     }
 
     @Override
     protected boolean dataLoaded() {
-        return MyApplication.events != null;
+        return !MyApplication.getEvents().isEmpty();
     }
 
 }

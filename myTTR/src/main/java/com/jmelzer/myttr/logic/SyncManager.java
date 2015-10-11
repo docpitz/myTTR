@@ -71,7 +71,7 @@ public class SyncManager extends Service {
                 List<Event> events = parser.readEvents().getEvents();
                 int newSize = events.size();
                 int newTTR = parser.getPoints();
-                MyApplication.events = events;
+                MyApplication.setEvents(events);
                 if (newTTR != 0 && oldSize != newSize || oldTTR != newTTR) {
                     storeNewEvent(events, newTTR);
                     return true;
