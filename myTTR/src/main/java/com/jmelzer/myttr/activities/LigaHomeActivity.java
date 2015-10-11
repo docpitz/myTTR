@@ -126,12 +126,14 @@ public class LigaHomeActivity extends BaseActivity {
             return list;
         }
 
-        Set<String> set = new TreeSet<>();
+        Set<String> set = new TreeSet<String>();
 
         for (Liga liga : allLigaList) {
             set.add(liga.getKategorie());
         }
         list.addAll(set);
+        list.remove("Herren");
+        list.add(0, "Herren");
         return list;
 
     }
