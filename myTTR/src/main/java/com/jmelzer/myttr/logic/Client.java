@@ -30,12 +30,17 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.GZIPInputStream;
 
 public class Client {
-    public static HttpClient client;
+    static HttpClient client;
     public static CookieStoreDelegate cookieStoreDelegate;
     public static String lastUrl = null;
+    static final Lock lock = new ReentrantLock();
+
+
     static {
         HttpParams httpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
@@ -63,6 +68,7 @@ public class Client {
         try {
             lastUrl = url;
             Log.i(Constants.LOG_TAG, "calling url '" + url + "'");
+            lock.lock();
             HttpResponse response = Client.client.execute(httpGet);
             Log.i(Constants.LOG_TAG, "execute time " + (System.currentTimeMillis() - start) + " ms");
             String s = readGzippedResponse(response);
@@ -76,6 +82,8 @@ public class Client {
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
             throw new NetworkException(e);
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -137,7 +145,13 @@ public class Client {
 
     public static HttpResponse execute(HttpPost httpPost) throws IOException {
         long start = System.currentTimeMillis();
-        HttpResponse response = client.execute(httpPost);
+        lock.lock();
+        HttpResponse response;
+        try {
+            response = client.execute(httpPost);
+        } finally {
+            lock.unlock();
+        }
         Log.d(Constants.LOG_TAG, "post execute takes " + (System.currentTimeMillis() - start) + " ms");
         return response;
     }

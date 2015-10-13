@@ -33,7 +33,7 @@ public class NetworkException extends Exception {
     public static String translate(Throwable t) {
 
         if (t instanceof UnknownHostException) {
-            return "Konnte keine Verbindung zu mytischtennis.de herstellen";
+            return "Konnte keine Verbindung zum Server herstellen";
         }
         return t.getMessage();
     }
