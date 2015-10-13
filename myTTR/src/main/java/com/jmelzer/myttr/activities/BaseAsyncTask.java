@@ -67,8 +67,12 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
 
     @Override
     protected void onPostExecute(Integer integer) {
-        if (progressDialog.isShowing()) {
-            progressDialog.dismiss();
+        try {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        } catch (Exception e) {
+            //see myttr-62
         }
         if (errorMessage != null) {
             Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
