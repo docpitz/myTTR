@@ -62,6 +62,9 @@ public class EventsTTRChartFragment extends Fragment {
     }
 
     private void setData() {
+        if (MyApplication.getEvents().isEmpty()) {
+            return;
+        }
         List<String> xVals = new ArrayList<>();
         List<Entry> yVals = new ArrayList<>();
         int i = 0;
