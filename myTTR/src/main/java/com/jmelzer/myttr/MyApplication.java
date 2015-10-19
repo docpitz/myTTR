@@ -14,8 +14,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
 import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.activities.UnCaughtException;
 import com.jmelzer.myttr.db.DataBaseHelper;
@@ -206,9 +204,4 @@ public class MyApplication extends Application {
         MyApplication.events = events;
     }
 
-    public static synchronized Tracker getTracker() {
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(getAppContext());
-        Tracker t = analytics.newTracker(R.xml.app_tracker);
-        return t;
-    }
 }
