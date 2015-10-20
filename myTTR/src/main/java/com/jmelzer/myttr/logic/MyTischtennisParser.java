@@ -730,4 +730,54 @@ public class MyTischtennisParser extends AbstractBaseParser {
             this.idx = idx;
         }
     }
+
+    String parseGroupForRanking(String page) {
+        final String search = "ranking?showgroupid=";
+        int idx = page.indexOf(search);
+        if (idx > 0) {
+            return page.substring(idx + search.length(), page.indexOf("\"", idx));
+        }
+        return null;
+    }
+
+    public List<Player> parseGroupRanking(String page) {
+        List<Player> list = new ArrayList<>();
+        ParseResult table = readBetweenOpenTag(page, 0, "<table", "</table>");
+        if (table == null) {
+            return list;
+        }
+        int idx = 0;
+        int c = 0;
+        while (true) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            Player player = parseLigaPlayerRow(resultrow.result);
+            list.add(player);
+        }
+        return list;
+    }
+
+    private Player parseLigaPlayerRow(String line) {
+        String cols[] = tableRowAsArray(line, 5);
+        String name = readBetweenOpenTag(cols[2], 0, "<span class", "</strong>").result;
+        String firstname = name.substring(0, name.indexOf(" <"));
+        String lastname = name.substring(name.indexOf(">") + 1);
+        String club = readBetweenOpenTag(cols[3], 0, "<a href", "</a>").result;
+        int ttr = 0;
+        try {
+            ttr = Integer.valueOf(cols[4]);
+        } catch (NumberFormatException e) {
+        }
+
+        return new Player(firstname, lastname, club, ttr);
+    }
 }

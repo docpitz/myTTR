@@ -70,7 +70,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+        try {
+            Fabric.with(this, new Crashlytics());
+        } catch (Exception e) {
+            //ignore
+        }
         MyApplication.context = getApplicationContext();
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
 //        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
