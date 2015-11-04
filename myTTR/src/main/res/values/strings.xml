@@ -108,6 +108,7 @@
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
     <string name="info">Info</string>
     <string name="liga">Liga</string>
+    <string name="liga_rangliste">Liga Rangl.</string>
     <string name="logout">Abmelden</string>
     <string name="simulation">Simulation</string>
     <string name="arrow_desc">Pfeil</string>

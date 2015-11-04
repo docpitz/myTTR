@@ -105,7 +105,10 @@ public class HomeActivity extends BaseActivity {
         target.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
         startActivity(target);
     }
-
+    public void ligaranking(View view) {
+        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(this, ClubListActivity.class);
+        task.execute();
+    }
     public void info(View view) {
         AboutDialog about = new AboutDialog(this);
         about.show();
@@ -120,6 +123,24 @@ public class HomeActivity extends BaseActivity {
         @Override
         protected void callParser() throws NetworkException, LoginExpiredException {
             MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
+        }
+
+
+        @Override
+        protected boolean dataLoaded() {
+            return MyApplication.clubPlayers != null;
+        }
+    }
+
+    private class LeagueRankingAsyncTask extends BaseAsyncTask {
+
+        public LeagueRankingAsyncTask(Activity parent, Class targetClz) {
+            super(parent, targetClz);
+        }
+
+        @Override
+        protected void callParser() throws NetworkException, LoginExpiredException {
+            MyApplication.leaguePlayers = new MyTischtennisParser().readOwnLigaRanking();
         }
 
 

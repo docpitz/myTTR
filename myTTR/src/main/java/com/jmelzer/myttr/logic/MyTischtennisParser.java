@@ -780,4 +780,19 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
         return new Player(firstname, lastname, club, ttr);
     }
+
+    public List<Player> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
+        String url = "http://www.mytischtennis.de/community/group";
+        String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
+        String groupId = parseGroupForRanking(page);
+
+        url = "http://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
+        url = url.replace("%s", groupId);
+        page = Client.getPage(url);
+
+        return parseGroupRanking(page);
+    }
 }

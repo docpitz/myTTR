@@ -332,4 +332,19 @@ public class MyTischtennisParserTest extends BaseTestCase {
         assertEquals("TTG Niederkassel", myTischtennisParser.getClubNameFromTeamName("TTG Niederkassel IX"));
         assertEquals("TTG Niederkassel", myTischtennisParser.getClubNameFromTeamName("TTG Niederkassel X"));
     }
+
+    @SmallTest
+    public void testreadOwnLigaRanking() throws Exception {
+        login();
+        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        List<Player> players = myTischtennisParser.readOwnLigaRanking();
+        assertTrue(players.size() > 80);
+
+        for (Player player : players) {
+            assertTrue(player.toString(), player.getTtrPoints() > 0);
+            assertNotNull(player.toString(), player.getClub());
+            assertNotNull(player.toString(), player.getFirstname());
+            assertNotNull(player.toString(), player.getLastname());
+        }
+    }
 }

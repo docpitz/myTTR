@@ -33,7 +33,7 @@
 
             <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="212dp"
+                android:layout_height="290dp"
                 android:layout_gravity="center_horizontal"
                 android:alignmentMode="alignBounds"
                 android:columnCount="3"
@@ -101,7 +101,16 @@
 
                     />
 
+                <Button
+                    android:id="@+id/imageButton7"
+                    style="@style/DashboardButton"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:drawableTop="@drawable/icon_liga_rangliste"
+                    android:onClick="liga"
+                    android:text="@string/liga_rangliste"
 
+                    />
                 <!--  <Space
                       android:layout_width="100dp"
                       android:layout_height="20px"
