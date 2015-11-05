@@ -52,7 +52,7 @@ public class Client {
         cookieStoreDelegate = new CookieStoreDelegate();
         cookieStoreDelegate.setHttpClient(client);
         Client.client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64; " +
-                "rv:34.0) Gecko/20100101 Firefox/34.0");
+                "rv:35.0) Gecko/20100101 Firefox/35.0");
         Client.client.getParams().setParameter("Accept-Encoding", "gzip, deflate");
 //        Client.client.getParams().setParameter("Content-Type", "application/x-www-form-urlencoded");
 //        Client.client.getParams().setParameter("Accept-Language", "de,en-US;q=0.7,en;q=0.3");

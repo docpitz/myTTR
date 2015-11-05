@@ -7,34 +7,30 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
-import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class LoginManager {
-    public static final String LOGGEDINAS = "LOGGEDINAS";
+    public static final String LOGGEDINAS = "MYTT_COOKIESOK";
     public static String un;
     public static String pw;
 
@@ -80,11 +76,9 @@ public class LoginManager {
         long start = System.currentTimeMillis();
         logout();
         HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
-
-//        HttpGet httpGet2 = new HttpGet("http://www.mytischtennis.de/community/index");
         HttpParams gethttpParams = new BasicHttpParams();
         gethttpParams.setParameter("fromLogin", null);
-//        httpGet2.setParams(gethttpParams);
+
 
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("userNameB", username));
@@ -92,7 +86,11 @@ public class LoginManager {
 
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
         HttpResponse response = Client.execute(httpPost);
+
         Log.d(Constants.LOG_TAG, "status code login =" + response.getStatusLine().getStatusCode());
+//        if (page.contains("Deine Zugangsdaten sind nicht korrekt!")) {
+//            throw new PlayerWrongLogin();
+//        }
         response.getEntity().consumeContent();
 
         User user = new MyTischtennisParser().getPointsAndRealName();
