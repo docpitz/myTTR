@@ -149,7 +149,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     private void parseSpielplanLinks(Liga liga, String page) {
-        ParseResult result = readBetween(page, 0, "<li>Spielplan", "</li>");
+        ParseResult result = readBetween(page, 0, "<li>      \tSpielplan", "</li>");
         if (result != null) {
             ParseResult result2 = readBetween(result.result, 0, "href=\"", "\">");
             String urlVR = result2.result;
