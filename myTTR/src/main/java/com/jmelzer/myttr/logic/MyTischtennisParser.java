@@ -68,6 +68,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
         String url = "http://www.mytischtennis.de/community/index";
 
         String page = Client.getPage(url);
+        if (page.contains("Du bist für uns leider nicht eindeutig zu identifizieren!")) {
+            throw new PlayerNotWellRegistered();
+        }
+
         return new User(parseRealName(page), parsePoints(page));
     }
 

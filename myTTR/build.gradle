@@ -24,8 +24,8 @@ android {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 31
-        versionName "2.1.x"
+        versionCode 32
+        versionName "2.1.6"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {
