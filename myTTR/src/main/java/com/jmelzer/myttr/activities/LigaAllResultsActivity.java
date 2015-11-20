@@ -49,15 +49,8 @@ public class LigaAllResultsActivity extends AbstractLigaResultActivity {
     }
 
 
-    public void bilanz(MenuItem item) {
-
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.liga_actions, menu);
         return true;
     }
 

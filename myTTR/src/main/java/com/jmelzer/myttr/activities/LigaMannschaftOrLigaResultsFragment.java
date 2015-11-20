@@ -83,8 +83,21 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
                 spielplan = Liga.Spielplan.RR;
             }
         }
-        configList(spielplan);
-
+        List<Mannschaftspiel> list = getSpiele(spielplan);
+        configList(list);
+        int i = 0;
+        for (Mannschaftspiel spiel : list) {
+            if (spiel.getDate() == null) {
+                break;
+            }
+            i++;
+        }
+        //scroll to last real result
+        int visibleRow = listview.getScrollBarSize();
+        if (i > visibleRow) {
+            i -= visibleRow;
+        }
+        listview.smoothScrollToPosition(i);
         return rootView;
     }
 
@@ -157,11 +170,11 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         }
     }
 
-    void configList(Liga.Spielplan spielplan) {
+    void configList(List<Mannschaftspiel> list) {
         if (adapter != null) {
             adapter.clear();
             //create a copy otherwise clear will remove all entries
-            adapter.addAll(new ArrayList<>(getSpiele(spielplan)));
+            adapter.addAll(new ArrayList<>(list));
             // fire the event
             adapter.notifyDataSetChanged();
         }
