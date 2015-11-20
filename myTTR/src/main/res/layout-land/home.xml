@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2015.
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/home_self"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="290dp"
+            android:layout_gravity="center_horizontal"
+            android:alignmentMode="alignBounds"
+            android:columnCount="5"
+            android:rowCount="6">
+
+
+            <Button
+                android:id="@+id/imageButton1"
+                style="@style/DashboardButton"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:drawableTop="@drawable/ic_action_stat"
+                android:onClick="statistik"
+                android:text="@string/statistik"
+                />
+
+            <Button
+                android:id="@+id/imageButton2"
+                style="@style/DashboardButton"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:drawableTop="@drawable/icon_club_list"
+                android:onClick="clublist"
+                android:text="@string/clublist"
+                />
+
+            <Button
+                android:id="@+id/imageButton3"
+                style="@style/DashboardButton"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:drawableTop="@drawable/ic_ttr"
+                android:onClick="manual"
+                android:text="@string/enter_manual"
+                />
+
+            <Button
+                android:id="@+id/imageButton4"
+                style="@style/DashboardButton"
+                android:layout_column="3"
+                android:layout_row="0"
+                android:drawableTop="@drawable/ic_sim"
+                android:onClick="player_sim"
+                android:text="@string/player_sim"
+                />
+
+            <Button
+                android:id="@+id/imageButton5"
+                style="@style/DashboardButton"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:drawableTop="@drawable/ic_action_search"
+                android:onClick="search"
+                android:text="@string/search"
+                />
+
+            <Button
+                android:id="@+id/imageButton6"
+                style="@style/DashboardButton"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:drawableTop="@drawable/ic_click_tt"
+                android:onClick="liga"
+                android:text="@string/liga"
+
+                />
+
+            <Button
+                android:id="@+id/imageButton7"
+                style="@style/DashboardButton"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:drawableTop="@drawable/icon_liga_rangliste"
+                android:onClick="ligaranking"
+                android:text="@string/liga_rangl"
+
+                />
+            <!--  <Space
+                  android:layout_width="100dp"
+                  android:layout_height="20px"
+                  android:layout_row="0"
+                  android:layout_column="3"/>
+          -->
+            <!-- <fragment
+                 android:id="@+id/sim_info_fragment"
+                 android:name="com.jmelzer.myttr.activities.SimInfoFragment"
+                 android:layout_width="256px"
+                 android:layout_height="100dp"
+                 android:layout_gravity="right"
+                 android:layout_marginTop="50dp"/>-->
+        </GridLayout>
+
+        <fragment
+            android:id="@+id/sim_info_fragment"
+            android:name="com.jmelzer.myttr.activities.SimInfoFragment"
+            android:layout_width="150dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            tools:layout="@layout/sim_info"/>
+        <!-- <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/imageView2"
+             android:src="@drawable/ic_sim"/>-->
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </ScrollView>
+</LinearLayout>

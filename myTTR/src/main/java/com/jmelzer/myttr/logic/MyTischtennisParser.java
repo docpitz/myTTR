@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.User;
 
@@ -744,11 +745,17 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return null;
     }
 
-    public List<Player> parseGroupRanking(String page) {
-        List<Player> list = new ArrayList<>();
+    public MyTTLiga parseGroupRanking(String page) {
+        MyTTLiga myTTLiga = new MyTTLiga();
+        ParseResult name = readBetweenOpenTag(page, 0, "<h3", "</h3>");
+        if (name.result != null) {
+            if (name.result.contains(":")) {
+                myTTLiga.setLigaName(name.result.substring(name.result.indexOf(':')+2));
+            }
+        }
         ParseResult table = readBetweenOpenTag(page, 0, "<table", "</table>");
         if (table == null) {
-            return list;
+            return myTTLiga;
         }
         int idx = 0;
         int c = 0;
@@ -765,13 +772,14 @@ public class MyTischtennisParser extends AbstractBaseParser {
             idx = resultrow.end - 1;
 
             Player player = parseLigaPlayerRow(resultrow.result);
-            list.add(player);
+            myTTLiga.addPlayer(player);
         }
-        return list;
+        return myTTLiga;
     }
 
     private Player parseLigaPlayerRow(String line) {
         String cols[] = tableRowAsArray(line, 5);
+        Long id = findPlayerId(0, line);
         String name = readBetweenOpenTag(cols[2], 0, "<span class", "</strong>").result;
         String firstname = name.substring(0, name.indexOf(" <"));
         String lastname = name.substring(name.indexOf(">") + 1);
@@ -782,10 +790,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
         } catch (NumberFormatException e) {
         }
 
-        return new Player(firstname, lastname, club, ttr);
+        Player p = new Player(firstname, lastname, club, ttr);
+        p.setPersonId(id);
+        return p;
     }
 
-    public List<Player> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
+    public MyTTLiga readOwnLigaRanking() throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/group";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {

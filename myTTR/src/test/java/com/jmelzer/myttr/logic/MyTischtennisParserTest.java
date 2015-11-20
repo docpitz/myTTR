@@ -1,5 +1,6 @@
 package com.jmelzer.myttr.logic;
 
+import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 
 import junit.framework.Assert;
@@ -128,7 +129,10 @@ public class MyTischtennisParserTest {
     @Test
     public void testparseGroupRanking() throws Exception {
         String page = readFile(ASSETS_DIR + "/mytt/group-ranking.htm");
-        List<Player> players = parser.parseGroupRanking(page);
+        MyTTLiga myTTLiga = parser.parseGroupRanking(page);
+        assertNotNull(myTTLiga);
+        assertEquals("Herren-Bezirksliga 3", myTTLiga.getLigaName());
+        List<Player> players = myTTLiga.getRanking();
         assertNotNull(players);
         assertEquals(84, players.size());
         assertEquals(1667, players.get(28).getTtrPoints());
@@ -138,6 +142,7 @@ public class MyTischtennisParserTest {
         for (Player player : players) {
             assertTrue(player.toString(), player.getTtrPoints() > 0);
             assertNotNull(player.toString(), player.getClub());
+            assertTrue(player.toString(), player.getPersonId() > 0);
             assertNotNull(player.toString(), player.getFirstname());
             assertNotNull(player.toString(), player.getLastname());
         }
