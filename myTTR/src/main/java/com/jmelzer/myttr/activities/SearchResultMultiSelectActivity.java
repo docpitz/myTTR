@@ -58,12 +58,12 @@ public class SearchResultMultiSelectActivity extends BaseActivity {
             goBackToClass = (Class) i.getExtras().getSerializable(SearchActivity.BACK_TO);
         }
 
-                Player p = MyApplication.searchResult.get(position);
-               
-                    Intent intent = new Intent();
-                    intent.putExtra("PLAYERS", p);
-                    setResult(1, intent);
-                    finish();
+//                Player p = MyApplication.searchResult.get(position);
+//
+//                    Intent intent = new Intent();
+//                    intent.putExtra("PLAYERS", p);
+//                    setResult(1, intent);
+//                    finish();
 
     }
 

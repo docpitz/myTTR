@@ -337,7 +337,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     public void testreadOwnLigaRanking() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Player> players = myTischtennisParser.readOwnLigaRanking();
+        List<Player> players = myTischtennisParser.readOwnLigaRanking().getRanking();
         assertTrue(players.size() > 80);
 
         for (Player player : players) {
