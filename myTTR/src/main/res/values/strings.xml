@@ -144,6 +144,10 @@
     <string name="header_lastname">Nachname</string>
     <string name="statistic_text">"Statistiken für den Spieler "</string>
     <string name="chart_text">"Chart für den Spieler "</string>
+    <string name="vorname">Vorname</string>
+    <string name="nachname">Nachname</string>
+    <string name="club">Verein</string>
+    <string name="points">Punkte</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

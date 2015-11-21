@@ -56,7 +56,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     }
 
     public void loadPlayerFromClub(final View view) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultActivity.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultMultiSelectActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
