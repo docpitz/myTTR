@@ -28,6 +28,8 @@ public class LoginManagerTest extends BaseTestCase {
             } catch (PlayerNotWellRegistered e) {
                 //expexted
             }
+
+            assertNull(loginManager.login("dasdad", "sdada."));
         }
 
     }

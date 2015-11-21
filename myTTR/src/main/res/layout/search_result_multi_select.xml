@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2014.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:weightSum="10">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="@string/text_search_result"/>
+
+
+    <LinearLayout style="@style/HeaderListStyle">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="5"
+            android:text="@string/vorname"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/nachname"/>
+
+        <TextView
+            android:id="@+id/club"
+            android:layout_height="wrap_content"
+            android:text="@string/club"
+            android:layout_weight="5"
+            android:layout_width="0dp"/>
+
+        <TextView
+            android:id="@+id/ttr"
+            android:layout_height="wrap_content"
+            android:text="@string/points"
+            android:layout_weight="5"
+            android:layout_width="0dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/white"/>
+
+    <ListView
+        android:id="@+id/playerlistview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+
+</LinearLayout>

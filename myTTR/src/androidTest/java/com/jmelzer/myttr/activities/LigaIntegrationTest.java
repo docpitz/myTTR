@@ -138,7 +138,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         solo.clickOnActionBarItem(R.id.action_info);
         assertTrue(solo.waitForActivity(LigaMannschaftInfoActivity.class, STANDARD_TIMEOUT));
         assertTrue("Mannschaftsfueher must be shown", solo.searchText("Hintz"));
-        assertTrue("Spiellokal must be shown", solo.searchText("Menden"));
+        assertTrue("Spiellokal must be shown", solo.searchText("Sankt Augustin"));
     }
 
     private void ligaMannschaftResultsActivity() {
@@ -183,7 +183,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         assertTrue(solo.waitForActivity(LigaHomeActivity.class, 50000));
         assertEquals(LigaHomeActivity.class, solo.getCurrentActivity().getClass());
         Thread.sleep(5000);
-        assertTrue(solo.searchText("1. Bundesliga"));
+        assertTrue(solo.searchText("TTBL"));
 
         selectSpinnerItem(R.id.spinner_verband, "Westdeutscher TTV");
         selectSpinnerItem(R.id.spinner_bezirk, "Mittelrhein");

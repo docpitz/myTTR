@@ -132,10 +132,13 @@ public class ClickTTParserTest {
 
     @Test
     public void testReadStaffel() throws Exception {
-        String page = readFile(ASSETS_DIR + "/staffel.htm");
+        String page = readFile(ASSETS_DIR + "/staffel-after-215.htm");
         assertNotNull(page);
         Liga liga = new Liga();
         liga = parser.parseLiga(liga, page);
+
+        assertNotNull(liga.getUrlVR());
+        assertNotNull(liga.getUrlRR());
 
         for (Mannschaft m : liga.getMannschaften()) {
             System.out.println("m = " + m);
@@ -211,7 +214,7 @@ public class ClickTTParserTest {
     }
 
     Liga ergebnisse() throws IOException {
-        String page = readFile(ASSETS_DIR + "/staffel.htm");
+        String page = readFile(ASSETS_DIR + "/staffel-after-215.htm");
         assertNotNull(page);
         Liga liga = new Liga();
 //        liga.setUrl("http://bla.de");

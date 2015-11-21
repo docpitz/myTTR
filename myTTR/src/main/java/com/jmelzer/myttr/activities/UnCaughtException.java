@@ -25,6 +25,7 @@ public class UnCaughtException implements UncaughtExceptionHandler {
         Boolean send = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SEND_ERROR, true);
         if (send) {
             Crashlytics.log(Log.ERROR, "myTTR", Client.lastUrl);
+            Log.e(Constants.LOG_TAG, "uncaught", ex);
             orgHandler.uncaughtException(thread, ex);
         } else {
             Log.e(Constants.LOG_TAG, "uncaught", ex);

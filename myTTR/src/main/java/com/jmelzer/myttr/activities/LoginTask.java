@@ -17,7 +17,6 @@ import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Task that executes the request against mytischtennis.de
@@ -109,11 +108,6 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
 
                 loginSuccess = true;
                 ttr = user.getPoints();
-//                try {
-//                    ttr = myTischtennisParser.getPoints();
-//                } catch (PlayerNotWellRegistered e) {
-//                    playerNotWellRegistered = true;
-//                }
                 store(user, new MyTischtennisParser());
             }
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
@@ -127,20 +121,5 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
 
         loginManager.loadUserIntoMemoryAndStore(user, saveUser, myTischtennisParser);
-//        String name = myTischtennisParser.getRealName();
-//        User userDb = loginDataBaseAdapter.getSinlgeEntry();
-//        int ak = 16;
-//        if (userDb != null) {
-//            MyApplication.manualClub = userDb.getClubName();
-//            ak = userDb.getAk();
-//        }
-//        MyApplication.setLoginUser(new User(name, username, pw, ttr, new Date(), MyApplication.manualClub, ak));
-//        loginDataBaseAdapter.deleteEntry(username);
-//
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(parent);
-//        Boolean saveUser = sharedPref.getBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, true);
-//        if (saveUser) {
-//            loginDataBaseAdapter.insertEntry(name, username, pw, ttr, MyApplication.manualClub, ak);
-//        }
     }
 }
