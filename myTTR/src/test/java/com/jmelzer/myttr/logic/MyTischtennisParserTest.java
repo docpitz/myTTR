@@ -1,6 +1,6 @@
 package com.jmelzer.myttr.logic;
 
-import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 
 import junit.framework.Assert;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,6 +41,7 @@ public class MyTischtennisParserTest {
     public void parseLastnameFromBadName() throws Exception {
         assertEquals("Michel", parser.parseLastNameFromBadName("Michel, Dennis'"));
     }
+
     @Test
     public void testParseEventsWithPlayerId() throws Exception {
         String page = readFile(ASSETS_DIR + "/events_425165.htm");
@@ -64,7 +66,7 @@ public class MyTischtennisParserTest {
     }
 
     @Test
-     public void testParseOwnEvents201506() throws Exception {
+    public void testParseOwnEvents201506() throws Exception {
         String page = readFile(ASSETS_DIR + "/myHistory_2015_06.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, false);
@@ -79,7 +81,7 @@ public class MyTischtennisParserTest {
         String page = readFile(ASSETS_DIR + "/ssf-mannschaft.htm");
         assertNotNull(page);
         List<Player> list = new ArrayList<>();
-        List<Player> player = parser.parseForPlayer(null, null,page,list, 0);
+        List<Player> player = parser.parseForPlayer(null, null, page, list, 0);
         assertEquals(6, player.size());
     }
 
@@ -114,5 +116,36 @@ public class MyTischtennisParserTest {
         assertEquals("Marco", players.get(1).getFirstname());
         assertEquals("Vester", players.get(1).getLastname());
         assertEquals("TTG St. Augustin", players.get(1).getClub());
+    }
+
+    @Test
+    public void testparseGroupForRanking() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/group.htm");
+        assertNull(parser.parseGroupForRanking("jsfsflsdkf"));
+
+        assertEquals("249747", parser.parseGroupForRanking(page));
+    }
+
+    @Test
+    public void testparseGroupRanking() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/group-ranking.htm");
+        MyTTLiga myTTLiga = parser.parseGroupRanking(page);
+        assertNotNull(myTTLiga);
+        assertEquals("Herren-Bezirksliga 3", myTTLiga.getLigaName());
+        List<Player> players = myTTLiga.getRanking();
+        assertNotNull(players);
+        assertEquals(84, players.size());
+        assertEquals(1667, players.get(28).getTtrPoints());
+        assertEquals("Jürgen", players.get(28).getFirstname());
+        assertEquals("Melzer", players.get(28).getLastname());
+        assertEquals("TTG St. Augustin", players.get(28).getClub());
+        for (Player player : players) {
+            assertTrue(player.toString(), player.getTtrPoints() > 0);
+            assertNotNull(player.toString(), player.getClub());
+            assertTrue(player.toString(), player.getPersonId() > 0);
+            assertNotNull(player.toString(), player.getFirstname());
+            assertNotNull(player.toString(), player.getLastname());
+        }
+
     }
 }

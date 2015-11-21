@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.User;
 
@@ -733,5 +734,79 @@ public class MyTischtennisParser extends AbstractBaseParser {
             p = player;
             this.idx = idx;
         }
+    }
+
+    String parseGroupForRanking(String page) {
+        final String search = "ranking?showgroupid=";
+        int idx = page.indexOf(search);
+        if (idx > 0) {
+            return page.substring(idx + search.length(), page.indexOf("\"", idx));
+        }
+        return null;
+    }
+
+    public MyTTLiga parseGroupRanking(String page) {
+        MyTTLiga myTTLiga = new MyTTLiga();
+        ParseResult name = readBetweenOpenTag(page, 0, "<h3", "</h3>");
+        if (name.result != null) {
+            if (name.result.contains(":")) {
+                myTTLiga.setLigaName(name.result.substring(name.result.indexOf(':')+2));
+            }
+        }
+        ParseResult table = readBetweenOpenTag(page, 0, "<table", "</table>");
+        if (table == null) {
+            return myTTLiga;
+        }
+        int idx = 0;
+        int c = 0;
+        while (true) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            Player player = parseLigaPlayerRow(resultrow.result);
+            myTTLiga.addPlayer(player);
+        }
+        return myTTLiga;
+    }
+
+    private Player parseLigaPlayerRow(String line) {
+        String cols[] = tableRowAsArray(line, 5);
+        Long id = findPlayerId(0, line);
+        String name = readBetweenOpenTag(cols[2], 0, "<span class", "</strong>").result;
+        String firstname = name.substring(0, name.indexOf(" <"));
+        String lastname = name.substring(name.indexOf(">") + 1);
+        String club = readBetweenOpenTag(cols[3], 0, "<a href", "</a>").result;
+        int ttr = 0;
+        try {
+            ttr = Integer.valueOf(cols[4]);
+        } catch (NumberFormatException e) {
+        }
+
+        Player p = new Player(firstname, lastname, club, ttr);
+        p.setPersonId(id);
+        return p;
+    }
+
+    public MyTTLiga readOwnLigaRanking() throws NetworkException, LoginExpiredException {
+        String url = "http://www.mytischtennis.de/community/group";
+        String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
+        String groupId = parseGroupForRanking(page);
+
+        url = "http://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
+        url = url.replace("%s", groupId);
+        page = Client.getPage(url);
+
+        return parseGroupRanking(page);
     }
 }

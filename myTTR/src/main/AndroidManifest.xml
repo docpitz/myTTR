@@ -358,6 +358,18 @@
                 android:value="com.jmelzer.myttr.activities.LigaMannschaftResultsActivity"/>
         </activity>
         <activity
+            android:name=".activities.LigaRanglisteActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+        </activity>
+        <activity
             android:name=".activities.SearchResultMultiSelectActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.NextAppointmentPlayersActivity">

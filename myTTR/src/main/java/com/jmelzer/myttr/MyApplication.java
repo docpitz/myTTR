@@ -38,6 +38,7 @@ public class MyApplication extends Application {
     public static List<TeamAppointment> teamAppointments;
     public static int result;
     public static List<Player> clubPlayers;
+    public static MyTTLiga myTTLiga;
     private static List<Event> events;
     public static List<Player> foreignTeamPlayers;
     public static List<Player> myTeamPlayers;
@@ -68,7 +69,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+        try {
+            Fabric.with(this, new Crashlytics());
+        } catch (Exception e) {
+            //ignore
+        }
         MyApplication.context = getApplicationContext();
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
 //        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
