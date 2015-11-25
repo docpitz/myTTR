@@ -736,13 +736,15 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
 
-    String parseGroupForRanking(String page) {
+    List<String> parseGroupForRanking(String page) {
         final String search = "ranking?showgroupid=";
+        List<String> list = new ArrayList<>();
         int idx = page.indexOf(search);
-        if (idx > 0) {
-            return page.substring(idx + search.length(), page.indexOf("\"", idx));
+        while (idx > 0) {
+            list.add(page.substring(idx + search.length(), page.indexOf("\"", idx)));
+            idx = page.indexOf(search, idx + 10);
         }
-        return null;
+        return list;
     }
 
     public MyTTLiga parseGroupRanking(String page) {
@@ -750,7 +752,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         ParseResult name = readBetweenOpenTag(page, 0, "<h3", "</h3>");
         if (name.result != null) {
             if (name.result.contains(":")) {
-                myTTLiga.setLigaName(name.result.substring(name.result.indexOf(':')+2));
+                myTTLiga.setLigaName(name.result.substring(name.result.indexOf(':') + 2));
             }
         }
         ParseResult table = readBetweenOpenTag(page, 0, "<table", "</table>");
@@ -795,18 +797,21 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return p;
     }
 
-    public MyTTLiga readOwnLigaRanking() throws NetworkException, LoginExpiredException {
+    public List<MyTTLiga> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
         String url = "http://www.mytischtennis.de/community/group";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        String groupId = parseGroupForRanking(page);
+        List<String> groupIds = parseGroupForRanking(page);
+        List<MyTTLiga> ligen = new ArrayList<>();
+        for (String groupId : groupIds) {
 
-        url = "http://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
-        url = url.replace("%s", groupId);
-        page = Client.getPage(url);
-
-        return parseGroupRanking(page);
+            url = "http://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
+            url = url.replace("%s", groupId);
+            page = Client.getPage(url);
+            ligen.add(parseGroupRanking(page));
+        }
+        return ligen;
     }
 }

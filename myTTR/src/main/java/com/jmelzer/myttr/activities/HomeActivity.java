@@ -142,13 +142,13 @@ public class HomeActivity extends BaseActivity {
 
         @Override
         protected void callParser() throws NetworkException, LoginExpiredException {
-            MyApplication.myTTLiga = new MyTischtennisParser().readOwnLigaRanking();
+            MyApplication.myTTLigen = new MyTischtennisParser().readOwnLigaRanking();
         }
 
 
         @Override
         protected boolean dataLoaded() {
-            return MyApplication.myTTLiga != null;
+            return MyApplication.myTTLigen != null;
         }
     }
 
