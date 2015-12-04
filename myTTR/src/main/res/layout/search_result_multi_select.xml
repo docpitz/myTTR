@@ -5,31 +5,25 @@
   ~
   ~ 2014.
   -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical"
-              android:weightSum="10">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:text="@string/text_search_result"/>
+<RelativeLayout
+    android:id="@+id/linear"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
-    <LinearLayout style="@style/HeaderListStyle">
+    <LinearLayout android:id="@+id/headerText"
+                  style="@style/HeaderListStyle"
+                  >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:gravity="start"
             android:layout_marginLeft="10dp"
             android:layout_weight="5"
+            android:gravity="start"
             android:text="@string/vorname"/>
 
         <TextView
@@ -41,29 +35,53 @@
 
         <TextView
             android:id="@+id/club"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/club"
             android:layout_weight="5"
-            android:layout_width="0dp"/>
+            android:text="@string/club"/>
 
         <TextView
             android:id="@+id/ttr"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/points"
             android:layout_weight="5"
-            android:layout_width="0dp"/>
+            android:text="@string/points"/>
     </LinearLayout>
 
     <View
+        android:id="@+id/whiteline"
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        android:layout_below="@id/headerText"
+        />
+
 
     <ListView
         android:id="@+id/playerlistview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@id/whiteline"
+        tools:listitem="@layout/search_result_multiple_select_row"
         />
 
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
-</LinearLayout>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:onClick="select"
+            android:text="@string/select"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

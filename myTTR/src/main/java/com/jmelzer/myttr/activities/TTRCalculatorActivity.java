@@ -40,7 +40,7 @@ public class TTRCalculatorActivity extends BaseActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.getPlayers() != null;
+        return MyApplication.getTtrCalcPlayer() != null;
     }
 
     @Override
@@ -57,11 +57,11 @@ public class TTRCalculatorActivity extends BaseActivity {
 
         final EntryPlayerAdapter adapter = new EntryPlayerAdapter(this,
                 android.R.layout.simple_list_item_1,
-                MyApplication.getPlayers());
+                MyApplication.getTtrCalcPlayer());
         listview.setAdapter(adapter);
 
 
-        if (MyApplication.getPlayers() == null || MyApplication.getPlayers().isEmpty()) {
+        if (MyApplication.getTtrCalcPlayer() == null || MyApplication.getTtrCalcPlayer().isEmpty()) {
             findViewById(R.id.txt_player_list).setVisibility(View.GONE);
             findViewById(R.id.txt_player_list_empty).setVisibility(View.VISIBLE);
         } else {
@@ -90,7 +90,7 @@ public class TTRCalculatorActivity extends BaseActivity {
 
 
     public void recalc(final View view) {
-        if (MyApplication.getPlayers().size() == 0) {
+        if (MyApplication.getTtrCalcPlayer().size() == 0) {
             Toast.makeText(TTRCalculatorActivity.this,
                     getString(R.string.select_player_first), Toast.LENGTH_SHORT).show();
             return;
@@ -101,7 +101,7 @@ public class TTRCalculatorActivity extends BaseActivity {
         }
         List<TTRCalculator.Game> list = new ArrayList<>();
 
-        for (Player player : MyApplication.getPlayers()) {
+        for (Player player : MyApplication.getTtrCalcPlayer()) {
             list.add(new TTRCalculator.Game(player.getTtrPoints(), player.isChecked()));
 //            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked(),
 //                    MyApplication.getAk());

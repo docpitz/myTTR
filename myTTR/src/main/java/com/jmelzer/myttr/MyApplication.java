@@ -33,7 +33,7 @@ public class MyApplication extends Application {
 
     private static Context context;
     private static User loginUser;
-    private static List<Player> players = new ArrayList<Player>();
+    private static List<Player> ttrCalcPlayer = new ArrayList<Player>();
     public static Player actualPlayer;
     public static List<TeamAppointment> teamAppointments;
     public static int result;
@@ -106,6 +106,12 @@ public class MyApplication extends Application {
         return loginUser == null || loginUser.getUsername().isEmpty();
     }
 
+    public static void resetCheckedForSearchResult() {
+        for (Player p : searchResult) {
+            p.setChecked(false);
+        }
+    }
+
     public static int getPoints() {
         return loginUser != null ? loginUser.getPoints() : 0;
     }
@@ -132,16 +138,19 @@ public class MyApplication extends Application {
         return diff;
     }
 
-    public static List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
+    public static List<Player> getTtrCalcPlayer() {
+        return Collections.unmodifiableList(ttrCalcPlayer);
     }
 
-    public static void addPlayer(Player p) {
-        players.add(p);
+    public static void addTTRCalcPlayer(final Player p) {
+        Player toAdd = new Player();
+        toAdd.copy(p);
+        toAdd.setChecked(false);
+        ttrCalcPlayer.add(toAdd);
     }
 
     public static void removePlayer(Player p) {
-        players.remove(p);
+        ttrCalcPlayer.remove(p);
     }
 
     public static int getAk() {

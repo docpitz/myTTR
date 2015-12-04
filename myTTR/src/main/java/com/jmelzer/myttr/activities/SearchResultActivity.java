@@ -73,7 +73,7 @@ public class SearchResultActivity extends BaseActivity {
                         } else {
                             MyApplication.actualPlayer = p;
                         }
-                        MyApplication.addPlayer(MyApplication.actualPlayer);
+                        MyApplication.addTTRCalcPlayer(MyApplication.actualPlayer);
                         Intent target = new Intent(SearchResultActivity.this, goBackToClass);
                         finish();
                         SearchResultActivity.this.startActivity(target);

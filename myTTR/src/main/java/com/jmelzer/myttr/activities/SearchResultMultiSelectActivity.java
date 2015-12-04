@@ -3,17 +3,17 @@ package com.jmelzer.myttr.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
@@ -41,6 +41,7 @@ public class SearchResultMultiSelectActivity extends BaseActivity {
         }
 
         setContentView(R.layout.search_result_multi_select);
+        MyApplication.resetCheckedForSearchResult();
 
         final ListView listview = (ListView) findViewById(R.id.playerlistview);
         final SearchResultAdapter adapter = new SearchResultAdapter(this,
@@ -65,6 +66,19 @@ public class SearchResultMultiSelectActivity extends BaseActivity {
 //                    setResult(1, intent);
 //                    finish();
 
+    }
+
+    public void select(View view) {
+//        List<Player> players = new ArrayList<>();
+        for (Player p : MyApplication.searchResult) {
+            if (p.isChecked()) {
+                Log.d(Constants.LOG_TAG, "player checked=" + p);
+                MyApplication.addTTRCalcPlayer(p);
+            }
+        }
+        Intent target = new Intent(this, TTRCalculatorActivity.class);
+        finish();
+        startActivity(target);
     }
 
     class SearchResultAdapter extends ArrayAdapter<Player> {

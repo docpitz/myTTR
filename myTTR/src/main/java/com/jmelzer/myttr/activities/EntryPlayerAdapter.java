@@ -43,11 +43,12 @@ public class EntryPlayerAdapter extends ArrayAdapter<Player> {
         textView.setText("" + player.getTtrPoints());
 
         final CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.checkBox);
+        checkBox.setChecked(player.isChecked());
         checkBox.setId(position);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MyApplication.getPlayers().get(buttonView.getId()).setChecked(isChecked);
+                MyApplication.getTtrCalcPlayer().get(buttonView.getId()).setChecked(isChecked);
             }
         });
         final ImageButton deleteBtn = (ImageButton) rowView.findViewById(R.id.imageButton);

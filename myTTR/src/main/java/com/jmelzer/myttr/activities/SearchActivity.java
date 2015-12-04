@@ -149,7 +149,7 @@ public class SearchActivity extends BaseActivity {
                         } else {
                             MyApplication.actualPlayer = p1;
                         }
-                        MyApplication.addPlayer(p1);
+                        MyApplication.addTTRCalcPlayer(p1);
                         foundSinglePlayer = p1;
 
                     } else if (p.size() > 1) {

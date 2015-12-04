@@ -56,7 +56,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     }
 
     public void loadPlayerFromClub(final View view) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultActivity.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultMultiSelectActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
@@ -95,7 +95,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
                     p = myTischtennisParser.completePlayerWithTTR(teamPlayer);
                     if (p != null) {
                         teamPlayer.setTtrPoints(p.getTtrPoints());
-                        MyApplication.addPlayer(teamPlayer);
+                        MyApplication.addTTRCalcPlayer(teamPlayer);
                         teamPlayer.setChecked(false);
                     }
                 }

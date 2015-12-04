@@ -161,7 +161,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
 
         assertTrue(solo.searchText("Schmidt"));
-        solo.clickInList(7);
+        solo.clickInList(8);
 
         assertTrue(waitForActivity(HomeActivity.class));
         assertTrue("Manni is selected as player", solo.searchText("Manfred"));
@@ -269,14 +269,14 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickOnButton(solo.getString(R.string.select));
         assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
-        assertEquals("2 selected", 2, MyApplication.getPlayers().size());
+        assertEquals("2 selected", 2, MyApplication.getTtrCalcPlayer().size());
 
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
 
-        assertEquals("all removed", 0, MyApplication.getPlayers().size());
+        assertEquals("all removed", 0, MyApplication.getTtrCalcPlayer().size());
 
         solo.clickOnView(solo.getView(R.id.next_appointments_search));
         assertTrue(waitForActivity(NextAppointmentsActivity.class));
@@ -286,13 +286,18 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickInList(0);
         assertTrue(waitForActivity(NextAppointmentPlayersActivity.class));
         solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
-        solo.clickInList(3);
+        assertTrue(waitForActivity(SearchResultMultiSelectActivity.class));
+        solo.clickOnCheckBox(3);
+        solo.clickOnCheckBox(4);
+        solo.clickOnButton(solo.getString(R.string.select));
         assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
-        assertEquals("one selected", 1, MyApplication.getPlayers().size());
+        assertEquals("two selected", 2, MyApplication.getTtrCalcPlayer().size());
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
-        assertEquals("none selected", 0, MyApplication.getPlayers().size());
+        solo.clickOnImageButton(0);
+        solo.waitForText(solo.getString(R.string.player_removed_from_list));
+        assertEquals("none selected", 0, MyApplication.getTtrCalcPlayer().size());
     }
 
     private void emptyTTRList() {
@@ -303,7 +308,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
     }
 
     private void manualEntry() {
-        assertEquals(0, MyApplication.getPlayers().size());
+        assertEquals(0, MyApplication.getTtrCalcPlayer().size());
 
         View homeView = solo.getView(R.id.action_new_player);
         solo.clickOnView(homeView);
@@ -346,7 +351,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
         //back to calc activity
         assertTrue(waitForActivity(TTRCalculatorActivity.class));
-        assertEquals(0, MyApplication.getPlayers().size());
+        assertEquals(0, MyApplication.getTtrCalcPlayer().size());
 
         solo.clickOnView(solo.getView(R.id.action_new_player));
 
@@ -371,8 +376,8 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
         assertTrue(waitForActivity(TTRCalculatorActivity.class));
 
-        assertEquals(1, MyApplication.getPlayers().size());
-        Player p = MyApplication.getPlayers().get(0);
+        assertEquals(1, MyApplication.getTtrCalcPlayer().size());
+        Player p = MyApplication.getTtrCalcPlayer().get(0);
         assertEquals("Timo", p.getFirstname());
         assertEquals("Boll", p.getLastname());
         assertEquals("Borussia Düsseldorf", p.getClub());
@@ -394,9 +399,9 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         });
         solo.clickOnText(solo.getString(R.string.detail_search));
         assertTrue(waitForActivity(TTRCalculatorActivity.class));
-        assertEquals(2, MyApplication.getPlayers().size());
+        assertEquals(2, MyApplication.getTtrCalcPlayer().size());
 
-        p = MyApplication.getPlayers().get(1);
+        p = MyApplication.getTtrCalcPlayer().get(1);
         assertEquals("Marco", p.getFirstname());
         assertEquals("Vester", p.getLastname());
         assertEquals("TTG St. Augustin", p.getClub());
@@ -416,11 +421,11 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
-        assertEquals("1 must be deleted", 1, MyApplication.getPlayers().size());
+        assertEquals("1 must be deleted", 1, MyApplication.getTtrCalcPlayer().size());
 
         solo.clickOnImageButton(0);
         solo.waitForText(solo.getString(R.string.player_removed_from_list));
-        assertEquals("all entries (2) must be deleted", 0, MyApplication.getPlayers().size());
+        assertEquals("all entries (2) must be deleted", 0, MyApplication.getTtrCalcPlayer().size());
 
 
 //        solo.
