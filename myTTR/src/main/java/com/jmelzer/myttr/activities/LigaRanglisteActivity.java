@@ -19,22 +19,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.UIUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LigaRanglisteActivity extends BaseActivity {
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.myTTLiga != null;
+        return MyApplication.myTTLigen != null;
     }
 
     @Override
@@ -47,28 +48,30 @@ public class LigaRanglisteActivity extends BaseActivity {
 
         setContentView(R.layout.ligarangliste);
 
-        final TextView ligaNameView = (TextView) findViewById(R.id.textViewLigaName);
-        ligaNameView.setText(MyApplication.myTTLiga.getLigaName());
-        final ListView listview = (ListView) findViewById(R.id.listview);
+        List<String> groupList = new ArrayList<>();
+        List<List<Player>> children = new ArrayList<>();
 
-        final PlayerAdapter adapter = new PlayerAdapter(this,
-                android.R.layout.simple_list_item_1,
-                MyApplication.myTTLiga.getRanking());
-        listview.setAdapter(adapter);
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
+        List<MyTTLiga> myTTLigen = MyApplication.myTTLigen;
+        for (MyTTLiga myTTLiga : myTTLigen) {
+            groupList.add(myTTLiga.getLigaName());
+            children.add(myTTLiga.getRanking());
+        }
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(new PlayerAdapter(this, groupList, children));
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                view.setSelected(true);
-                if (position > -1 && position < MyApplication.myTTLiga.getRanking().size()) {
-                    Player p = MyApplication.myTTLiga.getRanking().get(position);
+        //todo
+//        final MyTTLiga myTTLiga = MyApplication.myTTLigen.get(0);
+//        final TextView ligaNameView = (TextView) findViewById(R.id.textViewLigaName);
+//        ligaNameView.setText(myTTLiga.getLigaName());
+//        final ListView listview = (ListView) findViewById(R.id.listview);
+//
+//        final PlayerAdapter adapter = new PlayerAdapter(this,
+//                android.R.layout.simple_list_item_1,
+//                myTTLiga.getRanking());
+//        listview.setAdapter(adapter);
+//
 
-                    new EventsAsyncTask(LigaRanglisteActivity.this, EventsActivity.class, p).execute();
-                }
-            }
-        });
     }
 
     private static class ViewHolder {
@@ -78,33 +81,85 @@ public class LigaRanglisteActivity extends BaseActivity {
         TextView textTtr;
     }
 
-    class PlayerAdapter extends ArrayAdapter<Player> {
-        private LayoutInflater layoutInflater;
+    class PlayerAdapter extends BaseExpandableListAdapter {
+        List<String> groupList;
+        List<List<Player>> children;
+        Context context;
 
-        public PlayerAdapter(Context context, int resource, List<Player> players) {
-            super(context, resource, players);
-            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        public PlayerAdapter(Context context, List<String> groupList, List<List<Player>> children) {
+            this.context = context;
+            this.groupList = groupList;
+            this.children = children;
         }
 
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
+        public int getGroupCount() {
+            return groupList.size();
+        }
 
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return children.get(groupPosition).size();
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return groupList.get(groupPosition);
+        }
+
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return children.get(groupPosition).get(childPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return false;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+            String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.playerrow, parent, false);
+                LayoutInflater layInflator = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = layInflator.inflate(R.layout.liga_spieler_result_header, null);
+            }
+            TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupName);
+            lblListHeader.setText(headerTitle);
+            return convertView;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+            final Player player = (Player) getChild(groupPosition, childPosition);
+            ViewHolder holder;
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.playerrow, null);
+
                 holder = new ViewHolder();
                 holder.textNr = (TextView) convertView.findViewById(R.id.number);
                 holder.textFirstName = (TextView) convertView.findViewById(R.id.firstname);
                 holder.textLastname = (TextView) convertView.findViewById(R.id.lastname);
                 holder.textTtr = (TextView) convertView.findViewById(R.id.points);
                 convertView.setTag(holder);
+
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            Player player = getItem(position);
 
-            holder.textNr.setText("" + (position + 1));
+            holder.textNr.setText("" + (childPosition + 1));
 
             String txt = player.getFirstname();
             String firstName = txt;
@@ -132,8 +187,21 @@ public class LigaRanglisteActivity extends BaseActivity {
                 txt = "";
             }
             holder.textTtr.setText(txt);
+            convertView.setOnClickListener(new View.OnClickListener() {
 
+                @Override
+                public void onClick(View v) {
+
+
+                    new EventsAsyncTask(LigaRanglisteActivity.this, EventsActivity.class, player).execute();
+                }
+            });
             return convertView;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return false;
         }
     }
 }

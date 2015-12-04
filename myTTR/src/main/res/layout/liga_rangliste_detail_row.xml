@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="10dp"
+              tools:ignore="HardcodedText">
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:ignore="UselessParent">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/labelEinsaetze"
+                android:text="@string/label_einsaetze"
+                style="@style/BilanzLabel"/>
+
+            <TextView
+                android:id="@+id/einsaetze"
+                android:text="3"
+                style="@style/BilanzText"/>
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textLabelGesamt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Gesamt:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/gesamt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="10:10"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

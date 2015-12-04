@@ -1,0 +1,1474 @@
+
+	<html><head>
+	<title>Liga | Teamsport
+	| Deutschlands größte Tischtennis-Community
+	| myTischtennis.de</title>
+	<base href="http://www.mytischtennis.de/community/">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="description" content="" />
+	<script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
+	<script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
+	<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
+	<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
+	<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+	<script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+	<script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+	<script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
+	<script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
+	<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
+	<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
+	<script src="/_sharedJS/global.js" type="text/javascript" ></script>
+	<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
+	<script type="text/javascript" src="http://script.ioam.de/iam.js"> </script>
+	<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="/public/stylesheets/styles.css?d=000136" media="all" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
+	<script type="text/javascript" charset="utf-8">
+	var tooltipdataSaved;
+	var tooltipdataSavedHtml;
+	var tooltipdataString;
+	var positionOfTooltip;
+	var writeToDB = false;
+	var ajaxTooltipConfig = {
+	over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
+	timeout: 300, // number = milliseconds delay before onMouseOut
+	out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
+	};
+	function ajaxTooliIn() {
+	var tooltipdataString = jQuery(this).attr("data-tooltipdata");
+	tooltipdata = tooltipdataString.split(';');
+	var otherClickTTId = tooltipdata[0];
+	var otherUsersUserid = tooltipdata[1];
+	var otherUsersName = encodeURIComponent(tooltipdata[2]);
+	if(tooltipdata[3]!= undefined){
+	writeToDB = true;
+	}
+	//console.log(writeToDB);
+	var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+	var positionOfTooltip = jQuery(this).next(".bigtooltip");
+	//console.log(positionOfTooltip);
+	if(tooltipdataString != tooltipdataSaved) {
+	jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+	tooltipdataSaved = tooltipdataString;
+	jQuery.ajax({
+	url: url,
+	cache: false,
+	success: function(html){
+	tooltipdataSavedHtml = html;
+	jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+	}
+	});
+	}
+	else {
+	//use last call again
+	jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+	}
+	}
+	function ajaxTooliOut() {
+	// do nothing
+	}
+	function initToolTips () {
+	//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+	jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
+	//use hoverIntent Plugin for ajax tooltip
+	jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+	jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
+	jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+	jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+	jQuery(".tooli1000").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 1000});
+	jQuery(".tooli100").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100});
+	jQuery(".tooli1000top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 1000});
+	jQuery(".tooli100top").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100});
+	jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 1000});
+	jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
+	}
+	function reInitToolTips() {
+	console.log('jetzt');
+	jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
+	jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+	}
+	jQuery(document).ready(function($) {
+	$(".openoverlay[rel]").overlay({
+	mask: {
+	color: '#000'
+	},
+	//fixed: false,
+	top: '20%'
+	});
+	initToolTips();
+	/* Local Scroll */
+	$.localScroll();
+	/* Back to Top */
+	var defaults = {
+	containerID: 'toTop', // fading element id
+	containerHoverID: 'toTopHover', // fading element hover id
+	scrollSpeed: 1200,
+	easingType: 'linear'
+	};
+	jQuery().UItoTop({ easingType: 'easeOutQuart' });
+	jQuery(".trigger").click(function(){
+	jQuery(this).toggleClass("active").next().slideToggle("slow");
+	});
+	}); /* Doc Ready END */
+	</script>
+	<!-- Start: GPT Sync -->
+	<script src="https://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+	</script>
+	<script type='text/javascript'>
+	var gptadslots=[];
+	(function(){
+	var useSSL = 'https:' == document.location.protocol;
+	var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+	document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+	})();
+	</script>
+	<script type="text/javascript">
+	//Adslot 1 declaration
+	gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+	//Adslot 2 declaration
+	gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+	//Adslot 3 declaration
+	gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+	var crtg_split = (crtg_content || '').split(';');
+	var pubads = googletag.pubads();
+	for (var i=1;i<crtg_split.length;i++){
+	pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
+	}
+	googletag.pubads().enableSingleRequest();
+	googletag.pubads().enableSyncRendering();
+	googletag.enableServices();
+	</script>
+	<!-- End: GPT -->
+	<style>
+	/**center fix for super banner**/
+	#ligatusframe_47919{
+	width: auto!important;
+	}
+	</style>
+	</head>
+	<body class="community">
+	<!-- Version: 4.2.0.7 -->
+	<div id="loadToolTipFunctionsHere"></div>
+	<div style="display:none;">
+	<!-- SZM VERSION="2.0" -->
+	<script type="text/javascript">
+	var iam_data = {
+	"st":"mytisch", // site/domain
+	"cp":"comm", // code
+	"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+	"co":"http://www.mytischtennis.de:80/community/group.cfm" // comment
+	}
+	iom.c(iam_data);
+	</script>
+	<!--/SZM -->
+	</div>
+	<div class="ontopbar_fx bg_ci_orange">
+	<div class="grid">
+	<div class="ontopbar">
+	<div class="grid_3 fl">
+	<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
+	Premium bis 12.01.2016
+	</a>
+	</div>
+	<div class="grid_9 fr right">
+	<a href="/community/pendingrequests" class="btn link_ontopbar orange">
+	<i class="icon-group"></i> 1
+	</a>
+	<a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+	<i class="icon-envelope"></i>
+	</a>
+	<a href="/community/personalprofil" class="btn link_ontopbar orange">
+	<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+	<span class="usertext_ontopbar">Michael Marte</span>
+	</a>
+	<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="header_fx">
+	<div class="grid clearfix">
+	<div class="header_container">
+	<div class="col_12">
+	<div class="grid_7">
+	<h1 class="mt_30">
+	<a href="/community/">
+	<img src="/public/images/mytt_logo_orange_340x69.png">
+	</a>
+	</h1>
+	</div>
+	<div class="grid_5">
+	<ul class="nav_ontop">
+	<li class="mr_5">
+	<a href="http://www.mytischtennis.de/public/home" class="nav_01" title="Portal">Portal</a>
+	</li>
+	<li>
+	<a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
+	</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="navi_fx" id="sticky_navigation">
+	<div class="grid">
+	<div class="navi_container">
+	<ul class="menu ml_10 noprint">
+	<li id="Home">
+	<a href="/community/index" title="Home">Home</a>
+	</li>
+	<li id="Profil">
+	<a href="/community/personalprofil" title="Profil">Profil</a>
+	<ul>
+	<li><a href="/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
+	<li><a href="/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
+	<li><a href="https://www.mytischtennis.de/community/secure/userSettings" title="Einstellungen">Einstellungen</a></li>
+	<li><a href="/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
+	</ul>
+	</li>
+	<li id="Teamsport" class="current"><a href="/community/showclubinfo" title="Teamsport">Teamsport</a>
+	<ul>
+	<li><a href="/community/showclubinfo" title="Verein">Verein</a></li>
+	<li class="current"><a href="/community/group" title="Liga">Liga</a></li>
+	<li><a href="/community/team" title="Mannschaft">Mannschaft</a></li>
+	</ul>
+	</li>
+	<li id="Ranglisten"><a href="/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
+	<ul>
+	<li>
+	<a href="/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
+	<li>
+	<a href="/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+	<li>
+	<a href="/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
+	<li>
+	<a href="/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
+	<li>
+	<a href="/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
+	</ul>
+	</li>
+	<li id="Kalender">
+	<a href="/community/eventcalendar" title="Turniere">Turniere</a>
+	<ul>
+	<li>
+	<a href="/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+	<li>
+	<a name="" title="Turnierserien">Turnierserien</a>
+	<ul>
+	<li>
+	<a href="/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
+	Bavarian TT-Race
+	</a>
+	</li>
+	<li>
+	<a href="/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
+	Rheinland Cup
+	</a>
+	</li>
+	</ul>
+	</li>
+	</ul>
+	</li>
+	<li id="Training">
+	<a href="/community/uebungen" title="Training">Training</a>
+	<ul>
+	<li>
+	<a href="/community/uebungen" title="Übungen">Übungen</a></li>
+	<li>
+	<a href="/community/elearning" title="E-Learning">E-Learning</a></li>
+	<li>
+	<a href="/community/videoupload/index" title="E-Coach">E-Coach</a></li>
+	<li>
+	<a href="/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
+	</ul>
+	</li>
+	<li id="Community"><a href="/community/friends" title="Community">Community
+	</a>
+	<ul>
+	<li>
+	<a href="/community/friends" title="Freunde">Freunde</a></li>
+	<li>
+	<a href="/community/pendingrequests" title="Anfragen">Anfragen <strong> (1)</strong></a></li>
+	<li>
+	<a href="/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
+	<li>
+	<a href="/community/searchPerson" title="Suche">Suche</a></li>
+	<li>
+	<a href="/community/mybadges" title="Meine Badges">Meine Badges</a></li>
+	</ul>
+	</li>
+	<li id="Services">
+	<a href="/community/holzassistent" title="Services">Services</a>
+	<ul>
+	<li>
+	<a href="/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
+	<li>
+	<a href="/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
+	<li>
+	<a href="/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
+	<li>
+	<a href="/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
+	</ul>
+	</li>
+	<li id="Premium">
+	<a href="/community/premium" title="Premium">Premium</a>
+	<ul>
+	<li>
+	<a href="/community/premium" title="Infos">Infos</a></li>
+	<li>
+	<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
+	<li>
+	<a href="/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
+	</ul>
+	</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	<div class="grid pl_15 mb_10">
+	<ul class="breadcrumbs">
+	<li class="first"><a href="/community/index" title="Home">Home</a></li>
+	<li><a href="/community/showclubinfo" title="Teamsport">Teamsport</a></li>
+	<li><a href="/community/group" title="Liga">Liga</a></li>
+	</ul>
+	</div>
+	<div class="grid center ontopbanner" id="topBanner">
+	<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
+	<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
+	<div id='div-gpt-ad-995246123125863230-1'>
+	<script type='text/javascript'>
+	googletag.display('div-gpt-ad-995246123125863230-1');
+	</script>
+	</div>
+	<!-- End AdSlot 1 -->
+	<div class="sky">
+	<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
+	<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+	<div id='div-gpt-ad-995246123125863230-2'>
+	<script type='text/javascript'>
+	googletag.display('div-gpt-ad-995246123125863230-2');
+	</script>
+	</div>
+	<!-- End AdSlot 2 -->
+	</div>
+	</div>
+	<div class="content_fx">
+	<div class="grid clearfix">
+	<div class="content_container">
+	<style type="text/css">
+	.team1538775, .team1537569 {color: #f35400 !important;}
+	</style>
+	<div class="grid_12 contentbox">
+	<div class="contentbox_top bg_ci_orange fl"><span>Liga</span></div>
+	<div class="content fl">
+	<div>
+	<h2 style="display: inline; margin-right: 10px;">Bezirksklasse Senioren</h2>
+	<a href="meineligen?do=add&groupId=251421" title="Diese Liga merken" class="tooltip"><img src="../images/Icon_Liga_hinzu.png" border="0"></a>
+	</div>
+	<div style="float:left;">
+	<h5>
+	Bundessystem
+	</h5>
+	</div>
+	<div style="float:right;">
+	<a href="ranking?showgroupid=251421">JOOLA-Rangliste</a>
+	</div>
+	<table class="coolTable" border="0">
+	<tr>
+	<th style="width: 25px;">Rang</th>
+	<th style="width: 400px;">Mannschaft</th>
+	<th class="center">Begegnungen</th>
+	<th class="center">S</th>
+	<th class="center">U</th>
+	<th class="center">N</th>
+	<th class="center">Spiele</th>
+	<th class="center">+/-</th>
+	<th class="center">Punkte</th>
+	</tr>
+	<tr>
+	<td>
+	1
+	</td>
+	<td>
+	<a href="team?teamid=1539084" class="team1539084">
+	TB Untertürkheim
+	</a>
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	0
+	</td>	
+	<td class="center">
+	6&nbsp;:&nbsp;0
+	</td>
+	<td class="center">
+	+6
+	</td>
+	<td class="center">
+	2&nbsp;:&nbsp;0
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	2
+	</td>
+	<td>
+	<a href="team?teamid=1536072" class="team1536072">
+	TSV Georgii Allianz
+	</a>
+	</td>
+	<td class="center">
+	2
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	1
+	</td>	
+	<td class="center">
+	6&nbsp;:&nbsp;8
+	</td>
+	<td class="center">
+	-2
+	</td>
+	<td class="center">
+	2&nbsp;:&nbsp;2
+	</td>
+	</tr>
+	<tr>
+	<td>
+	3
+	</td>
+	<td>
+	<a href="team?teamid=1538775" class="team1538775">
+	DJK Sportbund Stuttgart
+	</a>
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	1
+	</td>	
+	<td class="center">
+	2&nbsp;:&nbsp;6
+	</td>
+	<td class="center">
+	-4
+	</td>
+	<td class="center">
+	0&nbsp;:&nbsp;2
+	</td>
+	</tr>
+	</table>
+	<br>
+	<h3>Spielplan</h3>
+	<table class="coolTable">
+	<tr>
+	<th>Datum/Zeit</th>
+	<th>Heimmannschaft</th>
+	<th>Gastmannschaft</th>
+	<th class="center">Spiele</th>
+	<th class="center">Ort</th>
+	</tr>
+	<tr>
+	<td>
+	13.10.2015 20:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1536072" class="team1536072">
+	TSV Georgii Allianz</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539084" class="team1539084">
+	TB Untertürkheim
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=251421&teamHome=TSV%20Georgii%20Allianz&teamGuest=TB%20Untert%C3%BCrkheim&scheduled=2015%2D10%2D13%2020%3A00%3A00">0&nbsp;:&nbsp;6</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_noAdresse.png" border="0" title="Kein Ort verfügbar!" class="tooli100left">
+	</td>
+	</tr>
+	<tr><td colspan="5" style="display: none;"></td></tr>
+	<tr><th colspan="5" class="tabellentrennlinie"></th></tr>
+	<tr>
+	<td>
+	11.12.2015 19:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539084" class="team1539084">
+	TB Untertürkheim</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1538775" class="team1538775">
+	DJK Sportbund Stuttgart
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=251421&teamHome=TB%20Untert%C3%BCrkheim&teamGuest=DJK%20Sportbund%20Stuttgart&scheduled=2015%2D12%2D11%2019%3A30%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_noAdresse.png" border="0" title="Kein Ort verfügbar!" class="tooli100left">
+	</td>
+	</tr>
+	</table>
+	<div>
+	<h2 style="display: inline; margin-right: 10px;">Herren Verbandsliga</h2>
+	<a href="meineligen?do=add&groupId=250870" title="Diese Liga merken" class="tooltip"><img src="../images/Icon_Liga_hinzu.png" border="0"></a>
+	</div>
+	<div style="float:left;">
+	<h5>
+	Sechser-Paarkreuz-System
+	</h5>
+	</div>
+	<div style="float:right;">
+	<a href="ranking?showgroupid=250870">JOOLA-Rangliste</a>
+	</div>
+	<table class="coolTable" border="0">
+	<tr>
+	<th style="width: 25px;">Rang</th>
+	<th style="width: 400px;">Mannschaft</th>
+	<th class="center">Begegnungen</th>
+	<th class="center">S</th>
+	<th class="center">U</th>
+	<th class="center">N</th>
+	<th class="center">Spiele</th>
+	<th class="center">+/-</th>
+	<th class="center">Punkte</th>
+	</tr>
+	<tr>
+	<td>
+	1
+	</td>
+	<td>
+	<a href="team?teamid=1540287" class="team1540287">
+	TG Donzdorf
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	0
+	</td>	
+	<td class="center">
+	63&nbsp;:&nbsp;26
+	</td>
+	<td class="center">
+	+37
+	</td>
+	<td class="center">
+	14&nbsp;:&nbsp;0
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	2
+	</td>
+	<td>
+	<a href="team?teamid=1539873" class="team1539873">
+	VfL Kirchheim
+	</a>
+	</td>
+	<td class="center">
+	6
+	</td>
+	<td class="center">
+	5
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	1
+	</td>	
+	<td class="center">
+	51&nbsp;:&nbsp;29
+	</td>
+	<td class="center">
+	+22
+	</td>
+	<td class="center">
+	10&nbsp;:&nbsp;2
+	</td>
+	</tr>
+	<tr>
+	<td>
+	3
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen
+	</a>
+	</td>
+	<td class="center">
+	8
+	</td>
+	<td class="center">
+	4
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	3
+	</td>	
+	<td class="center">
+	56&nbsp;:&nbsp;62
+	</td>
+	<td class="center">
+	-6
+	</td>
+	<td class="center">
+	9&nbsp;:&nbsp;7
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	4
+	</td>
+	<td>
+	<a href="team?teamid=1536093" class="team1536093">
+	TTF Altshausen
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	4
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	3
+	</td>	
+	<td class="center">
+	50&nbsp;:&nbsp;42
+	</td>
+	<td class="center">
+	+8
+	</td>
+	<td class="center">
+	8&nbsp;:&nbsp;6
+	</td>
+	</tr>
+	<tr>
+	<td>
+	5
+	</td>
+	<td>
+	<a href="team?teamid=1539391" class="team1539391">
+	TTC Mühringen
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	3
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	3
+	</td>	
+	<td class="center">
+	50&nbsp;:&nbsp;44
+	</td>
+	<td class="center">
+	+6
+	</td>
+	<td class="center">
+	7&nbsp;:&nbsp;7
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	6
+	</td>
+	<td>
+	<a href="team?teamid=1535759" class="team1535759">
+	TTC Bietigheim-Bissingen II
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	3
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	3
+	</td>	
+	<td class="center">
+	47&nbsp;:&nbsp;46
+	</td>
+	<td class="center">
+	+1
+	</td>
+	<td class="center">
+	7&nbsp;:&nbsp;7
+	</td>
+	</tr>
+	<tr>
+	<td>
+	7
+	</td>
+	<td>
+	<a href="team?teamid=1536757" class="team1536757">
+	SpVgg Mössingen
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	2
+	</td>
+	<td class="center">
+	2
+	</td>
+	<td class="center">
+	3
+	</td>	
+	<td class="center">
+	50&nbsp;:&nbsp;54
+	</td>
+	<td class="center">
+	-4
+	</td>
+	<td class="center">
+	6&nbsp;:&nbsp;8
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	8
+	</td>
+	<td>
+	<a href="team?teamid=1539832" class="team1539832">
+	NSU Neckarsulm II
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	2
+	</td>
+	<td class="center">
+	1
+	</td>
+	<td class="center">
+	4
+	</td>	
+	<td class="center">
+	41&nbsp;:&nbsp;54
+	</td>
+	<td class="center">
+	-13
+	</td>
+	<td class="center">
+	5&nbsp;:&nbsp;9
+	</td>
+	</tr>
+	<tr>
+	<td>
+	9
+	</td>
+	<td>
+	<a href="team?teamid=1537569" class="team1537569">
+	DJK Sportbund Stuttgart II
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	2
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	5
+	</td>	
+	<td class="center">
+	37&nbsp;:&nbsp;56
+	</td>
+	<td class="center">
+	-19
+	</td>
+	<td class="center">
+	4&nbsp;:&nbsp;10
+	</td>
+	</tr>
+	<tr class="even">
+	<td>
+	10
+	</td>
+	<td>
+	<a href="team?teamid=1539837" class="team1539837">
+	TSG Steinheim/M.
+	</a>
+	</td>
+	<td class="center">
+	7
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	0
+	</td>
+	<td class="center">
+	7
+	</td>	
+	<td class="center">
+	31&nbsp;:&nbsp;63
+	</td>
+	<td class="center">
+	-32
+	</td>
+	<td class="center">
+	0&nbsp;:&nbsp;14
+	</td>
+	</tr>
+	</table>
+	<br>
+	<h3>Spielplan</h3>
+	<table class="coolTable">
+	<tr>
+	<th>Datum/Zeit</th>
+	<th>Heimmannschaft</th>
+	<th>Gastmannschaft</th>
+	<th class="center">Spiele</th>
+	<th class="center">Ort</th>
+	</tr>
+	<tr>
+	<td>
+	14.11.2015 13:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1535759" class="team1535759">
+	TTC Bietigheim-Bissingen II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539837" class="team1539837">
+	TSG Steinheim/M.
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTC%20Bietigheim%2DBissingen%20II&teamGuest=TSG%20Steinheim%2FM%2E&scheduled=2015%2D11%2D14%2013%3A30%3A00">9&nbsp;:&nbsp;4</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Sporthalle Untermberg</strong>
+	<br> Bissinger Strasse
+	<br>74321&nbsp;
+	Bietigheim-Bissingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	14.11.2015 18:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1536093" class="team1536093">
+	TTF Altshausen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTF%20Altshausen&teamGuest=SSV%20Reutlingen&scheduled=2015%2D11%2D14%2018%3A30%3A00">7&nbsp;:&nbsp;9</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Neue Sporthalle</strong>
+	<br> Ebersbacher Str.
+	<br>88361&nbsp;
+	Altshausen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	15.11.2015 10:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1536757" class="team1536757">
+	SpVgg Mössingen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1540287" class="team1540287">
+	TG Donzdorf
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=SpVgg%20M%C3%B6ssingen&teamGuest=TG%20Donzdorf&scheduled=2015%2D11%2D15%2010%3A00%3A00">6&nbsp;:&nbsp;9</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Steinlachhalle</strong>
+	<br> Goethestr. 45
+	<br>72116&nbsp;
+	Mössingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	15.11.2015 13:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539391" class="team1539391">
+	TTC Mühringen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=SSV%20Reutlingen&teamGuest=TTC%20M%C3%BChringen&scheduled=2015%2D11%2D15%2013%3A00%3A00">8&nbsp;:&nbsp;8</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Oskar-Kalbfell-Sporthalle</strong>
+	<br> Kanzleistr.
+	<br>72764&nbsp;
+	Reutlingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	21.11.2015 17:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539832" class="team1539832">
+	NSU Neckarsulm II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1540287" class="team1540287">
+	TG Donzdorf
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=NSU%20Neckarsulm%20II&teamGuest=TG%20Donzdorf&scheduled=2015%2D11%2D21%2017%3A30%3A00">4&nbsp;:&nbsp;9</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Ballei</strong>
+	<br> Deutschordensplatz
+	<br>74172&nbsp;
+	Neckarsulm
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	21.11.2015 18:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1537569" class="team1537569">
+	DJK Sportbund Stuttgart II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1536093" class="team1536093">
+	TTF Altshausen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=DJK%20Sportbund%20Stuttgart%20II&teamGuest=TTF%20Altshausen&scheduled=2015%2D11%2D21%2018%3A00%3A00">9&nbsp;:&nbsp;6</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Sporthalle Nord (Werner-Siemens-Berufsschule)</strong>
+	<br> Heilbronner Str. 153
+	<br>70191&nbsp;
+	Stuttgart
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	21.11.2015 18:15 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539873" class="team1539873">
+	VfL Kirchheim</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=VfL%20Kirchheim&teamGuest=SSV%20Reutlingen&scheduled=2015%2D11%2D21%2018%3A15%3A00">9&nbsp;:&nbsp;5</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Neue Sporthalle des Ludwig-Uhland-Gymnasiums</strong>
+	<br> Hahnweidstr. 30
+	<br>73230&nbsp;
+	Kirchheim/Teck
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	21.11.2015 19:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539391" class="team1539391">
+	TTC Mühringen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539837" class="team1539837">
+	TSG Steinheim/M.
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTC%20M%C3%BChringen&teamGuest=TSG%20Steinheim%2FM%2E&scheduled=2015%2D11%2D21%2019%3A30%3A00">9&nbsp;:&nbsp;4</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Turnhalle</strong>
+	<br> Spielstr. 6
+	<br>72160&nbsp;
+	Horb-Mühringen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	22.11.2015 14:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539832" class="team1539832">
+	NSU Neckarsulm II
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=SSV%20Reutlingen&teamGuest=NSU%20Neckarsulm%20II&scheduled=2015%2D11%2D22%2014%3A00%3A00">9&nbsp;:&nbsp;7</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Oskar-Kalbfell-Sporthalle</strong>
+	<br> Kanzleistr.
+	<br>72764&nbsp;
+	Reutlingen
+	</div>
+	</td>
+	</tr>
+	<tr><td colspan="5" style="display: none;"></td></tr>
+	<tr><th colspan="5" class="tabellentrennlinie"></th></tr>
+	<tr>
+	<td>
+	28.11.2015 18:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539832" class="team1539832">
+	NSU Neckarsulm II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1537569" class="team1537569">
+	DJK Sportbund Stuttgart II
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=NSU%20Neckarsulm%20II&teamGuest=DJK%20Sportbund%20Stuttgart%20II&scheduled=2015%2D11%2D28%2018%3A30%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Ballei</strong>
+	<br> Deutschordensplatz
+	<br>74172&nbsp;
+	Neckarsulm
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	28.11.2015 18:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1535759" class="team1535759">
+	TTC Bietigheim-Bissingen II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539873" class="team1539873">
+	VfL Kirchheim
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTC%20Bietigheim%2DBissingen%20II&teamGuest=VfL%20Kirchheim&scheduled=2015%2D11%2D28%2018%3A30%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Sporthalle Untermberg</strong>
+	<br> Bissinger Strasse
+	<br>74321&nbsp;
+	Bietigheim-Bissingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	28.11.2015 19:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539837" class="team1539837">
+	TSG Steinheim/M.</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1536093" class="team1536093">
+	TTF Altshausen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TSG%20Steinheim%2FM%2E&teamGuest=TTF%20Altshausen&scheduled=2015%2D11%2D28%2019%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Riedhalle</strong>
+	<br> Höpfigheimer Str. 56
+	<br>71711&nbsp;
+	Steinheim
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	29.11.2015 14:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1537002" class="team1537002">
+	SSV Reutlingen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1540287" class="team1540287">
+	TG Donzdorf
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=SSV%20Reutlingen&teamGuest=TG%20Donzdorf&scheduled=2015%2D11%2D29%2014%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Oskar-Kalbfell-Sporthalle</strong>
+	<br> Kanzleistr.
+	<br>72764&nbsp;
+	Reutlingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	05.12.2015 15:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1536093" class="team1536093">
+	TTF Altshausen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1536757" class="team1536757">
+	SpVgg Mössingen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTF%20Altshausen&teamGuest=SpVgg%20M%C3%B6ssingen&scheduled=2015%2D12%2D05%2015%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Neue Sporthalle</strong>
+	<br> Ebersbacher Str.
+	<br>88361&nbsp;
+	Altshausen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	05.12.2015 18:15 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539873" class="team1539873">
+	VfL Kirchheim</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539837" class="team1539837">
+	TSG Steinheim/M.
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=VfL%20Kirchheim&teamGuest=TSG%20Steinheim%2FM%2E&scheduled=2015%2D12%2D05%2018%3A15%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Neue Sporthalle des Ludwig-Uhland-Gymnasiums</strong>
+	<br> Hahnweidstr. 30
+	<br>73230&nbsp;
+	Kirchheim/Teck
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	05.12.2015 19:30 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539391" class="team1539391">
+	TTC Mühringen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1535759" class="team1535759">
+	TTC Bietigheim-Bissingen II
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TTC%20M%C3%BChringen&teamGuest=TTC%20Bietigheim%2DBissingen%20II&scheduled=2015%2D12%2D05%2019%3A30%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Turnhalle</strong>
+	<br> Spielstr. 6
+	<br>72160&nbsp;
+	Horb-Mühringen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	06.12.2015 10:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1536757" class="team1536757">
+	SpVgg Mössingen</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1537569" class="team1537569">
+	DJK Sportbund Stuttgart II
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=SpVgg%20M%C3%B6ssingen&teamGuest=DJK%20Sportbund%20Stuttgart%20II&scheduled=2015%2D12%2D06%2010%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Steinlachhalle</strong>
+	<br> Goethestr. 45
+	<br>72116&nbsp;
+	Mössingen
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	06.12.2015 11:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1539832" class="team1539832">
+	NSU Neckarsulm II</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539391" class="team1539391">
+	TTC Mühringen
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=NSU%20Neckarsulm%20II&teamGuest=TTC%20M%C3%BChringen&scheduled=2015%2D12%2D06%2011%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>Ballei</strong>
+	<br> Deutschordensplatz
+	<br>74172&nbsp;
+	Neckarsulm
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	06.12.2015 14:00 Uhr
+	</td>
+	<td>
+	<a href="team?teamid=1540287" class="team1540287">
+	TG Donzdorf</a>
+	</a>
+	</td>
+	<td>
+	<a href="team?teamid=1539873" class="team1539873">
+	VfL Kirchheim
+	</a>
+	</td>
+	<td class="center">
+	<a href="gameReport?groupid=250870&teamHome=TG%20Donzdorf&teamGuest=VfL%20Kirchheim&scheduled=2015%2D12%2D06%2014%3A00%3A00">0&nbsp;:&nbsp;0</a>
+	</td>
+	<td class="center relative">
+	<img src="../images/Icon_Adresse.png" border="0" title="" class="datumzeit openinfos">
+	<div class="bigtooltip" style="text-align: left;">
+	<strong>TG Turnhalle</strong>
+	<br> Poststr. 38
+	<br>73072&nbsp;
+	Donzdorf
+	</div>
+	</td>
+	</tr>
+	</table>
+	<div class="col_full center">
+	<iframe src="/_ads/googleQuer468Script.cfm" frameborder="0" width="468" height="60" scrolling="no"></iframe>
+	</div>
+	</div>
+	<div class="contentbox_bottom bg_ci_orange"></div>
+	</div>
+	<script language=JavaScript>
+	jQuery(".datumzeit[title]").tooltip({ effect: 'slide', direction: 'left', position: 'center left', relative:true });
+	</script>
+	</div>
+	</div>
+	</div>
+	<div class="whitebox_fx mt_30">
+	<div class="grid">
+	<div class="whitebox_container">
+	<div class="grid_12">
+	<div class="bg_spon_top"></div>
+	<div class="sponbox">
+	<a href="http://www.mytischtennis.de/public/countAndRedirect?id=1" class="spon01">Joola</a>
+	<a href="http://www.mytischtennis.de/public/countAndRedirect?id=185" class="spon03">Schöler Micke</a>
+	<a href="http://www.mytischtennis.de/public/countAndRedirect?id=186" class="spon04">andro</a>
+	<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+	</div>
+	<div class="bg_spon_bottom"></div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="graybox_fx">
+	<div class="grid">
+	<div class="graybox_container">
+	<div class="graybox_content">
+	<div class="graybox_list01">
+	<div class="headline"><h5>Service</h5></div>
+	<ul>
+	<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
+	<li><a href="/community/faq" title="FAQ">FAQ</a></li>
+	<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+	<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+	</ul>
+	</div>
+	<div class="graybox_list02">
+	<div class="headline"><h5>Informationen</h5></div>
+	<ul>
+	<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+	<li><a href="/public/agb" title="AGB">AGB</a></li>
+	<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+	</ul>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="onbottomnavi_fx bg_ci_orange">
+	<div class="grid">
+	<div class="onbottomnavi">
+	<div class="center">
+	<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+	</div>
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-19104087-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+	</body>
+	</html>

@@ -121,9 +121,20 @@ public class MyTischtennisParserTest {
     @Test
     public void testparseGroupForRanking() throws Exception {
         String page = readFile(ASSETS_DIR + "/mytt/group.htm");
-        assertNull(parser.parseGroupForRanking("jsfsflsdkf"));
+        assertEquals(0, parser.parseGroupForRanking("jsfsflsdkf").size());
 
-        assertEquals("249747", parser.parseGroupForRanking(page));
+        assertEquals(1, parser.parseGroupForRanking(page).size());
+        assertEquals("249747", parser.parseGroupForRanking(page).get(0));
+    }
+
+    @Test
+    public void testparseMultipleGroupForRanking() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/group-multiple.htm");
+
+        List<String> list = parser.parseGroupForRanking(page);
+        assertEquals(2, list.size());
+        assertEquals("251421", list.get(0));
+        assertEquals("250870", list.get(1));
     }
 
     @Test

@@ -11,13 +11,21 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:weightSum="10">
-    <TextView
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listheader="@layout/liga_mannschaft_bilanz_detail_header"
+        tools:listitem="@layout/playerrow"/>
+
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="Bezirksliga 3"
         android:id="@+id/textViewLigaName"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"/>-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -29,12 +37,12 @@
 
 
 
-    <ListView
+   <!-- <ListView
         android:id="@+id/listview"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/playerrow">
+        tools:listitem="@layout/playerrow">-->
 
-    </ListView>
+    <!--</ListView>-->
 </LinearLayout>
