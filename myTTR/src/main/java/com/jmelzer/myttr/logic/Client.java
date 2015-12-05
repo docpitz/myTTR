@@ -37,7 +37,7 @@ import java.util.zip.GZIPInputStream;
 public class Client {
     static HttpClient client;
     public static CookieStoreDelegate cookieStoreDelegate;
-    public static String lastUrl = null;
+    public static String lastUrl = "undefined";
     static final Lock lock = new ReentrantLock();
 
 
