@@ -678,7 +678,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 game.setPlayerWithPoints(readBetweenOpenTag(cols[0], 0, "<a", "</a>").result);
 //
                 int i = 1;
-                game.setResult(cols[1].trim());
+                game.setResult(readBetweenOpenTag(cols[1], 0, "<strong", "</strong>").result);
                 for (i = 2; i < 9; i++) {
                     if (!cols[i].isEmpty()) {
                         game.addSet(cols[i]);

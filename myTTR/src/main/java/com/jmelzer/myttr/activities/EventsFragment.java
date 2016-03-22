@@ -98,8 +98,7 @@ public class EventsFragment extends Fragment {
             holder.textDate.setText(event.getDate());
             holder.textEvent.setText(event.getEvent());
             holder.textSp.setText(event.getBilanz());
-            //todo
-            holder.textAk.setText("");
+            holder.textAk.setText(event.getAk());
             holder.textTtr.setText(event.getTtrAsString());
             holder.textDiff.setText("" + event.getSum());
 

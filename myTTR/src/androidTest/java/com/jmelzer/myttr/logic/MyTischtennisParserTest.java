@@ -109,13 +109,15 @@ public class MyTischtennisParserTest extends BaseTestCase {
 //        Log.i(Constants.LOG_TAG, events.get(0).toString());
         EventDetail eventDetail = myTischtennisParser.readEventDetail(events.get(0));
         assertNotNull(eventDetail);
-//        Log.i(Constants.LOG_TAG, eventDetail.toString());
+        Log.i(Constants.LOG_TAG, "eventDetail=" + eventDetail.toString());
         assertTrue(eventDetail.getGames().size() >= 1);
+
         for (Game g : eventDetail.getGames()) {
             assertNotNull(g);
             assertNotNull(g.getPlayer());
             assertNotNull(g.getPlayerWithPoints());
             assertNotNull(g.getSetsInARow());
+            assertFalse(g.getResult().contains("<"));
             assertTrue(g.getSets().size() >= 3);
             Log.i(Constants.LOG_TAG, "Game=" + g.toString());
         }
