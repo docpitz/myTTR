@@ -68,4 +68,8 @@ public class Game {
 
         return ret;
     }
+
+    public List<String> getSets() {
+        return sets;
+    }
 }

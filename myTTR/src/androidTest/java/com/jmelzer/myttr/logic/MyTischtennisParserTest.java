@@ -16,6 +16,7 @@ import android.util.Log;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
+import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -61,7 +62,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testreadGames() throws Exception {
+    public void testReadEvents() throws Exception {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
@@ -69,6 +70,12 @@ public class MyTischtennisParserTest extends BaseTestCase {
         boolean found = false;
         for (Event event : events) {
             String s = event.toString();
+            assertNotNull(s, event.getAk());
+            assertNotNull(s, event.getBilanz());
+            assertNotNull(s, event.getDate());
+            assertNotNull(s, event.getEvent());
+            assertTrue(s, event.getTtr() > 0);
+            assertTrue(s, event.getSum() > -1000);
 //            Log.i(Constants.LOG_TAG, s);
             if (event.getEvent().equals("Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40")) {
                 found = true;
@@ -103,6 +110,16 @@ public class MyTischtennisParserTest extends BaseTestCase {
         EventDetail eventDetail = myTischtennisParser.readEventDetail(events.get(0));
         assertNotNull(eventDetail);
 //        Log.i(Constants.LOG_TAG, eventDetail.toString());
+        assertTrue(eventDetail.getGames().size() >= 1);
+        for (Game g : eventDetail.getGames()) {
+            assertNotNull(g);
+            assertNotNull(g.getPlayer());
+            assertNotNull(g.getPlayerWithPoints());
+            assertNotNull(g.getSetsInARow());
+            assertTrue(g.getSets().size() >= 3);
+            Log.i(Constants.LOG_TAG, "Game=" + g.toString());
+        }
+        assertEquals(2, eventDetail.getGames().size());
     }
 
     @SmallTest
@@ -113,7 +130,13 @@ public class MyTischtennisParserTest extends BaseTestCase {
         EventDetail eventDetail = myTischtennisParser.parseDetail(page);
         assertNotNull(eventDetail);
         assertEquals(6, eventDetail.getGames().size());
-//        Log.i(Constants.LOG_TAG, eventDetail.toString());
+        for (Game g : eventDetail.getGames()) {
+            assertNotNull(g);
+            assertNotNull(g.getPlayer());
+            assertNotNull(g.getPlayerWithPoints());
+            assertNotNull(g.getSetsInARow());
+            Log.i(Constants.LOG_TAG, "Game=" + g.toString());
+        }
     }
 
     @SmallTest
@@ -136,7 +159,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
         List<Player> clublist = myTischtennisParser.getClubList();
         for (Player player : clublist) {
-            assertTrue(player.toString(), player.getPersonId()>0);
+            assertTrue(player.toString(), player.getPersonId() > 0);
             assertNotNull(player.toString(), player.getFirstname());
             assertNotNull(player.toString(), player.getFullName());
             assertTrue(player.toString(), player.getTtrPoints() > 0);
@@ -226,7 +249,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         MyApplication.manualClub = null;
         name = myTischtennisParser.getNameOfOwnClub();
-        assertEquals("TTG St. Augustin", name);
+        assertEquals("TTF Bad Honnef", name);
 
     }
 
@@ -278,7 +301,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
 
         assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
 
-        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1600);
+        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1500);
         List<Player> p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.get(0).getLastname());
         assertEquals("Christian", p.get(0).getFirstname());
@@ -337,7 +360,7 @@ public class MyTischtennisParserTest extends BaseTestCase {
     public void testreadOwnLigaRanking() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Player> players = myTischtennisParser.readOwnLigaRanking().getRanking();
+        List<Player> players = myTischtennisParser.readOwnLigaRanking().get(0).getRanking();
         assertTrue(players.size() > 80);
 
         for (Player player : players) {

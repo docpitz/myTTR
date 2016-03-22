@@ -214,7 +214,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
         int idx = start;
         //let start at table tag
-        boolean haveRang = page.indexOf("<th>Rang</th>") > 0;
+        boolean haveRang = page.indexOf("<th>Rang") > 0;
 
         if (start == 0) {
             idx = page.indexOf("<table class=\"coolTable\"");
@@ -222,18 +222,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
             idx = page.indexOf("<tr", idx);
             idx = page.indexOf("<tr", idx + 5);
         }
-        //Indicator if we we have next rows
-//        int idx2 = page.indexOf("<tr class=\"even", idx);
-//        if (idx2 < 0) {
-//            idx2 = page.indexOf("<tr", idx);
-//        }
         if (idx > 0) {
             ParseResult tr = readBetween(page, idx, "<tr", "</tr>");
             if (tr != null) {
                 String[] rows = tableRowAsArray(tr.result, 5);
-//                for (String r : rows) {
-//                    System.out.println("r = " + r);
-//                }
                 Player player = new Player();
 
                 int i = 0;
@@ -244,7 +236,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //                next is first and lastname
                 player.setFirstname(findFirstName(0, rows[i]));
                 player.setPersonId(findPlayerId(0, rows[i]));
-                player.setLastname(findLastName(0, rows[i++]));
+                player.setLastname(findLastName(0, rows[i]));
                 player.setClub(readClubFromPage(0, rows[i++]));
                 list.add(player);
                 try {
@@ -352,14 +344,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     private String readClubName(String page) {
 
-        String marker = "<strong>Verein:</strong>";
-        String div = "<div class=\"col_3 mb_5\">";
+        String marker = "<dt>Verein:</dt>";
 
         int n = page.indexOf(marker);
         if (n > 0) {
-            n = page.indexOf(div, n + marker.length());
-            int end = page.indexOf("</div>", n);
-            return page.substring(n + div.length(), end);
+            return readBetween(page, n, "<dd>", "</dd>").result;
         }
         return null;
     }
@@ -420,53 +409,49 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
         Player player = parsePlayerFromEventPage(page, rown);
 
-        String startTag = "coolTable";
+        String startTag = "<tbody>";
         boolean endoflist = false;
 
         int n = page.indexOf(startTag);
         if (n > 0) {
             while (!endoflist) {
                 //find next td
-                ParseResult result = readBetween(page, n, "<td>", "</td>");
+                ParseResult result = readBetweenOpenTag(page, n, "<tr", "</tr>");
                 if (result == null) {
                     break;
                 }
+                n = result.end;
+                String[] cells = tableRowAsArray(result.result, 9);
+                if (cells == null || cells[1].isEmpty()) {
+                    continue;
+                }
                 Event event = new Event();
                 events.add(event);
-                event.setDate(result.result);
-                n = result.end;
-                result = readBetween(page, n, "openmoreinfos(", ",");
-                event.setEventId(Long.valueOf(result.result));
-                result = readBetween(page, n, "Details anzeigen\">", "</a>");
-                event.setEvent(result.result);
-                n = result.end;
-
-                result = readBetween(page, n, "<td>", "</td>");
-                n = result.end;
-                event.setAk(result.result);
-
-                result = readBetween(page, n, "<td>", "</td>");
-                n = result.end;
-                event.setPlayCount(result.result);
-                result = readBetween(page, n, "<td>", "</td>");
-                n = result.end;
-                event.setWon(Short.valueOf(result.result));
-
-                //next 3 td not interesting in
-                for (int i = 0; i < 2; i++) {
-                    result = readBetween(page, n, "<td>", "</td>");
-                    n = result.end;
-                }
-                result = readBetween(page, n, "<td>", "</td>");
-                event.setTtr(Integer.valueOf(result.result));
-                n = result.end;
-                result = readBetweenOpenTag(page, n, "<td ", "</td>");
-//                Log.d(Constants.LOG_TAG, "res = " + result.result);
-//                n = result.end - 15;
-                ParseResult result2 = readBetweenOpenTag(result.result, 0, "<span", "</span>");
-                event.setSum(Short.valueOf(result2.result));
-                n = result.end;
-                endoflist = page.indexOf("</table>", n) == -1;
+                event.setDate(cells[1]);
+                event.setEventId(Long.valueOf(readBetween(result.result, 0, "openmoreinfos(", ",").result));
+                event.setEvent(readBetween(result.result, 0, "Details anzeigen\">", "</a>").result);
+//
+                event.setAk(cells[3]);
+                event.setTtr(Integer.valueOf(cells[7]));
+                event.setSum(Short.valueOf(readBetweenOpenTag(cells[8], 0, "<span", "</span").result));
+//
+                event.setBilanz(cells[4]);
+//
+//                //next 3 td not interesting in
+//                for (int i = 0; i < 2; i++) {
+//                    result = readBetween(page, n, "<td>", "</td>");
+//                    n = result.end;
+//                }
+//                result = readBetween(page, n, "<td>", "</td>");
+//                event.setTtr(Integer.valueOf(result.result));
+//                n = result.end;
+//                result = readBetweenOpenTag(page, n, "<td ", "</td>");
+////                Log.d(Constants.LOG_TAG, "res = " + result.result);
+////                n = result.end - 15;
+//                ParseResult result2 = readBetweenOpenTag(result.result, 0, "<span", "</span>");
+//                event.setSum(Short.valueOf(result2.result));
+//                n = result.end;
+                endoflist = page.indexOf("</tbody>", n) == -1;
             }
 
         }
@@ -480,7 +465,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         p.setTtrPoints(Integer.valueOf(result.result.trim()));
 
         if (!own) {
-            result = readBetween(page, 0, "<h3 class=\"white\">", "<span class=\"tooltip\">");
+            result = readBetween(page, 0, "<h3>", "<span>");
             p.setFirstname(parseFirstnameFromBadName(result.result));
             p.setLastname(parseLastNameFromBadName(result.result));
         } else {
@@ -649,52 +634,55 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     EventDetail parseDetail(String page) {
         //                data-tooltipdata="817950;0;Spies von Büllesheim, Alexander;true"
-        String startTag = "data-tooltipdata=\"";
+        String startTag = "<table class=\"table table-mini table-mytt table-striped\">";
         int n = page.indexOf(startTag);
         boolean endoflist = false;
         EventDetail eventDetail = new EventDetail();
         int j = 0;
         if (n > 0) {
             while (!endoflist) {
-                ParseResult result = readBetween(page, n, startTag, ";");
-                if (result == null) {
+                ParseResult tr = readBetween(page, n, "<tr", "</tr>");
+                if (tr == null) {
                     break;
+                }
+                n = tr.end - 1;
+
+                String cols[] = tableRowAsArray(tr.result, 10);
+                //description of cols
+                //0 = player name etc
+                //1 = result e.g. 3:0
+                // 2 ...9 sets , can be empty td
+
+                ParseResult tooltip = readBetween(cols[0], 0, "data-tooltipdata=\"", ";");
+                if (tooltip == null) {
+                    continue;
                 }
                 Game game = new Game();
                 eventDetail.getGames().add(game);
-                game.setPlayerId(Long.valueOf(result.result));
 
-                n = result.end - 1;
-                result = readBetween(page, n, ";", ";");
+                game.setPlayerId(Long.valueOf(tooltip.result));
+
+                tooltip = readBetween(cols[0], tooltip.end, null, ";");
                 //not interersting number, skip
-                n = result.end - 1;
-                result = readBetween(page, n, ";", ";");
-                game.setPlayer(result.result);
-                n = result.end - 1;
+                tooltip = readBetween(cols[0], tooltip.end, null, ";");
+                game.setPlayer(tooltip.result);
 
-                result = readBetween(page, n, "bigtooltip'});\">", "</span>");
-                game.setPlayerWithPoints(result.result);
+                game.setPlayerWithPoints(readBetweenOpenTag(cols[0], 0, "<a", "</a>").result);
 //
                 int i = 1;
-                result = readBetween(page, n, "<td>", "</td>");
-                n = result.end;
-                game.setResult(result.result.trim());
-                while (true) {
-                    result = readBetween(page, n, "<td>", "</td>");
-                    if (result == null || result.isEmpty() || result.result.charAt(0) == ' ' || result.result.contains(",")) {
-                        break;
+                game.setResult(cols[1].trim());
+                for (i = 2; i < 9; i++) {
+                    if (!cols[i].isEmpty()) {
+                        game.addSet(cols[i]);
                     }
-                    game.addSet(result.result);
-                    n = result.end;
-                    i++;
-
                 }
                 j++;
-
-                endoflist = page.indexOf("</table>", n) == -1;
             }
 
+            endoflist = page.indexOf("</tbody>", n) == -1;
         }
+
+
         return eventDetail;
     }
 
@@ -734,6 +722,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             p = player;
             this.idx = idx;
         }
+
     }
 
     List<String> parseGroupForRanking(String page) {

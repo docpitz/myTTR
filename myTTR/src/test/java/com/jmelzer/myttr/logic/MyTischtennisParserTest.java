@@ -96,7 +96,22 @@ public class MyTischtennisParserTest {
         assertEquals("Köhler", players.get(1).getLastname());
         assertEquals("SC 1904 Nürnberg e.V.", players.get(1).getClub());
     }
+    @Test
+    public void testDirk() throws Exception {
+        String page = readFile(ASSETS_DIR + "/parsertest/rankingListDirk.htm");
+        assertNotNull(page);
+        List<Player> list = new ArrayList<>();
+        List<Player> players = parser.parseForPlayer("", "", page, list, 0);
+        assertEquals(59, players.size());
 
+        for (Player player : players) {
+            Assert.assertNotNull(player.toString(), player.getPersonId());
+            Assert.assertNotNull(player.toString(), player.getClub());
+            Assert.assertNotNull(player.toString(), player.getLastname());
+            Assert.assertNotNull(player.toString(), player.getLastname());
+//            System.out.println("player = " + player);
+        }
+    }
     @Test
     public void testFindPlayerBug57() throws Exception {
         String page = readFile(ASSETS_DIR + "/parsertest/rankingList.htm");
@@ -107,7 +122,6 @@ public class MyTischtennisParserTest {
 
         for (Player player : players) {
             Assert.assertNotNull(player.toString(), player.getPersonId());
-            assertFalse(player.toString(), player.getPersonId() != 0);
             Assert.assertNotNull(player.toString(), player.getClub());
             Assert.assertNotNull(player.toString(), player.getLastname());
             Assert.assertNotNull(player.toString(), player.getLastname());

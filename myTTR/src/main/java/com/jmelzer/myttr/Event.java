@@ -11,11 +11,12 @@ public class Event {
     /** name of the event*/
     String event;
     String ak = "16";
-    String playCount;
-    short won;
+//    String playCount;
+//    short won;
+    String bilanz;
     int ttr;
     long eventId;
-    short sum;
+    short sum = -1000;
 
     public String getDate() {
         return date;
@@ -41,20 +42,12 @@ public class Event {
         this.ak = ak;
     }
 
-    public String getPlayCount() {
-        return playCount;
+    public String getBilanz() {
+        return bilanz;
     }
 
-    public void setPlayCount(String playCount) {
-        this.playCount = playCount;
-    }
-
-    public short getWon() {
-        return won;
-    }
-
-    public void setWon(short won) {
-        this.won = won;
+    public void setBilanz(String bilanz) {
+        this.bilanz = bilanz;
     }
 
     public int getTtr() {
@@ -87,16 +80,14 @@ public class Event {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Event{");
-        sb.append("date='").append(date).append('\'');
-        sb.append(", event='").append(event).append('\'');
-        sb.append(", ak='").append(ak).append('\'');
-        sb.append(", playCount=").append(playCount);
-        sb.append(", won=").append(won);
-        sb.append(", ttr=").append(ttr);
-        sb.append(", eventId=").append(eventId);
-        sb.append(", sum=").append(sum);
-        sb.append('}');
-        return sb.toString();
+        return "Event{" +
+                "date='" + date + '\'' +
+                ", event='" + event + '\'' +
+                ", ak='" + ak + '\'' +
+                ", bilanz='" + bilanz + '\'' +
+                ", ttr=" + ttr +
+                ", eventId=" + eventId +
+                ", sum=" + sum +
+                '}';
     }
 }

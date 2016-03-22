@@ -97,8 +97,9 @@ public class EventsFragment extends Fragment {
 
             holder.textDate.setText(event.getDate());
             holder.textEvent.setText(event.getEvent());
-            holder.textSp.setText(event.getWon() + "/" + event.getPlayCount());
-            holder.textAk.setText(event.getAk());
+            holder.textSp.setText(event.getBilanz());
+            //todo
+            holder.textAk.setText("");
             holder.textTtr.setText(event.getTtrAsString());
             holder.textDiff.setText("" + event.getSum());
 
