@@ -160,11 +160,11 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickOnButton(solo.getString(R.string.player_sim));
         assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
 
-        assertTrue(solo.searchText("Schmidt"));
-        solo.clickInList(8);
+        assertTrue(solo.searchText("Schramm"));
+        solo.clickInList(4);
 
         assertTrue(waitForActivity(HomeActivity.class));
-        assertTrue("Manni is selected as player", solo.searchText("Manfred"));
+        assertTrue("Schramm is selected as player", solo.searchText("Schramm"));
         assertNotNull(MyApplication.simPlayer);
         assertTrue(MyApplication.simPlayer.getTtrPoints() > 0);
 
@@ -179,16 +179,16 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
         assertTrue(waitForActivity(SearchResultActivity.class));
 
-        assertTrue("Marco must be found", solo.searchText("Vester"));
+        assertTrue("Marco must be found", solo.searchText("Stephan"));
 
         solo.clickInList(1);
         assertTrue(waitForActivity(HomeActivity.class));
-        assertTrue("Marco is selected as player", solo.searchText("Marco"));
+        assertTrue("Stephan is selected as player", solo.searchText("Stephan"));
 
         solo.clickOnActionBarItem(R.id.action_remove_sim);
         assertTrue(solo.waitForText("wurde beendet"));
 
-        assertFalse("No one is selected ", solo.searchText("Manfred"));
+        assertFalse("No one is selected ", solo.searchText("Schramm"));
 
 
     }
@@ -218,7 +218,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickInList(0);
         assertTrue(waitForActivity(EventDetailActivity.class));
 
-        assertTrue(solo.searchText("11 : ") || solo.searchText(" : 11"));
+        assertTrue(solo.searchText("11:") || solo.searchText(":11"));
         assertFalse(solo.searchText("div"));
 
         solo.clickInList(0);

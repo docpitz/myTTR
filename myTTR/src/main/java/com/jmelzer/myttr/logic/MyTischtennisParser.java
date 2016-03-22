@@ -226,19 +226,27 @@ public class MyTischtennisParser extends AbstractBaseParser {
             ParseResult tr = readBetween(page, idx, "<tr", "</tr>");
             if (tr != null) {
                 String[] rows = tableRowAsArray(tr.result, 5);
+                //somteimes there is a rank of the club inside so one more column
+                //0 = d-rank
+                //1 = name
+                //2 = club
+                //3=ttr
                 Player player = new Player();
 
                 int i = 0;
                 if (haveRang) {
                     i++;
                 }
-                i++; //d-rang
-//                next is first and lastname
+                // d-rang - not interested
+                i++;
+
                 player.setFirstname(findFirstName(0, rows[i]));
                 player.setPersonId(findPlayerId(0, rows[i]));
                 player.setLastname(findLastName(0, rows[i]));
-                player.setClub(readClubFromPage(0, rows[i++]));
+                i++;
+                player.setClub(readClubFromPage(0, rows[i]));
                 list.add(player);
+                i++;
                 try {
                     player.setTtrPoints(Integer.valueOf(rows[i]));
                 } catch (NumberFormatException e) {
@@ -706,8 +714,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        ParseResult result = readBetween(page, 0, "<h3 class=\"white\">", "<span");
-        result = readBetween(page, result.end, "</span>", "<div");
+        ParseResult result = readBetween(page, 0, "<h3>", "<br class");
+        result = readBetween(result.result, 0, "</span>", null);
         player.setTtrPoints(Integer.valueOf(result.result.trim()));
         return player;
     }
