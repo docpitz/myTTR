@@ -350,7 +350,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return null;
     }
 
-    private String readClubName(String page) {
+    String readClubName(String page) {
 
         String marker = "<dt>Verein:</dt>";
 

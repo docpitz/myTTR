@@ -142,6 +142,15 @@ public class MyTischtennisParserTest {
     }
 
     @Test
+    public void testreadClubName() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/userMasterPage.htm");
+        assertEquals("TTF Bad Honnef", parser.readClubName(page));
+
+        page = readFile(ASSETS_DIR + "/mytt/userMasterPageTWahl.htm");
+        assertEquals("SV Sandkamp", parser.readClubName(page));
+    }
+
+    @Test
     public void testparseMultipleGroupForRanking() throws Exception {
         String page = readFile(ASSETS_DIR + "/mytt/group-multiple.htm");
 
