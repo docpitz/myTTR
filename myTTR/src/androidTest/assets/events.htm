@@ -3,76 +3,125 @@
 <title>Meine TTR-Historie | Ranglisten + Statistiken
 | Deutschlands größte Tischtennis-Community
 | myTischtennis.de</title>
+<base href="http://www.mytischtennis.de/community/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="" />
 <script type="text/javascript" src="/_sharedJS/jquery.min.v1.9.1.js"></script>
 <script type="text/javascript" src="/_sharedJS/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/_sharedJS/jquery.inview.js"></script>
-<script src="/public/javascripts/kickstart.js" type="text/javascript"></script>
-<script src="/public/javascripts/bxslider.js" type="text/javascript"></script>
-<script src="/public/javascripts/localscrollmin.js" type="text/javascript"></script>
+<script type="text/javascript" src="/_sharedJS/leaderbox.js"></script>
+<script src="/community/js/kickstart.js" type="text/javascript"></script>
+<script src="/community/js/bxslider.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery.hoverIntent.minified.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery.liveSearch.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery.relatedselects.min.js" type="text/javascript"></script>
-<script src="/_sharedJS/smoothanchor.js" type="text/javascript"></script>
-<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript" ></script>
-<script src="/_sharedJS/global.js" type="text/javascript" ></script>
-<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript" ></script>
-<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
-<link href="/public/stylesheets/kickstart.css" media="all" rel="stylesheet" type="text/css" />
-<link href="/public/stylesheets/styles.css?d=000135" media="all" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/_sharedJS/shadowbox/shadowbox.css" />
-<script type="text/javascript" charset="utf-8">
-var tooltipdataSaved;
-var tooltipdataSavedHtml;
-var tooltipdataString;
-var positionOfTooltip;
+<script src="/_sharedJS/jquery.tools.min.js" type="text/javascript"></script>
+<script src="/community/js/global.js" type="text/javascript"></script>
+<!-- load shadowbox in your template on demand, not on every request
+<script src="/_sharedJS/shadowbox/shadowbox.js" type="text/javascript"></script>
+--->
+<script src="/_sharedJS/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://script.ioam.de/iam.js"> </script>
+<link href="/community/css/community.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="apple-touch-icon" sizes="57x57" href="/community/imagesStatic/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/community/imagesStatic/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/community/imagesStatic/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/community/imagesStatic/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/community/imagesStatic/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/community/imagesStatic/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/community/imagesStatic/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/community/imagesStatic/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/community/imagesStatic/favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/community/imagesStatic/favicons/manifest.json">
+<link rel="mask-icon" href="/community/imagesStatic/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/community/imagesStatic/favicons/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<style type="text/css">
+.hideOwn1429844 { display: none !important; }
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+/* bootstrap popovers*/
+$.fn.popover.Constructor.DEFAULTS.trigger = 'focus'; 
+$.fn.popover.Constructor.DEFAULTS.placement = 'auto top'; 
+$.fn.popover.Constructor.DEFAULTS.template = '<div class="popover" role="tooltip"><h3 class="popover-title"></h3><div class="popover-content"></div></div>'; // arrow is removed here
+$.fn.popover.Constructor.DEFAULTS.viewport = { selector: "#content-container", padding: 15 }
+var tooltipsCache = {};
+var loadAjaxTooltip = function($trigger, beforeSend) {
+var hash = $trigger.attr("data-tooltipdata");
+var tooltipdata = hash.split(';');
+// url param for _tooltippStuff telling if head to head should be written in db or not
 var writeToDB = false;
-var ajaxTooltipConfig = {
-over: ajaxTooliIn, // function = onMouseOver callback (REQUIRED)
-timeout: 300, // number = milliseconds delay before onMouseOut
-out: ajaxTooliOut // function = onMouseOut callback (REQUIRED)
-};
-function ajaxTooliIn() {
-var tooltipdataString = jQuery(this).attr("data-tooltipdata");
-tooltipdata = tooltipdataString.split(';');
 var otherClickTTId = tooltipdata[0];
 var otherUsersUserid = tooltipdata[1];
 var otherUsersName = encodeURIComponent(tooltipdata[2]);
-if(tooltipdata[3]!= undefined){
+if (tooltipdata[3] != undefined) {
 writeToDB = true;
 }
-//console.log(writeToDB);
 var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
-var positionOfTooltip = jQuery(this).next(".bigtooltip");
-//console.log(positionOfTooltip);
-if(tooltipdataString != tooltipdataSaved) {
-jQuery(positionOfTooltip).html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
-tooltipdataSaved = tooltipdataString;
-jQuery.ajax({
+if (!tooltipsCache[hash]) {
+tooltipsCache[hash] = $.ajax({
 url: url,
 cache: false,
-success: function(html){
-tooltipdataSavedHtml = html;
-jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
-}
+beforeSend: beforeSend
 });
 }
-else {
-//use last call again
-jQuery(positionOfTooltip).html(tooltipdataSavedHtml);
+return tooltipsCache[hash];
 }
+var ajaxTooltipConfig = {
+over: function() {
+var $trigger = $(this);
+var $tooltip = $trigger.next(".bigtooltip");
+loadAjaxTooltip(
+$trigger,
+function() {
+$tooltip.html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
 }
-function ajaxTooliOut() {
-// do nothing
-}
+).done(function(html) {
+// this is called everytime its hovered (and reforces a re-display, which was the behaviour as before)
+$tooltip.html(html);
+});
+},
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: function() {} // function = onMouseOut callback (REQUIRED)
+};
 function initToolTips () {
-//insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
-jQuery('.myttFeaturesTooltip').after('<ul class="bigtooltip"></ul>');
-//use hoverIntent Plugin for ajax tooltip
-jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
+// new tooltips named: popover (but looks the same)
+// apply with jquery.on() to all tooltips the are or might be added into the dom
+$('body').popover({
+selector: '.user-popover',
+trigger: 'focus', // hover does not work here as expected, it closes the popover, when the trigger is hovered out. But focus is more consistent with behavour on mobile
+delay: { show: 200, hide: 100 },
+html: true,
+// we use this as a little hack, to trigger the ajax call
+// we replace the ajax loaded in the popover with the actual content coming from the ajax call
+placement: function (popover, trigger) {
+var $trigger = $(trigger), $popover = $(popover);
+loadAjaxTooltip($trigger)
+.done(function(html) {
+$popover.html(html);
+});
+// return the placement options
+return $.fn.popover.Constructor.DEFAULTS.placement;
+},
+// we return the loader as content for the popover
+content: function() {
+return '<div class="user-popover-loader"><img src="/images/ajax-loader_snake.gif" alt="loading"></div>';
+}
+});
+// old tooltips
+// insert the tooltip wrapper after the triggers (myttFeaturesTooltip)
+// use hoverIntent Plugin for ajax tooltip
+jQuery('.myttFeaturesTooltip')
+.after('<ul class="bigtooltip"></ul>')
+.hoverIntent( ajaxTooltipConfig );
 jQuery(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 200, delay: 300, tipClass:'bigtooltip'});
 jQuery(".openinfostop").tooltip({ effect: 'slide', direction: 'top', position: 'top center', predelay: 100, delay: 500, tipClass:'bigtooltip'});
 jQuery(".openinfosleft").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100, delay: 500, tipClass:'bigtooltip'});
@@ -84,21 +133,38 @@ jQuery(".tooli1000left").tooltip({ effect: 'slide', direction: 'left', position:
 jQuery(".tooli100left").tooltip({ effect: 'slide', direction: 'left', position: 'center left', predelay: 100});
 }
 function reInitToolTips() {
-console.log('jetzt');
 jQuery(".openinfos").tooltip({ direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
 jQuery('.myttFeaturesTooltip').hoverIntent( ajaxTooltipConfig );
 }
-jQuery(document).ready(function($) {
-$(".openoverlay[rel]").overlay({
-mask: {
-color: '#000'
-},
-//fixed: false,
-top: '20%'
+// recover the jquery ui tooltip from bootstraps tooltip
+var bootstrapTooltip = $.fn.tooltip.noConflict();
+$.fn.bootstrapTooltip = bootstrapTooltip; 
+/* bootstrap tooltips */
+$('body').bootstrapTooltip({
+selector: '[data-toggle="tooltip"]',
 });
+$('[data-toggle="popover"]').each(function() {
+var $trigger = $(this);
+var data = $trigger.data();
+var options = {};
+if (data.contentFind) {
+// load content from the dataattribute called "data-content-find" which searches IN the trigger-element
+options.content = function () {
+return $trigger.find(data.contentFind).clone(true).show().removeClass('hidden');
+};
+options.html = true;
+}
+// apply bootstrap popover to the trigger element
+$trigger
+.popover(options)
+.click(function(e) {
+e.preventDefault();
+});
+});
+// now init tooltips with the jquery-ui tooltip
 initToolTips();
-/* Local Scroll */
-$.localScroll();
+// used in joola ranking
+window.initToolTips = initToolTips;
 /* Back to Top */
 var defaults = {
 containerID: 'toTop', // fading element id
@@ -112,32 +178,74 @@ jQuery(this).toggleClass("active").next().slideToggle("slow");
 });
 }); /* Doc Ready END */
 </script>
-<!-- Start: GPT Sync -->
-<script src="http://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
+<!-- Start: GPT Async -->
+<script src="https://commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript">
 </script>
 <script type='text/javascript'>
 var gptadslots=[];
-(function(){
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function(){ var gads = document.createElement('script');
+gads.async = true; gads.type = 'text/javascript';
 var useSSL = 'https:' == document.location.protocol;
-var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
 })();
 </script>
 <script type="text/javascript">
+googletag.cmd.push(function() {
+if (window. innerWidth >= 1000) {
 //Adslot 1 declaration
-gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-995246123125863230-1').addService(googletag.pubads());
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90],[800,250],[900,250]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
+}
+else if (window. innerWidth >= 728) { 
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[728,90]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
+}
+else {
+//Adslot 1 declaration
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[320,50]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
+}
+if (window. innerWidth >= 1000) {
 //Adslot 2 declaration
-gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-995246123125863230-2').addService(googletag.pubads());
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[160,600],[300,600]],'div-gpt-ad-149594444772628791-2').addService(googletag.pubads());
+}
 //Adslot 3 declaration
-gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-995246123125863230-3').addService(googletag.pubads());
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de', [[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
 var crtg_split = (crtg_content || '').split(';');
 var pubads = googletag.pubads();
-for (var i=1;i<crtg_split.length;i++){
+for (var i=1;i< crtg_split.length;i++){
 pubads.setTargeting("" + (crtg_split[i-1].split('='))[0] + "", "" + (crtg_split[i-1].split('='))[1] + "");
 }
-googletag.pubads().enableSingleRequest();
-googletag.pubads().enableSyncRendering();
+var AdfGPubAds = googletag.pubads();
+var AdfHostName = window.location.host;
+var AdfSiteDomain = AdfHostName.substring(AdfHostName.lastIndexOf(".", AdfHostName.lastIndexOf(".") - 1) + 1);
+var AdfAdSizes = [
+"728x90",
+"160x600",
+"800x250",
+"900x250",
+"300x250",
+"300x600"
+];
+var AdfInv = 563;
+var AdfPC_anRes = function (res){
+if(res.response && res.response == "banner"){
+var AdfBanStr = res.banner.split('"');
+var AdfBanSi = [AdfBanStr[1], AdfBanStr[3]]; 
+AdfGPubAds.setTargeting('ADF'+AdfBanSi[0]+'x'+AdfBanSi[1],['1']);
+}
+}
+var AdfIndex;
+for (AdfIndex = 0; AdfIndex < AdfAdSizes.length; ++AdfIndex) {
+var AdfScript = document.createElement("script");
+AdfScript.src = "https://adx.adform.net/adx/?inv="+AdfInv+"&mname="+AdfAdSizes[AdfIndex]+"&pdom="+AdfSiteDomain+"&callback=AdfPC_anRes";
+document.head.appendChild(AdfScript);
+}
+googletag.pubads().enableAsyncRendering();
 googletag.enableServices();
+});
 </script>
 <!-- End: GPT -->
 <style>
@@ -146,13 +254,9 @@ googletag.enableServices();
 width: auto!important;
 }
 </style>
-<script type="text/javascript"> var sdm_vers = 2 ; </script>
-<script 
-type="text/javascript" 
-src="//cdn.stroeerdigitalmedia.de/praeludium/praeludium_mytischtennis.js">
-</script>
 </head>
 <body class="community">
+<!-- Version: 5.2.6 -->
 <div id="loadToolTipFunctionsHere"></div>
 <div style="display:none;">
 <!-- SZM VERSION="2.0" --> 
@@ -167,45 +271,40 @@ iom.c(iam_data);
 </script> 
 <!--/SZM --> 
 </div>
-<div class="ontopbar_fx bg_ci_orange">
-<div class="grid">
+<div class="hidden-xs hidden-sm ontopbar_fx bg_ci_orange">
+<div class="container">
 <div class="ontopbar">
-<div class="grid_3 fl">
-<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="btn link_ontopbar orange">
-Premium bis 09.11.2015
+<div class="col-md-5">
+<a href="https://www.mytischtennis.de/community/secure/premiumsubscription" class="button link_ontopbar orange">
+Premium bis 09.11.2016
 </a>
 </div>
-<div class="grid_9 fr right">
-<a href="/community/friends" class="btn link_ontopbar orange">
+<div class="col-md-7 text-right">
+<a href="/community/friends" class="button link_ontopbar orange">
 <i class="icon-group"></i> 
 </a>
-<a href="/community/mailbox?messageTab=1" class="btn link_ontopbar orange">
+<a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" class="button link_ontopbar orange">
 <i class="icon-envelope"></i> 
 </a>
-<a href="/community/personalprofil" class="btn link_ontopbar orange">
-<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
+<a href="/community/personalprofil" class="button link_ontopbar orange">
+<div class="userimage_ontopbar"><div style="background-image:url(/community/images/user_images/17B23891E3BE5E4B6CD3C67E2F6E14EF/17B23891E3BE5E4B6CD3C67E2F6E14EF_1433615369984_thumb.jpg);" class="userimagewrapper smallUserImageFromComponent"></div></div>
 <span class="usertext_ontopbar">Jürgen Melzer</span>
 </a>
-<a href="/community/logout" class="btn link_ontopbar orange"><i class="icon-off"></i></i></a>
+<a href="/community/logout" class="button link_ontopbar orange"><i class="icon-off"></i></a>
 </div>
 </div>
 </div>
 </div>
-<div class="header_fx">
-<div class="grid clearfix">
-<div class="header_container">
-<div class="col_12">
-<div class="grid_7">
-<h1 class="mt_30">
+<div class="header_fx hidden-sm hidden-xs">
+<div class="container">
+<h1>
 <a href="/community/">
-<img src="/public/images/mytt_logo_orange_340x69.png">
+<img src="/public/images/mytt_logo_orange_340x69.png" alt="myTischtennis.de">
 </a>
 </h1>
-</div>
-<div class="grid_5">
 <ul class="nav_ontop">
 <li class="mr_5">
-<a href="/public/" class="nav_01" title="Portal">Portal</a>
+<a href="http://www.mytischtennis.de/public/home" class="nav_01" title="Portal">Portal</a>
 </li>
 <li>
 <a href="/community/" class="nav_02 current" title="myTischtennis">myTischtennis</a>
@@ -213,128 +312,121 @@ Premium bis 09.11.2015
 </ul>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="navi_fx" id="sticky_navigation">
-<div class="grid">
-<div class="navi_container">
-<ul class="menu ml_10 noprint">
-<li id="Home"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a>
-</li>
-<li id="Profil"><a href="http://www.mytischtennis.de/community/personalprofil" title="Profil">Profil</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li>
-<li><a href="http://www.mytischtennis.de/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li>
-<li><a href="https://www.mytischtennis.de/community/secure/userSettings.cfm" title="Einstellungen">Einstellungen</a></li>
-<li><a href="http://www.mytischtennis.de/community/userMasterPage" title="Stammblatt">Stammblatt</a></li>
-</ul>
-</li>
-<li id="Teamsport"><a href="http://www.mytischtennis.de/community/showclubinfo" title="Teamsport">Teamsport</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/showclubinfo" title="Verein">Verein</a></li>
-<li><a href="http://www.mytischtennis.de/community/group" title="Liga">Liga</a></li>
-<li><a href="http://www.mytischtennis.de/community/team" title="Mannschaft">Mannschaft</a></li>
-</ul>
-</li>
-<li id="Ranglisten" class="current"><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li>
-<li class="current"><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
-<li><a href="http://www.mytischtennis.de/community/matches" title="Meine Statistiken">Meine Statistiken</a></li>
-<li><a href="http://www.mytischtennis.de/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li>
-<li><a href="http://www.mytischtennis.de/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li>
-</ul>
-</li>
-<li id="Kalender"><a href="http://www.mytischtennis.de/community/eventcalendar" title="Turniere">Turniere</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
-<li>
-<a name="" title="Turnierserien">Turnierserien</a>
-<ul>
-<li>
-<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">
-Bavarian TT-Race
+<nav class="navbar navbar-default navbar-fixed-top-mobile" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="#">
+<img src="/public/images/mytt_logo_orange_148x30.png" alt="myTischtennis.de" />
 </a>
-</li>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
 <li>
-<a href="http://www.mytischtennis.de/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">
-Rheinland Cup
-</a>
+<a href="/community/index" title="Home">Home</a> </li> 
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profil <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li><a href="/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li> <li><a href="/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li> <li><a href="https://www.mytischtennis.de/community/secure/userSettings" title="Einstellungen">Einstellungen</a></li> <li><a href="/community/userMasterPage" title="Stammblatt">Stammblatt</a></li> </ul> </li> 
+<li class="dropdown" id="Teamsport">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teamsport <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li><a href="/community/showclubinfo" title="Verein">Verein</a></li> <li><a href="/community/group" title="Liga">Liga</a></li> <li><a href="/community/team" title="Mannschaft">Mannschaft</a></li> </ul> </li> 
+<li id="Ranglisten" class="active dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ranglisten + Statistiken <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li> <li class="active"> <a href="/community/events" title="TTR-Historie">Meine TTR-Historie</a></li> <li> <a href="/community/matches" title="Meine Statistiken">Meine Statistiken</a></li> <li> <a href="/community/ranglistenhunter" title="JOOLA-Ranglisten-Hunter">JOOLA-Ranglisten-Hunter</a></li> <li> <a href="/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li> </ul> </li> 
+<li class="clear visible-md">
 </li>
-</ul>
+<li class="dropdown" id="Turniere">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Turniere <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li> <li> <a href="/community/turnierserien?turnierserie=bavarian-tt-race" title="Bavarian TT-Race">Bavarian TT-Race</a> </li> <li> <a href="/community/turnierserien?turnierserie=rheinland-cup" title="Rheinland Cup">Rheinland Cup</a> </li> <li> <a href="/community/turnierserien?turnierserie=vr-cup" title="VR-Cup des HTTV">VR-Cup des HTTV</a> </li> </ul> </li> 
+<li id="Training" class="hidden-xs hidden-sm hidden-md dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Training <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/uebungen" title="Übungen">Übungen</a></li> <li> <a href="/community/elearning" title="E-Learning">E-Learning</a></li> <li> <a href="/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li> </ul> </li>
+<li class="hidden-lg hidden-xl">
+<a href="/community/uebungen" title="Übungen">Übungen</a>
 </li>
-</ul>
-</li>
-<li id="Training"><a href="http://www.mytischtennis.de/community/uebungen" title="Training">Training</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/uebungen" title="Übungen">Übungen</a></li>
-<li><a href="http://www.mytischtennis.de/community/elearning" title="E-Learning">E-Learning</a></li>
-<li><a href="http://www.mytischtennis.de/community/videoupload/index" title="E-Coach">E-Coach</a></li>
-<li><a href="http://www.mytischtennis.de/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li>
-</ul>
-</li>
-<li id="Community"><a href="http://www.mytischtennis.de/community/friends" title="Community">Community
-</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/friends" title="Freunde">Freunde</a></li>
-<li><a href="http://www.mytischtennis.de/community/pendingrequests" title="Anfragen">Anfragen </a></li>
-<li><a href="http://www.mytischtennis.de/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li>
-<li><a href="http://www.mytischtennis.de/community/searchPerson" title="Suche">Suche</a></li>
-<li><a href="http://www.mytischtennis.de/community/mybadges" title="Meine Badges">Meine Badges</a></li>
-</ul>
-</li>
-<li id="Services"><a href="http://www.mytischtennis.de/community/belagassistent" title="Services">Services</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li>
-<li><a href="http://www.mytischtennis.de/community/belagassistent" title="Belag-Assistent">Belag-Assistent</a></li>
-<li><a href="http://www.mytischtennis.de/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li>
-<li><a href="http://www.mytischtennis.de/community/meineligen" title="Meine Ligen">Meine Ligen</a></li>
-<li><a href="http://www.mytischtennis.de/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li>
-</ul>
-</li>
-<li id="Premium"><a href="http://www.mytischtennis.de/community/premium" title="Premium">Premium</a>
-<ul>
-<li><a href="http://www.mytischtennis.de/community/premium" title="Infos">Infos</a></li>
-<li><a href="https://www.mytischtennis.de/community/secure/premiumsubscription.cfm" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li>
-<li><a href="http://www.mytischtennis.de/community/redeemCode" title="Code einlösen">Code einlösen</a></li>
-</ul>
+<li id="Community" class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Community <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/friends" title="Freunde">Freunde</a></li> <li> <a href="/community/pendingrequests" title="Anfragen">Anfragen </a></li> <li> <a href="/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li> <li> <a href="/community/searchPerson" title="Suche">Suche</a></li> <li> <a href="/community/mybadges" title="Meine Badges">Meine Badges</a></li> </ul> </li> 
+<li class="dropdown" id="Services">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li> <li> <a href="/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li> <li> <a href="/community/meineligen" title="Meine Ligen">Meine Ligen</a></li> <li> <a href="/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li> </ul> </li> 
+<li id="Premium" class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Premium <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/premium" title="Infos">Infos</a></li> <li> <a href="https://www.mytischtennis.de/community/secure/premiumsubscription" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li> <li> <a href="/community/redeemCode" title="Code einlösen">Code einlösen</a></li> </ul>
+</li> 
+<li class="visible-xs visible-sm">
+<a href="https://www.mytischtennis.de/community/logout">Logout</a>
 </li>
 </ul>
 </div>
 </div>
-</div>
-<div class="grid pl_15 mb_10">
+</nav>
+<div class="container" id="content-container">
+<div class="row">
+<div class="col-md-12">
 <ul class="breadcrumbs">
-<li class="first"><a href="http://www.mytischtennis.de/community/index" title="Home">Home</a></li>
-<li><a href="http://www.mytischtennis.de/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
-<li><a href="http://www.mytischtennis.de/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
+<li class="first"><a href="/community/index" title="Home">Home</a></li>
+<li><a href="/community/ranking" title="Ranglisten">Ranglisten + Statistiken</a></li>
+<li><a href="/community/events" title="TTR-Historie">Meine TTR-Historie</a></li>
 </ul>
 </div>
-<div class="grid center ontopbanner" id="topBanner">
-<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Superbanner (2834908) // created at: 22 Dec, 2014-->
-<!-- Beginning Sync AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250]] -->
-<div id='div-gpt-ad-995246123125863230-1'>
+</div>
+<div class="row">
+<div class="text-center ontopbanner" id="topBanner-community">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
 <script type='text/javascript'>
-googletag.display('div-gpt-ad-995246123125863230-1');
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
 </script>
 </div>
 <!-- End AdSlot 1 -->
 <div class="sky">
-<!--JavaScript Tag with group ID // Tag for network 1101: mediasports // Website: mytischtennis.de // Page: Unterseiten // Placement: Unterseiten Skyscraper (2834910) // created at: 22 Dec, 2014-->
-<!-- Beginning Sync AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
-<div id='div-gpt-ad-995246123125863230-2'>
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
 <script type='text/javascript'>
-googletag.display('div-gpt-ad-995246123125863230-2');
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
 </script>
 </div>
 <!-- End AdSlot 2 -->
 </div>
 </div>
-<div class="content_fx">
-<div class="grid clearfix">
-<div class="content_container">
-<script>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">TTR-Historie
+(Melzer, Jürgen)
+</h3>
+</div>
+<div class="panel-body">
+<form action="" method="post" class="m-b">
+<div class="row">
+<div class="col-xs-12 col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 text-right">
+<label class="">Zeitraum: </label>
+</div>
+<div class="col-xs-12 col-sm-4 col-md-4 text-right">
+<select name="timeIntervalKeyWord" onchange="this.form.submit();">
+<option value="last3Months" >letzte 3 Monate</option>
+<option value="last6Months">letzte 6 Monate</option>	
+<option value="last12Months">letzte 12 Monate</option>
+<option value="showAll" selected>alle vorhandenen Daten</option>
+<option value="thisSeason">aktuelle Saison</option>
+<option value="untillastQuartal">bis zu letzter Quartalsberechnung</option>	
+</select>
+</div>
+<div class="hidden-xs col-sm-4 col-md-4">
+<a href="premium" class="thisispremium" data-toggle="tooltip" title="Auswahl der Zeiträume ist eine Premium-Funktion"><span class="sr-only">Premium</span></a>
+</div>
+</div>
+</form>
+<script type="text/javascript">
 jQuery(function () {
 Highcharts.setOptions({
 lang: {
@@ -344,9 +436,7 @@ exportButtonTitle:"Download Grafik",
 printButtonTitle: "Grafik drucken"
 }
 }); 
-var chart;
-jQuery(document).ready(function() {
-chart = new Highcharts.Chart({
+var chart = new Highcharts.Chart({
 chart: {
 renderTo: 'container',
 type: 'spline'
@@ -357,82 +447,127 @@ text: ' '
 xAxis: {
 startOnTick:false,
 endOnTick:false,
-tickInterval: 7,
+tickPositioner: function () {
+var positions = [],
+tick = Math.floor(this.dataMin),
+increment = Math.ceil((this.dataMax - this.dataMin) / 10);
+for (tick; tick - increment <= this.dataMax; tick += increment) {
+positions.push(tick);
+}
+return positions;
+},
 categories: [
-"Jan 13",	
-"Jan 13",	
-"Jan 13",	
-"Feb 13",	
-"Feb 13",	
-"Mrz 13",	
-"Mrz 13",	
-"Mrz 13",	
-"Mai 13",	
-"Jun 13",	
-"Jun 13",	
-"Sep 13",	
-"Sep 13",	
-"Sep 13",	
-"Sep 13",	
-"Sep 13",	
-"Okt 13",	
-"Okt 13",	
-"Okt 13",	
-"Okt 13",	
-"Okt 13",	
-"Okt 13",	
-"Nov 13",	
-"Nov 13",	
-"Nov 13",	
-"Nov 13",	
-"Nov 13",	
-"Nov 13",	
-"Dez 13",	
-"Dez 13",	
-"Jan 14",	
-"Jan 14",	
-"Jan 14",	
-"Jan 14",	
-"Feb 14",	
-"Mrz 14",	
-"Mrz 14",	
-"Mrz 14",	
-"Mrz 14",	
-"Mrz 14",	
-"Apr 14",	
-"Apr 14",	
-"Apr 14",	
-"Apr 14",	
-"Mai 14",	
-"Mai 14",	
-"Jun 14",	
-"Jun 14",	
-"Jun 14",	
-"Jun 14",	
-"Aug 14",	
-"Sep 14",	
-"Sep 14",	
-"Sep 14",	
-"Sep 14",	
-"Sep 14",	
-"Okt 14",	
-"Okt 14",	
-"Okt 14",	
-"Okt 14",	
-"Nov 14",	
-"Nov 14",	
-"Nov 14",	
-"Nov 14",	
-"Dez 14",	
-"Dez 14",	
-"Dez 14",	
-"Jan 15",	
-"Jan 15",	
-"Jan 15",	
-"Jan 15",	
-"Feb 15",	
-"Feb 15",	
-"Feb 15",	
+"Jan 13",
+"Jan 13",
+"Jan 13",
+"Feb 13",
+"Feb 13",
+"Mrz 13",
+"Mrz 13",
+"Mrz 13",
+"Mai 13",
+"Jun 13",
+"Jun 13",
+"Sep 13",
+"Sep 13",
+"Sep 13",
+"Sep 13",
+"Sep 13",
+"Okt 13",
+"Okt 13",
+"Okt 13",
+"Okt 13",
+"Okt 13",
+"Okt 13",
+"Nov 13",
+"Nov 13",
+"Nov 13",
+"Nov 13",
+"Nov 13",
+"Nov 13",
+"Dez 13",
+"Dez 13",
+"Jan 14",
+"Jan 14",
+"Jan 14",
+"Jan 14",
+"Feb 14",
+"Mrz 14",
+"Mrz 14",
+"Mrz 14",
+"Mrz 14",
+"Mrz 14",
+"Apr 14",
+"Apr 14",
+"Apr 14",
+"Apr 14",
+"Mai 14",
+"Mai 14",
+"Jun 14",
+"Jun 14",
+"Jun 14",
+"Jun 14",
+"Aug 14",
+"Sep 14",
+"Sep 14",
+"Sep 14",
+"Sep 14",
+"Sep 14",
+"Okt 14",
+"Okt 14",
+"Okt 14",
+"Okt 14",
+"Nov 14",
+"Nov 14",
+"Nov 14",
+"Nov 14",
+"Dez 14",
+"Dez 14",
+"Dez 14",
+"Jan 15",
+"Jan 15",
+"Jan 15",
+"Jan 15",
+"Feb 15",
+"Feb 15",
+"Feb 15",
+"Mrz 15",
+"Mrz 15",
+"Mrz 15",
+"Mrz 15",
+"Mrz 15",
+"Mrz 15",
+"Mrz 15",
+"Apr 15",
+"Apr 15",
+"Apr 15",
+"Apr 15",
+"Jun 15",
+"Jun 15",
+"Aug 15",
+"Sep 15",
+"Sep 15",
+"Sep 15",
+"Sep 15",
+"Okt 15",
+"Okt 15",
+"Okt 15",
+"Okt 15",
+"Okt 15",
+"Nov 15",
+"Nov 15",
+"Dez 15",
+"Jan 16",
+"Jan 16",
+"Feb 16",
+"Feb 16",
+"Feb 16",
+"Mrz 16",
+"Mrz 16",
+"Mrz 16",
+"Mrz 16",
+"Apr 16",
+"Mai 16",
 "heute"
 ]
 }, 
@@ -441,7 +576,7 @@ title: {
 text: ' '
 },
 min: 1346,
-max: 1793	
+max: 1794	
 },
 credits: {
 enabled: false	
@@ -489,13 +624,13 @@ data: [
 ["15.09.2013"
 , 1475],
 ["17.09.2013"
-, 1500],
+, 1501],
 ["27.09.2013"
-, 1515],
+, 1516],
 ["04.10.2013"
-, 1502],
+, 1503],
 ["05.10.2013"
-, 1504],
+, 1505],
 ["11.10.2013"
 , 1497],
 ["18.10.2013"
@@ -537,19 +672,19 @@ data: [
 ["21.03.2014"
 , 1565],
 ["29.03.2014"
-, 1577],
+, 1578],
 ["30.03.2014"
-, 1600],
+, 1601],
 ["04.04.2014"
-, 1597],
+, 1598],
 ["12.04.2014"
-, 1609],
+, 1610],
 ["20.04.2014"
 , 1608],
 ["26.04.2014"
 , 1603],
 ["01.05.2014"
-, 1599],
+, 1600],
 ["01.05.2014"
 , 1624],
 ["07.06.2014"
@@ -595,267 +730,566 @@ data: [
 ["27.12.2014"
 , 1660],
 ["03.01.2015"
-, 1660],
+, 1661],
 ["09.01.2015"
-, 1693],
+, 1694],
 ["24.01.2015"
-, 1678],
+, 1679],
 ["30.01.2015"
-, 1680],
+, 1681],
 ["07.02.2015"
-, 1671],
+, 1672],
 ["18.02.2015"
-, 1658],
+, 1659],
 ["20.02.2015"
-, 1658],
-["heute", 1645]
+, 1659],
+["01.03.2015"
+, 1646],
+["07.03.2015"
+, 1645],
+["08.03.2015"
+, 1651],
+["14.03.2015"
+, 1650],
+["18.03.2015"
+, 1646],
+["21.03.2015"
+, 1657],
+["27.03.2015"
+, 1670],
+["04.04.2015"
+, 1671],
+["05.04.2015"
+, 1666],
+["11.04.2015"
+, 1661],
+["18.04.2015"
+, 1659],
+["06.06.2015"
+, 1663],
+["07.06.2015"
+, 1659],
+["29.08.2015"
+, 1671],
+["05.09.2015"
+, 1665],
+["11.09.2015"
+, 1655],
+["19.09.2015"
+, 1673],
+["25.09.2015"
+, 1670],
+["10.10.2015"
+, 1677],
+["11.10.2015"
+, 1673],
+["17.10.2015"
+, 1667],
+["24.10.2015"
+, 1655],
+["30.10.2015"
+, 1657],
+["21.11.2015"
+, 1678],
+["28.11.2015"
+, 1680],
+["05.12.2015"
+, 1674],
+["23.01.2016"
+, 1678],
+["30.01.2016"
+, 1666],
+["13.02.2016"
+, 1672],
+["20.02.2016"
+, 1680],
+["28.02.2016"
+, 1678],
+["05.03.2016"
+, 1692],
+["12.03.2016"
+, 1683],
+["26.03.2016"
+, 1679],
+["27.03.2016"
+, 1683],
+["09.04.2016"
+, 1682],
+["01.05.2016"
+, 1686],
+["heute", 1679]
 ]
 }] 
 });
+var min = chart.series[0].dataMin;
+var max = chart.series[0].dataMax;
+var point;
+for (var i = 0; i < chart.series[0].points.length; i++) {
+if (chart.series[0].points[i].y === max) {
+point = chart.series[0].points[i];
+point.update({
+color: 'red'
 });
+var img = chart.renderer.image(
+'/community/imagesStatic/highlight_stern.png', 
+point.plotX + chart.plotLeft - 14, point.plotY + chart.plotTop - 43,
+27, 43)
+.attr({
+zIndex: 5
+}).add();
+}
+}
 });
-</script> 
-<script type="text/javascript">
 function popup(url) {
 fenster = window.open(url, "Popupfenster", "width=600,height=600,toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
 fenster.focus();
 return false;
 }
 </script>
-<style type="text/css" media="screen">
-tr, td {
-vertical-align: top !important;
-}
-#closealllink {
-display: none;
-float:right;
-color: white;
-}
-.toggle_container {
-/*overflow: hidden;*/
-}
-.disabledlabel {
-color: #999;
-}
-</style>
-<script type="text/javascript" charset="utf-8">
-jQuery(function($){
-var tooltipdataSaved = '';
-// we need to define this here again, for the tooltips inside the ajax event details
-$(".openinfos").tooltip({ effect: 'slide', direction: 'right', position: 'center right', predelay: 100, delay: 500, tipClass:'bigtooltip'});
-$('body').on('mouseover', '.myttFeaturesTooltip', function(){
-// url param for _tooltippStuff telling if head to head should be written in db or not
-var writeToDB = false;
-var tooltipdataString = jQuery(this).attr("data-tooltipdata");
-tooltipdata = tooltipdataString.split(';');
-var myClickTTId = 1429844;
-var myUserId = 104598;
-var otherClickTTId = tooltipdata[0];
-var otherUsersUserid = tooltipdata[1];
-var otherUsersName = encodeURIComponent(tooltipdata[2]);
-if(tooltipdata[3]!= undefined){
-writeToDB = true;
-}
-var url = '/community/ajax/_tooltippstuff.cfm?writeToDB='+writeToDB+'&currentUserClickTTId='+myClickTTId+'&otherUsersClickTTId='+otherClickTTId+'&myUserid='+myUserId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
-if(tooltipdataString != tooltipdataSaved) {
-tooltipdataSaved = tooltipdataString;
-jQuery(this).next(".bigtooltip").load(url);
-}
-});
-})
-</script>
-<form action="" method="post" class="vertical">
-<div class="grid_12 contentbox mb_20">
-<div class="contentbox_top bg_ci_orange fl"><span>TTR-Historie
-</span></div>
-<div class="content fl">
-<div class="col_12 center prefix_4">	
-<div class="fr"><a href="premium" class="thisispremium tooltip fr" title="Auswahl der Zeiträume ist eine Premium-Funktion">premium</a></div>
-<label class="fl mr_15">Zeitraum: </label>	
-<select name="timeInterval" onchange="this.form.submit();" class=" col_3">
-<option value="1">letzte 3 Monate</option>
-<option value="2">letzte 6 Monate</option>	
-<option value="3">letzte 12 Monate</option>
-<option value="4" selected>alle vorhandenen Daten</option>
-<option value="5">aktuelle Saison</option>
-<option value="6">letzte Quartalsberechnung</option>	
-</select>
-</div>
-</form>
-<script type="text/javascript" charset="utf-8">
-function openmoreinfos(clttfeednr,div) {
-var theelement = document.getElementById(div);
-if(theelement.style.display == 'none') {
-$( theelement ).load( "eventDetails?fq=false&eventId="+clttfeednr, function() {
-jQuery(theelement).slideDown("slow");
-});
-}
-else
-{
-jQuery(theelement).toggleClass("active").slideUp("slow");
-}
-document.getElementById('closealllink').style.display="inline";
-}
-function closeall() {
-document.getElementById('closealllink').style.display="none";
-jQuery(".toggle_container").slideUp("slow");
-}
-</script>
-<div style="clear:both;"></div>
 <script src="js/highcharts.js"></script>
 <script src="js/modules/exporting.js"></script>
+<div class="row">
+<div class="col-md-12">
 <div id="container"></div>
-<div style="float: right; border: 0px solid blue; padding-top: 11px;">
 </div>
-<div style="clear:both;"></div>
-<div class="ttr_banner_box center">
-<a href="eventsCompare.cfm" alt="zum TTR-Vergleich" title="zum TTR-Vergleich">
-<img src="images/ttr_vergleich.jpg" alt="zum TTR-Vergleich" />
+</div>
+<div class="row hidden-xs hidden-sm">
+<div class="col-md-12 ttr_banner_box center">
+<a href="eventsCompare" alt="zum TTR-Vergleich" title="zum TTR-Vergleich">
+<img class="img-responsive" src="imagesStatic/ttr_vergleich.jpg" alt="zum TTR-Vergleich" id="TTR-Vergleich"/>
 <div class="ttr_class">
 <p>
 <strong>TTR: </strong>
-1645
+1679
 </p>
-</div>	
+</div>
 </a>
 </div>
-<div class="col_full mt_20 mb_20">
-<div class="col_10 center bg_ci_orange p_all_5">
-<h3 class="white">
+</div>
+<div class="row mt_20 mb_20">
+<div class="col-md-10 col-sm-12 col-xs-12">
+<div class="ttr-box">
+<h3>
 Dein 
-<span class="tooltip">TTR:</span> 1645
-<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>
-und
-<span class="tooltip">Q-TTR:</span> 1658
-<div class="bigtooltip" style="text-align: left;"><li><a href="/community/faq#rankings15">Erläuterungen zum TTR</a></li><li><a href="http://www.mytischtennis.de/countandredirect/2-0058/">Zur Kurzbeschreibung (PDF)</a></li></div>	
-<span style="color: white; font-size: 0.8em; font-weight:normal;" class="tooltip" title="
+<span>TTR:</span> 1679
+<br class="visible-xs"/>und
+<span data-toggle="tooltip" title="
+Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)">Q-TTR:</span> 1679
+<span style="color: white; font-size: 0.8em; font-weight:normal;" data-toggle="tooltip" title="
 Der Q-TTR ist dein gespeicherter Quartals-TTR zum jeweils letzten Stichtag ( 11.2., 11.5., 11.8., 11.12)">(i)</span>
 </h3>
 </div>
-<div class="col_2 pt_10 right">
+</div>
+<div class="col-md-2 hidden-xs hidden-sm p-t">
 <span>
-<a href="matches" class="btn" title="Meine Statistiken anzeigen">Statistiken »</a>
+<a href="matches" class="btn btn-default" title="Meine Statistiken anzeigen">Statistiken »</a>
 </span>
 </div>
 </div>
-<table class="coolTable" border="0">
+<div class="row">
+<div class="col-md-12">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+function openmoreinfos(clttfeednr,containerId) {
+var $container = $('#'+containerId);
+if (!$container.is(':visible')) {
+$container.find('.events-data').load("eventDetails?fq=false&eventId="+clttfeednr, function() {
+$container.slideDown("slow");
+});
+} else {
+$container.slideUp("slow");
+}
+document.getElementById('closealllink').style.display = "inline";
+}
+function closeall() {
+document.getElementById('closealllink').style.display="none";
+jQuery(".events-container").slideUp("slow");
+}
+</script>
+<div id="tooltip-wrapper-ttr-table">
+<table class="table table-condensed table-mytt">
+<thead>
 <tr>
 <th>Datum</th>
 <th>Veranstaltung <a href="javascript:closeall()" id="closealllink" title="alle Detailinformationen ausblenden">[&uarr;&uarr;]</a></th>
-<th class="tooltip" title="&Auml;nderungskonstante">&Auml;k</th>
-<th class="tooltip" title="Spiele">Sp</th>
-<th class="tooltip" title="Siege">Si</th>
-<th class="tooltip" title="Gewinnerwartung">GE</th>
-<th>Typ</th>
+<th class="hidden-xs hidden-sm" data-toggle="tooltip" data-container="#tooltip-wrapper-ttr-table" title="&Auml;nderungskonstante">&Auml;k</th>
+<th class="hidden-xs hidden-sm" data-toggle="tooltip" data-container="#tooltip-wrapper-ttr-table" title="Bilanz">Bi</th>
+<th class="hidden-xs hidden-sm" data-toggle="tooltip" data-container="#tooltip-wrapper-ttr-table" title="Gewinnerwartung">GE</th>
+<th class="hidden-xs hidden-sm">Typ</th>
 <th>TTR</th>
-<th style="font-weight: bold; text-align: center; width: 30px;">+/-</th>
+<th style="text-align: center; min-width: 30px;">+/-</th>
 </tr>
-<tr>
-<td>20.02.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62679901,'eventdiv1');" class="trigger2" title="Details anzeigen">BK-Herren | TTC DJK Hennef II : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,823</td>
-<td>
-Team
-</td>
-<td>1658</td>
-<td style="font-weight: bold; text-align: center;">
-<span class="red">
--13
-</span>
-</td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv1" ></div> 
-</td>
-</tr>	
-<tr>
-<td>18.02.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62656668,'eventdiv2');" class="trigger2" title="Details anzeigen">Ranglistenturnier Endrunde Kreis Rhein-Sieg Damen/Herren - Herren</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>1,988</td>
-<td>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="visible-xs">01.05.</td>
+<td class="hidden-xs">01.05.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(187146411,'eventdiv1');" class="trigger2" title="Details anzeigen">Gladbeck-Süd Open - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">1,447</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
-<td>1658</td>
-<td style="font-weight: bold; text-align: center;">
-<span class="normal">
-0
-</span>
-</td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv2" ></div> 
-</td>
-</tr>	
-<tr>
-<td>07.02.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62557899,'eventdiv3');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Troisdorf</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,796</td>
-<td>
-Team
-</td>
-<td>1671</td>
+<td>1686</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
--13
+-7
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv3" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv1">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,447
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>30.01.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62387346,'eventdiv4');" class="trigger2" title="Details anzeigen">BK-Herren | TTG Niederkassel III : TTG St. Augustin II</a>
+<tr class="even">
+<td class="visible-xs">09.04.</td>
+<td class="hidden-xs">09.04.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186956103,'eventdiv2');" class="trigger2" title="Details anzeigen">LL-Herren | TTF Bad Honnef : FC RW Lessenich</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,745</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,563</td>
-<td>
-Team
+<td>1682</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
 </td>
-<td>1680</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv2">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,745
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">27.03.</td>
+<td class="hidden-xs">27.03.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186741349,'eventdiv3');" class="trigger2" title="Details anzeigen">36. Osterfelder Osterturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,094</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1683</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv3">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,094
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">26.03.</td>
+<td class="hidden-xs">26.03.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186738395,'eventdiv4');" class="trigger2" title="Details anzeigen">36. Osterfelder Osterturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">0,775</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv4">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,775
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">12.03.</td>
+<td class="hidden-xs">12.03.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186600876,'eventdiv5');" class="trigger2" title="Details anzeigen">LL-Herren | TV Sürth : TTF Bad Honnef</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,230</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1683</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv5">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,230
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">05.03.</td>
+<td class="hidden-xs">05.03.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186460496,'eventdiv6');" class="trigger2" title="Details anzeigen">LL-Herren | TTF Bad Honnef : TTV DJK Hürth</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,591</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1692</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
 -9
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv4" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv6">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,591
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>24.01.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62317917,'eventdiv5');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Geislar</a>
+<tr class="odd">
+<td class="visible-xs">28.02.</td>
+<td class="hidden-xs">28.02.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186339255,'eventdiv7');" class="trigger2" title="Details anzeigen">LL-Herren | TTC Bonn-Duisdorf : TTF Bad Honnef</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,140</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,850</td>
-<td>
-Team
+<td>1678</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+14
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv7">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,140
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">20.02.</td>
+<td class="hidden-xs">20.02.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186191088,'eventdiv8');" class="trigger2" title="Details anzeigen">LL-Herren | TTC DJK Hennef : TTF Bad Honnef</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,107</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1680</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv8">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,107
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">13.02.</td>
+<td class="hidden-xs">13.02.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(186057584,'eventdiv9');" class="trigger2" title="Details anzeigen">LL-Herren | TTF Bad Honnef : TTG Niederkassel II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,481</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+8
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv9">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,481
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">30.01.</td>
+<td class="hidden-xs">30.01.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(185882772,'eventdiv10');" class="trigger2" title="Details anzeigen">LL-Herren | SC SW Friesheim : TTF Bad Honnef</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,624</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1666</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv10">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,624
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">23.01.</td>
+<td class="hidden-xs">23.01.2016</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(185763409,'eventdiv11');" class="trigger2" title="Details anzeigen">LL-Herren | TTF Bad Honnef : SC Fortuna Bonn</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,745</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1678</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv11">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,745
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">05.12.</td>
+<td class="hidden-xs">05.12.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(185366808,'eventdiv12');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : TTVg. Phönix Biesfeld</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,753</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1674</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv12">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,753
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">28.11.</td>
+<td class="hidden-xs">28.11.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(185235588,'eventdiv13');" class="trigger2" title="Details anzeigen">BL-Herren | TV Klaswipper : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,355</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1680</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv13">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,355
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">21.11.</td>
+<td class="hidden-xs">21.11.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(185102137,'eventdiv14');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : TV Hackenberg</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,867</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1678</td>
 <td style="font-weight: bold; text-align: center;">
@@ -863,94 +1297,863 @@ Team
 2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv5" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv14">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,867
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>09.01.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62087858,'eventdiv6');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Bonn-Duisdorf III : TTG St. Augustin II</a>
+<tr class="odd">
+<td class="visible-xs">30.10.</td>
+<td class="hidden-xs">30.10.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184657760,'eventdiv15');" class="trigger2" title="Details anzeigen">BL-Herren | TSV Seelscheid II : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">0,675</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>1</td>
-<td>0</td>
-<td>0,952</td>
-<td>
-Team
-</td>
-<td>1693</td>
-<td style="font-weight: bold; text-align: center;">
-<span class="red">
--15
-</span>
-</td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv6" ></div> 
-</td>
-</tr>	
-<tr>
-<td>03.01.2015</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(62071663,'eventdiv7');" class="trigger2" title="Details anzeigen">30. Int. Tischtennis-Neujahrsturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>5</td>
-<td>4</td>
-<td>1,936</td>
-<td>
-Turnier
-</td>
-<td>1660</td>
+<td>1657</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
-33
+21
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv7" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv15">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,675
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>27.12.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61987177,'eventdiv8');" class="trigger2" title="Details anzeigen">3. Offene Overather "Kabitec" TT-Stadtmeisterschaft - Herren</a>
+<tr class="even">
+<td class="visible-xs">24.10.</td>
+<td class="hidden-xs">24.10.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184599803,'eventdiv16');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : TV Bergheim II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,855</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>4</td>
-<td>2</td>
-<td>1,972</td>
-<td>
+<td>1655</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv16">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,855
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">17.10.</td>
+<td class="hidden-xs">17.10.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184479750,'eventdiv17');" class="trigger2" title="Details anzeigen">Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,755</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
-<td>1660</td>
+<td>1667</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-12
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv17">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,755
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">11.10.</td>
+<td class="hidden-xs">11.10.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184412259,'eventdiv18');" class="trigger2" title="Details anzeigen">36. Tischtennis-Jubiläumsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:3</td>
+<td class="hidden-xs hidden-sm">0,353</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1673</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv18">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:3 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,353
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">10.10.</td>
+<td class="hidden-xs">10.10.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184376276,'eventdiv19');" class="trigger2" title="Details anzeigen">36. Tischtennis-Jubiläumsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">2,228</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1677</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv19">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,228
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">25.09.</td>
+<td class="hidden-xs">25.09.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(184063898,'eventdiv20');" class="trigger2" title="Details anzeigen">BL-Herren | CTTF Bonn : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,552</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1670</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+7
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv20">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,552
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">19.09.</td>
+<td class="hidden-xs">19.09.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(183997954,'eventdiv21');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : DJK Spfr. Leverkusen II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,164</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1673</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-3
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv21">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,164
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">11.09.</td>
+<td class="hidden-xs">11.09.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(183896581,'eventdiv22');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg - Senioren 40</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">4:2</td>
+<td class="hidden-xs hidden-sm">2,865</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1655</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+18
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv22">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 4:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,865
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">05.09.</td>
+<td class="hidden-xs">05.09.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(183876487,'eventdiv23');" class="trigger2" title="Details anzeigen">BL-Herren | SSF Bonn : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,638</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1665</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-10
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv23">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,638
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">29.08.</td>
+<td class="hidden-xs">29.08.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(183844213,'eventdiv24');" class="trigger2" title="Details anzeigen">BL-Herren | TTG St. Augustin II : TTF Wahn-Grengel</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,388</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-6
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv24">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,388
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="divider"><td colspan="8"></td></tr>
+<tr class="odd">
+<td class="visible-xs">07.06.</td>
+<td class="hidden-xs">07.06.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(122953795,'eventdiv25');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,235</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1659</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+12
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv25">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,235
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">06.06.</td>
+<td class="hidden-xs">06.06.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(119377353,'eventdiv26');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">1,233</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1663</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv26">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,233
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">18.04.</td>
+<td class="hidden-xs">18.04.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(36129207,'eventdiv27');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Bergheim II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,767</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1659</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+4
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv27">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,767
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">11.04.</td>
+<td class="hidden-xs">11.04.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(36011770,'eventdiv28');" class="trigger2" title="Details anzeigen">33. Bayer Frühjahrsturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">2,102</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1661</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-2
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv28">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,102
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">05.04.</td>
+<td class="hidden-xs">05.04.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35986789,'eventdiv29');" class="trigger2" title="Details anzeigen">30. Stolberger Frühjahrsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">2,287</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1666</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv29">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,287
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">04.04.</td>
+<td class="hidden-xs">04.04.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35984305,'eventdiv30');" class="trigger2" title="Details anzeigen">35. Osterfelder Osterturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">1,295</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1671</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-5
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv30">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,295
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">27.03.</td>
+<td class="hidden-xs">27.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35823637,'eventdiv31');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Plittersdorf : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,917</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1670</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv31">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,917
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">21.03.</td>
+<td class="hidden-xs">21.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35746781,'eventdiv32');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTVg. GW Porz-Eil</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,167</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1657</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+13
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv32">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,167
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">18.03.</td>
+<td class="hidden-xs">18.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35646610,'eventdiv33');" class="trigger2" title="Details anzeigen">Ranglistenturnier Endrunde Kreis Rhein-Sieg Herren - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:6</td>
+<td class="hidden-xs hidden-sm">0,325</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1646</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+11
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv33">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:6 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,325
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">14.03.</td>
+<td class="hidden-xs">14.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35590106,'eventdiv34');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTF Lengsdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,226</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1650</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-4
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv34">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,226
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">08.03.</td>
+<td class="hidden-xs">08.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35450102,'eventdiv35');" class="trigger2" title="Details anzeigen">VL-Herren | TTG St. Augustin : TTC BW Brühl-Vochem II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,067</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1651</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv35">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,067
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">07.03.</td>
+<td class="hidden-xs">07.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35432170,'eventdiv36');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : SC Fortuna Bonn II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,609</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1645</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+6
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv36">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,609
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">01.03.</td>
+<td class="hidden-xs">01.03.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35298685,'eventdiv37');" class="trigger2" title="Details anzeigen">BK-Herren | TTC RG Porz III : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,046</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1646</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-1
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv37">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,046
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">20.02.</td>
+<td class="hidden-xs">20.02.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35073179,'eventdiv38');" class="trigger2" title="Details anzeigen">BK-Herren | TTC DJK Hennef II : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,827</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1659</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv38">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,827
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">18.02.</td>
+<td class="hidden-xs">18.02.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(35046528,'eventdiv39');" class="trigger2" title="Details anzeigen">Ranglistenturnier Endrunde Kreis Rhein-Sieg Damen/Herren - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,987</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1659</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="normal">
 0
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv8" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv39">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,987
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>13.12.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61950606,'eventdiv9');" class="trigger2" title="Details anzeigen">6. Leverkusener Niesen Advents Cup - Herren</a>
+<tr class="even">
+<td class="visible-xs">07.02.</td>
+<td class="hidden-xs">07.02.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34933721,'eventdiv40');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Troisdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,796</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>4</td>
-<td>2</td>
-<td>1,236</td>
-<td>
+<td>1672</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-13
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv40">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,796
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">30.01.</td>
+<td class="hidden-xs">30.01.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34745774,'eventdiv41');" class="trigger2" title="Details anzeigen">BK-Herren | TTG Niederkassel III : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,565</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1681</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-9
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv41">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,565
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">24.01.</td>
+<td class="hidden-xs">24.01.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34662925,'eventdiv42');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Geislar</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,852</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1679</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+2
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv42">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,852
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">09.01.</td>
+<td class="hidden-xs">09.01.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34396371,'eventdiv43');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Bonn-Duisdorf III : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,952</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
+</td>
+<td>1694</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="red">
+-15
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv43">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,952
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">03.01.</td>
+<td class="hidden-xs">03.01.2015</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34373878,'eventdiv44');" class="trigger2" title="Details anzeigen">30. Int. Tischtennis-Neujahrsturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">4:1</td>
+<td class="hidden-xs hidden-sm">1,940</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1661</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+33
+</span>
+</td>
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv44">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 4:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,940
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="odd">
+<td class="visible-xs">27.12.</td>
+<td class="hidden-xs">27.12.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34285892,'eventdiv45');" class="trigger2" title="Details anzeigen">3. Offene Overather "Kabitec" TT-Stadtmeisterschaft - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,967</td>
+<td class="hidden-xs hidden-sm">
+Turnier
+</td>
+<td>1660</td>
+<td style="font-weight: bold; text-align: center;">
+<span class="green">
+1
+</span>
+</td>
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv45">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,967
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
+</td>
+</tr>	
+<tr class="even">
+<td class="visible-xs">13.12.</td>
+<td class="hidden-xs">13.12.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34244185,'eventdiv46');" class="trigger2" title="Details anzeigen">6. Leverkusener Niesen Advents Cup - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,229</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1648</td>
@@ -959,23 +2162,26 @@ Turnier
 12
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv9" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv46">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,229
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>06.12.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61884799,'eventdiv10');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim II : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,668</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">06.12.</td>
+<td class="hidden-xs">06.12.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34168073,'eventdiv47');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim II : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,666</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1659</td>
 <td style="font-weight: bold; text-align: center;">
@@ -983,23 +2189,26 @@ Team
 -11
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv10" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv47">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,666
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>29.11.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61759480,'eventdiv11');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Plittersdorf</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>0,837</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">29.11.</td>
+<td class="hidden-xs">29.11.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(34028270,'eventdiv48');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Plittersdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,837</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1656</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1007,23 +2216,26 @@ Team
 3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv11" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv48">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,837
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>22.11.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61613190,'eventdiv12');" class="trigger2" title="Details anzeigen">VL-Herren | TV Dellbrück : TTG St. Augustin</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>0</td>
-<td>0,078</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">22.11.</td>
+<td class="hidden-xs">22.11.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33862840,'eventdiv49');" class="trigger2" title="Details anzeigen">VL-Herren | TV Dellbrück : TTG St. Augustin</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,077</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1657</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1031,23 +2243,26 @@ Team
 -1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv12" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv49">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,077
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>07.11.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61267543,'eventdiv13');" class="trigger2" title="Details anzeigen">BK-Herren | SC Fortuna Bonn II : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,635</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">07.11.</td>
+<td class="hidden-xs">07.11.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33473878,'eventdiv50');" class="trigger2" title="Details anzeigen">BK-Herren | SC Fortuna Bonn II : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,635</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1651</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1055,23 +2270,26 @@ Team
 6
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv13" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv50">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,635
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>02.11.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61207999,'eventdiv14');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC RG Porz III</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>0,824</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">02.11.</td>
+<td class="hidden-xs">02.11.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33403533,'eventdiv51');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC RG Porz III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,820</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1648</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1079,22 +2297,25 @@ Team
 3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv14" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv51">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,820
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>18.10.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(61000808,'eventdiv15');" class="trigger2" title="Details anzeigen">Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>1</td>
-<td>1,129</td>
-<td>
+<tr class="even">
+<td class="visible-xs">18.10.</td>
+<td class="hidden-xs">18.10.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33178904,'eventdiv52');" class="trigger2" title="Details anzeigen">Bezirksmeisterschaften Mittelrhein Erwachsene - Senioren 40</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">1,124</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1650</td>
@@ -1103,22 +2324,25 @@ Turnier
 -2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv15" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv52">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,124
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>12.10.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60926340,'eventdiv16');" class="trigger2" title="Details anzeigen">35. Tischtennis-Jubiläumsturnier - Damen/Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>1</td>
-<td>0,194</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">12.10.</td>
+<td class="hidden-xs">12.10.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33091251,'eventdiv53');" class="trigger2" title="Details anzeigen">35. Tischtennis-Jubiläumsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">0,193</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1637</td>
@@ -1127,22 +2351,25 @@ Turnier
 13
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv16" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv53">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,193
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>11.10.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60888871,'eventdiv17');" class="trigger2" title="Details anzeigen">35. Tischtennis-Jubiläumsturnier - Damen/Herren</a>
-</td>
-<td>16</td>	
-<td>4</td>
-<td>3</td>
-<td>1,578</td>
-<td>
+<tr class="even">
+<td class="visible-xs">11.10.</td>
+<td class="hidden-xs">11.10.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(33045627,'eventdiv54');" class="trigger2" title="Details anzeigen">35. Tischtennis-Jubiläumsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">3:1</td>
+<td class="hidden-xs hidden-sm">1,572</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1614</td>
@@ -1151,23 +2378,26 @@ Turnier
 23
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv17" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv54">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 3:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,572
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>04.10.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60793072,'eventdiv18');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC DJK Hennef II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,242</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">04.10.</td>
+<td class="hidden-xs">04.10.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32930992,'eventdiv55');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC DJK Hennef II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,240</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1618</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1175,23 +2405,26 @@ Team
 -4
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv18" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv55">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,240
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>26.09.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60569441,'eventdiv19');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,335</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">26.09.</td>
+<td class="hidden-xs">26.09.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32678228,'eventdiv56');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,331</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1623</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1199,23 +2432,26 @@ Team
 -5
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv19" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv56">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,331
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>20.09.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60499716,'eventdiv20');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTG Niederkassel III</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>1,251</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">20.09.</td>
+<td class="hidden-xs">20.09.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32596372,'eventdiv57');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTG Niederkassel III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,247</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1611</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1223,22 +2459,25 @@ Team
 12
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv20" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv57">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,247
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>14.09.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60414275,'eventdiv21');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg - Herren</a>
-</td>
-<td>16</td>	
-<td>4</td>
-<td>2</td>
-<td>1,797</td>
-<td>
+<tr class="even">
+<td class="visible-xs">14.09.</td>
+<td class="hidden-xs">14.09.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32498049,'eventdiv58');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,790</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1608</td>
@@ -1247,22 +2486,25 @@ Turnier
 3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv21" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv58">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,790
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>12.09.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60391610,'eventdiv22');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg - Senioren 40</a>
-</td>
-<td>16</td>	
-<td>5</td>
-<td>3</td>
-<td>3,488</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">12.09.</td>
+<td class="hidden-xs">12.09.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32464761,'eventdiv59');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg - Senioren 40</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">3:2</td>
+<td class="hidden-xs hidden-sm">3,479</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1616</td>
@@ -1271,23 +2513,26 @@ Turnier
 -8
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv22" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv59">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 3:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 3,479
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>05.09.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60360668,'eventdiv23');" class="trigger2" title="Details anzeigen">BK-Herren | TV Geislar : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>0,740</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">05.09.</td>
+<td class="hidden-xs">05.09.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32424102,'eventdiv60');" class="trigger2" title="Details anzeigen">BK-Herren | TV Geislar : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,740</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1612</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1295,23 +2540,26 @@ Team
 4
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv23" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv60">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,740
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>30.08.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60340562,'eventdiv24');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Bonn-Duisdorf III</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,613</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">30.08.</td>
+<td class="hidden-xs">30.08.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32401093,'eventdiv61');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Bonn-Duisdorf III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,614</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1622</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1319,24 +2567,26 @@ Team
 -10
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv24" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv61">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,614
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
-<tr>
-<td>22.06.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60234623,'eventdiv25');" class="trigger2" title="Details anzeigen">7. Porzer Tischtennis- und Fußballturnier - Damen/Herren</a>
-</td>
-<td>16</td>	
-<td>5</td>
-<td>3</td>
-<td>2,671</td>
-<td>
+<tr class="divider"><td colspan="8"></td></tr>
+<tr class="even">
+<td class="visible-xs">22.06.</td>
+<td class="hidden-xs">22.06.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32286973,'eventdiv62');" class="trigger2" title="Details anzeigen">7. Porzer Tischtennis- und Fußballturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">3:2</td>
+<td class="hidden-xs hidden-sm">2,659</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1617</td>
@@ -1345,22 +2595,25 @@ Turnier
 5
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv25" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv62">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 3:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,659
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>15.06.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60229717,'eventdiv26');" class="trigger2" title="Details anzeigen">53. Grevenbroicher Frühjahrsturnier - Damen/Herren</a>
-</td>
-<td>16</td>	
-<td>5</td>
-<td>4</td>
-<td>3,504</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">15.06.</td>
+<td class="hidden-xs">15.06.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32282033,'eventdiv63');" class="trigger2" title="Details anzeigen">53. Grevenbroicher Frühjahrsturnier - Damen/Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">4:1</td>
+<td class="hidden-xs hidden-sm">3,488</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1609</td>
@@ -1369,22 +2622,25 @@ Turnier
 8
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv26" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv63">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 4:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 3,488
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>08.06.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60225826,'eventdiv27');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>0</td>
-<td>0,409</td>
-<td>
+<tr class="even">
+<td class="visible-xs">08.06.</td>
+<td class="hidden-xs">08.06.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32278117,'eventdiv64');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:3</td>
+<td class="hidden-xs hidden-sm">0,407</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1616</td>
@@ -1393,22 +2649,25 @@ Turnier
 -7
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv27" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv64">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:3 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,407
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>07.06.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60223576,'eventdiv28');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,326</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">07.06.</td>
+<td class="hidden-xs">07.06.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32275839,'eventdiv65');" class="trigger2" title="Details anzeigen">Tischtennis Turnier des TV 08 Lohmar e. V. - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,322</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1621</td>
@@ -1417,22 +2676,25 @@ Turnier
 -5
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv28" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv65">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,322
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>01.05.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60172933,'eventdiv29');" class="trigger2" title="Details anzeigen">21. Nina-Heß Gedächtnisturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>0</td>
-<td>0,166</td>
-<td>
+<tr class="even">
+<td class="visible-xs">01.05.</td>
+<td class="hidden-xs">01.05.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32224205,'eventdiv66');" class="trigger2" title="Details anzeigen">21. Nina-Heß Gedächtnisturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:3</td>
+<td class="hidden-xs hidden-sm">0,166</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1624</td>
@@ -1441,70 +2703,79 @@ Turnier
 -3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv29" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv66">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 0:3 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,166
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>01.05.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60172832,'eventdiv30');" class="trigger2" title="Details anzeigen">21. Nina-Heß Gedächtnisturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>7</td>
-<td>6</td>
-<td>4,436</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">01.05.</td>
+<td class="hidden-xs">01.05.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32224104,'eventdiv67');" class="trigger2" title="Details anzeigen">21. Nina-Heß Gedächtnisturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">6:1</td>
+<td class="hidden-xs hidden-sm">4,490</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
-<td>1599</td>
+<td>1600</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
-25
+24
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv30" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv67">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 6:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 4,490
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>26.04.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60164059,'eventdiv31');" class="trigger2" title="Details anzeigen">DRIVE 2014 - 31. Holzbüttgener Tischtennisturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>5</td>
-<td>3</td>
-<td>3,223</td>
-<td>
+<tr class="even">
+<td class="visible-xs">26.04.</td>
+<td class="hidden-xs">26.04.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32215307,'eventdiv68');" class="trigger2" title="Details anzeigen">DRIVE 2014 - 31. Holzbüttgener Tischtennisturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">3:2</td>
+<td class="hidden-xs hidden-sm">3,217</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1603</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
--4
+-3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv31" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv68">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 3:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 3,217
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>20.04.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60157784,'eventdiv32');" class="trigger2" title="Details anzeigen">34. Osterfelder Osterturnier 2014 - Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>2</td>
-<td>2,312</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">20.04.</td>
+<td class="hidden-xs">20.04.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32208884,'eventdiv69');" class="trigger2" title="Details anzeigen">34. Osterfelder Osterturnier 2014 - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:1</td>
+<td class="hidden-xs hidden-sm">2,311</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1608</td>
@@ -1513,143 +2784,161 @@ Turnier
 -5
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv32" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv69">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,311
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>12.04.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60124506,'eventdiv33');" class="trigger2" title="Details anzeigen">Gladbeck-Süd Open - Herren</a>
-</td>
-<td>16</td>	
-<td>4</td>
-<td>2</td>
-<td>2,091</td>
-<td>
+<tr class="even">
+<td class="visible-xs">12.04.</td>
+<td class="hidden-xs">12.04.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32172351,'eventdiv70');" class="trigger2" title="Details anzeigen">Gladbeck-Süd Open - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">2,100</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
-<td>1609</td>
+<td>1610</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
--1
+-2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv33" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv70">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 2,100
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>04.04.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(60025697,'eventdiv34');" class="trigger2" title="Details anzeigen">BK-Herren | CTTF Bonn : TTG St. Augustin II</a>
+<tr class="odd">
+<td class="visible-xs">04.04.</td>
+<td class="hidden-xs">04.04.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(32066052,'eventdiv71');" class="trigger2" title="Details anzeigen">BK-Herren | CTTF Bonn : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,257</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,255</td>
-<td>
-Team
-</td>
-<td>1597</td>
+<td>1598</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
 12
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv34" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv71">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,257
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>30.03.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(59888326,'eventdiv35');" class="trigger2" title="Details anzeigen">VL-Herren | TTG St. Augustin : 1. TTC Köln</a>
+<tr class="even">
+<td class="visible-xs">30.03.</td>
+<td class="hidden-xs">30.03.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31911221,'eventdiv72');" class="trigger2" title="Details anzeigen">VL-Herren | TTG St. Augustin : 1. TTC Köln</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,160</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>2</td>
-<td>0</td>
-<td>0,160</td>
-<td>
-Team
-</td>
-<td>1600</td>
+<td>1601</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
 -3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv35" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv72">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,160
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>29.03.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(59873082,'eventdiv36');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : DJK Stallberg-Wolsdorf</a>
+<tr class="odd">
+<td class="visible-xs">29.03.</td>
+<td class="hidden-xs">29.03.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31895005,'eventdiv73');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : DJK Stallberg-Wolsdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">0,593</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>0,587</td>
-<td>
-Team
-</td>
-<td>1577</td>
+<td>1578</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
 23
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv36" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv73">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,593
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>21.03.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(59678439,'eventdiv37');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>1,220</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">21.03.</td>
+<td class="hidden-xs">21.03.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31685665,'eventdiv74');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,217</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1565</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
-12
+13
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv37" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv74">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,217
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>15.03.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(59598729,'eventdiv38');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Geislar</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,910</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">15.03.</td>
+<td class="hidden-xs">15.03.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31597782,'eventdiv75');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Geislar</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,910</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1564</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1657,23 +2946,26 @@ Team
 1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv38" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv75">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,910
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>08.03.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(59461996,'eventdiv39');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Plittersdorf</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,133</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">08.03.</td>
+<td class="hidden-xs">08.03.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31449476,'eventdiv76');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Plittersdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,130</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1566</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1681,23 +2973,26 @@ Team
 -2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv39" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv76">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,130
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>21.02.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(48675109,'eventdiv40');" class="trigger2" title="Details anzeigen">BK-Herren | TTF Lengsdorf : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,820</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">21.02.</td>
+<td class="hidden-xs">21.02.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(31197804,'eventdiv77');" class="trigger2" title="Details anzeigen">BK-Herren | TTF Lengsdorf : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,814</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1563</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1705,23 +3000,26 @@ Team
 3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv40" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv77">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,814
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>31.01.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(30065555,'eventdiv41');" class="trigger2" title="Details anzeigen">BK-Herren | TV Lohmar : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,557</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">31.01.</td>
+<td class="hidden-xs">31.01.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30793688,'eventdiv78');" class="trigger2" title="Details anzeigen">BK-Herren | TV Lohmar : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,557</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1556</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1729,23 +3027,26 @@ Team
 7
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv41" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv78">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,557
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>25.01.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29988125,'eventdiv42');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTVg. GW Porz-Eil</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>0,757</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">25.01.</td>
+<td class="hidden-xs">25.01.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30708632,'eventdiv79');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTVg. GW Porz-Eil</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,761</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1552</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1753,23 +3054,26 @@ Team
 4
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv42" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv79">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,761
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>18.01.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29866593,'eventdiv43');" class="trigger2" title="Details anzeigen">BK-Herren | SSF Bonn : TTG St. Augustin II</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>0</td>
-<td>0,081</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">18.01.</td>
+<td class="hidden-xs">18.01.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30578274,'eventdiv80');" class="trigger2" title="Details anzeigen">BK-Herren | SSF Bonn : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,080</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1553</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1777,23 +3081,26 @@ Team
 -1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv43" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv80">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,080
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>11.01.2014</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29774675,'eventdiv44');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : SC Fortuna Bonn III</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,040</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">11.01.</td>
+<td class="hidden-xs">11.01.2014</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30478970,'eventdiv81');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : SC Fortuna Bonn III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,037</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1554</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1801,22 +3108,25 @@ Team
 -1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv44" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv81">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,037
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>14.12.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29622071,'eventdiv45');" class="trigger2" title="Details anzeigen">5. Leverkusener Niesen Advents Cup - Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>1</td>
-<td>1,253</td>
-<td>
+<tr class="even">
+<td class="visible-xs">14.12.</td>
+<td class="hidden-xs">14.12.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30317842,'eventdiv82');" class="trigger2" title="Details anzeigen">5. Leverkusener Niesen Advents Cup - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">1,252</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1558</td>
@@ -1825,23 +3135,26 @@ Turnier
 -4
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv45" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv82">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,252
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>06.12.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29516891,'eventdiv46');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TTG Niederkassel III</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>1,122</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">06.12.</td>
+<td class="hidden-xs">06.12.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30204498,'eventdiv83');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TTG Niederkassel III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,126</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1544</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1849,23 +3162,26 @@ Team
 14
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv46" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv83">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,126
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>30.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29446968,'eventdiv47');" class="trigger2" title="Details anzeigen">KL-Herren | TV Bergheim II : TTG St. Augustin III</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>0</td>
-<td>0,693</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">30.11.</td>
+<td class="hidden-xs">30.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(30127985,'eventdiv84');" class="trigger2" title="Details anzeigen">KL-Herren | TV Bergheim II : TTG St. Augustin III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,690</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1555</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1873,23 +3189,26 @@ Team
 -11
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv47" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv84">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,690
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>23.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29314728,'eventdiv48');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Troisdorf</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,622</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">23.11.</td>
+<td class="hidden-xs">23.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29986512,'eventdiv85');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTC Troisdorf</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,620</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1565</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1897,23 +3216,26 @@ Team
 -10
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv48" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv85">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,620
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>22.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29238369,'eventdiv49');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : ASV St. Augustin</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,858</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">22.11.</td>
+<td class="hidden-xs">22.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29908046,'eventdiv86');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : ASV St. Augustin</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,860</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1563</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1921,23 +3243,26 @@ Team
 2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv49" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv86">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,860
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>16.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29165281,'eventdiv50');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : CTTF Bonn</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,324</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">16.11.</td>
+<td class="hidden-xs">16.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29830399,'eventdiv87');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : CTTF Bonn</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,320</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1552</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1945,23 +3270,26 @@ Team
 11
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv50" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv87">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,320
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>14.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(29071852,'eventdiv51');" class="trigger2" title="Details anzeigen">KL-Herren | SSV Happerschoß : TTG St. Augustin III</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,848</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">14.11.</td>
+<td class="hidden-xs">14.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29732050,'eventdiv88');" class="trigger2" title="Details anzeigen">KL-Herren | SSV Happerschoß : TTG St. Augustin III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,846</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1550</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1969,23 +3297,26 @@ Team
 2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv51" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv88">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,846
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>08.11.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28957096,'eventdiv52');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TTC DJK Hennef II</a>
-</td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>0,771</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">08.11.</td>
+<td class="hidden-xs">08.11.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29608236,'eventdiv89');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TTC DJK Hennef II</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">0,771</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1530</td>
 <td style="font-weight: bold; text-align: center;">
@@ -1993,22 +3324,25 @@ Team
 20
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv52" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv89">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,771
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>27.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28819866,'eventdiv53');" class="trigger2" title="Details anzeigen">34. Tischtennis-Jubiläumsturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>4</td>
-<td>2</td>
-<td>1,900</td>
-<td>
+<tr class="even">
+<td class="visible-xs">27.10.</td>
+<td class="hidden-xs">27.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29459946,'eventdiv90');" class="trigger2" title="Details anzeigen">34. Tischtennis-Jubiläumsturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,890</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1528</td>
@@ -2017,22 +3351,25 @@ Turnier
 2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv53" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv90">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,890
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>26.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28791455,'eventdiv54');" class="trigger2" title="Details anzeigen">34. Tischtennis-Jubiläumsturnier - Herren</a>
-</td>
-<td>16</td>	
-<td>3</td>
-<td>2</td>
-<td>0,732</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">26.10.</td>
+<td class="hidden-xs">26.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29429459,'eventdiv91');" class="trigger2" title="Details anzeigen">34. Tischtennis-Jubiläumsturnier - Herren</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:1</td>
+<td class="hidden-xs hidden-sm">0,727</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1508</td>
@@ -2041,23 +3378,26 @@ Turnier
 20
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv54" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv91">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 16 | Bilanz: 2:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,727
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>18.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28661977,'eventdiv55');" class="trigger2" title="Details anzeigen">KL-Herren | TTG Niederkassel IV : TTG St. Augustin III</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,372</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">18.10.</td>
+<td class="hidden-xs">18.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29293618,'eventdiv92');" class="trigger2" title="Details anzeigen">KL-Herren | TTG Niederkassel IV : TTG St. Augustin III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,372</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1498</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2065,23 +3405,26 @@ Team
 10
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv55" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv92">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,372
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>11.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28543559,'eventdiv56');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TuS Birk</a>
-</td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,950</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">11.10.</td>
+<td class="hidden-xs">11.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29164531,'eventdiv93');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TuS Birk</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,949</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1497</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2089,142 +3432,160 @@ Team
 1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv56" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv93">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,949
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>05.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28482873,'eventdiv57');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Lohmar</a>
+<tr class="even">
+<td class="visible-xs">05.10.</td>
+<td class="hidden-xs">05.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29097914,'eventdiv94');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Lohmar</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,469</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>1</td>
-<td>0</td>
-<td>0,466</td>
-<td>
-Team
-</td>
-<td>1504</td>
+<td>1505</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
--7
+-8
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv57" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv94">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,469
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>04.10.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28436145,'eventdiv58');" class="trigger2" title="Details anzeigen">KL-Herren | TuS Winterscheid : TTG St. Augustin III</a>
+<tr class="odd">
+<td class="visible-xs">04.10.</td>
+<td class="hidden-xs">04.10.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(29048217,'eventdiv95');" class="trigger2" title="Details anzeigen">KL-Herren | TuS Winterscheid : TTG St. Augustin III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,861</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>1</td>
-<td>1</td>
-<td>0,860</td>
-<td>
-Team
-</td>
-<td>1502</td>
+<td>1503</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
 2
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv58" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv95">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,861
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>27.09.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28223585,'eventdiv59');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : HSG Siebengebirge-Thomasberg</a>
+<tr class="even">
+<td class="visible-xs">27.09.</td>
+<td class="hidden-xs">27.09.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28828224,'eventdiv96');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : HSG Siebengebirge-Thomasberg</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">1,805</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>2</td>
-<td>1</td>
-<td>1,805</td>
-<td>
-Team
-</td>
-<td>1515</td>
+<td>1516</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="red">
 -13
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv59" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv96">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,805
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>17.09.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28064495,'eventdiv60');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Eschmar : TTG St. Augustin III</a>
+<tr class="odd">
+<td class="visible-xs">17.09.</td>
+<td class="hidden-xs">17.09.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28659558,'eventdiv97');" class="trigger2" title="Details anzeigen">KL-Herren | TTC Eschmar : TTG St. Augustin III</a></td>
+<td class="hidden-xs hidden-sm">16</td>	
+<td class="hidden-xs hidden-sm">2:0</td>
+<td class="hidden-xs hidden-sm">1,053</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
-<td>16</td>	
-<td>2</td>
-<td>2</td>
-<td>1,050</td>
-<td>
-Team
-</td>
-<td>1500</td>
+<td>1501</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
 15
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv60" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv97">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 16 | Bilanz: 2:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,053
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>15.09.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(28045041,'eventdiv61');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg Erwachsene - Herren</a>
-</td>
-<td>20</td>	
-<td>7</td>
-<td>6</td>
-<td>4,730</td>
-<td>
+<tr class="even">
+<td class="visible-xs">15.09.</td>
+<td class="hidden-xs">15.09.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28638316,'eventdiv98');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg Erwachsene - Herren</a></td>
+<td class="hidden-xs hidden-sm">20</td>	
+<td class="hidden-xs hidden-sm">6:1</td>
+<td class="hidden-xs hidden-sm">4,710</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1475</td>
 <td style="font-weight: bold; text-align: center;">
 <span class="green">
-25
+26
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv61" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv98">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 20 | Bilanz: 6:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 4,710
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>13.09.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27999912,'eventdiv62');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg Erwachsene - Senioren 40</a>
-</td>
-<td>20</td>	
-<td>3</td>
-<td>1</td>
-<td>0,508</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">13.09.</td>
+<td class="hidden-xs">13.09.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28588650,'eventdiv99');" class="trigger2" title="Details anzeigen">Kreismeisterschaften Rhein-Sieg Erwachsene - Senioren 40</a></td>
+<td class="hidden-xs hidden-sm">20</td>	
+<td class="hidden-xs hidden-sm">1:2</td>
+<td class="hidden-xs hidden-sm">0,508</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1465</td>
@@ -2233,23 +3594,26 @@ Turnier
 10
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv62" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv99">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 20 | Bilanz: 1:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,508
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>06.09.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27930516,'eventdiv63');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TuS Eudenbach</a>
-</td>
-<td>20</td>	
-<td>2</td>
-<td>1</td>
-<td>0,693</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">06.09.</td>
+<td class="hidden-xs">06.09.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28512352,'eventdiv100');" class="trigger2" title="Details anzeigen">KL-Herren | TTG St. Augustin III : TuS Eudenbach</a></td>
+<td class="hidden-xs hidden-sm">20</td>	
+<td class="hidden-xs hidden-sm">1:1</td>
+<td class="hidden-xs hidden-sm">0,693</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1459</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2257,24 +3621,26 @@ Team
 6
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv63" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv100">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 20 | Bilanz: 1:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,693
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr><th colspan="9" class="tabellentrennlinie"></th></tr>
-<tr>
-<td>16.06.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27778815,'eventdiv64');" class="trigger2" title="Details anzeigen">Tischtennis-Turnier des TV 08 Lohmar (Jugend-Grand-Prix) - Herren</a>
-</td>
-<td>20</td>	
-<td>4</td>
-<td>2</td>
-<td>1,359</td>
-<td>
+<tr class="divider"><td colspan="8"></td></tr>
+<tr class="odd">
+<td class="visible-xs">16.06.</td>
+<td class="hidden-xs">16.06.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28356276,'eventdiv101');" class="trigger2" title="Details anzeigen">Tischtennis-Turnier des TV 08 Lohmar (Jugend-Grand-Prix) - Herren</a></td>
+<td class="hidden-xs hidden-sm">20</td>	
+<td class="hidden-xs hidden-sm">2:2</td>
+<td class="hidden-xs hidden-sm">1,349</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1446</td>
@@ -2283,22 +3649,25 @@ Turnier
 13
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv64" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv101">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 20 | Bilanz: 2:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 1,349
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>15.06.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27776588,'eventdiv65');" class="trigger2" title="Details anzeigen">Tischtennis-Turnier des TV 08 Lohmar (Jugend-Grand-Prix) - Herren</a>
-</td>
-<td>24</td>	
-<td>3</td>
-<td>0</td>
-<td>0,348</td>
-<td>
+<tr class="even">
+<td class="visible-xs">15.06.</td>
+<td class="hidden-xs">15.06.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28354050,'eventdiv102');" class="trigger2" title="Details anzeigen">Tischtennis-Turnier des TV 08 Lohmar (Jugend-Grand-Prix) - Herren</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:3</td>
+<td class="hidden-xs hidden-sm">0,345</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1454</td>
@@ -2307,22 +3676,25 @@ Turnier
 -8
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv65" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv102">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 24 | Bilanz: 0:3 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,345
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>31.05.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27765509,'eventdiv66');" class="trigger2" title="Details anzeigen">6. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a>
-</td>
-<td>24</td>	
-<td>3</td>
-<td>0</td>
-<td>0,556</td>
-<td>
+<tr class="odd">
+<td class="visible-xs">31.05.</td>
+<td class="hidden-xs">31.05.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(28342896,'eventdiv103');" class="trigger2" title="Details anzeigen">6. Porzer Tischtennis- und Fußballturnier (Jugend-Grand-Prix) - Herren</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:3</td>
+<td class="hidden-xs hidden-sm">0,550</td>
+<td class="hidden-xs hidden-sm">
 Turnier
 </td>
 <td>1467</td>
@@ -2331,23 +3703,26 @@ Turnier
 -13
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv66" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv103">
+<div class="visible-xs visible-sm tiny m-y">
+Turnier | Änderungskonstante: 24 | Bilanz: 0:3 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,550
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>16.03.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27224913,'eventdiv67');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Lohmar</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,285</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">16.03.</td>
+<td class="hidden-xs">16.03.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(27768852,'eventdiv104');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TV Lohmar</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,288</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1474</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2355,23 +3730,26 @@ Team
 -7
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv67" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv104">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,288
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>08.03.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(27013412,'eventdiv68');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Eschmar : TTG St. Augustin II</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>1</td>
-<td>0,865</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">08.03.</td>
+<td class="hidden-xs">08.03.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(27544878,'eventdiv105');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Eschmar : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">1:0</td>
+<td class="hidden-xs hidden-sm">0,861</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1471</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2379,23 +3757,26 @@ Team
 3
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv68" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv105">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 1:0 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,861
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>02.03.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26928237,'eventdiv69');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTF Lengsdorf</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,492</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">02.03.</td>
+<td class="hidden-xs">02.03.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(27451440,'eventdiv106');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTF Lengsdorf</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,488</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1483</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2403,23 +3784,26 @@ Team
 -12
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv69" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv106">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,488
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>22.02.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26722914,'eventdiv70');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf II : TTG St. Augustin II</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,572</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">22.02.</td>
+<td class="hidden-xs">22.02.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(27231505,'eventdiv107');" class="trigger2" title="Details anzeigen">BK-Herren | TTC Troisdorf II : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,572</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1497</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2427,23 +3811,26 @@ Team
 -14
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv70" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv107">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,572
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>01.02.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26397362,'eventdiv71');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim : TTG St. Augustin II</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,027</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">01.02.</td>
+<td class="hidden-xs">01.02.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(26890729,'eventdiv108');" class="trigger2" title="Details anzeigen">BK-Herren | TV Bergheim : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,027</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1498</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2451,23 +3838,26 @@ Team
 -1
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv71" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv108">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,027
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>22.01.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26223540,'eventdiv72');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin III : TTG St. Augustin II</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,416</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">22.01.</td>
+<td class="hidden-xs">22.01.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(26706846,'eventdiv109');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin III : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,413</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1508</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2475,23 +3865,26 @@ Team
 -10
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv72" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv109">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,413
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>19.01.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26192536,'eventdiv73');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTG Niederkassel III</a>
-</td>
-<td>24</td>	
-<td>2</td>
-<td>0</td>
-<td>0,837</td>
-<td>
-Team
+<tr class="even">
+<td class="visible-xs">19.01.</td>
+<td class="hidden-xs">19.01.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(26674025,'eventdiv110');" class="trigger2" title="Details anzeigen">BK-Herren | TTG St. Augustin II : TTG Niederkassel III</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:2</td>
+<td class="hidden-xs hidden-sm">0,837</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1528</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2499,23 +3892,26 @@ Team
 -20
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv73" ></div> 
+</tr>
+<tr class="even">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv110">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:2 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,837
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
-<tr>
-<td>12.01.2013</td>
-<td style="width: 550px;"><a href="javascript:openmoreinfos(26080957,'eventdiv74');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Stallberg-Wolsdorf : TTG St. Augustin II</a>
-</td>
-<td>24</td>	
-<td>1</td>
-<td>0</td>
-<td>0,376</td>
-<td>
-Team
+<tr class="odd">
+<td class="visible-xs">12.01.</td>
+<td class="hidden-xs">12.01.2013</td>
+<td style="width: 70%;"><a href="javascript:openmoreinfos(26554470,'eventdiv111');" class="trigger2" title="Details anzeigen">BK-Herren | DJK Stallberg-Wolsdorf : TTG St. Augustin II</a></td>
+<td class="hidden-xs hidden-sm">24</td>	
+<td class="hidden-xs hidden-sm">0:1</td>
+<td class="hidden-xs hidden-sm">0,376</td>
+<td class="hidden-xs hidden-sm">
+Mannschaft
 </td>
 <td>1537</td>
 <td style="font-weight: bold; text-align: center;">
@@ -2523,79 +3919,72 @@ Team
 -9
 </span>
 </td>
-</tr>	
-<tr><td colspan="9" style="display: none;"></td></tr>
-<tr>
-<td colspan="9" style="margin: 0; padding: 0;">
-<div bindOnLoad = "false" class="toggle_container" style="display:none" ID="eventdiv74" ></div> 
+</tr>
+<tr class="odd">
+<td colspan="8" style="margin: 0; padding: 0;">
+<div class="events-container" id="eventdiv111">
+<div class="visible-xs visible-sm tiny m-y">
+Mannschaft | Änderungskonstante: 24 | Bilanz: 0:1 | <span class="visible-xs-inline" title="Gewinnerwartung">GE</span><span class="visible-sm-inline">Gewinnerwartung</span>: 0,376
+</div>
+<div bindOnLoad="false" class="events-data"></div>
+</div>
 </td>
 </tr>	
+</tbody>
 </table>
-<script type="text/javascript" charset="utf-8">
-jQuery(".toggle_container").hide();
-// jQuery(".trigger2").click(function(){
-// jQuery(this).toggleClass("active").next().delay(300).slideToggle("slow");
-// });
-</script>
-</div> 
-<div class="contentbox_bottom bg_ci_orange"></div>
+</div>
+</div>
+<div class="panel-footer"></div>
 </div>
 </div>
 </div>
 </div>
+<div class="clearfix"></div>
 <div class="whitebox_fx mt_30">
-<div class="grid">
-<div class="whitebox_container">
-<div class="grid_12">
 <div class="bg_spon_top"></div>
-<div class="sponbox">
-<a href="http://www.mytischtennis.de/countandredirect/2-0001/" class="spon01">Joola</a>
-<a href="http://www.mytischtennis.de/countandredirect/2-0002/" class="spon02">Tibhar</a>
-<a href="http://www.mytischtennis.de/countandredirect/2-0185/" class="spon03">Schöler Micke</a>
-<a href="http://www.mytischtennis.de/countandredirect/2-0186/" class="spon04">andro</a>
+<div class="container">
+<div class="row sponbox">
+<div class="col-xs-6 col-md-3">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=1" class="spon01">Joola</a>
+</div>
+<div class="col-xs-6 col-md-3">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=185" class="spon03">Schöler Micke</a>
+</div>
+<div class="col-xs-6 col-md-3">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=186" class="spon04">andro</a>
+</div>
+<div class="col-xs-6 col-md-3">
 <a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
 </div>
+</div>
+</div>
 <div class="bg_spon_bottom"></div>
-</div> 
-</div>
-</div>
 </div>
 <div class="graybox_fx">
-<div class="grid">
-<div class="graybox_container">
-<div class="graybox_content">
-<div class="graybox_list01">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-md-2">
 <div class="headline"><h5>Service</h5></div>
 <ul>
-<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>	
-<li><a href="faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>
+<li><a href="/community/faq" title="FAQ">FAQ</a></li>
 <li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
-<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>	
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>
 </ul>
 </div>
-<div class="graybox_list02">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
 <div class="headline"><h5>Informationen</h5></div>
 <ul>
 <li><a href="/public/impressum" title="Impressum">Impressum</a></li>
 <li><a href="/public/agb" title="AGB">AGB</a></li>
-<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>	
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>
 </ul>
 </div>
-<div class="graybox_list05">
-<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FmyTischtennis&amp;width=292&amp;height=290&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=true&amp;header=true" scrolling="no" frameborder="0" style="border-bottom:1px solid #000;; overflow:hidden; width:446px; height:178px; background: white;" allowTransparency="true"></iframe>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="onbottomnavi_fx bg_ci_orange">
-<div class="grid">
-<div class="onbottomnavi">
-<div class="center">
-<p class="mt_20 white">Copyright &copy; 2015 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
-</div> 
-</div>
-</div>
+<div class="onbottomnavi_fx bg_ci_orange text-center">
+<p class="mt_20 white mb_20">Copyright &copy; 2016 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
 </div>
 <script type="text/javascript">
 var _gaq = _gaq || [];
@@ -2608,4 +3997,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 })();
 </script>
 </body>
-</html> 
+</html>
+<script>
+var anUrl = "/fusionreactor/UEM.cfm?db=0&wr=35&s=023307A2E4C0E11E50682EF654001E17&t=1311142";document.write(unescape("%3Cscript src='/fusionreactor/UEMJS.cfm' type='text/javascript'%3E%3C/script%3E")); 
+</script>

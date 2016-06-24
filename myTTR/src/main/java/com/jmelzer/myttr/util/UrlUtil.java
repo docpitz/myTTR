@@ -12,8 +12,9 @@ public final class UrlUtil {
         return http + relUrl;
     }
     public static String getHttpAndDomain(String url) {
-        if (url == null)
+        if (url == null || url.isEmpty())
             return null;
+
         return url.substring(0, url.indexOf(".de")+3);
     }
 

@@ -23,7 +23,7 @@ import com.jmelzer.myttr.Player;
 
 import java.util.List;
 
-public class MyTischtennisParserTest extends BaseTestCase {
+public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 
     @SmallTest
     public void testgetPoints() throws Exception {

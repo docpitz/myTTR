@@ -17,6 +17,7 @@ import java.util.List;
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
@@ -32,9 +33,9 @@ public class AppointmentParserTest {
         List<TeamAppointment> list = parser.parse(page, "TSV Krähenwinkel-Kaltenweide");
 
         assertEquals(3, list.size());
-        assertFalse("Heimspiel", list.get(0).isPlayAway());
-        assertEquals("TTC Vinnhorst", list.get(0).getTeam1());
-        assertEquals("24.01 11:00 Uh", list.get(0).getDate());
+        assertNull("Heimspiel not found", list.get(0).isPlayAway());
+        assertEquals("TTC Vinnhorst", list.get(0).getTeam2());
+        assertEquals("24.01 11:00 Uhr", list.get(0).getDate());
 
         for (TeamAppointment teamAppointment : list) {
             System.out.println("teamAppointment = " + teamAppointment);

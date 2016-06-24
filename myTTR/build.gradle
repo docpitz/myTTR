@@ -26,8 +26,8 @@ android {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 40
-        versionName "2.4.0"
+        versionCode 41
+        versionName "2.5.0"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {
@@ -46,21 +46,21 @@ android {
     lintOptions {
         abortOnError false
     }
-    sourceSets {
-        test {
-            // include library sources into tests
-            java.srcDirs android.sourceSets.main.java.srcDirs
-
-            // exclude all files from compilation in case of disabled testing.
-            // 'test' configuration is still exists in this case
-            if (!useTesting) {
-                java.excludes '**/*.java'
-            }
-        }
-
-        debug.setRoot('build-types/debug')
-        release.setRoot('build-types/release')
-    }
+//    sourceSets {
+//        test {
+//            // include library sources into tests
+//            java.srcDirs android.sourceSets.main.java.srcDirs
+//
+//            // exclude all files from compilation in case of disabled testing.
+//            // 'test' configuration is still exists in this case
+//            if (!useTesting) {
+//                java.excludes '**/*.java'
+//            }
+//        }
+//
+//        debug.setRoot('build-types/debug')
+//        release.setRoot('build-types/release')
+//    }
 
 
 }

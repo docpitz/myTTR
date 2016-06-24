@@ -6,6 +6,7 @@ import com.jmelzer.myttr.Player;
 import junit.framework.Assert;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -47,7 +48,7 @@ public class MyTischtennisParserTest {
         String page = readFile(ASSETS_DIR + "/events_425165.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, false);
-        assertEquals(1893, player.getTtrPoints());
+        assertEquals(1947, player.getTtrPoints());
         assertEquals("Dennis", player.getFirstname());
         assertEquals("Michel", player.getLastname());
         assertNotNull(player);
@@ -59,24 +60,14 @@ public class MyTischtennisParserTest {
         String page = readFile(ASSETS_DIR + "/events.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, true);
-        assertEquals(1645, player.getTtrPoints());
-        assertEquals("Jürgen Melzer (1645)", player.getFullName());
+        assertEquals(1679, player.getTtrPoints());
+        assertEquals("Jürgen Melzer (1679)", player.getFullName());
         assertNotNull(player);
         assertTrue(player.getEvents().size() > 20);
     }
 
     @Test
-    public void testParseOwnEvents201506() throws Exception {
-        String page = readFile(ASSETS_DIR + "/myHistory_2015_06.htm");
-        assertNotNull(page);
-        Player player = parser.parseEvents(page, false);
-        assertEquals(1662, player.getTtrPoints());
-        assertEquals("Jürgen Melzer (1662)", player.getFullName());
-        assertNotNull(player);
-        assertTrue(player.getEvents().size() > 20);
-    }
-
-    @Test
+    @Ignore
     public void testFindPlaySSF() throws Exception {
         String page = readFile(ASSETS_DIR + "/ssf-mannschaft.htm");
         assertNotNull(page);

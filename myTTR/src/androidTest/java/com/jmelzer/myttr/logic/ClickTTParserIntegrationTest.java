@@ -56,7 +56,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     @SmallTest
     public void testReadIntegration() throws NetworkException {
         List<Verband> verbaende = parser.readVerbaende();
-        assertEquals(12, verbaende.size());
+        assertEquals(13, verbaende.size());
         Verband v = verbaende.get(0);
         assertNotNull(v);
         assertSame(Verband.dttb, v);
@@ -68,11 +68,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
-        parser.readLigen(nrw, Saison.SAISON_2015);
+        parser.readLigen(nrw, Saison.SAISON_2017);
         assertTrue("must be greater than 20, we don't exactly the size",
                 nrw.getLigaList().size() > 20);
 
-        parser.readBezirke(nrw, Saison.SAISON_2015);
+        parser.readBezirke(nrw, Saison.SAISON_2017);
         assertEquals(5, nrw.getBezirkList().size());
 
         Bezirk bezirk = nrw.getBezirkList().get(2);

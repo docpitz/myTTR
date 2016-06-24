@@ -88,6 +88,12 @@ public class Verband {
                     return url.replace("RTTV+14/15", "RTTV+2015/2016");
                 }
                 return url.replace("14/15", "15/16").replace("2014%2F15", "2015%2F16");
+            case SAISON_2017:
+            //silly workaround
+            if (url.contains("rttv.click-tt.de")) {
+                return url.replace("RTTV+14/15", "RTTV+2016/2017");
+            }
+            return url.replace("14/15", "16/17").replace("2014%2F15", "2016%2F17");
             case SAISON_2014:
                 return url.replace("14/15", "13/14").replace("2014%2F15", "2013%2F14");
             default:

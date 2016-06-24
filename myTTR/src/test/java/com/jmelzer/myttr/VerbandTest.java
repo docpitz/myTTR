@@ -25,8 +25,12 @@ public class VerbandTest {
             String u = verband.replaceYear(verband.url, Saison.SAISON_2016);
             assertFalse(u, u.contains("2014"));
         }
+        for (Verband verband : verbandList) {
+            String u = verband.replaceYear(verband.url, Saison.SAISON_2017);
+            assertFalse(u, u.contains("2014"));
+        }
         try {
-            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2017);
+            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2018);
             fail("not configured");
         } catch (IllegalArgumentException e) {
             //ok

@@ -37,4 +37,15 @@ public class TTRCalculatorTest  {
         list.add(new TTRCalculator.Game(1694, false));
         assertEquals(1, calculator.calcPoints(1669, list, 16));
     }
+
+    @Test
+    public void testCalcNuenError() {
+
+        TTRCalculator calculator = new TTRCalculator();
+
+        List<TTRCalculator.Game> list = new ArrayList<>();
+        list.add(new TTRCalculator.Game(960, true));
+        list.add(new TTRCalculator.Game(1026, false));
+        assertEquals(13, calculator.calcPoints(884, list, 20));
+    }
 }
