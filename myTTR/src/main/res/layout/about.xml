@@ -19,7 +19,7 @@
 			android:id="@+id/info_text"
 			android:gravity="center"
             android:text="myTTR
-Version 2.5.0
+Version 2.5.1
 Copyright 2014-2016
 Juergen Melzer"
 			android:layout_gravity="center"
