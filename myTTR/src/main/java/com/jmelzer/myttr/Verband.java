@@ -30,12 +30,12 @@ public class Verband {
         verbaende.add(new Verband("Pfälzischer TTV", "http://pttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=PTTV+14/15"));
         verbaende.add(new Verband("Rheinhessischer TTV", "http://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=RTTV+14/15"));
         verbaende.add(new Verband("TTV Rheinland", "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15"));
-//        verbaende.add(new Verband("Saarländischer TTB", "http://www.sttb.de/index.php?id=tabellen"));
+        verbaende.add(new Verband("Saarländischer TTB", "http://sttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=STTB+14/15"));
 //        verbaende.add(new Verband("Sächsischer TTV", "http://sttv.tischtennislive.de/"));
         verbaende.add(new Verband("TTV Sachsen-Anhalt", "http://ttvsa.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVSA+14/15"));
 //        verbaende.add(new Verband("TTV Schleswig-Holstein", "http://ttvsh.tischtennislive.de/"));
         verbaende.add(new Verband("Südbadischer Tischtennis-Verband", "http://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+SbTTV+14/15"));
-//        verbaende.add(new Verband("Thüringer TTV", "http://www.tttv.info/index.php?option=com_content&view=category&layout=blog&id=3&Itemid=15"));
+        verbaende.add(new Verband("Thüringer TTV", "http://tttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTTV%2016/17"));
         verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "http://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15"));
         verbaende.add(new Verband("Westdeutscher TTV", "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15"));
     }
@@ -53,6 +53,7 @@ public class Verband {
         this.name = name;
         this.url = url;
     }
+
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(url);
     }
@@ -60,7 +61,7 @@ public class Verband {
     public void setBezirkList(List<Bezirk> bezirkList) {
         this.bezirkList = bezirkList;
         for (Bezirk bezirk : bezirkList) {
-            bezirk.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , bezirk.getUrl()));
+            bezirk.setUrl(UrlUtil.safeUrl(getHttpAndDomain(), bezirk.getUrl()));
         }
     }
 
@@ -69,15 +70,17 @@ public class Verband {
     }
 
     /**
-     * @deprecated use getUrlFixed instead
      * @return url with wrong year
+     * @deprecated use getUrlFixed instead
      */
     public String getUrl() {
         return url;
     }
+
     public String getUrlFixed(Saison saison) {
         return replaceYear(url, saison);
     }
+
     String replaceYear(String url, Saison saison) {
         switch (saison) {
             case SAISON_2015:
@@ -89,11 +92,11 @@ public class Verband {
                 }
                 return url.replace("14/15", "15/16").replace("2014%2F15", "2015%2F16");
             case SAISON_2017:
-            //silly workaround
-            if (url.contains("rttv.click-tt.de")) {
-                return url.replace("RTTV+14/15", "RTTV+2016/2017");
-            }
-            return url.replace("14/15", "16/17").replace("2014%2F15", "2016%2F17");
+                //silly workaround
+                if (url.contains("rttv.click-tt.de")) {
+                    return url.replace("RTTV+14/15", "RTTV+2016/2017");
+                }
+                return url.replace("14/15", "16/17").replace("2014%2F15", "2016%2F17");
             case SAISON_2014:
                 return url.replace("14/15", "13/14").replace("2014%2F15", "2013%2F14");
             default:
@@ -118,7 +121,7 @@ public class Verband {
         ligaList.clear();
         ligaList.addAll(ligen);
         for (Liga liga : ligen) {
-            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain() , liga.getUrl()));
+            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain(), liga.getUrl()));
         }
     }
 }

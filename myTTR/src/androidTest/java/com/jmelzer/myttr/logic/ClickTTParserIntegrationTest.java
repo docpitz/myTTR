@@ -127,9 +127,12 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         for (Verband verband : verbaende) {
 
 //            readLigenAndTest(verband); //allready ok, uncomment if you want to test it
-            if (verband == dttb) {
+            if (verband.getName().equals("Saarländischer TTB") ) {
                 continue;
             }
+//            if (verband == dttb) {
+//                continue;
+//            }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
             parser.readBezirke(verband, Saison.SAISON_2015);
