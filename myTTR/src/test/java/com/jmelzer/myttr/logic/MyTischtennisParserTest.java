@@ -60,8 +60,8 @@ public class MyTischtennisParserTest {
         String page = readFile(ASSETS_DIR + "/events.htm");
         assertNotNull(page);
         Player player = parser.parseEvents(page, true);
-        assertEquals(1679, player.getTtrPoints());
-        assertEquals("Jürgen Melzer (1679)", player.getFullName());
+        assertEquals(1684, player.getTtrPoints());
+        assertEquals("Jürgen Melzer (1684)", player.getFullName());
         assertNotNull(player);
         assertTrue(player.getEvents().size() > 20);
     }

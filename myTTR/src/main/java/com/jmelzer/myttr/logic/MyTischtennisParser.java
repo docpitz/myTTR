@@ -382,11 +382,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private String parseRealName(String page) {
-        final String tagStart = "<span class=\"usertext_ontopbar\">";
-        final String tagEnd = "</span>";
-        int n1 = page.indexOf(tagStart) + tagStart.length();
-        int n2 = page.indexOf(tagEnd, n1);
-        return page.substring(n1, n2).trim();
+        ParseResult result = readBetween(page, 0, "<a href=\"/community/personalprofil\" class=\"user-image\">", "</a>");
+        result = readBetween(result.result, 0, "<span>", "</span>");
+        return result.result.trim();
     }
 
     public List<Player> readPlayersFromTeam(String id) throws NetworkException {
@@ -476,9 +474,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             result = readBetween(page, 0, "<h3>", "<span>");
             p.setFirstname(parseFirstnameFromBadName(result.result));
             p.setLastname(parseLastNameFromBadName(result.result));
-        } else {
-            result = readBetween(page, 0, "<span class=\"usertext_ontopbar\">", "</span>");
-            p.setFullName(result.result);
+            p.setFullName(parseRealName(page));
 
         }
         return p;

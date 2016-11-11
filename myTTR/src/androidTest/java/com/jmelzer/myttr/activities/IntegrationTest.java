@@ -404,7 +404,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         p = MyApplication.getTtrCalcPlayer().get(1);
         assertEquals("Marco", p.getFirstname());
         assertEquals("Vester", p.getLastname());
-        assertEquals("TTG St. Augustin", p.getClub());
+        assertEquals("TTC Hennef", p.getClub());
 
         solo.clickOnText(solo.getString(R.string.calc));
         assertTrue(waitForActivity(ResultActivity.class));
