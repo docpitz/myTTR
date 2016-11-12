@@ -73,7 +73,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             throw new PlayerNotWellRegistered();
         }
 
-        return new User(parseRealName(page), parsePoints(page));
+        return new User(parseLoginName(page), parsePoints(page));
     }
 
     public int getPoints() throws PlayerNotWellRegistered, NetworkException {
@@ -374,14 +374,14 @@ public class MyTischtennisParser extends AbstractBaseParser {
         String url = "http://www.mytischtennis.de/community/index";
         try {
             String page = Client.getPage(url);
-            return parseRealName(page);
+            return parseLoginName(page);
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
         }
         return null;
     }
 
-    private String parseRealName(String page) {
+    private String parseLoginName(String page) {
         ParseResult result = readBetween(page, 0, "<a href=\"/community/personalprofil\" class=\"user-image\">", "</a>");
         result = readBetween(result.result, 0, "<span>", "</span>");
         return result.result.trim();
@@ -474,7 +474,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
             result = readBetween(page, 0, "<h3>", "<span>");
             p.setFirstname(parseFirstnameFromBadName(result.result));
             p.setLastname(parseLastNameFromBadName(result.result));
-            p.setFullName(parseRealName(page));
+
+        } else {
+            p.setFullName(parseLoginName(page));
 
         }
         return p;
