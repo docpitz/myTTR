@@ -21,7 +21,7 @@ public class Verband {
         verbaende.add(new Verband("Badischer TTV", "http://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+Bad.+14/15"));
         verbaende.add(new Verband("Bayerischer TTV", "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15"));
 //        verbaende.add(new Verband("Berliner TTV", "http://bettv.tischtennislive.de/"));
-//        verbaende.add(new Verband("TTV Brandenburg", "http://www.tt-info.net"));
+        verbaende.add(new Verband("TTV Brandenburg", "http://ttvb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=VOL+Ost%2FNord+16%2F17"));
         verbaende.add(new Verband("FTT Bremen", "http://fttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN+14/15"));
 //        verbaende.add(new Verband("Hamburger TTV", "http://www.tt-maximus.de/pdpages/ttmaximus/herren_staffeln.php"));
         verbaende.add(new Verband("Hessischer TTV", "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15"));
