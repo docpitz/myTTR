@@ -531,7 +531,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (start == -1) {
             start = page.indexOf(startTag2);
         }
-        final String toCheck = "<div class=\"openinfos myttFeaturesTooltip\" data-tooltipdata=";
+        final String toCheck = "<a class=\"person";
 
         String trClosed = "</td>";
 
@@ -606,7 +606,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     private Player readPlayer(String page, int startPoint) {
         String tr = "\">";
         Player player = new Player();
-        String div = "</div>";
+        String div = "</a>";
         ParseResult result = readBetween(page, startPoint - 50, "data-tooltipdata=\"", ";");
         if (result != null) {
             player.setPersonId(Long.valueOf(result.result));
