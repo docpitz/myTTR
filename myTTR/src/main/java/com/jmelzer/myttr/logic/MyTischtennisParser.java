@@ -611,15 +611,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (result != null) {
             player.setPersonId(Long.valueOf(result.result));
         }
-        if (player.getPersonId() == 0) {
-            System.out.println("break");
-        }
-
         int n = page.indexOf(tr, startPoint);
         int end = page.indexOf(div, n);
         String name = page.substring(n + tr.length(), end);
         int k = name.indexOf(',');
-        player.setLastname(name.substring(0, k));
+        player.setLastname(stripNewLine(name.substring(0, k)));
         player.setFirstname(name.substring(k + 2));
 
 //        n = page.indexOf("personId=", n);
@@ -630,6 +626,16 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //        }
 
         return player;
+    }
+
+    private String stripNewLine(String str) {
+        if (str.startsWith("\n")) {
+            str = str.substring(str.indexOf("\n") + 1);
+        }
+        if (str.endsWith("\n")) {
+            str = str.substring(0, str.indexOf("\n"));
+        }
+        return str;
     }
 
     public EventDetail readEventDetail(Event event) throws NetworkException {
