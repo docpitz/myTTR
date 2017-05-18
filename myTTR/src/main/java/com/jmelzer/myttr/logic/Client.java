@@ -87,7 +87,7 @@ public class Client {
         }
     }
 
-    private static String readGzippedResponse(HttpResponse response) throws IOException {
+    public static String readGzippedResponse(HttpResponse response) throws IOException {
 
         InputStream instream = response.getEntity().getContent();
         Header contentEncoding = response.getFirstHeader("Content-Encoding");
@@ -137,7 +137,7 @@ public class Client {
     private static HttpGet prepareGet(String url) {
         HttpGet httpGet = new HttpGet(url);
         httpGet.setHeader("Accept-Language", "de,en-US;q=0.7,en;q=0.3");
-        httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0");
+        httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0");
         httpGet.setHeader("Accept-Encoding", "gzip, deflate");
         httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         return httpGet;

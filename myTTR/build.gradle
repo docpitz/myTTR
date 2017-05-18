@@ -9,7 +9,14 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'idea'
 
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
 repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
@@ -17,17 +24,17 @@ repositories {
 //apply plugin: 'com.github.kt3k.coveralls'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
     useLibrary 'org.apache.http.legacy'
 
 
     defaultConfig {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
-        targetSdkVersion 23
-        versionCode 48
-        versionName "2.6.4"
+        targetSdkVersion 25
+        versionCode 49
+        versionName "2.6.5"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {

@@ -74,7 +74,7 @@ public class LoginManager {
     public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered {
         long start = System.currentTimeMillis();
         logout();
-        HttpPost httpPost = new HttpPost("http://www.mytischtennis.de/community/login");
+        HttpPost httpPost = new HttpPost("https://www.mytischtennis.de/community/login");
         HttpParams gethttpParams = new BasicHttpParams();
         gethttpParams.setParameter("fromLogin", null);
 
@@ -82,22 +82,31 @@ public class LoginManager {
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("userNameB", username));
         nvps.add(new BasicNameValuePair("userPassWordB", password));
+        nvps.add(new BasicNameValuePair("targetPage", "index?fromlogin=1?fromlogin=1"));
+        nvps.add(new BasicNameValuePair("goLogin", "Einloggen"));
 
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
         HttpResponse response = Client.execute(httpPost);
 
-        Log.d(Constants.LOG_TAG, "status code login =" + response.getStatusLine().getStatusCode());
+//        Log.d(Constants.LOG_TAG, "status code login =" + response.getStatusLine().getStatusCode());
+//
+//        for (Cookie cookie : Client.getCookieStore().getCookies()) {
+//            Log.d(Constants.LOG_TAG, "cookie = " + cookie.getName());
+//        }
+
 //        if (page.contains("Deine Zugangsdaten sind nicht korrekt!")) {
 //            throw new PlayerWrongLogin();
 //        }
         response.getEntity().consumeContent();
 
-        User user = new MyTischtennisParser().getPointsAndRealName();
-        user.setPassword(password);
-        user.setUsername(username);
-//        response = Client.client.execute(httpGet2);
-//        Log.d(Constants.LOG_TAG, "status code 2=" + response.getStatusLine().getStatusCode());
-//        response.getEntity().consumeContent();
+        User user = null;
+        try {
+            user = new MyTischtennisParser().getPointsAndRealName();
+            user.setPassword(password);
+            user.setUsername(username);
+        } catch (Exception e) {
+            return null;
+        }
         for (Cookie cookie : Client.getCookieStore().getCookies()) {
             if (LOGGEDINAS.equals(cookie.getName())) {
                 un = username;
