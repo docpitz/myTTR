@@ -69,6 +69,7 @@ public class LigaHomeActivity extends BaseActivity {
 
         Spinner spinnerSaison = (Spinner) findViewById(R.id.spinner_saison);
 
+
         SaisonAdapter saisonAdapter = new SaisonAdapter(this, R.layout.liga_home_spinner_selected_item,
                 Saison.saisons);
         saisonAdapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
@@ -76,6 +77,7 @@ public class LigaHomeActivity extends BaseActivity {
         spinnerSaison.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                view.setTex
                 Saison tmpSaison = Saison.parse((String) parent.getItemAtPosition(position));
                 if (tmpSaison == selectedSaison) {
                     return;

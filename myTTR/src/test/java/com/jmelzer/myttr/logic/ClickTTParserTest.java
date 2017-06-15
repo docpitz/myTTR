@@ -63,6 +63,18 @@ public class ClickTTParserTest {
     }
 
     @Test
+    public void testBrandenBurg() throws Exception {
+        String page = readFile(ASSETS_DIR + "/ttv-brandenburg.htm");
+        assertNotNull(page);
+        List<Liga> ligen = parser.parseLigaLinks(page);
+
+        for (Liga liga : ligen) {
+            System.out.println("liga = " + liga);
+        }
+        assertEquals("must be 8 not " + ligen.size(),8,  ligen.size());
+    }
+
+    @Test
     public void testParseLigaLinks() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
