@@ -39,6 +39,7 @@ public class MyApplication extends Application {
     public static int result;
     public static List<Player> clubPlayers;
     public static List<MyTTLiga> myTTLigen;
+    public static List<Tournament> myTournaments;
     private static List<Event> events;
     public static List<Player> foreignTeamPlayers;
     public static List<Player> myTeamPlayers;

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
@@ -116,6 +117,11 @@ public class HomeActivity extends BaseActivity {
         about.show();
     }
 
+    public void tournament(View view) {
+        AsyncTask<String, Void, Integer> task = new TournamentAsyncTask(this);
+        task.execute();
+    }
+
     private class ClubListAsyncTask extends BaseAsyncTask {
 
         public ClubListAsyncTask(Activity parent, Class targetClz) {
@@ -149,6 +155,24 @@ public class HomeActivity extends BaseActivity {
         @Override
         protected boolean dataLoaded() {
             return MyApplication.myTTLigen != null;
+        }
+    }
+
+    private class TournamentAsyncTask extends BaseAsyncTask {
+
+        public TournamentAsyncTask(Activity parent) {
+            super(parent, TournamentsActivity.class);
+        }
+
+        @Override
+        protected void callParser() throws NetworkException, LoginExpiredException {
+            MyApplication.myTournaments = new ClickTTParser().readTournaments();
+        }
+
+
+        @Override
+        protected boolean dataLoaded() {
+            return MyApplication.myTournaments != null;
         }
     }
 

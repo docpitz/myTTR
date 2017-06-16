@@ -132,6 +132,7 @@
     <string name="hint_ak">Wert zwischen 16 und 28</string>
     <string name="hint_club_name">Hier den Namen eingeben</string>
     <string name="header_event_name">Name</string>
+    <string name="header_reqion">Region</string>
     <string name="header_event_result">Erg.</string>
     <string name="header_event_sets">Sätze</string>
     <string name="header_event_date">Datum</string>

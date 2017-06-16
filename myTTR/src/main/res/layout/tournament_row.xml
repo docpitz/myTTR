@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              tools:ignore="HardcodedText">
+
+    <LinearLayout
+        style="@style/RowListStyle"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/tournamentDate"
+            style="@style/TextListStyle"
+            android:layout_width="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1.5"
+            android:text="03.06.2017 - 05.06.2017" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_weight="5"
+            android:text="Schwerter TT-Cup 2017 mit 25. Schwerter TT-Stadtmeisterschaften und Jedermann-Turnier"/>
+
+        <TextView
+            android:id="@+id/region"
+            style="@style/TextListStyle"
+            android:layout_width="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.5"
+            android:text="Lenne-Ruhr" />
+
+
+
+    </LinearLayout>
+</LinearLayout>

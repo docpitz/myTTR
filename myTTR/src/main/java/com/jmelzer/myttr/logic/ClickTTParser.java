@@ -9,6 +9,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -911,6 +912,10 @@ public class ClickTTParser extends AbstractBaseParser {
             return null;
         }
         String ret = result.result;
+        return cleanHtml(ret);
+    }
+
+    private String cleanHtml(String ret) {
         ret = ret.replaceAll("<b>", " ");
         ret = ret.replaceAll("</b>", " ");
         ret = replaceMultipleSpaces(ret);
@@ -1109,5 +1114,56 @@ public class ClickTTParser extends AbstractBaseParser {
 
 //            resultHeader = readBetween(resultStart.result, resultHeader.end, "<h2>", "</h2>");
         }
+    }
+
+    /**
+     * read the tournaments from the url
+     */
+    public List<Tournament> readTournaments() throws NetworkException {
+        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
+        String page = Client.getPage(url);
+        return parseTournamentLinks(page);
+    }
+
+    List<Tournament> parseTournamentLinks(String page) {
+        ParseResult table = readBetween(page, 0, "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\">", "</table>");
+        List<Tournament> tournaments = new ArrayList<>();
+        if (table == null) {
+            return tournaments;
+        }
+
+        int c = 0;
+        int idx = 0;
+        while (true) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            String[] columns = tableRowAsArray(resultrow.result, 6);
+            Tournament t = new Tournament();
+            t.setDate(columns[0] == null ? null : columns[0].replaceAll("\\.2017", "").
+                    replaceAll("\\.2018", ""));
+            String[] ahref = readHrefAndATag(columns[1]);
+            t.setUrl(ahref[0]);
+            t.setName(ahref[1]);
+            t.setRegion(cleanHtml(columns[2]));
+            t.setOpenFor(cleanHtml(columns[3]));
+            t.setAgeClass(cleanHtml(columns[4]));
+            ahref = readHrefAndATag(columns[5]);
+            t.setInfo(ahref[0]);
+            t.setInfoUrl(ahref[1]);
+
+            tournaments.add(t);
+
+        }
+        return tournaments;
     }
 }

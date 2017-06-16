@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:weightSum="10">
+
+
+    <LinearLayout style="@style/HeaderListStyle">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:text="@string/header_event_date"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="5.0"
+            android:text="@string/header_event_name"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="6dp"
+            android:text="@string/header_reqion"/>
+
+
+    </LinearLayout>
+
+    <View style="@style/ListLine"/>
+
+    <ListView
+        android:id="@+id/tournament_row"
+        tools:listitem="@layout/tournament_row"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </ListView>
+</LinearLayout>

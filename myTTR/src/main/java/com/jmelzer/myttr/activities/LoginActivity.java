@@ -44,9 +44,10 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         final EditText userNameTextField = (EditText) findViewById(R.id.username);
+        userNameTextField.setText("chokdee");
 
         final EditText pwTextField = (EditText) findViewById(R.id.password);
-
+pwTextField.setText("fuckyou123");
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
         loginDataBaseAdapter = loginDataBaseAdapter.open();
 

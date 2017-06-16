@@ -16,6 +16,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Verein;
 
@@ -72,6 +73,18 @@ public class ClickTTParserTest {
             System.out.println("liga = " + liga);
         }
         assertEquals("must be 8 not " + ligen.size(),8,  ligen.size());
+    }
+
+    @Test
+    public void testReadTournaments() throws Exception {
+        String page = readFile(ASSETS_DIR + "/turniere.htm");
+        assertNotNull(page);
+        List<Tournament> tournaments = parser.parseTournamentLinks(page);
+
+        for (Tournament tournament : tournaments) {
+            System.out.println("tournament = " + tournament);
+        }
+        assertEquals("must be 8 not " + tournaments.size(),8,  tournaments.size());
     }
 
     @Test
