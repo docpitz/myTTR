@@ -79,12 +79,34 @@ public class ClickTTParserTest {
     public void testReadTournaments() throws Exception {
         String page = readFile(ASSETS_DIR + "/turniere.htm");
         assertNotNull(page);
-        List<Tournament> tournaments = parser.parseTournamentLinks(page);
+        List<Tournament> tournaments = parser.parseTournamentLinks(page, "http://bla.de");
 
         for (Tournament tournament : tournaments) {
             System.out.println("tournament = " + tournament);
         }
         assertEquals("must be 8 not " + tournaments.size(),8,  tournaments.size());
+    }
+
+    @Test
+    public void testReadTournamentDetail() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_detail.htm");
+        assertNotNull(page);
+        Tournament tournament = new Tournament();
+        parser.parseTournamentDetail(page, tournament);
+
+        assertEquals("Dreifachsporthalle Lengerich\n" +
+                "Eduard-Lagemann-Str.\n" +
+                "49525 Lengerich", tournament.getLocation());
+        assertEquals("Tischmarke: Joola Rollomat, Andro Roller und Butterfly Centrefold\n" +
+                "Tischfarbe: grün\n" +
+                "Ballmarke: DHS\n" +
+                "Ballfarbe: Zelluloid weiß\n", tournament.getMaterial());
+
+        assertEquals("Andreas Pätzholz\n" +
+                "Erich-Kästner-Str. 10\n" +
+                "49525 Lengerich\n" +
+                "Telefon Privat: 05481 847910\n", tournament.getContact());
+        assertEquals("turnier@ttc-lengerich.de", tournament.getEmail());
     }
 
     @Test

@@ -1,18 +1,23 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Tournament;
+import com.jmelzer.myttr.logic.ClickTTParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.List;
 
@@ -41,8 +46,8 @@ public class TournamentsActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-//                MyApplication.selectedMannschaft = (Mannschaft) parent.getItemAtPosition(position);
-//                callMannschaftDetail(LigaMannschaftResultsActivity.class);
+                MyApplication.selectedTournament = (Tournament) parent.getItemAtPosition(position);
+                callDetail();
 
             }
         });
@@ -60,6 +65,7 @@ public class TournamentsActivity extends BaseActivity {
         TextView textDate;
         TextView textName;
         TextView textRegion;
+        ImageView arrow;
     }
 
     class RowAdapter extends ArrayAdapter<Tournament> {
@@ -80,6 +86,7 @@ public class TournamentsActivity extends BaseActivity {
                 holder.textName = convertView.findViewById(R.id.name);
                 holder.textDate = convertView.findViewById(R.id.tournamentDate);
                 holder.textRegion = convertView.findViewById(R.id.region);
+                holder.arrow = convertView.findViewById(R.id.arrow);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -90,8 +97,35 @@ public class TournamentsActivity extends BaseActivity {
             holder.textName.setText(tournament.getName());
             holder.textDate.setText(tournament.getDate());
             holder.textRegion.setText(tournament.getRegion());
-
+            holder.arrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.selectedTournament = tournament;
+                    callDetail();
+                }
+            });
             return convertView;
         }
+    }
+
+    void callDetail() {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TournamentsActivity.this,
+                TournamentDetailActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                ClickTTParser p = new ClickTTParser();
+                p.readTournamentDetail(MyApplication.selectedTournament);
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedTournament.getName() != null;
+//                return MyApplication.selectedTournament.getOmpetitions().size() > 0;
+            }
+
+
+        };
+        task.execute();
     }
 }

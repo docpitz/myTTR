@@ -44,4 +44,93 @@ public class AbstractBaseParserTest {
         assertEquals("0", columns[8]);
         assertEquals("0:0", columns[9]);
     }
+
+    @Test
+    public void listFromLiElement() {
+        String html = "<ul>\n" +
+                "                  <li>\n" +
+                "  \n" +
+                "  \n" +
+                "\t<label style=\"width:300px;\">Tischmarke:</label>\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t  \n" +
+                "    \tJoola Rollomat, Andro Roller und Butterfly Centrefold\n" +
+                "    \t\n" +
+                "\t    \t\n" +
+                "    \t\n" +
+                "      \n" +
+                "    \n" +
+                "  \n" +
+                "  \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "</li>\n" +
+                "                  <li>\n" +
+                "  \n" +
+                "  \n" +
+                "\t<label style=\"width:300px;\">Tischfarbe:</label>\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t  \n" +
+                "    \tgrün\n" +
+                "    \t\n" +
+                "\t    \t\n" +
+                "    \t\n" +
+                "      \n" +
+                "    \n" +
+                "  \n" +
+                "  \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "</li>\n" +
+                "                  <li>\n" +
+                "  \n" +
+                "  \n" +
+                "\t<label style=\"width:300px;\">Ballmarke:</label>\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t  \n" +
+                "    \tDHS\n" +
+                "    \t\n" +
+                "\t    \t\n" +
+                "    \t\n" +
+                "      \n" +
+                "    \n" +
+                "  \n" +
+                "  \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "</li>\n" +
+                "                  <li>\n" +
+                "  \n" +
+                "  \n" +
+                "\t<label style=\"width:300px;\">Ballfarbe:</label>\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t\n" +
+                "\t  \n" +
+                "    \tZelluloid weiß\n" +
+                "    \t\n" +
+                "\t    \t\n" +
+                "    \t\n" +
+                "      \n" +
+                "    \n" +
+                "  \n" +
+                "  \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "</li>\n" +
+                "                </ul>";
+
+        String s = parser.listFromLiElement(new AbstractBaseParser.ParseResult(html, 0));
+        System.out.println("s = " + s);
+    }
 }

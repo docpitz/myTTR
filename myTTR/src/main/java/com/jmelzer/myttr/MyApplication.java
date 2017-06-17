@@ -58,6 +58,7 @@ public class MyApplication extends Application {
 
     private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
+    public static Tournament selectedTournament;
     public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband;

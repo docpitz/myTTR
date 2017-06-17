@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1.5"
-            android:text="03.06.2017 - 05.06.2017" />
+            android:text="03.06. - 05.06." />
 
         <TextView
             android:id="@+id/name"
@@ -32,7 +32,14 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1.5"
             android:text="Lenne-Ruhr" />
-
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_gravity="right|top"
+            android:layout_weight="0.5"
+            android:contentDescription="@string/arrow_desc"
+            android:src="@drawable/ic_icon_arrow_right_white"/>
 
 
     </LinearLayout>

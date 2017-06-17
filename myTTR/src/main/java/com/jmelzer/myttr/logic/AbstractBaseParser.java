@@ -1,12 +1,14 @@
 package com.jmelzer.myttr.logic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by J. Melzer on 19.02.2015.
  */
 public class AbstractBaseParser {
-    class ParseResult {
+    static class ParseResult {
         String result;
 
         int end;
@@ -131,5 +133,60 @@ public class AbstractBaseParser {
             }
         }
         return arr;
+    }
+
+    String cleanHtml(ParseResult result) {
+        if (result == null) {
+            return "";
+        }
+        String ret = result.result;
+        return cleanHtml(ret);
+    }
+
+    String cleanHtml(String ret) {
+        ret = ret.replaceAll("<b>", " ");
+        ret = ret.replaceAll("</b>", " ");
+        ret = replaceMultipleSpaces(ret);
+        ret = ret.replaceAll("<br />", "\n");
+        ret = ret.replaceAll("\n ", "\n");
+        ret = ret.replaceAll(" \n", "\n");
+        ret = removeLastNewLine(ret);
+        return ret;
+    }
+
+    String removeLastNewLine(String result) {
+        if (result.lastIndexOf('\n') == result.length() - 1) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+
+    protected String replaceMultipleSpaces(String s) {
+        s = s.replaceAll("\\s{2,}", " ");
+        return s;
+    }
+
+    protected String listFromLiElement(ParseResult parseResult) {
+        if (parseResult == null)
+            return "";
+        String html = parseResult.result;
+        List<String> list = new ArrayList<>();
+        ParseResult result = readBetween(html, 0, "<li>", "</li>");
+        while (result != null) {
+            list.add(removeLabel(cleanHtml(result.result)));
+
+            result = readBetween(html, result.end, "<li>", "</li>");
+        }
+        String m = "";
+        for (String s : list) {
+            m += s + "\n";
+        }
+        return m;
+    }
+
+    private String removeLabel(String s) {
+        ParseResult result = readBetween(s, 0, "<label style=\"width:300px;\">", "</label>");
+        if (result == null) return s;
+        else return result.result + s.substring(result.end);
     }
 }

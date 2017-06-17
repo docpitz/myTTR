@@ -748,13 +748,19 @@ public class ClickTTParser extends AbstractBaseParser {
         return result.trim();
     }
 
-    private String removeLastNewLine(String result) {
-        if (result.lastIndexOf('\n') == result.length() - 1) {
-            result = result.substring(0, result.length() - 1);
-        }
-        return result;
+
+
+    String unencodeMail(ParseResult result) {
+        if (result == null)
+            return "";
+        return unencodeMail(result.result);
     }
 
+    /**
+     * format e.g. de', 'manfred', 't-online', 'und.petra.hildebrandt'
+     * @param s to parse
+     * @return "" or email
+     */
     String unencodeMail(String s) {
         //var concatString = m1+delimiter2+m2+delimiter1+domain+delimiter2+topLevelDomain;
         String result = "";
@@ -907,29 +913,9 @@ public class ClickTTParser extends AbstractBaseParser {
         return spiel;
     }
 
-    private String cleanHtml(ParseResult result) {
-        if (result == null) {
-            return null;
-        }
-        String ret = result.result;
-        return cleanHtml(ret);
-    }
 
-    private String cleanHtml(String ret) {
-        ret = ret.replaceAll("<b>", " ");
-        ret = ret.replaceAll("</b>", " ");
-        ret = replaceMultipleSpaces(ret);
-        ret = ret.replaceAll("<br />", "\n");
-        ret = ret.replaceAll("\n ", "\n");
-        ret = ret.replaceAll(" \n", "\n");
-        ret = removeLastNewLine(ret);
-        return ret;
-    }
 
-    protected String replaceMultipleSpaces(String s) {
-        s = s.replaceAll("\\s{2,}", " ");
-        return s;
-    }
+
 
     /**
      * read the ligen from the url inside the verband
@@ -1122,10 +1108,10 @@ public class ClickTTParser extends AbstractBaseParser {
     public List<Tournament> readTournaments() throws NetworkException {
         String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
         String page = Client.getPage(url);
-        return parseTournamentLinks(page);
+        return parseTournamentLinks(page, UrlUtil.getHttpAndDomain(url));
     }
 
-    List<Tournament> parseTournamentLinks(String page) {
+    List<Tournament> parseTournamentLinks(String page, String httpAndDomain) {
         ParseResult table = readBetween(page, 0, "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\">", "</table>");
         List<Tournament> tournaments = new ArrayList<>();
         if (table == null) {
@@ -1152,7 +1138,7 @@ public class ClickTTParser extends AbstractBaseParser {
             t.setDate(columns[0] == null ? null : columns[0].replaceAll("\\.2017", "").
                     replaceAll("\\.2018", ""));
             String[] ahref = readHrefAndATag(columns[1]);
-            t.setUrl(ahref[0]);
+            t.setUrl(httpAndDomain + ahref[0]);
             t.setName(ahref[1]);
             t.setRegion(cleanHtml(columns[2]));
             t.setOpenFor(cleanHtml(columns[3]));
@@ -1165,5 +1151,28 @@ public class ClickTTParser extends AbstractBaseParser {
 
         }
         return tournaments;
+    }
+
+    public void readTournamentDetail(Tournament selectedTournament) throws NetworkException {
+        String page = Client.getPage(selectedTournament.getUrl());
+        parseTournamentDetail(page, selectedTournament);
+    }
+
+    void parseTournamentDetail(String page, Tournament tournament) {
+        ParseResult result = readBetween(page, 0, "<h2>Austragungsorte", "</ul>");
+        result = readBetween(result.result, 0, "<li>", "</li>");
+        tournament.setLocation(cleanHtml(result));
+        result = readBetween(page, 0, "<h2>Material", "</ul>");
+        tournament.setMaterial(listFromLiElement(result));
+        result = readBetween(page, 0, "<h2>Informationen zur Meldung", "</ul>");
+        tournament.setRegistrationInfo(listFromLiElement(result));
+        result = readBetween(page, 0, "<h2>Kontakt für Meldung</h2>", "</li>");
+        //cut E-Mail
+        if (result.result != null && result.result.contains("E-Mail")) {
+            result.result = result.result.substring(0, result.result.indexOf("E-Mail"));
+        }
+        tournament.setContact(cleanHtml(result).replace("<label>", "").replace("</label>", ""));
+        result = readBetween(page, 0, "encodeEmail(", ")");
+        tournament.setEmail(unencodeMail(result));
     }
 }

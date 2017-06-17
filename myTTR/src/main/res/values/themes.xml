@@ -7,7 +7,7 @@
 
 <resources>
 
-    <style name="MyTheme" parent="android:Theme.Holo.Light">
+    <style name="MyTheme" parent="@android:style/Theme.Holo">
         <!--<item name="android:background">#f3191919</item>-->
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Myttr</item>
         <item name="android:selectableItemBackground">@null</item>
