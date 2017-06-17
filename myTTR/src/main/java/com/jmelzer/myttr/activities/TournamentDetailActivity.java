@@ -87,6 +87,11 @@ public class TournamentDetailActivity extends BaseActivity {
         list.add(p);
 
         p = new TournamentDetailActivity.Parent();
+        p.name = "Informationen zur Meldung";
+        p.children.add(new TournamentDetailActivity.Child(tournament.getRegistrationInfo() == null ? "Unbekannt" : tournament.getRegistrationInfo()));
+        list.add(p);
+
+        p = new TournamentDetailActivity.Parent();
         p.name = "Material";
         p.children.add(new TournamentDetailActivity.Child(tournament.getMaterial() == null ? "Unbekannt" : tournament.getMaterial()));
         list.add(p);

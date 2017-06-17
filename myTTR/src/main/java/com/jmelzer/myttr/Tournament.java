@@ -23,6 +23,61 @@ public class Tournament {
 
     private List<Competition> ompetitions = new ArrayList<>();
     private String email;
+    private String ranglistenbezug;
+    private String longDate;
+    private String turnierArt;
+    private String priceMoney;
+    private String antragShortUrl;
+    private String antragFullUrl;
+    private String turnierhomepage;
+
+    public String getRanglistenbezug() {
+        return ranglistenbezug;
+    }
+
+    public void setRanglistenbezug(String ranglistenbezug) {
+        this.ranglistenbezug = ranglistenbezug;
+    }
+
+    public String getLongDate() {
+        return longDate;
+    }
+
+    public void setLongDate(String longDate) {
+        this.longDate = longDate;
+    }
+
+    public String getTurnierArt() {
+        return turnierArt;
+    }
+
+    public void setTurnierArt(String turnierArt) {
+        this.turnierArt = turnierArt;
+    }
+
+    public String getPriceMoney() {
+        return priceMoney;
+    }
+
+    public void setPriceMoney(String priceMoney) {
+        this.priceMoney = priceMoney;
+    }
+
+    public String getAntragShortUrl() {
+        return antragShortUrl;
+    }
+
+    public void setAntragShortUrl(String antragShortUrl) {
+        this.antragShortUrl = antragShortUrl;
+    }
+
+    public String getAntragFullUrl() {
+        return antragFullUrl;
+    }
+
+    public void setAntragFullUrl(String antragFullUrl) {
+        this.antragFullUrl = antragFullUrl;
+    }
 
     public String getLocation() {
         return location;
@@ -124,6 +179,18 @@ public class Tournament {
         this.info = info;
     }
 
+    public void setInfoUrl(String infoUrl) {
+        this.infoUrl = infoUrl;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         return "Tournament{" +
@@ -140,18 +207,22 @@ public class Tournament {
                 ", material='" + material + '\'' +
                 ", registrationInfo='" + registrationInfo + '\'' +
                 ", ompetitions=" + ompetitions +
+                ", email='" + email + '\'' +
+                ", ranglistenbezug='" + ranglistenbezug + '\'' +
+                ", longDate='" + longDate + '\'' +
+                ", turnierArt='" + turnierArt + '\'' +
+                ", priceMoney='" + priceMoney + '\'' +
+                ", antragShortUrl='" + antragShortUrl + '\'' +
+                ", antragFullUrl='" + antragFullUrl + '\'' +
+                ", turnierhomepage='" + turnierhomepage + '\'' +
                 '}';
     }
 
-    public void setInfoUrl(String infoUrl) {
-        this.infoUrl = infoUrl;
+    public void setTurnierhomepage(String turnierhomepage) {
+        this.turnierhomepage = turnierhomepage;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
+    public String getTurnierhomepage() {
+        return turnierhomepage;
     }
 }

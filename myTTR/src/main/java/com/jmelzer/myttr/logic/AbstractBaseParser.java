@@ -150,8 +150,9 @@ public class AbstractBaseParser {
         ret = ret.replaceAll("<br />", "\n");
         ret = ret.replaceAll("\n ", "\n");
         ret = ret.replaceAll(" \n", "\n");
+        ret = ret.replaceAll("&euro;", "€");
         ret = removeLastNewLine(ret);
-        return ret;
+        return ret.trim();
     }
 
     String removeLastNewLine(String result) {

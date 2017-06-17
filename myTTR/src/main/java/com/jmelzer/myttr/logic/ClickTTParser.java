@@ -1174,5 +1174,16 @@ public class ClickTTParser extends AbstractBaseParser {
         tournament.setContact(cleanHtml(result).replace("<label>", "").replace("</label>", ""));
         result = readBetween(page, 0, "encodeEmail(", ")");
         tournament.setEmail(unencodeMail(result));
+
+        result = readBetween(page, 0, "Ranglistenbezug:", "</p>");
+        tournament.setRanglistenbezug(cleanHtml(result));
+        result = readBetween(page, 0, "Turnierart:", "</p>");
+        tournament.setTurnierArt(cleanHtml(result));
+        result = readBetween(page, 0, "Gesamthöhe der Preisgelder/Sachpreise:", "</p>");
+        tournament.setPriceMoney(cleanHtml(result));
+        result = readBetween(page, 0, "Turnierhomepage:", "</p>");
+        if (result.result != null) {
+            tournament.setTurnierhomepage(readHrefAndATag(result.result)[0]);
+        }
     }
 }

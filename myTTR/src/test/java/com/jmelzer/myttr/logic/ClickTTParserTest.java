@@ -107,6 +107,10 @@ public class ClickTTParserTest {
                 "49525 Lengerich\n" +
                 "Telefon Privat: 05481 847910\n", tournament.getContact());
         assertEquals("turnier@ttc-lengerich.de", tournament.getEmail());
+        assertEquals("11.05.2017", tournament.getRanglistenbezug());
+        assertEquals("offenes Turnier", tournament.getTurnierArt());
+        assertEquals("625 €", tournament.getPriceMoney());
+        assertEquals("http://www.ttc-lengerich.de", tournament.getTurnierhomepage());
     }
 
     @Test
