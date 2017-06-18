@@ -262,7 +262,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 idxL = resultLinks.end;
                 ParseResult resultLink = readBetween(resultLinks.result, 0, "href=\"", "\">");
                 ParseResult resultName = readBetween(resultLinks.result, 0, "\">", null);
-                Verband v = new Verband(resultName.result, resultLink.result);
+                Verband v = new Verband(resultName.result, resultLink.result,null);
                 verbandList.add(v);
 
             }
@@ -1106,11 +1106,11 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * read the tournaments from the url
      */
-    public List<Tournament> readTournaments() throws NetworkException {
+    public List<Tournament> readTournaments(Verband verband) throws NetworkException {
 //        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
-        String url = "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV";
-        String page = Client.getPage(url);
-        return parseTournamentLinks(page, UrlUtil.getHttpAndDomain(url));
+//        String url = "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV";
+        String page = Client.getPage(verband.gettUrl());
+        return parseTournamentLinks(page, verband.getHttpAndDomain());
     }
 
     List<Tournament> parseTournamentLinks(String page, String httpAndDomain) {

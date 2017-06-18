@@ -113,6 +113,8 @@
     <string name="simulation">Simulation</string>
     <string name="arrow_desc">Pfeil</string>
     <string name="verband_label">Verband:</string>
+    <string name="month">September</string>
+    <string name="header_tournaments">Bitte Verband auswählen</string>
     <string name="saison_label">Saison:</string>
     <string name="kat_label">Kategorie:</string>
     <string name="liga_label">Liga:</string>

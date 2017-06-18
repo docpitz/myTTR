@@ -118,8 +118,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void tournament(View view) {
-        AsyncTask<String, Void, Integer> task = new TournamentAsyncTask(this);
-        task.execute();
+        Intent target = new Intent(this, TournamentsActivity.class);
+        startActivity(target);
     }
 
     private class ClubListAsyncTask extends BaseAsyncTask {
@@ -158,23 +158,6 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    private class TournamentAsyncTask extends BaseAsyncTask {
-
-        public TournamentAsyncTask(Activity parent) {
-            super(parent, TournamentsActivity.class);
-        }
-
-        @Override
-        protected void callParser() throws NetworkException, LoginExpiredException {
-            MyApplication.myTournaments = new ClickTTParser().readTournaments();
-        }
-
-
-        @Override
-        protected boolean dataLoaded() {
-            return MyApplication.myTournaments != null;
-        }
-    }
 
     class OwnClubListAsyncTask extends BaseAsyncTask {
 

@@ -1,35 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical"
-              android:weightSum="10">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/header_tournaments"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutSaison"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewSaison"
+            android:id="@+id/labelVerband"
+            style="@style/MyLabel"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            style="@style/MyLabel"
-            android:text="@string/verband_label"/>
+            android:text="@string/verband_label" />
 
         <Spinner
-            android:id="@+id/spinner_saison"
+            android:id="@+id/spinner_verband"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_weight="4"
-            />
+            android:layout_weight="4" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/datelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/arrow_desc"
+            android:src="@drawable/ic_action_left" />
+
+        <TextView
+            android:id="@+id/month"
+            style="@style/MyLabel"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:text="@string/month" />
+
+        <ImageButton
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/arrow_desc"
+            android:src="@drawable/ic_action_right" />
+        <!--<ImageButton-->
+        <!--android:id="@+id/"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:srcCompat="@drawable/ic_today_black_24dp" />-->
+    </LinearLayout>
+
     <LinearLayout style="@style/HeaderListStyle">
 
         <TextView
@@ -38,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1.5"
-            android:text="@string/header_event_date"/>
+            android:text="@string/header_event_date" />
 
         <TextView
             android:id="@+id/textView2"
@@ -46,16 +98,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="5.0"
-            android:text="@string/header_event_name"/>
+            android:text="@string/header_event_name" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1.5"
             android:layout_marginLeft="6dp"
-            android:text="@string/header_reqion"/>
+            android:layout_weight="1.5"
+            android:text="@string/header_reqion" />
 
         <TextView
             android:id="@+id/textView5"
@@ -63,17 +115,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.5"
-            android:text="  "/>
+            android:text="  " />
     </LinearLayout>
 
-    <View style="@style/ListLine"/>
+    <View style="@style/ListLine" />
 
-    <ListView
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tournament_row"
-        tools:listitem="@layout/tournament_row"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        tools:listitem="@layout/tournament_row">
 
     </ListView>
 </LinearLayout>

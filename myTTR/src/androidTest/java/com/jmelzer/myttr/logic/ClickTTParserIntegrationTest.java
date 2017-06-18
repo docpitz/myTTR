@@ -113,7 +113,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         assertTrue(spiel.getSpiele().size() > 0);
     }
 
-//    @MediumTest
+    //    @MediumTest
     public void testAllVerbaende() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         for (Verband verband : verbaende) {
@@ -128,7 +128,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         for (Verband verband : verbaende) {
 
 //            readLigenAndTest(verband); //allready ok, uncomment if you want to test it
-            if (verband.getName().equals("Saarländischer TTB") ) {
+            if (verband.getName().equals("Saarländischer TTB")) {
                 continue;
             }
 //            if (verband == dttb) {
@@ -190,7 +190,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     }
 
     void readSpieleAndTest(Liga liga) throws NetworkException {
-        if (liga.getUrlRR() == null && liga.getUrlVR() == null && liga.getUrlGesamt() == null ) {
+        if (liga.getUrlRR() == null && liga.getUrlVR() == null && liga.getUrlGesamt() == null) {
             Log.e(Constants.LOG_TAG, "keine vorrunde / rueckrunde / gesamt fuer  " + liga);
             return;
         }
@@ -261,9 +261,12 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     @SmallTest
     public void testTurnier() throws Exception {
-        List<Tournament> tournaments = parser.readTournaments();
-        for (Tournament tournament : tournaments) {
-            parser.readTournamentDetail(tournament);
+        List<Verband> verbaende = Verband.verbaendeWithTournaments();
+        for (Verband verband : verbaende) {
+            List<Tournament> tournaments = parser.readTournaments(verband);
+            for (Tournament tournament : tournaments) {
+                parser.readTournamentDetail(tournament);
+            }
         }
     }
 }
