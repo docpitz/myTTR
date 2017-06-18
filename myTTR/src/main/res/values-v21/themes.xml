@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MyTheme" parent="android:Theme.Material">
+    <style name="MyTheme" parent="@android:style/Theme.Holo">
         <!--<item name="android:background">#f3191919</item>-->
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Myttr</item>
         <item name="android:selectableItemBackground">@null</item>

@@ -17,8 +17,13 @@ import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
 
 /**
@@ -1106,10 +1111,16 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * read the tournaments from the url
      */
-    public List<Tournament> readTournaments(Verband verband) throws NetworkException {
+    public List<Tournament> readTournaments(Verband verband, Date date) throws NetworkException {
+        if (verband.gettUrl() == null)
+            return new ArrayList<>();
 //        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
 //        String url = "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV";
-        String page = Client.getPage(verband.gettUrl());
+        String url = verband.gettUrl();
+        if (date != null) {
+            url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
+        }
+        String page = Client.getPage(url);
         return parseTournamentLinks(page, verband.getHttpAndDomain());
     }
 

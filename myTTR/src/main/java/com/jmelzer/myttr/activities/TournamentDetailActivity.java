@@ -35,8 +35,8 @@ public class TournamentDetailActivity extends BaseActivity {
 
         TextView clubNameView = findViewById(R.id.textViewName);
         clubNameView.setText(MyApplication.selectedTournament.getName());
-        TextView textInfos = findViewById(R.id.textInfos);
-        textInfos.setText(buildInfo(MyApplication.selectedTournament));
+//        TextView textInfos = findViewById(R.id.textInfos);
+//        textInfos.setText(buildInfo(MyApplication.selectedTournament));
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
         listView.setAdapter(new TournamentDetailActivity.Adapter(this,
@@ -49,7 +49,7 @@ public class TournamentDetailActivity extends BaseActivity {
         listview.setAdapter(adapter);
     }
 
-    private CharSequence buildInfo(Tournament tournament) {
+    private String buildInfo(Tournament tournament) {
         String s = "";
 
         if (tournament.getLongDate() != null)
@@ -87,6 +87,11 @@ public class TournamentDetailActivity extends BaseActivity {
         List<TournamentDetailActivity.Parent> list = new ArrayList<>();
 
         TournamentDetailActivity.Parent p = new TournamentDetailActivity.Parent();
+        p.name = "Info";
+        p.children.add(new TournamentDetailActivity.Child(buildInfo(tournament)));
+        list.add(p);
+
+         p = new TournamentDetailActivity.Parent();
         p.name = "Kontakt";
         String c = "";
         if (tournament.getContact() != null)
@@ -171,7 +176,7 @@ public class TournamentDetailActivity extends BaseActivity {
             if (convertView == null) {
                 convertView = layInflator.inflate(R.layout.liga_spieler_result_header, null);
             }
-            TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupName);
+            TextView lblListHeader =  convertView.findViewById(R.id.groupName);
             lblListHeader.setText(parent1.name);
             return convertView;
         }

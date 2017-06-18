@@ -157,6 +157,7 @@
     <string name="header_qttr">QTTR</string>
     <string name="header_openFor">Offen für</string>
     <string name="header_ttrRelevant">TTR</string>
+    <string name="label_turniere">Turniere</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

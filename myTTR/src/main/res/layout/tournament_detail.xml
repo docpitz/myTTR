@@ -13,7 +13,7 @@
         android:id="@+id/textViewName"
         android:layout_marginBottom="5dp"/>
 
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
@@ -22,7 +22,7 @@ Ranglistenbezug: 11.05.2017
 Turnierart: offenes Turnier
 Gesamthöhe der Preisgelder/Sachpreise: 500 €"
         android:id="@+id/textInfos"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"/>-->
 
     <ExpandableListView
         android:id="@+id/expandableListView"

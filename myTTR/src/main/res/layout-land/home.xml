@@ -107,6 +107,16 @@
                 android:text="@string/liga_rangl"
 
                 />
+            <Button
+                android:id="@+id/button2"
+                style="@style/DashboardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_row="1"
+                android:drawableTop="@drawable/ic_tournament"
+                android:onClick="tournament"
+                android:text="@string/label_turniere" />
             <!--  <Space
                   android:layout_width="100dp"
                   android:layout_height="20px"

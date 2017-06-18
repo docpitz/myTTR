@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -21,7 +22,10 @@ import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,6 +33,9 @@ import java.util.List;
  */
 
 public class TournamentsActivity extends BaseActivity {
+    Calendar date = Calendar.getInstance();
+    ClickTTParser parser = new ClickTTParser();
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -56,6 +63,26 @@ public class TournamentsActivity extends BaseActivity {
             }
         });
 
+        final ImageButton btnLeft = findViewById(R.id.left);
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date.roll(Calendar.MONTH, -1);
+                refreshDateView();
+                refreshList();
+
+            }
+        });
+        final ImageButton btnRight = findViewById(R.id.right);
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date.roll(Calendar.MONTH, 1);
+                refreshDateView();
+                refreshList();
+
+            }
+        });
 
         Spinner spinnerVerband = findViewById(R.id.spinner_verband);
         VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_selected_item,
@@ -64,7 +91,14 @@ public class TournamentsActivity extends BaseActivity {
         spinnerVerband.setAdapter(adapterVerband);
         spinnerVerband.setOnItemSelectedListener(new VerbandListener());
 
+        refreshDateView();
     }
+
+    private void refreshDateView() {
+        TextView txtView = findViewById(R.id.month);
+        txtView.setText(DateFormatUtils.format(date, "MMMM.yyyy"));
+    }
+
     private class VerbandAdapter extends ArrayAdapter<Verband> {
         public VerbandAdapter(Context context, int resource, List<Verband> list) {
             super(context, resource, list);
@@ -98,47 +132,53 @@ public class TournamentsActivity extends BaseActivity {
             if (MyApplication.selectedVerband.gettUrl() == null)
                 return;
 
-            AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TournamentsActivity.this, null) {
-                @Override
-                protected void callParser() throws NetworkException, LoginExpiredException {
-                    MyApplication.myTournaments = new ClickTTParser().readTournaments(MyApplication.selectedVerband);
-                }
-
-                @Override
-                protected boolean dataLoaded() {
-                    return MyApplication.myTournaments != null;
-                }
-
-                @Override
-                protected void onPostExecute(Integer integer) {
-                    super.onPostExecute(integer);
-
-                    final ListView listview = findViewById(R.id.tournament_row);
-                    final TournamentsActivity.RowAdapter adapter = new TournamentsActivity.RowAdapter(TournamentsActivity.this,
-                            android.R.layout.simple_list_item_1,
-                            MyApplication.myTournaments);
-                    listview.setAdapter(adapter);
-
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view,
-                                                int position, long id) {
-                            MyApplication.selectedTournament = (Tournament) parent.getItemAtPosition(position);
-                            callDetail();
-
-                        }
-                    });
-                }
-            };
-            task.execute();
+            refreshList();
 
         }
+
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
+    }
+
+    private void refreshList() {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TournamentsActivity.this, null) {
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException {
+                MyApplication.myTournaments = parser.readTournaments(MyApplication.selectedVerband,
+                        date.getTime());
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.myTournaments != null;
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                super.onPostExecute(integer);
+
+                final ListView listview = findViewById(R.id.tournament_row);
+                final RowAdapter adapter = new RowAdapter(TournamentsActivity.this,
+                        android.R.layout.simple_list_item_1,
+                        MyApplication.myTournaments);
+                listview.setAdapter(adapter);
+
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        MyApplication.selectedTournament = (Tournament) parent.getItemAtPosition(position);
+                        callDetail();
+
+                    }
+                });
+            }
+        };
+        task.execute();
     }
 
     @Override
@@ -200,8 +240,7 @@ public class TournamentsActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                ClickTTParser p = new ClickTTParser();
-                p.readTournamentDetail(MyApplication.selectedTournament);
+                parser.readTournamentDetail(MyApplication.selectedTournament);
             }
 
             @Override

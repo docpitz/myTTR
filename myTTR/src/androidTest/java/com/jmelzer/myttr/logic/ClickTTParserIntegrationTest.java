@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
@@ -27,6 +26,7 @@ import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Saison;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ClickTTParserIntegrationTest extends BaseTestCase {
@@ -263,7 +263,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     public void testTurnier() throws Exception {
         List<Verband> verbaende = Verband.verbaendeWithTournaments();
         for (Verband verband : verbaende) {
-            List<Tournament> tournaments = parser.readTournaments(verband);
+            List<Tournament> tournaments = parser.readTournaments(verband, new Date());
             for (Tournament tournament : tournaments) {
                 parser.readTournamentDetail(tournament);
             }
