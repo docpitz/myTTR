@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) Juergen Melzer
+  ~
+  ~ 2017.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="Teilnehmer"/>
+
+
+    <LinearLayout style="@style/HeaderListStyle">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="5"
+            android:text="Name"/>
+
+
+        <TextView
+            android:id="@+id/club"
+            android:layout_height="wrap_content"
+            android:text="Verein"
+            android:layout_weight="5"
+            android:layout_width="0dp"/>
+
+        <TextView
+            android:id="@+id/ttr"
+            android:layout_height="wrap_content"
+            android:text="QTTR"
+            android:layout_weight="5"
+            android:layout_width="0dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/white"/>
+
+    <ListView
+        android:id="@+id/participantList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:listitem="@layout/participant_row"
+        />
+
+
+</LinearLayout>

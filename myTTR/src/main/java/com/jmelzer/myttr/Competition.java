@@ -1,5 +1,8 @@
 package com.jmelzer.myttr;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by J. Melzer on 17.06.2017.
  * Turnierkonkurrenz
@@ -15,6 +18,8 @@ public class Competition {
     String participants;
     //string - or url
     String results;
+
+    List<Participant> participantList = new ArrayList<>();
 
     public String getTtrRelevant() {
         return ttrRelevant;
@@ -71,6 +76,14 @@ public class Competition {
 
     public void setResults(String results) {
         this.results = results;
+    }
+
+    public void addParticipants(Participant participant) {
+        this.participantList.add(participant);
+    }
+
+    public List<Participant> getParticipantList() {
+        return participantList;
     }
 
     @Override

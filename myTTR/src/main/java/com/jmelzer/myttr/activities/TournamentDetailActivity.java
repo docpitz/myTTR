@@ -1,8 +1,12 @@
 package com.jmelzer.myttr.activities;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,6 +20,10 @@ import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Tournament;
+import com.jmelzer.myttr.logic.ClickTTParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
+import com.jmelzer.myttr.logic.NetworkException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +99,7 @@ public class TournamentDetailActivity extends BaseActivity {
         p.children.add(new TournamentDetailActivity.Child(buildInfo(tournament)));
         list.add(p);
 
-         p = new TournamentDetailActivity.Parent();
+        p = new TournamentDetailActivity.Parent();
         p.name = "Kontakt";
         String c = "";
         if (tournament.getContact() != null)
@@ -176,7 +184,7 @@ public class TournamentDetailActivity extends BaseActivity {
             if (convertView == null) {
                 convertView = layInflator.inflate(R.layout.liga_spieler_result_header, null);
             }
-            TextView lblListHeader =  convertView.findViewById(R.id.groupName);
+            TextView lblListHeader = convertView.findViewById(R.id.groupName);
             lblListHeader.setText(parent1.name);
             return convertView;
         }
@@ -199,6 +207,7 @@ public class TournamentDetailActivity extends BaseActivity {
     }
 
     private static class ViewHolder {
+        int id;
         TextView textName;
         TextView textQttr;
         TextView textOpenFor;
@@ -233,13 +242,66 @@ public class TournamentDetailActivity extends BaseActivity {
 
             final Competition competition = getItem(position);
 
+            holder.id = position;
             holder.textName.setText(competition.getName());
             holder.textQttr.setText(competition.getQttr());
             holder.textDate.setText(competition.getDate());
             holder.textOpenFor.setText(competition.getOpenFor());
-
-
+            if (competition.getParticipants() != null || competition.getResults() != null)
+                TournamentDetailActivity.this.registerForContextMenu(convertView);
             return convertView;
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Aktionen");
+        ViewHolder holder = (ViewHolder) v.getTag();
+        List<Competition> list = MyApplication.selectedTournament.getCompetitions();
+        Competition competition = list.get(holder.id);
+        if (competition.getParticipants() != null )
+            menu.add(1, holder.id, 1, "Teilnehmer");
+
+        if (competition.getResults() != null)
+            menu.add(2, holder.id, 2, "Ergebnisse");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getGroupId()) {
+            case 1:
+                callParticipant(item.getItemId());
+                break;
+            case 2:
+                break;
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void callParticipant(int itemId) {
+        MyApplication.selectedCompetition = MyApplication.selectedTournament.getCompetitions().get(itemId);
+        AsyncTask<String, Void, Integer> task = new ParticipantAsyncTask(this, ParticipantActivity.class);
+        task.execute();
+
+    }
+
+    private class ParticipantAsyncTask extends BaseAsyncTask {
+
+        public ParticipantAsyncTask(Activity parent, Class targetClz) {
+            super(parent, targetClz);
+        }
+
+        @Override
+        protected void callParser() throws NetworkException, LoginExpiredException {
+            new ClickTTParser().readTournamentParticipants(MyApplication.selectedCompetition);
+        }
+
+
+        @Override
+        protected boolean dataLoaded() {
+            return MyApplication.selectedCompetition.getParticipantList().size() > 0;
         }
     }
 }

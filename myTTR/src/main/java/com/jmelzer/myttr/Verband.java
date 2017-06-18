@@ -12,7 +12,8 @@ import java.util.List;
  * e.g. wttv
  */
 public class Verband {
-    public static Verband dttb = new Verband("DTTB", "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15", null);
+    public static Verband dttb = new Verband("DTTB", "http://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15",
+            "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=DTTB");
     public static List<Verband> verbaende = new ArrayList<>();
 
 

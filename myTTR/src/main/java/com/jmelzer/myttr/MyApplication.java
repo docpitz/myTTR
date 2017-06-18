@@ -51,6 +51,7 @@ public class MyApplication extends Application {
 
     // The following line should be changed to include the correct property id.
     private static final String PROPERTY_ID = "UA-59824393-1";
+    public static Competition selectedCompetition;
 
     static {
         createEmptyUser();

@@ -15,6 +15,7 @@ import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
@@ -73,7 +74,7 @@ public class ClickTTParserTest {
         for (Liga liga : ligen) {
             System.out.println("liga = " + liga);
         }
-        assertEquals("must be 8 not " + ligen.size(),8,  ligen.size());
+        assertEquals("must be 8 not " + ligen.size(), 8, ligen.size());
     }
 
     @Test
@@ -85,7 +86,7 @@ public class ClickTTParserTest {
         for (Tournament tournament : tournaments) {
             System.out.println("tournament = " + tournament);
         }
-        assertEquals("must be 8 not " + tournaments.size(),8,  tournaments.size());
+        assertEquals("must be 8 not " + tournaments.size(), 8, tournaments.size());
     }
 
     @Test
@@ -119,6 +120,17 @@ public class ClickTTParserTest {
 
         for (Competition competition : tournament.getCompetitions()) {
             System.out.println("competition = " + competition);
+        }
+    }
+
+    @Test
+    public void testParticipants() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_participants.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentParticipants(page, competition);
+        for (Participant participant : competition.getParticipantList()) {
+            System.out.println("participant = " + participant);
         }
     }
 

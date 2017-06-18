@@ -8,6 +8,7 @@ import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
@@ -1248,5 +1249,50 @@ public class ClickTTParser extends AbstractBaseParser {
             idx = resultrow.end;
 
         }
+    }
+
+    public void readTournamentParticipants(Competition competition) throws NetworkException {
+        String page = Client.getPage(competition.getParticipants());
+        parseTournamentParticipants(page, competition);
+    }
+    void parseTournamentParticipants(String page, Competition competition) {
+        List<String[]> rows = parseTable(page, "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\" width=\"100%\">", 4);
+
+        for (String[] row : rows) {
+            Participant participant = new Participant();
+            participant.setName(row[1]);
+            participant.setClub(row[2]);
+            participant.setQttr(row[3]);
+            competition.addParticipants(participant);
+        }
+    }
+
+    List<String[]> parseTable(String page, String tableTag, int coloumnCount) {
+        ParseResult table = readBetween(page, 0, tableTag, "</table>");
+        List<String[]> rows = new ArrayList<>();
+        if (table == null) {
+            return rows;
+        }
+
+        int c = 0;
+        int idx = 0;
+        while (true) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            String[] columns = tableRowAsArray(resultrow.result, coloumnCount);
+            rows.add(columns);
+
+        }
+        return rows;
     }
 }
