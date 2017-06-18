@@ -1,29 +1,21 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jmelzer.myttr.Mannschaftspiel;
+import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Tournament;
-import com.jmelzer.myttr.logic.ClickTTParser;
-import com.jmelzer.myttr.logic.LoginExpiredException;
-import com.jmelzer.myttr.logic.NetworkException;
-import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +35,34 @@ public class TournamentDetailActivity extends BaseActivity {
 
         TextView clubNameView = findViewById(R.id.textViewName);
         clubNameView.setText(MyApplication.selectedTournament.getName());
+        TextView textInfos = findViewById(R.id.textInfos);
+        textInfos.setText(buildInfo(MyApplication.selectedTournament));
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
         listView.setAdapter(new TournamentDetailActivity.Adapter(this,
                 prepareData(MyApplication.selectedTournament)));
+
+        final ListView listview = findViewById(R.id.competitionlist);
+        final CompetitionAdapter adapter = new CompetitionAdapter(this,
+                android.R.layout.simple_list_item_1,
+                MyApplication.selectedTournament.getCompetitions());
+        listview.setAdapter(adapter);
+    }
+
+    private CharSequence buildInfo(Tournament tournament) {
+        String s = "";
+
+        if (tournament.getLongDate() != null)
+            s += tournament.getLongDate() + "\n";
+        if (tournament.getTurnierArt() != null)
+            s += "Turnierart: " + tournament.getTurnierArt() + "\n";
+        if (tournament.getRanglistenbezug() != null)
+            s += "Ranglistenbezug: " + tournament.getRanglistenbezug() + "\n";
+        if (tournament.getPriceMoney() != null)
+            s += "Preisgelder/Sachpreise: " + tournament.getPriceMoney() + "\n";
+        if (tournament.getTurnierhomepage() != null)
+            s += "Homepage: " + tournament.getTurnierhomepage() + "\n"; //todo add clickable
+        return s;
     }
 
     public static class Child {
@@ -174,6 +190,51 @@ public class TournamentDetailActivity extends BaseActivity {
         @Override
         public boolean isChildSelectable(int i, int i1) {
             return false;
+        }
+    }
+
+    private static class ViewHolder {
+        TextView textName;
+        TextView textQttr;
+        TextView textOpenFor;
+        TextView textDate;
+        TextView textttrRelevant;
+    }
+
+    class CompetitionAdapter extends ArrayAdapter<Competition> {
+        private LayoutInflater layoutInflater;
+
+        public CompetitionAdapter(Context context, int resource, List<Competition> competitionList) {
+            super(context, resource, competitionList);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.competition_row, null);
+                holder = new ViewHolder();
+                holder.textName = convertView.findViewById(R.id.name);
+                holder.textQttr = convertView.findViewById(R.id.qttr);
+                holder.textOpenFor = convertView.findViewById(R.id.openFor);
+                holder.textDate = convertView.findViewById(R.id.date);
+                holder.textttrRelevant = convertView.findViewById(R.id.ttrRelevant);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            final Competition competition = getItem(position);
+
+            holder.textName.setText(competition.getName());
+            holder.textQttr.setText(competition.getQttr());
+            holder.textDate.setText(competition.getDate());
+            holder.textOpenFor.setText(competition.getOpenFor());
+
+
+            return convertView;
         }
     }
 }

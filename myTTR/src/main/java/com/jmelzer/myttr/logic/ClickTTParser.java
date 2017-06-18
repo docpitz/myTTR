@@ -3,6 +3,7 @@ package com.jmelzer.myttr.logic;
 import android.text.Html;
 
 import com.jmelzer.myttr.Bezirk;
+import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -1106,7 +1107,8 @@ public class ClickTTParser extends AbstractBaseParser {
      * read the tournaments from the url
      */
     public List<Tournament> readTournaments() throws NetworkException {
-        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
+//        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
+        String url = "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV";
         String page = Client.getPage(url);
         return parseTournamentLinks(page, UrlUtil.getHttpAndDomain(url));
     }
@@ -1160,7 +1162,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     void parseTournamentDetail(String page, Tournament tournament) {
         ParseResult result = readBetween(page, 0, "<h2>Austragungsorte", "</ul>");
-        result = readBetween(result.result, 0, "<li>", "</li>");
+        result = readBetween(result, 0, "<li>", "</li>");
         tournament.setLocation(cleanHtml(result));
         result = readBetween(page, 0, "<h2>Material", "</ul>");
         tournament.setMaterial(listFromLiElement(result));
@@ -1168,13 +1170,17 @@ public class ClickTTParser extends AbstractBaseParser {
         tournament.setRegistrationInfo(listFromLiElement(result));
         result = readBetween(page, 0, "<h2>Kontakt für Meldung</h2>", "</li>");
         //cut E-Mail
-        if (result.result != null && result.result.contains("E-Mail")) {
+        if (result != null && result.result.contains("E-Mail")) {
             result.result = result.result.substring(0, result.result.indexOf("E-Mail"));
         }
         tournament.setContact(cleanHtml(result).replace("<label>", "").replace("</label>", ""));
         result = readBetween(page, 0, "encodeEmail(", ")");
         tournament.setEmail(unencodeMail(result));
 
+        result = readBetween(page, 0, "<h1>", "</h1>");
+        tournament.setFullName(cleanHtml(result));
+        result = readBetween(page, result.end, "<p>", "</p>");
+        tournament.setLongDate(cleanHtml(result));
         result = readBetween(page, 0, "Ranglistenbezug:", "</p>");
         tournament.setRanglistenbezug(cleanHtml(result));
         result = readBetween(page, 0, "Turnierart:", "</p>");
@@ -1182,8 +1188,54 @@ public class ClickTTParser extends AbstractBaseParser {
         result = readBetween(page, 0, "Gesamthöhe der Preisgelder/Sachpreise:", "</p>");
         tournament.setPriceMoney(cleanHtml(result));
         result = readBetween(page, 0, "Turnierhomepage:", "</p>");
-        if (result.result != null) {
+        if (result != null) {
             tournament.setTurnierhomepage(readHrefAndATag(result.result)[0]);
+        }
+
+        parseTournamentCompetitions(page, tournament);
+    }
+
+    private void parseTournamentCompetitions(String page, Tournament tournament) {
+        ParseResult table = readBetween(page, 0, "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\" width=\"100%\">", "</table>");
+        if (table == null) {
+            return;
+        }
+        if (!page.contains("Konkurrenzen")) {
+            return;
+        }
+        tournament.clearCompetitions();
+        int c = 0;
+        int idx = 0;
+        String httpAndDomain = UrlUtil.getHttpAndDomain(tournament.getUrl());
+        while (true) {
+            ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+            }
+
+            String[] columns = tableRowAsArray(resultrow.result, 7);
+            Competition competition = new Competition();
+            competition.setName(cleanHtml(columns[0]));
+            competition.setQttr(columns[1]);
+            competition.setOpenFor(cleanHtml(columns[2]));
+            competition.setDate(columns[3]);
+            competition.setTtrRelevant(columns[4]);
+            competition.setParticipants(readHrefAndATag(columns[5])[0]);
+            if (StringUtils.isNotEmpty(competition.getParticipants())) {
+                competition.setParticipants(httpAndDomain + competition.getParticipants());
+            }
+            competition.setResults(readHrefAndATag(columns[6])[0]);
+            if (StringUtils.isNotEmpty(competition.getResults())) {
+                competition.setResults(httpAndDomain + competition.getResults());
+            }
+            tournament.addCompetition(competition);
+
+            idx = resultrow.end;
+
         }
     }
 }

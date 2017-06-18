@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/RowListStyle"
+        tools:ignore="UselessParent">
+
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="B-Schülerinnen Mannschaft" />
+
+        <TextView
+            android:id="@+id/qttr"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="2"
+            android:text="0 bis 3000" />
+
+        <TextView
+            android:id="@+id/openFor"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1.5"
+            android:text="keine freie Meldung" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="2"
+            android:text="Fr. 02.06. 08:30 Uhr" />
+
+        <TextView
+            android:id="@+id/ttrRelevant"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.4"
+            android:text="Ja" />
+<!--todo add telenehmer & ergebnisse as image checkmark-->
+
+    </LinearLayout>
+</LinearLayout>

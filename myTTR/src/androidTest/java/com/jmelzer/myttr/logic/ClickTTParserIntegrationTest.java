@@ -22,6 +22,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Saison;
 
@@ -112,7 +113,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         assertTrue(spiel.getSpiele().size() > 0);
     }
 
-    @MediumTest
+//    @MediumTest
     public void testAllVerbaende() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         for (Verband verband : verbaende) {
@@ -246,16 +247,24 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     @SmallTest
     public void testSpielerDetail() throws Exception {
-        Spieler spieler = parser.readSpielerDetail("Himel, Michael ", "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=WTTV&season=2014%2F15&person=974254&club=7425");
-        assertEquals("Herren: VR 1.2 RR 1.3\n" +
+        Spieler spieler = parser.readSpielerDetail("Mykietyn, Tom ", "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=RL-OL+West&season=2016%2F17&person=1150840&club=8383");
+        assertEquals("Herren: VR 1.4 RR 1.2\n" +
                 "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
-        assertEquals(2, spieler.getEinsaetze().size());
+        assertEquals(1, spieler.getEinsaetze().size());
         List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
         assertTrue(ergebnisse.size() > 0);
 //        for (Spieler.LigaErgebnisse ligaErgebnisse : ergebnisse) {
 //            Log.i(Constants.LOG_TAG, "ligaErgebnisse = " + ligaErgebnisse);
 //        }
 
+    }
+
+    @SmallTest
+    public void testTurnier() throws Exception {
+        List<Tournament> tournaments = parser.readTournaments();
+        for (Tournament tournament : tournaments) {
+            parser.readTournamentDetail(tournament);
+        }
     }
 }
 

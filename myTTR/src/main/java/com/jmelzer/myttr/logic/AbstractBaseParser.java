@@ -89,6 +89,11 @@ public class AbstractBaseParser {
         }
     }
 
+    ParseResult readBetween(ParseResult result, int start, String tagStart, String tagEnd) {
+        if (result == null)
+            return null;
+        return readBetween(result.result, start, tagStart, tagEnd);
+    }
     ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
         return readBetween(page, start, tagStart, tagEnd, false);
     }
@@ -107,6 +112,9 @@ public class AbstractBaseParser {
      * @return first url, second value inside the tag
      */
     protected String[] readHrefAndATag(String line) {
+        if (line == null || line.isEmpty()) {
+            return new String[] {"", ""};
+        }
         ParseResult result2 = readBetween(line, 0, "href=\"", "\"");
         String url = safeResult(result2);
         result2 = readBetweenOpenTag(line, 0, "<a", "</a>");

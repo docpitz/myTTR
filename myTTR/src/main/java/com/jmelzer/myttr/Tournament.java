@@ -21,7 +21,7 @@ public class Tournament {
     private String material;
     private String registrationInfo;
 
-    private List<Competition> ompetitions = new ArrayList<>();
+    private List<Competition> competitions = new ArrayList<>();
     private String email;
     private String ranglistenbezug;
     private String longDate;
@@ -30,6 +30,7 @@ public class Tournament {
     private String antragShortUrl;
     private String antragFullUrl;
     private String turnierhomepage;
+    private String fullName;
 
     public String getRanglistenbezug() {
         return ranglistenbezug;
@@ -111,12 +112,12 @@ public class Tournament {
         this.registrationInfo = registrationInfo;
     }
 
-    public List<Competition> getOmpetitions() {
-        return ompetitions;
+    public List<Competition> getCompetitions() {
+        return competitions;
     }
 
-    public void setOmpetitions(List<Competition> ompetitions) {
-        this.ompetitions = ompetitions;
+    public void setCompetitions(List<Competition> competitions) {
+        this.competitions = competitions;
     }
 
     public String getDate() {
@@ -206,7 +207,7 @@ public class Tournament {
                 ", contact='" + contact + '\'' +
                 ", material='" + material + '\'' +
                 ", registrationInfo='" + registrationInfo + '\'' +
-                ", ompetitions=" + ompetitions +
+                ", ompetitions=" + competitions +
                 ", email='" + email + '\'' +
                 ", ranglistenbezug='" + ranglistenbezug + '\'' +
                 ", longDate='" + longDate + '\'' +
@@ -224,5 +225,21 @@ public class Tournament {
 
     public String getTurnierhomepage() {
         return turnierhomepage;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void clearCompetitions() {
+        competitions.clear();
+    }
+
+    public void addCompetition(Competition competition) {
+        competitions.add(competition);
     }
 }

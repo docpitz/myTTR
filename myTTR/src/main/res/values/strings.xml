@@ -125,6 +125,7 @@
     <string name="label_position">Position:</string>
     <string name="label_name">Name, Vorname:</string>
     <string name="label_einsaetze">Einsätze:</string>
+    <string name="header_tournament_sample">Kontakt</string>
     <string name="sample_kontakt">von Thurn und Taxis, Johannes\nMobil: 0177 0000000\nkalr.hans@gmx.de</string>
     <string name="sample_date">21.03.2014</string>
     <string name="sample_ttr">1611</string>
@@ -150,6 +151,10 @@
     <string name="nachname">Nachname</string>
     <string name="club">Verein</string>
     <string name="points">Punkte</string>
+    <string name="header_konkurrenz">Konkurrenz</string>
+    <string name="header_qttr">QTTR</string>
+    <string name="header_openFor">Offen für</string>
+    <string name="header_ttrRelevant">TTR</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

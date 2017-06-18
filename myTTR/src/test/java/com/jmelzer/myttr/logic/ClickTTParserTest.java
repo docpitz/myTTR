@@ -11,6 +11,7 @@
 package com.jmelzer.myttr.logic;
 
 import com.jmelzer.myttr.Bezirk;
+import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -92,6 +93,7 @@ public class ClickTTParserTest {
         String page = readFile(ASSETS_DIR + "/tournament_detail.htm");
         assertNotNull(page);
         Tournament tournament = new Tournament();
+        tournament.setUrl("http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendarDetail?tournament=290268&federation=WTTV");
         parser.parseTournamentDetail(page, tournament);
 
         assertEquals("Dreifachsporthalle Lengerich\n" +
@@ -111,6 +113,13 @@ public class ClickTTParserTest {
         assertEquals("offenes Turnier", tournament.getTurnierArt());
         assertEquals("625 €", tournament.getPriceMoney());
         assertEquals("http://www.ttc-lengerich.de", tournament.getTurnierhomepage());
+        assertEquals("10.06.2017 bis 11.06.2017", tournament.getLongDate());
+        assertEquals("8. Lengericher Teuto Cup\n" +
+                "TTC Lengerich", tournament.getFullName());
+
+        for (Competition competition : tournament.getCompetitions()) {
+            System.out.println("competition = " + competition);
+        }
     }
 
     @Test

@@ -11,12 +11,80 @@
         android:textSize="16sp"
         tools:text="8. Lengericher Teuto Cup TTC Lengerich"
         android:id="@+id/textViewName"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        tools:text=" 03.06.2017 bis 04.06.2017
+Ranglistenbezug: 11.05.2017
+Turnierart: offenes Turnier
+Gesamthöhe der Preisgelder/Sachpreise: 500 €"
+        android:id="@+id/textInfos"
         android:layout_marginBottom="10dp"/>
 
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="00dp"
         tools:listheader="@layout/liga_mannschaft_bilanz_detail_header"
-        tools:listitem="@layout/liga_verein_row"/>
+        tools:listitem="@layout/tournament_detail_row"/>
+
+    <LinearLayout style="@style/HeaderListStyle">
+
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/header_konkurrenz" />
+
+        <TextView
+            android:id="@+id/qttr"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="2"
+            android:text="@string/header_qttr" />
+
+        <TextView
+            android:id="@+id/openFor"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1.5"
+            android:text="@string/header_openFor" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="2"
+            android:text="@string/header_event_date" />
+
+        <TextView
+            android:id="@+id/ttrRelevant"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="0.7"
+            android:text="@string/header_ttrRelevant" />
+        <!--todo add telenehmer & ergebnisse as image checkmark-->
+
+
+    </LinearLayout>
+    <View style="@style/ListLine"/>
+    <ListView
+        android:id="@+id/competitionlist"
+        tools:listitem="@layout/competition_row"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </ListView>
+
 </LinearLayout>
