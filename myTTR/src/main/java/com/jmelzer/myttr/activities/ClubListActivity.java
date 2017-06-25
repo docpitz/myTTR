@@ -47,7 +47,7 @@ public class ClubListActivity extends BaseActivity {
 
         setContentView(R.layout.clublist);
 
-        final ListView listview = (ListView) findViewById(R.id.listview);
+        final ListView listview = findViewById(R.id.listview);
         final PlayerAdapter adapter = new PlayerAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.clubPlayers);

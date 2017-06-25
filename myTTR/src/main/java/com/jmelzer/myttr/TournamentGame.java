@@ -54,7 +54,14 @@ public class TournamentGame {
     public String getResult() {
         return result;
     }
+    public String getSetsInARow() {
+        String ret = "";
+        for (String set : sets) {
+            ret += set + "    ";
+        }
 
+        return ret;
+    }
     public void setResult(String result) {
         this.result = result;
     }

@@ -1265,7 +1265,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
         int start = 0;
         if (rows.size() > 0) {
-            if (rows.get(0)[0].equals("-")) {
+            if (rows.get(0)[0].length() == 1) {
                 start++;
             }
         }

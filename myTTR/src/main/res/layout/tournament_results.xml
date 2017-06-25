@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="10dp"
+              android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text="8. Lengericher Teuto Cup TTC Lengerich"
+        android:id="@+id/textViewName"
+        android:layout_marginBottom="5dp"/>
+
+   <!-- <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        tools:text=" 03.06.2017 bis 04.06.2017
+Ranglistenbezug: 11.05.2017
+Turnierart: offenes Turnier
+Gesamthöhe der Preisgelder/Sachpreise: 500 €"
+        android:id="@+id/textInfos"
+        android:layout_marginBottom="10dp"/>-->
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:listheader="@layout/liga_mannschaft_bilanz_detail_header"
+        tools:listitem="@layout/tournament_detail_row"/>
+
+
+
+</LinearLayout>

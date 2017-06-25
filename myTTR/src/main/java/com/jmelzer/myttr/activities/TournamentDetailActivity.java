@@ -274,6 +274,7 @@ public class TournamentDetailActivity extends BaseActivity {
                 callParticipant(item.getItemId());
                 break;
             case 2:
+                callResults(item.getItemId());
                 break;
 
         }
@@ -283,6 +284,14 @@ public class TournamentDetailActivity extends BaseActivity {
     private void callParticipant(int itemId) {
         MyApplication.selectedCompetition = MyApplication.selectedTournament.getCompetitions().get(itemId);
         AsyncTask<String, Void, Integer> task = new ParticipantAsyncTask(this, ParticipantActivity.class);
+        task.execute();
+
+    }
+
+
+    private void callResults(int itemId) {
+        MyApplication.selectedCompetition = MyApplication.selectedTournament.getCompetitions().get(itemId);
+        AsyncTask<String, Void, Integer> task = new ResultsAsyncTask(this, TournamentResultsActivity.class);
         task.execute();
 
     }
@@ -302,6 +311,25 @@ public class TournamentDetailActivity extends BaseActivity {
         @Override
         protected boolean dataLoaded() {
             return MyApplication.selectedCompetition.getParticipantList().size() > 0;
+        }
+    }
+
+    private class ResultsAsyncTask extends BaseAsyncTask {
+
+        public ResultsAsyncTask(Activity parent, Class targetClz) {
+            super(parent, targetClz);
+        }
+
+        @Override
+        protected void callParser() throws NetworkException, LoginExpiredException {
+            new ClickTTParser().readTournamentResults(MyApplication.selectedCompetition);
+        }
+
+
+        @Override
+        protected boolean dataLoaded() {
+            return MyApplication.selectedCompetition.getGroups().size() > 0 ||
+                    MyApplication.selectedCompetition.getKoPhases().size() > 0;
         }
     }
 }
