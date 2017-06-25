@@ -14,6 +14,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
+import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
@@ -266,6 +267,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             List<Tournament> tournaments = parser.readTournaments(verband, new Date());
             for (Tournament tournament : tournaments) {
                 parser.readTournamentDetail(tournament);
+                for (Competition competition : tournament.getCompetitions()) {
+                    parser.readTournamentParticipants(competition);
+                    parser.readTournamentResults(competition);
+
+                }
             }
         }
     }

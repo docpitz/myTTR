@@ -20,6 +20,8 @@ public class Competition {
     String results;
 
     List<Participant> participantList = new ArrayList<>();
+    List<Group> groups = new ArrayList<>();
+    List<KoPhase> koPhases= new ArrayList<>();
 
     public String getTtrRelevant() {
         return ttrRelevant;
@@ -96,6 +98,25 @@ public class Competition {
                 ", ttrRelevant='" + ttrRelevant + '\'' +
                 ", participants='" + participants + '\'' +
                 ", results='" + results + '\'' +
+                ", participantList=" + participantList +
+                ", groups=" + groups +
+                ", koPhases=" + koPhases +
                 '}';
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public List<KoPhase> getKoPhases() {
+        return koPhases;
+    }
+
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
+    public void addKoPhase(KoPhase koPhase) {
+        koPhases.add(koPhase);
     }
 }

@@ -131,7 +131,37 @@ public class ClickTTParserTest {
         parser.parseTournamentParticipants(page, competition);
         for (Participant participant : competition.getParticipantList()) {
             System.out.println("participant = " + participant);
+            assertNotNull(participant.getName());
+            assertNotNull(participant.getClub());
+            assertNotNull(participant.getQttr());
+            Integer.valueOf(participant.getQttr());
         }
+    }
+
+    @Test
+    public void testParticipants2() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_participants2.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentParticipants(page, competition);
+        for (Participant participant : competition.getParticipantList()) {
+            System.out.println("participant = " + participant);
+            assertNotNull(participant.getName());
+            assertNotNull(participant.getClub());
+            assertNotNull(participant.getQttr());
+            Integer.valueOf(participant.getQttr());
+        }
+    }
+
+    @Test
+    public void parseTournamentResults() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_results.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentResults(page, competition);
+        System.out.println("competition = " + competition);
+        assertEquals(6, competition.getGroups().size());
+        assertEquals(5, competition.getKoPhases().size());
     }
 
     @Test

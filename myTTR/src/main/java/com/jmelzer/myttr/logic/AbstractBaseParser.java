@@ -8,6 +8,40 @@ import java.util.Locale;
  * Created by J. Melzer on 19.02.2015.
  */
 public class AbstractBaseParser {
+
+    List<String[]> parseTable(String page, String tableTag, int coloumnCount) {
+        return parseTable(page, tableTag, coloumnCount, false);
+    }
+
+    List<String[]> parseTable(String page, String tableTag, int coloumnCount, boolean withHeader) {
+        ParseResult table = readBetween(page, 0, tableTag, "</table>");
+        List<String[]> rows = new ArrayList<>();
+        if (table == null) {
+            return rows;
+        }
+
+        int c = 0;
+        int idx = 0;
+        while (true) {
+            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (!withHeader && c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+
+            }
+            idx = resultrow.end - 1;
+
+            String[] columns = tableRowAsArray(resultrow.result, coloumnCount);
+            rows.add(columns);
+
+        }
+        return rows;
+    }
+
     static class ParseResult {
         String result;
 
@@ -94,6 +128,7 @@ public class AbstractBaseParser {
             return null;
         return readBetween(result.result, start, tagStart, tagEnd);
     }
+
     ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
         return readBetween(page, start, tagStart, tagEnd, false);
     }
@@ -113,7 +148,7 @@ public class AbstractBaseParser {
      */
     protected String[] readHrefAndATag(String line) {
         if (line == null || line.isEmpty()) {
-            return new String[] {"", ""};
+            return new String[]{"", ""};
         }
         ParseResult result2 = readBetween(line, 0, "href=\"", "\"");
         String url = safeResult(result2);

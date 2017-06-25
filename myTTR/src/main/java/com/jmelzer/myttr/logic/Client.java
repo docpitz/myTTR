@@ -64,6 +64,7 @@ public class Client {
 
     public synchronized static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
+        Log.i(Constants.LOG_TAG, "prepareGet url '" + url + "'");
         HttpGet httpGet = prepareGet(url);
         try {
             lastUrl = url;

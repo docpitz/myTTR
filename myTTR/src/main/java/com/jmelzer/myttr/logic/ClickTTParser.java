@@ -4,6 +4,9 @@ import android.text.Html;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Competition;
+import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Group;
+import com.jmelzer.myttr.KoPhase;
 import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -12,6 +15,7 @@ import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
+import com.jmelzer.myttr.TournamentGame;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -23,6 +27,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
@@ -268,7 +273,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 idxL = resultLinks.end;
                 ParseResult resultLink = readBetween(resultLinks.result, 0, "href=\"", "\">");
                 ParseResult resultName = readBetween(resultLinks.result, 0, "\">", null);
-                Verband v = new Verband(resultName.result, resultLink.result,null);
+                Verband v = new Verband(resultName.result, resultLink.result, null);
                 verbandList.add(v);
 
             }
@@ -756,7 +761,6 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
 
-
     String unencodeMail(ParseResult result) {
         if (result == null)
             return "";
@@ -765,6 +769,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     /**
      * format e.g. de', 'manfred', 't-online', 'und.petra.hildebrandt'
+     *
      * @param s to parse
      * @return "" or email
      */
@@ -921,9 +926,6 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
 
-
-
-
     /**
      * read the ligen from the url inside the verband
      */
@@ -1029,7 +1031,7 @@ public class ClickTTParser extends AbstractBaseParser {
             } else {
                 lastDate = m.getDate();
             }
-            m.setUrlDetail(UrlUtil.safeUrl(UrlUtil.getHttpAndDomain(verein.getUrl()) , m.getUrlDetail()));
+            m.setUrlDetail(UrlUtil.safeUrl(UrlUtil.getHttpAndDomain(verein.getUrl()), m.getUrlDetail()));
             verein.addLetztesSpiel(m);
 
 
@@ -1252,47 +1254,91 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public void readTournamentParticipants(Competition competition) throws NetworkException {
-        String page = Client.getPage(competition.getParticipants());
-        parseTournamentParticipants(page, competition);
+        if (competition.getParticipants() != null) {
+            String page = Client.getPage(competition.getParticipants());
+            parseTournamentParticipants(page, competition);
+        }
     }
+
     void parseTournamentParticipants(String page, Competition competition) {
         List<String[]> rows = parseTable(page, "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\" width=\"100%\">", 4);
 
+        int start = 0;
+        if (rows.size() > 0) {
+            if (rows.get(0)[0].equals("-")) {
+                start++;
+            }
+        }
         for (String[] row : rows) {
             Participant participant = new Participant();
-            participant.setName(row[1]);
-            participant.setClub(row[2]);
-            participant.setQttr(row[3]);
+            participant.setName(row[start]);
+            participant.setClub(row[start + 1]);
+            participant.setQttr(row[start + 2]);
             competition.addParticipants(participant);
         }
     }
 
-    List<String[]> parseTable(String page, String tableTag, int coloumnCount) {
-        ParseResult table = readBetween(page, 0, tableTag, "</table>");
-        List<String[]> rows = new ArrayList<>();
-        if (table == null) {
-            return rows;
+    public void readTournamentResults(Competition competition) throws NetworkException {
+        if (competition.getResults() != null) {
+            String page = Client.getPage(competition.getResults());
+            parseTournamentResults(page, competition);
         }
+    }
 
-        int c = 0;
-        int idx = 0;
-        while (true) {
-            ParseResult resultrow = readBetweenOpenTag(table.result, idx, "<tr", "</tr>");
+    void parseTournamentResults(String page, Competition competition) {
+        List<String[]> rows = parseTable(page,
+                "<table class=\"result-set\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">",
+                13, true);
+        List<String> koNames = Arrays.asList("Finale", "Halbfinale", "Viertelfinale",
+                "Achtelfinale", "Spiel um Platz 3");
 
-            if (isEmpty(resultrow)) {
-                break;
+        Group group = new Group();
+        KoPhase koPhase = new KoPhase();
+        for (String[] row : rows) {
+            System.out.println("row = " + Arrays.toString(row));
+            if (row[0].startsWith("Gruppe")) {
+                group = new Group();
+                group.setName(row[0]);
+                koPhase = null;
+                competition.addGroup(group);
+                continue;
             }
-            if (c++ == 0) {
-                idx = resultrow.end;
-                continue;//skip first row
-
+            if (row[0].isEmpty()) {
+                continue;
             }
-            idx = resultrow.end - 1;
+            String name = contains(koNames, row[0]);
+            if (name != null) {
+                koPhase = new KoPhase();
+                koPhase.setName(name);
+                competition.addKoPhase(koPhase);
+                group = null;
+                continue;
+            }
+            TournamentGame game = new TournamentGame();
+            game.setSpieler1Name(row[2]);
+            game.setSpieler2Name(row[3]);
+            game.addSet(row[4]);
+            game.addSet(row[5]);
+            game.addSet(row[6]);
+            game.addSet(row[7]);
+            game.addSet(row[8]);
+            game.addSet(row[9]);
+            game.addSet(row[10]);
+            game.setResult(row[11]);
+            if (group != null)
+                group.addGame(game);
+            if (koPhase != null)
+                koPhase.addGame(game);
 
-            String[] columns = tableRowAsArray(resultrow.result, coloumnCount);
-            rows.add(columns);
-
+            System.out.println("row = " + game);
         }
-        return rows;
+    }
+
+    private String contains(List<String> koNames, String name) {
+        for (String koName : koNames) {
+            if (name.contains(koName))
+                return koName;
+        }
+        return null;
     }
 }
