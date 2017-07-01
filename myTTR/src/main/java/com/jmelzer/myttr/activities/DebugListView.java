@@ -9,7 +9,7 @@ import android.widget.ListView;
 import static com.jmelzer.myttr.Constants.LOG_TAG;
 
 public class DebugListView extends ListView {
-    private static final int ROW_HEIGHT = 100;
+    private static final int ROW_HEIGHT = 200;
     private int rows;
 
     public DebugListView(Context context) {

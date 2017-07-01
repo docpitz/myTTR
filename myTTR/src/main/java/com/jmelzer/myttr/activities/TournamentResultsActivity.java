@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.Group;
@@ -19,6 +21,8 @@ import com.jmelzer.myttr.TournamentGame;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.width;
 
 /**
  * Created by J. Melzer on 25.06.2017.
@@ -38,18 +42,10 @@ public class TournamentResultsActivity extends BaseActivity {
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
         listView.setAdapter(new TournamentResultsActivity.Adapter(this,
-                prepareData()));
+                prepareData(), listView));
 
         setTitle("Ergebnisse");
 
-    }
-
-    public static class Child {
-        TournamentGame game;
-
-        public Child(TournamentGame game) {
-            this.game = game;
-        }
     }
 
     public static class Parent {
@@ -92,11 +88,13 @@ public class TournamentResultsActivity extends BaseActivity {
         List<Parent> list;
         LayoutInflater layInflator;
         Context context;
+        ExpandableListView expandableListView;
 
-        public Adapter(Context context, List<Parent> data) {
+        public Adapter(Context context, List<Parent> data, ExpandableListView expandableListView) {
             this.list = data;
             this.context = context;
             layInflator = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.expandableListView = expandableListView;
         }
 
         @Override
@@ -154,7 +152,7 @@ public class TournamentResultsActivity extends BaseActivity {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             Parent parent = (Parent) getGroup(groupPosition);
 
-            DebugListView listView = new DebugListView( context );
+            DebugListView listView = new DebugListView(context);
             final SearchResultAdapter adapter = new SearchResultAdapter(context,
                     android.R.layout.simple_list_item_1,
                     parent.children);
