@@ -16,7 +16,7 @@ public class AppointmentParser {
     }
 
     public List<TeamAppointment> read(String clubName) throws NetworkException, LoginExpiredException {
-        String url = "http://www.mytischtennis.de/community/index";
+        String url = "https://www.mytischtennis.de/community/index";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();

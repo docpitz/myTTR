@@ -14,7 +14,7 @@
 
     <color name="gray">#808080</color>
     <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#ffffff</color>
     <color name="image_border_start">#40990000</color>
     <color name="image_border_end">#FF660000</color>
     <color name="image_border_center">#FFFF3333</color>

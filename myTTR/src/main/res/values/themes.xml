@@ -8,32 +8,11 @@
 <resources>
 
     <style name="MyTheme" parent="@android:style/Theme.Holo">
-        <!--<item name="android:background">#f3191919</item>-->
+        <!--<item name="android:background">#f3e45252</item>-->
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Myttr</item>
         <item name="android:selectableItemBackground">@null</item>
-<!--
-        &lt;!&ndash; For the resting Spinner style &ndash;&gt;
-        <item name="android:spinnerItemStyle">
-            @style/spinnerItemStyle
-        </item>
 
-        &lt;!&ndash; For each individual Spinner list item once clicked on &ndash;&gt;
-        <item name="android:spinnerDropDownItemStyle">
-            @style/spinnerDropDownItemStyle
-        </item>-->
     </style>
-
-  <!--  <style name="spinnerItemStyle">
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-    </style>
-
-    <style name="spinnerDropDownItemStyle">
-        <item name="android:padding">20dp</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-    </style>-->
 
     <style name="ActionBar.Solid.Myttr" parent="@android:style/Widget.Holo.ActionBar.Solid">
         <item name="android:background">@drawable/ab_solid_myttr</item>

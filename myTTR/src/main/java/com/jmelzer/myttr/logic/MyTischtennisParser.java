@@ -66,7 +66,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException {
-        String url = "http://www.mytischtennis.de/community/index";
+        String url = "https://www.mytischtennis.de/community/index";
 
         String page = Client.getPage(url);
         if (page.contains("Du bist für uns leider nicht eindeutig zu identifizieren!")) {
@@ -78,7 +78,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     public int getPoints() throws PlayerNotWellRegistered, NetworkException {
 
-        String url = "http://www.mytischtennis.de/community/index";
+        String url = "https://www.mytischtennis.de/community/index";
 
         String page = Client.getPage(url);
 
@@ -308,7 +308,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public List<Player> getClubList() throws NetworkException, LoginExpiredException {
-        String url = "http://www.mytischtennis.de/community/showclubinfo";
+        String url = "https://www.mytischtennis.de/community/showclubinfo";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
@@ -318,7 +318,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             int n2 = page.indexOf("&", n);
             String id = page.substring(n + 9, n2);
 
-            String clubListUrl = "http://www.mytischtennis.de/community/ajax/_rankingList?vereinid=" + id +
+            String clubListUrl = "https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=" + id +
                     "&alleSpielberechtigen=yes";
             page = Client.getPage(clubListUrl);
             List<Player> list = new ArrayList<>();
@@ -340,7 +340,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (MyApplication.manualClub != null && !"".equals(MyApplication.manualClub)) {
             return MyApplication.manualClub;
         }
-        String url = "http://www.mytischtennis.de/community/userMasterPage";
+        String url = "https://www.mytischtennis.de/community/userMasterPage";
         try {
             String page = Client.getPage(url);
             return readClubName(page);
@@ -371,7 +371,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public String getRealName() {
-        String url = "http://www.mytischtennis.de/community/index";
+        String url = "https://www.mytischtennis.de/community/index";
         try {
             String page = Client.getPage(url);
             return parseLoginName(page);
@@ -389,7 +389,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     public List<Player> readPlayersFromTeam(String id) throws NetworkException {
 
-        String url = "http://www.mytischtennis.de/community/teamplayers";
+        String url = "https://www.mytischtennis.de/community/teamplayers";
         if (id != null) {
             url += "?teamId=" + id;
         }
@@ -399,7 +399,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public Player readEvents() throws NetworkException, LoginExpiredException {
-        String url = "http://www.mytischtennis.de/community/events";
+        String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
@@ -639,7 +639,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public EventDetail readEventDetail(Event event) throws NetworkException {
-        String url = "http://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
+        String url = "https://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
         String page = Client.getPage(url);
         return parseDetail(page);
     }
@@ -701,7 +701,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     //getting points and events
     public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
 
-        String url = "http://www.mytischtennis.de/community/events?personId=" + playerId;
+        String url = "https://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
@@ -713,7 +713,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (player.getPersonId() == 0) {
             System.out.println();
         }
-        String url = "http://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
+        String url = "https://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
@@ -799,7 +799,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public List<MyTTLiga> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
-        String url = "http://www.mytischtennis.de/community/group";
+        String url = "https://www.mytischtennis.de/community/group";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
@@ -808,7 +808,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         List<MyTTLiga> ligen = new ArrayList<>();
         for (String groupId : groupIds) {
 
-            url = "http://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
+            url = "https://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
             url = url.replace("%s", groupId);
             page = Client.getPage(url);
             ligen.add(parseGroupRanking(page));

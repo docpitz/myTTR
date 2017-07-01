@@ -28,6 +28,8 @@ import com.jmelzer.myttr.logic.NetworkException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.INVISIBLE;
+
 /**
  * Created by J. Melzer on 17.06.2017.
  */
@@ -43,8 +45,6 @@ public class TournamentDetailActivity extends BaseActivity {
 
         TextView clubNameView = findViewById(R.id.textViewName);
         clubNameView.setText(MyApplication.selectedTournament.getName());
-//        TextView textInfos = findViewById(R.id.textInfos);
-//        textInfos.setText(buildInfo(MyApplication.selectedTournament));
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
         listView.setAdapter(new TournamentDetailActivity.Adapter(this,
@@ -192,7 +192,6 @@ public class TournamentDetailActivity extends BaseActivity {
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean b, View convertView, ViewGroup viewGroup) {
-            final Child childElem = (Child) getChild(groupPosition, childPosition);
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.liga_verein_row, null);
             TextView textView = convertView.findViewById(R.id.child1);
@@ -213,6 +212,8 @@ public class TournamentDetailActivity extends BaseActivity {
         TextView textOpenFor;
         TextView textDate;
         TextView textttrRelevant;
+        TextView textResults;
+        TextView textParticipants;
     }
 
     class CompetitionAdapter extends ArrayAdapter<Competition> {
@@ -235,6 +236,8 @@ public class TournamentDetailActivity extends BaseActivity {
                 holder.textOpenFor = convertView.findViewById(R.id.openFor);
                 holder.textDate = convertView.findViewById(R.id.date);
                 holder.textttrRelevant = convertView.findViewById(R.id.ttrRelevant);
+                holder.textResults = convertView.findViewById(R.id.results);
+                holder.textParticipants = convertView.findViewById(R.id.teilnehmer);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -249,6 +252,10 @@ public class TournamentDetailActivity extends BaseActivity {
             holder.textOpenFor.setText(competition.getOpenFor());
             if (competition.getParticipants() != null || competition.getResults() != null)
                 TournamentDetailActivity.this.registerForContextMenu(convertView);
+            if (competition.getParticipants() == null)
+                holder.textParticipants.setVisibility(INVISIBLE);
+            if (competition.getResults() == null)
+                holder.textResults.setVisibility(INVISIBLE);
             return convertView;
         }
     }

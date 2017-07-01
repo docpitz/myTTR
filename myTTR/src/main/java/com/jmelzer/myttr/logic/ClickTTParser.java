@@ -1272,10 +1272,22 @@ public class ClickTTParser extends AbstractBaseParser {
         for (String[] row : rows) {
             Participant participant = new Participant();
             participant.setName(row[start]);
-            participant.setClub(row[start + 1]);
+            participant.setClub(removeBracket(row[start + 1]));
             participant.setQttr(row[start + 2]);
             competition.addParticipants(participant);
         }
+    }
+
+    /**
+     * Bla bla (1333) -> Bla bla
+     */
+    private String removeBracket(String club) {
+        if (club == null) return null;
+        int b = club.indexOf('(');
+        if ( b > -1) {
+            return club.substring(0, b).trim();
+        }
+        return null;
     }
 
     public void readTournamentResults(Competition competition) throws NetworkException {

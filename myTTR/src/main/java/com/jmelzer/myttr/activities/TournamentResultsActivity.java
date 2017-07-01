@@ -1,6 +1,7 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -9,20 +10,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.Group;
 import com.jmelzer.myttr.KoPhase;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.TournamentGame;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.width;
 
 /**
  * Created by J. Melzer on 25.06.2017.
@@ -177,26 +175,48 @@ public class TournamentResultsActivity extends BaseActivity {
     }
 
     class SearchResultAdapter extends ArrayAdapter<TournamentGame> {
-
+        Context context;
         public SearchResultAdapter(Context context, int resource, List<TournamentGame> games) {
             super(context, resource, games);
+            this.context = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.tournament_result_row, parent, false);
-            TournamentGame game = getItem(position);
-            TextView textView = rowView.findViewById(R.id.player1);
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.tournament_result_row, null);
+            }
+            final TournamentGame game = getItem(position);
+            TextView textView = convertView.findViewById(R.id.player1);
             textView.setText(game.getSpieler1Name());
-            textView = rowView.findViewById(R.id.player2);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startSearch(game.getSpieler1Name());
+                }
+            });
+            textView = convertView.findViewById(R.id.player2);
             textView.setText(game.getSpieler2Name());
-            textView = rowView.findViewById(R.id.result);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startSearch(game.getSpieler2Name());
+                }
+            });
+            textView = convertView.findViewById(R.id.result);
             textView.setText(game.getResult());
-            textView = rowView.findViewById(R.id.sets);
+            textView = convertView.findViewById(R.id.sets);
             textView.setText(game.getSetsInARow());
-            return rowView;
+            return convertView;
         }
+    }
+
+    private void startSearch(final String name) {
+        MyApplication.selectedLigaSpieler = new Spieler(name);
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
+        intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
+        startActivity(intent);
     }
 }

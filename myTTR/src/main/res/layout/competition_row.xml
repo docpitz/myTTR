@@ -45,10 +45,23 @@
             android:id="@+id/ttrRelevant"
             style="@style/TextListStyleSmall"
             android:layout_width="0dp"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="4dp"
             android:layout_weight="0.4"
             android:text="Ja" />
-<!--todo add telenehmer & ergebnisse as image checkmark-->
+        <TextView
+            android:id="@+id/results"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.2"
+            android:text="E" />
+        <TextView
+            android:id="@+id/teilnehmer"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.2"
+            android:text="T" />
 
     </LinearLayout>
 </LinearLayout>

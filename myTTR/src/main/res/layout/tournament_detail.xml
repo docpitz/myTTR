@@ -70,9 +70,16 @@ Gesamthöhe der Preisgelder/Sachpreise: 500 €"
             android:id="@+id/ttrRelevant"
             style="@style/TextListStyleSmall"
             android:layout_width="0dp"
-            android:layout_marginLeft="6dp"
+            android:layout_marginLeft="4dp"
             android:layout_weight="0.7"
             android:text="@string/header_ttrRelevant" />
+        <TextView
+            android:id="@+id/headerInfo"
+            style="@style/TextListStyleSmall"
+            android:layout_width="0dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.7"
+            android:text="@string/info" />
         <!--todo add telenehmer & ergebnisse as image checkmark-->
 
 

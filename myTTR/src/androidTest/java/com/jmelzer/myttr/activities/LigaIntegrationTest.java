@@ -40,7 +40,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         MockResponses.forRequestDoAnswer(".*meeting=7371089.*", "clicktt/mannschafts_spiel_7371089.htm");
         MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15", "clicktt/rhein_sieg_ligen_plan.htm");
         MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15&group=225345", "clicktt/kreisliga.htm");
-        MockResponses.forRequestDoAnswer("http://www.mytischtennis.de/community/events", "events.htm");
+        MockResponses.forRequestDoAnswer("https://www.mytischtennis.de/community/events", "events.htm");
     }
 
 
