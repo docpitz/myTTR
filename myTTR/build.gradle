@@ -35,14 +35,14 @@ android {
         targetSdkVersion 26
         versionCode 53
         versionName "2.8.0 Beta 3"
-        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
         }
         debug {
-            testCoverageEnabled = true
+//            testCoverageEnabled = true
             debuggable true
         }
     }
@@ -72,11 +72,15 @@ android {
 
 }
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.+'
+    compile 'com.android.support:appcompat-v7:25.+'
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.3.1'
+    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+
     // Robolectric
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-core:1.1'
