@@ -1271,9 +1271,9 @@ public class ClickTTParser extends AbstractBaseParser {
         }
         for (String[] row : rows) {
             Participant participant = new Participant();
-            participant.setName(row[start]);
+            participant.setName(cleanHtml(row[start]));
             participant.setClub(removeBracket(row[start + 1]));
-            participant.setQttr(row[start + 2]);
+            participant.setQttr(cleanHtml(row[start + 2]));
             competition.addParticipants(participant);
         }
     }
@@ -1307,8 +1307,8 @@ public class ClickTTParser extends AbstractBaseParser {
         Group group = new Group();
         KoPhase koPhase = new KoPhase();
         for (String[] row : rows) {
-            System.out.println("row = " + Arrays.toString(row));
-            if (row[0].startsWith("Gruppe")) {
+//            System.out.println("row = " + Arrays.toString(row));
+            if (row[0].contains("Gruppe")) {
                 group = new Group();
                 group.setName(row[0]);
                 koPhase = null;
@@ -1327,8 +1327,8 @@ public class ClickTTParser extends AbstractBaseParser {
                 continue;
             }
             TournamentGame game = new TournamentGame();
-            game.setSpieler1Name(row[2]);
-            game.setSpieler2Name(row[3]);
+            game.setSpieler1Name(cleanHtml(row[2]));
+            game.setSpieler2Name(cleanHtml(row[3]));
             game.addSet(row[4]);
             game.addSet(row[5]);
             game.addSet(row[6]);
@@ -1342,7 +1342,7 @@ public class ClickTTParser extends AbstractBaseParser {
             if (koPhase != null)
                 koPhase.addGame(game);
 
-            System.out.println("row = " + game);
+//            System.out.println("row = " + game);
         }
     }
 

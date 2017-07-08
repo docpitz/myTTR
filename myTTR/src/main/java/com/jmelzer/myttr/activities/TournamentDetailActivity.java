@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by J. Melzer on 17.06.2017.
@@ -250,12 +251,17 @@ public class TournamentDetailActivity extends BaseActivity {
             holder.textQttr.setText(competition.getQttr());
             holder.textDate.setText(competition.getDate());
             holder.textOpenFor.setText(competition.getOpenFor());
+            holder.textttrRelevant.setText(competition.getTtrRelevant());
             if (competition.getParticipants() != null || competition.getResults() != null)
                 TournamentDetailActivity.this.registerForContextMenu(convertView);
             if (competition.getParticipants() == null)
                 holder.textParticipants.setVisibility(INVISIBLE);
+            else
+                holder.textParticipants.setVisibility(VISIBLE);
             if (competition.getResults() == null)
                 holder.textResults.setVisibility(INVISIBLE);
+            else
+                holder.textResults.setVisibility(VISIBLE);
             return convertView;
         }
     }
@@ -267,7 +273,7 @@ public class TournamentDetailActivity extends BaseActivity {
         ViewHolder holder = (ViewHolder) v.getTag();
         List<Competition> list = MyApplication.selectedTournament.getCompetitions();
         Competition competition = list.get(holder.id);
-        if (competition.getParticipants() != null )
+        if (competition.getParticipants() != null)
             menu.add(1, holder.id, 1, "Teilnehmer");
 
         if (competition.getResults() != null)

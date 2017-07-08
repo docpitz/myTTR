@@ -165,6 +165,28 @@ public class ClickTTParserTest {
     }
 
     @Test
+    public void parseTournamentResultsDoppel() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_double_results.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentResults(page, competition);
+        System.out.println("competition = " + competition);
+        assertEquals(0, competition.getGroups().size());
+        assertEquals(3, competition.getKoPhases().size());
+    }
+
+    @Test
+    public void parseTournamentResultsBug() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_results_bug.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentResults(page, competition);
+        System.out.println("competition = " + competition);
+        assertEquals(16, competition.getGroups().size());
+        assertEquals(3, competition.getKoPhases().size());
+    }
+
+    @Test
     public void testParseLigaLinks() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);

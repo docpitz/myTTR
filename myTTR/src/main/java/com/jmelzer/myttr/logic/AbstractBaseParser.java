@@ -200,7 +200,10 @@ public class AbstractBaseParser {
 
     String removeLastNewLine(String result) {
         if (result.lastIndexOf('\n') == result.length() - 1) {
-            result = result.substring(0, result.length() - 1);
+            if (result.length() > 1)
+                return result.substring(0, result.length() - 1);
+            else
+                return "";
         }
         return result;
     }
