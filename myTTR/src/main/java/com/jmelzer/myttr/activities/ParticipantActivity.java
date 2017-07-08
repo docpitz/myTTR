@@ -118,7 +118,7 @@ public class ParticipantActivity extends BaseActivity {
         MyApplication.selectedLigaSpieler.setClubName(MyApplication.selectedParticipant.getClub());
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
-        intent.putExtra(SearchActivity.BACK_TO, ParticipantActivity.class);
+        intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
         startActivity(intent);
     }
 

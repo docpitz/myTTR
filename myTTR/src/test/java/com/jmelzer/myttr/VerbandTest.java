@@ -19,6 +19,7 @@ public class VerbandTest {
         List<Verband> verbandList = Verband.verbaende;
         for (Verband verband : verbandList) {
             assertEquals(verband.url, verband.replaceYear(verband.url, Saison.SAISON_2015));
+            System.out.println(verband.replaceYear(verband.url, Saison.SAISON_2018));
         }
 
         for (Verband verband : verbandList) {
