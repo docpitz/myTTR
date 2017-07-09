@@ -31,6 +31,8 @@ public class Tournament {
     private String antragFullUrl;
     private String turnierhomepage;
     private String fullName;
+    private String freePlaces;
+    private boolean cup;
 
     public String getRanglistenbezug() {
         return ranglistenbezug;
@@ -241,5 +243,22 @@ public class Tournament {
 
     public void addCompetition(Competition competition) {
         competitions.add(competition);
+    }
+
+
+    public void setFreePlaces(String freePlaces) {
+        this.freePlaces = freePlaces;
+    }
+
+    public String getFreePlaces() {
+        return freePlaces;
+    }
+
+    public boolean isCup() {
+        return cup;
+    }
+
+    public void setCup(boolean b) {
+        cup = b;
     }
 }

@@ -275,6 +275,22 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
         }
     }
+
+    @SmallTest
+    public void testCups() throws Exception {
+        List<Verband> verbaende = Verband.cups();
+        for (Verband verband : verbaende) {
+            List<Tournament> tournaments = parser.readCups(verband, new Date());
+            for (Tournament tournament : tournaments) {
+                parser.readTournamentDetail(tournament);
+                for (Competition competition : tournament.getCompetitions()) {
+                    parser.readTournamentParticipants(competition);
+                    parser.readTournamentResults(competition);
+
+                }
+            }
+        }
+    }
 }
 
 

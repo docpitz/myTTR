@@ -113,8 +113,10 @@
     <string name="simulation">Simulation</string>
     <string name="arrow_desc">Pfeil</string>
     <string name="verband_label">Verband:</string>
+    <string name="name_label">Name:</string>
     <string name="month">September</string>
     <string name="header_tournaments">Bitte Verband auswählen</string>
+    <string name="header_cups">Bitte Cup auswählen</string>
     <string name="saison_label">Saison:</string>
     <string name="kat_label">Kategorie:</string>
     <string name="liga_label">Liga:</string>
@@ -158,6 +160,7 @@
     <string name="header_openFor">Offen für</string>
     <string name="header_ttrRelevant">TTR</string>
     <string name="label_turniere">Turniere</string>
+    <string name="label_cups">Cups</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

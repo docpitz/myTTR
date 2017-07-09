@@ -81,12 +81,49 @@ public class ClickTTParserTest {
     public void testReadTournaments() throws Exception {
         String page = readFile(ASSETS_DIR + "/turniere.htm");
         assertNotNull(page);
-        List<Tournament> tournaments = parser.parseTournamentLinks(page, "http://bla.de");
+        List<Tournament> tournaments = parser.parseTournamentLinks(page, "http://bla.de", false);
 
+        int i = 0;
         for (Tournament tournament : tournaments) {
-            System.out.println("tournament = " + tournament);
+//            System.out.println("tournament = " + tournament);
+            if (i == 1) {
+                assertEquals("03.06 - 05.06", tournament.getDate());
+                assertEquals("4. Kupferdreher Pfingstturnier", tournament.getName());
+                assertEquals("Essen", tournament.getRegion());
+                assertEquals("Nordrhein-Westfalen", tournament.getOpenFor());
+                assertEquals("Damen/Herren\n" +
+                        "Nachwuchs", tournament.getAgeClass());
+                assertEquals("(pdf)", tournament.getInfo());
+                assertEquals("/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=TournamentReportFOP&tournament=277228", tournament.getInfoUrl());
+                assertFalse(tournament.isCup());
+            }
+            i++;
         }
-        assertEquals("must be 8 not " + tournaments.size(), 8, tournaments.size());
+        assertEquals("must be 27 not " + tournaments.size(), 27, tournaments.size());
+    }
+
+    @Test
+    public void testParseCups() throws Exception {
+        String page = readFile(ASSETS_DIR + "/andro-cup-list.htm");
+        assertNotNull(page);
+        List<Tournament> tournaments = parser.parseTournamentLinks(page, "http://bla.de", true);
+        int i = 0;
+        ;
+        for (Tournament tournament : tournaments) {
+//            System.out.println("tournament = " + tournament);
+            if (i == 0) {
+                assertEquals("Mo. 03.07 19:30 Uhr", tournament.getDate());
+                assertEquals("TTV Preußen 47 Lünen", tournament.getName());
+                assertEquals("Südmünsterland", tournament.getRegion());
+                assertEquals("Nordrhein-Westfalen", tournament.getOpenFor());
+                assertEquals("Damen/Herren", tournament.getAgeClass());
+                assertEquals("(pdf)", tournament.getInfo());
+                assertEquals("/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=TournamentReportFOP&tournament=292228", tournament.getInfoUrl());
+                assertTrue(tournament.isCup());
+            }
+            i++;
+        }
+        assertEquals("must be 24 not " + tournaments.size(), 24, tournaments.size());
     }
 
     @Test

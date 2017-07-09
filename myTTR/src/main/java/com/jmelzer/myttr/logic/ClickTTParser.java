@@ -273,7 +273,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 idxL = resultLinks.end;
                 ParseResult resultLink = readBetween(resultLinks.result, 0, "href=\"", "\">");
                 ParseResult resultName = readBetween(resultLinks.result, 0, "\">", null);
-                Verband v = new Verband(resultName.result, resultLink.result, null);
+                Verband v = new Verband(resultName.result, resultLink.result, null, null, null);
                 verbandList.add(v);
 
             }
@@ -1124,10 +1124,24 @@ public class ClickTTParser extends AbstractBaseParser {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
         String page = Client.getPage(url);
-        return parseTournamentLinks(page, verband.getHttpAndDomain());
+        return parseTournamentLinks(page, verband.getHttpAndDomain(), false);
     }
 
-    List<Tournament> parseTournamentLinks(String page, String httpAndDomain) {
+    /**
+     * read the cups from the url
+     */
+    public List<Tournament> readCups(Verband verband, Date date) throws NetworkException {
+        if (verband.gettUrl() == null)
+            return new ArrayList<>();
+        String url = verband.getCupUrl();
+        if (date != null) {
+            url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
+        }
+        String page = Client.getPage(url);
+        return parseTournamentLinks(page, verband.getHttpAndDomain(), true);
+    }
+
+    List<Tournament> parseTournamentLinks(String page, String httpAndDomain, boolean isCup) {
         ParseResult table = readBetween(page, 0, "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\">", "</table>");
         List<Tournament> tournaments = new ArrayList<>();
         if (table == null) {
@@ -1149,19 +1163,31 @@ public class ClickTTParser extends AbstractBaseParser {
             }
             idx = resultrow.end - 1;
 
-            String[] columns = tableRowAsArray(resultrow.result, 6);
+            int col = 0;
+            String[] columns = tableRowAsArray(resultrow.result, 7);
+//            System.out.println("row = " + Arrays.toString(columns));
             Tournament t = new Tournament();
-            t.setDate(columns[0] == null ? null : columns[0].replaceAll("\\.2017", "").
+
+            t.setDate(columns[col] == null ? null : columns[col].replaceAll("\\.2017", "").
                     replaceAll("\\.2018", ""));
-            String[] ahref = readHrefAndATag(columns[1]);
+            String[] ahref = readHrefAndATag(columns[++col]);
             t.setUrl(httpAndDomain + ahref[0]);
             t.setName(ahref[1]);
-            t.setRegion(cleanHtml(columns[2]));
-            t.setOpenFor(cleanHtml(columns[3]));
-            t.setAgeClass(cleanHtml(columns[4]));
-            ahref = readHrefAndATag(columns[5]);
-            t.setInfo(ahref[0]);
-            t.setInfoUrl(ahref[1]);
+            if (isCup) {
+                ParseResult rest = readBetween(columns[1], 0, "</a>", null);
+                if (rest != null && rest.result != null) {
+                    t.setName(cleanHtml(rest));
+                }
+
+                t.setFreePlaces(cleanHtml(columns[++col]));
+                t.setCup(true);
+            }
+            t.setRegion(cleanHtml(columns[++col]));
+            t.setOpenFor(cleanHtml(columns[++col]));
+            t.setAgeClass(cleanHtml(columns[++col]));
+            ahref = readHrefAndATag(columns[++col]);
+            t.setInfo(ahref[1]);
+            t.setInfoUrl(ahref[0]);
 
             tournaments.add(t);
 
@@ -1231,18 +1257,21 @@ public class ClickTTParser extends AbstractBaseParser {
                 continue;//skip first row
             }
 
+            int col = 0;
             String[] columns = tableRowAsArray(resultrow.result, 7);
             Competition competition = new Competition();
-            competition.setName(cleanHtml(columns[0]));
-            competition.setQttr(columns[1]);
-            competition.setOpenFor(cleanHtml(columns[2]));
-            competition.setDate(columns[3]);
-            competition.setTtrRelevant(columns[4]);
-            competition.setParticipants(readHrefAndATag(columns[5])[0]);
+            competition.setName(cleanHtml(columns[col]));
+            if (!tournament.isCup())
+                competition.setQttr(columns[++col]);
+
+            competition.setOpenFor(cleanHtml(columns[++col]));
+            competition.setDate(columns[++col]);
+            competition.setTtrRelevant(columns[++col]);
+            competition.setParticipants(readHrefAndATag(columns[++col])[0]);
             if (StringUtils.isNotEmpty(competition.getParticipants())) {
                 competition.setParticipants(httpAndDomain + competition.getParticipants());
             }
-            competition.setResults(readHrefAndATag(columns[6])[0]);
+            competition.setResults(readHrefAndATag(columns[++col])[0]);
             if (StringUtils.isNotEmpty(competition.getResults())) {
                 competition.setResults(httpAndDomain + competition.getResults());
             }
@@ -1284,7 +1313,7 @@ public class ClickTTParser extends AbstractBaseParser {
     private String removeBracket(String club) {
         if (club == null) return null;
         int b = club.indexOf('(');
-        if ( b > -1) {
+        if (b > -1) {
             return club.substring(0, b).trim();
         }
         return null;

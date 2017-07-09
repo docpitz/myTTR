@@ -117,6 +117,16 @@
                 android:drawableTop="@drawable/ic_tournament"
                 android:onClick="tournament"
                 android:text="@string/label_turniere" />
+            <Button
+                android:id="@+id/buttonCup"
+                style="@style/DashboardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_row="1"
+                android:drawableTop="@drawable/ic_cup"
+                android:onClick="cups"
+                android:text="@string/label_cups" />
             <!--  <Space
                   android:layout_width="100dp"
                   android:layout_height="20px"

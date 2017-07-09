@@ -29,10 +29,10 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by J. Melzer on 15.06.2017.
+ * Created by J. Melzer on 09.07.2017.
  */
 
-public class TournamentsActivity extends BaseActivity {
+public class CupsActivity extends BaseActivity {
     Calendar date = Calendar.getInstance();
     ClickTTParser parser = new ClickTTParser();
 
@@ -43,11 +43,11 @@ public class TournamentsActivity extends BaseActivity {
             return;
         }
 
-        setContentView(R.layout.tournaments);
+        setContentView(R.layout.cups);
 
 
-        final ListView listview = findViewById(R.id.tournament_row);
-        final TournamentsActivity.RowAdapter adapter = new TournamentsActivity.RowAdapter(this,
+        final ListView listview = findViewById(R.id.cup_row);
+        final RowAdapter adapter = new RowAdapter(this,
                 android.R.layout.simple_list_item_1,
                 new ArrayList<Tournament>());
         listview.setAdapter(adapter);
@@ -86,7 +86,7 @@ public class TournamentsActivity extends BaseActivity {
 
         Spinner spinnerVerband = findViewById(R.id.spinner_verband);
         VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_selected_item,
-                Verband.verbaendeWithTournaments());
+                Verband.cups());
         adapterVerband.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerVerband.setAdapter(adapterVerband);
         spinnerVerband.setOnItemSelectedListener(new VerbandListener());
@@ -108,7 +108,7 @@ public class TournamentsActivity extends BaseActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView label = (TextView) super.getView(position, convertView, parent);
-            label.setText(getItem(position).getName());
+            label.setText(getItem(position).getCupName());
             return label;
         }
 
@@ -116,7 +116,7 @@ public class TournamentsActivity extends BaseActivity {
         public View getDropDownView(int position, View convertView,
                                     ViewGroup parent) {
             TextView label = (TextView) super.getDropDownView(position, convertView, parent);
-            label.setText(getItem(position).getName());
+            label.setText(getItem(position).getCupName());
             return label;
         }
     }
@@ -129,7 +129,7 @@ public class TournamentsActivity extends BaseActivity {
             if (MyApplication.selectedVerband == null) {
                 return;
             }
-            if (MyApplication.selectedVerband.gettUrl() == null)
+            if (MyApplication.selectedVerband.getCupUrl() == null)
                 return;
 
             refreshList();
@@ -144,10 +144,10 @@ public class TournamentsActivity extends BaseActivity {
     }
 
     private void refreshList() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TournamentsActivity.this, null) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(CupsActivity.this, null) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.myTournaments = parser.readTournaments(MyApplication.selectedVerband,
+                MyApplication.myTournaments = parser.readCups(MyApplication.selectedVerband,
                         date.getTime());
             }
 
@@ -160,8 +160,8 @@ public class TournamentsActivity extends BaseActivity {
             protected void onPostExecute(Integer integer) {
                 super.onPostExecute(integer);
 
-                final ListView listview = findViewById(R.id.tournament_row);
-                final RowAdapter adapter = new RowAdapter(TournamentsActivity.this,
+                final ListView listview = findViewById(R.id.cup_row);
+                final RowAdapter adapter = new RowAdapter(CupsActivity.this,
                         android.R.layout.simple_list_item_1,
                         MyApplication.myTournaments);
                 listview.setAdapter(adapter);
@@ -207,8 +207,8 @@ public class TournamentsActivity extends BaseActivity {
             ViewHolder holder;
 
             if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.tournament_row, null);
-                holder = new TournamentsActivity.ViewHolder();
+                convertView = layoutInflater.inflate(R.layout.cup_row, null);
+                holder = new CupsActivity.ViewHolder();
                 holder.textName = convertView.findViewById(R.id.name);
                 holder.textDate = convertView.findViewById(R.id.tournamentDate);
                 holder.textRegion = convertView.findViewById(R.id.region);
@@ -235,7 +235,7 @@ public class TournamentsActivity extends BaseActivity {
     }
 
     void callDetail() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TournamentsActivity.this,
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(CupsActivity.this,
                 TournamentDetailActivity.class) {
 
             @Override

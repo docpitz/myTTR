@@ -122,6 +122,11 @@ public class HomeActivity extends BaseActivity {
         startActivity(target);
     }
 
+    public void cups(View view) {
+        Intent target = new Intent(this, CupsActivity.class);
+        startActivity(target);
+    }
+
     private class ClubListAsyncTask extends BaseAsyncTask {
 
         public ClubListAsyncTask(Activity parent, Class targetClz) {
