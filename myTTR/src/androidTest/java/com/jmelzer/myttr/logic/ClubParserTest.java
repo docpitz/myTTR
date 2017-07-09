@@ -51,7 +51,9 @@ public class ClubParserTest extends TestCase {
         assertTrue(clubParser.getClubNameUnsharp("TTC Blau-Rot 1963 Uedorf").size() > 0);
         assertTrue(clubParser.getClubNameUnsharp("1. TTC Münster").size() > 0);
         assertResultExact("München", 0.49f, 31);
-        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.49f, 1);
+        assertResultExact("Bonn", 0.49f, 8);
+        assertResultExact("Köln", 0.49f, 10);
+        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.49f, 5);
 
     }
 

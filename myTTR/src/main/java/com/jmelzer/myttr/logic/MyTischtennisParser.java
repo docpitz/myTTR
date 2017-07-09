@@ -152,7 +152,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             NetworkException {
 
         Uri.Builder builder = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority("www.mytischtennis.de")
                 .path("community/ajax/_rankingList");
         Club v = null;
