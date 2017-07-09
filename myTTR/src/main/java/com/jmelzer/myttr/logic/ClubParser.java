@@ -44,9 +44,10 @@ public class ClubParser {
     }
 
     public List<String> getClubNameUnsharp(String name) {
-        return getClubNameUnsharp(name, 0.55f);
+        return getClubNameUnsharp(name, 0.49f);
     }
-    public List<String> getClubNameUnsharp(String searchString,  float minScore) {
+
+    public List<String> getClubNameUnsharp(String searchString, float minScore) {
 
         readClubs();
         String[] searchWords = searchString.toUpperCase().split(" ");
@@ -55,7 +56,7 @@ public class ClubParser {
 
         for (String entry : clubNames) {
             float score = 0;
-            int sum = 0;
+            int stringSumLength = 0;
 
             String entryU = entry.toUpperCase();
             String[] myClubParts = entryU.split(" ");
@@ -63,22 +64,23 @@ public class ClubParser {
 
             int osum = 0;
             for (String myClubPart : myClubParts) {
-                sum += myClubPart.length();
+                stringSumLength += myClubPart.length();
             }
             searchWords = removeStopWords(searchWords);
             for (String part : searchWords) {
                 osum += part.length();
             }
-            sum = Math.max(osum, sum);
+            stringSumLength = Math.max(osum, stringSumLength);
 
             for (String searchWord : searchWords) {
                 // The entry needs to contain all portions of the
                 // search string *but* in any order
                 for (String myClubPart : myClubParts) {
                     if (myClubPart.startsWith(searchWord)) {
-
-                        score += (searchWord.length() / (float) sum);
-
+                        score += calcScore(stringSumLength, searchWord, 1.f);
+                        break;
+                    } else if (myClubPart.contains(searchWord)) {
+                        score += calcScore(stringSumLength, searchWord, 0.8f);
                         break;
                     }
                 }
@@ -99,6 +101,15 @@ public class ClubParser {
 
         return subentries;
 
+    }
+
+    private float calcScore(float sum, String searchWord, float factor) {
+        float score = 0;
+        if (searchWord.length() > 5) {
+            score += Math.max(0.5f, (searchWord.length() / sum) * factor);
+        } else
+            score += (searchWord.length() / sum) * factor;
+        return score;
     }
 
     private String[] removeStopWords(String[] myClubParts) {

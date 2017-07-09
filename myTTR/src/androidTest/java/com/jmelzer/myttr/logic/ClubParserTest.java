@@ -19,6 +19,8 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 @RunWith(AndroidJUnit4.class)
 @SmallTest
 public class ClubParserTest extends TestCase {
@@ -38,16 +40,34 @@ public class ClubParserTest extends TestCase {
         ClubParser clubParser = new ClubParser();
 //        assertEquals(0, clubParser.getClubNameUnsharp("Bjsagsjdgla").size());
 
-        assertTrue(clubParser.getClubNameUnsharp("TuRa Germania Oberdrees").size() == 0);
-        assertTrue(clubParser.getClubNameUnsharp("TuRa Germania Oberdrees", 0.4f).size() > 0);
-        assertTrue(clubParser.getClubNameUnsharp("Oberdrees").size() > 0);
-        assertTrue(clubParser.getClubNameUnsharp("Augustin").size() > 0);
-        assertTrue(clubParser.getClubNameUnsharp("Bergheim").size() > 1);
-        assertTrue(clubParser.getClubNameUnsharp("ESV Blau-Rot Bonn").size() > 0);
+        assertResultExact("TuRa Germania Oberdrees", 0.8f,  0);
+        assertResultGreater("TuRa Germania Oberdrees", 0.49f, 0);
+        assertResultExact("Oberdrees", 0.49f, 1);
+        assertResultExact("Augustin", 0.49f, 3);
+        assertResultExact("Bergheim", 0.49f, 5);
+        assertResultGreater("ESV Blau-Rot Bonn", 0.49f, 0);
         assertNotNull(clubParser.getClubExact("ESV BR Bonn"));
         assertTrue(clubParser.getClubNameUnsharp("ESV Bonn").size() > 0);
         assertTrue(clubParser.getClubNameUnsharp("TTC Blau-Rot 1963 Uedorf").size() > 0);
         assertTrue(clubParser.getClubNameUnsharp("1. TTC Münster").size() > 0);
+        assertResultExact("München", 0.49f, 31);
+        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.49f, 1);
 
+    }
+
+    private void assertResultExact(String search, float minScore, int count) {
+        ClubParser clubParser = new ClubParser();
+        List<String> result = clubParser.getClubNameUnsharp(search, minScore);
+        if (result.size() != count) {
+            fail(count + "!=" + result.size()+ " \n" + result);
+        }
+    }
+
+    private void assertResultGreater(String search, float minScore, int count) {
+        ClubParser clubParser = new ClubParser();
+        List<String> result = clubParser.getClubNameUnsharp(search, minScore);
+        if (result.size() < count) {
+            fail(count + "<" + result.size()+ " \n" + result);
+        }
     }
 }
