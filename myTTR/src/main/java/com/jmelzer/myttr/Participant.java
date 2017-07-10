@@ -8,6 +8,8 @@ public class Participant {
     private String name;
     private String club;
     private String qttr;
+    private String place;
+    private String bilanz;
 
     public String getName() {
         return name;
@@ -36,9 +38,27 @@ public class Participant {
     @Override
     public String toString() {
         return "Participant{" +
-                "name='" + name + '\'' +
+                " place='" + place + '\'' +
+                ", bilanz='" + bilanz + '\'' +
+                ", name='" + name + '\'' +
                 ", club='" + club + '\'' +
                 ", qttr='" + qttr + '\'' +
                 '}';
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setBilanz(String bilanz) {
+        this.bilanz = bilanz;
+    }
+
+    public String getBilanz() {
+        return bilanz;
     }
 }

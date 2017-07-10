@@ -27,7 +27,7 @@ public class AbstractBaseParserTest {
     public void testReadTableRow() throws Exception {
         String page = readFile(ASSETS_DIR + "/readtablerow-test1.txt");
 
-        String[] columns = new DummyParser().tableRowAsArray(page, 10);
+        String[] columns = new DummyParser().tableRowAsArray(page, 10, false);
         assertNotNull(columns);
         assertEquals(10, columns.length);
 

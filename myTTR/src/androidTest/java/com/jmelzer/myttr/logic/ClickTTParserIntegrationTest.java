@@ -21,6 +21,7 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MockResponses;
+import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
@@ -285,6 +286,13 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                 parser.readTournamentDetail(tournament);
                 for (Competition competition : tournament.getCompetitions()) {
                     parser.readTournamentParticipants(competition);
+                    for (Participant participant : competition.getParticipantList()) {
+//                        assertNotNull(participant.getPlace());
+//                        assertNotNull(participant.getBilanz());
+                        assertNotNull(participant.getName());
+                        assertNotNull(participant.getClub());
+                        assertNotNull(participant.getQttr());
+                    }
                     parser.readTournamentResults(competition);
 
                 }

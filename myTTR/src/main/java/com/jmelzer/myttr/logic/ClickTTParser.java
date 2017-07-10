@@ -1,10 +1,11 @@
 package com.jmelzer.myttr.logic;
 
 import android.text.Html;
+import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Competition;
-import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Group;
 import com.jmelzer.myttr.KoPhase;
 import com.jmelzer.myttr.Kreis;
@@ -24,12 +25,9 @@ import com.jmelzer.myttr.util.UrlUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Formatter;
 import java.util.List;
 
 /**
@@ -1044,7 +1042,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow, boolean hasNr) {
-        String cols[] = tableRowAsArray(resultrow.result, hasNr ? 11 : 10);
+        String cols[] = tableRowAsArray(resultrow.result, hasNr ? 11 : 10, false);
         for (String c : cols) {
             System.out.println("c = " + c);
         }
@@ -1095,7 +1093,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 if (tr.result.contains("href")) {
 
                     Verein.Mannschaft mannschaft = new Verein.Mannschaft();
-                    String[] columns = tableRowAsArray(tr.result, 5);
+                    String[] columns = tableRowAsArray(tr.result, 5, false);
                     mannschaft.name = columns[0];
                     String aref[] = readHrefAndATag(columns[1]);
                     mannschaft.url = aref[0];
@@ -1164,7 +1162,7 @@ public class ClickTTParser extends AbstractBaseParser {
             idx = resultrow.end - 1;
 
             int col = 0;
-            String[] columns = tableRowAsArray(resultrow.result, 7);
+            String[] columns = tableRowAsArray(resultrow.result, 7, false);
 //            System.out.println("row = " + Arrays.toString(columns));
             Tournament t = new Tournament();
 
@@ -1258,7 +1256,7 @@ public class ClickTTParser extends AbstractBaseParser {
             }
 
             int col = 0;
-            String[] columns = tableRowAsArray(resultrow.result, 7);
+            String[] columns = tableRowAsArray(resultrow.result, 7, false);
             Competition competition = new Competition();
             competition.setName(cleanHtml(columns[col]));
             if (!tournament.isCup())
@@ -1290,19 +1288,34 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     void parseTournamentParticipants(String page, Competition competition) {
-        List<String[]> rows = parseTable(page, "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\" width=\"100%\">", 4);
+        List<String[]> rows = parseTable(page, "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"result-set\" width=\"100%\">", 6, true);
+
 
         int start = 0;
+        int rowNr = 0;
+        boolean hasPlaces = false;
         if (rows.size() > 0) {
-            if (rows.get(0)[0].length() == 1) {
+            if (rows.get(0)[0].equals("Platzierung")) {
+                hasPlaces = true;
+            }
+            if (!hasPlaces && rows.get(1)[0].length() == 1) {
                 start++;
             }
         }
+
         for (String[] row : rows) {
+            if (rowNr++ == 0) continue;
+
+//            Log.d(Constants.LOG_TAG, "row = " + Arrays.toString(row));
+            int col = start;
             Participant participant = new Participant();
-            participant.setName(cleanHtml(row[start]));
-            participant.setClub(removeBracket(row[start + 1]));
-            participant.setQttr(cleanHtml(row[start + 2]));
+            if (hasPlaces) {
+                participant.setPlace(cleanHtml(row[col++]));
+                participant.setBilanz(cleanHtml(readBetween(row[col++], 0, "\">", "</span>")));
+            }
+            participant.setName(cleanHtml(row[col++]));
+            participant.setClub(removeBracket(row[col++]));
+            participant.setQttr(cleanHtml(row[col++]));
             competition.addParticipants(participant);
         }
     }

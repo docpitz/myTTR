@@ -28,15 +28,17 @@ public class AbstractBaseParser {
             if (isEmpty(resultrow)) {
                 break;
             }
-            if (!withHeader && c++ == 0) {
+            if (!withHeader && c == 0) {
                 idx = resultrow.end;
+                c++;
                 continue;//skip first row
 
             }
             idx = resultrow.end - 1;
 
-            String[] columns = tableRowAsArray(resultrow.result, coloumnCount);
+            String[] columns = tableRowAsArray(resultrow.result, coloumnCount, (c == 0 && withHeader));
             rows.add(columns);
+            c++;
 
         }
         return rows;
@@ -161,13 +163,15 @@ public class AbstractBaseParser {
      *
      * @param tr        tp be parsed
      * @param validsize valid size of of the columns
+     * @param isHeader
      * @return array, will be filled with emoty string if validsize isn't reached
      */
-    String[] tableRowAsArray(String tr, int validsize) {
+    String[] tableRowAsArray(String tr, int validsize, boolean isHeader) {
         String[] arr = new String[validsize];
         int startIdx = 0;
         for (int i = 0; i < validsize; i++) {
-            ParseResult td = readBetweenOpenTag(tr, startIdx, "<td", "</td>");
+            ParseResult td = readBetweenOpenTag(tr, startIdx, isHeader ? "<th" : "<td",
+                    isHeader ? "</th>" : "</td>");
             if (td != null) {
                 startIdx = td.end;
                 arr[i] = td.result.trim();

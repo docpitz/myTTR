@@ -225,7 +225,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (idx > 0) {
             ParseResult tr = readBetween(page, idx, "<tr", "</tr>");
             if (tr != null) {
-                String[] rows = tableRowAsArray(tr.result, 5);
+                String[] rows = tableRowAsArray(tr.result, 5, false);
                 //somteimes there is a rank of the club inside so one more column
                 //0 = d-rank
                 //1 = name
@@ -427,7 +427,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                     break;
                 }
                 n = result.end;
-                String[] cells = tableRowAsArray(result.result, 9);
+                String[] cells = tableRowAsArray(result.result, 9, false);
                 if (cells == null || cells[1].isEmpty()) {
                     continue;
                 }
@@ -659,7 +659,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 }
                 n = tr.end - 1;
 
-                String cols[] = tableRowAsArray(tr.result, 10);
+                String cols[] = tableRowAsArray(tr.result, 10, false);
                 //description of cols
                 //0 = player name etc
                 //1 = result e.g. 3:0
@@ -781,7 +781,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private Player parseLigaPlayerRow(String line) {
-        String cols[] = tableRowAsArray(line, 5);
+        String cols[] = tableRowAsArray(line, 5, false);
         Long id = findPlayerId(0, line);
         String name = readBetweenOpenTag(cols[2], 0, "<span class", "</strong>").result;
         String firstname = name.substring(0, name.indexOf(" <"));

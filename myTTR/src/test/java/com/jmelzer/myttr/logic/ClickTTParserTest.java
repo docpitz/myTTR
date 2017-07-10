@@ -176,6 +176,22 @@ public class ClickTTParserTest {
     }
 
     @Test
+    public void testParticipantsCup() throws Exception {
+        String page = readFile(ASSETS_DIR + "/tournament_participants_cup.htm");
+        assertNotNull(page);
+        Competition competition = new Competition();
+        parser.parseTournamentParticipants(page, competition);
+        for (Participant participant : competition.getParticipantList()) {
+            System.out.println("participant = " + participant);
+            assertNotNull(participant.getPlace());
+            assertNotNull(participant.getBilanz());
+            assertNotNull(participant.getName());
+            assertNotNull(participant.getClub());
+            assertNotNull(participant.getQttr());
+            Integer.valueOf(participant.getQttr());
+        }
+    }
+    @Test
     public void testParticipants2() throws Exception {
         String page = readFile(ASSETS_DIR + "/tournament_participants2.htm");
         assertNotNull(page);
