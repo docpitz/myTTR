@@ -90,10 +90,10 @@ public class ClubParser {
     }
 
     public List<String> getClubNameUnsharp(String name) {
-        return getClubNameUnsharp(name, 0.49f);
+        return getClubNameUnsharp(name, 0.49f, true);
     }
 
-    public List<String> getClubNameUnsharp(String searchString, float minScore) {
+    public List<String> getClubNameUnsharp(String searchString, float minScore, boolean recursiv) {
         long start = System.currentTimeMillis();
         readClubs();
         String[] searchWords = searchString.toUpperCase().split(" |-");
@@ -146,6 +146,9 @@ public class ClubParser {
             }
         }
         Log.i(Constants.LOG_TAG, "club search time " + (System.currentTimeMillis() - start) + " ms");
+        if (recursiv && subentries.size() == 0 && minScore > 0.1f) {
+            return getClubNameUnsharp(searchString, minScore - 0.2f, recursiv);
+        }
         return subentries;
 
     }

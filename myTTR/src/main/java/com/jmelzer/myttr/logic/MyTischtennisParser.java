@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -185,7 +186,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
             //sometimes I hate mytischtennis
             if (v != null) {
                 builder.appendQueryParameter("verein", v.getName());
-                builder.appendQueryParameter("vereinId", v.getId() + "," + v.getVerband());
+                String paddedId = String.format(Locale.GERMAN, "%03d", Integer.parseInt(v.getId()));
+                builder.appendQueryParameter("vereinId", paddedId + "," + v.getVerband());
             }
 
         }
