@@ -30,6 +30,7 @@ import java.util.List;
 
 public class LoginManager {
     public static final String LOGGEDINAS = "MYTT_COOKIESOK";
+    public static final String MYTT_COOKIE2 = "cfid";
     public static String un;
     public static String pw;
 
@@ -108,7 +109,7 @@ public class LoginManager {
             return null;
         }
         for (Cookie cookie : Client.getCookieStore().getCookies()) {
-            if (LOGGEDINAS.equals(cookie.getName())) {
+            if (LOGGEDINAS.equals(cookie.getName()) || MYTT_COOKIE2.equals(cookie.getName())) {
                 un = username;
                 pw = password;
                 Log.d(Constants.LOG_TAG, "login time = " + (System.currentTimeMillis() - start) + " ms");
