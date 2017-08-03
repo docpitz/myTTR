@@ -14,12 +14,18 @@ package com.jmelzer.myttr.logic;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.jmelzer.myttr.Club;
+import com.jmelzer.myttr.Player;
+
 import junit.framework.TestCase;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
@@ -33,6 +39,22 @@ public class ClubParserTest extends TestCase {
         assertNotNull(clubParser.getClubExact("TV Bergheim/Sieg"));
         assertNotNull(clubParser.getClubExact("TV Geislar"));
 
+    }
+
+
+    @Test
+    @Ignore
+    public void callSome() throws TooManyPlayersFound, NetworkException {
+        ClubParser clubParser = new ClubParser();
+        clubParser.readClubs();
+        MyTischtennisParser parser = new MyTischtennisParser();
+        Random generator = new Random();
+        Object[] values = ClubParser.clubHashMap.values().toArray();
+        for (int i = 0; i < 100; i++) {
+            Club randomValue = (Club)values[generator.nextInt(values.length)];
+            List<Player> list = parser.findPlayer(null,null,randomValue.getName());
+            assertNotNull(list);
+        }
     }
 
     @Test

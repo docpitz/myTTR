@@ -186,7 +186,7 @@ public class ClubParser {
         return clubHashMap.get(name);
     }
 
-    private synchronized void readClubs() {
+    synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
             int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine",
                     "raw",
