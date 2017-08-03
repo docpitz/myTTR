@@ -186,8 +186,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
             //sometimes I hate mytischtennis
             if (v != null) {
                 builder.appendQueryParameter("verein", v.getName());
-                String paddedId = String.format(Locale.GERMAN, "%03d", Integer.parseInt(v.getId()));
-                builder.appendQueryParameter("vereinId", paddedId + "," + v.getVerband());
+                String cId = "";
+                if (v.getId().startsWith("0"))
+                    cId = v.getId();
+                else
+                    cId = String.format(Locale.GERMAN, "%03d", Integer.parseInt(v.getId()));
+                builder.appendQueryParameter("vereinId", cId+ "," + v.getVerband());
             }
 
         }
