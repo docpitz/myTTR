@@ -28,13 +28,13 @@ public class VerbandTest {
         }
         for (Verband verband : verbandList) {
             String u = verband.replaceYear(verband.url, Saison.SAISON_2017);
-            assertFalse(u, u.contains("2014"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("2014"));
         }
         for (Verband verband : verbandList) {
             String u = verband.replaceYear(verband.url, Saison.SAISON_2018);
-            assertFalse(u, u.contains("14"));
-            assertFalse(u, u.contains("15"));
-            assertFalse(u, u.contains("16"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("14"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("15"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("16"));
         }
         try {
             Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2019);
