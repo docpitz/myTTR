@@ -94,6 +94,8 @@ public class ClubParser {
     }
 
     public List<String> getClubNameUnsharp(String searchString, float minScore) {
+        return getClubNameUnsharp(searchString, minScore, true);
+    }
 
     public List<String> getClubNameUnsharp(String searchString, float minScore, boolean recursiv) {
         long start = System.currentTimeMillis();
