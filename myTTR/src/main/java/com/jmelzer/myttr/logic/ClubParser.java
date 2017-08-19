@@ -35,6 +35,52 @@ public class ClubParser {
 
     static List<String> clubNames = new ArrayList<>();
 
+
+    private void readFile(int r) {
+        LineNumberReader reader = null;
+        InputStreamReader isReader = null;
+        try {
+            InputStream is = MyApplication.getAppContext().getResources().openRawResource(r);
+            isReader = new InputStreamReader(is);
+            reader = new LineNumberReader(isReader);
+
+            String line = reader.readLine();
+            while (line != null) {
+                Club v = parseLine(line);
+                String entryU = v.getName().toUpperCase();
+                String[] searchParts = entryU.split(" |-");
+                searchParts = removeStopWords(searchParts);
+                v.setSearchParts(searchParts);
+                clubHashMap.put(v.getName(), v);
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            Log.e(Constants.LOG_TAG, "", e);
+        } finally {
+            if (reader != null) {
+                try {
+                    isReader.close();
+                    reader.close();
+                } catch (IOException e) {
+                    //ignore
+                }
+            }
+        }
+    }
+
+    private Club parseLine(String line) {
+//        'SV%20Bohlingen','21017,STTB','SV Bohlingen'
+        String rest = line.substring(1);
+        String webName = rest.substring(0, rest.indexOf("'"));
+        rest = rest.substring(webName.length() + 3);
+        String id = rest.substring(0, rest.indexOf(","));
+        rest = rest.substring(id.length() + 1);
+        String verband = rest.substring(0, rest.indexOf("'"));
+        rest = rest.substring(verband.length() + 3);
+        String name = rest.substring(0, rest.indexOf("'"));
+        return new Club(name, id, verband, webName);
+    }
+
     public Club getClubNameBestMatch(String name) {
         List<String> list = getClubNameUnsharp(name);
         if (list.size() > 0) {
@@ -49,18 +95,19 @@ public class ClubParser {
 
     public List<String> getClubNameUnsharp(String searchString, float minScore) {
 
+    public List<String> getClubNameUnsharp(String searchString, float minScore, boolean recursiv) {
+        long start = System.currentTimeMillis();
         readClubs();
-        String[] searchWords = searchString.toUpperCase().split(" ");
+        String[] searchWords = searchString.toUpperCase().split(" |-");
 
         List<String> subentries = new ArrayList<>();
 
-        for (String entry : clubNames) {
+        for (Map.Entry<String, Club> entry : clubHashMap.entrySet()) {
+
             float score = 0;
             int stringSumLength = 0;
 
-            String entryU = entry.toUpperCase();
-            String[] myClubParts = entryU.split(" ");
-            myClubParts = removeStopWords(myClubParts);
+            String[] myClubParts = entry.getValue().getSearchParts();
 
             int osum = 0;
             for (String myClubPart : myClubParts) {
@@ -90,7 +137,7 @@ public class ClubParser {
                         Arrays.toString(searchWords) + "', entry='" + entry + "', cleaned=" + Arrays.toString(myClubParts));
 
                 if (score > minScore) {
-                    subentries.add(entry);
+                    subentries.add(entry.getValue().getName());
                     Log.d(Constants.LOG_TAG, "added match " + entry);
                 } else {
                     Log.d(Constants.LOG_TAG, "score not greate enough: " + score + " < " + minScore);
@@ -98,7 +145,10 @@ public class ClubParser {
                 }
             }
         }
-
+        Log.i(Constants.LOG_TAG, "club search time " + (System.currentTimeMillis() - start) + " ms");
+        if (recursiv && subentries.size() == 0 && minScore > 0.1f) {
+            return getClubNameUnsharp(searchString, minScore - 0.2f, recursiv);
+        }
         return subentries;
 
     }
@@ -136,7 +186,7 @@ public class ClubParser {
         return clubHashMap.get(name);
     }
 
-    private synchronized void readClubs() {
+    synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
             int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine",
                     "raw",
@@ -175,47 +225,6 @@ public class ClubParser {
                 }
             }
         }
-    }
-
-    private void readFile(int r) {
-        LineNumberReader reader = null;
-        InputStreamReader isReader = null;
-        try {
-            InputStream is = MyApplication.getAppContext().getResources().openRawResource(r);
-            isReader = new InputStreamReader(is);
-            reader = new LineNumberReader(isReader);
-
-            String line = reader.readLine();
-            while (line != null) {
-                Club v = parseLine(line);
-                clubHashMap.put(v.getName(), v);
-                line = reader.readLine();
-            }
-        } catch (IOException e) {
-            Log.e(Constants.LOG_TAG, "", e);
-        } finally {
-            if (reader != null) {
-                try {
-                    isReader.close();
-                    reader.close();
-                } catch (IOException e) {
-                    //ignore
-                }
-            }
-        }
-    }
-
-    private Club parseLine(String line) {
-//        'SV%20Bohlingen','21017,STTB','SV Bohlingen'
-        String rest = line.substring(1);
-        String webName = rest.substring(0, rest.indexOf("'"));
-        rest = rest.substring(webName.length() + 3);
-        String id = rest.substring(0, rest.indexOf(","));
-        rest = rest.substring(id.length() + 1);
-        String verband = rest.substring(0, rest.indexOf("'"));
-        rest = rest.substring(verband.length() + 3);
-        String name = rest.substring(0, rest.indexOf("'"));
-        return new Club(name, id, verband, webName);
     }
 
 }

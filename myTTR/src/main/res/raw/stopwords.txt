@@ -8,6 +8,7 @@ KSV
 TTV
 TTC
 BSG
+SG
 SV
 POST
 ASV
@@ -31,3 +32,4 @@ SC
 E.V.
 BSV
 PSV
+SPVG.
