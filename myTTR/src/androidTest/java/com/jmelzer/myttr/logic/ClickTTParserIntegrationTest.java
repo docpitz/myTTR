@@ -276,7 +276,19 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
         }
     }
-
+    @SmallTest
+    public void testOneCup() throws Exception {
+        Tournament tournament = new Tournament();
+        tournament.setCup(true);
+        tournament.setUrl("https://ttvn.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendarDetail?circuit=TTVN-Race&federation=TTVN&tournament=293968&date=2017-08-01");
+        parser.readTournamentDetail(tournament);
+        for (Competition competition : tournament.getCompetitions()) {
+            parser.readTournamentResults(competition);
+            if (competition.getResults() != null) {
+                assertTrue(competition.getGroups().size()>0);
+            }
+        }
+    }
     @SmallTest
     public void testCups() throws Exception {
         List<Verband> verbaende = Verband.cups();
@@ -294,7 +306,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                         assertNotNull(participant.getQttr());
                     }
                     parser.readTournamentResults(competition);
-
+                    if (competition.getResults() != null) {
+                        if(competition.getGroups().size()==0)
+                            System.out.println("break");
+                        assertTrue(competition.getGroups().size()>0);
+                    }
                 }
             }
         }

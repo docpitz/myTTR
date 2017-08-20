@@ -36,12 +36,23 @@ public class AbstractBaseParser {
             }
             idx = resultrow.end - 1;
 
-            String[] columns = tableRowAsArray(resultrow.result, coloumnCount, (c == 0 && withHeader));
+            String[] columns = tableRowAsArray(resultrow.result, coloumnCount, (c == 0));
+            if (allEmpty(columns) && c == 0) { //second try
+                columns = tableRowAsArray(resultrow.result, coloumnCount, false);
+            }
             rows.add(columns);
             c++;
 
         }
         return rows;
+    }
+
+    private boolean allEmpty(String[] columns) {
+        for (String column : columns) {
+            if (column != null && !column.isEmpty())
+                return false;
+        }
+        return true;
     }
 
     static class ParseResult {

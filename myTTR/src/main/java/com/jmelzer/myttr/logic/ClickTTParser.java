@@ -1349,17 +1349,19 @@ public class ClickTTParser extends AbstractBaseParser {
         Group group = new Group();
         KoPhase koPhase = new KoPhase();
         for (String[] row : rows) {
+
+            if (row[0].isEmpty()) {
+                continue;
+            }
 //            System.out.println("row = " + Arrays.toString(row));
-            if (row[0].contains("Gruppe")) {
+            if (row[0].contains("Gruppe") || row[0].contains("Runde") || isNumber(row[0])) {
                 group = new Group();
                 group.setName(row[0]);
                 koPhase = null;
                 competition.addGroup(group);
                 continue;
             }
-            if (row[0].isEmpty()) {
-                continue;
-            }
+
             String name = contains(koNames, row[0]);
             if (name != null) {
                 koPhase = new KoPhase();
@@ -1385,6 +1387,16 @@ public class ClickTTParser extends AbstractBaseParser {
                 koPhase.addGame(game);
 
 //            System.out.println("row = " + game);
+        }
+    }
+
+    private boolean isNumber(String s) {
+        try {
+            //noinspection ResultOfMethodCallIgnored
+            Integer.valueOf(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
