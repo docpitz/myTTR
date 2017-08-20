@@ -190,6 +190,7 @@ public class CupsActivity extends BaseActivity {
     private static class ViewHolder {
         TextView textDate;
         TextView textName;
+        TextView textFreePlaces;
         TextView textRegion;
         ImageView arrow;
     }
@@ -212,6 +213,7 @@ public class CupsActivity extends BaseActivity {
                 holder.textName = convertView.findViewById(R.id.name);
                 holder.textDate = convertView.findViewById(R.id.tournamentDate);
                 holder.textRegion = convertView.findViewById(R.id.region);
+                holder.textFreePlaces  = convertView.findViewById(R.id.freeplaces);
                 holder.arrow = convertView.findViewById(R.id.arrow);
                 convertView.setTag(holder);
             } else {
@@ -222,6 +224,7 @@ public class CupsActivity extends BaseActivity {
 
             holder.textName.setText(tournament.getName());
             holder.textDate.setText(tournament.getDate());
+            holder.textFreePlaces.setText(tournament.getFreePlaces());
             holder.textRegion.setText(tournament.getRegion());
             holder.arrow.setOnClickListener(new View.OnClickListener() {
                 @Override

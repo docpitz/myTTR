@@ -24,7 +24,12 @@
             style="@style/TextListStyle"
             android:layout_weight="3"
             android:text="TTV Preußen 47 Lünen"/>
-
+        <TextView
+            android:id="@+id/freeplaces"
+            android:layout_width="0dp"
+            style="@style/TextListStyle"
+            android:layout_weight="1"
+            android:text="0/12"/>
         <TextView
             android:id="@+id/region"
             style="@style/TextListStyle"
