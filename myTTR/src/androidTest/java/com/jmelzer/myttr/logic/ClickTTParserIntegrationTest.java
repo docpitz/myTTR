@@ -270,6 +270,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                 parser.readTournamentDetail(tournament);
                 for (Competition competition : tournament.getCompetitions()) {
                     parser.readTournamentParticipants(competition);
+                    for (Participant participant : competition.getParticipantList()) {
+                        assertNotNull(participant.getName());
+                        assertNotNull(participant.getClub());
+                        assertNotNull(participant.getQttr());
+                    }
                     parser.readTournamentResults(competition);
 
                 }

@@ -1294,9 +1294,13 @@ public class ClickTTParser extends AbstractBaseParser {
         int start = 0;
         int rowNr = 0;
         boolean hasPlaces = false;
+        boolean hasBilanz = false;
         if (rows.size() > 0) {
             if (rows.get(0)[0].equals("Platzierung")) {
                 hasPlaces = true;
+            }
+            if (rows.get(0)[1].equals("Bilanz")) {
+                hasBilanz = true;
             }
             if (!hasPlaces && rows.get(1)[0].length() == 1) {
                 start++;
@@ -1311,7 +1315,9 @@ public class ClickTTParser extends AbstractBaseParser {
             Participant participant = new Participant();
             if (hasPlaces) {
                 participant.setPlace(cleanHtml(row[col++]));
-                participant.setBilanz(cleanHtml(readBetween(row[col++], 0, "\">", "</span>")));
+                if (hasBilanz) {
+                    participant.setBilanz(cleanHtml(readBetween(row[col++], 0, "\">", "</span>")));
+                }
             }
             participant.setName(cleanHtml(row[col++]));
             participant.setClub(removeBracket(row[col++]));
