@@ -119,7 +119,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     public void testAllVerbaende() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         for (Verband verband : verbaende) {
-            parser.readLigen(verband, Saison.SAISON_2015);
+            parser.readLigen(verband, Saison.SAISON_2018);
             assertTrue(verband.toString(), verband.getLigaList().size() > 0);
         }
 
