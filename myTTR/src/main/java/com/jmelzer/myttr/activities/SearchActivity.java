@@ -81,7 +81,7 @@ public class SearchActivity extends BaseActivity {
         String club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
         Club verein = clubParser.getClubExact(club);
         if (verein == null) {
-            final List<String> clubs = clubParser.getClubNameUnsharp(club);
+            final List<String> clubs = clubParser.getClubNameUnsharp(club, 0.3f);
             if (clubs.size() == 0) {
                 AlertDialog ad = new AlertDialog.Builder(this).create();
                 ad.setCancelable(false); // This blocks the 'BACK' button

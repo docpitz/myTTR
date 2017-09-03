@@ -190,14 +190,15 @@ public class ClubParser {
 
     synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
-            int r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine",
-                    "raw",
-                    "com.jmelzer.myttr");
-            readFile(r);
-            r = MyApplication.getAppContext().getResources().getIdentifier("raw/stopwords",
+            int r = MyApplication.getAppContext().getResources().getIdentifier("raw/stopwords",
                     "raw",
                     "com.jmelzer.myttr");
             readStopwords(r);
+            r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine",
+                    "raw",
+                    "com.jmelzer.myttr");
+            readFile(r);
+
             readClubNames();
         }
     }

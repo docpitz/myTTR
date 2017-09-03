@@ -63,21 +63,23 @@ public class ClubParserTest extends TestCase {
         ClubParser clubParser = new ClubParser();
 //        assertEquals(0, clubParser.getClubNameUnsharp("Bjsagsjdgla").size());
 
-        assertResultExact("Weinh", 0.49f, 3, true);
+        assertResultGreater("Köln", 0.3f, 3, true);
+        assertResultExact("Weinh", 0.3f, 3, true);
         assertResultExact("TuRa Germania Oberdrees", 0.8f, 0, false);
-        assertResultGreater("TuRa Germania Oberdrees", 0.49f, 0, false);
-        assertResultExact("Oberdrees", 0.49f, 1, true);
-        assertResultExact("Augustin", 0.49f, 3, true);
-        assertResultExact("Bergheim", 0.49f, 5, true);
-        assertResultGreater("ESV Blau-Rot Bonn", 0.49f, 0, false);
-        assertResultGreater("ESV Blau-Rot Bonn", 0.49f, 1, true);
+        assertResultGreater("TuRa Germania Oberdrees", 0.3f, 0, false);
+        assertResultGreater("TPS", 0.3f, 0, false);
+        assertResultExact("Oberdrees", 0.3f, 1, true);
+        assertResultExact("Augustin", 0.3f, 3, true);
+        assertResultExact("Bergheim", 0.3f, 5, true);
+        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 0, false);
+        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 1, true);
         assertNotNull(clubParser.getClubExact("ESV BR Bonn"));
         assertTrue(clubParser.getClubNameUnsharp("ESV Bonn").size() > 0);
         assertTrue(clubParser.getClubNameUnsharp("TTC Blau-Rot 1963 Uedorf").size() > 0);
         assertTrue(clubParser.getClubNameUnsharp("1. TTC Münster").size() > 0);
-        assertResultExact("München", 0.49f, 31, true);
-        assertResultExact("Bonn", 0.49f, 8, true);
-        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.49f, 5, true);
+        assertResultExact("München", 0.3f, 31, true);
+        assertResultExact("Bonn", 0.3f, 9, true);
+        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.3f, 1, true);
 
     }
 
@@ -92,7 +94,7 @@ public class ClubParserTest extends TestCase {
     private void assertResultGreater(String search, float minScore, int count, boolean recursiv) {
         ClubParser clubParser = new ClubParser();
         List<String> result = clubParser.getClubNameUnsharp(search, minScore, recursiv);
-        if (result.size() < count) {
+        if (result.size() == 0 && count == 0 || result.size() < count) {
             fail(count + "<" + result.size() + " \n" + result);
         }
     }
