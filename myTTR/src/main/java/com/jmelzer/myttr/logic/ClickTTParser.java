@@ -1,11 +1,9 @@
 package com.jmelzer.myttr.logic;
 
 import android.text.Html;
-import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Competition;
-import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Group;
 import com.jmelzer.myttr.KoPhase;
 import com.jmelzer.myttr.Kreis;

@@ -231,6 +231,12 @@ public class HomeActivity extends BaseActivity {
                 dialog.show();
                 break;
             }
+            case R.id.menu_version: {
+                VersionCheckDialog dialog = new VersionCheckDialog(this);
+                dialog.setTitle("Versionsprüfung");
+                dialog.show();
+                break;
+            }
         }
         return false;
     }

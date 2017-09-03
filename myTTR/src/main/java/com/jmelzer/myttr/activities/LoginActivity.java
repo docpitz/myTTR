@@ -86,8 +86,9 @@ public class LoginActivity extends Activity {
         String username = ((EditText) findViewById(R.id.username)).getText().toString();
         String pw = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        AsyncTask<String, Void, Integer> task = new LoginTask(this, username, pw);
+        LoginTask task = new LoginTask(this, username, pw);
         task.execute();
+
     }
 
     public void liga(View view) {

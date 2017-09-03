@@ -15,6 +15,7 @@ import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
+import com.jmelzer.myttr.logic.VersionChecker;
 
 import java.io.IOException;
 
@@ -34,6 +35,7 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
     int ttr = 0;
     LoginActivity parent;
     LoginDataBaseAdapter loginDataBaseAdapter;
+    private String versionInfo;
 
     public LoginTask(LoginActivity parent, String username, String password) {
         this.parent = parent;
@@ -66,6 +68,8 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
                     Toast.LENGTH_SHORT).show();
         } else {
             MyApplication.getLoginUser().setPoints(ttr);
+            if (versionInfo != null)
+                Toast.makeText(parent, versionInfo, Toast.LENGTH_LONG).show();
             parent.gotoNextActivity();
         }
     }
@@ -109,6 +113,16 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
                 loginSuccess = true;
                 ttr = user.getPoints();
                 store(user, new MyTischtennisParser());
+                VersionChecker versionChecker = new VersionChecker();
+                versionInfo = null;
+                if (versionChecker.shallCheck() && versionChecker.newVersionAvailable()) {
+                    Log.d(Constants.LOG_TAG, "new version found");
+                    String[] ahref = versionChecker.readVersionInfo();
+                    if (ahref != null) {
+                        versionInfo = "Es gibt eine neue Version: '" + ahref[1] + "'.\n" +
+                                "Unter Einstellungen kannst du sie abrufen";
+                    }
+                }
             }
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
             playerNotWellRegistered = true;
@@ -122,4 +136,5 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
 
         loginManager.loadUserIntoMemoryAndStore(user, saveUser, myTischtennisParser);
     }
+
 }

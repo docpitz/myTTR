@@ -52,6 +52,8 @@
     <string name="pref_user_summ">Der Benutzer und das Passwort werden für die nächste Benutzung gespeichert und ein automatisches Login durchgeführt.</string>
     <string name="pref_error_summ">Bei Fehlern wird ein Fehler Report an Crashlytics gesendet</string>
     <string name="pref_error">Fehler Report</string>
+    <string name="pref_version_sum">1x die Woche wird auf eine neue Version geprüft.</string>
+    <string name="pref_version">Versionsprüfung</string>
     <string name="next_appointments_search">Über nächste Termine suchen</string>
     <string name="action_mannschafts_info">Mannschaftsinfo</string>
     <string name="action_favorite">Als Favorit speichern</string>
@@ -110,6 +112,7 @@
     <string name="liga">Liga</string>
     <string name="liga_rangl">Liga Rangl.</string>
     <string name="logout">Abmelden</string>
+    <string name="version_check">Versionsprüfung</string>
     <string name="simulation">Simulation</string>
     <string name="arrow_desc">Pfeil</string>
     <string name="verband_label">Verband:</string>
