@@ -32,6 +32,7 @@ public class VersionChecker extends AbstractBaseParser {
     LastNotification getLastCheck() {
         return getDBAdapter().getEntryByType(LastNotification.VERSION_TYPE);
     }
+
     public boolean shallCheck() {
         LastNotification lastNotification = getDBAdapter().getEntryByType(LastNotification.VERSION_TYPE);
         if (lastNotification == null) {
@@ -56,9 +57,14 @@ public class VersionChecker extends AbstractBaseParser {
 
     public String[] readVersionInfo() throws NetworkException {
         String page = Client.getPage(GITHUB_URL + "/chokdee/myTTR/releases");
-        return parseLastVersion(page);
+        String[] ahref = parseLastVersion(page);
+        if (ahref != null && !ahref[1].equals(THIS_VERSION))
+            return ahref;
+        else
+            return null;
 
     }
+
     String[] parseLastVersion(String page) {
         try {
             ParseResult result = readBetween(page, 0, "<div class=\"release-header\">", "</div>");

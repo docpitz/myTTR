@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:stretchColumns="*">
-		<TextView
-			android:id="@+id/impressum"
-            android:text="@string/imp_text"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:textSize="10dip"
-			android:textStyle="italic"
-			android:layout_span="2"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_marginTop="8dip" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp">
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_versioncheck"
+        android:id="@+id/textView8"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        />
+
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:onClick="start"
+        android:background="@drawable/buttonshape"
+        android:text="@string/button_start"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_versioncheck"
+        android:visibility="invisible"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:id="@+id/result"/>
+
+    </LinearLayout>

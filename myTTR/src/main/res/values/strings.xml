@@ -9,6 +9,7 @@
     <string name="app_name">myTTR</string>
     <string name="username_message">Usernamen eingeben</string>
     <string name="button_send">Login</string>
+    <string name="button_start">Start</string>
     <string name="button_liga">Oder nur Liga Ergebnisse ansehen</string>
     <string name="password_message">Passwort eingeben</string>
     <string name="read_from_foto">Aus Photo lesen</string>
@@ -72,6 +73,7 @@
     <string name="text_select_player">Durch die Auswahl eines Teamspielers kannst du TTR Werte auch für ihn berechnen. Du siehst dann oben ein Symbol mit dem du es wieder beenden kannst.</string>
     <string name="text_select_team">Nach der Auswahl eines Teams kannst du dir die Spieler des Teams auswählen.</string>
     <string name="text_search_result">Folgende Spieler wurden gefunden.</string>
+    <string name="label_versioncheck">Versionsprüfung:</string>
     <string name="imp_text">Impressum
 \n
 \nAngaben gemäß § 5 TMG
