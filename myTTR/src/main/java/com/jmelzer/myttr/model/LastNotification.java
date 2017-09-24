@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class LastNotification {
     public static final String EVENT_TYPE = "events";
+    public static final String VERSION_TYPE = "version";
     Date changedAt;
     String type;
     String jsonData;
