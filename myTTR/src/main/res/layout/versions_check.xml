@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginTop="20dp"
-        android:text="@string/label_versioncheck"
+        android:text=""
         android:visibility="invisible"
         android:autoLink="web"
         android:linksClickable="true"

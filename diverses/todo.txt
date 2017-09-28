@@ -1,12 +1,16 @@
 
 Offen
 ----------
-- Links auf mytischtennis.de ?
+
 - Navigation drawers
 - Todos entfernen
 - Schriftgröße: Konfiguration
-
+- Route bei Turnieren
+- Filter bei Turnieren
 - Filter siehe Kayak o.ä (slidemenu)
+- Pokalspiel
+- TTR Vergleich
 
-
+erledigt
+---------
 - Versionsprüfung!!

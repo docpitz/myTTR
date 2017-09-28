@@ -59,6 +59,7 @@
     <string name="action_mannschafts_info">Mannschaftsinfo</string>
     <string name="action_favorite">Als Favorit speichern</string>
     <string name="action_edit_favorites">Favorit verwalten</string>
+    <string name="action_filter">Filter</string>
     <string name="text_appointment_selection">Du kannst unten die nächsten Termine von dir sehen, wähle einen aus, dann
         kannst du einen Spieler aus gegnerischen Mannschaft auswählen
     </string>

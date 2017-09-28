@@ -27,12 +27,14 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
+import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.util.List;
 
 public class SearchActivity extends BaseActivity {
 
     public static final String BACK_TO = "BACK_TO";
+    public static final String INTENT_SP = "INTENT_SP";
     public static final String INTENT_LIGA_PLAYER = "lp";
     Class goBackToClass = TTRCalculatorActivity.class;
     ClubParser clubParser = new ClubParser();
@@ -60,6 +62,7 @@ public class SearchActivity extends BaseActivity {
         if (i != null && i.getExtras() != null && i.getExtras().getSerializable(BACK_TO) != null) {
             goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
         }
+        clubEdit.setText("TTG St. Augustin");
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -127,6 +130,11 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void putExtra(Intent target) {
                 target.putExtra(SearchActivity.BACK_TO, goBackToClass);
+                SearchPlayer sp = new SearchPlayer();
+                sp.setClubname(club);
+                sp.setFirstname(firstname);
+                sp.setLastname(lastname);
+                target.putExtra(SearchActivity.INTENT_SP, sp);
             }
 
             @Override

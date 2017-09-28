@@ -20,6 +20,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.User;
+import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -143,13 +144,20 @@ public class MyTischtennisParser extends AbstractBaseParser {
             throw new PlayerNotWellRegistered();
         }
     }
-
+    public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
+            NetworkException {
+        SearchPlayer sp = new SearchPlayer();
+        sp.setFirstname(firstName);
+        sp.setLastname(lastName);
+        sp.setClubname(vereinsName);
+        return findPlayer(sp);
+    }
     /**
      * @param firstName
      * @param lastName
      * @return Returns the player id number or 0 if not found
      */
-    public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
+    public List<Player> findPlayer(SearchPlayer sp) throws TooManyPlayersFound,
             NetworkException {
 
         Uri.Builder builder = new Uri.Builder()
@@ -157,6 +165,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 .authority("www.mytischtennis.de")
                 .path("community/ajax/_rankingList");
         Club v = null;
+        String vereinsName = sp.getClubname();
+        String firstName = sp.getFirstname();
+        String lastName = sp.getLastname();
+
         if (vereinsName != null && !"".equals(vereinsName)) {
             v = clubParser.getClubExact(vereinsName);
             if (v == null) {
@@ -167,6 +179,15 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
         }
 
+        if (sp.getGender() != null) {
+            builder.appendQueryParameter("geschlecht", sp.getGender());
+        }
+        if (sp.getYearFrom()> 0) {
+            builder.appendQueryParameter("geburtsJahrVon", "" + sp.getYearFrom());
+        }
+        if (sp.getYearTo()> 0) {
+            builder.appendQueryParameter("geburtsJahrBis", "" + sp.getYearTo());
+        }
         if (firstName != null && firstName.length() > 2 && lastName != null && lastName.length() > 2) {
             firstName = (Character.toUpperCase(firstName.charAt(0)) + firstName.substring(1)).trim();
             lastName = (Character.toUpperCase(lastName.charAt(0)) + lastName.substring(1)).trim();

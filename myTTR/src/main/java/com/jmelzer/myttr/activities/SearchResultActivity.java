@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +19,8 @@ import android.widget.TextView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.model.Favorite;
+import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.util.List;
 
@@ -24,6 +30,7 @@ import java.util.List;
  */
 public class SearchResultActivity extends BaseActivity {
     Class goBackToClass;
+    private SearchPlayer searchPlayer;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -56,6 +63,7 @@ public class SearchResultActivity extends BaseActivity {
         goBackToClass = TTRCalculatorActivity.class;
         if (i != null && i.getExtras() != null) {
             goBackToClass = (Class) i.getExtras().getSerializable(SearchActivity.BACK_TO);
+            searchPlayer = (SearchPlayer) i.getExtras().getSerializable(SearchActivity.INTENT_SP);
         }
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,6 +101,12 @@ public class SearchResultActivity extends BaseActivity {
 
     }
 
+    public void filter(MenuItem item) {
+        Intent intent = new Intent(this, SearchFilterActivity.class);
+        intent.putExtra(SearchActivity.INTENT_SP, searchPlayer);
+        startActivity(intent);
+    }
+
     class SearchResultAdapter extends ArrayAdapter<Player> {
 
         public SearchResultAdapter(Context context, int resource, List<Player> players) {
@@ -118,4 +132,14 @@ public class SearchResultActivity extends BaseActivity {
             return rowView;
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_actions, menu);
+
+        return true;
+    }
+
+
 }
