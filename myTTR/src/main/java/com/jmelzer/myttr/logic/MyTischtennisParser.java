@@ -149,7 +149,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         SearchPlayer sp = new SearchPlayer();
         sp.setFirstname(firstName);
         sp.setLastname(lastName);
-        sp.setClubname(vereinsName);
+        sp.setClub(new Club(vereinsName, null, null, null));
         return findPlayer(sp);
     }
     /**
@@ -165,7 +165,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 .authority("www.mytischtennis.de")
                 .path("community/ajax/_rankingList");
         Club v = null;
-        String vereinsName = sp.getClubname();
+        String vereinsName = sp.getClubName();
         String firstName = sp.getFirstname();
         String lastName = sp.getLastname();
 
@@ -187,6 +187,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
         if (sp.getYearTo()> 0) {
             builder.appendQueryParameter("geburtsJahrBis", "" + sp.getYearTo());
+        }
+        if (sp.getTtrFrom()> 0) {
+            builder.appendQueryParameter("ttrVon", "" + sp.getTtrFrom());
+        }
+        if (sp.getTtrTo()> 0) {
+            builder.appendQueryParameter("ttrBis", "" + sp.getTtrTo());
         }
         if (firstName != null && firstName.length() > 2 && lastName != null && lastName.length() > 2) {
             firstName = (Character.toUpperCase(firstName.charAt(0)) + firstName.substring(1)).trim();
@@ -216,7 +222,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
         }
-        builder.appendQueryParameter("alleSpielberechtigen", "yes");
+//        builder.appendQueryParameter("alleSpielberechtigen", "yes");
 
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
@@ -319,7 +325,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     private String readClubFromPage(int startIdx, String page) {
         ParseResult result = readBetweenOpenTag(page, startIdx, "<a ", "</a>");
-        if (result.result.length() > 0) {
+        if (result != null && !result.isEmpty() && result.result.length() > 0) {
             return result.result;
         }
         return "";

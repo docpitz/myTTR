@@ -7,10 +7,12 @@
 
 package com.jmelzer.myttr;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Club {
+public class Club implements Serializable {
 
+    private static final long serialVersionUID = -400728295651195914L;
     private String name;
     private String id;
     private String verband;

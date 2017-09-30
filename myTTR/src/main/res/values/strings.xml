@@ -22,7 +22,7 @@
     <string name="player_1">Spieler 1:</string>
     <string name="player_1_hint">Namen eingeben</string>
     <string name="entry_club_edit">Vereinsname eingeben</string>
-    <string name="entry_club_label">Vereinsname</string>
+    <string name="entry_club_label">Vereinsname:</string>
     <string name="entry_lastname_edit">Nachname eingeben</string>
     <string name="entry_lastname_label">Nachname:</string>
     <string name="entry_firstname_edit">Vorname eingeben</string>

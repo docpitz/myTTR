@@ -1,5 +1,7 @@
 package com.jmelzer.myttr.model;
 
+import com.jmelzer.myttr.Club;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +13,7 @@ public class SearchPlayer implements Serializable {
     private static final long serialVersionUID = 3253568223402780761L;
     String lastname;
     String firstname;
-    String clubname;
+    Club club;
     String gender;
     int yearFrom = -1;
     int yearTo = -1;
@@ -34,12 +36,12 @@ public class SearchPlayer implements Serializable {
         this.firstname = firstname;
     }
 
-    public String getClubname() {
-        return clubname;
+    public Club getClub() {
+        return club;
     }
 
-    public void setClubname(String clubname) {
-        this.clubname = clubname;
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public String getGender() {
@@ -80,5 +82,11 @@ public class SearchPlayer implements Serializable {
 
     public void setTtrTo(int ttrTo) {
         this.ttrTo = ttrTo;
+    }
+
+    public String getClubName() {
+        if (club != null)
+            return club.getName();
+        return null;
     }
 }

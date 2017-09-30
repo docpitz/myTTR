@@ -20,6 +20,7 @@ import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.util.List;
 
@@ -313,8 +314,12 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
         login();
 
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Player> players = myTischtennisParser.findPlayer("Astrid", "Schulz", null);
-        assertEquals(2, players.size());
+        SearchPlayer searchPlayer = new SearchPlayer();
+        List<Player> players = myTischtennisParser.findPlayer(searchPlayer);
+        assertEquals(100, players.size());
+
+        players = myTischtennisParser.findPlayer("Astrid", "Schulz", null);
+        assertEquals(3, players.size());
 
         assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
 

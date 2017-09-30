@@ -36,7 +36,7 @@ public class SearchFilterActivity extends BaseActivity {
         }
 
         setContentView(R.layout.search_filter);
-        setTitle(MyApplication.getTitle());
+        setTitle("Filter");
 
         Spinner dropdown = findViewById(R.id.spinner);
         String[] items = new String[]{"Beide", "Männlich", "Weiblich"};
@@ -75,6 +75,12 @@ public class SearchFilterActivity extends BaseActivity {
         editText = findViewById(R.id.yearto);
         if (searchPlayer.getYearTo() > 0)
             editText.setText(searchPlayer.getYearTo());
+        editText = findViewById(R.id.ttrfrom);
+        if (searchPlayer.getTtrFrom() > 0)
+            editText.setText(searchPlayer.getTtrFrom());
+        editText = findViewById(R.id.ttrto);
+        if (searchPlayer.getTtrTo() > 0)
+            editText.setText(searchPlayer.getTtrTo());
     }
 
     @Override
@@ -91,6 +97,16 @@ public class SearchFilterActivity extends BaseActivity {
         EditText to = findViewById(R.id.yearto);
         if (!to.getText().toString().isEmpty()) {
             searchPlayer.setYearTo(Integer.parseInt(to.getText().toString()));
+        }
+
+        from = findViewById(R.id.ttrfrom);
+        if (!from.getText().toString().isEmpty()) {
+            searchPlayer.setTtrFrom(Integer.parseInt(from.getText().toString()));
+        }
+
+        to = findViewById(R.id.ttrto);
+        if (!to.getText().toString().isEmpty()) {
+            searchPlayer.setTtrTo(Integer.parseInt(to.getText().toString()));
         }
 
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this,
