@@ -66,7 +66,7 @@ public class SearchActivity extends BaseActivity {
         if (i != null && i.getExtras() != null && i.getExtras().getSerializable(BACK_TO) != null) {
             goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
         }
-        clubEdit.setText("TTG St. Augustin");
+//        clubEdit.setText("TTG St. Augustin");
 
         Spinner dropdown = findViewById(R.id.spinner);
         String[] items = new String[]{"Beide", "Männlich", "Weiblich"};

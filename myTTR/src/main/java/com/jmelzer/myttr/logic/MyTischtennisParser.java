@@ -145,7 +145,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
     public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
-            NetworkException {
+            NetworkException, LoginExpiredException {
         SearchPlayer sp = new SearchPlayer();
         sp.setFirstname(firstName);
         sp.setLastname(lastName);
@@ -158,7 +158,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
      * @return Returns the player id number or 0 if not found
      */
     public List<Player> findPlayer(SearchPlayer sp) throws TooManyPlayersFound,
-            NetworkException {
+            NetworkException, LoginExpiredException {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("https")
@@ -222,7 +222,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
         }
-//        builder.appendQueryParameter("alleSpielberechtigen", "yes");
+        builder.appendQueryParameter("alleSpielberechtigen", "yes");
 
         String url = builder.build().toString();
         //bad trick for the crap from mytischtennis.de
@@ -230,6 +230,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
 
         String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
         List<Player> list = new ArrayList<>();
         return parseForPlayer(firstName, lastName, page, list, 0);
 

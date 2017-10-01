@@ -102,4 +102,10 @@ public class LoginActivity extends Activity {
         //close the app, see myttr-27
         super.onBackPressed();
     }
+
+    public void versioncheck(View view) {
+        VersionCheckDialog dialog = new VersionCheckDialog(this);
+        dialog.setTitle("Versionsprüfung");
+        dialog.show();
+    }
 }

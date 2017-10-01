@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
@@ -44,7 +43,7 @@ public class ClubParserTest extends TestCase {
 
     @Test
     @Ignore
-    public void callSome() throws TooManyPlayersFound, NetworkException {
+    public void callSome() throws TooManyPlayersFound, NetworkException, LoginExpiredException {
         ClubParser clubParser = new ClubParser();
         clubParser.readClubs();
         MyTischtennisParser parser = new MyTischtennisParser();

@@ -29,12 +29,12 @@ public class VersionChecker extends AbstractBaseParser {
         return adapter;
     }
 
-    LastNotification getLastCheck() {
+    public LastNotification getLastCheck() {
         return getDBAdapter().getEntryByType(LastNotification.VERSION_TYPE);
     }
 
     public boolean shallCheck() {
-        LastNotification lastNotification = getDBAdapter().getEntryByType(LastNotification.VERSION_TYPE);
+        LastNotification lastNotification = getLastCheck();
         if (lastNotification == null) {
             return true;
         }

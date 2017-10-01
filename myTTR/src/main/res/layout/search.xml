@@ -230,10 +230,10 @@
 
     </LinearLayout>
 
-    <Space
+  <!--  <Space
         android:layout_width="match_parent"
         android:layout_height="15dp" />
-
+-->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
