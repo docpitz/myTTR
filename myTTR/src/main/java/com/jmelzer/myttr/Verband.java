@@ -36,7 +36,9 @@ public class Verband {
         verbaende.add(new Verband("Hessischer TTV", "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15",
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV",
                 "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV&circuit=VR-Cup_2017", "VR Cup"));
-//        verbaende.add(new Verband("TTV Mecklenburg-Vorpommern", "https://www.tt-info.net"));
+        verbaende.add(new Verband("TTV Mecklenburg-Vorpommern", "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",
+                "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVMV",
+                null, null));
         verbaende.add(new Verband("TTV Niedersachsen", "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=TTVN",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=TTVN&circuit=TTVN-Race", "TTVN-Race"));

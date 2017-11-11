@@ -11,15 +11,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by cicgfp on 03.09.2017.
+ * Created by J. Melzer on 03.09.2017.
  */
 
 public class VersionChecker extends AbstractBaseParser {
     static final String GITHUB_URL = "https://github.com";
-    public static final String LAST_VERSION = "3.0.0 - Cups integriert";
-    static final String THIS_VERSION = "3.0.1 - Minor fixes";
+    public static final String LAST_VERSION = "3.0.1 Suche verbessert";
+    static final String THIS_VERSION = "3.0.2 - Mecklenburg hinzugefügt";
 
-    private NotificationDataBaseAdapter adapter;
+    NotificationDataBaseAdapter adapter;
 
     NotificationDataBaseAdapter getDBAdapter() {
         if (adapter == null) {
@@ -51,8 +51,12 @@ public class VersionChecker extends AbstractBaseParser {
 
     public boolean newVersionAvailable() throws NetworkException {
         String page = Client.getPage(GITHUB_URL + "/chokdee/myTTR/releases");
+        return compareVersions(page, THIS_VERSION);
+    }
+
+    public boolean compareVersions(String page, String versionThis) {
         String[] ahref = parseLastVersion(page);
-        return ahref != null && !ahref[1].equals(THIS_VERSION);
+        return ahref != null && !ahref[1].equals(versionThis);
     }
 
     public String[] readVersionInfo() throws NetworkException {

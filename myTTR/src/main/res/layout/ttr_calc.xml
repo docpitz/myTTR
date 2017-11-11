@@ -35,43 +35,6 @@
             android:textSize="16sp"
             android:visibility="visible"/>
 
-        <!-- <com.getbase.floatingactionbutton.FloatingActionsMenu
-             android:id="@+id/multiple_actions_down"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentEnd="true"
-             android:layout_alignParentRight="true"
-             android:layout_alignTop="@+id/txt_player_list_empty"
-             fab:fab_addButtonColorNormal="@color/main_color"
-             fab:fab_addButtonColorPressed="@color/white_pressed"
-             fab:fab_addButtonPlusIconColor="@color/half_black"
-             fab:fab_addButtonSize="mini"
-             fab:fab_expandDirection="down"
-             fab:fab_labelStyle="@style/menu_labels_style">
-
-
-             <com.getbase.floatingactionbutton.FloatingActionButton
-                 android:id="@+id/button_next_appointments"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 fab:fab_colorNormal="@color/white_pressed"
-                 fab:fab_colorPressed="@color/white_pressed"
-                 fab:fab_icon="@drawable/ic_action_appointment"
-                 fab:fab_size="mini"
-                 fab:fab_title="@string/next_appointments_search"/>
-
-             <com.getbase.floatingactionbutton.FloatingActionButton
-                 android:id="@+id/btn_new_player"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 fab:fab_colorNormal="@color/white_pressed"
-                 fab:fab_colorPressed="@color/white_pressed"
-                 fab:fab_icon="@drawable/ic_action_ab_search"
-                 fab:fab_size="mini"
-                 fab:fab_title="@string/btn_new_player"
-                 />
-         </com.getbase.floatingactionbutton.FloatingActionsMenu>
- -->
 
         <LinearLayout
             android:id="@+id/header"

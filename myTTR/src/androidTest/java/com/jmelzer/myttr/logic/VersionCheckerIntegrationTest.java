@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * Created by cicgfp on 03.09.2017.
+ * Created by J. Melzer on 03.09.2017.
  */
 
 @SmallTest

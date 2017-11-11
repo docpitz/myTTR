@@ -2,7 +2,6 @@
 Offen
 ----------
 
-- Navigation drawers
 - Todos entfernen
 - Schriftgröße: Konfiguration
 - Route bei Turnieren
@@ -10,6 +9,7 @@ Offen
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
 - TTR Vergleich
+- MV aufnehmen
 
 erledigt
 ---------

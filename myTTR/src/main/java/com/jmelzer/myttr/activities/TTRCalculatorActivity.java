@@ -68,24 +68,10 @@ public class TTRCalculatorActivity extends BaseActivity {
             findViewById(R.id.txt_player_list).setVisibility(View.VISIBLE);
             findViewById(R.id.txt_player_list_empty).setVisibility(View.GONE);
 
-            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) findViewById(R.id.header).getLayoutParams();
-            p.addRule(RelativeLayout.BELOW, R.id.txt_player_list);
-            findViewById(R.id.header).setLayoutParams(p);
+//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) findViewById(R.id.header).getLayoutParams();
+//            p.addRule(RelativeLayout.BELOW, R.id.txt_player_list);
+//            findViewById(R.id.header).setLayoutParams(p);
         }
-//        FloatingActionButton a = (FloatingActionButton) findViewById(R.id.button_next_appointments);
-//        a.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                nextAppointments(v);
-//            }
-//        });
-//        a = (FloatingActionButton) findViewById(R.id.btn_new_player);
-//        a.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newplayer(v);
-//            }
-//        });
     }
 
 
