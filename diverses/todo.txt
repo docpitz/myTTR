@@ -9,8 +9,11 @@ Offen
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
 - TTR Vergleich
-- MV aufnehmen
+
+ Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt
 ---------
 - Versionsprüfung!!
+- MV aufnehmen
+- Thüringen fixen (alle Vereine dort neu einlesen)

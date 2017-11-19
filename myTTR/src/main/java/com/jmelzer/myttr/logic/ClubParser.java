@@ -70,15 +70,12 @@ public class ClubParser {
 
     private Club parseLine(String line) {
 //        'SV%20Bohlingen','21017,STTB','SV Bohlingen'
-        String rest = line.substring(1);
-        String webName = rest.substring(0, rest.indexOf("'"));
-        rest = rest.substring(webName.length() + 3);
-        String id = rest.substring(0, rest.indexOf(","));
-        rest = rest.substring(id.length() + 1);
-        String verband = rest.substring(0, rest.indexOf("'"));
-        rest = rest.substring(verband.length() + 3);
-        String name = rest.substring(0, rest.indexOf("'"));
-        return new Club(name, id, verband, webName);
+        int n = line.indexOf(",", 0);
+        String name = line.substring(0, n);
+        int n2 = line.indexOf(",", n+1);
+        String id = line.substring(n+1, n2);
+        String verband = line.substring(n+id.length()+2);
+        return new Club(name, id, verband);
     }
 
     public Club getClubNameBestMatch(String name) {

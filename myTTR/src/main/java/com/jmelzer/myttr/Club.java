@@ -16,14 +16,12 @@ public class Club implements Serializable {
     private String name;
     private String id;
     private String verband;
-    private String webName;
     private String[] searchParts;
 
-    public Club(String name, String id, String verband, String webName) {
+    public Club(String name, String id, String verband) {
         this.name = name;
         this.id = id;
         this.verband = verband;
-        this.webName = webName;
     }
 
     public String getName() {
@@ -36,10 +34,6 @@ public class Club implements Serializable {
 
     public String getVerband() {
         return verband;
-    }
-
-    public String getWebName() {
-        return webName;
     }
 
     public void setSearchParts(String[] searchParts) {
@@ -56,7 +50,6 @@ public class Club implements Serializable {
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", verband='" + verband + '\'' +
-                ", webName='" + webName + '\'' +
                 ", searchParts=" + Arrays.toString(searchParts) +
                 '}';
     }

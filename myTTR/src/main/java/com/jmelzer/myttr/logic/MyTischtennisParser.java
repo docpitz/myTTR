@@ -149,7 +149,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         SearchPlayer sp = new SearchPlayer();
         sp.setFirstname(firstName);
         sp.setLastname(lastName);
-        sp.setClub(new Club(vereinsName, null, null, null));
+        sp.setClub(new Club(vereinsName, null, null));
         return findPlayer(sp);
     }
     /**
@@ -213,11 +213,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             //sometimes I hate mytischtennis
             if (v != null) {
                 builder.appendQueryParameter("verein", v.getName());
-                String cId = "";
-                if (v.getId().startsWith("0"))
-                    cId = v.getId();
-                else
-                    cId = String.format(Locale.GERMAN, "%03d", Integer.parseInt(v.getId()));
+                String cId = v.getId();
                 builder.appendQueryParameter("vereinId", cId+ "," + v.getVerband());
             }
 

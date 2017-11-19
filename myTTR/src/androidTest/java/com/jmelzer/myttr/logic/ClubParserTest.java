@@ -28,28 +28,30 @@ import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
-public class ClubParserTest extends TestCase {
+public class ClubParserTest extends BaseTestCase {
 
     @Test
     public void testGetVereinExact() {
         ClubParser clubParser = new ClubParser();
         assertNull(clubParser.getClubExact("Bla"));
         assertNotNull(clubParser.getClubExact("TTG St. Augustin"));
-        assertNotNull(clubParser.getClubExact("TV Bergheim/Sieg"));
+        assertNotNull(clubParser.getClubExact("TV Bergheim-Sieg"));
         assertNotNull(clubParser.getClubExact("TV Geislar"));
 
     }
 
 
     @Test
-    @Ignore
-    public void callSome() throws TooManyPlayersFound, NetworkException, LoginExpiredException {
+//    @Ignore
+    public void callSome() throws Exception {
+        login();
+
         ClubParser clubParser = new ClubParser();
         clubParser.readClubs();
         MyTischtennisParser parser = new MyTischtennisParser();
         Random generator = new Random();
         Object[] values = ClubParser.clubHashMap.values().toArray();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
             Club randomValue = (Club)values[generator.nextInt(values.length)];
             List<Player> list = parser.findPlayer(null,null,randomValue.getName());
             assertNotNull(list);
@@ -66,7 +68,7 @@ public class ClubParserTest extends TestCase {
         assertResultExact("Weinh", 0.3f, 3, true);
         assertResultExact("TuRa Germania Oberdrees", 0.8f, 0, false);
         assertResultGreater("TuRa Germania Oberdrees", 0.3f, 0, false);
-        assertResultGreater("TPS", 0.3f, 0, false);
+        assertResultGreater("Telekom-Post", 0.3f, 0, false);
         assertResultExact("Oberdrees", 0.3f, 1, true);
         assertResultExact("Augustin", 0.3f, 3, true);
         assertResultExact("Bergheim", 0.3f, 5, true);
