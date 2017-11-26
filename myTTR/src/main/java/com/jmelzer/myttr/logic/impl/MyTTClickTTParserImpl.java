@@ -52,8 +52,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult result = readBetween(page, 0, "<div class=\"row m-l text-center\">",
                 "</div>");
         if (!isEmpty(result)) {
-            url = readHrefAndATag(result.result)[0];
-            page = Client.getPage(url);
+            String urlLiga = readHrefAndATag(result.result)[0];
+            page = Client.getPage(UrlUtil.getHttpAndDomain(url) + urlLiga);
 
             List<Liga> ligen = parseLigaLinks(page);
             verband.addAllLigen(ligen);

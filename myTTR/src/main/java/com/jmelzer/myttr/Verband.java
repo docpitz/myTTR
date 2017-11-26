@@ -69,7 +69,9 @@ public class Verband {
         verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15",
                 "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/tournamentCalendar?federation=TTVWH",
                 null, null));
-        verbaende.add(new Verband("Westdeutscher TTV", "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15",
+        verbaende.add(new Verband("Westdeutscher TTV",
+                "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen",
+                "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15",
                 "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV",
                 "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=WTTV&circuit=2017_Turnierserie",
                 "andro WTTV-Cup"));
@@ -92,6 +94,7 @@ public class Verband {
         this(name, url, tUrl, cupUrl, cupName);
         this.myTTClickTTUrl = myTTClickTTUrl;
     }
+
     public Verband(String name, String url, String tUrl, String cupUrl, String cupName) {
         this.name = name;
         this.url = url;
@@ -127,6 +130,7 @@ public class Verband {
         }
         return list;
     }
+
     public String getHttpAndDomain() {
         return UrlUtil.getHttpAndDomain(url);
     }
@@ -159,7 +163,10 @@ public class Verband {
     }
 
     public String getUrlFixed(Saison saison) {
-        return replaceYear(url, saison);
+        if (saison == Saison.SAISON_2018)
+            return myTTClickTTUrl;
+        else
+            return replaceYear(url, saison);
     }
 
     String replaceYear(String url, Saison saison) {
