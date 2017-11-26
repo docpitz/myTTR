@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.jmelzer.myttr.model.Saison.ACTUAL_SAISON;
+
 public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     ClickTTParser parser;
@@ -65,7 +67,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         assertSame(Verband.dttb, v);
 
         //first one is dttp
-        Verband verband = parser.readTopLigen();
+        Verband verband = parser.readTopLigen(ACTUAL_SAISON);
         assertSame(Verband.dttb, verband);
         assertEquals("must be 62 ", 62, verband.getLigaList().size());
 
@@ -75,7 +77,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         assertTrue("must be greater than 20, we don't exactly the size",
                 nrw.getLigaList().size() > 20);
 
-        parser.readBezirke(nrw, Saison.SAISON_2017);
+        parser.readBezirke(nrw, ACTUAL_SAISON);
         assertEquals(5, nrw.getBezirkList().size());
 
         Bezirk bezirk = nrw.getBezirkList().get(2);
@@ -177,8 +179,8 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     }
 
     private Verband testDTTB() throws NetworkException {
-        Verband dttb = parser.readTopLigen();
-        parser.readLigen(dttb, Saison.SAISON_2015);
+        Verband dttb = parser.readTopLigen(ACTUAL_SAISON);
+        parser.readLigen(dttb, ACTUAL_SAISON);
         for (Liga liga : dttb.getLigaList()) {
             Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
             parser.readLiga(liga);

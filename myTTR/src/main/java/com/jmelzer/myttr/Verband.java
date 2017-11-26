@@ -131,14 +131,21 @@ public class Verband {
         return list;
     }
 
-    public String getHttpAndDomain() {
-        return UrlUtil.getHttpAndDomain(url);
+    public String getHttpAndDomain(Saison saison) {
+        if (isMyTTUrl(saison))
+            return UrlUtil.getHttpAndDomain(myTTClickTTUrl);
+        else
+            return UrlUtil.getHttpAndDomain(url);
     }
 
-    public void setBezirkList(List<Bezirk> bezirkList) {
+    private boolean isMyTTUrl(Saison saison) {
+        return saison != null && myTTClickTTUrl != null && Saison.SAISON_2018 == saison;
+    }
+
+    public void setBezirkList(List<Bezirk> bezirkList, Saison saison) {
         this.bezirkList = bezirkList;
         for (Bezirk bezirk : bezirkList) {
-            bezirk.setUrl(UrlUtil.safeUrl(getHttpAndDomain(), bezirk.getUrl()));
+            bezirk.setUrl(UrlUtil.safeUrl(getHttpAndDomain(saison), bezirk.getUrl()));
         }
     }
 
@@ -163,7 +170,7 @@ public class Verband {
     }
 
     public String getUrlFixed(Saison saison) {
-        if (saison == Saison.SAISON_2018)
+        if (isMyTTUrl(saison))
             return myTTClickTTUrl;
         else
             return replaceYear(url, saison);
@@ -212,11 +219,11 @@ public class Verband {
         ligaList.clear();
     }
 
-    public void addAllLigen(List<Liga> ligen) {
+    public void addAllLigen(List<Liga> ligen, Saison saison) {
         ligaList.clear();
         ligaList.addAll(ligen);
         for (Liga liga : ligen) {
-            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain(), liga.getUrl()));
+            liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain(saison), liga.getUrl()));
         }
     }
 }

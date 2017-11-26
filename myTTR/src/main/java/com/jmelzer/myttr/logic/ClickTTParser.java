@@ -420,11 +420,11 @@ public class ClickTTParser extends AbstractBaseParser {
         return verbandList;
     }
 
-    public Verband readTopLigen() throws NetworkException {
+    public Verband readTopLigen(Saison saison) throws NetworkException {
         String url = "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
-        Verband.dttb.addAllLigen(ligen);
+        Verband.dttb.addAllLigen(ligen, saison);
         return Verband.dttb;
     }
 
@@ -478,7 +478,7 @@ public class ClickTTParser extends AbstractBaseParser {
         url += verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
-        verband.addAllLigen(ligen);
+        verband.addAllLigen(ligen, saison);
     }
 
     /**
@@ -489,9 +489,9 @@ public class ClickTTParser extends AbstractBaseParser {
         url += verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Liga> ligen = parseLigaLinks(page);
-        verband.addAllLigen(ligen);
+        verband.addAllLigen(ligen, saison);
         List<Bezirk> list = parseLinksBezirke(page);
-        verband.setBezirkList(list);
+        verband.setBezirkList(list, saison);
     }
 
     /**
@@ -501,13 +501,13 @@ public class ClickTTParser extends AbstractBaseParser {
         String url = verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Bezirk> list = parseLinksBezirke(page);
-        verband.setBezirkList(list);
+        verband.setBezirkList(list, saison);
     }
 
     List<Bezirk> parseLinksBezirke(String page) {
         List<Bezirk> bezirkList = new ArrayList<>();
         ParseResult result = readBetween(page, 0, "Untergeordnete Spielklassen", null);
-        if (result.isEmpty()) {
+        if (isEmpty(result)) {
             return bezirkList;
         }
         int idx = 0;
@@ -1120,7 +1120,7 @@ public class ClickTTParser extends AbstractBaseParser {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
         String page = Client.getPage(url);
-        return parseTournamentLinks(page, verband.getHttpAndDomain(), false);
+        return parseTournamentLinks(page, verband.getHttpAndDomain(null), false);
     }
 
     /**
@@ -1134,7 +1134,7 @@ public class ClickTTParser extends AbstractBaseParser {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
         String page = Client.getPage(url);
-        return parseTournamentLinks(page, verband.getHttpAndDomain(), true);
+        return parseTournamentLinks(page, verband.getHttpAndDomain(null), true);
     }
 
     List<Tournament> parseTournamentLinks(String page, String httpAndDomain, boolean isCup) {

@@ -29,6 +29,7 @@ import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -146,7 +147,7 @@ public class LigaHomeActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readLiga(MyApplication.getSelectedLiga());
+                new MytClickTTWrapper().readLiga(selectedSaison, MyApplication.getSelectedLiga());
             }
 
             @Override
@@ -229,7 +230,7 @@ public class LigaHomeActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readBezirkeAndLigen(MyApplication.selectedVerband, selectedSaison);
+                new MytClickTTWrapper().readBezirkeAndLigen(MyApplication.selectedVerband, selectedSaison);
 //                new ClickTTParser().readBezirke(MyApplication.selectedVerband, selectedSaison);
             }
 
@@ -277,7 +278,7 @@ public class LigaHomeActivity extends BaseActivity {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
                         protected void callParser() throws NetworkException, LoginExpiredException {
-                            new ClickTTParser().readKreiseAndLigen(selectedBezirk);
+                            new MytClickTTWrapper().readKreiseAndLigen(selectedSaison, selectedBezirk);
                         }
 
                         @Override

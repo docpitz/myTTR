@@ -1,35 +1,17 @@
 package com.jmelzer.myttr.logic.impl;
 
-import android.text.Html;
-
 import com.jmelzer.myttr.Bezirk;
-import com.jmelzer.myttr.Competition;
-import com.jmelzer.myttr.Group;
-import com.jmelzer.myttr.KoPhase;
-import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
-import com.jmelzer.myttr.Mannschaftspiel;
-import com.jmelzer.myttr.Participant;
-import com.jmelzer.myttr.Spielbericht;
-import com.jmelzer.myttr.Spieler;
-import com.jmelzer.myttr.Tournament;
-import com.jmelzer.myttr.TournamentGame;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.AbstractBaseParser;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.model.Saison;
-import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +28,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         url += verband.getUrlFixed(saison);
         String page = Client.getPage(url);
         List<Bezirk> list = parseLinksBezirke(page);
-        verband.setBezirkList(list);
+        verband.setBezirkList(list, saison);
 
         //read link to ligen and load it
         ParseResult result = readBetween(page, 0, "<div class=\"row m-l text-center\">",
@@ -56,9 +38,56 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             page = Client.getPage(UrlUtil.getHttpAndDomain(url) + urlLiga);
 
             List<Liga> ligen = parseLigaLinks(page);
-            verband.addAllLigen(ligen);
+            verband.addAllLigen(ligen, saison);
         }
 
+    }
+
+    @Override
+    public void readKreiseAndLigen(Bezirk bezirk) throws NetworkException {
+        String page = Client.getPage(bezirk.getUrl());
+        List<Liga> listLiga = parseLigaLinks(page);
+        bezirk.addAllLigen(listLiga);
+    }
+
+    @Override
+    public void readLiga(Liga liga) throws NetworkException {
+        String url = liga.getUrl();
+        String page = Client.getPage(url);
+        parseLiga(liga, page);
+    }
+
+    void parseLiga(Liga liga, String page) {
+        liga.clearMannschaften();
+        int idx = 0;
+        int c = 0;
+        ParseResult table = readBetweenOpenTag(page, 0, "<table class=\"table table-mytt", "</table>");
+        while (true) {
+            ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+            }
+            String[] row = tableRowAsArray(resultrow.result, 10, false);
+            String nameWithRef = row[2];
+            String[] href = readHrefAndATag(nameWithRef);
+            Mannschaft m = new Mannschaft(href[1],
+                    Integer.valueOf(row[1]),
+                    Integer.valueOf(row[3]),
+                    Integer.valueOf(row[4]),
+                    Integer.valueOf(row[5]),
+                    Integer.valueOf(row[6]),
+                    row[7],
+                    row[8],
+                    row[9], href[0]);
+            m.setUrl(UrlUtil.safeUrl(liga.getHttpAndDomain(), m.getUrl()));
+            liga.addMannschaft(m);
+            idx = resultrow.end;
+
+        }
     }
 
     List<Bezirk> parseLinksBezirke(String page) {
