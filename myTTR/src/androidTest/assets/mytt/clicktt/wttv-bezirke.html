@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- WTTV &ndash; Ligenplan
+</title>
+<base href="//www.mytischtennis.de">	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=8-1-4" type="text/javascript"></script>
+<script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
+<script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/clicktt/includes/css/click-tt.css?v=8-1-4" media="all" rel="stylesheet" type="text/css" />
+<script src="//commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript" async></script>
+<script type="text/javascript" src="//c.amazon-adsystem.com/aax2/amzn_ads.js" async></script>
+<script type="text/javascript" async>
+try {
+amznads.getAds('3371');
+} catch (e) { /*ignore*/ }
+</script>
+<script type="text/javascript" async>
+var gptadslots=[];
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function(){ var gads = document.createElement('script');
+gads.async = true; gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+<script type="text/javascript" async>
+googletag.cmd.push(function() {
+var breakpoint = window.myTT.getBreakpoint();
+if (breakpoint === 'lg' || breakpoint === 'xl') {
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[728,90]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
+gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[160,600],[300,600]],'div-gpt-ad-149594444772628791-2').addService(googletag.pubads());
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[728,90],[800,250],[900,250],[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
+// hard coded: MYTT-2893
+gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
+gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
+} else if (breakpoint === 'md') {
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[728,90],[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
+// hard coded: MYTT-2893
+gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
+gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
+} else { // xs, sm
+gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[320,50]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
+// hard coded: MYTT-2893
+gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
+gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
+gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
+}
+// Out of Page - Slot
+gptadslots[5] = googletag.defineOutOfPageSlot('/27763518/myTischtennis_GmbH/wttv.de', 'div-gpt-ad-518943210402310848-5').addService(googletag.pubads());
+// for all slots
+gptadslots[7]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/ca_unten/pos3', [[300,250]],'div-gpt-ad-518943210402310848-7').addService(googletag.pubads());
+// Start Targeting
+var TargetingScript = document.createElement('script');
+TargetingScript.type = 'text/javascript';
+TargetingScript.async = true;
+TargetingScript.src = '//storage.googleapis.com/qmftp/Targeting.js';
+document.head.appendChild(TargetingScript);
+// End Targeting
+googletag.pubads().collapseEmptyDivs();
+googletag.pubads().enableAsyncRendering();
+googletag.enableServices();
+});
+</script>
+</head>
+<body class="click-tt">
+<!-- Version: 8.1.4 -->	
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="http://www.mytischtennis.de/clicktt/WTTV/season/ligen">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home">
+<img src='/public/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index" class="" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home">
+<img src="/public/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/clicktt/verbaende">Verbände</a>
+</li>
+<li class="">
+<a href="/clicktt/home">Mein click-TT</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/17-18/ligen" data-disabled-reason="Um den Ligenplan nutzen zu können, musst du zuerst einen Verband auswählen.">Ligenplan (WTTV)</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/vereinssuche">Vereinssuche</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/spielersuche">Spielersuche</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home" title="Home">Home</a>
+<li class="active">WTTV &ndash; Ligenplan</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">	
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan</h3>
+</div>
+<div class="panel-body">
+<div class="row m-l text-center"><p><a href="/clicktt/WTTV/17-18/ligen/WTTV-17-18" class="btn btn-primary">NRW-/Verbands-/Landesligen <i class="icon-circle-arrow-right"></i></a></p></div>
+<div class="row m-l">
+<div class="col-sm-6 col-xs-12">
+<div class="well well-lg" data-match-height="championships">
+<a href="/clicktt/WTTV/17-18/ligen/Arnsberg-17-18"><h4>Bezirk Arnsberg&nbsp;<i class="icon-circle-arrow-right"></i></h4></a>
+<p><a href="/clicktt/WTTV/17-18/ligen/Bochum-17-18"> Bochum</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Dortmund-Hamm-17-18"> Dortmund/Hamm</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Arnsberg-Lippstadt-17-18"> Arnsberg/Lippstadt</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Lenne-Ruhr-17-18"> Lenne-Ruhr</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Luedenscheid-17-18"> Lüdenscheid</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Siegen-17-18"> Siegen</a></p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12">
+<div class="well well-lg" data-match-height="championships">
+<a href="/clicktt/WTTV/17-18/ligen/Duesseldorf-17-18"><h4>Bezirk Düsseldorf&nbsp;<i class="icon-circle-arrow-right"></i></h4></a>
+<p><a href="/clicktt/WTTV/17-18/ligen/Duesseldorf-Kreis-17-18"> Düsseldorf</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Neuss-Grevenbroich-17-18"> Neuss/Grevenbroich</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Moenchengladbach-17-18"> Mönchengladbach</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Bergisches-Land-17-18"> Bergisches Land</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Essen-17-18"> Essen</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Niederrhein-17-18"> Niederrhein</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Krefeld-17-18"> Krefeld</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Rhein-Ruhr-17-18"> Rhein-Ruhr</a></p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12">
+<div class="well well-lg" data-match-height="championships">
+<a href="/clicktt/WTTV/17-18/ligen/Mittelrhein-17-18"><h4>Bezirk Mittelrhein&nbsp;<i class="icon-circle-arrow-right"></i></h4></a>
+<p><a href="/clicktt/WTTV/17-18/ligen/Koeln-Erft-17-18"> Köln-Erft</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Oberberg-17-18"> Oberberg</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Koeln-rechtsrh-17-18"> Köln rechtsrh.</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Bonn-17-18"> Bonn</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Euskirchen-17-18"> Euskirchen</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Rhein-Sieg-17-18"> Rhein-Sieg</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Aachen-17-18"> Aachen</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Dueren-17-18"> Düren</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Rur-Wurm-17-18"> Rur-Wurm</a></p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12">
+<div class="well well-lg" data-match-height="championships">
+<a href="/clicktt/WTTV/17-18/ligen/Muenster-17-18"><h4>Bezirk Münster&nbsp;<i class="icon-circle-arrow-right"></i></h4></a>
+<p><a href="/clicktt/WTTV/17-18/ligen/Muenster-Warendorf-17-18"> Münster/Warendorf</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Steinfurt-17-18"> Steinfurt</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Westmuensterland-17-18"> Westmünsterland</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Emscher-Lippe-17-18"> Emscher-Lippe</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Suedmuensterland-17-18"> Südmünsterland</a></p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12">
+<div class="well well-lg" data-match-height="championships">
+<a href="/clicktt/WTTV/17-18/ligen/Ostwestfalen-Lippe-17-18"><h4>Bezirk Ostwestfalen-Lippe&nbsp;<i class="icon-circle-arrow-right"></i></h4></a>
+<p><a href="/clicktt/WTTV/17-18/ligen/Bielefeld-Halle-17-18"> Bielefeld/Halle</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Herford-17-18"> Herford</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Hoexter-Warburg-17-18"> Höxter/Warburg</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Lippe-17-18"> Lippe</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Minden-Luebbecke-17-18"> Minden/Lübbecke</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Paderborn-17-18"> Paderborn</a></p>
+<p><a href="/clicktt/WTTV/17-18/ligen/Wiedenbrueck-17-18"> Wiedenbrück</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary hidden-print">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">JOOLA
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7038" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7038','JOOLA
+']);" title="JOOLA
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/black-friday.jpg" alt="JOOLA
+"></a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">andro &ndash; offizieller Ausr&uuml;ster des WTTV
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061','andro &ndash; offizieller Ausr&uuml;ster des WTTV
+']);" title="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/Rasanter_Revolution_300x250_clickTT.GIF" alt="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+"></a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div> 
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-md-2">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>
+<li><a href="/community/faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>
+</ul>
+</div>
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>
+<li><a href="/public/mytischtennis-news/9997/wir-ueber-uns" title="Wir über uns">Wir über uns</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2017 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=8-1-4" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "WTTV"
+},
+urls: {
+playerPopover: '/clicktt/WTTV/player/popover',
+groupPopover: '/clicktt/WTTV/group/popover',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+</body>
+</html>

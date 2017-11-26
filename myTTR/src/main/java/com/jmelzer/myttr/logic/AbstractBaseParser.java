@@ -9,11 +9,11 @@ import java.util.Locale;
  */
 public class AbstractBaseParser {
 
-    List<String[]> parseTable(String page, String tableTag, int coloumnCount) {
+    protected List<String[]> parseTable(String page, String tableTag, int coloumnCount) {
         return parseTable(page, tableTag, coloumnCount, false);
     }
 
-    List<String[]> parseTable(String page, String tableTag, int coloumnCount, boolean withHeader) {
+    protected List<String[]> parseTable(String page, String tableTag, int coloumnCount, boolean withHeader) {
         ParseResult table = readBetween(page, 0, tableTag, "</table>");
         List<String[]> rows = new ArrayList<>();
         if (table == null) {
@@ -55,10 +55,10 @@ public class AbstractBaseParser {
         return true;
     }
 
-    static class ParseResult {
-        String result;
+    public static class ParseResult {
+        public String result;
 
-        int end;
+        public int end;
 
         ParseResult(String result, int end) {
             trim(result);
@@ -77,7 +77,7 @@ public class AbstractBaseParser {
         }
     }
 
-    boolean isEmpty(ParseResult result) {
+    public boolean isEmpty(ParseResult result) {
         return result == null || result.isEmpty();
     }
 
@@ -90,11 +90,11 @@ public class AbstractBaseParser {
      * @param tagStart to search for, can be null
      * @param tagEnd   to search for, can be null
      */
-    ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd) {
+    protected ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd) {
         return readBetweenOpenTag(page, start, tagStart, tagEnd, false);
     }
 
-    ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
+    protected ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
         ParseResult result = readBetween(page, start, tagStart, tagEnd, ignoreCase);
         if (result != null) {
             ParseResult result2 = readBetween(result.result, 0, ">", null, ignoreCase);
@@ -104,7 +104,7 @@ public class AbstractBaseParser {
         return null;
     }
 
-    ParseResult readBetween(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
+    protected ParseResult readBetween(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
         String toSearch = "";
         if (ignoreCase) {
             toSearch = page.toLowerCase(Locale.GERMAN);
@@ -136,13 +136,13 @@ public class AbstractBaseParser {
         }
     }
 
-    ParseResult readBetween(ParseResult result, int start, String tagStart, String tagEnd) {
+    protected ParseResult readBetween(ParseResult result, int start, String tagStart, String tagEnd) {
         if (result == null)
             return null;
         return readBetween(result.result, start, tagStart, tagEnd);
     }
 
-    ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
+    protected ParseResult readBetween(String page, int start, String tagStart, String tagEnd) {
         return readBetween(page, start, tagStart, tagEnd, false);
     }
 
@@ -177,7 +177,7 @@ public class AbstractBaseParser {
      * @param isHeader
      * @return array, will be filled with emoty string if validsize isn't reached
      */
-    String[] tableRowAsArray(String tr, int validsize, boolean isHeader) {
+    public String[] tableRowAsArray(String tr, int validsize, boolean isHeader) {
         String[] arr = new String[validsize];
         int startIdx = 0;
         for (int i = 0; i < validsize; i++) {
@@ -193,7 +193,7 @@ public class AbstractBaseParser {
         return arr;
     }
 
-    String cleanHtml(ParseResult result) {
+    public String cleanHtml(ParseResult result) {
         if (result == null) {
             return "";
         }
@@ -201,7 +201,7 @@ public class AbstractBaseParser {
         return cleanHtml(ret);
     }
 
-    String cleanHtml(String ret) {
+    public String cleanHtml(String ret) {
         ret = ret.replaceAll("<b>", " ");
         ret = ret.replaceAll("</b>", " ");
         ret = replaceMultipleSpaces(ret);
@@ -213,7 +213,7 @@ public class AbstractBaseParser {
         return ret.trim();
     }
 
-    String removeLastNewLine(String result) {
+    public String removeLastNewLine(String result) {
         if (result.lastIndexOf('\n') == result.length() - 1) {
             if (result.length() > 1)
                 return result.substring(0, result.length() - 1);

@@ -25,7 +25,7 @@ public class Liga implements Favorite {
     public static List<String> alleKategorien = Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
             "Männliche Jugend", "Schüler A", "Weibliche Jugend", "Jugend", "Jungen U18",
             "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
-            "Senioren 60", "Seniorinnen 60", "Senioren 70", "Senioren");
+            "Senioren 60", "Seniorinnen 60", "Senioren 70", "Seniorinnen 70", "Senioren");
 
     /**
      * Herren , Damen Jungen etc.
@@ -220,4 +220,21 @@ public class Liga implements Favorite {
         return UrlUtil.getHttpAndDomain(url);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Liga liga = (Liga) o;
+
+        if (!name.equals(liga.name)) return false;
+        return url.equals(liga.url);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + url.hashCode();
+        return result;
+    }
 }

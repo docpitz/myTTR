@@ -77,6 +77,7 @@ public class Verband {
 
     String name;
     String url;
+    String myTTClickTTUrl;
     //tournament url
     private String tUrl;
     private String cupUrl;
@@ -87,12 +88,20 @@ public class Verband {
     List<Bezirk> bezirkList = new ArrayList<>();
     List<Liga> ligaList = new ArrayList<>();
 
+    public Verband(String name, String myTTClickTTUrl, String url, String tUrl, String cupUrl, String cupName) {
+        this(name, url, tUrl, cupUrl, cupName);
+        this.myTTClickTTUrl = myTTClickTTUrl;
+    }
     public Verband(String name, String url, String tUrl, String cupUrl, String cupName) {
         this.name = name;
         this.url = url;
         this.tUrl = tUrl;
         this.cupUrl = cupUrl;
         this.cupName = cupName;
+    }
+
+    public String getMyTTClickTTUrl() {
+        return myTTClickTTUrl;
     }
 
     public String gettUrl() {
