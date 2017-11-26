@@ -19,6 +19,8 @@ public class Spielbericht {
     List<String> sets = new ArrayList<>();
 
     String result;
+    private String spieler1PersonId;
+    private String spieler2PersonId;
 
     public Spielbericht() {
 
@@ -88,10 +90,28 @@ public class Spielbericht {
                 "name='" + name + '\'' +
                 ", spieler1Name='" + spieler1Name + '\'' +
                 ", spieler1Url='" + spieler1Url + '\'' +
+                ", spieler1PersonId='" + spieler1PersonId + '\'' +
                 ", spieler2Name='" + spieler2Name + '\'' +
                 ", spieler2Url='" + spieler2Url + '\'' +
+                ", spieler2PersonId='" + spieler2PersonId + '\'' +
                 ", sets=" + sets +
                 ", result='" + result + '\'' +
                 '}';
+    }
+
+    public void setSpieler1PersonId(String spieler1PersonId) {
+        this.spieler1PersonId = spieler1PersonId;
+    }
+
+    public String getSpieler1PersonId() {
+        return spieler1PersonId;
+    }
+
+    public void setSpieler2PersonId(String spieler2PersonId) {
+        this.spieler2PersonId = spieler2PersonId;
+    }
+
+    public String getSpieler2PersonId() {
+        return spieler2PersonId;
     }
 }

@@ -24,6 +24,7 @@ import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.List;
 
@@ -77,14 +78,14 @@ public class LigaTabelleActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                ClickTTParser p = new ClickTTParser();
+                MytClickTTWrapper p = new MytClickTTWrapper();
                 if (MyApplication.selectedMannschaft != null) {
                     //todo check wether this is correct here
-                    p.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                    p.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
-                p.readVR(liga);
-                p.readRR(liga);
-                p.readGesamtSpielplan(liga);
+                p.readVR(MyApplication.saison, liga);
+                p.readRR(MyApplication.saison, liga);
+                p.readGesamtSpielplan(MyApplication.saison, liga);
             }
 
             @Override

@@ -20,6 +20,7 @@ import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
+import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class MyApplication extends Application {
 
     private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
+    public static Saison saison = Saison.ACTUAL_SAISON;
     public static Tournament selectedTournament;
     public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;

@@ -21,6 +21,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readDetail(MyApplication.selectedMannschaftSpiel);
+                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel);
             }
 
             @Override

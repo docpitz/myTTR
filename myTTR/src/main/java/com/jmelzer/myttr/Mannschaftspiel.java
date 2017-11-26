@@ -20,6 +20,9 @@ public class Mannschaftspiel {
     String saetze;
     List<Spielbericht> spiele = new ArrayList<>();
 
+    public Mannschaftspiel() {
+    }
+
     public Mannschaftspiel(String date, Mannschaft heimMannschaft, Mannschaft gastMannschaft, String ergebnis, String urlDetail, boolean genehmigt) {
         this.date = date;
         this.heimMannschaft = heimMannschaft;
@@ -48,8 +51,16 @@ public class Mannschaftspiel {
                 ", ergebnis='" + ergebnis + '\'' +
                 ", baelle='" + baelle + '\'' +
                 ", saetze='" + saetze + '\'' +
-                ", spiele=" + spiele +
+                ", spiele=\n" + printSpielBericht() +
                 '}';
+    }
+
+    private String printSpielBericht() {
+        String result = "";
+        for (Spielbericht spielbericht : spiele) {
+            result += spielbericht + "\n";
+        }
+        return result;
     }
 
     public String getDate() {
