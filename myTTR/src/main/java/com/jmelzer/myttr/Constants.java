@@ -15,4 +15,5 @@ package com.jmelzer.myttr;
 
 public interface Constants {
     String LOG_TAG = "myttr";
+    String MYTT = "https://www.mytischtennis.de";
 }

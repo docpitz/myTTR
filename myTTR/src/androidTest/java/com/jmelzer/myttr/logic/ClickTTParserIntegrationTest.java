@@ -253,7 +253,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     public void testSpielerDetail() throws Exception {
         Spieler spieler = parser.readSpielerDetail("Mykietyn, Tom ", "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/playerPortrait?federation=RL-OL+West&season=2016%2F17&person=1150840&club=8383");
         assertEquals("Herren: VR 1.4 RR 1.2\n" +
-                "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
+                "Jungen: VR 1.1 RR 1.1", spieler.getPosition());
         assertEquals(1, spieler.getEinsaetze().size());
         List<Spieler.LigaErgebnisse> ergebnisse = spieler.getErgebnisse();
         assertTrue(ergebnisse.size() > 0);

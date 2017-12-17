@@ -46,7 +46,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         textView.setText(MyApplication.selectedLigaSpieler.getName());
 
         textView = (TextView) findViewById(R.id.textMeldungen);
-        textView.setText(spieler.getMeldung());
+        textView.setText(spieler.getPosition());
 
         textView = (TextView) findViewById(R.id.textEinsaetze);
         String txt = "";

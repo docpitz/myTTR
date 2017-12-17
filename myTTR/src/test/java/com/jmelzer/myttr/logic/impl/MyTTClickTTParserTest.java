@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.Assert.assertEquals;
@@ -120,5 +121,18 @@ public class MyTTClickTTParserTest {
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/spieler/143001489/spielerportrait", spieler.getMytTTClickTTUrl());
         assertEquals("https://www.mytischtennis.de/community/events?personId=297020", spieler.getTtrHistorie());
         assertEquals("https://www.mytischtennis.de/community/headTohead?gegnerId=297020", spieler.getHead2head());
+    }
+    @Test
+    public void parseSpieler() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/mytt-spieler.html");
+        Spieler spieler = new Spieler("dummy");
+        spieler = parser.parseSpieler(spieler, page);
+        assertNotNull(spieler);
+        assertThat(spieler.getClubName(), is("TTC Waldniel"));
+        assertThat(spieler.getEinsaetze().get(0).getKategorie(), is("Herren 1"));
+        assertThat(spieler.getEinsaetze().get(0).getLigaName(), is("Herren NRW-Liga 3"));
+        assertThat(spieler.getEinsaetze().get(0).getUrl(),
+                is("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/tabelle/aktuell"));
+        assertThat(spieler.getEinsaetze().get(1).getKategorie(), is("Senioren 50 1"));
     }
 }

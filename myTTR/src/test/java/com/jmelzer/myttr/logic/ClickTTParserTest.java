@@ -22,8 +22,6 @@ import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Verein;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -495,7 +493,7 @@ public class ClickTTParserTest {
         assertEquals("Fritz, Heinz", spieler.getName());
         assertEquals("SSF Bonn 1905 e.V.", spieler.getClubName());
         assertEquals("Herren: VR 1.2 RR 1.3\n" +
-                "Jungen: VR 1.1 RR 1.1", spieler.getMeldung());
+                "Jungen: VR 1.1 RR 1.1", spieler.getPosition());
 
         assertEquals(2, spieler.getEinsaetze().size());
         for (Spieler.Einsatz einsatz : spieler.getEinsaetze()) {

@@ -809,7 +809,7 @@ public class ClickTTParser extends AbstractBaseParser {
         //starting point
         ParseResult result = readBetween(page, 0, "Mannschaftsmeldung", null);
         result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");
-        spieler.setMeldung(cleanHtml(result));
+        spieler.setPosition(cleanHtml(result));
 
         result = readBetween(page, 0, "Mannschaftseinsätze", null);
         result = readBetweenOpenTag(result.result, 0, "<td>", "</td>");

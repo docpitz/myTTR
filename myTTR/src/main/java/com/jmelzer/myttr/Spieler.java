@@ -78,6 +78,10 @@ public class Spieler {
             return gegnerMannschaft;
         }
 
+        public void setGegnerMannschaft(String gegnerMannschaft) {
+            this.gegnerMannschaft = gegnerMannschaft;
+        }
+
         @Override
         public String toString() {
             return "EinzelSpiel{" +
@@ -161,7 +165,8 @@ public class Spieler {
 
     String name;
     String clubName;
-    String meldung;
+    String clubUrl;
+    String position;
     // mytt click tt urls
 
     String mytTTClickTTUrl;
@@ -206,6 +211,14 @@ public class Spieler {
         this.clubName = clubName;
     }
 
+    public String getClubUrl() {
+        return clubUrl;
+    }
+
+    public void setClubUrl(String clubUrl) {
+        this.clubUrl = clubUrl;
+    }
+
     public Spieler(String name) {
         this.name = name;
     }
@@ -214,12 +227,12 @@ public class Spieler {
         return name;
     }
 
-    public String getMeldung() {
-        return meldung;
+    public String getPosition() {
+        return position;
     }
 
-    public void setMeldung(String meldung) {
-        this.meldung = meldung;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public List<Einsatz> getEinsaetze() {
