@@ -162,9 +162,41 @@ public class Spieler {
     String name;
     String clubName;
     String meldung;
+    // mytt click tt urls
+
+    String mytTTClickTTUrl;
+    String ttrHistorie;
+    String head2head;
+
+    // end: mytt click tt urls
+
     List<Einsatz> einsaetze = new ArrayList<>();
     List<Bilanz> bilanzen = new ArrayList<>();
     List<LigaErgebnisse> ergebnisse = new ArrayList<>();
+
+    public String getMytTTClickTTUrl() {
+        return mytTTClickTTUrl;
+    }
+
+    public void setMytTTClickTTUrl(String mytTTClickTTUrl) {
+        this.mytTTClickTTUrl = mytTTClickTTUrl;
+    }
+
+    public String getTtrHistorie() {
+        return ttrHistorie;
+    }
+
+    public void setTtrHistorie(String ttrHistorie) {
+        this.ttrHistorie = ttrHistorie;
+    }
+
+    public String getHead2head() {
+        return head2head;
+    }
+
+    public void setHead2head(String head2head) {
+        this.head2head = head2head;
+    }
 
     public String getClubName() {
         return clubName;

@@ -79,7 +79,7 @@ public abstract class BaseActivityInstrumentationTestCase<T extends Activity> ex
         loginActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                pwTxt.setText("fuckyou123");
+                pwTxt.setText("fuckyou12");
             }
         });
 //        solo.enterText(loginTxt, "chokdee");

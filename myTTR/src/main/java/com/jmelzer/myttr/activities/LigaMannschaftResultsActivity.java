@@ -10,9 +10,9 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
  * Shows the results of a team in a saison.
  */
 public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
-
+    MytClickTTWrapper clickTTWrapper = new MytClickTTWrapper();
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -48,7 +48,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     boolean startWithRR() {
         List<Mannschaftspiel> spiele = MyApplication.getSelectedLiga().getSpieleFor(MyApplication.selectedMannschaft.getName(),
                 Liga.Spielplan.RR);
-        return  (spiele.size() > 0 && spiele.get(0).getErgebnis() != null);
+        return (spiele.size() > 0 && spiele.get(0).getErgebnis() != null);
     }
 
     protected LigaTabsPagerAdapter createTabsAdapter() {
@@ -66,7 +66,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, clz) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readMannschaftsInfo(MyApplication.selectedMannschaft);
+                clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft, MyApplication.selectedVerband);
             }
 
             @Override
@@ -94,11 +94,10 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                ClickTTParser parser = new ClickTTParser();
                 if (MyApplication.selectedMannschaft.getVereinUrl() == null) {
-                    parser.readMannschaftsInfo(MyApplication.selectedMannschaft);
+                    clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft, MyApplication.selectedVerband);
                 }
-                MyApplication.selectedVerein = parser.readVerein(MyApplication.selectedMannschaft);
+                MyApplication.selectedVerein = clickTTWrapper.readVerein(MyApplication.selectedMannschaft.getVereinUrl(), MyApplication.saison, MyApplication.selectedVerband);
             }
 
             @Override

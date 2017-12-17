@@ -37,6 +37,8 @@ import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -409,11 +411,13 @@ public class ClickTTParserTest {
         String page = readFile(ASSETS_DIR + "/mannschafts-spiel.htm");
         assertTrue(liga.getSpieleVorrunde().size() > 0);
         Mannschaftspiel mannschaftspiel = liga.getSpieleVorrunde().get(0);
+        mannschaftspiel.setUrlDetail("http://bla.de" + mannschaftspiel.getUrlDetail());
         parser.parseMannschaftspiel(page, mannschaftspiel);
         System.out.println("sp = " + mannschaftspiel);
         for (Spielbericht spielbericht : mannschaftspiel.getSpiele()) {
             System.out.println("spielbericht = " + spielbericht);
             assertNotEquals(spielbericht.getSpieler1Name(), spielbericht.getSpieler2Name());
+            assertThat(spielbericht.getSpieler1Url(), startsWith("http"));
         }
     }
 

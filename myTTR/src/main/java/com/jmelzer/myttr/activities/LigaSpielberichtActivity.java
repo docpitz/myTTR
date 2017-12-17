@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,16 +13,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jmelzer.myttr.Game;
-import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Spielbericht;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
+import com.jmelzer.myttr.model.MyTTPlayerIds;
 
 import java.util.List;
 
@@ -54,8 +51,9 @@ public class LigaSpielberichtActivity extends BaseActivity {
         listview.setAdapter(adapter);
         TextView tv = (TextView) findViewById(R.id.textHeader);
         tv.setText(MyApplication.selectedMannschaftSpiel.getHeimMannschaft().getName() + " - " +
-                MyApplication.selectedMannschaftSpiel.getGastMannschaft().getName() +  "    " + MyApplication.selectedMannschaftSpiel.getErgebnis());
+                MyApplication.selectedMannschaftSpiel.getGastMannschaft().getName() + "    " + MyApplication.selectedMannschaftSpiel.getErgebnis());
     }
+
     private static class ViewHolder {
         TextView textPaarung;
         TextView textHeim;
@@ -63,6 +61,7 @@ public class LigaSpielberichtActivity extends BaseActivity {
         TextView textSets;
         ImageView arrow;
     }
+
     class SpielberichtAdapter extends ArrayAdapter<Spielbericht> {
         private LayoutInflater layoutInflater;
 
@@ -98,7 +97,9 @@ public class LigaSpielberichtActivity extends BaseActivity {
                 holder.textHeim.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startSpielerDetail(spielbericht.getSpieler1Name(), spielbericht.getSpieler1Url());
+                        startSpielerDetail(spielbericht.getSpieler1Name(),
+                                spielbericht.getSpieler1Url(),
+                                spielbericht.getMyTTPlayerIdsForPlayer1());
                     }
                 });
             }
@@ -108,7 +109,9 @@ public class LigaSpielberichtActivity extends BaseActivity {
                 holder.textGast.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startSpielerDetail(spielbericht.getSpieler2Name(), spielbericht.getSpieler2Url());
+                        startSpielerDetail(spielbericht.getSpieler2Name(),
+                                spielbericht.getSpieler2Url(),
+                                spielbericht.getMyTTPlayerIdsForPlayer2());
                     }
                 });
             }
@@ -124,12 +127,13 @@ public class LigaSpielberichtActivity extends BaseActivity {
         }
     }
 
-    private void startSpielerDetail(final String name, final String url) {
+    private void startSpielerDetail(final String name, final String url, final MyTTPlayerIds myTTPlayerIdsForPlayer) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaSpielerResultsActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.selectedLigaSpieler = new ClickTTParser().readSpielerDetail(name, url);
+                MyApplication.selectedLigaSpieler = new MytClickTTWrapper().readSpielerDetail(MyApplication.saison,
+                        MyApplication.selectedVerband, name, url, myTTPlayerIdsForPlayer);
             }
 
             @Override

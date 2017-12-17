@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             style="@style/TextListStyle"
             android:layout_marginLeft="10dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:text="9:4"/>
 
         <ImageView

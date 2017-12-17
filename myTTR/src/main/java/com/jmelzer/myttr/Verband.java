@@ -16,6 +16,12 @@ public class Verband {
             "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=DTTB", null, null);
     public static List<Verband> verbaende = new ArrayList<>();
 
+    public static Verband WTTV = new Verband("Westdeutscher TTV",
+                                             "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen",
+                                             "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15",
+                                             "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV",
+                                             "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=WTTV&circuit=2017_Turnierserie",
+                                             "andro WTTV-Cup");
 
     static {
         verbaende.add(dttb);
@@ -69,12 +75,7 @@ public class Verband {
         verbaende.add(new Verband("TTV Württemberg-Hohenzollern", "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15",
                 "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/tournamentCalendar?federation=TTVWH",
                 null, null));
-        verbaende.add(new Verband("Westdeutscher TTV",
-                "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen",
-                "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15",
-                "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV",
-                "http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=WTTV&circuit=2017_Turnierserie",
-                "andro WTTV-Cup"));
+        verbaende.add(WTTV);
     }
 
     String name;

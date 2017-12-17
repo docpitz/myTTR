@@ -1,5 +1,7 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.MyTTPlayerIds;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class Spielbericht {
     List<String> sets = new ArrayList<>();
 
     String result;
-    private String spieler1PersonId;
-    private String spieler2PersonId;
+
+    MyTTPlayerIds myTTPlayerIdsForPlayer1;
+    MyTTPlayerIds myTTPlayerIdsForPlayer2;
 
     public Spielbericht() {
 
@@ -44,6 +47,22 @@ public class Spielbericht {
 
     public String getSpieler1Url() {
         return spieler1Url;
+    }
+
+    public MyTTPlayerIds getMyTTPlayerIdsForPlayer1() {
+        return myTTPlayerIdsForPlayer1;
+    }
+
+    public void setMyTTPlayerIdsForPlayer1(MyTTPlayerIds myTTPlayerIdsForPlayer1) {
+        this.myTTPlayerIdsForPlayer1 = myTTPlayerIdsForPlayer1;
+    }
+
+    public MyTTPlayerIds getMyTTPlayerIdsForPlayer2() {
+        return myTTPlayerIdsForPlayer2;
+    }
+
+    public void setMyTTPlayerIdsForPlayer2(MyTTPlayerIds myTTPlayerIdsForPlayer2) {
+        this.myTTPlayerIdsForPlayer2 = myTTPlayerIdsForPlayer2;
     }
 
     public void setSpieler1Url(String spieler1Url) {
@@ -90,28 +109,13 @@ public class Spielbericht {
                 "name='" + name + '\'' +
                 ", spieler1Name='" + spieler1Name + '\'' +
                 ", spieler1Url='" + spieler1Url + '\'' +
-                ", spieler1PersonId='" + spieler1PersonId + '\'' +
+                ", myTTPlayerIdsForPlayer1='" + myTTPlayerIdsForPlayer1 + '\'' +
                 ", spieler2Name='" + spieler2Name + '\'' +
                 ", spieler2Url='" + spieler2Url + '\'' +
-                ", spieler2PersonId='" + spieler2PersonId + '\'' +
+                ", myTTPlayerIdsForPlayer1='" + myTTPlayerIdsForPlayer1 + '\'' +
                 ", sets=" + sets +
                 ", result='" + result + '\'' +
                 '}';
     }
 
-    public void setSpieler1PersonId(String spieler1PersonId) {
-        this.spieler1PersonId = spieler1PersonId;
-    }
-
-    public String getSpieler1PersonId() {
-        return spieler1PersonId;
-    }
-
-    public void setSpieler2PersonId(String spieler2PersonId) {
-        this.spieler2PersonId = spieler2PersonId;
-    }
-
-    public String getSpieler2PersonId() {
-        return spieler2PersonId;
-    }
 }

@@ -26,7 +26,6 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
@@ -51,6 +50,7 @@ public class LigaHomeActivity extends BaseActivity {
     private List<Liga> ligaList;
     private Kreis selectedKreis;
     private List<Liga> allLigaList;
+    MytClickTTWrapper clickTTWrapper = new MytClickTTWrapper();
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -146,7 +146,7 @@ public class LigaHomeActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new MytClickTTWrapper().readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
+                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga(), MyApplication.selectedVerband);
             }
 
             @Override
@@ -165,7 +165,7 @@ public class LigaHomeActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.selectedVerein = new ClickTTParser().readVerein(verein.getUrl());
+                MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison, MyApplication.selectedVerband);
             }
 
             @Override
@@ -229,7 +229,7 @@ public class LigaHomeActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new MytClickTTWrapper().readBezirkeAndLigen(MyApplication.saison, MyApplication.selectedVerband);
+                clickTTWrapper.readBezirkeAndLigen(MyApplication.selectedVerband, MyApplication.saison);
 //                new ClickTTParser().readBezirke(MyApplication.selectedVerband, selectedSaison);
             }
 
@@ -277,7 +277,7 @@ public class LigaHomeActivity extends BaseActivity {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
                         protected void callParser() throws NetworkException, LoginExpiredException {
-                            new MytClickTTWrapper().readKreiseAndLigen(MyApplication.saison, selectedBezirk);
+                            clickTTWrapper.readKreiseAndLigen(MyApplication.saison, selectedBezirk, MyApplication.selectedVerband);
                         }
 
                         @Override
@@ -319,7 +319,7 @@ public class LigaHomeActivity extends BaseActivity {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
                         protected void callParser() throws NetworkException, LoginExpiredException {
-                            new ClickTTParser().readLigen(selectedKreis);
+                            clickTTWrapper.readLigen(selectedKreis, MyApplication.saison, MyApplication.selectedVerband);
                         }
 
                         @Override
