@@ -137,7 +137,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
     private void mannschaftsInfo() {
         solo.clickOnActionBarItem(R.id.action_info);
         assertTrue(solo.waitForActivity(LigaMannschaftInfoActivity.class, STANDARD_TIMEOUT));
-        assertTrue("Mannschaftsfueher must be shown", solo.searchText("Hintz"));
+        assertTrue("Mannschaftsfueher must be shown", solo.searchText("Manfred"));
         assertTrue("Spiellokal must be shown", solo.searchText("Sankt Augustin"));
     }
 

@@ -9,7 +9,9 @@ Offen
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
 - TTR Vergleich
-
+- Besser Routen Call
+- Telefonnummer aufrufen aus Info
+- Überall Bookmarks zulassen
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt

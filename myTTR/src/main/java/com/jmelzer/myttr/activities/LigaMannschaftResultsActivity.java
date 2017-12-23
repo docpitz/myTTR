@@ -71,7 +71,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedMannschaft.getKontakt() != null;
+                return MyApplication.selectedMannschaft.getKontakt() != null || MyApplication.selectedMannschaft.getSpielLokale().size() > 0;
             }
 
         };

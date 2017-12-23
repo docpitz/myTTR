@@ -65,21 +65,31 @@ public class Mannschaft {
         }
     }
 
+    public void clearLokale() {
+        spielLokale.clear();
+    }
+
     String name;
     int position;
     int gamesCount;
     int win;
     int tied;
     int lose;
-    /** 67:44 */
+    /**
+     * 67:44
+     */
     String gameStatistic;
-    /** +23 */
+    /**
+     * +23
+     */
     String sum;
     String points;
     String url;
     String vereinUrl;
 
     String kontakt;
+    String kontaktNr;
+    String kontaktNr2;
     private String mailTo;
 
     List<String> spielLokale = new ArrayList<>();
@@ -104,6 +114,22 @@ public class Mannschaft {
 
     public Mannschaft(String n) {
         this.name = n;
+    }
+
+    public String getKontaktNr() {
+        return kontaktNr;
+    }
+
+    public void setKontaktNr(String kontaktNr) {
+        this.kontaktNr = kontaktNr;
+    }
+
+    public String getKontaktNr2() {
+        return kontaktNr2;
+    }
+
+    public void setKontaktNr2(String kontaktNr2) {
+        this.kontaktNr2 = kontaktNr2;
     }
 
     public String getName() {
@@ -209,9 +235,11 @@ public class Mannschaft {
     public void addBilanz(SpielerBilanz b) {
         spielerBilanzen.add(b);
     }
+
     public void clearBilanzen() {
         spielerBilanzen.clear();
     }
+
     public void removeAllSpielLokale() {
         spielLokale.clear();
     }

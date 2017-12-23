@@ -78,11 +78,37 @@ public class MyTTClickTTParserTest {
         Mannschaft mannschaft = new Mannschaft();
         mannschaft.setUrl("https://www.mytischtennis.de/clicktt/");
         parser.parseMannschaftsDetail(page, mannschaft);
-        assertEquals("Lotz, Thorsten", mannschaft.getKontakt());
-        assertEquals("lotz@sc-buschhausen.de", mannschaft.getMailTo());
+        assertEquals("Palapys, Alexander", mannschaft.getKontakt());
+        assertEquals("alex@palapys.de", mannschaft.getMailTo());
+        assertEquals("017672640971", mannschaft.getKontaktNr());
         assertEquals("Lindnerschule\n" +
-                "Oberhausen 46149", mannschaft.getSpielLokale().get(0));
+                "Lindnerstr. 220\n" +
+                "46149 Oberhausen", mannschaft.getSpielLokale().get(0));
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/148033/SC-Buschhausen/info",
+                mannschaft.getVereinUrl());
+    }
+
+    @Test
+    public void parseMannschaftsDetail2() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschafts-detail2.html");
+        Mannschaft mannschaft = new Mannschaft();
+        mannschaft.setUrl("https://www.mytischtennis.de/clicktt/");
+        parser.parseMannschaftsDetail(page, mannschaft);
+        assertEquals("Hersel, Bernd", mannschaft.getKontakt());
+        assertEquals("bhersel79@yahoo.de", mannschaft.getMailTo());
+        assertEquals("0228-3361263", mannschaft.getKontaktNr());
+        assertEquals("0177-2735179", mannschaft.getKontaktNr2());
+        assertEquals(3, mannschaft.getSpielLokale().size());
+        assertEquals("Turnhalle GS Rheidt\n" +
+                "Hoher Rain (neben der Kirche)\n" +
+                "53859 Niederkassel-Rheidt", mannschaft.getSpielLokale().get(0));
+        assertEquals("Turnhalle der Grundschule\n" +
+                "Martin-Buber-Straße\n" +
+                "53859 Niederkassel", mannschaft.getSpielLokale().get(1));
+        assertEquals("Sporthalle Nord am Kopernikus-Gymnasium Niederkassel\n" +
+                "Premnitzerstr. Ecke Kopernikusstr.\n" +
+                "53859 Niederkassel-Lülsdorf", mannschaft.getSpielLokale().get(2));
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel/info",
                 mannschaft.getVereinUrl());
     }
 

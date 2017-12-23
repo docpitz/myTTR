@@ -369,6 +369,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     void parseMannschaftsDetail(String page, Mannschaft mannschaft) {
         Log.d(Constants.LOG_TAG, "parseMannschaftsDetail ... ");
         ParseResult result = readBetween(page, 0, "<h3>Verein", "</li>");
+        mannschaft.clearLokale();
         if (!isEmpty(result)) {
 
             String[] ahref = readHrefAndATag(result.result);
@@ -377,12 +378,15 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
             int idx = 0;
             while (true) {
-                ParseResult resultLokal = readBetween(result.result, idx, "<strong>", "</strong>");
+                ParseResult resultLokal = readBetween(result.result, idx, "<h4>", "</h4>");
                 if (resultLokal == null || resultLokal.isEmpty()) {
                     break;
                 }
-                idx = resultLokal.end - 3;
-                resultLokal = readBetween(result.result, idx, "<br>", null);
+                idx = resultLokal.end;
+                if (!resultLokal.result.contains("Spiellokal")) {
+                    continue;
+                }
+                resultLokal = readBetween(result.result, idx, null, "</div>");
                 String lokal = cleanupSpielLokalHtml(resultLokal.result);
                 mannschaft.addSpielLokal(lokal);
             }
@@ -397,6 +401,14 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ahref != null) {
                 mannschaft.setMailTo(cleanMail(ahref[0]));
             }
+
+            ParseResult resultNr = readBetween(result.result, 0, "<i class=\"icon-phone\"></i>", "<");
+            if (!isEmpty(resultNr)) {
+                mannschaft.setKontaktNr(resultNr.result);
+                resultNr = readBetween(result.result, resultNr.end, "<i class=\"icon-phone\"></i>", "<");
+                if (!isEmpty(resultNr))
+                    mannschaft.setKontaktNr2(resultNr.result);
+            }
         }
 
 
@@ -405,6 +417,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     String cleanupSpielLokalHtml(String s) {
         String result = s.replaceAll("\r\n", "");
         result = result.replaceAll("<br>", "\n");
+        result = result.replaceAll("<br/>", "\n");
+        result = result.replaceAll("<br />", "\n");
+        result = result.replaceAll("\n\n", "\n");
+        result = result.replaceAll("<i class.*", "");
         //remove the last \n
         result = removeLastNewLine(result);
         return result.trim();
