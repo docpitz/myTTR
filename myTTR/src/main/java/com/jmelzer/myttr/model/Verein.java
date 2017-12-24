@@ -12,20 +12,6 @@ import java.util.List;
  * Represents the club in click tt, maybe connected to mytt
  */
 public class Verein implements Favorite {
-    private String urlMannschaften;
-    private String url;
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getNameForFav() {
-        return name;
-    }
 
 
     public static class SpielLokal {
@@ -42,6 +28,12 @@ public class Verein implements Favorite {
                     ", city='" + city + '\'' +
                     ", street='" + street + '\'' +
                     '}';
+        }
+
+        public String formatted() {
+            if (street == null)
+                return "-------";
+            return street + "\n" + plz + " " + city;
         }
     }
 
@@ -70,15 +62,47 @@ public class Verein implements Favorite {
         this.url = url;
     }
 
-    String name;
-    long nr;
-    int gruendungsjahr;
-    List<SpielLokal> lokale = new ArrayList<>();
-    List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
-    List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
-    List<Mannschaft> mannschaften = new ArrayList<>();
-    Kontakt kontakt;
-    Date changedAt;
+    private String name;
+    private long nr;
+    private int gruendungsjahr;
+    private List<SpielLokal> lokale = new ArrayList<>();
+    private List<String> lokaleUnformatted = new ArrayList<>();
+    private List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
+    private List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
+    private List<Mannschaft> mannschaften = new ArrayList<>();
+    private Kontakt kontakt;
+    private Date changedAt;
+    private String urlMannschaften;
+    private String url;
+    private List<Mannschaftspiel> spielplan = new ArrayList<>();
+
+    public void addSpielPlanSpiel(Mannschaftspiel m) {
+        spielplan.add(m);
+    }
+
+    public List<Mannschaftspiel> getSpielplan() {
+        return Collections.unmodifiableList(spielplan);
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getNameForFav() {
+        return name;
+    }
+
+    public void addSpielLokale(List<String> strings) {
+        lokaleUnformatted.addAll(strings);
+    }
+
+    public List<String> getLokaleUnformatted() {
+        return Collections.unmodifiableList(lokaleUnformatted);
+    }
 
     public Date getChangedAt() {
         return changedAt;

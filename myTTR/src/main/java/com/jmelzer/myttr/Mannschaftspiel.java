@@ -32,6 +32,18 @@ public class Mannschaftspiel {
         this.genehmigt = genehmigt;
     }
 
+    public void setErgebnis(String ergebnis) {
+        this.ergebnis = ergebnis;
+    }
+
+    public void setHeimMannschaft(Mannschaft heimMannschaft) {
+        this.heimMannschaft = heimMannschaft;
+    }
+
+    public void setGastMannschaft(Mannschaft gastMannschaft) {
+        this.gastMannschaft = gastMannschaft;
+    }
+
     public void setSaetze(String saetze) {
         this.saetze = saetze;
     }

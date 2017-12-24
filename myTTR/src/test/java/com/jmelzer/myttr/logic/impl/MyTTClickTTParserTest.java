@@ -8,6 +8,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.logic.TestUtil;
+import com.jmelzer.myttr.model.Verein;
 
 import org.junit.Test;
 
@@ -113,6 +114,66 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void parseVerein() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein.html");
+        Verein v = parser.parseVerein(page);
+        assertNotNull(v);
+        assertEquals("TTG Niederkassel", v.getName());
+        assertEquals("Christian Hopp\n" +
+                "Arndtstr. 22\n" +
+                "53859 Niederkassel", v.getKontakt().getNameAddress());
+        assertEquals("chris.hopp@imail.de", v.getKontakt().getMail());
+        assertEquals("http://www.ttgniederkassel.de", v.getKontakt().getUrl());
+        assertEquals(3, v.getLokaleUnformatted().size());
+    }
+
+    @Test
+    public void parseVereinMannschaften() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-mannschaften.html");
+        Verein v = new Verein();
+        parser.parseVereinMannschaften(v, page);
+        assertEquals(24, v.getMannschaften().size());
+        assertEquals("Schüler B", v.getMannschaften().get(23).name);
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Schueler-B-1-Kreisklasse-1/gruppe/306911/tabelle/aktuell", v.getMannschaften().get(23).url);
+        assertEquals("Schüler B- 1. Kreisklasse 1", v.getMannschaften().get(23).liga);
+        assertEquals("Herren", v.getMannschaften().get(0).name);
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/tabelle/aktuell", v.getMannschaften().get(0).url);
+        assertEquals("Herren NRW-Liga 3", v.getMannschaften().get(0).liga);
+    }
+
+    @Test
+    public void parseVereinSpielplan() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan.html");
+        Verein v = new Verein();
+        parser.parseVereinSpielplan(v, page);
+        assertEquals(100, v.getSpielplan().size());
+        assertEquals("Fr. 12.01.2018 20:00", v.getSpielplan().get(0).getDate());
+        assertEquals("", v.getSpielplan().get(0).getErgebnis());
+        assertEquals("ASV St. Augustin", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1955407/ASV-St-Augustin/spielerbilanzen/vr", v.getSpielplan().get(0).getHeimMannschaft().getUrl());
+        assertEquals("TTG Niederkassel III", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1952144/TTG-Niederkassel-III/spielerbilanzen/vr", v.getSpielplan().get(0).getGastMannschaft().getUrl());
+
+        assertEquals("Fr. 13.04.2018 20:00", v.getSpielplan().get(99).getDate());
+
+    }
+
+    @Test
+    public void removeHtml() {
+        assertEquals("18:30", parser.removeHtml("18:30\r\n" +
+                "<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>"));
+    }
+
+    @Test
+    public void parseVereinSpielplan2() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan2.html");
+        Verein v = new Verein();
+        parser.parseVereinSpielplan(v, page);
+        assertEquals(95, v.getSpielplan().size());
+        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(94).getDate());
+    }
+
+    @Test
     public void parseMannschaftspiel() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschaftsspiel.html");
         Mannschaftspiel spiel = new Mannschaftspiel();
@@ -139,6 +200,7 @@ public class MyTTClickTTParserTest {
             assertNotNull(kreis.getUrl());
         }
     }
+
     @Test
     public void parseLinksForPlayer() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/popover.html");
@@ -148,6 +210,7 @@ public class MyTTClickTTParserTest {
         assertEquals("https://www.mytischtennis.de/community/events?personId=297020", spieler.getTtrHistorie());
         assertEquals("https://www.mytischtennis.de/community/headTohead?gegnerId=297020", spieler.getHead2head());
     }
+
     @Test
     public void parseSpieler() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/mytt-spieler.html");

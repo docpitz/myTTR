@@ -70,14 +70,21 @@ public class LigaVereinActivity extends BaseActivity {
         p = new Parent();
         p.name = "Spielokale";
         for (Verein.SpielLokal l : verein.getLokale()) {
-            p.children.add(new Child(l));
+            p.children.add(new Child(l.formatted()));
+        }
+        for (String s : verein.getLokaleUnformatted()) {
+            p.children.add(new Child(s));
         }
         list.add(p);
 
         p = new Parent();
-        p.name = "Letzte Spiele";
+        p.name = "Spielplan";
         for (Mannschaftspiel ms : verein.getLetzteSpiele()) {
             p.children.add(new Child(ms));
+        }
+        for (Mannschaftspiel ms : verein.getSpielplan()) {
+            p.children.add(new Child(ms));
+
         }
         list.add(p);
 
@@ -96,17 +103,12 @@ public class LigaVereinActivity extends BaseActivity {
     }
 
     public static class Child {
-        Verein.SpielLokal spielLokal;
         Verein.Mannschaft mannschaft;
         String text;
         Mannschaftspiel mannschaftspiel;
 
         public Child(String text) {
             this.text = text;
-        }
-
-        public Child(Verein.SpielLokal spielLokal) {
-            this.spielLokal = spielLokal;
         }
 
         public Child(Verein.Mannschaft mannschaft) {
@@ -191,19 +193,15 @@ public class LigaVereinActivity extends BaseActivity {
                 ((TextView) convertView.findViewById(R.id.gast)).setText(childElem.mannschaftspiel.getGastMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.result)).setText(childElem.mannschaftspiel.getErgebnis());
             } else if (groupPosition == 1) {
-                final Verein.SpielLokal l = childElem.spielLokal;
+                final String text = childElem.text;
                 convertView = infalInflater.inflate(R.layout.liga_spiellokal_row, null);
-                String txt = childElem.spielLokal.text;
-                if (txt == null || txt.isEmpty()) {
-                    txt = "------";
-                }
-                ((TextView) convertView.findViewById(R.id.name)).setText(txt);
-                if (l.city != null) {
+                ((TextView) convertView.findViewById(R.id.name)).setText(text);
+                if (text != null) {
                     convertView.findViewById(R.id.map).setVisibility(View.VISIBLE);
                     convertView.findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(UrlUtil.formatAddressToGoogleMaps(l.plz, l.city, l.street)));
+                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(UrlUtil.formatAddressToGoogleMaps(text)));
                             startActivity(intent);
                         }
                     });
@@ -265,7 +263,11 @@ public class LigaVereinActivity extends BaseActivity {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
                 Liga liga = new Liga();
-                liga.setUrl(UrlUtil.getHttpAndDomain(MyApplication.selectedVerein.getUrl()) + m.url);
+                if (!m.url.startsWith("http"))
+                    liga.setUrl(UrlUtil.getHttpAndDomain(MyApplication.selectedVerein.getUrl()) + m.url);
+                else
+                    liga.setUrl(m.url);
+
                 MyApplication.setSelectedLiga(liga);
                 new ClickTTParser().readLiga(MyApplication.getSelectedLiga());
             }
@@ -279,6 +281,7 @@ public class LigaVereinActivity extends BaseActivity {
         };
         task.execute();
     }
+
     private void callMannschaftSpielDetail() {
         if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null) {
             return;

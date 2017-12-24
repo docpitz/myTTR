@@ -228,6 +228,9 @@ public class Mannschaft {
         return Collections.unmodifiableList(spielerBilanzen);
     }
 
+    public void addSpielLokale(List<String> spielLokale) {
+        this.spielLokale.addAll(spielLokale);
+    }
     public void addSpielLokal(String spielLokal) {
         spielLokale.add(spielLokal);
     }

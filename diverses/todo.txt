@@ -1,7 +1,10 @@
 
 Offen
 ----------
-
+- Umstellung click-tt
+        -> Bilanzen
+        -> Meldung
+        -> Aufruf my-tt
 - Todos entfernen
 - Schriftgröße: Konfiguration
 - Route bei Turnieren
@@ -9,9 +12,11 @@ Offen
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
 - TTR Vergleich
-- Besser Routen Call
+- Besser Google Maps Call
 - Telefonnummer aufrufen aus Info
 - Überall Bookmarks zulassen
+- Doppelte Requests vermeiden
+- Optimierung Performance beim Laden
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt

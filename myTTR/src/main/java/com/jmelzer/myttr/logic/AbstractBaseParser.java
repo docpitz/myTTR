@@ -206,7 +206,10 @@ public class AbstractBaseParser {
         ret = ret.replaceAll("</b>", " ");
         ret = replaceMultipleSpaces(ret);
         ret = ret.replaceAll("<br />", "\n");
+        ret = ret.replaceAll("<br>", "\n");
+        ret = ret.replaceAll("<br/>", "\n");
         ret = ret.replaceAll("\n ", "\n");
+        ret = ret.replaceAll("\n\n", "\n");
         ret = ret.replaceAll(" \n", "\n");
         ret = ret.replaceAll("&euro;", "€");
         ret = removeLastNewLine(ret);

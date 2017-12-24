@@ -936,7 +936,7 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public Verein readVerein(String url) throws NetworkException {
         String page = Client.getPage(url);
-        Verein v = parseVerein(url, page);
+        Verein v = parseVerein(page);
         v.setUrl(url);
 
         String urlM = UrlUtil.getHttpAndDomain(url) + v.getUrlMannschaften();
@@ -946,14 +946,13 @@ public class ClickTTParser extends AbstractBaseParser {
         return v;
     }
 
-    Verein parseVerein(String url, String page) {
+    Verein parseVerein(String page) {
         ParseResult resultStart = readBetween(page, 0, "<h1>", null);
         if (resultStart == null) {
             return null;
         }
         ParseResult result = readBetween(resultStart.result, 0, "<br />", "</h1>");
         Verein verein = new Verein();
-        verein.setUrl(url);
         verein.setName(result.result.trim());
 
 

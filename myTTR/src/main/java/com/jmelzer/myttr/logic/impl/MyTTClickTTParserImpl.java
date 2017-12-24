@@ -147,9 +147,59 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     @Override
     public Verein readVerein(String url) throws NetworkException {
         String page = Client.getPage(url);
-        Verein v = parseVerein(url, page);
+        Verein v = parseVerein(page);
         v.setUrl(url);
+        String url2 = url.substring(0, url.indexOf("/info")) + "/mannschaften";
+        page = Client.getPage(url2);
+        parseVereinMannschaften(v, page);
+        url2 = url.substring(0, url.indexOf("/info")) + "/spielplan";
+        page = Client.getPage(url2);
+        parseVereinSpielplan(v, page);
         return v;
+    }
+
+    void parseVereinSpielplan(Verein v, String page) {
+        ParseResult table = readBetween(page, 0, "<tbody>", "</table>");
+        int idx = 0;
+        String lastdate = "";
+        while (true) {
+            //mytt have a bug here: no opening tr element
+            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            String[] row = tableRowAsArray("<td>" + resultrow.result, 8, false);
+            printRows(row);
+            Mannschaftspiel m = new Mannschaftspiel();
+            if (!row[0].isEmpty()) {
+                lastdate = row[0];
+            }
+            String uhrzeit = row[1];
+            uhrzeit = removeHtml(uhrzeit);
+            m.setDate(lastdate + " " + uhrzeit);
+            m.setErgebnis(row[7]);
+            String ahref[] = readHrefAndATag(row[4]);
+            Mannschaft heimMannschaft = new Mannschaft(ahref[1]);
+            heimMannschaft.setUrl(MYTT + ahref[0]);
+            m.setHeimMannschaft(heimMannschaft);
+            ahref = readHrefAndATag(row[5]);
+            Mannschaft gastMannschaft = new Mannschaft(ahref[1]);
+            gastMannschaft.setUrl(MYTT + ahref[0]);
+            m.setGastMannschaft(gastMannschaft);
+            v.addSpielPlanSpiel(m);
+        }
+    }
+
+    String removeHtml(String string) {
+        string =  string.replaceAll("\r\n", "");
+        return string.replaceAll("<a.*</a>", "");
+    }
+
+    private void printRows(String[] row) {
+        for (int i = 0; i < row.length; i++) {
+            System.out.println(i + " = " + row[i]);
+        }
     }
 
     @Override
@@ -252,9 +302,39 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return spiel;
     }
 
-    private Verein parseVerein(String url, String page) {
-        //todo
-        return null;
+    Verein parseVerein(String page) {
+        ParseResult resultStart = readBetween(page, 0, "<div class=\"panel-body\">", null);
+        if (resultStart == null) {
+            return null;
+        }
+        ParseResult result = readBetween(resultStart.result, 0, "<h1>", "<small>");
+        Verein verein = new Verein();
+        verein.setName(result.result.trim());
+
+        result = readBetween(resultStart.result, 0, "<h4>Kontaktadresse", "</div>");
+        if (!isEmpty(result)) {
+            ParseResult resultK = readBetween(resultStart.result, 0, "/h4>", "<i");
+            ParseResult resultM = readBetween(resultStart.result, 0, "<i class=\"icon-envelope\">", null);
+            String mail = null;
+            if (!isEmpty(resultM)) {
+                String[] ahref = readHrefAndATag(resultM.result);
+                mail = ahref[1];
+            }
+            ParseResult resultU = readBetween(resultStart.result, 0, "<i class=\"icon-home\">", null);
+            String url = null;
+            if (!isEmpty(resultU)) {
+                String[] ahref = readHrefAndATag(resultU.result);
+                url = ahref[0];
+            }
+            Verein.Kontakt kontakt = new Verein.Kontakt(cleanHtml(resultK), mail, url);
+            verein.setKontakt(kontakt);
+        }
+        verein.addSpielLokale(parseSpielLokale(resultStart));
+        //todo letzte spiele
+        //todo nächste spiele
+        //todo mannschaften
+
+        return verein;
     }
 
     void parseMannschaftspiel(String page, Mannschaftspiel spiel) {
@@ -376,20 +456,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ahref != null) {
                 mannschaft.setVereinUrl(UrlUtil.safeUrl(mannschaft.getHttpAndDomain(), ahref[0]));
             }
-            int idx = 0;
-            while (true) {
-                ParseResult resultLokal = readBetween(result.result, idx, "<h4>", "</h4>");
-                if (resultLokal == null || resultLokal.isEmpty()) {
-                    break;
-                }
-                idx = resultLokal.end;
-                if (!resultLokal.result.contains("Spiellokal")) {
-                    continue;
-                }
-                resultLokal = readBetween(result.result, idx, null, "</div>");
-                String lokal = cleanupSpielLokalHtml(resultLokal.result);
-                mannschaft.addSpielLokal(lokal);
-            }
+            mannschaft.addSpielLokale(parseSpielLokale(result));
         }
         result = readBetween(page, 0, "Mannschaftskontakt", "</li>");
         if (!isEmpty(result)) {
@@ -410,8 +477,25 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                     mannschaft.setKontaktNr2(resultNr.result);
             }
         }
+    }
 
-
+    List<String> parseSpielLokale(ParseResult result) {
+        List<String> lokale = new ArrayList<>();
+        int idx = 0;
+        while (true) {
+            ParseResult resultLokal = readBetween(result.result, idx, "<h4>", "</h4>");
+            if (resultLokal == null || resultLokal.isEmpty()) {
+                break;
+            }
+            idx = resultLokal.end;
+            if (!resultLokal.result.contains("Spiellokal")) {
+                continue;
+            }
+            resultLokal = readBetween(result.result, idx, null, "</div>");
+            String lokal = cleanupSpielLokalHtml(resultLokal.result);
+            lokale.add(lokal);
+        }
+        return lokale;
     }
 
     String cleanupSpielLokalHtml(String s) {
@@ -576,5 +660,26 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         spieler.setMytTTClickTTUrl(links.get("click-TT-Spielerportrait"));
         spieler.setTtrHistorie(links.get("TTR-Historie"));
         return spieler;
+    }
+
+    void parseVereinMannschaften(Verein v, String page) {
+        ParseResult table = readBetween(page, 0, "<tbody>", "</table>");
+        int idx = 0;
+        while (true) {
+            //mytt have a bug here: no opening tr element
+            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            String[] row = tableRowAsArray("<td>" + resultrow.result, 9, false);
+            Verein.Mannschaft mannschaft = new Verein.Mannschaft();
+            String aref[] = readHrefAndATag(row[0]);
+            mannschaft.name = aref[1];
+            aref = readHrefAndATag(row[1]);
+            mannschaft.url = MYTT + aref[0];
+            mannschaft.liga = aref[1];
+            v.addMannschaft(mannschaft);
+        }
     }
 }
