@@ -13,7 +13,10 @@
 
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.Saison;
+
 public interface Constants {
     String LOG_TAG = "myttr";
     String MYTT = "https://www.mytischtennis.de";
+    Saison ACTUAL_SAISON = Saison.SAISON_2018;
 }

@@ -2,10 +2,12 @@ package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Saison;
 
 /**
@@ -13,6 +15,7 @@ import com.jmelzer.myttr.model.Saison;
  */
 public class LigenAsyncTask extends BaseAsyncTask {
 
+    MytClickTTWrapper wrapper = new MytClickTTWrapper();
 
     public LigenAsyncTask(Activity parent, Class targetClz) {
         super(parent, targetClz);
@@ -20,8 +23,7 @@ public class LigenAsyncTask extends BaseAsyncTask {
 
     @Override
     protected void callParser() throws NetworkException, LoginExpiredException {
-        ClickTTParser parser = new ClickTTParser();
-        MyApplication.selectedVerband = parser.readTopLigen(Saison.ACTUAL_SAISON);
+        MyApplication.selectedVerband = wrapper.readTopLigen(Constants.ACTUAL_SAISON);
     }
 
     @Override

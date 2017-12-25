@@ -14,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Spieler;
 
@@ -75,7 +76,6 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         }
         listView.setAdapter(new ErgebnissAdapter(this, groupList, children));
     }
-
 
 
     class ErgebnissAdapter extends BaseExpandableListAdapter {
@@ -175,9 +175,16 @@ public class LigaSpielerResultsActivity extends BaseActivity {
     }
 
     public void details(MenuItem item) {
-        Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
-        intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
-        startActivity(intent);
+        if (MyApplication.selectedLigaSpieler.getMytTTClickTTUrl() == null) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
+            intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
+            startActivity(intent);
+        } else {
+            Player p = new Player("", MyApplication.selectedLigaSpieler.getName());
+            p.setPersonId(Long.valueOf(MyApplication.selectedLigaSpieler.getPersonId()));
+
+            new EventsAsyncTask(this, EventsActivity.class, p).execute();
+        }
     }
 }

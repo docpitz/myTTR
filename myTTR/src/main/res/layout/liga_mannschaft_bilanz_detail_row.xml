@@ -43,5 +43,11 @@
                 android:text="10:10"/>
         </TableRow>
 
+
     </TableLayout>
+    <ImageButton android:id="@+id/mytt"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:contentDescription="@string/arrow_desc"
+        android:src="@drawable/ic_stat"/>
 </LinearLayout>

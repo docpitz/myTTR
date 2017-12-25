@@ -25,6 +25,8 @@ import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.jmelzer.myttr.Constants.MYTT;
+
 /**
  * Created by J. Melzer on 27.02.2015.
  * <p/>
@@ -155,7 +157,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             textView.setText(spiel.getErgebnis());
 
             final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
-            if (spiel.getUrlDetail() == null) {
+            if (spiel.getUrlDetail() == null || spiel.getUrlDetail().isEmpty()) {
                 arrow.setVisibility(View.INVISIBLE);
             } else {
                 arrow.setOnClickListener(new View.OnClickListener() {

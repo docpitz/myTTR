@@ -170,7 +170,7 @@ public class Spieler {
     // mytt click tt urls
 
     String mytTTClickTTUrl;
-    String ttrHistorie;
+    Long personId;
     String head2head;
 
     // end: mytt click tt urls
@@ -187,12 +187,12 @@ public class Spieler {
         this.mytTTClickTTUrl = mytTTClickTTUrl;
     }
 
-    public String getTtrHistorie() {
-        return ttrHistorie;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setTtrHistorie(String ttrHistorie) {
-        this.ttrHistorie = ttrHistorie;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
     public String getHead2head() {

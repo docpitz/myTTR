@@ -30,6 +30,8 @@ import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 
+import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
+
 public class MyApplication extends Application {
 
     private static Context context;
@@ -61,7 +63,7 @@ public class MyApplication extends Application {
 
     private static Liga selectedLiga;
     public static Mannschaft selectedMannschaft;
-    public static Saison saison = Saison.ACTUAL_SAISON;
+    public static Saison saison = ACTUAL_SAISON;
     public static Tournament selectedTournament;
     public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;

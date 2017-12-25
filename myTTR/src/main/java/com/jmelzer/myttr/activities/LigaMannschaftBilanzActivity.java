@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
         List<String> groupList = new ArrayList<>();
         List<Mannschaft.SpielerBilanz> children = new ArrayList<>();
 
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
+        ExpandableListView listView = findViewById(R.id.expandableListView);
 
         for (Mannschaft.SpielerBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
             groupList.add(spielerBilanz.getPos() + " "  + spielerBilanz.getName());
@@ -56,6 +58,8 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
         children.addAll(mannschaft.getSpielerBilanzen());
         listView.setAdapter(new BilanzAdapter(this, groupList, children));
     }
+
+
 
 
     class BilanzAdapter extends BaseExpandableListAdapter {
@@ -110,7 +114,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             String headerTitle = (String) getGroup(groupPosition);
             if (convertView == null) {
-                convertView = layInflator.inflate(R.layout.liga_spieler_result_header, null);
+                convertView = layInflator.inflate(R.layout.liga_mannschaft_bilanz_detail_header, null);
             }
             TextView lblListHeader = (TextView) convertView.findViewById(R.id.groupName);
             lblListHeader.setText(headerTitle);
@@ -119,14 +123,14 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            final Mannschaft.SpielerBilanz childElem = (Mannschaft.SpielerBilanz) getChild(groupPosition, childPosition);
+            final Mannschaft.SpielerBilanz bilanz = (Mannschaft.SpielerBilanz) getChild(groupPosition, childPosition);
             //we can not reuse the view here
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.liga_mannschaft_bilanz_detail_row, null);
 
-            TextView textView = (TextView) convertView.findViewById(R.id.einsaetze);
-            textView.setText(childElem.getEinsaetze());
-            List<String[]> posResults = childElem.getPosResults();
+            TextView textView = convertView.findViewById(R.id.einsaetze);
+            textView.setText(bilanz.getEinsaetze());
+            List<String[]> posResults = bilanz.getPosResults();
             TableLayout tableLayout = (TableLayout) convertView.findViewById(R.id.table);
             int i = 1;
             for (String[] posResult : posResults) {
@@ -141,9 +145,19 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
                 }
                 i++;
             }
-            textView = (TextView) convertView.findViewById(R.id.gesamt);
-            textView.setText(childElem.getGesamt());
+            textView = convertView.findViewById(R.id.gesamt);
+            textView.setText(bilanz.getGesamt());
 
+            ImageButton imageButton = convertView.findViewById(R.id.mytt);
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Player p = new Player("", "");
+
+                    new EventsAsyncTask(LigaMannschaftBilanzActivity.this,
+                            EventsActivity.class, p, bilanz.getIds()).execute();
+                }
+            });
             return convertView;
         }
 

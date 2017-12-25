@@ -232,7 +232,7 @@ public class MyTTClickTTParserTest {
         Spieler spieler = parser.parseLinksForPlayer(page, "dummy");
         assertNotNull(spieler);
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/spieler/143001489/spielerportrait", spieler.getMytTTClickTTUrl());
-        assertEquals("https://www.mytischtennis.de/community/events?personId=297020", spieler.getTtrHistorie());
+        assertEquals(297020L, (long)spieler.getPersonId());
         assertEquals("https://www.mytischtennis.de/community/headTohead?gegnerId=297020", spieler.getHead2head());
     }
 

@@ -730,6 +730,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
             List<String[]> posResults = new ArrayList<>();
 
+            String saetze = "";
             for (int i = 0; i < header.size(); i++) {
                 result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
                 if (result != null && !result.isEmpty()) {

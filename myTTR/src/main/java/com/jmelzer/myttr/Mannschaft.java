@@ -46,6 +46,10 @@ public class Mannschaft {
             this.gesamt = gesamt;
         }
 
+        public MyTTPlayerIds getIds() {
+            return ids;
+        }
+
         public String getPos() {
             return pos;
         }

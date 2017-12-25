@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.jmelzer.myttr.Constants.MYTT;
+import static com.jmelzer.myttr.MyApplication.saison;
 import static com.jmelzer.myttr.util.UrlUtil.getHttpAndDomain;
 import static com.jmelzer.myttr.util.UrlUtil.safeUrl;
 
@@ -205,10 +206,23 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
+    public Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
         String page = Client.getPage(myTTPlayerIdsForPlayer.buildPopupUrl());
-        Spieler spieler = parseLinksForPlayer(page, name);
-        page = Client.getPage(spieler.getMytTTClickTTUrl());
+        return parseLinksForPlayer(page, name);
+    }
+
+    @Override
+    public Verband readTopLigen() throws NetworkException {
+        String page = Client.getPage(Verband.dttb.getMyTTClickTTUrl());
+        List<Liga> ligen = parseLigaLinks(page);
+        Verband.dttb.addAllLigen(ligen, saison);
+        return Verband.dttb;
+    }
+
+    @Override
+    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
+        Spieler spieler = readPopUp(name, myTTPlayerIdsForPlayer);
+        String page = Client.getPage(spieler.getMytTTClickTTUrl());
         return parseSpieler(spieler, page);
     }
 
@@ -420,12 +434,15 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 //                System.out.println("s = " + s);
 //            }
             String datum = row[0];
+            String url = readHrefAndATag(row[5])[0];
+            if (!url.isEmpty())
+                url = MYTT + url;
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,
                     findMannschaft(liga, readHrefAndATag(row[3])[1]),
                     findMannschaft(liga, readHrefAndATag(row[4])[1]),
                     readHrefAndATag(row[5])[1],
-                    safeUrl(liga.getHttpAndDomain(), readHrefAndATag(row[5])[0]),
+                    url,
                     true);
             if (mannschaftspiel.getDate() == null || mannschaftspiel.getDate().isEmpty()) {
                 mannschaftspiel.setDate(lastDate);
@@ -587,8 +604,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (!isEmpty(result)) {
                 String[] urlref = readHrefAndATag(result.result);
                 ParseResult rn = readBetween(urlref[1], 0, "<h4>", "<");
-                Bezirk v = new Bezirk(rn.result, urlref[0]);
-                bezirkList.add(v);
+                if (!isEmpty(rn)) {
+                    Bezirk v = new Bezirk(rn.result, urlref[0]);
+                    bezirkList.add(v);
+                }
 
             } else {
                 break;
@@ -660,7 +679,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
         spieler.setHead2head(links.get("Head to Head Ergebnisse"));
         spieler.setMytTTClickTTUrl(links.get("click-TT-Spielerportrait"));
-        spieler.setTtrHistorie(links.get("TTR-Historie"));
+        spieler.setPersonId(Long.valueOf(readBetween(links.get("TTR-Historie"), 0, "personId=", null).result));
         return spieler;
     }
 

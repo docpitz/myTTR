@@ -37,4 +37,9 @@ public interface MyTTClickTTParser {
     Verein readVerein(String url) throws NetworkException;
 
     Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException;
+
+    Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException;
+
+    Verband readTopLigen() throws NetworkException;
+
 }
