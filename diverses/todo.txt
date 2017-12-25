@@ -1,9 +1,7 @@
 
 Offen
 ----------
-- Umstellung click-tt
-        VL 4: .lang.NumberFormatException: For input string: "aufgelöst am 18.10.2017"
-        Bookmarks löschen beim update
+
 - Todos entfernen
 - Schriftgröße: Konfiguration
 - Route bei Turnieren
@@ -16,15 +14,14 @@ Offen
 - Überall Bookmarks zulassen
 - Doppelte Requests vermeiden
 - Optimierung Performance beim Laden
-- Link Bilanzen auf SPieler TTR
 - Routenplaner aus Spielplan
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
-
 erledigt
 ---------
 - Versionsprüfung!!
 - MV aufnehmen
 - Thüringen fixen (alle Vereine dort neu einlesen)
+- Link Bilanzen auf SPieler TTR
 
 
 Neue Funktionen in 4.0
