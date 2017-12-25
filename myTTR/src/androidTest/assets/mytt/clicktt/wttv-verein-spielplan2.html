@@ -1,0 +1,3836 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- TTC indeland Jülich e.V.
+- WTTV
+- TTC indeland Jülich e.V.
+</title>
+<base href="//www.mytischtennis.de">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=8-3-0" type="text/javascript"></script>
+<script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
+<script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/clicktt/includes/css/click-tt.css?v=8-3-0" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_AdCall.js"></script>
+</head>
+<body class="click-tt">
+<!-- Version: 8.3.0 -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="/clicktt//WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/spielplan/">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home">
+<img src='/public/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index" class="" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home">
+<img src="/public/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/clicktt/verbaende">Verbände</a>
+</li>
+<li class="">
+<a href="/clicktt/home">Mein click-TT</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/17-18/ligen" data-disabled-reason="Um den Ligenplan nutzen zu können, musst du zuerst einen Verband auswählen.">Ligenplan (WTTV)</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/vereinssuche">Vereinssuche</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/spielersuche">Spielersuche</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home" title="Home">Home</a>
+<li><a href="/clicktt/WTTV/season/ligen" title="Westdeutscher Tischtennis-Verband e.V.">WTTV</a></li>
+<li><a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/info" title="WTTV &ndash; TTC indeland Jülich e.V.">TTC indeland Jülich e.V.</a></li>
+<li><a href="/clicktt/WTTV/season/ligen" title="Westdeutscher Tischtennis-Verband e.V.">WTTV</a></li>
+<li class="active">TTC indeland Jülich e.V.</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Verein &ndash; Spielplan</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right hidden-print">
+<a href="/community/ranking?vereinid=158024,WTTV&amp;alleSpielberechtigen=yes" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
+</div>
+<h1>TTC indeland Jülich e.V. <small>Westdeutscher Tischtennis-Verband e.V.</small>
+</h1>
+<h5>
+VNr.: 158024, Gründungsjahr: 1948
+</h5>
+<div class="pull-right hidden-print hidden-xs hidden-sm">
+<a href="javascript:window.print();" class="m-b-md btn btn-sm btn-info">Drucken <i class="fa fa-print"></i></a>
+</div>
+<ul class="nav nav-tabs m-b-md hidden-print" role="tablist" id="club-tabs">
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/info" role="tab" >Vereinsinfos</a>
+</li>
+<li role="presentation" class="active">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/spielplan/" role="tab" >Spielplan</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/mannschaften"
+role="tab">Mannschaften</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/mannschaftsmeldungen/" role="tab">Mannschaftsmeldungen</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/bilanzen/vr"
+data-target="#gameStats" role="tab" data-toggle="tabajax">Bilanzen</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-e-V-/funktionaere" role="tab">Vereinsfunktionäre</a>
+</li>
+</ul>
+<h3>Spielplan</h3>
+<table class="table table-mytt table-striped table-bordered hidden-xs hidden-sm hidden-md" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th>Halle</th>
+<th>Liga</th>
+<th>Heimmannschaft</th>
+<th>Gastmannschaft</th>
+<th>Spiele</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+So. 07.01.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929097/BV-Borussia-Dortmund/spielerbilanzen/vr">BV Borussia Dortmund</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mi. 10.01.2018
+</td>
+<td>
+19:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158010/TTF-Kreuzau-IV/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1955632/TTF-Kreuzau-IV/spielerbilanzen/vr">TTF Kreuzau IV</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 12.01.2018
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>/<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 13.01.2018 18:30&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950691/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 13.01.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159024/TTC-Unterbruch/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1950650/TTC-Unterbruch/spielerbilanzen/vr">TTC Unterbruch</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151039/TTC-Loevenich/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955381/TTC-Loevenich/spielerbilanzen/vr">TTC Lövenich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157007/DJK-Raspo-Brand-II/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1952794/DJK-Raspo-Brand-II/spielerbilanzen/vr">DJK Raspo Brand II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158018/TTC-Mariaweiler-III/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981572/TTC-Mariaweiler-III/spielerbilanzen/vr">TTC Mariaweiler III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157011/DJK-Arminia-Eilendorf/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951894/DJK-Arminia-Eilendorf/spielerbilanzen/vr">DJK Arminia Eilendorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 14.01.2018
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/229/1-FC-Saarbruecken-TT-II/info">2</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929088/1-FC-Saarbruecken-TT-II/spielerbilanzen/vr">1. FC Saarbrücken-TT II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1953141/TV-Dellbrueck/spielerbilanzen/vr">TV Dellbrück</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 20.01.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1955340/DJK-Loewe-Koeln/spielerbilanzen/vr">DJK Löwe Köln</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1952162/SG-Worringen/spielerbilanzen/vr">SG Worringen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1952448/TTC-Mersch-Pattern/spielerbilanzen/vr">TTC Mersch-Pattern</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 22.01.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952147/TTF-Weisweiler-Wenau-II/spielerbilanzen/vr">TTF Weisweiler/Wenau II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mi. 24.01.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950504/TTC-Merzenich-Golzheim/spielerbilanzen/vr">TTC Merzenich/Golzheim</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 26.01.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950659/VfL-63-Langerwehe/spielerbilanzen/vr">VfL 63 Langerwehe</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 27.01.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953948/SG-Erftstadt/spielerbilanzen/vr">SG Erftstadt</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1954034/1-FC-Koeln-II/spielerbilanzen/vr">1. FC Köln II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1981916/DJK-Laurensberg/spielerbilanzen/vr">DJK Laurensberg</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954903/DJK-spinfactory-Koeln/spielerbilanzen/vr">DJK spinfactory Köln</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955072/TTG-Langenich/spielerbilanzen/vr">TTG Langenich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 28.01.2018
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1956244/TTC-Unterbruch-II/spielerbilanzen/vr">TTC Unterbruch II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929089/TTC-GW-Bad-Hamm/spielerbilanzen/vr">TTC GW Bad Hamm</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 29.01.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158006/TTC-Bourheim/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950564/TTC-Bourheim/spielerbilanzen/vr">TTC Bourheim</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Di. 30.01.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158015/TTF-Noervenich-Eschweiler/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1951953/TTF-Noervenich-Eschweiler/spielerbilanzen/vr">TTF Nörvenich/Eschweiler</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 02.02.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158020/TTC-Winden/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955552/TTC-Winden/spielerbilanzen/vr">TTC Winden</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 03.02.2018
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159016/DJK-Kohlscheid/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1955526/DJK-Kohlscheid/spielerbilanzen/vr">DJK Kohlscheid</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:45
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck-II/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955331/TV-Dellbrueck-II/spielerbilanzen/vr">TV Dellbrück II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/143011/TV-Erkelenz/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1955261/TV-Erkelenz/spielerbilanzen/vr">TV Erkelenz</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157030/TTC-Stolberg-Vicht/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1953184/TTC-Stolberg-Vicht/spielerbilanzen/vr">TTC Stolberg-Vicht</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 04.02.2018
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/142015/TTC-DJK-Neukirchen/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1955433/TTC-DJK-Neukirchen/spielerbilanzen/vr">TTC DJK Neukirchen</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 05.02.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1954188/TTC-Mariaweiler-II/spielerbilanzen/vr">TTC Mariaweiler II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 10.02.2018
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/323/1-FSV-Mainz-05/info">2</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929102/1-FSV-Mainz-05/spielerbilanzen/vr">1. FSV Mainz 05</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Di. 13.02.2018
+</td>
+<td>
+20:00
+<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Thu. 15.02.2018 20:00&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158012/Alemannia-Lendersdorf-II/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1987981/Alemannia-Lendersdorf-II/spielerbilanzen/vr">Alemannia Lendersdorf II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 16.02.2018
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157021/DJK-Westwacht-Weiden/info">2</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950345/DJK-Westwacht-Weiden/spielerbilanzen/vr">DJK Westwacht Weiden</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 17.02.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158026/TV-Birkesdorf/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955058/TV-Birkesdorf/spielerbilanzen/vr">TV Birkesdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154047/TuRa-Oberdrees/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1956160/TuRa-Oberdrees/spielerbilanzen/vr">TuRa Oberdrees</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159010/TTV-Gangelt-Birgden/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1950904/TTV-Gangelt-Birgden/spielerbilanzen/vr">TTV Gangelt-Birgden</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954665/TTG-Niederkassel/spielerbilanzen/vr">TTG Niederkassel</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1954207/DJK-Lindern/spielerbilanzen/vr">DJK Lindern</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 18.02.2018
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1952290/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mi. 21.02.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1951870/TTF-Kreuzau-VII/spielerbilanzen/vr">TTF Kreuzau VII</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 23.02.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158045/TTC-Guerzenich-II/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1953462/TTC-Guerzenich-II/spielerbilanzen/vr">TTC Gürzenich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158013/TTF-Lucherberg/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1953524/TTF-Lucherberg/spielerbilanzen/vr">TTF Lucherberg</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 24.02.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1956440/SV-DJK-Holzbuettgen/spielerbilanzen/vr">SV DJK Holzbüttgen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955397/DJK-Raspo-Brand/spielerbilanzen/vr">DJK Raspo Brand</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1954026/TV-1847-Dueren/spielerbilanzen/vr">TV 1847 Düren</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151033/TTG-Langenich/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1954896/TTG-Langenich/spielerbilanzen/vr">TTG Langenich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151023/TTC-BW-Bruehl-Vochem/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954394/TTC-BW-Bruehl-Vochem/spielerbilanzen/vr">TTC BW Brühl-Vochem</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158034/TTF-Koslar/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952828/TTF-Koslar/spielerbilanzen/vr">TTF Koslar</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 25.02.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929087/TTC-OE-Bad-Homburg/spielerbilanzen/vr">TTC OE Bad Homburg</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 26.02.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1955145/TTV-Gey/spielerbilanzen/vr">TTV Gey</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Do. 01.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158001/TTC-Dueren-III/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1979717/TTC-Dueren-III/spielerbilanzen/vr">TTC Düren III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 02.03.2018
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157026/SV-Sportfreunde-Hoern/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1953079/SV-Sportfreunde-Hoern/spielerbilanzen/vr">SV Sportfreunde Hörn</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 03.03.2018
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/155027/TTV-Euskirchen/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955717/TTV-Euskirchen/spielerbilanzen/vr">TTV Euskirchen</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154047/TuRa-Oberdrees/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1951128/TuRa-Oberdrees/spielerbilanzen/vr">TuRa Oberdrees</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157040/Haarener-TV-II/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955683/Haarener-TV-II/spielerbilanzen/vr">Haarener TV II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159024/TTC-Unterbruch/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955158/TTC-Unterbruch/spielerbilanzen/vr">TTC Unterbruch</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 04.03.2018
+</td>
+<td>
+10:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158014/TV-Huchem-Stammeln/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1953744/TV-Huchem-Stammeln/spielerbilanzen/vr">TV Huchem-Stammeln</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154023/TTF-Bad-Honnef/info">2</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953496/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 05.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158014/TV-Huchem-Stammeln-II/info">3</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1956148/TV-Huchem-Stammeln-II/spielerbilanzen/vr">TV Huchem-Stammeln II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mi. 07.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1954263/TTC-Guerzenich-V/spielerbilanzen/vr">TTC Gürzenich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 09.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955567/TTC-Moedrath/spielerbilanzen/vr">TTC Mödrath</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 10.03.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1950894/1-FC-Koeln/spielerbilanzen/vr">1. FC Köln</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1952769/SG-Erftstadt-II/spielerbilanzen/vr">SG Erftstadt II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1950712/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>/<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 11.03.2018 11:00&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157027/DJK-Nuetheim-Schleckheim/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955352/DJK-Nuetheim-Schleckheim/spielerbilanzen/vr">DJK Nütheim-Schleckheim</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1950380/TuS-Wickrath/spielerbilanzen/vr">TuS Wickrath</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955842/TV-1847-Dueren/spielerbilanzen/vr">TV 1847 Düren</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 12.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1951350/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 16.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158021/TTC-BW-Wollersheim-III/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1953575/TTC-BW-Wollersheim-III/spielerbilanzen/vr">TTC BW Wollersheim III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158013/TTF-Lucherberg-II/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981630/TTF-Lucherberg-II/spielerbilanzen/vr">TTF Lucherberg II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/155004/TV-Kall/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1951602/TV-Kall/spielerbilanzen/vr">TV Kall</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 17.03.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/203008/TTC-Fortuna-Passau/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929049/TTC-Fortuna-Passau/spielerbilanzen/vr">TTC Fortuna Passau</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/142028/TG-Neuss/info">1</a></td>
+<td>JNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953887/TG-Neuss/spielerbilanzen/vr">TG Neuss</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159015/TTC-Kirchhoven/info">1</a></td>
+<td>JBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1951443/TTC-Kirchhoven/spielerbilanzen/vr">TTC Kirchhoven</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151013/TSV-Kenten/info">2</a></td>
+<td>JBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953219/TSV-Kenten/spielerbilanzen/vr">TSV Kenten</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/141006/TTG-Langenfeld/info">2</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1955950/TTG-Langenfeld/spielerbilanzen/vr">TTG Langenfeld</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/157008/SuS-Borussia-Brand-II/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951058/SuS-Borussia-Brand-II/spielerbilanzen/vr">SuS Borussia Brand II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Di. 20.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158016/TTC-DJK-Schlich-II/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1954262/TTC-DJK-Schlich-II/spielerbilanzen/vr">TTC DJK Schlich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mi. 21.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1952696/Alemannia-Lendersdorf/spielerbilanzen/vr">Alemannia Lendersdorf</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 23.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>DBL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950983/TTF-Kreuzau/spielerbilanzen/vr">TTF Kreuzau</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 24.03.2018
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954654/TTG-Netphen/spielerbilanzen/vr">TTG Netphen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951610/TuS-Porselen/spielerbilanzen/vr">TuS Porselen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 25.03.2018
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>DBK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981829/WSV-Wuerselen/spielerbilanzen/vr">WSV Würselen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929068/TV-1879-Hilpoltstein/spielerbilanzen/vr">TV 1879 Hilpoltstein</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 08.04.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151052/1-FC-Koeln/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929109/1-FC-Koeln/spielerbilanzen/vr">1. FC Köln</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Di. 10.04.2018
+</td>
+<td>
+19:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158026/TV-Birkesdorf-II/info">1</a></td>
+<td>H3KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950830/TV-Birkesdorf-II/spielerbilanzen/vr">TV Birkesdorf II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 13.04.2018 19:45&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158020/TTC-Winden-II/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952632/TTC-Winden-II/spielerbilanzen/vr">TTC Winden II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 14.04.2018
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/152022/TTC-Lantenbach/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1953485/TTC-Lantenbach/spielerbilanzen/vr">TTC Lantenbach</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/151001/BC-Vikt-Glesch-Paffendorf/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1953344/BC-Vikt-Glesch-Paffendorf/spielerbilanzen/vr">BC Vikt. Glesch/Paffendorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+So. 15.04.2018
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a></td>
+<td>BL2 H</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929053/TTC-Frickenhausen/spielerbilanzen/vr">TTC Frickenhausen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Mo. 16.04.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a></td>
+<td>H1KK</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1950731/TTC-Roedingen-Hoellen/spielerbilanzen/vr">TTC Rödingen-Höllen</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 21.04.2018
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a></td>
+<td>HNRWL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1951313/TTC-Waldniel/spielerbilanzen/vr">TTC Waldniel</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/159007/TTC-Oidtweiler/info">1</a></td>
+<td>HLL</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1954256/TTC-Oidtweiler/spielerbilanzen/vr">TTC Oidtweiler</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-mytt table-striped table-bordered table-mini visible-sm visible-xs visible-md">
+<thead>
+<tr>
+<th>Datum</th>
+<th></th>
+<th>Mannschaften</th>
+<th>Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+07.01.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929097/BV-Borussia-Dortmund/spielerbilanzen/vr">BV Borussia Dortmund</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+10.01.18
+</td>
+<td>
+19:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1955632/TTF-Kreuzau-IV/spielerbilanzen/vr">TTF Kreuzau IV</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158010/TTF-Kreuzau-IV/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+12.01.18
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>/<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 13.01.2018 18:30&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950691/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+13.01.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1950650/TTC-Unterbruch/spielerbilanzen/vr">TTC Unterbruch</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159024/TTC-Unterbruch/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955381/TTC-Loevenich/spielerbilanzen/vr">TTC Lövenich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151039/TTC-Loevenich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1952794/DJK-Raspo-Brand-II/spielerbilanzen/vr">DJK Raspo Brand II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157007/DJK-Raspo-Brand-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981572/TTC-Mariaweiler-III/spielerbilanzen/vr">TTC Mariaweiler III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158018/TTC-Mariaweiler-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951894/DJK-Arminia-Eilendorf/spielerbilanzen/vr">DJK Arminia Eilendorf</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157011/DJK-Arminia-Eilendorf/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+14.01.18
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929088/1-FC-Saarbruecken-TT-II/spielerbilanzen/vr">1. FC Saarbrücken-TT II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/229/1-FC-Saarbruecken-TT-II/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1953141/TV-Dellbrueck/spielerbilanzen/vr">TV Dellbrück</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+20.01.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1955340/DJK-Loewe-Koeln/spielerbilanzen/vr">DJK Löwe Köln</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1952162/SG-Worringen/spielerbilanzen/vr">SG Worringen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1952448/TTC-Mersch-Pattern/spielerbilanzen/vr">TTC Mersch-Pattern</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+22.01.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952147/TTF-Weisweiler-Wenau-II/spielerbilanzen/vr">TTF Weisweiler/Wenau II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+24.01.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950504/TTC-Merzenich-Golzheim/spielerbilanzen/vr">TTC Merzenich/Golzheim</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+26.01.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950659/VfL-63-Langerwehe/spielerbilanzen/vr">VfL 63 Langerwehe</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+27.01.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953948/SG-Erftstadt/spielerbilanzen/vr">SG Erftstadt</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1954034/1-FC-Koeln-II/spielerbilanzen/vr">1. FC Köln II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1981916/DJK-Laurensberg/spielerbilanzen/vr">DJK Laurensberg</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954903/DJK-spinfactory-Koeln/spielerbilanzen/vr">DJK spinfactory Köln</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955072/TTG-Langenich/spielerbilanzen/vr">TTG Langenich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+28.01.18
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1956244/TTC-Unterbruch-II/spielerbilanzen/vr">TTC Unterbruch II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929089/TTC-GW-Bad-Hamm/spielerbilanzen/vr">TTC GW Bad Hamm</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+29.01.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950564/TTC-Bourheim/spielerbilanzen/vr">TTC Bourheim</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158006/TTC-Bourheim/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+30.01.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1951953/TTF-Noervenich-Eschweiler/spielerbilanzen/vr">TTF Nörvenich/Eschweiler</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158015/TTF-Noervenich-Eschweiler/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+02.02.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955552/TTC-Winden/spielerbilanzen/vr">TTC Winden</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158020/TTC-Winden/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+03.02.18
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1955526/DJK-Kohlscheid/spielerbilanzen/vr">DJK Kohlscheid</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159016/DJK-Kohlscheid/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:45
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955331/TV-Dellbrueck-II/spielerbilanzen/vr">TV Dellbrück II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1955261/TV-Erkelenz/spielerbilanzen/vr">TV Erkelenz</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/143011/TV-Erkelenz/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1953184/TTC-Stolberg-Vicht/spielerbilanzen/vr">TTC Stolberg-Vicht</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157030/TTC-Stolberg-Vicht/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+04.02.18
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1955433/TTC-DJK-Neukirchen/spielerbilanzen/vr">TTC DJK Neukirchen</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/142015/TTC-DJK-Neukirchen/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+05.02.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1954188/TTC-Mariaweiler-II/spielerbilanzen/vr">TTC Mariaweiler II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+10.02.18
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929102/1-FSV-Mainz-05/spielerbilanzen/vr">1. FSV Mainz 05</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/323/1-FSV-Mainz-05/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+13.02.18
+</td>
+<td>
+20:00
+<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Thu. 15.02.2018 20:00&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1987981/Alemannia-Lendersdorf-II/spielerbilanzen/vr">Alemannia Lendersdorf II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158012/Alemannia-Lendersdorf-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+16.02.18
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950345/DJK-Westwacht-Weiden/spielerbilanzen/vr">DJK Westwacht Weiden</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157021/DJK-Westwacht-Weiden/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+17.02.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955058/TV-Birkesdorf/spielerbilanzen/vr">TV Birkesdorf</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158026/TV-Birkesdorf/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1956160/TuRa-Oberdrees/spielerbilanzen/vr">TuRa Oberdrees</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154047/TuRa-Oberdrees/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1950904/TTV-Gangelt-Birgden/spielerbilanzen/vr">TTV Gangelt-Birgden</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159010/TTV-Gangelt-Birgden/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954665/TTG-Niederkassel/spielerbilanzen/vr">TTG Niederkassel</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1954207/DJK-Lindern/spielerbilanzen/vr">DJK Lindern</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+18.02.18
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1952290/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+21.02.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1951870/TTF-Kreuzau-VII/spielerbilanzen/vr">TTF Kreuzau VII</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+23.02.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1953462/TTC-Guerzenich-II/spielerbilanzen/vr">TTC Gürzenich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158045/TTC-Guerzenich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1953524/TTF-Lucherberg/spielerbilanzen/vr">TTF Lucherberg</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158013/TTF-Lucherberg/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+24.02.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1956440/SV-DJK-Holzbuettgen/spielerbilanzen/vr">SV DJK Holzbüttgen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955397/DJK-Raspo-Brand/spielerbilanzen/vr">DJK Raspo Brand</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1954026/TV-1847-Dueren/spielerbilanzen/vr">TV 1847 Düren</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1954896/TTG-Langenich/spielerbilanzen/vr">TTG Langenich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151033/TTG-Langenich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954394/TTC-BW-Bruehl-Vochem/spielerbilanzen/vr">TTC BW Brühl-Vochem</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151023/TTC-BW-Bruehl-Vochem/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952828/TTF-Koslar/spielerbilanzen/vr">TTF Koslar</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158034/TTF-Koslar/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+25.02.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929087/TTC-OE-Bad-Homburg/spielerbilanzen/vr">TTC OE Bad Homburg</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+26.02.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1955145/TTV-Gey/spielerbilanzen/vr">TTV Gey</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+01.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1979717/TTC-Dueren-III/spielerbilanzen/vr">TTC Düren III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158001/TTC-Dueren-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+02.03.18
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1953079/SV-Sportfreunde-Hoern/spielerbilanzen/vr">SV Sportfreunde Hörn</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+03.03.18
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1955717/TTV-Euskirchen/spielerbilanzen/vr">TTV Euskirchen</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/155027/TTV-Euskirchen/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1951128/TuRa-Oberdrees/spielerbilanzen/vr">TuRa Oberdrees</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154047/TuRa-Oberdrees/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955683/Haarener-TV-II/spielerbilanzen/vr">Haarener TV II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157040/Haarener-TV-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955158/TTC-Unterbruch/spielerbilanzen/vr">TTC Unterbruch</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159024/TTC-Unterbruch/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+04.03.18
+</td>
+<td>
+10:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1953744/TV-Huchem-Stammeln/spielerbilanzen/vr">TV Huchem-Stammeln</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158014/TV-Huchem-Stammeln/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953496/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154023/TTF-Bad-Honnef/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+05.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1956148/TV-Huchem-Stammeln-II/spielerbilanzen/vr">TV Huchem-Stammeln II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158014/TV-Huchem-Stammeln-II/info">3</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+07.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1954263/TTC-Guerzenich-V/spielerbilanzen/vr">TTC Gürzenich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+09.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955567/TTC-Moedrath/spielerbilanzen/vr">TTC Mödrath</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+10.03.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1950894/1-FC-Koeln/spielerbilanzen/vr">1. FC Köln</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1952769/SG-Erftstadt-II/spielerbilanzen/vr">SG Erftstadt II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1950712/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>/<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 11.03.2018 11:00&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955352/DJK-Nuetheim-Schleckheim/spielerbilanzen/vr">DJK Nütheim-Schleckheim</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157027/DJK-Nuetheim-Schleckheim/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1950380/TuS-Wickrath/spielerbilanzen/vr">TuS Wickrath</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1955842/TV-1847-Dueren/spielerbilanzen/vr">TV 1847 Düren</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+12.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1951350/SV-Falke-Bergrath/spielerbilanzen/vr">SV Falke Bergrath</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+16.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1953575/TTC-BW-Wollersheim-III/spielerbilanzen/vr">TTC BW Wollersheim III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158021/TTC-BW-Wollersheim-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981630/TTF-Lucherberg-II/spielerbilanzen/vr">TTF Lucherberg II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158013/TTF-Lucherberg-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1951602/TV-Kall/spielerbilanzen/vr">TV Kall</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/155004/TV-Kall/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+17.03.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929049/TTC-Fortuna-Passau/spielerbilanzen/vr">TTC Fortuna Passau</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/203008/TTC-Fortuna-Passau/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1953887/TG-Neuss/spielerbilanzen/vr">TG Neuss</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-NRW-Liga-4/gruppe/305711/mannschaft/1951381/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/142028/TG-Neuss/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1951443/TTC-Kirchhoven/spielerbilanzen/vr">TTC Kirchhoven</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksklasse-1/gruppe/321051/mannschaft/1956253/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159015/TTC-Kirchhoven/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+15:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953219/TSV-Kenten/spielerbilanzen/vr">TSV Kenten</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Jungen-Bezirksliga-1/gruppe/321047/mannschaft/1953706/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151013/TSV-Kenten/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1955950/TTG-Langenfeld/spielerbilanzen/vr">TTG Langenfeld</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/141006/TTG-Langenfeld/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951058/SuS-Borussia-Brand-II/spielerbilanzen/vr">SuS Borussia Brand II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/157008/SuS-Borussia-Brand-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+20.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1954262/TTC-DJK-Schlich-II/spielerbilanzen/vr">TTC DJK Schlich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158016/TTC-DJK-Schlich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+21.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1952696/Alemannia-Lendersdorf/spielerbilanzen/vr">Alemannia Lendersdorf</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-VI/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+23.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1955743/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksliga-1/gruppe/305832/mannschaft/1950983/TTF-Kreuzau/spielerbilanzen/vr">TTF Kreuzau</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+24.03.18
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954654/TTG-Netphen/spielerbilanzen/vr">TTG Netphen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1951610/TuS-Porselen/spielerbilanzen/vr">TuS Porselen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-III/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+25.03.18
+</td>
+<td>
+11:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1955420/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Damen-Bezirksklasse-1/gruppe/305842/mannschaft/1981829/WSV-Wuerselen/spielerbilanzen/vr">WSV Würselen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929068/TV-1879-Hilpoltstein/spielerbilanzen/vr">TV 1879 Hilpoltstein</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+08.04.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929109/1-FC-Koeln/spielerbilanzen/vr">1. FC Köln</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151052/1-FC-Koeln/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+10.04.18
+</td>
+<td>
+19:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1950830/TV-Birkesdorf-II/spielerbilanzen/vr">TV Birkesdorf II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-3-Kreisklasse-6er-/gruppe/305959/mannschaft/1955968/TTC-indeland-Juelich-VI/spielerbilanzen/vr">TTC indeland Jülich VI</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158026/TV-Birkesdorf-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 13.04.2018 19:45&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952632/TTC-Winden-II/spielerbilanzen/vr">TTC Winden II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158020/TTC-Winden-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+14.04.18
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1953485/TTC-Lantenbach/spielerbilanzen/vr">TTC Lantenbach</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152022/TTC-Lantenbach/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1953344/BC-Vikt-Glesch-Paffendorf/spielerbilanzen/vr">BC Vikt. Glesch/Paffendorf</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/151001/BC-Vikt-Glesch-Paffendorf/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+15.04.18
+</td>
+<td>
+14:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929110/TTC-indeland-Juelich/spielerbilanzen/vr">TTC indeland Jülich</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/2-Bundesliga-Herren/gruppe/302269/mannschaft/1929053/TTC-Frickenhausen/spielerbilanzen/vr">TTC Frickenhausen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+16.04.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1952124/TTC-indeland-Juelich-V/spielerbilanzen/vr">TTC indeland Jülich V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse/gruppe/305954/mannschaft/1950731/TTC-Roedingen-Hoellen/spielerbilanzen/vr">TTC Rödingen-Höllen</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-V/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+21.04.18
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1954081/TTC-indeland-Juelich-II/spielerbilanzen/vr">TTC indeland Jülich II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/mannschaft/1951313/TTC-Waldniel/spielerbilanzen/vr">TTC Waldniel</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/158024/TTC-indeland-Juelich-II/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1954256/TTC-Oidtweiler/spielerbilanzen/vr">TTC Oidtweiler</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Landesliga-11/gruppe/305900/mannschaft/1952655/TTC-indeland-Juelich-III/spielerbilanzen/vr">TTC indeland Jülich III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/159007/TTC-Oidtweiler/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary hidden-print">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">JOOLA
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7108" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7108','JOOLA
+']);" title="JOOLA
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/xmas.gif" alt="JOOLA
+"></a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">andro &ndash; offizieller Ausr&uuml;ster des WTTV
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061','andro &ndash; offizieller Ausr&uuml;ster des WTTV
+']);" title="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/Rasanter_Revolution_300x250_clickTT.GIF" alt="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+"></a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div> 
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-md-2">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>
+<li><a href="/community/faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>
+</ul>
+</div>
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>
+<li><a href="/public/mytischtennis-news/9997/wir-ueber-uns" title="Wir über uns">Wir über uns</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2017 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=8-3-0" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "WTTV"
+},
+urls: {
+playerPopover: '/clicktt/WTTV/player/popover',
+groupPopover: '/clicktt/WTTV/group/popover',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+</body>
+</html>

@@ -103,6 +103,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         String url = mannschaft.getUrl().substring(0, mannschaft.getUrl().indexOf("/spielerbilanzen/vr"));
         String page = Client.getPage(url + "/infos");
         parseMannschaftsDetail(page, mannschaft);
+        page = Client.getPage(mannschaft.getUrl());
+        parseBilanzen(page, mannschaft);
     }
 
     @Override
@@ -170,7 +172,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
             idx = resultrow.end;
             String[] row = tableRowAsArray("<td>" + resultrow.result, 8, false);
-            printRows(row);
+//            printRows(row);
             Mannschaftspiel m = new Mannschaftspiel();
             if (!row[0].isEmpty()) {
                 lastdate = row[0];
@@ -192,7 +194,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     String removeHtml(String string) {
-        string =  string.replaceAll("\r\n", "");
+        string = string.replaceAll("\r\n", "");
         return string.replaceAll("<a.*</a>", "");
     }
 
@@ -247,42 +249,46 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 break;
             }
         }
-        idx = 0;
-        Spieler.LigaErgebnisse ergebnisse = new Spieler.LigaErgebnisse("todo");
-        spieler.addLigaErgebnisse(ergebnisse);
-        String lastDate = "";
-        String lastTeam = "";
-        ParseResult table = readBetween(page, 0, "<tbody>", "</table>");
-        while (true) {
-            //mytt have a bug here: no opening tr element
-            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
-            if (isEmpty(resultrow)) {
+
+        ParseResult start = readBetween(page, 0, "<div role=\"tabpanel\" class=\"tab-pane active\" id=\"single\">",
+                "<div role=\"tabpanel\" class=\"tab-pane\" id=\"double\">");
+        int h3Idx = 0;
+        while(true) {
+            ParseResult h3 = readBetween(start.result, h3Idx, "<h3>", "</h3>");
+            if (isEmpty(h3)) {
                 break;
             }
-            String[] row = tableRowAsArray("<td>" + resultrow.result, 9, false);
+            h3Idx = h3.end;
 
-            Spieler.EinzelSpiel einzelSpiel = parseEinzelspielTableRow(row);
-            if (einzelSpiel.getDatum() == null) {
-                einzelSpiel.setDatum(lastDate);
-            } else {
-                lastDate = einzelSpiel.getDatum();
+            idx = 0;
+            Spieler.LigaErgebnisse ergebnisse = new Spieler.LigaErgebnisse(h3.result);
+            spieler.addLigaErgebnisse(ergebnisse);
+            String lastDate = "";
+            String lastTeam = "";
+            ParseResult table = readBetween(start.result, h3Idx, "<tbody>", "</table>");
+            while (true) {
+                //mytt have a bug here: no opening tr element
+                ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+                if (isEmpty(resultrow)) {
+                    break;
+                }
+                String[] row = tableRowAsArray("<td>" + resultrow.result, 9, false);
+
+                Spieler.EinzelSpiel einzelSpiel = parseEinzelspielTableRow(row);
+                if (einzelSpiel.getDatum() == null) {
+                    einzelSpiel.setDatum(lastDate);
+                } else {
+                    lastDate = einzelSpiel.getDatum();
+                }
+                if (einzelSpiel.getGegnerMannschaft() == null) {
+                    einzelSpiel.setGegnerMannschaft(lastTeam);
+                } else {
+                    lastTeam = einzelSpiel.getGegnerMannschaft();
+                }
+                ergebnisse.addSpiel(einzelSpiel);
+                idx = resultrow.end;
             }
-            if (einzelSpiel.getGegnerMannschaft() == null) {
-                einzelSpiel.setGegnerMannschaft(lastTeam);
-            } else {
-                lastTeam = einzelSpiel.getGegnerMannschaft();
-            }
-//            int i = 0;
-//            for (String s : row) {
-//                System.out.println("s[" + (i++) + "]=" + s);
-//            }
-            System.out.println("------------------");
-            System.out.println("spiel = " + einzelSpiel);
-            System.out.println("------------------");
-            ergebnisse.addSpiel(einzelSpiel);
-            idx = resultrow.end;
         }
-
         return spieler;
     }
 
@@ -374,16 +380,12 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 spielbericht.setSpieler2Name(spielbericht.getSpieler2Name() + " / " + ahref[1]);
             } else {
                 String line = row[2];
-                ParseResult personId = readBetween(line, 0, "personId: '", "'");
-                ParseResult clubNr = readBetween(line, 0, "clubNr: '", "'");
-                spielbericht.setMyTTPlayerIdsForPlayer1(new MyTTPlayerIds(personId.result, clubNr.result));
+                spielbericht.setMyTTPlayerIdsForPlayer1(parsePlayerIds(line));
                 String[] ahref = readHrefAndATag(line);
                 spielbericht.setSpieler1Name(ahref[1]);
 
                 line = row[4];
-                personId = readBetween(line, 0, "personId: '", "'");
-                clubNr = readBetween(line, 0, "clubNr: '", "'");
-                spielbericht.setMyTTPlayerIdsForPlayer2(new MyTTPlayerIds(personId.result, clubNr.result));
+                spielbericht.setMyTTPlayerIdsForPlayer2(parsePlayerIds(line));
 
                 ahref = readHrefAndATag(line);
                 spielbericht.setSpieler2Name(ahref[1]);
@@ -681,5 +683,43 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             mannschaft.liga = aref[1];
             v.addMannschaft(mannschaft);
         }
+    }
+
+    void parseBilanzen(String page, Mannschaft mannschaft) {
+        ParseResult table = readBetween(page, 0, "gamestatsTable", null);
+        mannschaft.clearBilanzen();
+        int idx = 0;
+        while (true) {
+            //mytt have a bug here: no opening tr element
+            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            String[] row = tableRowAsArray("<td>" + resultrow.result, 10, false);
+//            printRows(row);
+            if (row[1].isEmpty())
+                break;
+
+            List<String[]> posResults = new ArrayList<>();
+            for (int i = 3; i < 8; i++) {
+                if (!row[i].isEmpty())
+                    posResults.add(new String[]{"" + (i-2), row[i]});
+
+            }
+            String gesamt = row[9].replace("\r\n","");
+            String[] ahref = readHrefAndATag(row[1]);
+            MyTTPlayerIds ids = parsePlayerIds(row[1]);
+            Mannschaft.SpielerBilanz bilanz = new Mannschaft.SpielerBilanz(row[0],
+                    ahref[1],
+                    row[2], posResults, gesamt, ids);
+            mannschaft.addBilanz(bilanz);
+        }
+    }
+
+    MyTTPlayerIds parsePlayerIds(String line) {
+        ParseResult personId = readBetween(line, 0, "personId: '", "'");
+        ParseResult clubNr = readBetween(line, 0, "clubNr: '", "'");
+        return new MyTTPlayerIds(personId.result, clubNr.result);
     }
 }

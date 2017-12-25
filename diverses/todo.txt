@@ -2,8 +2,6 @@
 Offen
 ----------
 - Umstellung click-tt
-        -> Bilanzen
-        -> Meldung
         -> Aufruf my-tt
 - Todos entfernen
 - Schriftgröße: Konfiguration
@@ -17,6 +15,8 @@ Offen
 - Überall Bookmarks zulassen
 - Doppelte Requests vermeiden
 - Optimierung Performance beim Laden
+- Link Bilanzen auf SPieler TTR
+- Routenplaner aus Spielplan
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt

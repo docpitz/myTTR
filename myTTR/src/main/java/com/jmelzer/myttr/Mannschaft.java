@@ -1,5 +1,6 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
@@ -17,13 +18,24 @@ public class Mannschaft {
         String pos;
         String name;
         String einsaetze;
+        //first entry against, seconfd bilanz
         List<String[]> posResults = new ArrayList<>(6);
         String gesamt;
+        MyTTPlayerIds ids;
 
         public SpielerBilanz(String pos, String name, String einsaetze) {
             this.pos = pos;
             this.name = name;
             this.einsaetze = einsaetze;
+        }
+
+        public SpielerBilanz(String pos, String name, String einsaetze, List<String[]> posResults, String gesamt, MyTTPlayerIds ids) {
+            this.pos = pos;
+            this.name = name;
+            this.einsaetze = einsaetze;
+            this.posResults = posResults;
+            this.gesamt = gesamt;
+            this.ids = ids;
         }
 
         public SpielerBilanz(String pos, String name, String einsaetze, List<String[]> posResults, String gesamt) {
@@ -61,6 +73,7 @@ public class Mannschaft {
                     ", name='" + name + '\'' +
                     ", einsaetze='" + einsaetze + '\'' +
                     ", gesamt='" + gesamt + '\'' +
+                    ", ids='" + ids + '\'' +
                     '}';
         }
     }

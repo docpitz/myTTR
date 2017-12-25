@@ -36,7 +36,9 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-ligenplan.html");
         List<Liga> ligen = parser.parseLigaLinks(page);
         for (Liga liga : ligen) {
-            System.out.println("liga = " + liga);
+            assertNotNull(liga.getName());
+            assertNotNull(liga.getUrl());
+//            System.out.println("liga = " + liga);
         }
     }
 
@@ -52,7 +54,7 @@ public class MyTTClickTTParserTest {
     @Test
     public void parseLiga() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-liga.html");
-        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/aktuell");
+        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/gesamt");
         parser.parseLiga(page, liga);
         assertEquals(12, liga.getMannschaften().size());
         for (Mannschaft mannschaft : liga.getMannschaften()) {
@@ -87,6 +89,27 @@ public class MyTTClickTTParserTest {
                 "46149 Oberhausen", mannschaft.getSpielLokale().get(0));
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/148033/SC-Buschhausen/info",
                 mannschaft.getVereinUrl());
+    }
+
+    @Test
+    public void parseBilanzen() throws Exception {
+
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschafts-bilanzen.html");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseBilanzen(page, mannschaft);
+        assertEquals(10, mannschaft.getSpielerBilanzen().size());
+        assertEquals("10", mannschaft.getSpielerBilanzen().get(0).getEinsaetze());
+        assertEquals("Gatzmanga, Mario", mannschaft.getSpielerBilanzen().get(0).getName());
+        assertEquals("16:2", mannschaft.getSpielerBilanzen().get(0).getGesamt());
+        assertEquals("1.1", mannschaft.getSpielerBilanzen().get(0).getPos());
+        assertEquals(2, mannschaft.getSpielerBilanzen().get(0).getPosResults().size());
+        assertEquals("1", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[0]);
+        assertEquals("8:0", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[1]);
+        assertEquals("2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[0]);
+        assertEquals("8:2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[1]);
+        for (Mannschaft.SpielerBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
+            System.out.println("spielerBilanz = " + spielerBilanz);
+        }
     }
 
     @Test
@@ -182,12 +205,14 @@ public class MyTTClickTTParserTest {
         for (Spielbericht spielbericht : spiel.getSpiele()) {
             System.out.println("spielbericht = " + spielbericht);
             assertNotEquals(spielbericht.getSpieler1Name(), spielbericht.getSpieler2Name());
-            assertThat(spielbericht.getMyTTPlayerIdsForPlayer1().buildPopupUrl(), startsWith("http"));
-            assertThat(spielbericht.getMyTTPlayerIdsForPlayer2().buildPopupUrl(), startsWith("http"));
-            assertNotEquals(spielbericht.getMyTTPlayerIdsForPlayer1().buildPopupUrl(),
-                    spielbericht.getMyTTPlayerIdsForPlayer2().buildPopupUrl());
+            if (!spielbericht.getName().contains("D")) { //not for double
+                assertThat(spielbericht.getMyTTPlayerIdsForPlayer1().buildPopupUrl(), startsWith("http"));
+                assertThat(spielbericht.getMyTTPlayerIdsForPlayer2().buildPopupUrl(), startsWith("http"));
+                assertNotEquals(spielbericht.getMyTTPlayerIdsForPlayer1().buildPopupUrl(),
+                        spielbericht.getMyTTPlayerIdsForPlayer2().buildPopupUrl());
+            }
         }
-        System.out.println("spiel = " + spiel);
+//        System.out.println("spiel = " + spiel);
     }
 
     @Test
@@ -223,5 +248,10 @@ public class MyTTClickTTParserTest {
         assertThat(spieler.getEinsaetze().get(0).getUrl(),
                 is("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/tabelle/aktuell"));
         assertThat(spieler.getEinsaetze().get(1).getKategorie(), is("Senioren 50 1"));
+        assertThat(spieler.getErgebnisse().size(), is(2));
+        assertThat(spieler.getErgebnisse().get(0).getSpiele().size(), is(18));
+        assertThat(spieler.getErgebnisse().get(0).getName(), is("Herren NRW-Liga 3 (Vorrunde)"));
+        assertThat(spieler.getErgebnisse().get(1).getName(), is("Senioren 50-Bezirksliga (Vorrunde)"));
+        assertThat(spieler.getErgebnisse().get(1).getSpiele().size(), is(2));
     }
 }
