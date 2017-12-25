@@ -130,7 +130,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
         assertTrue(solo.waitForActivity(LigaMannschaftBilanzActivity.class, STANDARD_TIMEOUT));
         assertTrue("Detlev must be shown", solo.searchText("Neigenfind"));
         assertTrue("Manfred must be shown", solo.searchText("Hildebrandt"));
-        solo.clickOnText("Pohl");
+        solo.clickOnText("Manfred");
         assertTrue("Label must be show", solo.searchText("Einsätze"));
     }
 

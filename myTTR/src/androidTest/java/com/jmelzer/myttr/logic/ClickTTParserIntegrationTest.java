@@ -31,7 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.jmelzer.myttr.model.Saison.ACTUAL_SAISON;
+import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
+
 
 public class ClickTTParserIntegrationTest extends BaseTestCase {
 

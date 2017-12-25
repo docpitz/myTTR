@@ -112,7 +112,8 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
     }
 
     private void callMannschaftSpielDetail() {
-        if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null) {
+        if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null ||
+                MyApplication.selectedMannschaftSpiel.getUrlDetail().isEmpty()) {
             return;
         }
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtActivity.class) {

@@ -2,9 +2,7 @@
 Offen
 ----------
 - Umstellung click-tt
-        -> Aufruf my-tt
         VL 4: .lang.NumberFormatException: For input string: "aufgelöst am 18.10.2017"
-        Bookmarks Bugs
         Bookmarks löschen beim update
 - Todos entfernen
 - Schriftgröße: Konfiguration

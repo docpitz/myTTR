@@ -16,8 +16,9 @@ import java.util.Date;
 
 public class VersionChecker extends AbstractBaseParser {
     static final String GITHUB_URL = "https://github.com";
-    public static final String LAST_VERSION = "3.0.1 Suche verbessert";
-    static final String THIS_VERSION = "3.0.2 - Mecklenburg hinzugefügt";
+//    public static final String LAST_VERSION = "3.0.1 Suche verbessert";
+    public static final String LAST_VERSION = "3.0.2 - Mecklenburg hinzugefügt";
+    public static final String THIS_VERSION = "4.0.0 - Mytischtennis/click-tt";
 
     NotificationDataBaseAdapter adapter;
 
