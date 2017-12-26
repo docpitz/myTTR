@@ -32,8 +32,9 @@ public class Verband {
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+Bad.+14/15",
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar",
                 null, null));
-        verbaende.add(new Verband("Bayerischer TTV", "https://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15",
+        verbaende.add(new Verband("Bayerischer TTV",
                 "https://www.mytischtennis.de/clicktt/ByTTV/17-18/ligen",
+                "https://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15",
                 "https://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV",
                 "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV&circuit=2017_BTTR", "Bavarian TT-Race"));
 //        verbaende.add(new Verband("Berliner TTV", "https://bettv.tischtennislive.de/"));
