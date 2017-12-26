@@ -51,12 +51,21 @@ public class EventsAsyncTask extends BaseAsyncTask {
             MyApplication.selectedPlayer = p.getFullName();
 
         } else if (player != null) {
+            boolean isOwnPlayer = false;
             if (ids != null) {
                 Spieler spieler = newParser.readPopUp(player.getFullName(), ids);
-                player = new Player();
-                player.setPersonId(spieler.getPersonId());
+                isOwnPlayer = spieler.isOwnPlayer();
+                if (!isOwnPlayer) {
+                    player = new Player();
+                    player.setPersonId(spieler.getPersonId());
+                }
             }
-            Player p = parser.readEventsForForeignPlayer(player.getPersonId());
+            Player p;
+            if (!isOwnPlayer)
+                p = parser.readEventsForForeignPlayer(player.getPersonId());
+            else
+                p = parser.readEvents();
+
             MyApplication.setEvents(p.getEvents());
             MyApplication.selectedPlayer = p.getFullName();
 

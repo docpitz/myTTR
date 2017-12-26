@@ -9,6 +9,7 @@ import java.util.List;
  * Represents a mannschafts player in click tt
  */
 public class Spieler {
+
     public static class LigaErgebnisse {
         /**
          * e.g. Oberliga Herren West 2  (Vorrunde)
@@ -178,6 +179,16 @@ public class Spieler {
     List<Einsatz> einsaetze = new ArrayList<>();
     List<Bilanz> bilanzen = new ArrayList<>();
     List<LigaErgebnisse> ergebnisse = new ArrayList<>();
+
+    private boolean isOwnPlayer;
+
+    public void setIsOwnPlayer(boolean isOwnPlayer) {
+        this.isOwnPlayer = isOwnPlayer;
+    }
+
+    public boolean isOwnPlayer() {
+        return isOwnPlayer;
+    }
 
     public String getMytTTClickTTUrl() {
         return mytTTClickTTUrl;

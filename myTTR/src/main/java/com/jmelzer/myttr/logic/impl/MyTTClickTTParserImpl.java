@@ -270,7 +270,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult start = readBetween(page, 0, "<div role=\"tabpanel\" class=\"tab-pane active\" id=\"single\">",
                 "<div role=\"tabpanel\" class=\"tab-pane\" id=\"double\">");
         int h3Idx = 0;
-        while(true) {
+        while (true) {
             ParseResult h3 = readBetween(start.result, h3Idx, "<h3>", "</h3>");
             if (isEmpty(h3)) {
                 break;
@@ -575,7 +575,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
             Mannschaft m;
             if (containsRetiredString(resultrow.result)) {
-                m =  new Mannschaft(name );
+                m = new Mannschaft(name);
             } else {
                 m = new Mannschaft(name,
                         Integer.valueOf(row[1]),
@@ -687,7 +687,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
         spieler.setHead2head(links.get("Head to Head Ergebnisse"));
         spieler.setMytTTClickTTUrl(links.get("click-TT-Spielerportrait"));
-        spieler.setPersonId(Long.valueOf(readBetween(links.get("TTR-Historie"), 0, "personId=", null).result));
+        if (links.get("TTR-Historie").equals("https://www.mytischtennis.de/community/events")) {
+            spieler.setIsOwnPlayer(true);
+        } else {
+            spieler.setPersonId(Long.valueOf(readBetween(links.get("TTR-Historie"), 0, "personId=", null).result));
+        }
         return spieler;
     }
 
@@ -731,10 +735,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             List<String[]> posResults = new ArrayList<>();
             for (int i = 3; i < 8; i++) {
                 if (!row[i].isEmpty())
-                    posResults.add(new String[]{"" + (i-2), row[i]});
+                    posResults.add(new String[]{"" + (i - 2), row[i]});
 
             }
-            String gesamt = row[9].replace("\r\n","");
+            String gesamt = row[9].replace("\r\n", "");
             String[] ahref = readHrefAndATag(row[1]);
             MyTTPlayerIds ids = parsePlayerIds(row[1]);
             Mannschaft.SpielerBilanz bilanz = new Mannschaft.SpielerBilanz(row[0],
@@ -749,6 +753,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult clubNr = readBetween(line, 0, "clubNr: '", "'");
         return new MyTTPlayerIds(personId.result, clubNr.result);
     }
+
     private boolean containsRetiredString(String line) {
         for (String retiredString : retiredStrings) {
             if (line.contains(retiredString)) {
