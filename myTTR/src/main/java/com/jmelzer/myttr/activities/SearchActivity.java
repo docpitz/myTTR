@@ -127,7 +127,7 @@ public class SearchActivity extends BaseActivity {
     public void search(final View view) {
         String club = ((EditText) findViewById(R.id.detail_club)).getText().toString();
         Club verein = clubParser.getClubExact(club);
-        if (verein == null) {
+        if (!club.isEmpty() && verein == null) {
             final List<String> clubs = clubParser.getClubNameUnsharp(club, 0.3f);
             if (clubs.size() == 0) {
                 AlertDialog ad = new AlertDialog.Builder(this).create();
