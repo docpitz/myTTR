@@ -56,9 +56,9 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
         for (Verband verband : Verband.verbaende) {
             Log.d(Constants.LOG_TAG, "verband '" + verband.getName() + "'");
 //            readLigenAndTest(verband); //allready ok, uncomment if you want to test it
-            if (!verband.getName().equals("Westdeutscher TTV")) {
-                continue;
-            }
+//            if (!verband.getName().equals("Bayerischer TTV")) {
+//                continue;
+//            }
 //            if (verband == dttb) {
 //                continue;
 //            }

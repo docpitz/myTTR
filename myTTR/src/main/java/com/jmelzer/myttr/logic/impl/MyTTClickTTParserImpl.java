@@ -102,6 +102,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     @Override
     public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException {
+        if (mannschaft.getUrl() == null) //zurueckgezogen
+            return;
         String url = mannschaft.getUrl().substring(0, mannschaft.getUrl().indexOf("/spielerbilanzen/vr"));
         String page = Client.getPage(url + "/infos");
         parseMannschaftsDetail(page, mannschaft);
@@ -436,7 +438,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 //            }
             String datum = row[0];
             String url = readHrefAndATag(row[5])[0];
-            if (!url.isEmpty())
+            if (url != null && !url.isEmpty())
                 url = MYTT + url;
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,

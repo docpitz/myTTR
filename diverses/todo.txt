@@ -26,5 +26,8 @@ erledigt
 
 
 Neue Funktionen in 4.0
------------------
-Bilanzen geht jetzt Link in Pkte
+----------------------------------------------------
+* Click-tt Daten kommen jetzt aus mytischtennis.de
+* Aus den Mannschafts-Bilanzen kann man direkt die Punkte anschauen
+* Klick auf Ligaspieler öffnet die Punkteansicht ohne Suche
+* Fehler bei den Cup Wettbewerben (2018 ging nicht)
