@@ -27,6 +27,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by J. Melzer on 15.06.2017.
@@ -67,7 +68,7 @@ public class TournamentsActivity extends BaseActivity {
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                date.roll(Calendar.MONTH, -1);
+                date.add(Calendar.MONTH, -1);
                 refreshDateView();
                 refreshList();
 
@@ -77,7 +78,7 @@ public class TournamentsActivity extends BaseActivity {
         btnRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                date.roll(Calendar.MONTH, 1);
+                date.add(Calendar.MONTH, 1);
                 refreshDateView();
                 refreshList();
 
@@ -96,7 +97,7 @@ public class TournamentsActivity extends BaseActivity {
 
     private void refreshDateView() {
         TextView txtView = findViewById(R.id.month);
-        txtView.setText(DateFormatUtils.format(date, "MMMM.yyyy"));
+        txtView.setText(DateFormatUtils.format(date, "MMMM yyyy", Locale.GERMAN));
     }
 
     private class VerbandAdapter extends ArrayAdapter<Verband> {
