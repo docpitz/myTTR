@@ -2,6 +2,8 @@ package com.jmelzer.myttr.activities;
 
 import android.test.suitebuilder.annotation.MediumTest;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -117,6 +119,7 @@ public class LigaIntegrationTest extends BaseActivityInstrumentationTestCase<Log
     }
 
     private void spielbericht() {
+        solo.scrollToSide(Solo.LEFT);
         solo.clickInList(0); //first game
         assertTrue(solo.waitForActivity(LigaSpielberichtActivity.class, STANDARD_TIMEOUT));
         assertTrue("Mannschaftsname must be shown", solo.searchText(MANNSCHAFT_TO_CLICK));

@@ -77,6 +77,9 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         gotoHome();
         playerSimulation();
         gotoHome();
+
+        //todo cups
+
         logOut();
     }
 
@@ -160,11 +163,11 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickOnButton(solo.getString(R.string.player_sim));
         assertTrue(waitForActivity(SelectTeamPlayerActivity.class));
 
-        assertTrue(solo.searchText("Schramm"));
+        assertTrue(solo.searchText("Christoph"));
         solo.clickInList(4);
 
         assertTrue(waitForActivity(HomeActivity.class));
-        assertTrue("Schramm is selected as player", solo.searchText("Schramm"));
+        assertTrue("Nega is selected as player", solo.searchText("Christoph"));
         assertNotNull(MyApplication.simPlayer);
         assertTrue(MyApplication.simPlayer.getTtrPoints() > 0);
 
@@ -179,16 +182,16 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         solo.clickOnButton(solo.getString(R.string.loadplayerfromclub));
         assertTrue(waitForActivity(SearchResultActivity.class));
 
-        assertTrue("Marco must be found", solo.searchText("Stephan"));
+        assertTrue("Christian must be found", solo.searchText("Christian"));
 
         solo.clickInList(1);
         assertTrue(waitForActivity(HomeActivity.class));
-        assertTrue("Stephan is selected as player", solo.searchText("Stephan"));
+        assertTrue("Pan is selected as player", solo.searchText("Pan"));
 
         solo.clickOnActionBarItem(R.id.action_remove_sim);
         assertTrue(solo.waitForText("wurde beendet"));
-
-        assertFalse("No one is selected ", solo.searchText("Schramm"));
+        solo.sleep(1000);
+        assertFalse("No one is selected ", solo.searchText("Christoph", true));
 
 
     }
@@ -319,8 +322,6 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         assertEquals("", solo.getEditText(1).getText().toString());
         assertEquals("", solo.getEditText(2).getText().toString());
 
-        emptyName();
-
 
         //vor und nachname
         solo.getCurrentActivity().runOnUiThread(new Runnable() {
@@ -404,7 +405,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         p = MyApplication.getTtrCalcPlayer().get(1);
         assertEquals("Marco", p.getFirstname());
         assertEquals("Vester", p.getLastname());
-        assertEquals("TTC Hennef", p.getClub());
+        assertEquals("TTC DJK Hennef", p.getClub());
 
         solo.clickOnText(solo.getString(R.string.calc));
         assertTrue(waitForActivity(ResultActivity.class));
@@ -433,29 +434,6 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
 
     }
 
-    private void emptyName() {
-        //fill up only vorname
-        solo.getCurrentActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                solo.getEditText(0).setText("Timo");
-            }
-        });
-
-        solo.clickOnText(solo.getString(R.string.detail_search));
-        assertTrue("first name only no allowed", solo.waitForText(solo.getString(R.string.error_search_required_fields)));
-
-        //fill up only nachname
-        solo.getCurrentActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                solo.getEditText(0).setText("");
-                solo.getEditText(1).setText("Meier");
-            }
-        });
-        solo.clickOnText(solo.getString(R.string.detail_search));
-        assertTrue("last name only no allowed", solo.waitForText(solo.getString(R.string.error_search_required_fields)));
-    }
 
     private void preferences() {
 //        solo.sendKey(Solo.MENU);

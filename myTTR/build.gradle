@@ -36,7 +36,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 80
-        versionName "4.0.0"
+        versionName "4.0.0 Beta 1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

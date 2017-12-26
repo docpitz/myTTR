@@ -16,6 +16,7 @@ Offen
 - Optimierung Performance beim Laden
 - Routenplaner aus Spielplan
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
+
 erledigt
 ---------
 - Versionsprüfung!!

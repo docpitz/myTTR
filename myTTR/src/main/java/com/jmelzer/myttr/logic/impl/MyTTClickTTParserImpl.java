@@ -38,6 +38,7 @@ import static com.jmelzer.myttr.util.UrlUtil.safeUrl;
 public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTClickTTParser {
 
     public static final String CONTAINER_START_TAG = "<div class=\"col-sm-6 col-xs-12\">";
+    private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht"};
 
     @Override
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
@@ -570,16 +571,21 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 }
 
             }
-            Mannschaft m = new Mannschaft(name,
-                    Integer.valueOf(row[1]),
-                    Integer.valueOf(row[3]),
-                    Integer.valueOf(row[4]),
-                    Integer.valueOf(row[5]),
-                    Integer.valueOf(row[6]),
-                    row[7],
-                    row[8],
-                    row[9], href[0]);
-            m.setUrl(safeUrl(liga.getHttpAndDomain(), m.getUrl()));
+            Mannschaft m;
+            if (containsRetiredString(resultrow.result)) {
+                m =  new Mannschaft(name );
+            } else {
+                m = new Mannschaft(name,
+                        Integer.valueOf(row[1]),
+                        Integer.valueOf(row[3]),
+                        Integer.valueOf(row[4]),
+                        Integer.valueOf(row[5]),
+                        Integer.valueOf(row[6]),
+                        row[7],
+                        row[8],
+                        row[9], href[0]);
+                m.setUrl(safeUrl(liga.getHttpAndDomain(), m.getUrl()));
+            }
             liga.addMannschaft(m);
             idx = resultrow.end;
 
@@ -740,5 +746,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult personId = readBetween(line, 0, "personId: '", "'");
         ParseResult clubNr = readBetween(line, 0, "clubNr: '", "'");
         return new MyTTPlayerIds(personId.result, clubNr.result);
+    }
+    private boolean containsRetiredString(String line) {
+        for (String retiredString : retiredStrings) {
+            if (line.contains(retiredString)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
