@@ -22,9 +22,9 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
 
@@ -269,7 +269,7 @@ public class LigaVereinActivity extends BaseActivity {
                     liga.setUrl(m.url);
 
                 MyApplication.setSelectedLiga(liga);
-                new ClickTTParser().readLiga(MyApplication.getSelectedLiga());
+                new MytClickTTWrapper().readLiga(MyApplication.saison, MyApplication.getSelectedLiga(), MyApplication.selectedVerband);
             }
 
             @Override
@@ -290,7 +290,7 @@ public class LigaVereinActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new ClickTTParser().readDetail(MyApplication.selectedMannschaftSpiel);
+                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel, MyApplication.selectedVerband);
             }
 
             @Override

@@ -79,6 +79,7 @@ public class IntegrationTest extends BaseActivityInstrumentationTestCase<LoginAc
         gotoHome();
 
         //todo cups
+        //TODO LigaVereinActivity
 
         logOut();
     }

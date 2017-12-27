@@ -1,6 +1,10 @@
 
 Offen
 ----------
+- Routenplaner aus Spielplan
+- Besser Google Maps Call
+- Doppelte Requests vermeiden
+- URLs aufrufen wenn lange drücken
 
 - Todos entfernen
 - Schriftgröße: Konfiguration
@@ -9,12 +13,11 @@ Offen
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
 - TTR Vergleich
-- Besser Google Maps Call
 - Telefonnummer aufrufen aus Info
 - Überall Bookmarks zulassen
-- Doppelte Requests vermeiden
 - Optimierung Performance beim Laden
-- Routenplaner aus Spielplan
+- Cups für mehrere Jahre
+- Mehr UI Tests
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt

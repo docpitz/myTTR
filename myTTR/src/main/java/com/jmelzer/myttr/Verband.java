@@ -52,7 +52,8 @@ public class Verband {
                 "https://www.mytischtennis.de/clicktt/HeTTV/17-18/ligen",
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15",
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV",
-                "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV&circuit=VR-Cup_2017", "VR Cup"));
+                "http://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV&circuit=VR-Cup_2018",
+                "VR Cup"));
         verbaende.add(new Verband("TTV Mecklenburg-Vorpommern",
                 "https://www.mytischtennis.de/clicktt/TTVMV/17-18/ligen",
                 "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",

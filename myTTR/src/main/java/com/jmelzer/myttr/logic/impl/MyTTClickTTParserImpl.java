@@ -596,7 +596,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     private void parseSpielplanLinks(Liga liga, String page) {
         String url = liga.getUrl();
-        url = url.substring(0, url.indexOf("/tabelle/gesamt"));
+        url = url.substring(0, url.indexOf("/tabelle"));
         liga.setUrlVR(url + "/spielplan/vr");
         liga.setUrlRR(url + "/spielplan/rr");
         liga.setUrlGesamt(null);

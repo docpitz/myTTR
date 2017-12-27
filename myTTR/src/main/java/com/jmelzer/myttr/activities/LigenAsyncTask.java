@@ -4,11 +4,9 @@ import android.app.Activity;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
-import com.jmelzer.myttr.model.Saison;
 
 /**
  * task for calling events activity.
