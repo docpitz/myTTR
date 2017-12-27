@@ -113,16 +113,16 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
                 loginSuccess = true;
                 ttr = user.getPoints();
                 store(user, new MyTischtennisParser());
-                VersionChecker versionChecker = new VersionChecker();
-                versionInfo = null;
-                if (versionChecker.shallCheck() && versionChecker.newVersionAvailable()) {
-                    Log.d(Constants.LOG_TAG, "new version found");
-                    String[] ahref = versionChecker.readVersionInfo();
-                    if (ahref != null) {
-                        versionInfo = "Es gibt eine neue Version: '" + ahref[1] + "'.\n" +
-                                "Unter Einstellungen kannst du sie abrufen";
-                    }
-                }
+//                VersionChecker versionChecker = new VersionChecker();
+//                versionInfo = null;
+//                if (versionChecker.shallCheck() && versionChecker.newVersionAvailable()) {
+//                    Log.d(Constants.LOG_TAG, "new version found");
+//                    String[] ahref = versionChecker.readVersionInfo();
+//                    if (ahref != null) {
+//                        versionInfo = "Es gibt eine neue Version: '" + ahref[1] + "'.\n" +
+//                                "Unter Einstellungen kannst du sie abrufen";
+//                    }
+//                }
             }
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
             playerNotWellRegistered = true;

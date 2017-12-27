@@ -104,13 +104,13 @@
             android:layout_alignParentRight="true"
             android:text="Updateprüfung" />
 
-        <Button
+        <!--<Button
             android:id="@+id/imageButton8"
             android:layout_width="98dp"
             android:layout_height="56dp"
             android:onClick="versioncheck"
             android:drawableTop="@drawable/ic_update_check"
-            android:layout_weight="0.09" />
+            android:layout_weight="0.09" />-->
 
     </LinearLayout>
 </LinearLayout>

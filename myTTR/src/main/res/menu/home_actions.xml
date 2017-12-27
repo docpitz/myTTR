@@ -34,12 +34,12 @@
         android:orderInCategory="102"
         app:showAsAction="never"
         android:title="@string/menu_impressum"/>
-    <item
+   <!-- <item
         android:id="@+id/menu_version"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="103"
         app:showAsAction="never"
-        android:title="@string/version_check"/>
+        android:title="@string/version_check"/>-->
     <item
         android:id="@+id/action_logout"
         android:icon="@android:drawable/ic_menu_preferences"
