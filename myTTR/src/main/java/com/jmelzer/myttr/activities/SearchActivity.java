@@ -13,11 +13,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Club;
@@ -110,6 +113,11 @@ public class SearchActivity extends BaseActivity {
             }
         }
 
+        EditText searchField = findViewById(R.id.detail_lastname);
+        configureSearchField(searchField);
+        searchField = findViewById(R.id.detail_club);
+        configureSearchField(searchField);
+
         EditText editText = findViewById(R.id.yearfrom);
         if (searchPlayer.getYearFrom() > 0)
             editText.setText(searchPlayer.getYearFrom());
@@ -122,6 +130,19 @@ public class SearchActivity extends BaseActivity {
         editText = findViewById(R.id.ttrto);
         if (searchPlayer.getTtrTo() > 0)
             editText.setText(searchPlayer.getTtrTo());
+    }
+
+    private void configureSearchField(EditText searchField) {
+        searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    search(null);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void search(final View view) {
