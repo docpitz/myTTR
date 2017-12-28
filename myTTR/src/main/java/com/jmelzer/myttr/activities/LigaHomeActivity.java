@@ -411,7 +411,7 @@ public class LigaHomeActivity extends BaseActivity {
     private List<Liga> filterLigenBySelectedKategorie() {
         List<Liga> filteredList = new ArrayList<>();
         for (Liga liga : allLigaList) {
-            if (selectedKategorie == null || liga.getKategorie().equals(selectedKategorie)) {
+            if (selectedKategorie == null || selectedKategorie.equals(liga.getKategorie())) {
                 filteredList.add(liga);
             }
         }
