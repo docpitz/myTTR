@@ -5,6 +5,7 @@ Offen
 - Besser Google Maps Call
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
+- Suchlupe in Tastatur
 
 - Todos entfernen
 - Schriftgröße: Konfiguration

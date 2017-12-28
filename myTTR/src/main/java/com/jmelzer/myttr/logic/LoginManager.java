@@ -24,7 +24,6 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +59,8 @@ public class LoginManager {
         } catch (PlayerNotWellRegistered playerNotWellRegistered) {
             //shall not be possible on relogin
             return false;
+        } catch (LoginException e) {
+            return false;
         }
 
     }
@@ -72,7 +73,7 @@ public class LoginManager {
         Client.getCookieStore().clear();
     }
 
-    public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered {
+    public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered, LoginException {
         long start = System.currentTimeMillis();
         logout();
         HttpPost httpPost = new HttpPost("https://www.mytischtennis.de/community/login");
@@ -106,7 +107,9 @@ public class LoginManager {
             user.setPassword(password);
             user.setUsername(username);
         } catch (Exception e) {
-            return null;
+            Log.e(Constants.LOG_TAG, "getPointsAndRealName", e);
+            throw new LoginException("myTTR konnte deinen Namen nicht feststellen\n" +
+                    "Fehlermeldung: " + e.getMessage());
         }
         for (Cookie cookie : Client.getCookieStore().getCookies()) {
             if (LOGGEDINAS.equals(cookie.getName()) || MYTT_COOKIE2.equals(cookie.getName())) {
@@ -116,8 +119,8 @@ public class LoginManager {
                 return user;
             }
         }
-
-        return null;
+        Log.e(Constants.LOG_TAG, "myTTR konnte den Cookie nicht finden");
+        throw new LoginException("myTTR konnte den Cookie nicht finden");
     }
 
     void p() {
@@ -126,7 +129,7 @@ public class LoginManager {
         }
     }
 
-    public User loadUserIntoMemoryAndStore(User user,
+    public void loadUserIntoMemoryAndStore(User user,
                                            Boolean saveUser, MyTischtennisParser myTischtennisParser) {
 //        String name = myTischtennisParser.getRealName();
         User userDb = getLoginDataBaseAdapter().getSinlgeEntry();
@@ -144,7 +147,6 @@ public class LoginManager {
             getLoginDataBaseAdapter().insertEntry(user.getRealName(), user.getUsername(),
                     user.getPassword(), user.getPoints(), MyApplication.manualClub, ak);
         }
-        return user;
     }
 
     public void storeClub(String name) {

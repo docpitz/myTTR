@@ -11,6 +11,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
+import com.jmelzer.myttr.logic.LoginException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
@@ -60,12 +61,12 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         }
         if (loginSuccess && ttr == 0) {
             Toast.makeText(parent, "Login war erfolgreich konnte aber die Punkte nicht finden.",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         } else if (!loginSuccess && errorMessage != null) {
-            Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(parent, errorMessage, Toast.LENGTH_LONG).show();
         } else if (!loginSuccess) {
             Toast.makeText(parent, "Login war nicht erfolgreich. Hast du einen Premiumaccount?",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         } else {
             MyApplication.getLoginUser().setPoints(ttr);
             if (versionInfo != null)
@@ -127,6 +128,9 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
             playerNotWellRegistered = true;
             store(new User(username, pw), new MyTischtennisParser());
+        } catch (LoginException e) {
+            errorMessage = e.getErrorMessage();
+            loginSuccess = false;
         }
     }
 
