@@ -26,6 +26,8 @@ public final class UrlUtil {
     public static String formatAddressToGoogleMaps(String s) {
         String result = "";
         String tmpStr = s;
+        if (tmpStr == null)
+            tmpStr = "";
         if (tmpStr.contains("Spiellokal")){
             tmpStr = tmpStr.substring(tmpStr.indexOf(":")+1);
         }

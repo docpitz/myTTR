@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static com.jmelzer.myttr.Constants.MYTT;
 import static com.jmelzer.myttr.MyApplication.saison;
@@ -193,6 +194,15 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             Mannschaft gastMannschaft = new Mannschaft(ahref[1]);
             gastMannschaft.setUrl(MYTT + ahref[0]);
             m.setGastMannschaft(gastMannschaft);
+
+            ahref = readHrefAndATag(row[2]);
+            m.setUrlSpielLokal(MYTT + ahref[0]);
+            try {
+                m.setNrSpielLokal(Integer.parseInt(ahref[1]));
+            } catch (NumberFormatException e) {
+                Log.d(Constants.LOG_TAG, "couldn't parse number ahref[1]");
+                m.setNrSpielLokal(-1);
+            }
             v.addSpielPlanSpiel(m);
         }
     }
@@ -501,8 +511,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
     }
 
-    List<String> parseSpielLokale(ParseResult result) {
-        List<String> lokale = new ArrayList<>();
+    Map <Integer, String> parseSpielLokale(ParseResult result) {
+        Map<Integer, String> lokale = new TreeMap<>();
         int idx = 0;
         while (true) {
             ParseResult resultLokal = readBetween(result.result, idx, "<h4>", "</h4>");
@@ -513,9 +523,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (!resultLokal.result.contains("Spiellokal")) {
                 continue;
             }
+            String nrS = resultLokal.result.replaceAll("^.* ", "");
+            int nr = Integer.valueOf(nrS);
             resultLokal = readBetween(result.result, idx, null, "</div>");
             String lokal = cleanupSpielLokalHtml(resultLokal.result);
-            lokale.add(lokal);
+            lokale.put(nr, lokal);
         }
         return lokale;
     }
@@ -717,6 +729,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     void parseBilanzen(String page, Mannschaft mannschaft) {
+        if (page.contains("Die Pokalspiele sind noch nicht fertig"))
+            return;
         ParseResult table = readBetween(page, 0, "gamestatsTable", null);
         mannschaft.clearBilanzen();
         int idx = 0;

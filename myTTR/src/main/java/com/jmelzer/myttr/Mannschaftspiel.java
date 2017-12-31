@@ -15,6 +15,8 @@ public class Mannschaftspiel {
     Mannschaft gastMannschaft;
     String ergebnis;
     String urlDetail;
+    String urlSpielLokal;
+    int nrSpielLokal;
     boolean genehmigt;
     String baelle;
     String saetze;
@@ -30,6 +32,22 @@ public class Mannschaftspiel {
         this.ergebnis = ergebnis;
         this.urlDetail = urlDetail;
         this.genehmigt = genehmigt;
+    }
+
+    public String getUrlSpielLokal() {
+        return urlSpielLokal;
+    }
+
+    public void setUrlSpielLokal(String urlSpielLokal) {
+        this.urlSpielLokal = urlSpielLokal;
+    }
+
+    public int getNrSpielLokal() {
+        return nrSpielLokal;
+    }
+
+    public void setNrSpielLokal(int nrSpielLokal) {
+        this.nrSpielLokal = nrSpielLokal;
     }
 
     public void setErgebnis(String ergebnis) {
@@ -83,7 +101,9 @@ public class Mannschaftspiel {
         this.date = date;
     }
 
-
+    public String getActualSpellokal() {
+        return getHeimMannschaft().getSpielLokal(nrSpielLokal);
+    }
     public Mannschaft getHeimMannschaft() {
         return heimMannschaft;
     }

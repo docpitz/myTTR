@@ -1,12 +1,15 @@
 
 Offen
 ----------
-- Routenplaner aus Spielplan
+
 - Besser Google Maps Call
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
-- Suchlupe in Tastatur
 
+
+- Bug scrollen nicht perfekt
+- Pfeile in Tabelle
+- Bug: Cup Icon Größe
 - Todos entfernen
 - Schriftgröße: Konfiguration
 - Route bei Turnieren
@@ -19,6 +22,7 @@ Offen
 - Optimierung Performance beim Laden
 - Cups für mehrere Jahre
 - Mehr UI Tests
+- Deobfuscation
  Favoriten bei der Suche zu speichern, um z.B. Vereinsranglisten befreundeter Vereine einfacher aufzurufen?
 
 erledigt
@@ -27,7 +31,14 @@ erledigt
 - MV aufnehmen
 - Thüringen fixen (alle Vereine dort neu einlesen)
 - Link Bilanzen auf SPieler TTR
-
+- Suchlupe in Tastatur
+- Bug:
+    0. Crashed: main: 0 0 0x0000000000000000
+           at com.jmelzer.myttr.activities.LigaHomeActivity.r(Unknown Source)
+           at com.jmelzer.myttr.activities.LigaHomeActivity.i(Unknown Source)
+           at com.jmelzer.myttr.activities.LigaHomeActivity$b$1.b(Unknown Source)
+           at com.jmelzer.myttr.activities.d.a(Unknown Source)
+           at com.jmelzer.myttr.activities.d.onPostExecute(Unknown Source)
 
 Neue Funktionen in 4.0
 ----------------------------------------------------
@@ -35,3 +46,8 @@ Neue Funktionen in 4.0
 * Aus den Mannschafts-Bilanzen kann man direkt die Punkte anschauen
 * Klick auf Ligaspieler öffnet die Punkteansicht ohne Suche
 * Fehler bei den Cup Wettbewerben (2018 ging nicht)
+
+Neue Funktionen in 4.0.1
+----------------------------------------------------
+- Suchlupe in Tastatur
+- Routenplaner aus Spielplan

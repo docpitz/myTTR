@@ -37,6 +37,10 @@ import java.util.List;
  */
 public class LigaVereinActivity extends BaseActivity {
 
+    static final int KONTAKT_POS = 0;
+    static final int SPIELLOKALE_POS = 1;
+    static final int SPIELPLAN_POS = 2;
+    static final int MANNSCHAFTEN_POS = 3;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -186,13 +190,14 @@ public class LigaVereinActivity extends BaseActivity {
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             final Child childElem = (Child) getChild(groupPosition, childPosition);
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (groupPosition == 2) {
+            if (groupPosition == SPIELPLAN_POS) {
                 convertView = infalInflater.inflate(R.layout.liga_mannschaft_results_row, null);
                 ((TextView) convertView.findViewById(R.id.date)).setText(childElem.mannschaftspiel.getDate());
                 ((TextView) convertView.findViewById(R.id.heim)).setText(childElem.mannschaftspiel.getHeimMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.gast)).setText(childElem.mannschaftspiel.getGastMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.result)).setText(childElem.mannschaftspiel.getErgebnis());
-            } else if (groupPosition == 1) {
+                convertView.findViewById(R.id.map).setVisibility(View.VISIBLE);
+            } else if (groupPosition == SPIELLOKALE_POS) {
                 final String text = childElem.text;
                 convertView = infalInflater.inflate(R.layout.liga_spiellokal_row, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(text);
@@ -201,15 +206,14 @@ public class LigaVereinActivity extends BaseActivity {
                     convertView.findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(UrlUtil.formatAddressToGoogleMaps(text)));
-                            startActivity(intent);
+                            showMap(text);
                         }
                     });
                 } else {
                     convertView.findViewById(R.id.map).setVisibility(View.INVISIBLE);
                 }
 
-            } else if (groupPosition == 3) {
+            } else if (groupPosition == MANNSCHAFTEN_POS) {
                 final Verein.Mannschaft m = childElem.mannschaft;
                 convertView = infalInflater.inflate(R.layout.liga_verein_mannschaft_row, null);
                 ((TextView) convertView.findViewById(R.id.name)).setText(m.name);
@@ -234,11 +238,27 @@ public class LigaVereinActivity extends BaseActivity {
                 TextView textView = (TextView) convertView.findViewById(R.id.child1);
                 textView.setText(childElem.text);
             }
-            final ImageView arrow = (ImageView) convertView.findViewById(R.id.arrow);
+            final ImageView arrow = convertView.findViewById(R.id.arrow);
+            final ImageView map = convertView.findViewById(R.id.map);
             if (childElem.mannschaftspiel != null) {
                 if (childElem.mannschaftspiel.getUrlDetail() == null) {
                     arrow.setVisibility(View.INVISIBLE);
+                    if (childElem.mannschaftspiel.getNrSpielLokal() > -1) {
+                        map.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (childElem.mannschaftspiel.getHeimMannschaft().getSpielLokale().size() == 0) {
+                                    new ReadInfoAsyncTask(childElem.mannschaftspiel.getHeimMannschaft(),
+                                            childElem.mannschaftspiel.getNrSpielLokal(), LigaVereinActivity.this).execute();
+                                } else
+                                    showMap(childElem.mannschaftspiel.getActualSpellokal());
+                            }
+                        });
+                    } else {
+                        map.setVisibility(View.INVISIBLE);
+                    }
                 } else {
+                    map.setVisibility(View.INVISIBLE);
                     arrow.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -301,6 +321,12 @@ public class LigaVereinActivity extends BaseActivity {
 
         };
         task.execute();
+    }
+
+    public void showMap(String lokal) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse(UrlUtil.formatAddressToGoogleMaps(lokal)));
+        startActivity(intent);
     }
 
     @Override

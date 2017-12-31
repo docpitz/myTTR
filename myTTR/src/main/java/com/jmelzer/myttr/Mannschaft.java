@@ -6,12 +6,15 @@ import com.jmelzer.myttr.util.UrlUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by J. Melzer on 19.02.2015.
  * Mannschaft in Liga.
  */
 public class Mannschaft {
+
 
 
     public static class SpielerBilanz {
@@ -81,6 +84,9 @@ public class Mannschaft {
                     '}';
         }
     }
+    public String getSpielLokal(int nrSpielLokal) {
+        return spielLokale.get(nrSpielLokal);
+    }
 
     public void clearLokale() {
         spielLokale.clear();
@@ -109,7 +115,7 @@ public class Mannschaft {
     String kontaktNr2;
     private String mailTo;
 
-    List<String> spielLokale = new ArrayList<>();
+    Map<Integer, String> spielLokale = new TreeMap<>();
     List<SpielerBilanz> spielerBilanzen = new ArrayList<>();
 
     public Mannschaft(String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
@@ -237,19 +243,24 @@ public class Mannschaft {
         return UrlUtil.getHttpAndDomain(url);
     }
 
+
     public List<String> getSpielLokale() {
-        return Collections.unmodifiableList(spielLokale);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < spielLokale.size(); i++) {
+            list.add(spielLokale.get(i+1));
+        }
+        return Collections.unmodifiableList(list);
     }
 
     public List<SpielerBilanz> getSpielerBilanzen() {
         return Collections.unmodifiableList(spielerBilanzen);
     }
-
-    public void addSpielLokale(List<String> spielLokale) {
-        this.spielLokale.addAll(spielLokale);
+    public void addSpielLokale(Map<Integer, String> integerStringMap) {
+        spielLokale.putAll(integerStringMap);
     }
     public void addSpielLokal(String spielLokal) {
-        spielLokale.add(spielLokal);
+        spielLokale.put(1, spielLokal);
     }
 
     public void addBilanz(SpielerBilanz b) {

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by J. Melzer on 30.05.2015.
@@ -14,7 +16,10 @@ import java.util.List;
 public class Verein implements Favorite {
 
 
+
+
     public static class SpielLokal {
+        public Integer nr;
         public String text;
         public String plz;
         public String city;
@@ -65,8 +70,8 @@ public class Verein implements Favorite {
     private String name;
     private long nr;
     private int gruendungsjahr;
-    private List<SpielLokal> lokale = new ArrayList<>();
-    private List<String> lokaleUnformatted = new ArrayList<>();
+    private Map<Integer, SpielLokal> lokale = new TreeMap<>();
+    private Map<Integer, String> lokaleUnformatted = new TreeMap<>();
     private List<Mannschaftspiel> letzteSpiele = new ArrayList<>();
     private List<Mannschaftspiel> naechsteSpiele = new ArrayList<>();
     private List<Mannschaft> mannschaften = new ArrayList<>();
@@ -95,13 +100,19 @@ public class Verein implements Favorite {
     public String getNameForFav() {
         return name;
     }
-
-    public void addSpielLokale(List<String> strings) {
-        lokaleUnformatted.addAll(strings);
+    public void addSpielLokale(Map<Integer, String> integerStringMap) {
+        lokaleUnformatted.putAll(integerStringMap);
+    }
+    public void addSpielLokal(int nr, String lokal) {
+        lokaleUnformatted.put(nr , lokal);
     }
 
     public List<String> getLokaleUnformatted() {
-        return Collections.unmodifiableList(lokaleUnformatted);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < lokaleUnformatted.size(); i++) {
+            list.add(lokaleUnformatted.get(1));
+        }
+        return Collections.unmodifiableList(list);
     }
 
     public Date getChangedAt() {
@@ -122,7 +133,7 @@ public class Verein implements Favorite {
     }
 
     public void addSpielLokal(SpielLokal lokal) {
-        lokale.add(lokal);
+        lokale.put(lokal.nr , lokal);
     }
 
     public void addMannschaft(Mannschaft m) {
@@ -198,8 +209,15 @@ public class Verein implements Favorite {
         this.gruendungsjahr = gruendungsjahr;
     }
 
+    public SpielLokal getLokal(int nr) {
+        return lokale.get(nr);
+    }
     public List<SpielLokal> getLokale() {
-        return Collections.unmodifiableList(lokale);
+        List<SpielLokal> list = new ArrayList<>();
+        for (int i = 1; i < lokale.size(); i++) {
+            list.add(lokale.get(i));
+        }
+        return Collections.unmodifiableList(list);
     }
 
     public List<Mannschaftspiel> getLetzteSpiele() {

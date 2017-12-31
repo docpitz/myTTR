@@ -123,7 +123,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
 
             for (Mannschaft mannschaft : liga.getMannschaften()) {
                 assertNotNull(mannschaft.toString(), mannschaft.getName());
-                parser.readMannschaftsInfo(SAISON, mannschaft, MyApplication.selectedVerband);
+                parser.readMannschaftsInfo(SAISON, mannschaft);
                 softassertTrue(mannschaft.toString(), mannschaft.getKontakt() != null);
             }
             if (liga.getUrlGesamt() == null) {

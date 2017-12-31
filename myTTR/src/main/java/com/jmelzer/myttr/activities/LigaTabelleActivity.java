@@ -80,7 +80,7 @@ public class LigaTabelleActivity extends BaseActivity {
                 MytClickTTWrapper p = new MytClickTTWrapper();
                 if (MyApplication.selectedMannschaft != null) {
                     //todo check wether this is correct here
-                    p.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft, MyApplication.selectedVerband);
+                    p.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
                 p.readVR(MyApplication.saison, liga, MyApplication.selectedVerband);
                 p.readRR(MyApplication.saison, liga, MyApplication.selectedVerband);

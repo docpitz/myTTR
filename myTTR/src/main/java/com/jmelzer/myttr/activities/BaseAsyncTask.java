@@ -77,6 +77,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
         if (errorMessage != null) {
             Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
         } else if (!dataLoaded()) {
+            Log.d(Constants.LOG_TAG, "couldn't load data in class " + getClass());
             Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
                     Toast.LENGTH_SHORT).show();
         } else {

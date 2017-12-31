@@ -41,7 +41,16 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1.5"
             android:text="9:4"/>
-
+        <ImageView
+            android:id="@+id/map"
+            android:layout_width="0dp"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_weight="1"
+            android:contentDescription="@string/arrow_desc"
+            android:src="@drawable/ic_action_map"
+            />
         <ImageView
             android:id="@+id/arrow"
             android:layout_width="0dp"

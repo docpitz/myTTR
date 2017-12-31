@@ -14,8 +14,6 @@ import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 
-import static com.jmelzer.myttr.Verband.WTTV;
-
 /**
  * Created by cicgfp on 26.11.2017.
  */
@@ -25,7 +23,7 @@ public class MytClickTTWrapper {
     ClickTTParser clickTTParser = new ClickTTParser();
 
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readBezirkeAndLigen(verband, saison);
         } else {
             newParser.readBezirkeAndLigen(verband, saison);
@@ -33,7 +31,7 @@ public class MytClickTTWrapper {
     }
 
     public void readKreiseAndLigen(Saison saison, Bezirk bezirk, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readKreiseAndLigen(bezirk);
         } else {
             newParser.readKreiseAndLigen(bezirk);
@@ -41,20 +39,20 @@ public class MytClickTTWrapper {
     }
 
     public void readLiga(Saison saison, Liga liga, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readLiga(liga);
         } else {
             newParser.readLiga(liga);
         }
     }
 
-    boolean isClickTT(Saison saison, Verband verband) {
+    boolean isClickTT(Saison saison) {
         return !(saison == Saison.SAISON_2018 );
 //        return false;
     }
 
-    public void readMannschaftsInfo(Saison saison, Mannschaft mannschaft, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+    public void readMannschaftsInfo(Saison saison, Mannschaft mannschaft) throws NetworkException {
+        if (isClickTT(saison)) {
             clickTTParser.readMannschaftsInfo(mannschaft);
         } else {
             newParser.readMannschaftsInfo(mannschaft);
@@ -62,7 +60,7 @@ public class MytClickTTWrapper {
     }
 
     public void readVR(Saison saison, Liga liga, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readVR(liga);
         } else {
             newParser.readVR(liga);
@@ -71,7 +69,7 @@ public class MytClickTTWrapper {
 
 
     public void readRR(Saison saison, Liga liga, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readRR(liga);
         } else {
             newParser.readRR(liga);
@@ -79,7 +77,7 @@ public class MytClickTTWrapper {
     }
 
     public void readGesamtSpielplan(Saison saison, Liga liga, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readGesamtSpielplan(liga);
         } else {
             newParser.readGesamtSpielplan(liga);
@@ -87,7 +85,7 @@ public class MytClickTTWrapper {
     }
 
     public void readDetail(Saison saison, Mannschaftspiel spiel, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readDetail(spiel);
         } else {
             newParser.readDetail(spiel);
@@ -95,7 +93,7 @@ public class MytClickTTWrapper {
     }
 
     public void readLigen(Kreis kreis, Saison saison, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             clickTTParser.readLigen(kreis);
         } else {
             newParser.readLigen(kreis);
@@ -103,7 +101,7 @@ public class MytClickTTWrapper {
     }
 
     public Verein readVerein(String url, Saison saison, Verband verband) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             return clickTTParser.readVerein(url);
         } else {
             return newParser.readVerein(url);
@@ -111,7 +109,7 @@ public class MytClickTTWrapper {
     }
 
     public Spieler readSpielerDetail(Saison saison, Verband verband, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             return clickTTParser.readSpielerDetail(name, url);
         } else {
             return newParser.readSpielerDetail(name, myTTPlayerIdsForPlayer);
@@ -119,7 +117,7 @@ public class MytClickTTWrapper {
     }
 
     public Spieler readPopUp(Saison saison, Verband verband, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
-        if (isClickTT(saison, verband)) {
+        if (isClickTT(saison)) {
             return null;
         } else {
             return newParser.readPopUp(name, myTTPlayerIdsForPlayer);
@@ -127,7 +125,7 @@ public class MytClickTTWrapper {
     }
 
     public Verband readTopLigen(Saison saison) throws NetworkException {
-        if (isClickTT(saison, WTTV)) {
+        if (isClickTT(saison)) {
             return clickTTParser.readTopLigen(saison);
         } else {
             return newParser.readTopLigen();

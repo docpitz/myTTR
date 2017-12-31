@@ -67,7 +67,7 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/liga-zurueckgezogen.html");
         Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/gesamt");
         parser.parseLiga(page, liga);
-        assertEquals(12, liga.getMannschaften().size());
+        assertEquals(11, liga.getMannschaften().size());
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             System.out.println("mannschaft = " + mannschaft);
         }
@@ -136,13 +136,13 @@ public class MyTTClickTTParserTest {
         assertEquals(3, mannschaft.getSpielLokale().size());
         assertEquals("Turnhalle GS Rheidt\n" +
                 "Hoher Rain (neben der Kirche)\n" +
-                "53859 Niederkassel-Rheidt", mannschaft.getSpielLokale().get(0));
+                "53859 Niederkassel-Rheidt", mannschaft.getSpielLokale().get(2));
         assertEquals("Turnhalle der Grundschule\n" +
                 "Martin-Buber-Straße\n" +
                 "53859 Niederkassel", mannschaft.getSpielLokale().get(1));
         assertEquals("Sporthalle Nord am Kopernikus-Gymnasium Niederkassel\n" +
                 "Premnitzerstr. Ecke Kopernikusstr.\n" +
-                "53859 Niederkassel-Lülsdorf", mannschaft.getSpielLokale().get(2));
+                "53859 Niederkassel-Lülsdorf", mannschaft.getSpielLokale().get(0));
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel/info",
                 mannschaft.getVereinUrl());
     }
@@ -187,6 +187,9 @@ public class MyTTClickTTParserTest {
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1955407/ASV-St-Augustin/spielerbilanzen/vr", v.getSpielplan().get(0).getHeimMannschaft().getUrl());
         assertEquals("TTG Niederkassel III", v.getSpielplan().get(0).getGastMannschaft().getName());
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1952144/TTG-Niederkassel-III/spielerbilanzen/vr", v.getSpielplan().get(0).getGastMannschaft().getUrl());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156019/ASV-St-Augustin/info",
+                v.getSpielplan().get(0).getUrlSpielLokal());
+        assertEquals("1",  v.getSpielplan().get(0).getNrSpielLokal());
 
         assertEquals("Fr. 13.04.2018 20:00", v.getSpielplan().get(99).getDate());
 
