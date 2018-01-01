@@ -4,7 +4,13 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
 import java.lang.reflect.Method;
@@ -14,6 +20,7 @@ import java.lang.reflect.Method;
  */
 public class EventsActivity extends BaseActivity {
     EventsTabsPagerAdapter eventsTabsPagerAdapter;
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -26,19 +33,19 @@ public class EventsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liga_mannschaft_detail);
 
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
+
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
         eventsTabsPagerAdapter =
                 new EventsTabsPagerAdapter(
                         getSupportFragmentManager(), this);
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(eventsTabsPagerAdapter);
 
         forceTabs();
         final ActionBar actionBar = getActionBar();
-        /**
-         * on swiping the viewpager make respective tab selected
-         * */
+        //  on swiping the viewpager make respective tab selected
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -90,5 +97,16 @@ public class EventsActivity extends BaseActivity {
             // Handle issues as needed: log, warn user, fallback etc
             // This error is safe to ignore, standard tabs will appear.
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.searchresult_actions, menu);
+        return true;
+    }
+
+    public void favorite(MenuItem item) {
+        favoriteManager.favorite(MyApplication.selectedPlayer);
     }
 }

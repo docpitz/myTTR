@@ -17,20 +17,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.SyncManager;
+import com.jmelzer.myttr.model.Favorite;
+
+import java.util.List;
 
 public class HomeActivity extends BaseActivity {
+
+    public static final String BEARBEITEN = "Bearbeiten...";
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -46,6 +52,8 @@ public class HomeActivity extends BaseActivity {
         }
 
         setContentView(R.layout.home);
+
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
 
         if (!isMyServiceRunning(SyncManager.class)) {
             Log.d(Constants.LOG_TAG, "SyncManager will be started");
@@ -84,7 +92,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void statistik(View view) {
-        MyApplication.selectedPlayer = null;
+        MyApplication.selectedPlayerName = null;
         AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
         task.execute();
     }
@@ -184,12 +192,40 @@ public class HomeActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        modifyMenu(menu);
+        return true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        invalidateOptionsMenu();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.home_actions, menu);
-        menu.getItem(0).setVisible(MyApplication.simPlayer != null);
+        modifyMenu(menu);
         return true;
     }
+
+    private void modifyMenu(Menu menu) {
+        menu.getItem(1).setVisible(MyApplication.simPlayer != null);
+
+        SubMenu subm = menu.getItem(0).getSubMenu(); // get my MenuItem with placeholder submenu
+        subm.clear(); // delete place holder
+        List<Favorite> list = favoriteManager.getFavorites();
+        int id = 100;
+        for (Favorite favorite : list) {
+            subm.add(0, id++, Menu.NONE, favorite.typeForMenu() + ": " + favorite.getName());
+        }
+        if (list.size() > 0) {
+            subm.add(0, id, Menu.NONE, BEARBEITEN);
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -238,6 +274,16 @@ public class HomeActivity extends BaseActivity {
 //                break;
 //            }
         }
+        if (item.getItemId() > 99)
+            favoriteManager.startFavorite(item.getItemId() - 100);
+        if (item.getTitle().equals(BEARBEITEN)) {
+            favoriteEdit();
+        }
         return false;
+    }
+
+    private void favoriteEdit() {
+        Intent target = new Intent(this, EditFavoritesActivity.class);
+        startActivity(target);
     }
 }

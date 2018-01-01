@@ -48,7 +48,8 @@ public class MyApplication extends Application {
     public static List<Player> myTeamPlayers;
     public static List<Player> searchResult;
     public static EventDetail currentDetail;
-    public static String selectedPlayer;
+    public static String selectedPlayerName;
+    public static Player selectedPlayer;
     public static Player simPlayer;
     public static String manualClub;
 
@@ -208,8 +209,8 @@ public class MyApplication extends Application {
     }
 
     public static String getStatistikTextForPlayer() {
-        if (MyApplication.selectedPlayer != null) {
-            return selectedPlayer;
+        if (MyApplication.selectedPlayerName != null) {
+            return selectedPlayerName;
         } else {
             return MyApplication.getLoginUser().getInfo();
         }

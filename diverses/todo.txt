@@ -5,8 +5,6 @@ Offen
 - Besser Google Maps Call
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
-
-
 - Bug scrollen nicht perfekt
 - Pfeile in Tabelle
 - Bug: Cup Icon Größe
@@ -51,3 +49,4 @@ Neue Funktionen in 4.0.1
 ----------------------------------------------------
 - Suchlupe in Tastatur
 - Routenplaner aus Spielplan
+- Fehlende Vereine im PTTV und HaTTV fefixed

@@ -14,7 +14,7 @@
         android:id="@+id/action_info"
         android:text="@string/action_favorite"
         android:onClick="favorite"
-        app:showAsAction="always"
+        android:showAsAction="always"
         android:icon="@drawable/ic_action_favorite"
         android:title="@string/action_favorite"/>
 </menu>

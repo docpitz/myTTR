@@ -51,7 +51,7 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        TextView textView = (TextView) rootView.findViewById(R.id.selected_player);
+        TextView textView = rootView.findViewById(R.id.selected_player);
         textView.setText(getActivity().getString(R.string.statistic_text) + MyApplication.getStatistikTextForPlayer());
 
         return rootView;
@@ -82,26 +82,26 @@ public class EventsFragment extends Fragment {
             if (convertView == null) {
                 convertView = layoutInflater.inflate(R.layout.eventrow_linear, null);
                 holder = new ViewHolder();
-                holder.textDate = (TextView) convertView.findViewById(R.id.date);
-                holder.textEvent = (TextView) convertView.findViewById(R.id.event);
-                holder.textSp = (TextView) convertView.findViewById(R.id.sp);
-                holder.textAk = (TextView) convertView.findViewById(R.id.ak);
-                holder.textTtr = (TextView) convertView.findViewById(R.id.ttr);
-                holder.textDiff = (TextView) convertView.findViewById(R.id.diff);
+                holder.textDate = convertView.findViewById(R.id.date);
+                holder.textEvent = convertView.findViewById(R.id.event);
+                holder.textSp = convertView.findViewById(R.id.sp);
+                holder.textAk = convertView.findViewById(R.id.ak);
+                holder.textTtr = convertView.findViewById(R.id.ttr);
+                holder.textDiff = convertView.findViewById(R.id.diff);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             Event event = getItem(position);
-
-            holder.textDate.setText(event.getDate());
-            holder.textEvent.setText(event.getEvent());
-            holder.textSp.setText(event.getBilanz());
-            holder.textAk.setText(event.getAk());
-            holder.textTtr.setText(event.getTtrAsString());
-            holder.textDiff.setText("" + event.getSum());
-
+            if (event != null) {
+                holder.textDate.setText(event.getDate());
+                holder.textEvent.setText(event.getEvent());
+                holder.textSp.setText(event.getBilanz());
+                holder.textAk.setText(event.getAk());
+                holder.textTtr.setText(event.getTtrAsString());
+                holder.textDiff.setText("" + event.getSum());
+            }
             return convertView;
         }
     }

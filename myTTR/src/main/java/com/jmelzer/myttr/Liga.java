@@ -72,7 +72,9 @@ public class Liga implements Favorite {
     }
 
     public String getNameForFav() {
-        return name + " - " + getKategorie();
+        if (getKategorie() != null)
+            return name + " - " + getKategorie();
+        return name;
     }
 
     public void setName(String name) {
@@ -81,6 +83,11 @@ public class Liga implements Favorite {
 
     public String getUrl() {
         return url;
+    }
+
+    @Override
+    public String typeForMenu() {
+        return "Liga";
     }
 
     public void setUrl(String url) {

@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class EditFavoritesActivity extends BaseActivity {
     FavAdapter adapter;
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -38,6 +39,7 @@ public class EditFavoritesActivity extends BaseActivity {
         }
 
         setContentView(R.layout.edit_favorite_liga);
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
 
         final ListView listview = (ListView) findViewById(R.id.listFavs);
         adapter = new FavAdapter(this,
@@ -47,9 +49,7 @@ public class EditFavoritesActivity extends BaseActivity {
     }
 
     private List<Favorite> load() {
-        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
-        adapter.open();
-        return adapter.getAllEntries();
+        return favoriteManager.getFavorites();
     }
 
     class FavAdapter extends ArrayAdapter<Favorite> {
@@ -66,7 +66,7 @@ public class EditFavoritesActivity extends BaseActivity {
             View rowView = inflater.inflate(R.layout.favorite_row, parent, false);
             final Favorite favorite = getItem(position);
             TextView textView = (TextView) rowView.findViewById(R.id.name);
-            textView.setText(favorite.getName());
+            textView.setText(favorite.typeForMenu() + ": " + favorite.getName());
 
             final ImageView imageView = (ImageView) rowView.findViewById(R.id.imageButton);
             imageView.setOnClickListener(new View.OnClickListener() {

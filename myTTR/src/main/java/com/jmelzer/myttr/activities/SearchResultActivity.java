@@ -15,12 +15,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.model.Favorite;
+import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.model.SearchPlayer;
+import com.jmelzer.myttr.model.Verein;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -31,6 +35,7 @@ import java.util.List;
 public class SearchResultActivity extends BaseActivity {
     Class goBackToClass;
     private SearchPlayer searchPlayer;
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -46,6 +51,7 @@ public class SearchResultActivity extends BaseActivity {
         }
 
         setContentView(R.layout.search_result);
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
 
         final ListView listview = (ListView) findViewById(R.id.playerlistview);
         final SearchResultAdapter adapter = new SearchResultAdapter(this,
@@ -119,27 +125,28 @@ public class SearchResultActivity extends BaseActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.search_result_row, parent, false);
             Player player = getItem(position);
-
-
-            TextView textView = (TextView) rowView.findViewById(R.id.firstname);
-            textView.setText(player.getFirstname());
-            textView = (TextView) rowView.findViewById(R.id.lastname);
-            textView.setText(player.getLastname());
-            textView = (TextView) rowView.findViewById(R.id.club);
-            textView.setText(player.getClub());
-            textView = (TextView) rowView.findViewById(R.id.ttr);
-            textView.setText("" + player.getTtrPoints());
+            if (player != null) {
+                TextView textView = rowView.findViewById(R.id.firstname);
+                textView.setText(player.getFirstname());
+                textView = rowView.findViewById(R.id.lastname);
+                textView.setText(player.getLastname());
+                textView = rowView.findViewById(R.id.club);
+                textView.setText(player.getClub());
+                textView = rowView.findViewById(R.id.ttr);
+                textView.setText("" + player.getTtrPoints());
+            }
             return rowView;
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.search_actions, menu);
-//
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.searchresult_actions, menu);
         return true;
     }
 
-
+    public void favorite(MenuItem item) {
+        favoriteManager.favorite(searchPlayer);
+    }
 }

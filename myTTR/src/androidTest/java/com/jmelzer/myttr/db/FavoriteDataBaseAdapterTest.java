@@ -19,7 +19,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.model.Favorite;
+import com.jmelzer.myttr.model.SearchPlayer;
 import com.jmelzer.myttr.model.Verein;
 
 import junit.framework.TestCase;
@@ -55,11 +57,16 @@ public class FavoriteDataBaseAdapterTest extends ApplicationTestCase<MyApplicati
         assertEquals("http://bla.de", list.get(0).getUrl());
 
         assertTrue(adapter.insertEntry("verein2", "http://liga2.de", Verein.class.getName()) != -1);
+        assertTrue(adapter.insertEntry("vor-nach", "json", SearchPlayer.class.getName()) != -1);
+        assertTrue(adapter.insertEntry("Christian Hinrichs", "json", Player.class.getName()) != -1);
         list = adapter.getAllEntries();
-        assertEquals(2, list.size());
+        assertEquals(4, list.size());
 
         assertFalse(adapter.existsEntry("noone"));
         assertTrue(adapter.existsEntry("verein2"));
+        assertTrue(adapter.existsEntry("vor-nach"));
+        assertEquals(list.get(2).getClass().getName(),SearchPlayer.class.getName() );
+        assertEquals(list.get(3).getClass().getName(),Player.class.getName() );
 
         adapter.deleteAllEntries();
         list = adapter.getAllEntries();

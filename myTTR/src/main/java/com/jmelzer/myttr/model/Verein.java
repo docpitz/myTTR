@@ -97,6 +97,11 @@ public class Verein implements Favorite {
         return url;
     }
 
+    @Override
+    public String typeForMenu() {
+        return "Verein";
+    }
+
     public String getNameForFav() {
         return name;
     }

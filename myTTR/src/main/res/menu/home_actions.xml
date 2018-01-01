@@ -6,10 +6,22 @@
   ~ 2014 - 2015.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!-- Help -->
-
+    <item
+        android:id="@+id/action_fav"
+        android:icon="@drawable/ic_action_favorite"
+        android:showAsAction="always"
+        android:text="@string/action_edit_favorites"
+        android:title="@string/action_edit_favorites"
+        tools:ignore="AppCompatResource">
+        <menu>
+            <item
+                android:id="@+id/item1"
+                android:title="Placeholder"></item>
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_remove_sim"

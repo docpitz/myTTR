@@ -337,15 +337,6 @@ public class LigaVereinActivity extends BaseActivity {
     }
 
     public void favorite(MenuItem item) {
-        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
-        adapter.open();
-        if (adapter.existsEntry(MyApplication.selectedVerein.getNameForFav())) {
-            Toast.makeText(this, getString(R.string.favorite_exists), Toast.LENGTH_LONG).show();
-        } else {
-            adapter.insertEntry(MyApplication.selectedVerein.getNameForFav(),
-                    MyApplication.selectedVerein.getUrl(),
-                    Verein.class.getName());
-            Toast.makeText(this, getString(R.string.favorite_club_added), Toast.LENGTH_LONG).show();
-        }
+        new FavoriteManager(this, getApplicationContext()).favorite(MyApplication.selectedVerein);
     }
 }

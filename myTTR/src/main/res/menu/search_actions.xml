@@ -10,13 +10,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_action_filter"
+        android:id="@+id/action_fav"
+        android:icon="@drawable/ic_action_favorite"
         android:showAsAction="always"
-        android:onClick="filter"
-        android:text="@string/action_filter"
-        android:title="@string/action_filter"
-        tools:ignore="AppCompatResource">
-
+        android:text="@string/action_edit_favorites"
+        android:title="@string/action_edit_favorites">
+        <menu>
+            <item
+                android:id="@+id/item1"
+                android:title="Placeholder"></item>
+        </menu>
     </item>
 </menu>

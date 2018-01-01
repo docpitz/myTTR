@@ -31,6 +31,7 @@ import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
+import com.jmelzer.myttr.model.SearchPlayer;
 import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class LigaHomeActivity extends BaseActivity {
     private Kreis selectedKreis;
     private List<Liga> allLigaList;
     MytClickTTWrapper clickTTWrapper = new MytClickTTWrapper();
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -64,7 +66,7 @@ public class LigaHomeActivity extends BaseActivity {
         if (toLoginIfNeccassry()) {
             return;
         }
-
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
         setContentView(R.layout.liga_home);
 
         Spinner spinnerSaison = (Spinner) findViewById(R.id.spinner_saison);
@@ -543,60 +545,22 @@ public class LigaHomeActivity extends BaseActivity {
         //see http://stackoverflow.com/questions/7042958/android-adding-a-submenu-to-a-menuitem-where-is-addsubmenu
         SubMenu subm = menu.getItem(0).getSubMenu(); // get my MenuItem with placeholder submenu
         subm.clear(); // delete place holder
-        List<Favorite> list = getFavorites();
+        List<Favorite> list = favoriteManager.getFavorites(Verein.class, Liga.class);
         int id = 0;
         for (Favorite favorite : list) {
             subm.add(0, id++, Menu.NONE, favorite.getName());
         }
-        if (list.size() > 0) {
-            subm.add(0, id, Menu.NONE, BEARBEITEN);
-        }
         return true;
     }
 
-    List<Favorite> getFavorites() {
-        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
-        adapter.open();
-        List<Favorite> list = new ArrayList<>();
-        list.addAll(adapter.getAllEntries());
-
-        return list;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        List<Favorite> list = getFavorites();
-        if (item.getItemId() < list.size()) {
-            setFavorite(list.get(item.getItemId()));
-            callFavorite(list.get(item.getItemId()));
-        } else if (item.getTitle().equals(BEARBEITEN)) {
-            favoriteEdit();
-        }
+        favoriteManager.startFavorite(item.getItemId(), Verein.class, Liga.class);
         return super.onOptionsItemSelected(item);
+
     }
 
-    private void callFavorite(Favorite favorite) {
-
-        if (favorite instanceof Liga) {
-            tabelle();
-        } else if (favorite instanceof Verein){
-            verein((Verein) favorite);
-        }
-    }
-
-    private void setFavorite(Favorite favorite) {
-        Log.d(Constants.LOG_TAG, "setting fav to " + favorite.getClass().getName());
-        if (favorite instanceof Liga) {
-            MyApplication.setSelectedLiga((Liga) favorite);
-        } else if (favorite instanceof Verein){
-            MyApplication.selectedVerein = (Verein) favorite;
-        }
-    }
-
-    private void favoriteEdit() {
-        Intent target = new Intent(this, EditFavoritesActivity.class);
-        startActivity(target);
-    }
 
     @Override
     protected void onResume() {

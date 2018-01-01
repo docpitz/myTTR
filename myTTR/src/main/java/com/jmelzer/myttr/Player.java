@@ -7,12 +7,18 @@
 
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.Favorite;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
-public class Player implements Comparable<Player>, Serializable {
+public class Player implements Comparable<Player>, Serializable, Favorite {
     private static final long serialVersionUID = 7149709110710420075L;
 
     String firstname;
@@ -28,6 +34,9 @@ public class Player implements Comparable<Player>, Serializable {
     int rank = 0;
 
     List<Event> events = new ArrayList<>(0);
+    private String favName;
+    private Date changedAt;
+    private String json;
 
     public Player() {
     }
@@ -211,4 +220,52 @@ public class Player implements Comparable<Player>, Serializable {
     public void addEvents(List<Event> events) {
         this.events.addAll(events);
     }
+
+    @Override
+    public String getName() {
+        return favName;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.favName = name;
+    }
+
+    @Override
+    public void setUrl(String url) {
+        json = url;
+    }
+
+    @Override
+    public void setChangedAt(Date d) {
+        changedAt = d;
+    }
+
+    @Override
+    public String getUrl() {
+        return json;
+    }
+
+    @Override
+    public String typeForMenu() {
+        return "Spieler";
+    }
+
+    public String convertToJson() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("firstname", firstname);
+        jsonObject.put("lastname", lastname);
+        jsonObject.put("personId", personId);
+        return jsonObject.toString();
+    }
+
+    public static Player convertFromJson(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        Player player = new Player();
+        player.setFirstname(jsonObject.getString("firstname"));
+        player.setLastname(jsonObject.getString("lastname"));
+        player.setPersonId(jsonObject.getInt("personId"));
+        return player;
+    }
+
 }

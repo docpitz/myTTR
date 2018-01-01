@@ -41,6 +41,7 @@ public class EventsAsyncTask extends BaseAsyncTask {
     public EventsAsyncTask(Activity parent, Class targetClz, Player p) {
         super(parent, targetClz);
         this.player = p;
+        MyApplication.selectedPlayer = p;
     }
 
     @Override
@@ -48,7 +49,8 @@ public class EventsAsyncTask extends BaseAsyncTask {
         if (game != null) {
             Player p = parser.readEventsForForeignPlayer(game.getPlayerId());
             MyApplication.setEvents(p.getEvents());
-            MyApplication.selectedPlayer = p.getFullName();
+            MyApplication.selectedPlayerName = p.getFullName();
+            MyApplication.selectedPlayer = p;
 
         } else if (player != null) {
             boolean isOwnPlayer = false;
@@ -67,7 +69,7 @@ public class EventsAsyncTask extends BaseAsyncTask {
                 p = parser.readEvents();
 
             MyApplication.setEvents(p.getEvents());
-            MyApplication.selectedPlayer = p.getFullName();
+            MyApplication.selectedPlayerName = p.getFullName();
 
         } else {
             MyApplication.setEvents(parser.readEvents().getEvents());

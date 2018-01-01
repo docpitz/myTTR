@@ -15,4 +15,6 @@ public interface Favorite {
     void setChangedAt(Date d);
 
     String getUrl();
+
+    String typeForMenu();
 }

@@ -12,8 +12,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -21,7 +26,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
@@ -33,6 +37,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
+import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.util.List;
@@ -47,6 +52,7 @@ public class SearchActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
     SearchPlayer searchPlayer = new SearchPlayer();
+    FavoriteManager favoriteManager;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -60,6 +66,7 @@ public class SearchActivity extends BaseActivity {
             return;
         }
 
+        favoriteManager = new FavoriteManager(this, getApplicationContext());
         setContentView(R.layout.search);
         Intent i = getIntent();
 
@@ -69,6 +76,9 @@ public class SearchActivity extends BaseActivity {
         if (i != null && i.getExtras() != null && i.getExtras().getSerializable(BACK_TO) != null) {
             goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
         }
+        if (i != null && i.getExtras() != null && i.getExtras().getSerializable(INTENT_SP) != null) {
+            searchPlayer = (SearchPlayer) i.getExtras().getSerializable(INTENT_SP);
+        }
 //        clubEdit.setText("TTG St. Augustin");
 
         Spinner dropdown = findViewById(R.id.spinner);
@@ -76,7 +86,53 @@ public class SearchActivity extends BaseActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(R.layout.liga_home_spinner_item);
         dropdown.setAdapter(adapter);
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdown.setOnItemSelectedListener(genderListener());
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (i != null && i.getExtras() != null && i.getExtras().getBoolean(INTENT_LIGA_PLAYER, false)) {
+            EditText firstNameText = findViewById(R.id.detail_firstname);
+            EditText lastNameText = findViewById(R.id.detail_lastname);
+            String n = MyApplication.selectedLigaSpieler.getName();
+            int idx = n.indexOf(',');
+            if (idx > -1) {
+                firstNameText.setText(n.substring(idx + 1).trim());
+                lastNameText.setText(n.substring(0, idx).trim());
+                clubEdit.setText(MyApplication.selectedLigaSpieler.getClubName());
+                search(null);
+            }
+        }
+
+        EditText searchField = findViewById(R.id.detail_lastname);
+        configureSearchField(searchField);
+        EditText clubField = findViewById(R.id.detail_club);
+        configureSearchField(clubField);
+
+        prefillFields(clubField);
+    }
+
+    private void prefillFields(EditText clubField) {
+        EditText editText = findViewById(R.id.yearfrom);
+        if (searchPlayer.getYearFrom() > 0)
+            editText.setText(searchPlayer.getYearFrom());
+        editText = findViewById(R.id.yearto);
+        if (searchPlayer.getYearTo() > 0)
+            editText.setText(searchPlayer.getYearTo());
+
+        editText = findViewById(R.id.ttrfrom);
+        if (searchPlayer.getTtrFrom() > 0)
+            editText.setText("" + searchPlayer.getTtrFrom());
+        editText = findViewById(R.id.ttrto);
+        if (searchPlayer.getTtrTo() > 0)
+            editText.setText("" + searchPlayer.getTtrTo());
+        if (searchPlayer.getClub() != null) {
+            clubField.setText(searchPlayer.getClubName());
+        }
+    }
+
+    @NonNull
+    private AdapterView.OnItemSelectedListener genderListener() {
+        return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
@@ -96,40 +152,7 @@ public class SearchActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 searchPlayer.setGender(null);
             }
-        });
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        if (i != null && i.getExtras() != null && i.getExtras().getBoolean(INTENT_LIGA_PLAYER, false)) {
-            EditText firstNameText =  findViewById(R.id.detail_firstname);
-            EditText lastNameText = findViewById(R.id.detail_lastname);
-            String n = MyApplication.selectedLigaSpieler.getName();
-            int idx = n.indexOf(',');
-            if (idx > -1) {
-                firstNameText.setText(n.substring(idx+1).trim());
-                lastNameText.setText(n.substring(0, idx).trim());
-                clubEdit.setText(MyApplication.selectedLigaSpieler.getClubName());
-                search(null);
-            }
-        }
-
-        EditText searchField = findViewById(R.id.detail_lastname);
-        configureSearchField(searchField);
-        searchField = findViewById(R.id.detail_club);
-        configureSearchField(searchField);
-
-        EditText editText = findViewById(R.id.yearfrom);
-        if (searchPlayer.getYearFrom() > 0)
-            editText.setText(searchPlayer.getYearFrom());
-        editText = findViewById(R.id.yearto);
-        if (searchPlayer.getYearTo() > 0)
-            editText.setText(searchPlayer.getYearTo());
-        editText = findViewById(R.id.ttrfrom);
-        if (searchPlayer.getTtrFrom() > 0)
-            editText.setText(searchPlayer.getTtrFrom());
-        editText = findViewById(R.id.ttrto);
-        if (searchPlayer.getTtrTo() > 0)
-            editText.setText(searchPlayer.getTtrTo());
+        };
     }
 
     private void configureSearchField(EditText searchField) {
@@ -300,5 +323,26 @@ public class SearchActivity extends BaseActivity {
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setSelection(0);
         searchPlayer = new SearchPlayer();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_actions, menu);
+        SubMenu subm = menu.getItem(0).getSubMenu(); // get my MenuItem with placeholder submenu
+        subm.clear(); // delete place holder
+        List<Favorite> list = favoriteManager.getFavorites(SearchPlayer.class);
+        int id = 0;
+        for (Favorite favorite : list) {
+            subm.add(0, id++, Menu.NONE, favorite.getName());
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        favoriteManager.startFavorite(item.getItemId(), SearchPlayer.class);
+        return super.onOptionsItemSelected(item);
     }
 }

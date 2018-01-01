@@ -7,16 +7,19 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="9"
+        android:gravity="start"
         android:textSize="18sp"
         tools:text="Bezirksklasse 5"
         />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="30dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal|top"
         android:contentDescription="@string/image_remove"
         android:src="@drawable/ic_action_remove"/>

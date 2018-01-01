@@ -104,14 +104,7 @@ public class LigaTabelleActivity extends BaseActivity {
     }
 
     public void favorite(MenuItem item) {
-        FavoriteDataBaseAdapter adapter = new FavoriteDataBaseAdapter(getApplicationContext());
-        adapter.open();
-        if (adapter.existsEntry(liga.getNameForFav())) {
-            Toast.makeText(this, getString(R.string.favorite_exists), Toast.LENGTH_LONG).show();
-        } else {
-            adapter.insertEntry(liga.getNameForFav(), liga.getUrl(), Liga.class.getName());
-            Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_LONG).show();
-        }
+        new FavoriteManager(this, getApplicationContext()).favorite(liga);
     }
 
     private static class ViewHolder {

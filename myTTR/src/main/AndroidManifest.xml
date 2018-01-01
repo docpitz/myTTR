@@ -456,11 +456,11 @@
         <service android:name=".logic.SyncManager" android:label="myTTR Background Sync"
                  android:icon="@drawable/ic_action_actionbar">
         </service>
-        <receiver android:name=".BootUpReceiver" android:enabled="true" android:exported="false">
+        <!--<receiver android:name=".BootUpReceiver" android:enabled="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
-        </receiver>
+        </receiver>-->
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="6aa5f86cc4f52cbc38718f83c8acfeaa83f10c57" />
