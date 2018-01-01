@@ -50,3 +50,4 @@ Neue Funktionen in 4.0.1
 - Suchlupe in Tastatur
 - Routenplaner aus Spielplan
 - Fehlende Vereine im PTTV und HaTTV fefixed
+- Favoriten nun auch für Spieler und Suchen
