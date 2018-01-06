@@ -34,14 +34,16 @@ android {
     defaultConfig {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 86
-        versionName "4.0.1"
+        targetSdkVersion 27
+        versionCode 87
+        versionName "4.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
         }
         debug {
 //            testCoverageEnabled = true

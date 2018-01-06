@@ -1,7 +1,7 @@
 
 Offen
 ----------
-
+-  oreo 8.1
 - Besser Google Maps Call
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
@@ -45,9 +45,9 @@ Neue Funktionen in 4.0
 * Klick auf Ligaspieler öffnet die Punkteansicht ohne Suche
 * Fehler bei den Cup Wettbewerben (2018 ging nicht)
 
-Neue Funktionen in 4.0.1
+Neue Funktionen in 4.0.1.1
 ----------------------------------------------------
+- Favoriten nun auch für Spieler und Suchen
 - Suchlupe in Tastatur
 - Routenplaner aus Spielplan
-- Fehlende Vereine im PTTV und HaTTV fefixed
-- Favoriten nun auch für Spieler und Suchen
+- Fehlende Vereine im PTTV und HaTTV gefixed

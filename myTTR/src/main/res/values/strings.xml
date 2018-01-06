@@ -111,6 +111,7 @@
     <string name="favorite_search_added">Die Suche wurde zu deinen Favoriten hinzugefügt. Du kannst sie auf der Startseite bearbeiten</string>
     <string name="favorite_player_added">Der Spieler wurde zu deinen Favoriten hinzugefügt. Du kannst sie auf der Startseite bearbeiten</string>
     <string name="favorite_exists">Die Eintrag existiert bereits in deinen Favoriten</string>
+    <string name="favorite_error_name">Der Spieler hat keinen Namen</string>
     <string name="player_removed_from_list">Der Spieler wurde entfernt</string>
     <string name="info">Info</string>
     <string name="liga">Liga</string>
