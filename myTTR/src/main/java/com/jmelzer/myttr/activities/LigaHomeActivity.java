@@ -133,7 +133,10 @@ public class LigaHomeActivity extends BaseActivity {
         Set<String> set = new TreeSet<String>();
 
         for (Liga liga : allLigaList) {
-            set.add(liga.getKategorie());
+            if (liga.getKategorie() != null)
+                set.add(liga.getKategorie());
+            else
+                Log.e(Constants.LOG_TAG, "error in kategorie " + liga);
         }
         list.addAll(set);
         list.remove("Herren");
@@ -179,6 +182,7 @@ public class LigaHomeActivity extends BaseActivity {
         };
         task.execute();
     }
+
     public List<Bezirk> getBezirkList() {
         List<Bezirk> listC = new ArrayList<>();
         if (MyApplication.selectedVerband != null) {
