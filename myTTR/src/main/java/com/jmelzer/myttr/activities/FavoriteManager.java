@@ -191,6 +191,10 @@ public class FavoriteManager {
     }
 
     public void favorite(Player player) {
+        if (player.getFullName() == null) {
+            Toast.makeText(parent, parent.getString(R.string.favorite_error_name), Toast.LENGTH_LONG).show();
+            return;
+        }
         FavoriteDataBaseAdapter adapter = getDB();
 
         if (adapter.existsEntry(player.getFullName())) {
