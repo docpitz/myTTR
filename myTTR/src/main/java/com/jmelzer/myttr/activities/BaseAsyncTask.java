@@ -58,7 +58,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
         } catch (Exception e) {
 //            catch all others
             Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl, e);
-            errorMessage = "Fehler beim Lesen der Webseite " + Client.lastUrl;
+            errorMessage = "Fehler beim Lesen der Webseite \n" + Client.lastUrl;
         }
         return null;
     }
@@ -75,11 +75,13 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             //see myttr-62
         }
         if (errorMessage != null) {
-            Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
+            new ErrorDialog(parent, errorMessage, Client.lastUrl).show();
+//            Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
         } else if (!dataLoaded()) {
             Log.d(Constants.LOG_TAG, "couldn't load data in class " + getClass());
-            Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
-                    Toast.LENGTH_SHORT).show();
+            new ErrorDialog(parent, "Konnte die Daten nicht laden (Grund unbekannt)", Client.lastUrl).show();
+//            Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
+//                    Toast.LENGTH_SHORT).show();
         } else {
             startNextActivity();
         }

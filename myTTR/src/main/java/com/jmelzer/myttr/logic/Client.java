@@ -79,6 +79,7 @@ public class Client {
             if (response.getStatusLine().getStatusCode() == 500) {
                 throw new NetworkException("die Webseite meldet zur Zeit einen Fehler zurück :-(");
             }
+
             return s;
         } catch (Exception e) {
             Log.e(Constants.LOG_TAG, "", e);
