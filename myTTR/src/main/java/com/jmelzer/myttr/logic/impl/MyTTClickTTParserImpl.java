@@ -49,14 +49,17 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         List<Bezirk> list = parseLinksBezirke(page);
         verband.setBezirkList(list, saison);
 
+        List<Liga> ligen = parseLigaLinks(page);
+        verband.addAllLigen(ligen, saison);
+
         //read link to ligen and load it
         ParseResult result = readBetween(page, 0, "<div class=\"row m-l text-center\">",
                 "</div>");
-        if (!isEmpty(result)) {
+        if (ligen.isEmpty() && !isEmpty(result)) {
             String urlLiga = readHrefAndATag(result.result)[0];
             page = Client.getPage(getHttpAndDomain(url) + urlLiga);
 
-            List<Liga> ligen = parseLigaLinks(page);
+            ligen = parseLigaLinks(page);
             verband.addAllLigen(ligen, saison);
         }
 
