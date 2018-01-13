@@ -29,6 +29,7 @@ import java.util.TreeMap;
 
 import static com.jmelzer.myttr.Constants.MYTT;
 import static com.jmelzer.myttr.MyApplication.saison;
+import static com.jmelzer.myttr.Verband.dttb;
 import static com.jmelzer.myttr.util.UrlUtil.getHttpAndDomain;
 import static com.jmelzer.myttr.util.UrlUtil.safeUrl;
 
@@ -229,10 +230,12 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     @Override
     public Verband readTopLigen() throws NetworkException {
-        String page = Client.getPage(Verband.dttb.getMyTTClickTTUrl());
-        List<Liga> ligen = parseLigaLinks(page);
-        Verband.dttb.addAllLigen(ligen, saison);
-        return Verband.dttb;
+        if (dttb.getLigaList().size()== 0) {
+            String page = Client.getPage(dttb.getMyTTClickTTUrl());
+            List<Liga> ligen = parseLigaLinks(page);
+            dttb.addAllLigen(ligen, saison);
+        }
+        return dttb;
     }
 
     @Override
@@ -658,6 +661,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     void parseLigaLinks(List<Liga> ligen, ParseResult startResult) {
         String kategorie = readKategorie(startResult);
+        if (kategorie == null)
+            return;
+
         ParseResult result;
         int idx = 0;
 

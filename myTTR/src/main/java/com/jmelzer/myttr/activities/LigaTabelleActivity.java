@@ -14,13 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
@@ -82,9 +80,9 @@ public class LigaTabelleActivity extends BaseActivity {
                     //todo check wether this is correct here
                     p.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
-                p.readVR(MyApplication.saison, liga, MyApplication.selectedVerband);
-                p.readRR(MyApplication.saison, liga, MyApplication.selectedVerband);
-                p.readGesamtSpielplan(MyApplication.saison, liga, MyApplication.selectedVerband);
+                p.readVR(MyApplication.saison, liga);
+                p.readRR(MyApplication.saison, liga);
+                p.readGesamtSpielplan(MyApplication.saison, liga);
             }
 
             @Override

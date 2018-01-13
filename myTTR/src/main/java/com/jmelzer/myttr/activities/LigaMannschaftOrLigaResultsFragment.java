@@ -25,8 +25,6 @@ import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jmelzer.myttr.Constants.MYTT;
-
 /**
  * Created by J. Melzer on 27.02.2015.
  * <p/>
@@ -120,7 +118,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel, MyApplication.selectedVerband);
+                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel);
             }
 
             @Override

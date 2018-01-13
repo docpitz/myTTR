@@ -58,9 +58,16 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
         } catch (Exception e) {
 //            catch all others
             Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl, e);
-            errorMessage = "Fehler beim Lesen der Webseite \n" + Client.lastUrl;
+            errorMessage = "Fehler beim Lesen der Webseite \n" + shortenUrl();
         }
         return null;
+    }
+
+    private String shortenUrl() {
+        if (Client.lastUrl != null && Client.lastUrl.length() > 30) {
+            return Client.lastUrl.substring(0, 30) + "...";
+        } else
+            return Client.lastUrl;
     }
 
     protected abstract void callParser() throws NetworkException, LoginExpiredException;

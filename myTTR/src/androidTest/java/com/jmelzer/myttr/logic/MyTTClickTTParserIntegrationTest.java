@@ -12,7 +12,6 @@ import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
-import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Saison;
@@ -55,28 +54,32 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
         //bezirke
         for (Verband verband : Verband.verbaende) {
             Log.d(Constants.LOG_TAG, "verband '" + verband.getName() + "'");
-//            readLigenAndTest(verband); //allready ok, uncomment if you want to test it
-//            if (!verband.getName().equals("Bayerischer TTV")) {
-//                continue;
-//            }
+            if (!verband.getName().equals("Badischer TTV")) {
+                continue;
+            }
 //            if (verband == dttb) {
 //                continue;
 //            }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
             parser.readBezirkeAndLigen(verband, SAISON);
+            assertThat(verband.getLigaList().size(), greaterThan(0));
+            for (Liga liga : verband.getLigaList()) {
+                assertThat(liga.getName(), liga.getName().contains("<"), is(false));
+                assertThat(liga.getKategorie(), is(notNullValue()));
+            }
             if (verband.getBezirkList().size() == 0) {
                 Log.e(Constants.LOG_TAG, "no bezirk in '" + verband.getName() + "'");
                 assertThat(verband.getName(), notNullValue());
             } else {
                 for (Bezirk bezirk : verband.getBezirkList()) {
                     Log.i(Constants.LOG_TAG, "read kreis & liga from '" + bezirk.getName() + "'");
-                    parser.readKreiseAndLigen(SAISON, bezirk, MyApplication.selectedVerband);
+                    parser.readKreiseAndLigen(SAISON, bezirk);
                     int count = 0;
                     assertThat(bezirk.getLigen().size(), greaterThan(0));
                     for (Liga liga : bezirk.getLigen()) {
                         Log.i(Constants.LOG_TAG, "read liga '" + liga + "'");
-                        parser.readLiga(SAISON, liga, MyApplication.selectedVerband);
+                        parser.readLiga(SAISON, liga);
                         readSpieleAndTest(liga);
                         if (count++ > 5) break; //5 are enough: todo get it random
                     }
@@ -84,12 +87,12 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
                         Log.e(Constants.LOG_TAG, "bezirk don't have kreise " + bezirk.getName() + " - " + bezirk.getUrl());
                     } else {
                         for (Kreis kreis : bezirk.getKreise()) {
-                            parser.readLigen(kreis, SAISON, MyApplication.selectedVerband);
+                            parser.readLigen(kreis, SAISON);
                             int kc = 0;
                             for (Liga liga : kreis.getLigen()) {
                                 Log.i(Constants.LOG_TAG, "read liga in kreise '" + liga + "'");
                                 try {
-                                    parser.readLiga(SAISON, liga, MyApplication.selectedVerband);
+                                    parser.readLiga(SAISON, liga);
                                 } catch (NullPointerException e) {
                                     Log.e(Constants.LOG_TAG, "NPE in  " + liga);
                                 }
@@ -113,9 +116,9 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
             return;
         }
         try {
-            parser.readVR(SAISON, liga, MyApplication.selectedVerband);
-            parser.readRR(SAISON, liga, MyApplication.selectedVerband);
-            parser.readGesamtSpielplan(SAISON, liga, MyApplication.selectedVerband);
+            parser.readVR(SAISON, liga);
+            parser.readRR(SAISON, liga);
+            parser.readGesamtSpielplan(SAISON, liga);
             if (liga.getName().contains("WDM"))
                 return;
 

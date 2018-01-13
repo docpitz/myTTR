@@ -92,9 +92,10 @@ public class LoginActivity extends Activity {
     }
 
     public void liga(View view) {
-        MyApplication.selectedVerband = null;
-        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaHomeActivity.class);
-        task.execute();
+        if (MyApplication.selectedVerband == null) {
+            AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaHomeActivity.class);
+            task.execute();
+        }
     }
 
     @Override

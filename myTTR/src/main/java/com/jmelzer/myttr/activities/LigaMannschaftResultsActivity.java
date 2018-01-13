@@ -97,7 +97,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
                 if (MyApplication.selectedMannschaft.getVereinUrl() == null) {
                     clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
-                MyApplication.selectedVerein = clickTTWrapper.readVerein(MyApplication.selectedMannschaft.getVereinUrl(), MyApplication.saison, MyApplication.selectedVerband);
+                MyApplication.selectedVerein = clickTTWrapper.readVerein(MyApplication.selectedMannschaft.getVereinUrl(), MyApplication.saison);
             }
 
             @Override

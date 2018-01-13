@@ -118,7 +118,7 @@ public class FavoriteManager {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga(), MyApplication.selectedVerband);
+                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 
             @Override
@@ -136,7 +136,7 @@ public class FavoriteManager {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison, MyApplication.selectedVerband);
+                MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison);
             }
 
             @Override

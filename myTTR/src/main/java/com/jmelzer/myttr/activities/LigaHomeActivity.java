@@ -1,7 +1,6 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,13 +24,11 @@ import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Verband;
-import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
-import com.jmelzer.myttr.model.SearchPlayer;
 import com.jmelzer.myttr.model.Verein;
 
 import java.util.ArrayList;
@@ -45,7 +42,6 @@ import java.util.TreeSet;
  */
 public class LigaHomeActivity extends BaseActivity {
 
-    public static final String BEARBEITEN = "Bearbeiten...";
     private CharSequence selectedKategorie;
     private Bezirk selectedBezirk;
     private List<Liga> ligaList;
@@ -69,7 +65,7 @@ public class LigaHomeActivity extends BaseActivity {
         favoriteManager = new FavoriteManager(this, getApplicationContext());
         setContentView(R.layout.liga_home);
 
-        Spinner spinnerSaison = (Spinner) findViewById(R.id.spinner_saison);
+        Spinner spinnerSaison = findViewById(R.id.spinner_saison);
 
 
         SaisonAdapter saisonAdapter = new SaisonAdapter(this, R.layout.liga_home_spinner_selected_item,
@@ -113,6 +109,9 @@ public class LigaHomeActivity extends BaseActivity {
         adapterVerband.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerVerband.setAdapter(adapterVerband);
         spinnerVerband.setOnItemSelectedListener(new VerbandListener());
+        if (MyApplication.selectedVerband != null) {
+            spinnerVerband.setSelection(adapterVerband.getPosition(MyApplication.selectedVerband));
+        }
 
 
         configBezirkAdapter();
@@ -151,7 +150,7 @@ public class LigaHomeActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga(), MyApplication.selectedVerband);
+                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 
             @Override
@@ -170,7 +169,7 @@ public class LigaHomeActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison, MyApplication.selectedVerband);
+                MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison);
             }
 
             @Override
@@ -283,7 +282,7 @@ public class LigaHomeActivity extends BaseActivity {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
                         protected void callParser() throws NetworkException, LoginExpiredException {
-                            clickTTWrapper.readKreiseAndLigen(MyApplication.saison, selectedBezirk, MyApplication.selectedVerband);
+                            clickTTWrapper.readKreiseAndLigen(MyApplication.saison, selectedBezirk);
                         }
 
                         @Override
@@ -325,7 +324,7 @@ public class LigaHomeActivity extends BaseActivity {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
                         protected void callParser() throws NetworkException, LoginExpiredException {
-                            clickTTWrapper.readLigen(selectedKreis, MyApplication.saison, MyApplication.selectedVerband);
+                            clickTTWrapper.readLigen(selectedKreis, MyApplication.saison);
                         }
 
                         @Override

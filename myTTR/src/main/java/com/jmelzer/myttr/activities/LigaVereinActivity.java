@@ -15,13 +15,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
@@ -289,7 +287,7 @@ public class LigaVereinActivity extends BaseActivity {
                     liga.setUrl(m.url);
 
                 MyApplication.setSelectedLiga(liga);
-                new MytClickTTWrapper().readLiga(MyApplication.saison, MyApplication.getSelectedLiga(), MyApplication.selectedVerband);
+                new MytClickTTWrapper().readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 
             @Override
@@ -310,7 +308,7 @@ public class LigaVereinActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel, MyApplication.selectedVerband);
+                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel);
             }
 
             @Override

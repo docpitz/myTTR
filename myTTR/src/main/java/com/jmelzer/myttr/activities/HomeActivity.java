@@ -98,9 +98,13 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void liga(View view) {
-        MyApplication.selectedVerband = null;
-        AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaHomeActivity.class);
-        task.execute();
+        if (MyApplication.selectedVerband == null) {
+            AsyncTask<String, Void, Integer> task = new LigenAsyncTask(this, LigaHomeActivity.class);
+            task.execute();
+        } else {
+            Intent target = new Intent(this, LigaHomeActivity.class);
+            startActivity(target);
+        }
     }
 
     public void player_sim(View view) {
