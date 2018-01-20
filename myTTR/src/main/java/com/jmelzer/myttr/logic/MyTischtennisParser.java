@@ -818,7 +818,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
         String name = readBetweenOpenTag(cols[2], 0, "<span class", "</strong>").result;
         String firstname = name.substring(0, name.indexOf(" <"));
         String lastname = name.substring(name.indexOf(">") + 1);
-        String club = readBetweenOpenTag(cols[3], 0, "<a href", "</a>").result;
+        String club = "";
+        try {
+            club = readBetweenOpenTag(cols[3], 0, "<a href", "</a>").result;
+        } catch (NullPointerException e) {
+            //ignore
+        }
         int ttr = 0;
         try {
             ttr = Integer.valueOf(cols[4]);

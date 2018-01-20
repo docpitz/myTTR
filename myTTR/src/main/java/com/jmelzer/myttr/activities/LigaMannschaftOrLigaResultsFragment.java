@@ -85,19 +85,14 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         }
         List<Mannschaftspiel> list = getSpiele(spielplan);
         configList(list);
-        int i = 0;
+        int gamesWithResults = 0;
         for (Mannschaftspiel spiel : list) {
-            if (spiel.getDate() == null) {
-                break;
+            if (spiel.getErgebnis() != null && !spiel.getErgebnis().isEmpty()) {
+                gamesWithResults++;
             }
-            i++;
         }
         //scroll to last real result
-        int visibleRow = listview.getScrollBarSize();
-        if (i > visibleRow) {
-            i -= visibleRow;
-        }
-        listview.smoothScrollToPosition(i);
+        listview.smoothScrollToPosition(gamesWithResults);
         return rootView;
     }
 

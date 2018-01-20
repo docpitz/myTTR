@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static junit.framework.Assert.assertNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
@@ -181,17 +182,20 @@ public class MyTTClickTTParserTest {
         Verein v = new Verein();
         parser.parseVereinSpielplan(v, page);
         assertEquals(100, v.getSpielplan().size());
-        assertEquals("Fr. 12.01.2018 20:00", v.getSpielplan().get(0).getDate());
-        assertEquals("", v.getSpielplan().get(0).getErgebnis());
-        assertEquals("ASV St. Augustin", v.getSpielplan().get(0).getHeimMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1955407/ASV-St-Augustin/spielerbilanzen/vr", v.getSpielplan().get(0).getHeimMannschaft().getUrl());
-        assertEquals("TTG Niederkassel III", v.getSpielplan().get(0).getGastMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-Bezirksklasse-5/gruppe/305815/mannschaft/1952144/TTG-Niederkassel-III/spielerbilanzen/vr", v.getSpielplan().get(0).getGastMannschaft().getUrl());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156019/ASV-St-Augustin/info",
+        assertEquals("Fr. 12.01.2018 17:30", v.getSpielplan().get(0).getDate());
+        assertEquals("8:0", v.getSpielplan().get(0).getErgebnis());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/spielbericht/10691453/TTG-Niederkassel-II-vs-TuS-Eudenbach", v.getSpielplan().get(0).getUrlDetail());
+        assertEquals("TTG Niederkassel II", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/mannschaft/1954391/TTG-Niederkassel-II/spielerbilanzen/rr", v.getSpielplan().get(0).getHeimMannschaft().getUrl());
+        assertEquals("TuS Eudenbach", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/mannschaft/1953190/TuS-Eudenbach/spielerbilanzen/rr", v.getSpielplan().get(0).getGastMannschaft().getUrl());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel-II/info",
                 v.getSpielplan().get(0).getUrlSpielLokal());
-        assertEquals("1",  v.getSpielplan().get(0).getNrSpielLokal());
+        assertEquals(1,  v.getSpielplan().get(0).getNrSpielLokal());
 
-        assertEquals("Fr. 13.04.2018 20:00", v.getSpielplan().get(99).getDate());
+        assertEquals("Do. 08.03.2018 20:00", v.getSpielplan().get(99).getDate());
+        assertEquals("", v.getSpielplan().get(99).getErgebnis());
+        assertNull(v.getSpielplan().get(99).getUrlDetail());
 
     }
 

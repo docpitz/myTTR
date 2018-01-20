@@ -26,16 +26,16 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
         viewPager.setAdapter(mAdapter);
 
         forceTabs();
-        /**
-         * on swiping the viewpager make respective tab selected
-         * */
+        /*
+          on swiping the viewpager make respective tab selected
+          */
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
-//                configList(position == 0);
+                // configList(position == 0);
                 actionBar.setSelectedNavigationItem(position);
             }
 
@@ -74,6 +74,7 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
     }
 
     abstract boolean startWithRR();
+
     boolean hasGesamt() {
         return MyApplication.getSelectedLiga().getUrlGesamt() != null;
     }

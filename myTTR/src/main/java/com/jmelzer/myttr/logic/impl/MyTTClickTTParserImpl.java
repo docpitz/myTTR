@@ -189,8 +189,12 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String uhrzeit = row[1];
             uhrzeit = removeHtml(uhrzeit);
             m.setDate(lastdate + " " + uhrzeit);
-            m.setErgebnis(row[7]);
-            String ahref[] = readHrefAndATag(row[4]);
+            String ahref[] = readHrefAndATag(row[6]);
+            m.setErgebnis(ahref[1].replaceAll(" ", ""));
+            if (!ahref[0].isEmpty())
+                m.setUrlDetail(MYTT + ahref[0]);
+
+            ahref = readHrefAndATag(row[4]);
             Mannschaft heimMannschaft = new Mannschaft(ahref[1]);
             heimMannschaft.setUrl(MYTT + ahref[0]);
             m.setHeimMannschaft(heimMannschaft);
@@ -230,7 +234,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     @Override
     public Verband readTopLigen() throws NetworkException {
-        if (dttb.getLigaList().size()== 0) {
+        if (dttb.getLigaList().size() == 0) {
             String page = Client.getPage(dttb.getMyTTClickTTUrl());
             List<Liga> ligen = parseLigaLinks(page);
             dttb.addAllLigen(ligen, saison);
@@ -517,7 +521,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
     }
 
-    Map <Integer, String> parseSpielLokale(ParseResult result) {
+    Map<Integer, String> parseSpielLokale(ParseResult result) {
         Map<Integer, String> lokale = new TreeMap<>();
         int idx = 0;
         while (true) {
