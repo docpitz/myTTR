@@ -41,6 +41,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     public static final String CONTAINER_START_TAG = "<div class=\"col-sm-6 col-xs-12\">";
     private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht"};
+    public static final String EMPTY_NAME = "--------";
 
     @Override
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
@@ -406,7 +407,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 spielbericht.setSpieler1Name(ahref[1]);
                 line = line.substring(line.indexOf("<br"));
                 ahref = readHrefAndATag(line);
-                spielbericht.setSpieler1Name(spielbericht.getSpieler1Name() + " / " + ahref[1]);
+                spielbericht.setSpieler1Name(spielbericht.getSpieler1Name() + " / " + playerName(ahref[1]));
 
                 line = row[4];
                 ahref = readHrefAndATag(line);
@@ -414,18 +415,24 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 spielbericht.setSpieler2Name(ahref[1]);
                 line = line.substring(line.indexOf("<br"));
                 ahref = readHrefAndATag(line);
-                spielbericht.setSpieler2Name(spielbericht.getSpieler2Name() + " / " + ahref[1]);
+                spielbericht.setSpieler2Name(spielbericht.getSpieler2Name() + " / " + playerName(ahref[1]));
             } else {
                 String line = row[2];
-                spielbericht.setMyTTPlayerIdsForPlayer1(parsePlayerIds(line));
-                String[] ahref = readHrefAndATag(line);
-                spielbericht.setSpieler1Name(ahref[1]);
+                if (!line.contains("nicht anwesend")) {
+                    spielbericht.setMyTTPlayerIdsForPlayer1(parsePlayerIds(line));
+                    String[] ahref = readHrefAndATag(line);
+                    spielbericht.setSpieler1Name(ahref[1]);
+                } else
+                    spielbericht.setSpieler1Name(EMPTY_NAME);
 
                 line = row[4];
-                spielbericht.setMyTTPlayerIdsForPlayer2(parsePlayerIds(line));
-
-                ahref = readHrefAndATag(line);
-                spielbericht.setSpieler2Name(ahref[1]);
+                if (!line.contains("nicht anwesend")) {
+                    spielbericht.setMyTTPlayerIdsForPlayer2(parsePlayerIds(line));
+                    String[] ahref = readHrefAndATag(line);
+                    spielbericht.setSpieler2Name(ahref[1]);
+                } else {
+                    spielbericht.setSpieler2Name(EMPTY_NAME);
+                }
             }
             for (int j = 5; j < 10; j++) {
                 spielbericht.addSet(row[j]);
@@ -434,6 +441,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             idx = resultrow.end;
 
         }
+    }
+
+    private String playerName(String s) {
+        if (s == null || s.isEmpty())
+            return EMPTY_NAME;
+        else
+            return s;
     }
 
     void parseErgebnisse(String page, Liga liga, Liga.Spielplan spielplan) {
