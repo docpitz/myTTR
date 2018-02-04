@@ -64,6 +64,22 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void parseErgebnisseNotComplete() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-liga-notcomplete.html");
+        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/aktuell");
+
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
+        assertEquals(66, liga.getSpieleVorrunde().size());
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+            assertNotNull(mannschaftspiel.getDate());
+            assertNotNull(mannschaftspiel.getHeimMannschaft());
+            assertNotNull(mannschaftspiel.getGastMannschaft());
+        }
+        Mannschaftspiel spiel = liga.getSpieleVorrunde().get(14);
+        assertThat(spiel.toString(), spiel.getErgebnis(), is("9:4"));
+    }
+
+    @Test
     public void parseLigaZurueckgezogen() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/liga-zurueckgezogen.html");
         Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/gesamt");

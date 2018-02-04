@@ -467,18 +467,20 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 continue;//skip first row
             }
             String[] row = tableRowAsArray(resultrow.result, 10, false);
-//            for (String s : row) {
-//                System.out.println("s = " + s);
-//            }
+//            printRows(row);
             String datum = row[0];
             String url = readHrefAndATag(row[5])[0];
             if (url != null && !url.isEmpty())
                 url = MYTT + url;
+
+            String ergebnis = readHrefAndATag(row[5])[1];
+            if (ergebnis == null || ergebnis.isEmpty())
+                ergebnis = row[5].replaceAll(" ", "");
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,
                     findMannschaft(liga, readHrefAndATag(row[3])[1]),
                     findMannschaft(liga, readHrefAndATag(row[4])[1]),
-                    readHrefAndATag(row[5])[1],
+                    ergebnis,
                     url,
                     true);
             if (mannschaftspiel.getDate() == null || mannschaftspiel.getDate().isEmpty()) {
@@ -619,7 +621,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                         Integer.valueOf(row[4]),
                         Integer.valueOf(row[5]),
                         Integer.valueOf(row[6]),
-                        row[7],
+                        readHrefAndATag(row[7])[1].replaceAll("<.*", ""),
                         row[8],
                         row[9], href[0]);
                 m.setUrl(safeUrl(liga.getHttpAndDomain(), m.getUrl()));

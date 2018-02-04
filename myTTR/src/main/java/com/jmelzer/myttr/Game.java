@@ -47,7 +47,9 @@ public class Game {
     }
 
     public void addSet(String result) {
-        sets.add(result);
+        if (result != null && !result.isEmpty()) {
+            sets.add(result);
+        }
     }
 
     @Override

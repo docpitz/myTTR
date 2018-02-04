@@ -20,6 +20,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.User;
+import com.jmelzer.myttr.model.Head2HeadResult;
 import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.io.File;
@@ -144,6 +145,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             throw new PlayerNotWellRegistered();
         }
     }
+
     public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
             NetworkException, LoginExpiredException {
         SearchPlayer sp = new SearchPlayer();
@@ -152,6 +154,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         sp.setClub(new Club(vereinsName, null, null));
         return findPlayer(sp);
     }
+
     /**
      * @param firstName
      * @param lastName
@@ -182,16 +185,16 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (sp.getGender() != null) {
             builder.appendQueryParameter("geschlecht", sp.getGender());
         }
-        if (sp.getYearFrom()> 0) {
+        if (sp.getYearFrom() > 0) {
             builder.appendQueryParameter("geburtsJahrVon", "" + sp.getYearFrom());
         }
-        if (sp.getYearTo()> 0) {
+        if (sp.getYearTo() > 0) {
             builder.appendQueryParameter("geburtsJahrBis", "" + sp.getYearTo());
         }
-        if (sp.getTtrFrom()> 0) {
+        if (sp.getTtrFrom() > 0) {
             builder.appendQueryParameter("ttrVon", "" + sp.getTtrFrom());
         }
-        if (sp.getTtrTo()> 0) {
+        if (sp.getTtrTo() > 0) {
             builder.appendQueryParameter("ttrBis", "" + sp.getTtrTo());
         }
         if (firstName != null && firstName.length() > 2 && lastName != null && lastName.length() > 2) {
@@ -214,7 +217,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             if (v != null) {
                 builder.appendQueryParameter("verein", v.getName());
                 String cId = v.getId();
-                builder.appendQueryParameter("vereinId", cId+ "," + v.getVerband());
+                builder.appendQueryParameter("vereinId", cId + "," + v.getVerband());
             }
 
         }
@@ -756,6 +759,51 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return player;
     }
 
+    Head2HeadResult parseHead2Head(String page) {
+        Head2HeadResult result = new Head2HeadResult();
+
+        ParseResult table = readBetween(page, 0, "<tbody>", "</tbody>");
+        if (table == null) {
+            return null;
+        }
+        String playerName = readBetween(page, 0, "Begegnungen zwischen dir und ", "</h2").result;
+        int c = 0;
+        int idx = 0;
+        while (true) {
+            ParseResult resultrow = readBetween(table, idx, "<tr", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            if (!resultrow.result.contains("class=\"odd\"") && !resultrow.result.contains("class=\"even\"")) {
+                continue;
+            }
+
+            System.out.println("-----------------");
+            System.out.println(resultrow.result);
+            System.out.println("-----------------");
+            if (c++ == 0) {
+                idx = resultrow.end;
+                continue;//skip first row
+            }
+            String[] row = tableRowAsArray(resultrow.result, 8, false);
+            printRows(row);
+            String date = row[0];
+            String name = readBetween(row[1], 0, "title=\"", "\"").result;
+            String type = readBetween(row[1], 0, ">", "</span>").result;
+            System.out.println("type = " + type);
+            Game game = new Game();
+            game.addSet(row[3]);
+            game.addSet(row[4]);
+            game.addSet(row[5]);
+            game.addSet(row[6]);
+            game.addSet(row[7]);
+            game.setPlayer(playerName);
+            System.out.println("game = " + game);
+        }
+        return result;
+    }
+
 
     class Helper {
         Player p;
@@ -851,5 +899,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
             ligen.add(parseGroupRanking(page));
         }
         return ligen;
+    }
+
+    private void printRows(String[] row) {
+        for (int i = 0; i < row.length; i++) {
+            System.out.println(i + " = " + row[i]);
+        }
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 /**
  */
 public class EventDetail implements Serializable {
+    private static final long serialVersionUID = -2717676226478106756L;
     List<Game> games = new ArrayList<>();
 
     public List<Game> getGames() {

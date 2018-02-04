@@ -1,7 +1,9 @@
 package com.jmelzer.myttr.logic;
 
+import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.model.Head2HeadResult;
 
 import junit.framework.Assert;
 
@@ -19,6 +21,8 @@ import static com.jmelzer.myttr.logic.TestUtil.readFile;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -26,8 +30,6 @@ import static org.junit.Assert.assertNotNull;
  * Created by J. Melzer on 22.04.2015.
  * class for unit test the MyTischtennisParser class
  */
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest = "src/main/AndroidManifest.xml", emulateSdk = 18)
 public class MyTischtennisParserTest {
     MyTischtennisParser parser;
 
@@ -56,6 +58,15 @@ public class MyTischtennisParserTest {
     }
 
     @Test
+    public void testParseDetail() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/eventDetails.htm");
+        assertNotNull(page);
+        EventDetail detail = parser.parseDetail(page);
+        assertThat(detail.getGames().size(), is(1));
+        assertThat(detail.getGames().get(0).getPlayer(), is("Berger, Patrick"));
+    }
+
+    @Test
     public void testParseOwnEvents() throws Exception {
         String page = readFile(ASSETS_DIR + "/events.htm");
         assertNotNull(page);
@@ -64,6 +75,14 @@ public class MyTischtennisParserTest {
         assertEquals("Jürgen Melzer (1684)", player.getFullName());
         assertNotNull(player);
         assertTrue(player.getEvents().size() > 20);
+    }
+
+    @Test
+    public void testParseHead2Head() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/head2head.htm");
+        assertNotNull(page);
+        Head2HeadResult head2HeadResult = parser.parseHead2Head(page);
+        assertNotNull(head2HeadResult);
     }
 
     @Test
