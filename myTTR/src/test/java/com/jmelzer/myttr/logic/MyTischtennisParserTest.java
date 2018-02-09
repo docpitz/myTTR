@@ -81,8 +81,12 @@ public class MyTischtennisParserTest {
     public void testParseHead2Head() throws Exception {
         String page = readFile(ASSETS_DIR + "/mytt/head2head.htm");
         assertNotNull(page);
-        Head2HeadResult head2HeadResult = parser.parseHead2Head(page);
+        List<Head2HeadResult> head2HeadResult = parser.parseHead2Head(page);
         assertNotNull(head2HeadResult);
+        assertThat(head2HeadResult.size(), is(4));
+        for (Head2HeadResult result : head2HeadResult) {
+            System.out.println("result = " + result);
+        }
     }
 
     @Test

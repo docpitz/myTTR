@@ -20,6 +20,7 @@ import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
+import com.jmelzer.myttr.model.Head2HeadResult;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 
@@ -70,9 +71,18 @@ public class MyApplication extends Application {
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband;
     public static Spieler selectedLigaSpieler;
+    private static List<Head2HeadResult> head2Head;
 
     public static void setLoginUser(User loginUser) {
         MyApplication.loginUser = loginUser;
+    }
+
+    public static void setHead2Head(List<Head2HeadResult> head2Head) {
+        MyApplication.head2Head = head2Head;
+    }
+
+    public static List<Head2HeadResult> getHead2Head() {
+        return head2Head;
     }
 
     public void onCreate() {

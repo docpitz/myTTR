@@ -1,9 +1,11 @@
 
 Offen
 ----------
-
+- Cup TTVR Rheinland
+- Bei manchen clicks ist kein relogin
 - Head2head
 - Favoriten umbenennen
+
 - Bug: Klick auf Verein - Mannschaften zeigt nur RR an
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken

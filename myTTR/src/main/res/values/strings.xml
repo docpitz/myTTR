@@ -156,6 +156,7 @@
     <string name="header_event_games">Sp</string>
     <string name="header_event_ttr">TTR</string>
     <string name="header_event_sum">+/-</string>
+    <string name="header_type">Typ</string>
     <string name="image_remove">Remove</string>
     <string name="header_firstname">Vorname</string>
     <string name="header_lastname">Nachname</string>

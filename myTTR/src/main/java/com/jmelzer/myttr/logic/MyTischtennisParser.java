@@ -759,8 +759,17 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return player;
     }
 
-    Head2HeadResult parseHead2Head(String page) {
-        Head2HeadResult result = new Head2HeadResult();
+    public List<Head2HeadResult> readHead2Head(long id) throws NetworkException, LoginExpiredException {
+        String url = "https://www.mytischtennis.de/community/headTohead?gegnerId=" + id;
+        String page = Client.getPage(url);
+        if (redirectedToLogin(page)) {
+            throw new LoginExpiredException();
+        }
+        return parseHead2Head(page);
+    }
+
+    List<Head2HeadResult> parseHead2Head(String page) {
+        List<Head2HeadResult> result = new ArrayList<>();
 
         ParseResult table = readBetween(page, 0, "<tbody>", "</tbody>");
         if (table == null) {
@@ -775,31 +784,32 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 break;
             }
             idx = resultrow.end;
+//            System.out.println("-----------------");
+//            System.out.println(resultrow.result);
+//            System.out.println("-----------------");
+
             if (!resultrow.result.contains("class=\"odd\"") && !resultrow.result.contains("class=\"even\"")) {
                 continue;
             }
 
-            System.out.println("-----------------");
-            System.out.println(resultrow.result);
-            System.out.println("-----------------");
-            if (c++ == 0) {
-                idx = resultrow.end;
-                continue;//skip first row
-            }
             String[] row = tableRowAsArray(resultrow.result, 8, false);
             printRows(row);
             String date = row[0];
-            String name = readBetween(row[1], 0, "title=\"", "\"").result;
-            String type = readBetween(row[1], 0, ">", "</span>").result;
-            System.out.println("type = " + type);
+            String type;
+            if (row[1].contains("span"))
+                type = readBetween(row[1], 0, ">", "</span>").result;
+            else
+                type = row[1];
             Game game = new Game();
+            String erg = readBetweenOpenTag(row[2], 0, "<strong", "</strong>").result;
             game.addSet(row[3]);
             game.addSet(row[4]);
             game.addSet(row[5]);
             game.addSet(row[6]);
             game.addSet(row[7]);
+            game.setResult(erg);
             game.setPlayer(playerName);
-            System.out.println("game = " + game);
+            result.add(new Head2HeadResult(playerName, type, date, game));
         }
         return result;
     }

@@ -3,6 +3,8 @@ package com.jmelzer.myttr.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,12 +19,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.model.SearchPlayer;
 import com.jmelzer.myttr.model.Verein;
+import com.jmelzer.myttr.tasks.Head2HeadAsyncTask;
 
 import org.json.JSONException;
 
@@ -53,7 +57,7 @@ public class SearchResultActivity extends BaseActivity {
         setContentView(R.layout.search_result);
         favoriteManager = new FavoriteManager(this, getApplicationContext());
 
-        final ListView listview = (ListView) findViewById(R.id.playerlistview);
+        final ListView listview = findViewById(R.id.playerlistview);
         final SearchResultAdapter adapter = new SearchResultAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.searchResult);
@@ -98,8 +102,6 @@ public class SearchResultActivity extends BaseActivity {
                     setResult(1, intent);
                     finish();
                 } else {
-
-
                     new EventsAsyncTask(SearchResultActivity.this, EventsActivity.class, p).execute();
                 }
             }
@@ -113,29 +115,46 @@ public class SearchResultActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    private static class ViewHolder {
+        TextView firstname;
+        TextView lastname;
+        TextView club;
+        TextView ttr;
+        int id;
+    }
+
     class SearchResultAdapter extends ArrayAdapter<Player> {
+        private LayoutInflater layoutInflater;
 
         public SearchResultAdapter(Context context, int resource, List<Player> players) {
             super(context, resource, players);
+            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.search_result_row, parent, false);
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = layoutInflater.inflate(R.layout.search_result_row, null);
+                holder = new ViewHolder();
+                holder.firstname = convertView.findViewById(R.id.firstname);
+                holder.lastname = convertView.findViewById(R.id.lastname);
+                holder.club = convertView.findViewById(R.id.club);
+                holder.ttr = convertView.findViewById(R.id.ttr);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            SearchResultActivity.this.registerForContextMenu(convertView);
             Player player = getItem(position);
             if (player != null) {
-                TextView textView = rowView.findViewById(R.id.firstname);
-                textView.setText(player.getFirstname());
-                textView = rowView.findViewById(R.id.lastname);
-                textView.setText(player.getLastname());
-                textView = rowView.findViewById(R.id.club);
-                textView.setText(player.getClub());
-                textView = rowView.findViewById(R.id.ttr);
-                textView.setText("" + player.getTtrPoints());
+                holder.id = position;
+                holder.firstname.setText(player.getFirstname());
+                holder.lastname.setText(player.getLastname());
+                holder.club.setText(player.getClub());
+                holder.ttr.setText("" + player.getTtrPoints());
             }
-            return rowView;
+            return convertView;
         }
     }
 
@@ -148,5 +167,40 @@ public class SearchResultActivity extends BaseActivity {
 
     public void favorite(MenuItem item) {
         favoriteManager.favorite(searchPlayer);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Aktionen");
+        ViewHolder holder = (ViewHolder) v.getTag();
+        menu.add(1, holder.id, 1, "Spieler Statistiken");
+        menu.add(2, holder.id, 1, "Head 2 Head");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getGroupId()) {
+            case 1:
+
+                callEvents(item.getItemId());
+                break;
+            case 2:
+                callHead2Head(item.getItemId());
+                break;
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void callHead2Head(int itemId) {
+        Player player = MyApplication.searchResult.get(itemId);
+        new Head2HeadAsyncTask(this, player.getPersonId(), Head2HeadActivity.class).execute();
+    }
+
+
+    private void callEvents(int itemId) {
+        Player player = MyApplication.searchResult.get(itemId);
+        new EventsAsyncTask(this, EventsActivity.class, player).execute();
     }
 }

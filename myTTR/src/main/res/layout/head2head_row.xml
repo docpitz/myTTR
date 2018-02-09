@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              android:padding="0dp"
+              tools:ignore="HardcodedText">
+
+
+    <TextView
+        android:id="@+id/date"
+        tools:text="12.12.2017"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/type"
+        tools:text="Mannschaft"
+        android:layout_marginLeft="3dp"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/result"
+        tools:text="3:2"
+        android:layout_marginLeft="3dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/sets"
+        android:layout_marginLeft="3dp"
+        tools:text="11:9 12:10 10:12 14:16 11:9"
+        android:layout_weight="6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
