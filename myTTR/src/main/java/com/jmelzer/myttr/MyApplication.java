@@ -144,7 +144,7 @@ public class MyApplication extends Application {
     }
 
     public static String getTitle() {
-        return "TTR: " + getPoints();
+        return "Dein TTR: " + getPoints();
     }
 
     public static int calcActualDiff() {

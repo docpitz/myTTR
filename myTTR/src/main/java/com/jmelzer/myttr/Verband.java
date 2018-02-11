@@ -85,7 +85,8 @@ public class Verband {
                 "https://www.mytischtennis.de/clicktt/TTVR/17-18/ligen",
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15",
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVR",
-                "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVR&circuit=TTVR+Rheinland+Cup+2017",
+                "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=VOL%20R7&circuit=Rheinland%20Cup",
+//                "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVR&circuit=TTVR+Rheinland+Cup+2017",
                 "TTVR Rheinland Cup"));
         verbaende.add(new Verband("Saarländischer TTB",
                 "https://www.mytischtennis.de/clicktt/STTB/17-18/ligen",

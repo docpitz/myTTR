@@ -182,7 +182,6 @@ public class SearchResultActivity extends BaseActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getGroupId()) {
             case 1:
-
                 callEvents(item.getItemId());
                 break;
             case 2:
@@ -203,4 +202,5 @@ public class SearchResultActivity extends BaseActivity {
         Player player = MyApplication.searchResult.get(itemId);
         new EventsAsyncTask(this, EventsActivity.class, player).execute();
     }
+
 }

@@ -29,6 +29,8 @@ import java.util.List;
  */
 public class EventDetailActivity extends BaseActivity {
     EventDetail currentDetail;
+    int actualPos = -1;
+    DetailHelper detailHelper;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -50,21 +52,28 @@ public class EventDetailActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 currentDetail.getGames());
         listview.setAdapter(adapter);
-
+        detailHelper = new DetailHelper(this, currentDetail.getGames(), listview);
+//        registerForContextMenu(listview);
 //        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view,
 //                                    int position, long id) {
 //                view.setSelected(true);
+//                actualPos = position;
 //                if (position > -1 && position < MyApplication.getEvents().size()) {
 //                    Game game = currentDetail.getGames().get(position);
-//
 //                    new EventsAsyncTask(EventDetailActivity.this, EventsActivity.class, game).execute();
 //                }
 //            }
 //        });
-
+//        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                actualPos = position;
+//                return false;
+//            }
+//        });
 
     }
 
@@ -98,7 +107,7 @@ public class EventDetailActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            EventDetailActivity.this.registerForContextMenu(convertView);
+//            EventDetailActivity.this.registerForContextMenu(convertView);
             Game game = getItem(position);
             if (game != null) {
                 holder.id = position;
@@ -112,36 +121,12 @@ public class EventDetailActivity extends BaseActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Aktionen");
-        ViewHolder holder = (ViewHolder) v.getTag();
-        menu.add(1, holder.id, 1, "Spieler Statistiken");
-        menu.add(2, holder.id, 1, "Head 2 Head");
+        detailHelper.createMenu(menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getGroupId()) {
-            case 1:
-
-                callEvents(item.getItemId());
-                break;
-            case 2:
-                callHead2Head(item.getItemId());
-                break;
-
-        }
-        return super.onContextItemSelected(item);
+        return detailHelper.onSelect(item);
     }
 
-    private void callHead2Head(int itemId) {
-        Game game = currentDetail.getGames().get(itemId);
-        new Head2HeadAsyncTask(this, game.getPlayerId(), Head2HeadActivity.class).execute();
-    }
-
-
-    private void callEvents(int itemId) {
-        Game game = currentDetail.getGames().get(itemId);
-        new EventsAsyncTask(this, EventsActivity.class, game).execute();
-    }
 }

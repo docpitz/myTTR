@@ -1,7 +1,7 @@
 
 Offen
 ----------
-- Cup TTVR Rheinland
+
 - Bei manchen clicks ist kein relogin
 - Head2head
 - Favoriten umbenennen
@@ -79,3 +79,8 @@ Neue Funktionen in 4.0.1.1
 - Nicht angetretene Spieler anzeigen
 - Nicht komplette Spiele anzeigen
 - Fehlende Vereine hinzugefügt
+
+4.1
+-----------
+- Cup TTVR Rheinland
+- Head2head

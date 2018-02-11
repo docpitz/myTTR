@@ -16,7 +16,9 @@ package com.jmelzer.myttr.activities;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,6 +34,8 @@ import com.jmelzer.myttr.UIUtil;
 import java.util.List;
 
 public class ClubListActivity extends BaseActivity {
+    DetailHelper detailHelper;
+
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
         return MyApplication.clubPlayers != null;
@@ -52,20 +56,21 @@ public class ClubListActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 MyApplication.clubPlayers);
         listview.setAdapter(adapter);
+        detailHelper = new DetailHelper(this, listview, MyApplication.clubPlayers);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                view.setSelected(true);
-                if (position > -1 && position < MyApplication.clubPlayers.size()) {
-                    Player p = MyApplication.clubPlayers.get(position);
-
-                    new EventsAsyncTask(ClubListActivity.this, EventsActivity.class, p).execute();
-                }
-            }
-        });
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                view.setSelected(true);
+//                if (position > -1 && position < MyApplication.clubPlayers.size()) {
+//                    Player p = MyApplication.clubPlayers.get(position);
+//
+//                    new EventsAsyncTask(ClubListActivity.this, EventsActivity.class, p).execute();
+//                }
+//            }
+//        });
     }
 
     private static class ViewHolder {
@@ -132,5 +137,14 @@ public class ClubListActivity extends BaseActivity {
 
             return convertView;
         }
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        detailHelper.createMenu(menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return detailHelper.onSelect(item);
     }
 }

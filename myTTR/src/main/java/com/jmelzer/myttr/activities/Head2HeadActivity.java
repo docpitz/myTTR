@@ -29,7 +29,7 @@ public class Head2HeadActivity extends BaseActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.getHead2Head() != null;
+        return true;//MyApplication.getHead2Head() != null;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -39,18 +39,33 @@ public class Head2HeadActivity extends BaseActivity {
             return;
         }
 
-        setContentView(R.layout.head2head);
-
+        setTitle("Head 2 Head");
         head2HeadResults = MyApplication.getHead2Head();
-        final ListView listview = findViewById(R.id.head2head_detail_list);
-        TextView nameView = findViewById(R.id.playerName);
-        if (head2HeadResults.size() > 0) {
-            nameView.setText(head2HeadResults.get(0).getOpponentName());
+        setContentView(R.layout.head2head);
+        if (head2HeadResults != null && head2HeadResults.size() > 0) {
+            final ListView listview = findViewById(R.id.head2head_detail_list);
+            TextView nameView = findViewById(R.id.playerName);
+            if (head2HeadResults.size() > 0) {
+                nameView.setText(head2HeadResults.get(0).getOpponentName());
+            }
+            final Head2HeadAdapter adapter = new Head2HeadAdapter(this,
+                    android.R.layout.simple_list_item_1,
+                    head2HeadResults);
+            listview.setAdapter(adapter);
+            findViewById(R.id.text).setVisibility(View.INVISIBLE);
+            findViewById(R.id.playerName).setVisibility(View.VISIBLE);
+            findViewById(R.id.layout1).setVisibility(View.VISIBLE);
+            findViewById(R.id.line).setVisibility(View.VISIBLE);
+            findViewById(R.id.head2head_detail_list).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.text).setVisibility(View.VISIBLE);
+
+            findViewById(R.id.playerName).setVisibility(View.INVISIBLE);
+            findViewById(R.id.layout1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.line).setVisibility(View.INVISIBLE);
+            findViewById(R.id.head2head_detail_list).setVisibility(View.INVISIBLE);
         }
-        final Head2HeadAdapter adapter = new Head2HeadAdapter(this,
-                android.R.layout.simple_list_item_1,
-                head2HeadResults);
-        listview.setAdapter(adapter);
+
 
     }
 

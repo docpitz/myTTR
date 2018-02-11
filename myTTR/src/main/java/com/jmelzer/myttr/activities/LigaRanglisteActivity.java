@@ -191,8 +191,6 @@ public class LigaRanglisteActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View v) {
-
-
                     new EventsAsyncTask(LigaRanglisteActivity.this, EventsActivity.class, player).execute();
                 }
             });

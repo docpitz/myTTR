@@ -55,10 +55,10 @@ public class HomeActivity extends BaseActivity {
 
         favoriteManager = new FavoriteManager(this, getApplicationContext());
 
-        if (!isMyServiceRunning(SyncManager.class)) {
-            Log.d(Constants.LOG_TAG, "SyncManager will be started");
-            startService(new Intent(this, SyncManager.class));
-        }
+//        if (!isMyServiceRunning(SyncManager.class)) {
+//            Log.d(Constants.LOG_TAG, "SyncManager will be started");
+//            startService(new Intent(this, SyncManager.class));
+//        }
 
     }
 

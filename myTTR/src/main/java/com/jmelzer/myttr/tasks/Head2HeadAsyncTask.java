@@ -40,7 +40,7 @@ public class Head2HeadAsyncTask extends BaseAsyncTask {
 
     @Override
     protected boolean dataLoaded() {
-        return MyApplication.getHead2Head() != null && !MyApplication.getHead2Head().isEmpty();
+        return true;//MyApplication.getHead2Head() != null && !MyApplication.getHead2Head().isEmpty();
     }
 
 }

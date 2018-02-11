@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.tasks.Head2HeadAsyncTask;
 
 import java.lang.reflect.Method;
 
@@ -108,5 +109,10 @@ public class EventsActivity extends BaseActivity {
 
     public void favorite(MenuItem item) {
         favoriteManager.favorite(MyApplication.selectedPlayer);
+    }
+
+
+    public void head2head(MenuItem item) {
+        new Head2HeadAsyncTask(this, MyApplication.selectedPlayer.getPersonId(), Head2HeadActivity.class).execute();
     }
 }
