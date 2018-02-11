@@ -29,7 +29,6 @@ import java.util.List;
  */
 public class EventDetailActivity extends BaseActivity {
     EventDetail currentDetail;
-    int actualPos = -1;
     DetailHelper detailHelper;
 
     @Override
@@ -53,27 +52,6 @@ public class EventDetailActivity extends BaseActivity {
                 currentDetail.getGames());
         listview.setAdapter(adapter);
         detailHelper = new DetailHelper(this, currentDetail.getGames(), listview);
-//        registerForContextMenu(listview);
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                view.setSelected(true);
-//                actualPos = position;
-//                if (position > -1 && position < MyApplication.getEvents().size()) {
-//                    Game game = currentDetail.getGames().get(position);
-//                    new EventsAsyncTask(EventDetailActivity.this, EventsActivity.class, game).execute();
-//                }
-//            }
-//        });
-//        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                actualPos = position;
-//                return false;
-//            }
-//        });
 
     }
 

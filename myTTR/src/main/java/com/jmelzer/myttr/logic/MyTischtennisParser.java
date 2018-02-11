@@ -741,7 +741,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        return parseEvents(page, false);
+        Player p =  parseEvents(page, false);
+        p.setPersonId(playerId);
+        return p;
     }
 
     public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException {
