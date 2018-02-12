@@ -35,8 +35,8 @@ android {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 94
-        versionName "4.1.1"
+        versionCode 95
+        versionName "4.1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

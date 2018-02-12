@@ -40,6 +40,7 @@ public class SearchResultActivity extends BaseActivity {
     Class goBackToClass;
     private SearchPlayer searchPlayer;
     FavoriteManager favoriteManager;
+    int actualPos = -1;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -75,7 +76,7 @@ public class SearchResultActivity extends BaseActivity {
             goBackToClass = (Class) i.getExtras().getSerializable(SearchActivity.BACK_TO);
             searchPlayer = (SearchPlayer) i.getExtras().getSerializable(SearchActivity.INTENT_SP);
         }
-
+        registerForContextMenu(listview);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -83,6 +84,7 @@ public class SearchResultActivity extends BaseActivity {
                                     int position, long id) {
                 view.setSelected(true);
 //                /TODO NOT GENERIC!!!
+                //todo detailhelper
                 Player p = MyApplication.searchResult.get(position);
                 if (goBackToClass.equals(TTRCalculatorActivity.class)) {
                     if (position > -1 && position < MyApplication.searchResult.size()) {
@@ -106,13 +108,13 @@ public class SearchResultActivity extends BaseActivity {
                 }
             }
         });
-
-    }
-
-    public void filter(MenuItem item) {
-        Intent intent = new Intent(this, SearchFilterActivity.class);
-        intent.putExtra(SearchActivity.INTENT_SP, searchPlayer);
-        startActivity(intent);
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                actualPos = position;
+                return false;
+            }
+        });
     }
 
     private static class ViewHolder {
@@ -145,7 +147,7 @@ public class SearchResultActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            SearchResultActivity.this.registerForContextMenu(convertView);
+
             Player player = getItem(position);
             if (player != null) {
                 holder.id = position;
@@ -173,9 +175,8 @@ public class SearchResultActivity extends BaseActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("Aktionen");
-        ViewHolder holder = (ViewHolder) v.getTag();
-        menu.add(1, holder.id, 1, "Spieler Statistiken");
-        menu.add(2, holder.id, 1, "Head 2 Head");
+        menu.add(1, actualPos, 1, "Spieler Statistiken");
+        menu.add(2, actualPos, 1, "Head 2 Head");
     }
 
     @Override
