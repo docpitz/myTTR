@@ -55,7 +55,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.liga_mannschaft_results, container, false);
 
-        final ListView listview = (ListView) rootView.findViewById(R.id.liga_mannschaft_detail_row);
+        final ListView listview = rootView.findViewById(R.id.liga_mannschaft_detail_row);
         //create emtpty list
         adapter = new SpielAdapter(getActivity(),
                 android.R.layout.simple_list_item_1,
@@ -140,17 +140,17 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             View rowView = inflater.inflate(R.layout.liga_mannschaft_results_row, parent, false);
             final Mannschaftspiel spiel = getItem(position);
 
-            TextView textView = (TextView) rowView.findViewById(R.id.date);
+            TextView textView = rowView.findViewById(R.id.date);
             textView.setText(spiel.getDate());
 
-            textView = (TextView) rowView.findViewById(R.id.heim);
+            textView = rowView.findViewById(R.id.heim);
             textView.setText(spiel.getHeimMannschaft().getName());
-            textView = (TextView) rowView.findViewById(R.id.gast);
+            textView = rowView.findViewById(R.id.gast);
             textView.setText(spiel.getGastMannschaft().getName());
-            textView = (TextView) rowView.findViewById(R.id.result);
+            textView = rowView.findViewById(R.id.result);
             textView.setText(spiel.getErgebnis());
 
-            final ImageView arrow = (ImageView) rowView.findViewById(R.id.arrow);
+            final ImageView arrow = rowView.findViewById(R.id.arrow);
             if (spiel.getUrlDetail() == null || spiel.getUrlDetail().isEmpty()) {
                 arrow.setVisibility(View.INVISIBLE);
             } else {
@@ -167,7 +167,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
     }
 
     void configList(List<Mannschaftspiel> list) {
-        if (adapter != null) {
+        if (adapter != null && list != null) {
             adapter.clear();
             //create a copy otherwise clear will remove all entries
             adapter.addAll(new ArrayList<>(list));
