@@ -87,9 +87,20 @@ public class LigaTabelleActivity extends BaseActivity {
 
             @Override
             protected boolean dataLoaded() {
-                return liga.getSpieleVorrunde().size() > 0 ||
-                        liga.getSpieleGesamt().size() > 0 || MyApplication.selectedMannschaft.getKontakt() != null ||
-                        MyApplication.selectedMannschaft.getSpielLokale().size() > 0;
+                if (liga != null && liga.getSpieleVorrunde().size() > 0)
+                    return true;
+                if (liga != null && liga.getSpieleGesamt().size() > 0)
+                    return true;
+
+                if (MyApplication.selectedMannschaft != null) {
+                    if (MyApplication.selectedMannschaft.getKontakt() != null)
+                        return true;
+
+                    if (MyApplication.selectedMannschaft.getSpielLokale() != null && MyApplication.selectedMannschaft.getSpielLokale().size() > 0)
+                        return true;
+                }
+
+                return false;
             }
 
 
