@@ -197,21 +197,25 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan.html");
         Verein v = new Verein();
         parser.parseVereinSpielplan(v, page);
-        assertEquals(100, v.getSpielplan().size());
-        assertEquals("Fr. 12.01.2018 17:30", v.getSpielplan().get(0).getDate());
-        assertEquals("8:0", v.getSpielplan().get(0).getErgebnis());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/spielbericht/10691453/TTG-Niederkassel-II-vs-TuS-Eudenbach", v.getSpielplan().get(0).getUrlDetail());
-        assertEquals("TTG Niederkassel II", v.getSpielplan().get(0).getHeimMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/mannschaft/1954391/TTG-Niederkassel-II/spielerbilanzen/rr", v.getSpielplan().get(0).getHeimMannschaft().getUrl());
-        assertEquals("TuS Eudenbach", v.getSpielplan().get(0).getGastMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Jungen-1-Kreisklasse-Rueckrunde/gruppe/321412/mannschaft/1953190/TuS-Eudenbach/spielerbilanzen/rr", v.getSpielplan().get(0).getGastMannschaft().getUrl());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel-II/info",
+        assertEquals(60, v.getSpielplan().size());
+        assertEquals("Fr. 09.02.2018 19:30", v.getSpielplan().get(0).getDate());
+        assertEquals("9:1", v.getSpielplan().get(2).getErgebnis());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
+                v.getSpielplan().get(3).getUrlDetail());
+        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
+        assertEquals("TTC Berrenrath", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Senioren-60-Bezirksliga/gruppe/309305/mannschaft/1952624/TTC-Berrenrath/spielerbilanzen/rr",
+                v.getSpielplan().get(0).getHeimMannschaft().getUrl());
+        assertEquals("TTG St. Augustin", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Senioren-60-Bezirksliga/gruppe/309305/mannschaft/1956159/TTG-St-Augustin/spielerbilanzen/rr",
+                v.getSpielplan().get(0).getGastMannschaft().getUrl());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/151020/TTC-Berrenrath/info",
                 v.getSpielplan().get(0).getUrlSpielLokal());
         assertEquals(1,  v.getSpielplan().get(0).getNrSpielLokal());
 
-        assertEquals("Do. 08.03.2018 20:00", v.getSpielplan().get(99).getDate());
-        assertEquals("", v.getSpielplan().get(99).getErgebnis());
-        assertNull(v.getSpielplan().get(99).getUrlDetail());
+        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
+        assertEquals("", v.getSpielplan().get(59).getErgebnis());
+        assertNull(v.getSpielplan().get(59).getUrlDetail());
 
     }
 

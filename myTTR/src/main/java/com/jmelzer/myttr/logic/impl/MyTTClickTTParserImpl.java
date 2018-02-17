@@ -191,10 +191,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             uhrzeit = removeHtml(uhrzeit);
             m.setDate(lastdate + " " + uhrzeit);
             String ahref[] = readHrefAndATag(row[6]);
-            m.setErgebnis(ahref[1].replaceAll(" ", ""));
-            if (!ahref[0].isEmpty())
-                m.setUrlDetail(MYTT + ahref[0]);
-
+            if (ahref[1] != null) {
+                m.setErgebnis(ahref[1].replaceAll(" ", ""));
+                if (!ahref[0].isEmpty())
+                    m.setUrlDetail(MYTT + ahref[0]);
+            } else {
+                m.setErgebnis(row[6]);
+            }
             ahref = readHrefAndATag(row[4]);
             Mannschaft heimMannschaft = new Mannschaft(ahref[1]);
             heimMannschaft.setUrl(MYTT + ahref[0]);
