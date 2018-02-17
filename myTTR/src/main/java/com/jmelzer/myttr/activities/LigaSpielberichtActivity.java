@@ -132,13 +132,13 @@ public class LigaSpielberichtActivity extends BaseActivity {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.selectedLigaSpieler = new MytClickTTWrapper().readSpielerDetail(MyApplication.saison,
-                        name, url, myTTPlayerIdsForPlayer);
+                MyApplication.setSelectedLigaSpieler(new MytClickTTWrapper().readSpielerDetail(MyApplication.saison,
+                        name, url, myTTPlayerIdsForPlayer));
             }
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedLigaSpieler != null;
+                return MyApplication.getSelectedLigaSpieler() != null;
             }
 
 

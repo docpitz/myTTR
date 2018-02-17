@@ -93,12 +93,12 @@ public class SearchActivity extends BaseActivity {
         if (i != null && i.getExtras() != null && i.getExtras().getBoolean(INTENT_LIGA_PLAYER, false)) {
             EditText firstNameText = findViewById(R.id.detail_firstname);
             EditText lastNameText = findViewById(R.id.detail_lastname);
-            String n = MyApplication.selectedLigaSpieler.getName();
+            String n = MyApplication.getSelectedLigaSpieler().getName();
             int idx = n.indexOf(',');
             if (idx > -1) {
                 firstNameText.setText(n.substring(idx + 1).trim());
                 lastNameText.setText(n.substring(0, idx).trim());
-                clubEdit.setText(MyApplication.selectedLigaSpieler.getClubName());
+                clubEdit.setText(MyApplication.getSelectedLigaSpieler().getClubName());
                 search(null);
             }
         }

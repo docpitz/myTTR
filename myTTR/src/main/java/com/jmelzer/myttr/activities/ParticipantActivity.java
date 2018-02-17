@@ -114,8 +114,8 @@ public class ParticipantActivity extends BaseActivity {
     }
 
     private void startSearch() {
-        MyApplication.selectedLigaSpieler = new Spieler(MyApplication.selectedParticipant.getName());
-        MyApplication.selectedLigaSpieler.setClubName(MyApplication.selectedParticipant.getClub());
+        MyApplication.setSelectedLigaSpieler(new Spieler(MyApplication.selectedParticipant.getName()));
+        MyApplication.getSelectedLigaSpieler().setClubName(MyApplication.selectedParticipant.getClub());
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
         intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
@@ -123,8 +123,8 @@ public class ParticipantActivity extends BaseActivity {
     }
 
     private void startTTR() {
-        MyApplication.selectedLigaSpieler = new Spieler(MyApplication.selectedParticipant.getName());
-        MyApplication.selectedLigaSpieler.setClubName(MyApplication.selectedParticipant.getClub());
+        MyApplication.setSelectedLigaSpieler(new Spieler(MyApplication.selectedParticipant.getName()));
+        MyApplication.getSelectedLigaSpieler().setClubName(MyApplication.selectedParticipant.getClub());
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
         intent.putExtra(SearchActivity.BACK_TO, TTRCalculatorActivity.class);

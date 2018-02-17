@@ -70,7 +70,7 @@ public class MyApplication extends Application {
     public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband;
-    public static Spieler selectedLigaSpieler;
+    static Spieler selectedLigaSpieler;
     private static List<Head2HeadResult> head2Head;
 
     public static void setLoginUser(User loginUser) {
@@ -81,6 +81,14 @@ public class MyApplication extends Application {
         MyApplication.head2Head = head2Head;
     }
 
+    public static Spieler getSelectedLigaSpieler() {
+        return selectedLigaSpieler;
+    }
+
+    public static void setSelectedLigaSpieler(Spieler selectedLigaSpieler) {
+        MyApplication.selectedLigaSpieler = selectedLigaSpieler;
+    }
+
     public static List<Head2HeadResult> getHead2Head() {
         return head2Head;
     }
@@ -89,7 +97,8 @@ public class MyApplication extends Application {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
         try {
-            Fabric.with(this, new Crashlytics());
+            Fabric fabric = new Fabric.Builder(this).kits(new Crashlytics()).debuggable(true).build();
+            Fabric.with(fabric);
         } catch (Exception e) {
             //ignore
         }

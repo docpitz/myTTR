@@ -29,7 +29,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.selectedLigaSpieler != null;
+        return MyApplication.getSelectedLigaSpieler() != null;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +41,10 @@ public class LigaSpielerResultsActivity extends BaseActivity {
 
         setContentView(R.layout.liga_spieler_results);
 
-        Spieler spieler = MyApplication.selectedLigaSpieler;
+        Spieler spieler = MyApplication.getSelectedLigaSpieler();
 
         TextView textView = (TextView) findViewById(R.id.textName);
-        textView.setText(MyApplication.selectedLigaSpieler.getName());
+        textView.setText(MyApplication.getSelectedLigaSpieler().getName());
 
         textView = (TextView) findViewById(R.id.textMeldungen);
         textView.setText(spieler.getPosition());
@@ -175,14 +175,14 @@ public class LigaSpielerResultsActivity extends BaseActivity {
     }
 
     public void details(MenuItem item) {
-        if (MyApplication.selectedLigaSpieler.getMytTTClickTTUrl() == null) {
+        if (MyApplication.getSelectedLigaSpieler().getMytTTClickTTUrl() == null) {
             Intent intent = new Intent(this, SearchActivity.class);
             intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
             intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
             startActivity(intent);
         } else {
-            Player p = new Player("", MyApplication.selectedLigaSpieler.getName());
-            p.setPersonId(Long.valueOf(MyApplication.selectedLigaSpieler.getPersonId()));
+            Player p = new Player("", MyApplication.getSelectedLigaSpieler().getName());
+            p.setPersonId(Long.valueOf(MyApplication.getSelectedLigaSpieler().getPersonId()));
 
             new EventsAsyncTask(this, EventsActivity.class, p).execute();
         }

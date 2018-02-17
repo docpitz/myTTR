@@ -3,7 +3,6 @@ Offen
 ----------
 
 - Bei manchen clicks ist kein relogin
-- Head2head
 - Favoriten umbenennen
 
 - Bug: Klick auf Verein - Mannschaften zeigt nur RR an

@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
@@ -54,10 +55,14 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             } catch (Exception e2) {
                 errorMessage = "Das erneute Anmelden war nicht erfolgreich";
                 Log.e(Constants.LOG_TAG, "", e2);
+                Crashlytics.setString("last_url", Client.lastUrl);
+                Crashlytics.logException(e2);
             }
         } catch (Exception e) {
 //            catch all others
             Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl, e);
+            Crashlytics.setString("last_url", Client.lastUrl);
+            Crashlytics.logException(e);
             errorMessage = "Fehler beim Lesen der Webseite \n" + shortenUrl();
         }
         return null;

@@ -213,7 +213,7 @@ public class TournamentResultsActivity extends BaseActivity {
     }
 
     private void startSearch(final String name) {
-        MyApplication.selectedLigaSpieler = new Spieler(name);
+        MyApplication.setSelectedLigaSpieler(new Spieler(name));
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
         intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
