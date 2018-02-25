@@ -363,7 +363,6 @@ public class ClickTTParserTest {
         String page = readFile(ASSETS_DIR + "/staffel-zurueckgezogene-mannschaft.htm");
         assertNotNull(page);
         Liga liga = new Liga();
-//        liga.setVerband(new Verband("", "http://wttv.click-tt.de/"));
         liga = parser.parseErgebnisse(liga, page, Liga.Spielplan.VR);
 
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {

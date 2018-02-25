@@ -74,6 +74,7 @@ public class MyTTClickTTParserTest {
             assertNotNull(mannschaftspiel.getDate());
             assertNotNull(mannschaftspiel.getHeimMannschaft());
             assertNotNull(mannschaftspiel.getGastMannschaft());
+//            System.out.println("mannschaftspiel = " + mannschaftspiel);
         }
         Mannschaftspiel spiel = liga.getSpieleVorrunde().get(14);
         assertThat(spiel.toString(), spiel.getErgebnis(), is("9:4"));

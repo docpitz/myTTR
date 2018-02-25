@@ -472,6 +472,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String[] row = tableRowAsArray(resultrow.result, 10, false);
 //            printRows(row);
             String datum = row[0];
+            String time = "";
+            if (row[1] != null && !row[1].isEmpty() && row[1].length() <= 5)
+                time = " " + row[1];
+            if (datum != null && !datum.isEmpty() )
+                datum += time;
             String url = readHrefAndATag(row[5])[0];
             if (url != null && !url.isEmpty())
                 url = MYTT + url;

@@ -103,6 +103,7 @@ log non fatal
 
 4.1.4
 ---------------
+- Uhrzeit
 - Exakte Vereine
 - TTG Pellenz (doppelt)
 - 0 IDs Behandlung
