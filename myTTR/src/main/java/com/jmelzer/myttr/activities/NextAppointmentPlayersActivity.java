@@ -13,6 +13,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
+import com.jmelzer.myttr.logic.ValidationException;
 
 /**
  * Shows the player for the next appointment,
@@ -59,7 +60,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SearchResultMultiSelectActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
                 MyApplication.searchResult = null;
                 try {
                     if (MyApplication.foreignTeamPlayers.size() > 0) {
@@ -86,7 +87,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
             boolean completed = false;
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
                 Player p = null;
                 for (Player teamPlayer : MyApplication.foreignTeamPlayers) {
                     if (!teamPlayer.isChecked()) {

@@ -30,6 +30,8 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.GZIPInputStream;
@@ -37,7 +39,7 @@ import java.util.zip.GZIPInputStream;
 public class Client {
     static HttpClient client;
     public static CookieStoreDelegate cookieStoreDelegate;
-    public static String lastUrl = "undefined";
+    public static List<String> lastUrls = new ArrayList<>(5);
     static final Lock lock = new ReentrantLock();
 
 
@@ -60,14 +62,39 @@ public class Client {
         client.getParams().setParameter("http.protocol.content-charset", "UTF-8");
     }
 
+    public static String shortenUrl() {
+        String url = lastUrl();
+        if (url != null && url.length() > 30) {
+            return url.substring(0, 30) + "...";
+        } else
+            return url;
+    }
+    static void addUrl(String url) {
+        lastUrls.add(url);
+        if (lastUrls.size() > 5){
+            lastUrls.remove(0);
+        }
+    }
 
-
+    public static String lastUrl() {
+        if (lastUrls.size()>0)
+            return lastUrls.get(lastUrls.size()-1);
+        else
+            return "undefined";
+    }
+    public static String lastUrls() {
+        StringBuilder buff = new StringBuilder();
+        for (String lastUrl : lastUrls) {
+            buff.append(lastUrl).append(" \r\n");
+        }
+        return buff.toString();
+    }
     public synchronized static String getPage(String url) throws NetworkException {
         long start = System.currentTimeMillis();
         Log.i(Constants.LOG_TAG, "prepareGet url '" + url + "'");
         HttpGet httpGet = prepareGet(url);
         try {
-            lastUrl = url;
+            addUrl(url);
             Log.i(Constants.LOG_TAG, "calling url '" + url + "'");
             lock.lock();
             HttpResponse response = Client.client.execute(httpGet);
@@ -99,13 +126,13 @@ public class Client {
         BufferedReader rd = null;
         InputStreamReader in = null;
         StringBuilder page = new StringBuilder(20000);
-        String pageS = null;
+        String pageS;
         try {
             in = new InputStreamReader(instream, "UTF-8");
             rd = new BufferedReader(in, 8000);
 
             long start = System.currentTimeMillis();
-            String line = "";
+            String line;
             while ((line = rd.readLine()) != null) {
 //                line = StringEscapeUtils.unescapeHtml4(line);
 //                line = StringUtils.unescapeHtml3(line);

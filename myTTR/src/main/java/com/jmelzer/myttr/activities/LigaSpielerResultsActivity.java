@@ -182,7 +182,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
             startActivity(intent);
         } else {
             Player p = new Player("", MyApplication.getSelectedLigaSpieler().getName());
-            p.setPersonId(Long.valueOf(MyApplication.getSelectedLigaSpieler().getPersonId()));
+            p.setPersonId(MyApplication.getSelectedLigaSpieler().getPersonId());
 
             new EventsAsyncTask(this, EventsActivity.class, p).execute();
         }

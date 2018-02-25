@@ -53,7 +53,12 @@ public class ClubParserTest extends BaseTestCase {
         Object[] values = ClubParser.clubHashMap.values().toArray();
         for (int i = 0; i < 2; i++) {
             Club randomValue = (Club)values[generator.nextInt(values.length)];
-            List<Player> list = parser.findPlayer(null,null,randomValue.getName());
+            List<Player> list = null;
+            try {
+                list = parser.findPlayer(null,null,randomValue.getName());
+            } catch (ValidationException e) {
+                System.err.println(e.getMessage() +" - " + randomValue);
+            }
             assertNotNull(list);
         }
     }
@@ -66,10 +71,10 @@ public class ClubParserTest extends BaseTestCase {
 
         assertResultGreater("Köln", 0.3f, 3, true);
         assertResultExact("Weinh", 0.3f, 3, true);
-        assertResultExact("TuRa Germania Oberdrees", 0.8f, 0, false);
-        assertResultGreater("TuRa Germania Oberdrees", 0.3f, 0, false);
+        assertResultExact("TuRa Germania Oberdrees", 0.8f, 1, false);
         assertResultGreater("Telekom-Post", 0.3f, 0, false);
         assertResultExact("Oberdrees", 0.3f, 1, true);
+        assertResultExact("Neuss", 0.3f, 6, true);
         assertResultExact("Augustin", 0.3f, 3, true);
         assertResultExact("Bergheim", 0.3f, 5, true);
         assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 0, false);

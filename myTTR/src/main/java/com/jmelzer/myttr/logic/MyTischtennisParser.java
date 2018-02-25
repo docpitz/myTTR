@@ -147,7 +147,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public List<Player> findPlayer(String firstName, String lastName, String vereinsName) throws TooManyPlayersFound,
-            NetworkException, LoginExpiredException {
+            NetworkException, LoginExpiredException, ValidationException {
         SearchPlayer sp = new SearchPlayer();
         sp.setFirstname(firstName);
         sp.setLastname(lastName);
@@ -161,7 +161,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
      * @return Returns the player id number or 0 if not found
      */
     public List<Player> findPlayer(SearchPlayer sp) throws TooManyPlayersFound,
-            NetworkException, LoginExpiredException {
+            NetworkException, LoginExpiredException, ValidationException {
 
         Uri.Builder builder = new Uri.Builder()
                 .scheme("https")
@@ -231,6 +231,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
+        }
+        if (page.contains("Keine Daten vorhanden!")) {
+            throw new ValidationException("Keine Daten vorhanden!");
         }
         List<Player> list = new ArrayList<>();
         return parseForPlayer(firstName, lastName, page, list, 0);
@@ -746,9 +749,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return p;
     }
 
-    public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException {
+    public Player completePlayerWithTTR(Player player) throws LoginExpiredException, NetworkException, ValidationException {
         if (player.getPersonId() == 0) {
-            System.out.println();
+            throw new ValidationException("Der Spieler " + player.getFullName() + " hat keine gültige ID");
         }
         String url = "https://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
         String page = Client.getPage(url);

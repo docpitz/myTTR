@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -29,8 +31,8 @@ public class EventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(Constants.LOG_TAG, "Fragment " + this + " in oncreate");
         final View rootView = inflater.inflate(R.layout.events, container, false);
-
 
         final ListView listview = (ListView) rootView.findViewById(R.id.eventlist);
         final EventAdapter adapter = new EventAdapter(rootView.getContext(),

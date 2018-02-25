@@ -37,6 +37,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.SearchPlayer;
 
@@ -245,7 +246,7 @@ public class SearchActivity extends BaseActivity {
             }
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
                 List<Player> p = null;
                 errorMessage = null;
                 try {

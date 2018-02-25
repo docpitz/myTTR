@@ -72,9 +72,9 @@ public class ClubParser {
 //        'SV%20Bohlingen','21017,STTB','SV Bohlingen'
         int n = line.indexOf(",", 0);
         String name = line.substring(0, n);
-        int n2 = line.indexOf(",", n+1);
-        String id = line.substring(n+1, n2);
-        String verband = line.substring(n+id.length()+2);
+        int n2 = line.indexOf(",", n + 1);
+        String id = line.substring(n + 1, n2);
+        String verband = line.substring(n + id.length() + 2);
         return new Club(name, id, verband);
     }
 
@@ -100,6 +100,11 @@ public class ClubParser {
         String[] searchWords = searchString.toUpperCase().split(" |-");
 
         List<String> subentries = new ArrayList<>();
+        if (clubHashMap.containsKey(searchString)) {
+            subentries.add(searchString);
+            return subentries;
+        }
+
 
         for (Map.Entry<String, Club> entry : clubHashMap.entrySet()) {
 
@@ -122,7 +127,9 @@ public class ClubParser {
                 // The entry needs to contain all portions of the
                 // search string *but* in any order
                 for (String myClubPart : myClubParts) {
-                    if (myClubPart.startsWith(searchWord)) {
+                    if (!stopWords.contains(myClubPart) && searchWord.equals(myClubPart)) {
+                        score += 1;
+                    } else if (myClubPart.startsWith(searchWord)) {
                         score += calcScore(stringSumLength, searchWord, 1.f);
                         break;
                     } else if (myClubPart.contains(searchWord)) {

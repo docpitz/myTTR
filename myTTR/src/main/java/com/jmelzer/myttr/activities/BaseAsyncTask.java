@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
@@ -13,6 +12,7 @@ import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.ValidationException;
 
 /**
  * Base class for same error handling.
@@ -46,7 +46,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             long start = System.currentTimeMillis();
             callParser();
             Log.i(Constants.LOG_TAG, "parser time " + (System.currentTimeMillis() - start) + " ms");
-        } catch (NetworkException e) {
+        } catch (ValidationException | NetworkException e) {
             errorMessage = e.getMessage();
         } catch (LoginExpiredException e) {
             try {
@@ -55,27 +55,22 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             } catch (Exception e2) {
                 errorMessage = "Das erneute Anmelden war nicht erfolgreich";
                 Log.e(Constants.LOG_TAG, "", e2);
-                Crashlytics.setString("last_url", Client.lastUrl);
+                Crashlytics.setString("last_url", Client.lastUrls());
                 Crashlytics.logException(e2);
             }
         } catch (Exception e) {
 //            catch all others
-            Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl, e);
-            Crashlytics.setString("last_url", Client.lastUrl);
+            Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl(), e);
+            Crashlytics.setString("last_url", Client.lastUrls());
             Crashlytics.logException(e);
-            errorMessage = "Fehler beim Lesen der Webseite \n" + shortenUrl();
+            errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
         }
         return null;
     }
 
-    private String shortenUrl() {
-        if (Client.lastUrl != null && Client.lastUrl.length() > 30) {
-            return Client.lastUrl.substring(0, 30) + "...";
-        } else
-            return Client.lastUrl;
-    }
 
-    protected abstract void callParser() throws NetworkException, LoginExpiredException;
+
+    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException;
 
     @Override
     protected void onPostExecute(Integer integer) {
@@ -87,13 +82,10 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             //see myttr-62
         }
         if (errorMessage != null) {
-            new ErrorDialog(parent, errorMessage, Client.lastUrl).show();
-//            Toast.makeText(parent, errorMessage, Toast.LENGTH_SHORT).show();
+            new ErrorDialog(parent, errorMessage, Client.lastUrl()).show();
         } else if (!dataLoaded()) {
             Log.d(Constants.LOG_TAG, "couldn't load data in class " + getClass());
-            new ErrorDialog(parent, "Konnte die Daten nicht laden (Grund unbekannt)", Client.lastUrl).show();
-//            Toast.makeText(parent, "Konnte die Daten nicht laden (Grund unbekannt)",
-//                    Toast.LENGTH_SHORT).show();
+            new ErrorDialog(parent, "Konnte die Daten nicht laden (Grund unbekannt)", Client.lastUrl()).show();
         } else {
             startNextActivity();
         }

@@ -2,9 +2,19 @@
 Offen
 ----------
 
+------Bugs
+
+#3
+HomeActivity
+https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=22343&alleSpielberechtigen=yes
+
+#4
+SearchActivity
+https://www.mytischtennis.de/community/events?personId=417195
+
+
 - Bei manchen clicks ist kein relogin
 - Favoriten umbenennen
-
 - Bug: Klick auf Verein - Mannschaften zeigt nur RR an
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
@@ -90,3 +100,15 @@ Neue Funktionen in 4.0.1.1
 NPE
 new crashlytics version
 log non fatal
+
+4.1.4
+---------------
+- Exakte Vereine
+- TTG Pellenz (doppelt)
+- 0 IDs Behandlung
+#1 HomeActivity
+https://www.mytischtennis.de/community/events?personId=0
+- Keine Daten Behandlung
+#2 Doppelte HTTV Vereine
+SearchActivity
+https://www.mytischtennis.de/community/ajax/_rankingList?verein=SV+Wilhelmsburg&vereinId=1380%2CHTTV&alleSpielberechtigen=yes
