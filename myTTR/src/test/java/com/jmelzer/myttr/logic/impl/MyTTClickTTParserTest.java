@@ -123,6 +123,19 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void parseError() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/error.html");
+        assertTrue(parser.parseError(page), parser.parseError(page).startsWith("Mytischtennis Meldung: Es konnte keine Verbindung"));
+    }
+
+    @Test
+    public void parseBilanzen2() throws Exception {
+
+        String page = TestUtil.readFile(ASSETS_DIR + "/Rosenheim.html");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseBilanzen(page, mannschaft);
+    }
+    @Test
     public void parseBilanzen() throws Exception {
 
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschafts-bilanzen.html");
@@ -188,10 +201,10 @@ public class MyTTClickTTParserTest {
         parser.parseVereinMannschaften(v, page);
         assertEquals(24, v.getMannschaften().size());
         assertEquals("Schüler B", v.getMannschaften().get(23).name);
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Schueler-B-1-Kreisklasse-1/gruppe/306911/tabelle/aktuell", v.getMannschaften().get(23).url);
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Schueler-B-1-Kreisklasse-1/gruppe/306911/tabelle/gesamt", v.getMannschaften().get(23).url);
         assertEquals("Schüler B- 1. Kreisklasse 1", v.getMannschaften().get(23).liga);
         assertEquals("Herren", v.getMannschaften().get(0).name);
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/tabelle/aktuell", v.getMannschaften().get(0).url);
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-NRW-Liga-3/gruppe/305905/tabelle/gesamt", v.getMannschaften().get(0).url);
         assertEquals("Herren NRW-Liga 3", v.getMannschaften().get(0).liga);
     }
 

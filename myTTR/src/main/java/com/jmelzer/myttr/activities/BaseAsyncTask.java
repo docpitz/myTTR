@@ -14,8 +14,8 @@ import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.ValidationException;
+import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 
-import static com.jmelzer.myttr.Constants.MYTT_500;
 
 /**
  * Base class for same error handling.
@@ -51,6 +51,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             Log.i(Constants.LOG_TAG, "parser time " + (System.currentTimeMillis() - start) + " ms");
         } catch (ValidationException | NetworkException e) {
             errorMessage = e.getMessage();
+            logError(e);
         } catch (LoginExpiredException e) {
             try {
                 new LoginManager().relogin();
@@ -68,7 +69,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                 Log.d(Constants.LOG_TAG, "success");
             } catch (NoClickTTException e2) {
                 logError(e);
-                errorMessage = MYTT_500;
+                errorMessage = new MyTTClickTTParserImpl().parseError(Client.lastHtml);
             } catch (Exception e2) {
                 logError(e);
                 errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
@@ -83,10 +84,23 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
 
     private void logError(Exception e) {
         Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl(), e);
+        Log.e(Constants.LOG_TAG, getLastH1());
         Crashlytics.setString("last_url", Client.lastUrls());
         Crashlytics.logException(e);
-        Crashlytics.log(Client.lastHtml);
+        Crashlytics.log(getLastH1());
 
+    }
+
+    private String getLastH1() {
+        if (Client.lastHtml != null)
+            try {
+            int start = Client.lastHtml.indexOf("<p class=\"alert alert-danger\"");
+                return Client.lastHtml.substring(Client.lastHtml.indexOf("<p class=\"alert alert-danger\""),
+                        Client.lastHtml.indexOf("</h1>"));
+            } catch (Exception e) {
+                return "no h1 found";
+            }
+        return "--";
     }
 
 

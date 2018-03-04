@@ -115,7 +115,7 @@ public class Mannschaft {
     String kontaktNr;
     String kontaktNr2;
     private String mailTo;
-    LigaPosType ligaPosTyp;
+    LigaPosType ligaPosTyp = LigaPosType.NOTHING;
 
     Map<Integer, String> spielLokale = new TreeMap<>();
     List<SpielerBilanz> spielerBilanzen = new ArrayList<>();

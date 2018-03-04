@@ -113,3 +113,12 @@ https://www.mytischtennis.de/community/events?personId=0
 #2 Doppelte HTTV Vereine
 SearchActivity
 https://www.mytischtennis.de/community/ajax/_rankingList?verein=SV+Wilhelmsburg&vereinId=1380%2CHTTV&alleSpielberechtigen=yes
+
+4.1.5
+---------------
+- Auf-, und Absteiger markiert
+- Clickball hinzugefügt
+
+4.1.6
+----------
+Fehlerhandling

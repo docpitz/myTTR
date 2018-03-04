@@ -44,6 +44,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht"};
     public static final String EMPTY_NAME = "--------";
 
+    public String parseError(String page) {
+        if (page == null)
+            return "unbekannt";
+
+        ParseResult result = readBetweenOpenTag(page, 0, "<p class=\"alert alert-danger\"", "</p>");
+        return "Mytischtennis Meldung: " + result.result;
+    }
     @Override
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
         String url = "";
@@ -800,7 +807,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult table = readBetween(page, 0, "gamestatsTable", null);
         mannschaft.clearBilanzen();
         int idx = 0;
-        while (true) {
+        while (table != null) {
             //mytt have a bug here: no opening tr element
             ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
             if (isEmpty(resultrow)) {
@@ -808,7 +815,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
             idx = resultrow.end;
             String[] row = tableRowAsArray("<td>" + resultrow.result, 10, false);
-//            printRows(row);
+            printRows(row);
             if (row[1].isEmpty())
                 break;
 

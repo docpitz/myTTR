@@ -1,5 +1,7 @@
 package com.jmelzer.myttr.logic;
 
+import com.jmelzer.myttr.Constants;
+
 import java.net.UnknownHostException;
 
 /**
@@ -10,12 +12,12 @@ import java.net.UnknownHostException;
  */
 public class NetworkException extends Exception {
     private static final long serialVersionUID = 7767176233436615324L;
-    private String reason;
+    private int code;
 
     Throwable t;
 
-    public NetworkException(String reason) {
-        this.reason = reason;
+    public NetworkException(int code) {
+        this.code = code;
     }
 
     public NetworkException(Throwable throwable) {
@@ -24,14 +26,13 @@ public class NetworkException extends Exception {
     }
 
     public String getMessage() {
-        if (reason != null) {
-            return reason;
+        if (code > 200) {
+            return String.format(Constants.MYTT_ERROR, code);
         }
         return translate(t);
     }
 
     public static String translate(Throwable t) {
-
         if (t instanceof UnknownHostException) {
             return "Konnte keine Verbindung zum Server herstellen";
         }
