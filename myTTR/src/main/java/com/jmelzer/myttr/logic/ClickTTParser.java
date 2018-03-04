@@ -16,6 +16,7 @@ import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.TournamentGame;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.model.Cup;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
@@ -269,7 +270,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 idxL = resultLinks.end;
                 ParseResult resultLink = readBetween(resultLinks.result, 0, "href=\"", "\">");
                 ParseResult resultName = readBetween(resultLinks.result, 0, "\">", null);
-                Verband v = new Verband(resultName.result, resultLink.result, null, null, null);
+                Verband v = new Verband(resultName.result, resultLink.result, null);
                 verbandList.add(v);
 
             }
@@ -1125,15 +1126,15 @@ public class ClickTTParser extends AbstractBaseParser {
     /**
      * read the cups from the url
      */
-    public List<Tournament> readCups(Verband verband, Date date) throws NetworkException {
-        if (verband.gettUrl() == null)
+    public List<Tournament> readCups(Cup cup, Date date) throws NetworkException {
+        if (cup.getCupUrl() == null)
             return new ArrayList<>();
-        String url = verband.getCupUrl();
+        String url = cup.getCupUrl();
         if (date != null) {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
         String page = Client.getPage(url);
-        return parseTournamentLinks(page, verband.getHttpAndDomain(null), true);
+        return parseTournamentLinks(page, cup.getHttpAndDomain(), true);
     }
 
     List<Tournament> parseTournamentLinks(String page, String httpAndDomain, boolean isCup) {

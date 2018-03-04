@@ -20,6 +20,7 @@ import com.jmelzer.myttr.db.DataBaseHelper;
 import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
+import com.jmelzer.myttr.model.Cup;
 import com.jmelzer.myttr.model.Head2HeadResult;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -70,6 +71,7 @@ public class MyApplication extends Application {
     public static Verein selectedVerein;
     public static Mannschaftspiel selectedMannschaftSpiel;
     public static Verband selectedVerband;
+    public static Cup selectedCup;
     static Spieler selectedLigaSpieler;
     private static List<Head2HeadResult> head2Head;
 

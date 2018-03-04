@@ -17,10 +17,10 @@ import android.widget.TextView;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Tournament;
-import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.model.Cup;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -87,10 +87,10 @@ public class CupsActivity extends BaseActivity {
 
         Spinner spinnerVerband = findViewById(R.id.spinner_verband);
         VerbandAdapter adapterVerband = new VerbandAdapter(this, R.layout.liga_home_spinner_selected_item,
-                Verband.cups());
+                Cup.cups());
         adapterVerband.setDropDownViewResource(R.layout.liga_home_spinner_item);
         spinnerVerband.setAdapter(adapterVerband);
-        spinnerVerband.setOnItemSelectedListener(new VerbandListener());
+        spinnerVerband.setOnItemSelectedListener(new CupListener());
 
         refreshDateView();
     }
@@ -100,8 +100,8 @@ public class CupsActivity extends BaseActivity {
         txtView.setText(DateFormatUtils.format(date, "MMMM yyyy", Locale.GERMAN));
     }
 
-    private class VerbandAdapter extends ArrayAdapter<Verband> {
-        public VerbandAdapter(Context context, int resource, List<Verband> list) {
+    private class VerbandAdapter extends ArrayAdapter<Cup> {
+        public VerbandAdapter(Context context, int resource, List<Cup> list) {
             super(context, resource, list);
             setDropDownViewResource(R.layout.liga_home_spinner_item);
         }
@@ -122,15 +122,15 @@ public class CupsActivity extends BaseActivity {
         }
     }
 
-    class VerbandListener implements AdapterView.OnItemSelectedListener {
+    class CupListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             MyApplication.myTournaments = null;
-            MyApplication.selectedVerband = (Verband) parent.getItemAtPosition(position);
-            if (MyApplication.selectedVerband == null) {
+            MyApplication.selectedCup = (Cup) parent.getItemAtPosition(position);
+            if (MyApplication.selectedCup == null) {
                 return;
             }
-            if (MyApplication.selectedVerband.getCupUrl() == null)
+            if (MyApplication.selectedCup.getCupUrl() == null)
                 return;
 
             refreshList();
@@ -148,7 +148,7 @@ public class CupsActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(CupsActivity.this, null) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                MyApplication.myTournaments = parser.readCups(MyApplication.selectedVerband,
+                MyApplication.myTournaments = parser.readCups(MyApplication.selectedCup,
                         date.getTime());
             }
 
