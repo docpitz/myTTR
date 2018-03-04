@@ -36,11 +36,15 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.GZIPInputStream;
 
+import static com.jmelzer.myttr.Constants.MYTT_500;
+
 public class Client {
+
     static HttpClient client;
     public static CookieStoreDelegate cookieStoreDelegate;
     public static List<String> lastUrls = new ArrayList<>(5);
     static final Lock lock = new ReentrantLock();
+    public static String lastHtml;
 
 
     static {
@@ -101,10 +105,11 @@ public class Client {
             Log.i(Constants.LOG_TAG, "execute time " + (System.currentTimeMillis() - start) + " ms");
             String s = readGzippedResponse(response);
             response.getEntity().consumeContent();
+            lastHtml = s;
             Log.i(Constants.LOG_TAG, "request time " + (System.currentTimeMillis() - start)
                     + " ms , returncode = " + response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == 500) {
-                throw new NetworkException("die Webseite meldet zur Zeit einen Fehler zurück :-(");
+                throw new NetworkException(MYTT_500);
             }
 
             return s;

@@ -7,6 +7,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.TestUtil;
 import com.jmelzer.myttr.model.Verein;
 
@@ -15,6 +16,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
@@ -292,5 +294,16 @@ public class MyTTClickTTParserTest {
         assertThat(spieler.getErgebnisse().get(0).getName(), is("Herren NRW-Liga 3 (Vorrunde)"));
         assertThat(spieler.getErgebnisse().get(1).getName(), is("Senioren 50-Bezirksliga (Vorrunde)"));
         assertThat(spieler.getErgebnisse().get(1).getSpiele().size(), is(2));
+    }
+
+    @Test
+    public void parseSpielerFehler() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/no-data.html");
+        try {
+            parser.validatePage(page);
+            fail();
+        } catch (NoClickTTException e) {
+            //ok
+        }
     }
 }

@@ -10,6 +10,7 @@ import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -76,7 +77,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readGesamtSpielplan(Saison saison, Liga liga) throws NetworkException {
+    public void readGesamtSpielplan(Saison saison, Liga liga) throws NetworkException, NoClickTTException {
         if (isClickTT(saison)) {
             clickTTParser.readGesamtSpielplan(liga);
         } else {
@@ -84,7 +85,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readDetail(Saison saison, Mannschaftspiel spiel) throws NetworkException {
+    public void readDetail(Saison saison, Mannschaftspiel spiel) throws NetworkException, NoClickTTException {
         if (isClickTT(saison)) {
             clickTTParser.readDetail(spiel);
         } else {
@@ -92,7 +93,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readLigen(Kreis kreis, Saison saison) throws NetworkException {
+    public void readLigen(Kreis kreis, Saison saison) throws NetworkException, NoClickTTException {
         if (isClickTT(saison)) {
             clickTTParser.readLigen(kreis);
         } else {
@@ -100,7 +101,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public Verein readVerein(String url, Saison saison) throws NetworkException {
+    public Verein readVerein(String url, Saison saison) throws NetworkException, NoClickTTException {
         if (isClickTT(saison)) {
             return clickTTParser.readVerein(url);
         } else {
@@ -108,19 +109,11 @@ public class MytClickTTWrapper {
         }
     }
 
-    public Spieler readSpielerDetail(Saison saison, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
+    public Spieler readSpielerDetail(Saison saison, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
         if (isClickTT(saison)) {
             return clickTTParser.readSpielerDetail(name, url);
         } else {
             return newParser.readSpielerDetail(name, myTTPlayerIdsForPlayer);
-        }
-    }
-
-    public Spieler readPopUp(Saison saison, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
-        if (isClickTT(saison)) {
-            return null;
-        } else {
-            return newParser.readPopUp(name, myTTPlayerIdsForPlayer);
         }
     }
 

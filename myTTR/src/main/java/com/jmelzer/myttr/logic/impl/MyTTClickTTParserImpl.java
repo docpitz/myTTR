@@ -16,6 +16,7 @@ import com.jmelzer.myttr.logic.AbstractBaseParser;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -134,31 +135,35 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readGesamtSpielplan(Liga liga) throws NetworkException {
+    public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException {
         if (liga.getUrlGesamt() != null) {
             String url = liga.getHttpAndDomain() + liga.getUrlGesamt();
             String page = Client.getPage(url);
+            validatePage(page);
             parseErgebnisse(page, liga, Liga.Spielplan.GESAMT);
         }
     }
 
     @Override
-    public void readDetail(Mannschaftspiel spiel) throws NetworkException {
+    public void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException {
         String url = spiel.getUrlDetail();
         String page = Client.getPage(url);
+        validatePage(page);
         parseMannschaftspiel(page, spiel);
     }
 
     @Override
-    public void readLigen(Kreis kreis) throws NetworkException {
+    public void readLigen(Kreis kreis) throws NetworkException, NoClickTTException {
         String page = Client.getPage(kreis.getUrl());
+        validatePage(page);
         List<Liga> ligen = parseLigaLinks(page);
         kreis.addAllLigen(ligen);
     }
 
     @Override
-    public Verein readVerein(String url) throws NetworkException {
+    public Verein readVerein(String url) throws NetworkException, NoClickTTException {
         String page = Client.getPage(url);
+        validatePage(page);
         Verein v = parseVerein(page);
         v.setUrl(url);
         String url2 = url.substring(0, url.indexOf("/info")) + "/mannschaften";
@@ -231,9 +236,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
+    public Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
         String page = Client.getPage(myTTPlayerIdsForPlayer.buildPopupUrl());
+        validatePage(page);
         return parseLinksForPlayer(page, name);
+    }
+
+    void validatePage(String page) throws NoClickTTException {
+        if (page.contains("keine Verbindung zur externen Spieler-Datenbank")) {
+            throw new NoClickTTException();
+        }
     }
 
     @Override
@@ -247,9 +259,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException {
+    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
         Spieler spieler = readPopUp(name, myTTPlayerIdsForPlayer);
         String page = Client.getPage(spieler.getMytTTClickTTUrl());
+        validatePage(page);
         return parseSpieler(spieler, page);
     }
 

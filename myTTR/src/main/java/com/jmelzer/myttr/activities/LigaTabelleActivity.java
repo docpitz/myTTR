@@ -21,6 +21,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.List;
@@ -74,7 +75,7 @@ public class LigaTabelleActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaTabelleActivity.this, targetClz) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                 MytClickTTWrapper p = new MytClickTTWrapper();
                 if (MyApplication.selectedMannschaft != null) {
                     //todo check wether this is correct here

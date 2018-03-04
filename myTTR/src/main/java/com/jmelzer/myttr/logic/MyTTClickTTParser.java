@@ -28,17 +28,17 @@ public interface MyTTClickTTParser {
 
     void readRR(Liga liga) throws NetworkException;
 
-    void readDetail(Mannschaftspiel spiel) throws NetworkException;
+    void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException;
 
-    void readLigen(Kreis kreis) throws NetworkException;
+    void readLigen(Kreis kreis) throws NetworkException, NoClickTTException;
 
-    void readGesamtSpielplan(Liga liga) throws NetworkException;
+    void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException;
 
-    Verein readVerein(String url) throws NetworkException;
+    Verein readVerein(String url) throws NetworkException, NoClickTTException;
 
-    Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException;
+    Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException;
 
-    Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException;
+    Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException;
 
     Verband readTopLigen() throws NetworkException;
 

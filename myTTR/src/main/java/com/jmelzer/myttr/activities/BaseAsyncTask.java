@@ -12,7 +12,10 @@ import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.ValidationException;
+
+import static com.jmelzer.myttr.Constants.MYTT_500;
 
 /**
  * Base class for same error handling.
@@ -58,19 +61,36 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                 Crashlytics.setString("last_url", Client.lastUrls());
                 Crashlytics.logException(e2);
             }
+        } catch (NoClickTTException e) {
+            Log.d(Constants.LOG_TAG, "second try after no data msg");
+            try {
+                callParser();
+                Log.d(Constants.LOG_TAG, "success");
+            } catch (NoClickTTException e2) {
+                logError(e);
+                errorMessage = MYTT_500;
+            } catch (Exception e2) {
+                logError(e);
+                errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
+            }
         } catch (Exception e) {
 //            catch all others
-            Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl(), e);
-            Crashlytics.setString("last_url", Client.lastUrls());
-            Crashlytics.logException(e);
+            logError(e);
             errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
         }
         return null;
     }
 
+    private void logError(Exception e) {
+        Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl(), e);
+        Crashlytics.setString("last_url", Client.lastUrls());
+        Crashlytics.logException(e);
+        Crashlytics.log(Client.lastHtml);
+
+    }
 
 
-    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException;
+    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException;
 
     @Override
     protected void onPostExecute(Integer integer) {

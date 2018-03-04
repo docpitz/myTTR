@@ -22,6 +22,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
@@ -307,7 +308,7 @@ public class LigaVereinActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaSpielberichtActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                 new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel);
             }
 

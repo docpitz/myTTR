@@ -26,6 +26,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.Saison;
@@ -168,7 +169,7 @@ public class LigaHomeActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                 MyApplication.selectedVerein = clickTTWrapper.readVerein(verein.getUrl(), MyApplication.saison);
             }
 
@@ -323,7 +324,7 @@ public class LigaHomeActivity extends BaseActivity {
                 if (selectedKreis.getLigen().size() == 0) {
                     AsyncTask<String, Void, Integer> task = new BaseAsyncTask(LigaHomeActivity.this, null) {
                         @Override
-                        protected void callParser() throws NetworkException, LoginExpiredException {
+                        protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                             clickTTWrapper.readLigen(selectedKreis, MyApplication.saison);
                         }
 

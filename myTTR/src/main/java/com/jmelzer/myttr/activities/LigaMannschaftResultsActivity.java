@@ -12,6 +12,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.List;
@@ -93,7 +94,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     public void verein(MenuItem item) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaVereinActivity.class) {
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                 if (MyApplication.selectedMannschaft.getVereinUrl() == null) {
                     clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
