@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.logic.impl;
 
-import android.text.Html;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
@@ -17,6 +16,7 @@ import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -488,7 +488,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String time = "";
             if (row[1] != null && !row[1].isEmpty() && row[1].length() <= 5)
                 time = " " + row[1];
-            if (datum != null && !datum.isEmpty() )
+            if (datum != null && !datum.isEmpty())
                 datum += time;
             String url = readHrefAndATag(row[5])[0];
             if (url != null && !url.isEmpty())
@@ -619,6 +619,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 continue;//skip first row
             }
             String[] row = tableRowAsArray(resultrow.result, 10, false);
+            LigaPosType ligaPosTyp = parsePosType(row[0]);
             String nameWithRef = row[2];
             String[] href = readHrefAndATag(nameWithRef);
             String name = href[1];
@@ -636,7 +637,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (containsRetiredString(resultrow.result)) {
                 m = new Mannschaft(name);
             } else {
-                m = new Mannschaft(name,
+                m = new Mannschaft(ligaPosTyp, name,
                         Integer.valueOf(row[1]),
                         Integer.valueOf(row[3]),
                         Integer.valueOf(row[4]),
@@ -651,6 +652,21 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             idx = resultrow.end;
 
         }
+    }
+
+    private LigaPosType parsePosType(String s) {
+        if (s == null)
+            return LigaPosType.NOTHING;
+        if (s.contains("Relegation") && s.contains("green"))
+            return LigaPosType.AUF_RELEGATION;
+        if (s.contains("Aufsteiger"))
+            return LigaPosType.AUFSTEIGER;
+        if (s.contains("Relegation") && s.contains("red"))
+            return LigaPosType.AB_RELEGATION;
+        if (s.contains("Absteiger"))
+            return LigaPosType.ABSTEIGER;
+
+        return LigaPosType.NOTHING;
     }
 
     private void parseSpielplanLinks(Liga liga, String page) {
@@ -772,7 +788,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String aref[] = readHrefAndATag(row[0]);
             mannschaft.name = aref[1];
             aref = readHrefAndATag(row[1]);
-            mannschaft.url = MYTT + aref[0];
+            mannschaft.url = MYTT + aref[0].replaceAll("/aktuell", "/gesamt");
             mannschaft.liga = aref[1];
             v.addMannschaft(mannschaft);
         }

@@ -2,86 +2,34 @@
 <html><head>
 <title>
 myTischtennis.de - click-TT
-- Bezirk Düsseldorf 2017/18
-- Herren-Bezirksliga 2
+- Bezirk Mittelrhein 2017/18
+- Herren-Bezirksliga 3
 </title>
-<base href="//www.mytischtennis.de">	
+<base href="//www.mytischtennis.de">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
-<script src="/_sharedJS/common.js?v=8-1-4" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=8-7-1" type="text/javascript"></script>
 <script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
 <script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
-<link href="/clicktt/includes/css/click-tt.css?v=8-1-4" media="all" rel="stylesheet" type="text/css" />
-<script src="//commondatastorage.googleapis.com/qmftp/RTA.js" type="text/javascript" async></script>
-<script type="text/javascript" src="//c.amazon-adsystem.com/aax2/amzn_ads.js" async></script>
-<script type="text/javascript" async>
-try {
-amznads.getAds('3371');
-} catch (e) { /*ignore*/ }
-</script>
-<script type="text/javascript" async>
-var gptadslots=[];
-var googletag = googletag || {};
-googletag.cmd = googletag.cmd || [];
-(function(){ var gads = document.createElement('script');
-gads.async = true; gads.type = 'text/javascript';
-var useSSL = 'https:' == document.location.protocol;
-gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-var node = document.getElementsByTagName('script')[0];
-node.parentNode.insertBefore(gads, node);
-})();
-</script>
-<script type="text/javascript" async>
-googletag.cmd.push(function() {
-var breakpoint = window.myTT.getBreakpoint();
-if (breakpoint === 'lg' || breakpoint === 'xl') {
-gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[728,90]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
-gptadslots[2]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[160,600],[300,600]],'div-gpt-ad-149594444772628791-2').addService(googletag.pubads());
-gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[728,90],[800,250],[900,250],[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
-// hard coded: MYTT-2893
-gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
-gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
-} else if (breakpoint === 'md') {
-gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[728,90],[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
-// hard coded: MYTT-2893
-gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
-gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
-} else { // xs, sm
-gptadslots[1]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[320,50]],'div-gpt-ad-149594444772628791-1').addService(googletag.pubads());
-// hard coded: MYTT-2893
-gptadslots[4]= googletag.defineSlot('/27763518/myTischtennis_GmbH/mytischtennis.de_click-tt.de', [[300,250]],'div-gpt-ad-518943210402310848-4').addService(googletag.pubads());
-gptadslots[3]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/bs_unten', [[300,250]],'div-gpt-ad-518943210402310848-3').addService(googletag.pubads());
-gptadslots[6]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de', [[300,250]],'div-gpt-ad-518943210402310848-6').addService(googletag.pubads());
-}
-// Out of Page - Slot
-gptadslots[5] = googletag.defineOutOfPageSlot('/27763518/myTischtennis_GmbH/wttv.de', 'div-gpt-ad-518943210402310848-5').addService(googletag.pubads());
-// for all slots
-gptadslots[7]= googletag.defineSlot('/27763518/myTischtennis_GmbH/wttv.de/ca_unten/pos3', [[300,250]],'div-gpt-ad-518943210402310848-7').addService(googletag.pubads());
-// Start Targeting
-var TargetingScript = document.createElement('script');
-TargetingScript.type = 'text/javascript';
-TargetingScript.async = true;
-TargetingScript.src = '//storage.googleapis.com/qmftp/Targeting.js';
-document.head.appendChild(TargetingScript);
-// End Targeting
-googletag.pubads().collapseEmptyDivs();
-googletag.pubads().enableAsyncRendering();
-googletag.enableServices();
-});
-</script>
+<link href="/clicktt/includes/css/click-tt.css?v=8-7-1" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_AdCall.js"></script>
+<script src="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body class="click-tt">
-<!-- Version: 8.1.4 -->	
+<!-- Version: 8.7.1 -->
 <div class="top-bar hidden-xs hidden-sm hidden-print">
 <div class="container">
 <div class="col-md-offset-3 col-md-9 text-right">
 <form action="/community/logout" method="post" class="form-inline pull-right">
 <a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
 <button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
-<input type="hidden" name="targetPage" value="http://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/tabelle/aktuell">
+<input type="hidden" name="targetPage" value="/clicktt//WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/tabelle/gesamt">
 </form>
 </div>
 </div>
@@ -184,9 +132,9 @@ Toggle navigation
 <a name="content"></a>
 <ol class="breadcrumb"> 
 <li><a href="/clicktt/home" title="Home">Home</a>
-<li><a href="/clicktt/WTTV/season/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
-<li><a href="/clicktt/WTTV/17-18/ligen/Duesseldorf-17-18" title="Bezirk Düsseldorf 2017/18(Düsseldorf 17/18)">Bezirk Düsseldorf 2017/18</a></li>
-<li class="active">Herren-Bezirksliga 2</li>
+<li><a href="/clicktt/WTTV/17-18/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/WTTV/17-18/ligen/Mittelrhein-17-18" title="Bezirk Mittelrhein 2017/18(Mittelrhein 17/18)">Bezirk Mittelrhein 2017/18</a></li>
+<li class="active">Herren-Bezirksliga 3</li>
 </ol>
 </div>
 </div>
@@ -212,18 +160,18 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791
 </div>
 </div>
 </div>
-<div class="row">	
+<div class="row">
 <div class="col-md-8">
 <div class="panel panel-primary">
 <div class="panel-heading">
 <h3 class="panel-title">Liga</h3>
 </div>
 <div class="panel-body">
-<div class="pull-right hidden-print hidden-xs hidden-sm">
-<a href="javascript:window.print();" class="m-b-md btn btn-sm btn-info">Drucken <i class="fa fa-print"></i></a>
+<div class="pull-right">
+<a href="/community/ranking?showgroupid=305797" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
 </div>
 <h1>
-Herren-Bezirksliga 2
+Herren-Bezirksliga 3
 <span class="btn-group hidden-print" data-bind="with:$root.group">
 <button type="button" class="btn btn-pill btn-xs dropdown-toggle"
 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -243,7 +191,7 @@ data-bind="css: ((favoriteStatus() == 'added') ? 'btn-primary' : 'btn-default')"
 <li><a href="clicktt/home#tab_ligen"><i class="fa fa-fw fa-list"></i> Favoriten-Ligen anzeigen</a></li>
 </ul>
 </span>
-<script src="/clicktt/includes/js/group.js?v=8-1-4" type="text/javascript"></script>
+<script src="/clicktt/includes/js/group.js?v=8-7-1" type="text/javascript"></script>
 <script type="text/javascript">
 if (!window.koModels) {
 window.koModels = {};
@@ -251,57 +199,56 @@ window.koModels = {};
 // hook for loading-process of mainViewModel
 window.koModels.group = function(mainData, mainModel) {
 return new window.ClickTTGroupViewModel("noadded"
-, "/clicktt/WTTV/group/removeFavorite?groupid=306250"
-, "/clicktt/WTTV/group/addFavorite?groupid=306250");
+, "/clicktt/WTTV/group/removeFavorite?groupid=305797"
+, "/clicktt/WTTV/group/addFavorite?groupid=305797");
 };
 </script>
 </h1>
 <ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
 <li role="presentation" class="active">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/tabelle/aktuell" data-target="#groupTeamInfos" role="tab">
-Tabelle und Spielplan (aktuell)
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/tabelle/gesamt" data-target="#groupTeamInfos" role="tab">
+Tabelle
 </a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/spielplan/vr" role="tab">
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/spielplan/rr" role="tab">
 Staffelspielplan
 </a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/adressen" data-target="#groupTeamAddresses" role="tab">
-Kontaktadressen
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/adressen" data-target="#groupTeamAddresses" role="tab">
+Kontakte
 </a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/bilanzuebersichten/vr" data-target="#groupTeamStats" role="tab">
-Bilanzübersichten
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/bilanzuebersichten/rr" data-target="#groupTeamStats" role="tab">
+Bilanzen
 </a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/mannschaftsmeldungen/vr" 
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/mannschaftsmeldungen/rr"
 data-target="#groupTeamPools" role="tab">
-Mannschaftsmeldungen
+Meldungen
 </a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/staffel-ranglisten/spieler/vr" 
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/staffel-ranglisten/spieler/rr"
 data-target="#groupTeamPools" role="tab">
-Staffel-Ranglisten
+Ranglisten
 </a>
-</li> 
+</li>
 </ul>
+<div class="pull-right">
 <div class="btn-group hidden-print">
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/tabelle/vr" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/tabelle/rr" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/tabelle/gesamt" class="m-b-md btn btn-sm btn-info ">Gesamt <i class="fa fa-dot-circle-o"></i></a>
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/tabelle/vr" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/tabelle/rr" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/tabelle/gesamt" class="m-b-md btn btn-sm btn-info active">Gesamt <i class="fa fa-dot-circle-o"></i></a>
+</div>
 </div>
 <div class="row">
 <div class="col-xs-6">
 <h5>Spielsystem: Sechser-Paarkreuz-System</h5>
 <h5><a role="button" data-toggle="collapse" href="#remark" aria-expanded="false" aria-controls="remark" class="">Bemerkungen <i class="fa fa-info-circle" aria-hidden="true"></i> </a></h5>
-</div>
-<div class="col-xs-6 text-right">
-<a href="/community/ranking?showgroupid=306250" class="btn btn-primary m-t hidden-print">Liga-Rangliste <i class="icon-circle-arrow-right"></i></a>
 </div>
 </div>
 <div class="alert alert-info collapse" role="alert" id="remark">
@@ -310,7 +257,7 @@ Staffel-Ranglisten
 <div class="visible-print">
 <p>Der Spielplan ist verbindlich. Änderungen sind nur noch zulässig im Rahmen der Bestimmungen von WO G 6.1 und G 6.2.</p>
 </div>
-<h3>Tabelle (Vorrunde)</h3>
+<h3>Tabelle (gesamt)</h3>
 <table class="table table-mytt table-striped table-bordered table-mini-xs table-mini-sm table-mini-md">
 <thead>
 <tr>
@@ -324,80 +271,120 @@ Staffel-Ranglisten
 <th class="hidden-xss">Spiele</th>
 <th class="hidden-xs hidden-md">+/-</th>
 <th>Punkte</th>
-</tr>	
+</tr>
 </thead>
 <tbody>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Aufsteiger" class="fa fa-chevron-circle-up green"></i>
 </td>
 <td class="visible-lg visible-xl">
 1
 </td>
 <td>
 <span class="hidden-lg hidden-xl">1.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
 </td>
-<td class="hidden-xs">9</td>
-<td>9</td>
+<td class="hidden-xs">17</td>
+<td>15</td>
 <td>0</td>
-<td>0</td>
-<td class="hidden-xss">81:12<em class="visible-xs-block">+69</em></td>
-<td class="hidden-xs hidden-md">+69</td>
-<td>18:0</td>
+<td>2</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1953525">
+146:41<em class="visible-xs-block">+105</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1953525').webuiPopover({title:"Sätze 477:218 (+259) / Bälle 6770:5344 (+1426)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">+105</td>
+<td>30:4</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Aufsteiger" class="fa fa-chevron-circle-up green"></i>
 </td>
 <td class="visible-lg visible-xl">
 2
 </td>
 <td>
 <span class="hidden-lg hidden-xl">2.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951459/TTV-BW-Neudorf/spielerbilanzen/vr">TTV BW Neudorf</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>7</td>
+<td class="hidden-xs">17</td>
+<td>12</td>
+<td>3</td>
 <td>2</td>
-<td>1</td>
-<td class="hidden-xss">84:40<em class="visible-xs-block">+44</em></td>
-<td class="hidden-xs hidden-md">+44</td>
-<td>16:4</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1951428">
+136:86<em class="visible-xs-block">+50</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1951428').webuiPopover({title:"Sätze 494:373 (+121) / Bälle 8247:7675 (+572)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">+50</td>
+<td>27:7</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Relegation" class="fa fa-chevron-up green"></i>
 </td>
 <td class="visible-lg visible-xl">
 3
 </td>
 <td>
 <span class="hidden-lg hidden-xl">3.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1950889/SG-Schoenebeck/spielerbilanzen/vr">SG Schönebeck</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
 </td>
-<td class="hidden-xs">8</td>
-<td>7</td>
+<td class="hidden-xs">16</td>
+<td>12</td>
 <td>1</td>
-<td>0</td>
-<td class="hidden-xss">71:31<em class="visible-xs-block">+40</em></td>
-<td class="hidden-xs hidden-md">+40</td>
-<td>15:1</td>
+<td>3</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1954722">
+124:88<em class="visible-xs-block">+36</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1954722').webuiPopover({title:"Sätze 452:388 (+64) / Bälle 7878:7515 (+363)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">+36</td>
+<td>25:7</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Relegation" class="fa fa-chevron-up green"></i>
 </td>
 <td class="visible-lg visible-xl">
 4
 </td>
 <td>
 <span class="hidden-lg hidden-xl">4.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954325/TTC-Homberg/spielerbilanzen/vr">TTC Homberg</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954770/TV-Dellbrueck-III/spielerbilanzen/rr">TV Dellbrück III</a>
 </td>
-<td class="hidden-xs">9</td>
-<td>6</td>
-<td>2</td>
+<td class="hidden-xs">17</td>
+<td>10</td>
 <td>1</td>
-<td class="hidden-xss">70:39<em class="visible-xs-block">+31</em></td>
-<td class="hidden-xs hidden-md">+31</td>
-<td>14:4</td>
+<td>6</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1954770">
+119:108<em class="visible-xs-block">+11</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1954770').webuiPopover({title:"Sätze 462:421 (+41) / Bälle 8236:8094 (+142)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">+11</td>
+<td>21:13</td>
 </tr>
 <tr>
 <td class="only-icon">
@@ -407,15 +394,24 @@ Staffel-Ranglisten
 </td>
 <td>
 <span class="hidden-lg hidden-xl">5.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954132/SC-Buschhausen-II/spielerbilanzen/vr">SC Buschhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>5</td>
-<td>1</td>
-<td>4</td>
-<td class="hidden-xss">59:68<em class="visible-xs-block">-9</em></td>
-<td class="hidden-xs hidden-md">-9</td>
-<td>11:9</td>
+<td class="hidden-xs">17</td>
+<td>9</td>
+<td>2</td>
+<td>6</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1950131">
+129:101<em class="visible-xs-block">+28</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1950131').webuiPopover({title:"Sätze 484:407 (+77) / Bälle 8411:8070 (+341)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">+28</td>
+<td>20:14</td>
 </tr>
 <tr>
 <td class="only-icon">
@@ -425,15 +421,24 @@ Staffel-Ranglisten
 </td>
 <td>
 <span class="hidden-lg hidden-xl">6.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>5</td>
-<td>0</td>
-<td>5</td>
-<td class="hidden-xss">62:63<em class="visible-xs-block">-1</em></td>
-<td class="hidden-xs hidden-md">-1</td>
-<td>10:10</td>
+<td class="hidden-xs">17</td>
+<td>7</td>
+<td>2</td>
+<td>8</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1953769">
+92:111<em class="visible-xs-block">-19</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1953769').webuiPopover({title:"Sätze 365:422 (-57) / Bälle 6962:7222 (-260)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-19</td>
+<td>16:18</td>
 </tr>
 <tr>
 <td class="only-icon">
@@ -443,15 +448,24 @@ Staffel-Ranglisten
 </td>
 <td>
 <span class="hidden-lg hidden-xl">7.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952295/DJK-Adler-Union-Frintrop-III/spielerbilanzen/vr">DJK Adler Union Frintrop III</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>4</td>
-<td>0</td>
+<td class="hidden-xs">16</td>
 <td>6</td>
-<td class="hidden-xss">60:73<em class="visible-xs-block">-13</em></td>
-<td class="hidden-xs hidden-md">-13</td>
-<td>8:12</td>
+<td>3</td>
+<td>7</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1950444">
+101:103<em class="visible-xs-block">-2</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1950444').webuiPopover({title:"Sätze 393:403 (-10) / Bälle 7402:7462 (-60)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-2</td>
+<td>15:17</td>
 </tr>
 <tr>
 <td class="only-icon">
@@ -461,15 +475,24 @@ Staffel-Ranglisten
 </td>
 <td>
 <span class="hidden-lg hidden-xl">8.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955017/TTC-Olympia-Muelheim-II/spielerbilanzen/vr">TTC Olympia Mülheim II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>3</td>
-<td>0</td>
-<td>7</td>
-<td class="hidden-xss">56:78<em class="visible-xs-block">-22</em></td>
-<td class="hidden-xs hidden-md">-22</td>
-<td>6:14</td>
+<td class="hidden-xs">15</td>
+<td>5</td>
+<td>2</td>
+<td>8</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1951694">
+99:116<em class="visible-xs-block">-17</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1951694').webuiPopover({title:"Sätze 400:455 (-55) / Bälle 7865:8077 (-212)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-17</td>
+<td>12:18</td>
 </tr>
 <tr>
 <td class="only-icon">
@@ -479,74 +502,113 @@ Staffel-Ranglisten
 </td>
 <td>
 <span class="hidden-lg hidden-xl">9.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1956410/SVM-Essen/spielerbilanzen/vr">SVM Essen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>3</td>
-<td>0</td>
-<td>7</td>
-<td class="hidden-xss">52:80<em class="visible-xs-block">-28</em></td>
-<td class="hidden-xs hidden-md">-28</td>
-<td>6:14</td>
+<td class="hidden-xs">17</td>
+<td>5</td>
+<td>1</td>
+<td>11</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1955782">
+100:131<em class="visible-xs-block">-31</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1955782').webuiPopover({title:"Sätze 416:485 (-69) / Bälle 8168:8457 (-289)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-31</td>
+<td>11:23</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Relegation" class="fa fa-chevron-down red"></i>
 </td>
 <td class="visible-lg visible-xl">
 10
 </td>
 <td>
 <span class="hidden-lg hidden-xl">10.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952152/DJK-VfB-Frohnhausen/spielerbilanzen/vr">DJK VfB Frohnhausen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>2</td>
-<td>1</td>
-<td>7</td>
-<td class="hidden-xss">52:83<em class="visible-xs-block">-31</em></td>
-<td class="hidden-xs hidden-md">-31</td>
-<td>5:15</td>
+<td class="hidden-xs">17</td>
+<td>4</td>
+<td>3</td>
+<td>10</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1955704">
+95:127<em class="visible-xs-block">-32</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1955704').webuiPopover({title:"Sätze 419:458 (-39) / Bälle 8160:8147 (+13)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-32</td>
+<td>11:23</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Relegation" class="fa fa-chevron-down red"></i>
 </td>
 <td class="visible-lg visible-xl">
 11
 </td>
 <td>
 <span class="hidden-lg hidden-xl">11.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
 </td>
-<td class="hidden-xs">10</td>
+<td class="hidden-xs">17</td>
+<td>3</td>
 <td>2</td>
-<td>1</td>
-<td>7</td>
-<td class="hidden-xss">48:82<em class="visible-xs-block">-34</em></td>
-<td class="hidden-xs hidden-md">-34</td>
-<td>5:15</td>
+<td>12</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1955679">
+85:136<em class="visible-xs-block">-51</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1955679').webuiPopover({title:"Sätze 365:497 (-132) / Bälle 7534:8287 (-753)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-51</td>
+<td>8:26</td>
 </tr>
 <tr>
 <td class="only-icon">
+<i data-toggle="tooltip" title="Absteiger" class="fa fa-chevron-circle-down red"></i>
 </td>
 <td class="visible-lg visible-xl">
 12
 </td>
 <td>
 <span class="hidden-lg hidden-xl">12.</span>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1956563/TV-Hackenberg/spielerbilanzen/rr">TV Hackenberg</a>
 </td>
-<td class="hidden-xs">10</td>
-<td>1</td>
+<td class="hidden-xs">17</td>
+<td>2</td>
 <td>0</td>
-<td>9</td>
-<td class="hidden-xss">39:85<em class="visible-xs-block">-46</em></td>
-<td class="hidden-xs hidden-md">-46</td>
-<td>2:18</td>
+<td>15</td>
+<td class="hidden-xss">
+<a href="javascript:void(0);"
+id="settooltip1956563">
+67:145<em class="visible-xs-block">-78</em>
+</a>
+<script type="text/javascript">
+$('#settooltip1956563').webuiPopover({title:"Sätze 310:510 (-200) / Bälle 6750:8033 (-1283)"
+, padding:false});
+</script>
+</td>
+<td class="hidden-xs hidden-md">-78</td>
+<td>4:30</td>
 </tr>
 </tbody>
 </table>
-<h3>Spielplan (Vorrunde)</h3>
-<table class="table table-mytt table-striped table-bordered hidden-xs hidden-sm hidden-md">
+<h3>Spielplan (gesamt)</h3>
+<table class="table table-mytt table-striped table-bordered hidden-xs hidden-sm hidden-md" id="playingPlanDesktop">
 <thead>
 <tr>
 <th>Datum</th>
@@ -561,26 +623,237 @@ Staffel-Ranglisten
 <tbody>
 <tr>
 <td>
-Sa. 18.11.2017
+Di. 20.02.2018
+</td>
+<td>
+19:30
+<a data-toggle='tooltip' class='schedule-v' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 16.02.2018 19:30&nbsp;Uhr'>v</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154005/ESV-BR-Bonn-II/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964890/ESV-BR-Bonn-II-vs-TV-Refrath-II">
+4:9
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+Fr. 23.02.2018
+</td>
+<td>
+19:40
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/152009/Aggertaler-TTC/info">2
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964866/Aggertaler-TTC-vs-TTG-St-Augustin-II">
+8:8
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/156023/TTC-Troisdorf/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964894/TTC-Troisdorf-vs-ESV-BR-Bonn-II">
+8:8
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/152010/TTC-Schwalbe-Bergneustadt-V/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964849/TTC-Schwalbe-Bergneustadt-V-vs-SV-Ennert">
+1:9
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/153026/TV-Refrath-II/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964844/TV-Refrath-II-vs-TTC-Lantenbach-II">
+1:9
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+So. 25.02.2018
+</td>
+<td>
+11:00
+<a data-toggle='tooltip' class='schedule-h' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964877/TTC-RG-Porz-III-vs-DJK-BW-Friesdorf">
+9:1
+</a>
+</td>
+<td><i class="fa fa-check green"></i></td>
+</tr>
+<tr>
+<td>
+Fr. 02.03.2018
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154005/ESV-BR-Bonn-II/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964850/ESV-BR-Bonn-II-vs-TTC-RG-Porz-III">
+4:9
+</a>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/153026/TV-Refrath-II/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964867/TV-Refrath-II-vs-TTC-Schwalbe-Bergneustadt-V">
+9:4
+</a>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Sa. 03.03.2018
+</td>
+<td>
+17:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/154022/DJK-BW-Friesdorf/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
 </td>
 <td>
 18:30
-<a data-toggle='tooltip' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/148008/TTSC-Muelheim-71-II/info">2</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945884/TTSC-Muelheim-71-II-vs-DJK-Franz-Sales-Haus-Essen">
-1: 9
+<a href="/clicktt/WTTV/17-18/verein/156012/TTG-St-Augustin-II/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1956563/TV-Hackenberg/spielerbilanzen/rr">TV Hackenberg</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964876/TTG-St-Augustin-II-vs-TV-Hackenberg">
+9:1
+</a>
+</td>
+<td></td>
 </tr>
 <tr>
 <td>
@@ -589,142 +862,144 @@ Sa. 18.11.2017
 18:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/148028/PSV-Oberhausen-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945881/PSV-Oberhausen-II-vs-SG-Heisingen-II">
-9: 1
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck-III/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954770/TV-Dellbrueck-III/spielerbilanzen/rr">TV Dellbrück III</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964888/TV-Dellbrueck-III-vs-SV-Ennert">
+6:9
+</a>
+</td>
+<td></td>
 </tr>
 <tr>
 <td>
-Fr. 24.11.2017
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' class='schedule-NA' title='Gastmannschaft ist zur Begegnung nicht angetreten'>NA</a>/<a data-toggle='tooltip' class='schedule-W' title='(Straf-)Wertung gegen Gastmannschaft'>W</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/152022/TTC-Lantenbach-II/info">1
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964884/TTC-Lantenbach-II-vs-TTC-Troisdorf">
+9:0
+</a>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
+Fr. 09.03.2018
 </td>
 <td>
 19:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/145007/DJK-Adler-Union-Frintrop-III/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952295/DJK-Adler-Union-Frintrop-III/spielerbilanzen/vr">DJK Adler Union Frintrop III</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951459/TTV-BW-Neudorf/spielerbilanzen/vr">TTV BW Neudorf</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945912/DJK-Adler-Union-Frintrop-III-vs-TTV-BW-Neudorf">
-2: 9
+<a href="/clicktt/WTTV/17-18/verein/152009/Aggertaler-TTC/info">2
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+</td>
+<td>
+</td>
+<td></td>
 </tr>
 <tr>
 <td>
 </td>
 <td>
-19:30
+20:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/148033/SC-Buschhausen-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954132/SC-Buschhausen-II/spielerbilanzen/vr">SC Buschhausen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945869/SC-Buschhausen-II-vs-TTSC-Muelheim-71-II">
-9: 6
+<a href="/clicktt/WTTV/17-18/verein/152010/TTC-Schwalbe-Bergneustadt-V/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954770/TV-Dellbrueck-III/spielerbilanzen/rr">TV Dellbrück III</a>
+</td>
+<td>
+</td>
+<td></td>
 </tr>
 <tr>
 <td>
 </td>
 <td>
-19:55
-<a data-toggle='tooltip' title=' Austragungstermin der Begegnung wurde auf bekannten Termin verlegt'>v</a>
+20:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/145005/DJK-VfB-Frohnhausen/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952152/DJK-VfB-Frohnhausen/spielerbilanzen/vr">DJK VfB Frohnhausen</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945885/DJK-VfB-Frohnhausen-vs-PSV-Oberhausen-II">
-5: 9
+<a href="/clicktt/WTTV/17-18/verein/156023/TTC-Troisdorf/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+</td>
+<td>
+</td>
+<td></td>
 </tr>
 <tr>
 <td>
-Sa. 25.11.2017
+Sa. 10.03.2018
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' class='schedule-h' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/verein/152027/TV-Hackenberg/info">2
+</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1956563/TV-Hackenberg/spielerbilanzen/rr">TV Hackenberg</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
+</td>
+<td>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>
 </td>
 <td>
 18:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/147042/TTC-Homberg/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954325/TTC-Homberg/spielerbilanzen/vr">TTC Homberg</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1956410/SVM-Essen/spielerbilanzen/vr">SVM Essen</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945907/TTC-Homberg-vs-SVM-Essen">
-9: 0
+<a href="/clicktt/WTTV/17-18/verein/154016/SV-Ennert/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
 <td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
 </td>
 <td>
-18:35
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/145015/SG-Heisingen-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955017/TTC-Olympia-Muelheim-II/spielerbilanzen/vr">TTC Olympia Mülheim II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945865/SG-Heisingen-II-vs-TTC-Olympia-Muelheim-II">
-2: 9
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Fr. 01.12.2017
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/145021/SG-Schoenebeck/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1950889/SG-Schoenebeck/spielerbilanzen/vr">SG Schönebeck</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954132/SC-Buschhausen-II/spielerbilanzen/vr">SC Buschhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
 </td>
 <td>
 </td>
@@ -732,111 +1007,20 @@ Fr. 01.12.2017
 </tr>
 <tr>
 <td>
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/148012/TTC-Olympia-Muelheim-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955017/TTC-Olympia-Muelheim-II/spielerbilanzen/vr">TTC Olympia Mülheim II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952152/DJK-VfB-Frohnhausen/spielerbilanzen/vr">DJK VfB Frohnhausen</a>
-</td>
-<td>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/148026/TTV-BW-Neudorf/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951459/TTV-BW-Neudorf/spielerbilanzen/vr">TTV BW Neudorf</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-</td>
-<td>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>
-Sa. 02.12.2017
-</td>
-<td>
-18:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/148028/PSV-Oberhausen-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954325/TTC-Homberg/spielerbilanzen/vr">TTC Homberg</a>
-</td>
-<td>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>
-So. 03.12.2017
-</td>
-<td>
-10:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/148008/TTSC-Muelheim-71-II/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952295/DJK-Adler-Union-Frintrop-III/spielerbilanzen/vr">DJK Adler Union Frintrop III</a>
-</td>
-<td>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>
+So. 11.03.2018
 </td>
 <td>
 11:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/verein/145002/DJK-Franz-Sales-Haus-Essen/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
+<a href="/clicktt/WTTV/17-18/verein/153027/TTC-RG-Porz-III/info">1
+</a>
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1950889/SG-Schoenebeck/spielerbilanzen/vr">SG Schönebeck</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
 </td>
 <td>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>
-Di. 05.12.2017
-</td>
-<td>
-20:00
-<a data-toggle='tooltip' title=' Austragungstermin der Begegnung wurde auf bekannten Termin verlegt'>v</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/145017/SVM-Essen/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1956410/SVM-Essen/spielerbilanzen/vr">SVM Essen</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
 </td>
 <td>
 </td>
@@ -844,7 +1028,7 @@ Di. 05.12.2017
 </tr>
 </tbody>
 </table>
-<table class="table table-mytt table-striped table-bordered table-mini visible-sm visible-xs visible-md">
+<table class="table table-mytt table-striped table-bordered table-mini visible-sm visible-xs visible-md" id="playingPlanMobile">
 <thead>
 <tr>
 <th>Datum</th>
@@ -856,22 +1040,43 @@ Di. 05.12.2017
 <tbody>
 <tr>
 <td>
-18.11.17
+20.02.18
 </td>
 <td>
-18:30
-<a data-toggle='tooltip' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>	
+19:30
+<a data-toggle='tooltip' class='schedule-v' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 16.02.2018 19:30&nbsp;Uhr'>v</a>
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148008/TTSC-Muelheim-71-II/info">2</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154005/ESV-BR-Bonn-II/info">1</a>
 </td>
 <td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945884/TTSC-Muelheim-71-II-vs-DJK-Franz-Sales-Haus-Essen">
-1: 9
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964890/ESV-BR-Bonn-II-vs-TV-Refrath-II">
+4:9
+</a>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+23.02.18
+</td>
+<td>
+19:40
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152009/Aggertaler-TTC/info">2</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964866/Aggertaler-TTC-vs-TTG-St-Augustin-II">
+8:8
 </a>
 <i class="fa fa-check green"></i>
 </td>
@@ -880,245 +1085,304 @@ Di. 05.12.2017
 <td>
 </td>
 <td>
-18:30
+20:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148028/PSV-Oberhausen-II/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/156023/TTC-Troisdorf/info">1</a>
 </td>
 <td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945881/PSV-Oberhausen-II-vs-SG-Heisingen-II">
-9: 1
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964894/TTC-Troisdorf-vs-ESV-BR-Bonn-II">
+8:8
 </a>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-24.11.17
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152010/TTC-Schwalbe-Bergneustadt-V/info">1</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964849/TTC-Schwalbe-Bergneustadt-V-vs-SV-Ennert">
+1:9
+</a>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153026/TV-Refrath-II/info">1</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964844/TV-Refrath-II-vs-TTC-Lantenbach-II">
+1:9
+</a>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+25.02.18
+</td>
+<td>
+11:00
+<a data-toggle='tooltip' class='schedule-h' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153027/TTC-RG-Porz-III/info">2</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964877/TTC-RG-Porz-III-vs-DJK-BW-Friesdorf">
+9:1
+</a>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+02.03.18
 </td>
 <td>
 19:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952295/DJK-Adler-Union-Frintrop-III/spielerbilanzen/vr">DJK Adler Union Frintrop III</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951459/TTV-BW-Neudorf/spielerbilanzen/vr">TTV BW Neudorf</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145007/DJK-Adler-Union-Frintrop-III/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154005/ESV-BR-Bonn-II/info">1</a>
 </td>
 <td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945912/DJK-Adler-Union-Frintrop-III-vs-TTV-BW-Neudorf">
-2: 9
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964850/ESV-BR-Bonn-II-vs-TTC-RG-Porz-III">
+4:9
 </a>
-<i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
 </td>
 <td>
-19:30
+20:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954132/SC-Buschhausen-II/spielerbilanzen/vr">SC Buschhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148033/SC-Buschhausen-II/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153026/TV-Refrath-II/info">1</a>
 </td>
 <td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945869/SC-Buschhausen-II-vs-TTSC-Muelheim-71-II">
-9: 6
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964867/TV-Refrath-II-vs-TTC-Schwalbe-Bergneustadt-V">
+9:4
 </a>
-<i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
+03.03.18
 </td>
 <td>
-19:55
-<a data-toggle='tooltip' title=' Austragungstermin der Begegnung wurde auf bekannten Termin verlegt'>v</a>	
+17:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952152/DJK-VfB-Frohnhausen/spielerbilanzen/vr">DJK VfB Frohnhausen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145005/DJK-VfB-Frohnhausen/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945885/DJK-VfB-Frohnhausen-vs-PSV-Oberhausen-II">
-5: 9
-</a>
-<i class="fa fa-check green"></i>
-</td>
-</tr>
-<tr>
-<td>
-25.11.17
-</td>
-<td>
-18:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954325/TTC-Homberg/spielerbilanzen/vr">TTC Homberg</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1956410/SVM-Essen/spielerbilanzen/vr">SVM Essen</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/147042/TTC-Homberg/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945907/TTC-Homberg-vs-SVM-Essen">
-9: 0
-</a>
-<i class="fa fa-check green"></i>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-18:35
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955017/TTC-Olympia-Muelheim-II/spielerbilanzen/vr">TTC Olympia Mülheim II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145015/SG-Heisingen-II/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/spielbericht/9945865/SG-Heisingen-II-vs-TTC-Olympia-Muelheim-II">
-2: 9
-</a>
-<i class="fa fa-check green"></i>
-</td>
-</tr>
-<tr>
-<td>
-01.12.17
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1950889/SG-Schoenebeck/spielerbilanzen/vr">SG Schönebeck</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954132/SC-Buschhausen-II/spielerbilanzen/vr">SC Buschhausen II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145021/SG-Schoenebeck/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154022/DJK-BW-Friesdorf/info">1</a>
 </td>
 <td class="text-center">
 </td>
 </tr>
 <tr>
 <td>
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955017/TTC-Olympia-Muelheim-II/spielerbilanzen/vr">TTC Olympia Mülheim II</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952152/DJK-VfB-Frohnhausen/spielerbilanzen/vr">DJK VfB Frohnhausen</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148012/TTC-Olympia-Muelheim-II/info">1</a>
-</td>
-<td class="text-center">
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-19:30
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951459/TTV-BW-Neudorf/spielerbilanzen/vr">TTV BW Neudorf</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1953117/SG-Heisingen-II/spielerbilanzen/vr">SG Heisingen II</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148026/TTV-BW-Neudorf/info">1</a>
-</td>
-<td class="text-center">
-</td>
-</tr>
-<tr>
-<td>
-02.12.17
 </td>
 <td>
 18:30
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955496/PSV-Oberhausen-II/spielerbilanzen/vr">PSV Oberhausen II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1954325/TTC-Homberg/spielerbilanzen/vr">TTC Homberg</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148028/PSV-Oberhausen-II/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1956563/TV-Hackenberg/spielerbilanzen/rr">TV Hackenberg</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/156012/TTG-St-Augustin-II/info">1</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964876/TTG-St-Augustin-II-vs-TV-Hackenberg">
+9:1
+</a>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954770/TV-Dellbrueck-III/spielerbilanzen/rr">TV Dellbrück III</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153005/TV-Dellbrueck-III/info">1</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964888/TV-Dellbrueck-III-vs-SV-Ennert">
+6:9
+</a>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' class='schedule-NA' title='Gastmannschaft ist zur Begegnung nicht angetreten'>NA</a>/<a data-toggle='tooltip' class='schedule-W' title='(Straf-)Wertung gegen Gastmannschaft'>W</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152022/TTC-Lantenbach-II/info">1</a>
+</td>
+<td class="text-center">
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/spielbericht/9964884/TTC-Lantenbach-II-vs-TTC-Troisdorf">
+9:0
+</a>
+</td>
+</tr>
+<tr>
+<td>
+09.03.18
+</td>
+<td>
+19:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951694/Aggertaler-TTC/spielerbilanzen/rr">Aggertaler TTC</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955704/ESV-BR-Bonn-II/spielerbilanzen/rr">ESV BR Bonn II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152009/Aggertaler-TTC/info">2</a>
 </td>
 <td class="text-center">
 </td>
 </tr>
 <tr>
 <td>
-03.12.17
 </td>
 <td>
-10:00
+20:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1951300/TTSC-Muelheim-71-II/spielerbilanzen/vr">TTSC Mülheim 71 II</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953769/TTC-Schwalbe-Bergneustadt-V/spielerbilanzen/rr">TTC Schwalbe Bergneustadt V</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1952295/DJK-Adler-Union-Frintrop-III/spielerbilanzen/vr">DJK Adler Union Frintrop III</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/148008/TTSC-Muelheim-71-II/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954770/TV-Dellbrueck-III/spielerbilanzen/rr">TV Dellbrück III</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152010/TTC-Schwalbe-Bergneustadt-V/info">1</a>
 </td>
 <td class="text-center">
 </td>
 </tr>
 <tr>
 <td>
+</td>
+<td>
+20:00
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955679/TTC-Troisdorf/spielerbilanzen/rr">TTC Troisdorf</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1955782/TV-Refrath-II/spielerbilanzen/rr">TV Refrath II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/156023/TTC-Troisdorf/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+10.03.18
+</td>
+<td>
+18:30
+<a data-toggle='tooltip' class='schedule-h' title='Austragungsort(-halle) der Begegnung wurde verlegt'>h</a>
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1956563/TV-Hackenberg/spielerbilanzen/rr">TV Hackenberg</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950444/DJK-BW-Friesdorf/spielerbilanzen/rr">DJK BW Friesdorf</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/152027/TV-Hackenberg/info">2</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30
+</td>
+<td>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1954722/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+<br>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1951428/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/154016/SV-Ennert/info">1</a>
+</td>
+<td class="text-center">
+</td>
+</tr>
+<tr>
+<td>
+11.03.18
 </td>
 <td>
 11:00
 </td>
 <td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1950131/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
 <br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1950889/SG-Schoenebeck/spielerbilanzen/vr">SG Schönebeck</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145002/DJK-Franz-Sales-Haus-Essen/info">1</a>
-</td>
-<td class="text-center">
-</td>
-</tr>
-<tr>
-<td>
-05.12.17
-</td>
-<td>
-20:00
-<a data-toggle='tooltip' title=' Austragungstermin der Begegnung wurde auf bekannten Termin verlegt'>v</a>	
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1956410/SVM-Essen/spielerbilanzen/vr">SVM Essen</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-2/gruppe/306250/mannschaft/1955735/DJK-Franz-Sales-Haus-Essen/spielerbilanzen/vr">DJK Franz-Sales-Haus Essen</a>
-<br>Spiellokal: 
-<a href="/clicktt/WTTV/17-18/verein/145017/SVM-Essen/info">1</a>
+<a href="/clicktt/WTTV/17-18/ligen/Herren-Bezirksliga-3/gruppe/305797/mannschaft/1953525/TTC-Lantenbach-II/spielerbilanzen/rr">TTC Lantenbach II</a>
+<br>Spiellokal:
+<a href="/clicktt/WTTV/17-18/verein/153027/TTC-RG-Porz-III/info">1</a>
 </td>
 <td class="text-center">
 </td>
 </tr>
 </tbody>
 </table>
-<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/306250/spielplan/vr" class="btn btn-primary pull-right hidden-print">Staffelspielplan <i class="icon-circle-arrow-right"></i></a>
+<a href="http://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=ScheduleReportFOP&group=305797" class="m-b-md btn btn-sm btn-info" target="_blank">
+PDF-Version <i class="fa fa-file-pdf-o"></i>
+</a>
+<a href="/clicktt/WTTV/17-18/ligen/Bezirksliga-3/gruppe/305797/spielplan/rr" class="btn btn-primary pull-right hidden-print">Staffelspielplan <i class="icon-circle-arrow-right"></i></a>
 </div>
 <div class="panel-footer"></div>
 </div>
@@ -1147,10 +1411,10 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 </h3>
 </div>
 <div class="panel-body text-center">
-<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7038" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7038','JOOLA
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7347" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7347','JOOLA
 ']);" title="JOOLA
 " class="adLink" target="_blank">
-<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/black-friday.jpg" alt="JOOLA
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/padova-hoody-animiert.gif" alt="JOOLA
 "></a>
 </div>
 <div class="panel-footer"></div>
@@ -1188,14 +1452,14 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 </div>
 <div class="panel panel-primary">
 <div class="panel-heading">
-<h3 class="panel-title">andro &ndash; offizieller Ausr&uuml;ster des WTTV
+<h3 class="panel-title">andro &ndash; offizieller Verbandsausr&uuml;ster
 </h3>
 </div>
 <div class="panel-body text-center">
-<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061','andro &ndash; offizieller Ausr&uuml;ster des WTTV
-']);" title="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061','andro &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="andro &ndash; offizieller Verbandsausr&uuml;ster
 " class="adLink" target="_blank">
-<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/Rasanter_Revolution_300x250_clickTT.GIF" alt="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/Rasanter_Revolution_300x250_clickTT.GIF" alt="andro &ndash; offizieller Verbandsausr&uuml;ster
 "></a>
 </div>
 <div class="panel-footer"></div>
@@ -1238,11 +1502,11 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 <p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
 </div>
 <div class="onbottomnavi_fx bg_ci_blue text-center">
-<p class="m-t white m-b">Copyright &copy; 2017 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+<p class="m-t white m-b">Copyright &copy; 2018 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
 </div>
 </div>
 <script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
-<script src="/clicktt/includes/js/global.js?v=8-1-4" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=8-7-1" type="text/javascript"></script>
 <script type="text/html" id="popover-friendship-template">
 <p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
 <label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>

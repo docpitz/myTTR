@@ -1,5 +1,6 @@
 package com.jmelzer.myttr;
 
+import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.util.UrlUtil;
 
@@ -114,11 +115,12 @@ public class Mannschaft {
     String kontaktNr;
     String kontaktNr2;
     private String mailTo;
+    LigaPosType ligaPosTyp;
 
     Map<Integer, String> spielLokale = new TreeMap<>();
     List<SpielerBilanz> spielerBilanzen = new ArrayList<>();
 
-    public Mannschaft(String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
+    public Mannschaft(LigaPosType ligaPosType, String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
         this.position = position;
         this.gamesCount = gamesCount;
@@ -129,6 +131,7 @@ public class Mannschaft {
         this.sum = sum;
         this.points = points;
         this.url = url;
+        this.ligaPosTyp = ligaPosType;
     }
 
     public Mannschaft() {
@@ -157,6 +160,10 @@ public class Mannschaft {
 
     public String getName() {
         return name;
+    }
+
+    public LigaPosType getLigaPosTyp() {
+        return ligaPosTyp;
     }
 
     public int getPosition() {
@@ -206,7 +213,8 @@ public class Mannschaft {
     @Override
     public String toString() {
         return "Mannschaft{" +
-                "name='" + name + '\'' +
+                "type='" + ligaPosTyp+ '\'' +
+                ", name='=" + name +
                 ", position=" + position +
                 ", gamesCount=" + gamesCount +
                 ", win=" + win +

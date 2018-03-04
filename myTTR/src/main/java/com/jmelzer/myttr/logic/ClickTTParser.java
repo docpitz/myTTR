@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.TournamentGame;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Cup;
+import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
@@ -225,7 +226,7 @@ public class ClickTTParser extends AbstractBaseParser {
         result = readBetween(resultrow.result, result.end, "<td align=\"center\">", "</td>");
         String points = result.result;
 
-        return new Mannschaft(name, nPos, nGamesCount, nWin, nTied, nLose, gameStat, sum, points, url);
+        return new Mannschaft(LigaPosType.NOTHING, name, nPos, nGamesCount, nWin, nTied, nLose, gameStat, sum, points, url);
     }
 
     private boolean containsRetiredString(String line) {

@@ -11,6 +11,10 @@
     <color name="accent_blue">#FF223845</color>
     <!--  Accent Grey -->
     <color name="color_gray">#FF433E3B</color>
+    <color name="color_aufsteiger">#049e2d</color>
+    <color name="color_aufsteiger_relagation">#02661d</color>
+    <color name="color_absteiger">#da1f02</color>
+    <color name="color_absteiger_relegation">#9e1904</color>
 
     <color name="gray">#808080</color>
     <color name="black">#000000</color>

@@ -1,8 +1,10 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +25,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
+import com.jmelzer.myttr.model.LigaPosType;
 
 import java.util.List;
 
@@ -64,9 +67,6 @@ public class LigaTabelleActivity extends BaseActivity {
 
             }
         });
-
-//        TextView textView = (TextView) findViewById(R.id.selected_liga);
-//        textView.setText(liga.getName());
 
         setTitle(getTitle() + " - " + liga.getName());
     }
@@ -140,30 +140,52 @@ public class LigaTabelleActivity extends BaseActivity {
             if (convertView == null) {
                 convertView = layoutInflater.inflate(R.layout.liga_tabelle_row, null);
                 holder = new ViewHolder();
-                holder.textName = (TextView) convertView.findViewById(R.id.name);
-                holder.textPos = (TextView) convertView.findViewById(R.id.liga_pos);
-                holder.textGames = (TextView) convertView.findViewById(R.id.games);
-                holder.textPoints = (TextView) convertView.findViewById(R.id.points);
-                holder.arrow = (ImageView) convertView.findViewById(R.id.arrow);
+                holder.textName = convertView.findViewById(R.id.name);
+                holder.textPos = convertView.findViewById(R.id.liga_pos);
+                holder.textGames = convertView.findViewById(R.id.games);
+                holder.textPoints = convertView.findViewById(R.id.points);
+                holder.arrow = convertView.findViewById(R.id.arrow);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             final Mannschaft mannschaft = getItem(position);
+            if (mannschaft != null) {
+                switch (mannschaft.getLigaPosTyp()) {
+                    case AUFSTEIGER:
+                        holder.textPos.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(),
+                                R.color.color_aufsteiger));
+                        break;
+                    case AUF_RELEGATION:
+                        holder.textPos.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(),
+                                R.color.color_aufsteiger_relagation));
+                        break;
+                    case ABSTEIGER:
+                        holder.textPos.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(),
+                                R.color.color_absteiger));
+                        break;
+                    case AB_RELEGATION:
+                        holder.textPos.setBackgroundColor(ContextCompat.getColor(MyApplication.getAppContext(),
+                                R.color.color_absteiger_relegation));
+                        break;
+                    default:
+                        holder.textPos.setBackgroundColor(Color.BLACK);
 
-            holder.textName.setText(mannschaft.getName());
-            holder.textPos.setText("" + mannschaft.getPosition());
-            holder.textGames.setText("" + mannschaft.getGamesCount());
-            holder.textPoints.setText(mannschaft.getPoints());
-
-            holder.arrow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MyApplication.selectedMannschaft = mannschaft;
-                    callMannschaftDetail(LigaMannschaftResultsActivity.class);
                 }
-            });
+                holder.textName.setText(mannschaft.getName());
+                holder.textPos.setText(String.valueOf(mannschaft.getPosition()));
+                holder.textGames.setText(String.valueOf(mannschaft.getGamesCount()));
+                holder.textPoints.setText(mannschaft.getPoints());
+
+                holder.arrow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MyApplication.selectedMannschaft = mannschaft;
+                        callMannschaftDetail(LigaMannschaftResultsActivity.class);
+                    }
+                });
+            }
             return convertView;
         }
     }
