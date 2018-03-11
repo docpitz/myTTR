@@ -8,6 +8,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.ClickTTParser;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
@@ -23,7 +24,7 @@ public class MytClickTTWrapper {
     MyTTClickTTParser newParser = new MyTTClickTTParserImpl();
     ClickTTParser clickTTParser = new ClickTTParser();
 
-    public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
+    public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readBezirkeAndLigen(verband, saison);
         } else {
@@ -31,7 +32,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readKreiseAndLigen(Saison saison, Bezirk bezirk) throws NetworkException {
+    public void readKreiseAndLigen(Saison saison, Bezirk bezirk) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readKreiseAndLigen(bezirk);
         } else {
@@ -39,7 +40,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readLiga(Saison saison, Liga liga) throws NetworkException {
+    public void readLiga(Saison saison, Liga liga) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readLiga(liga);
         } else {
@@ -52,7 +53,7 @@ public class MytClickTTWrapper {
 //        return false;
     }
 
-    public void readMannschaftsInfo(Saison saison, Mannschaft mannschaft) throws NetworkException {
+    public void readMannschaftsInfo(Saison saison, Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readMannschaftsInfo(mannschaft);
         } else {
@@ -60,7 +61,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readVR(Saison saison, Liga liga) throws NetworkException {
+    public void readVR(Saison saison, Liga liga) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readVR(liga);
         } else {
@@ -69,7 +70,7 @@ public class MytClickTTWrapper {
     }
 
 
-    public void readRR(Saison saison, Liga liga) throws NetworkException {
+    public void readRR(Saison saison, Liga liga) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readRR(liga);
         } else {
@@ -77,7 +78,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readGesamtSpielplan(Saison saison, Liga liga) throws NetworkException, NoClickTTException {
+    public void readGesamtSpielplan(Saison saison, Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readGesamtSpielplan(liga);
         } else {
@@ -85,7 +86,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readDetail(Saison saison, Mannschaftspiel spiel) throws NetworkException, NoClickTTException {
+    public void readDetail(Saison saison, Mannschaftspiel spiel) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readDetail(spiel);
         } else {
@@ -93,7 +94,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readLigen(Kreis kreis, Saison saison) throws NetworkException, NoClickTTException {
+    public void readLigen(Kreis kreis, Saison saison) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             clickTTParser.readLigen(kreis);
         } else {
@@ -101,7 +102,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public Verein readVerein(String url, Saison saison) throws NetworkException, NoClickTTException {
+    public Verein readVerein(String url, Saison saison) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             return clickTTParser.readVerein(url);
         } else {
@@ -109,7 +110,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public Spieler readSpielerDetail(Saison saison, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
+    public Spieler readSpielerDetail(Saison saison, String name, String url, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             return clickTTParser.readSpielerDetail(name, url);
         } else {
@@ -117,7 +118,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public Verband readTopLigen(Saison saison) throws NetworkException {
+    public Verband readTopLigen(Saison saison) throws NetworkException, LoginExpiredException {
         if (isClickTT(saison)) {
             return clickTTParser.readTopLigen(saison);
         } else {

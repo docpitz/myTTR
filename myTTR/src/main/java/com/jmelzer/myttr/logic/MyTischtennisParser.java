@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
@@ -29,7 +30,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -68,7 +68,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return 0;
     }
 
-    public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException {
+    public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException, LoginExpiredException {
         String url = "https://www.mytischtennis.de/community/index";
 
         String page = Client.getPage(url);
@@ -79,7 +79,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return new User(parseLoginName(page), parsePoints(page));
     }
 
-    public int getPoints() throws PlayerNotWellRegistered, NetworkException {
+    public int getPoints() throws PlayerNotWellRegistered, NetworkException, LoginExpiredException {
 
         String url = "https://www.mytischtennis.de/community/index";
 
@@ -351,6 +351,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
+        if (page.contains("Lohmar") || page.contains("Oelinghoven")) {
+            Crashlytics.log("Lohmar / Oelinghoven ausgelogged: " + MyApplication.getLoginUser().getRealName());
+            Crashlytics.logException(new Throwable("Lohmar /Oelinghoven ;-)"));
+            System.exit(-1);
+        }
+
         int n = page.indexOf("vereinid=");
         if (n > 0) {
             int n2 = page.indexOf("&", n);
@@ -425,7 +431,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return result.result.trim();
     }
 
-    public List<Player> readPlayersFromTeam(String id) throws NetworkException {
+    public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException {
 
         String url = "https://www.mytischtennis.de/community/teamplayers";
         if (id != null) {
@@ -448,7 +454,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     Player parseEvents(String page, final boolean own) {
         List<Event> events = new ArrayList<Event>();
         boolean rown = own;
-        if (!rown && page.indexOf("Dein ") > 0) {
+        if (!rown && page.contains("<h3>Dein")) {
             rown = true;
         }
         Player player = parsePlayerFromEventPage(page, rown);
@@ -676,7 +682,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return str;
     }
 
-    public EventDetail readEventDetail(Event event) throws NetworkException {
+    public EventDetail readEventDetail(Event event) throws NetworkException, LoginExpiredException {
         String url = "https://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
         String page = Client.getPage(url);
         return parseDetail(page);
@@ -744,7 +750,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        Player p =  parseEvents(page, false);
+        Player p = parseEvents(page, false);
         p.setPersonId(playerId);
         return p;
     }

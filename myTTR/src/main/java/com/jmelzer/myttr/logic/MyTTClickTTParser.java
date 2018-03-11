@@ -16,30 +16,30 @@ import com.jmelzer.myttr.model.Verein;
  */
 
 public interface MyTTClickTTParser {
-    void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException;
+    void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException;
 
-    void readKreiseAndLigen(Bezirk bezirk) throws NetworkException;
+    void readKreiseAndLigen(Bezirk bezirk) throws NetworkException, LoginExpiredException;
 
-    void readLiga(Liga liga) throws NetworkException;
+    void readLiga(Liga liga) throws NetworkException, LoginExpiredException;
 
-    void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException;
+    void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException;
 
-    void readVR(Liga liga) throws NetworkException;
+    void readVR(Liga liga) throws NetworkException, LoginExpiredException;
 
-    void readRR(Liga liga) throws NetworkException;
+    void readRR(Liga liga) throws NetworkException, LoginExpiredException;
 
-    void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException;
+    void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    void readLigen(Kreis kreis) throws NetworkException, NoClickTTException;
+    void readLigen(Kreis kreis) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException;
+    void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    Verein readVerein(String url) throws NetworkException, NoClickTTException;
+    Verein readVerein(String url) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException;
+    Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException;
+    Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException;
 
-    Verband readTopLigen() throws NetworkException;
+    Verband readTopLigen() throws NetworkException, LoginExpiredException;
 
 }

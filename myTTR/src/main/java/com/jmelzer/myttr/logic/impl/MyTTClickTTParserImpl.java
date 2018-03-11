@@ -13,6 +13,7 @@ import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.AbstractBaseParser;
 import com.jmelzer.myttr.logic.Client;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
@@ -52,7 +53,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return "Mytischtennis Meldung: " + result.result;
     }
     @Override
-    public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException {
+    public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         String url = "";
         url += verband.getUrlFixed(saison);
         String page = Client.getPage(url);
@@ -76,7 +77,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readKreiseAndLigen(Bezirk bezirk) throws NetworkException {
+    public void readKreiseAndLigen(Bezirk bezirk) throws NetworkException, LoginExpiredException {
         String page = Client.getPage(bezirk.getUrl());
         List<Kreis> list = parseLinksKreise(page);
         for (Kreis kreis : list) {
@@ -108,14 +109,14 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readLiga(Liga liga) throws NetworkException {
+    public void readLiga(Liga liga) throws NetworkException, LoginExpiredException {
         String url = liga.getUrl();
         String page = Client.getPage(url);
         parseLiga(page, liga);
     }
 
     @Override
-    public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException {
+    public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
         if (mannschaft.getUrl() == null) //zurueckgezogen
             return;
         String url = mannschaft.getUrl().substring(0, mannschaft.getUrl().indexOf("/spielerbilanzen"));
@@ -126,7 +127,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readVR(Liga liga) throws NetworkException {
+    public void readVR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlVR() != null) {
             String page = Client.getPage(liga.getUrlVR());
             parseErgebnisse(page, liga, Liga.Spielplan.VR);
@@ -134,7 +135,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readRR(Liga liga) throws NetworkException {
+    public void readRR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlRR() != null) {
             String page = Client.getPage(liga.getUrlRR());
             parseErgebnisse(page, liga, Liga.Spielplan.RR);
@@ -142,7 +143,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException {
+    public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (liga.getUrlGesamt() != null) {
             String url = liga.getHttpAndDomain() + liga.getUrlGesamt();
             String page = Client.getPage(url);
@@ -152,7 +153,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException {
+    public void readDetail(Mannschaftspiel spiel) throws NetworkException, NoClickTTException, LoginExpiredException {
         String url = spiel.getUrlDetail();
         String page = Client.getPage(url);
         validatePage(page);
@@ -160,7 +161,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readLigen(Kreis kreis) throws NetworkException, NoClickTTException {
+    public void readLigen(Kreis kreis) throws NetworkException, NoClickTTException, LoginExpiredException {
         String page = Client.getPage(kreis.getUrl());
         validatePage(page);
         List<Liga> ligen = parseLigaLinks(page);
@@ -168,7 +169,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Verein readVerein(String url) throws NetworkException, NoClickTTException {
+    public Verein readVerein(String url) throws NetworkException, NoClickTTException, LoginExpiredException {
         String page = Client.getPage(url);
         validatePage(page);
         Verein v = parseVerein(page);
@@ -243,7 +244,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
+    public Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException {
         String page = Client.getPage(myTTPlayerIdsForPlayer.buildPopupUrl());
         validatePage(page);
         return parseLinksForPlayer(page, name);
@@ -256,7 +257,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Verband readTopLigen() throws NetworkException {
+    public Verband readTopLigen() throws NetworkException, LoginExpiredException {
         if (dttb.getLigaList().size() == 0) {
             String page = Client.getPage(dttb.getMyTTClickTTUrl());
             List<Liga> ligen = parseLigaLinks(page);
@@ -266,7 +267,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException {
+    public Spieler readSpielerDetail(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException {
         Spieler spieler = readPopUp(name, myTTPlayerIdsForPlayer);
         String page = Client.getPage(spieler.getMytTTClickTTUrl());
         validatePage(page);
@@ -364,9 +365,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             saetze.append(" ");
         }
         String gegnerM = safeResult(readBetween(row[0], 0, "<small>", "</small>"));
-        Spieler.EinzelSpiel spiel = new Spieler.EinzelSpiel(datum, pos, gegner, erg, saetze.toString().trim(), gegnerM);
 
-        return spiel;
+        return new Spieler.EinzelSpiel(datum, pos, gegner, erg, saetze.toString().trim(), gegnerM);
     }
 
     Verein parseVerein(String page) {
@@ -755,7 +755,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return null;
     }
 
-    Spieler parseLinksForPlayer(String page, String name) {
+    Spieler parseLinksForPlayer(String page, String name) throws LoginExpiredException {
+        if (page.contains("musst du mit einem myTischtennis.de-Account eingeloggt sein")) {
+            throw new LoginExpiredException();
+        }
         Spieler spieler = new Spieler(name);
         Map<String, String> links = new HashMap<>();
         int idx = 0;

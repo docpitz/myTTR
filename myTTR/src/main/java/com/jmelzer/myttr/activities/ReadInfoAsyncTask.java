@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.util.UrlUtil;
@@ -31,7 +32,7 @@ public class ReadInfoAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void callParser() throws NetworkException {
+    protected void callParser() throws NetworkException, LoginExpiredException {
         new MytClickTTWrapper().readMannschaftsInfo(MyApplication.saison, mannschaft);
     }
 

@@ -8,7 +8,6 @@ import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 import com.jmelzer.myttr.model.LastNotification;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by J. Melzer on 03.09.2017.
@@ -49,7 +48,7 @@ public class VersionChecker extends AbstractBaseParser {
         return false;
     }
 
-    public boolean newVersionAvailable() throws NetworkException {
+    public boolean newVersionAvailable() throws NetworkException, LoginExpiredException {
         String page = Client.getPage(GITHUB_URL + "/chokdee/myTTR/releases");
         return compareVersions(page, THIS_VERSION);
     }
@@ -59,7 +58,7 @@ public class VersionChecker extends AbstractBaseParser {
         return ahref != null && !ahref[1].equals(versionThis);
     }
 
-    public String[] readVersionInfo() throws NetworkException {
+    public String[] readVersionInfo() throws NetworkException, LoginExpiredException {
         String page = Client.getPage(GITHUB_URL + "/chokdee/myTTR/releases");
         String[] ahref = parseLastVersion(page);
         if (ahref != null && !ahref[1].equals(THIS_VERSION))

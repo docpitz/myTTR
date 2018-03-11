@@ -7,6 +7,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.TestUtil;
 import com.jmelzer.myttr.model.Verein;
@@ -288,6 +289,17 @@ public class MyTTClickTTParserTest {
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/spieler/143001489/spielerportrait", spieler.getMytTTClickTTUrl());
         assertEquals(297020L, (long)spieler.getPersonId());
         assertEquals("https://www.mytischtennis.de/community/headTohead?gegnerId=297020", spieler.getHead2head());
+    }
+
+    @Test
+    public void parseLinksForPlayerNoLOgin() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/popover-no-login.html");
+        try {
+            parser.parseLinksForPlayer(page, "dummy");
+            fail();
+        } catch (LoginExpiredException e) {
+            //ok
+        }
     }
 
     @Test

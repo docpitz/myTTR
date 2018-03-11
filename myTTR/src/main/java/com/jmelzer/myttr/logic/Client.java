@@ -92,7 +92,10 @@ public class Client {
         }
         return buff.toString();
     }
-    public synchronized static String getPage(String url) throws NetworkException {
+    public synchronized static String getPage(String url) throws NetworkException, LoginExpiredException {
+        if (LoginManager.isLoginExpired()) {
+            throw new LoginExpiredException();
+        }
         long start = System.currentTimeMillis();
         Log.i(Constants.LOG_TAG, "prepareGet url '" + url + "'");
         HttpGet httpGet = prepareGet(url);

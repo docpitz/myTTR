@@ -25,6 +25,7 @@ import org.apache.http.params.HttpParams;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LoginManager {
@@ -34,6 +35,7 @@ public class LoginManager {
     public static String pw;
 
     LoginDataBaseAdapter loginDataBaseAdapter;
+    public static Cookie loginCookie;
 
     public LoginDataBaseAdapter getLoginDataBaseAdapter() {
         if (loginDataBaseAdapter == null) {
@@ -43,6 +45,12 @@ public class LoginManager {
         return loginDataBaseAdapter;
     }
 
+    public static boolean isLoginExpired() {
+        if (loginCookie != null && loginCookie.isExpired(new Date())) {
+            return true;
+        }
+        return false;
+    }
     public boolean relogin() throws IOException, NetworkException {
         if (un == null || pw == null) {
             User user = readUserFromDB();
@@ -115,6 +123,7 @@ public class LoginManager {
             if (LOGGEDINAS.equals(cookie.getName()) || MYTT_COOKIE2.equals(cookie.getName())) {
                 un = username;
                 pw = password;
+                loginCookie = cookie;
                 Log.d(Constants.LOG_TAG, "login time = " + (System.currentTimeMillis() - start) + " ms");
                 return user;
             }

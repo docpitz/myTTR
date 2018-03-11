@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 
@@ -27,7 +28,7 @@ public class DetailAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void callParser() throws NetworkException {
+    protected void callParser() throws NetworkException, LoginExpiredException {
         MyApplication.currentDetail = new MyTischtennisParser().readEventDetail(event);
     }
 

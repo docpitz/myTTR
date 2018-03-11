@@ -12,8 +12,6 @@ https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=22343&alleSpie
 SearchActivity
 https://www.mytischtennis.de/community/events?personId=417195
 
-
-- Bei manchen clicks ist kein relogin
 - Favoriten umbenennen
 - Bug: Klick auf Verein - Mannschaften zeigt nur RR an
 - Doppelte Requests vermeiden
@@ -31,6 +29,9 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Optimierung Performance beim Laden
 - Cups für mehrere Jahre
 - Mehr UI Tests
+- Vereinswechsellisten
+ - QTTR- Werte
+- Mehr Statistiken
 
 erledigt
 ---------
