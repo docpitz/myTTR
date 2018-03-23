@@ -10,6 +10,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
+import com.jmelzer.myttr.util.GoogleMapStarter;
 import com.jmelzer.myttr.util.UrlUtil;
 
 /**
@@ -40,9 +41,7 @@ public class ReadInfoAsyncTask extends BaseAsyncTask {
     protected void startNextActivity() {
         String lokal = mannschaft.getSpielLokal(nr);
         if (lokal != null) {
-            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                    Uri.parse(UrlUtil.formatAddressToGoogleMaps(mannschaft.getSpielLokal(nr))));
-            parent.startActivity(intent);
+            GoogleMapStarter.showMap(parent, mannschaft.getSpielLokal(nr));
         } else {
             Toast.makeText(parent, "Konnte das Spiellokal nicht feststellen. Nr=" +nr,
                     Toast.LENGTH_LONG).show();

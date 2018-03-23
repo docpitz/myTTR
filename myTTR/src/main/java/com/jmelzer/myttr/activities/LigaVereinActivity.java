@@ -1,8 +1,6 @@
 package com.jmelzer.myttr.activities;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +23,7 @@ import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Verein;
+import com.jmelzer.myttr.util.GoogleMapStarter;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
@@ -56,8 +55,8 @@ public class LigaVereinActivity extends BaseActivity {
         setContentView(R.layout.liga_verein);
 
         Verein verein = MyApplication.selectedVerein;
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
-        TextView clubNameView = (TextView) findViewById(R.id.textViewClub);
+        ExpandableListView listView = findViewById(R.id.expandableListView);
+        TextView clubNameView = findViewById(R.id.textViewClub);
         clubNameView.setText(verein.getName());
 
         listView.setAdapter(new VereinAdapter(this, prepareData(verein)));
@@ -205,7 +204,7 @@ public class LigaVereinActivity extends BaseActivity {
                     convertView.findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showMap(text);
+                            GoogleMapStarter.showMap(LigaVereinActivity.this, text);
                         }
                     });
                 } else {
@@ -250,7 +249,7 @@ public class LigaVereinActivity extends BaseActivity {
                                     new ReadInfoAsyncTask(childElem.mannschaftspiel.getHeimMannschaft(),
                                             childElem.mannschaftspiel.getNrSpielLokal(), LigaVereinActivity.this).execute();
                                 } else
-                                    showMap(childElem.mannschaftspiel.getActualSpellokal());
+                                    GoogleMapStarter.showMap(LigaVereinActivity.this, childElem.mannschaftspiel.getActualSpellokal());
                             }
                         });
                     } else {
@@ -322,11 +321,6 @@ public class LigaVereinActivity extends BaseActivity {
         task.execute();
     }
 
-    public void showMap(String lokal) {
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse(UrlUtil.formatAddressToGoogleMaps(lokal)));
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

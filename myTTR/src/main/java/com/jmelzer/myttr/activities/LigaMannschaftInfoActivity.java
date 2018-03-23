@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.util.GoogleMapStarter;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.List;
@@ -105,15 +106,6 @@ public class LigaMannschaftInfoActivity extends BaseActivity {
     }
 
     public void showMap(String lokal) {
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        Uri uri = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway%2C+CA");
-//        intent.setData(uri);
-//
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            startActivity(intent);
-//        }
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse(UrlUtil.formatAddressToGoogleMaps(lokal)));
-        startActivity(intent);
+        GoogleMapStarter.showMap(this, lokal);
     }
 }

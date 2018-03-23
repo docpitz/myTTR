@@ -20,7 +20,7 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Bug: Cup Icon Größe
 - Todos entfernen
 - Schriftgröße: Konfiguration
-- Route bei Turnieren
+
 - Filter bei Turnieren
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
@@ -123,3 +123,9 @@ https://www.mytischtennis.de/community/ajax/_rankingList?verein=SV+Wilhelmsburg&
 4.1.6
 ----------
 Fehlerhandling
+
+4.1.9
+-----------
+- Bilanzen
+- Besser auf mytt logout reagieren
+- Route bei Turnieren

@@ -24,6 +24,7 @@ import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.util.GoogleMapStarter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ import static android.view.View.VISIBLE;
  * Created by J. Melzer on 17.06.2017.
  */
 public class TournamentDetailActivity extends BaseActivity {
+    static final int SPIELLOKALE_POS = 2;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -195,8 +198,27 @@ public class TournamentDetailActivity extends BaseActivity {
         public View getChildView(int groupPosition, int childPosition, boolean b, View convertView, ViewGroup viewGroup) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.liga_verein_row, null);
-            TextView textView = convertView.findViewById(R.id.child1);
-            textView.setText(((Child) getChild(groupPosition, childPosition)).text);
+            final Child childElem = (Child) getChild(groupPosition, childPosition);
+
+            if (groupPosition == SPIELLOKALE_POS) {
+                final String text = childElem.text;
+                convertView = infalInflater.inflate(R.layout.liga_spiellokal_row, null);
+                ((TextView) convertView.findViewById(R.id.name)).setText(text);
+                if (text != null) {
+                    convertView.findViewById(R.id.map).setVisibility(View.VISIBLE);
+                    convertView.findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            GoogleMapStarter.showMap(TournamentDetailActivity.this, text);
+                        }
+                    });
+                } else {
+                    convertView.findViewById(R.id.map).setVisibility(View.INVISIBLE);
+                }
+            } else {
+                TextView textView = convertView.findViewById(R.id.child1);
+                textView.setText(((Child) getChild(groupPosition, childPosition)).text);
+            }
             return convertView;
         }
 
