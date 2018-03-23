@@ -43,20 +43,20 @@ public class LigaSpielerResultsActivity extends BaseActivity {
 
         Spieler spieler = MyApplication.getSelectedLigaSpieler();
 
-        TextView textView = (TextView) findViewById(R.id.textName);
+        TextView textView = findViewById(R.id.textName);
         textView.setText(MyApplication.getSelectedLigaSpieler().getName());
 
-        textView = (TextView) findViewById(R.id.textMeldungen);
+        textView = findViewById(R.id.textMeldungen);
         textView.setText(spieler.getPosition());
 
-        textView = (TextView) findViewById(R.id.textEinsaetze);
+        textView = findViewById(R.id.textEinsaetze);
         String txt = "";
         for (Spieler.Einsatz einsatz : spieler.getEinsaetze()) {
             txt += einsatz.getLigaName() + "\n";
         }
         textView.setText(txt);
 
-        textView = (TextView) findViewById(R.id.textBilanzen);
+        textView = findViewById(R.id.textBilanzen);
         txt = "";
         for (Spieler.Bilanz bilanz : spieler.getBilanzen()) {
             txt += bilanz.getKategorie() + ": " + bilanz.getErgebnis() + "\n";
@@ -67,7 +67,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         List<String> groupList = new ArrayList<>();
         List<List<Spieler.EinzelSpiel>> children = new ArrayList<>();
 
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
+        ExpandableListView listView = findViewById(R.id.expandableListView);
 
         for (Spieler.LigaErgebnisse ergebnisse : spieler.getErgebnisse()) {
             groupList.add(ergebnisse.getName());
@@ -144,18 +144,18 @@ public class LigaSpielerResultsActivity extends BaseActivity {
                 convertView = infalInflater.inflate(R.layout.liga_spieler_result_row, null);
             }
 
-            TextView textView = (TextView) convertView.findViewById(R.id.datum);
+            TextView textView = convertView.findViewById(R.id.datum);
             textView.setText(childElem.getDatum());
-            textView = (TextView) convertView.findViewById(R.id.pos);
+            textView = convertView.findViewById(R.id.pos);
             textView.setText(childElem.getPos());
-            textView = (TextView) convertView.findViewById(R.id.gegner);
+            textView = convertView.findViewById(R.id.gegner);
             textView.setText(childElem.getGegner());
             //todo add context menu here for detail sets
-            textView = (TextView) convertView.findViewById(R.id.ergebnis);
+            textView = convertView.findViewById(R.id.ergebnis);
             textView.setText(childElem.getErgebnis());
 //            textView = (TextView) convertView.findViewById(R.id.saetze);
 //            textView.setText(childElem.getSaetze());
-            textView = (TextView) convertView.findViewById(R.id.gegnerM);
+            textView = convertView.findViewById(R.id.gegnerM);
             textView.setText(childElem.getGegnerMannschaft());
 
             return convertView;

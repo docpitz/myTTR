@@ -72,6 +72,14 @@ public class AbstractBaseParser {
             }
         }
 
+        @Override
+        public String toString() {
+            return "ParseResult{" +
+                    "result='" + result + '\'' +
+                    ", end=" + end +
+                    '}';
+        }
+
         public boolean isEmpty() {
             return result == null || result.isEmpty();
         }

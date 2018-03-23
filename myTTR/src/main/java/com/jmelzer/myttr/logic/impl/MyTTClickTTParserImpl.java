@@ -293,7 +293,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
 
         }
-        spieler.setPosition("unbekannt");
+        //todo maybe mytt knows this in the future
+        spieler.setPosition("");
 
         ParseResult eResult = readBetween(page, 0, "<h3>Mannschafts", null);
         int idx = 0;
@@ -304,6 +305,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 String ahref[] = readHrefAndATag("<a" + linkResult.result + "</a>");
                 if (ahref != null) {
                     spieler.addEinsatz(kat.result.substring(0, kat.result.length() - 1), ahref[1], MYTT + ahref[0]);
+                }
+                ParseResult bilanz = readBetween(eResult, kat.end, "<br>", "</p>");
+                if (!isEmpty(bilanz)) {
+                    String bStr = cleanHtml(bilanz);
+                    bStr = bStr.replace("RR", " RR");
+                    bStr = bStr.replace("gesamt", " gesamt");
+                    spieler.addBilanz(kat.result, bStr);
                 }
                 idx = linkResult.end;
 
