@@ -20,13 +20,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+     <!--   <TextView
             android:id="@+id/textView13"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Meldung:"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"/>-->
 
         <TextView
             android:id="@+id/textMeldungen"

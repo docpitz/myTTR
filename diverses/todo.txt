@@ -24,7 +24,6 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Filter bei Turnieren
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
-- TTR Vergleich
 - Telefonnummer aufrufen aus Info
 - Optimierung Performance beim Laden
 - Cups für mehrere Jahre

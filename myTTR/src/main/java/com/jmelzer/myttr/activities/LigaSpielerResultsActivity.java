@@ -59,7 +59,7 @@ public class LigaSpielerResultsActivity extends BaseActivity {
         textView = findViewById(R.id.textBilanzen);
         txt = "";
         for (Spieler.Bilanz bilanz : spieler.getBilanzen()) {
-            txt += bilanz.getKategorie() + ": " + bilanz.getErgebnis() + "\n";
+            txt += bilanz.getKategorie() + " " + bilanz.getErgebnis() + "\n";
         }
         textView.setText(txt);
 
