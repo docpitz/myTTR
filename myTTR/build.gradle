@@ -24,10 +24,17 @@ repositories {
 //apply plugin: 'com.github.kt3k.coveralls'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'myttr'
+            keyPassword 'hndavfr7'
+            storeFile file('C:/Users/cicgfp/Documents/myttr/keystore')
+            storePassword 'hndavfr7'
+        }
+    }
     compileSdkVersion 27
     buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
-
     testOptions {
         unitTests.returnDefaultValues = true
     }
@@ -35,8 +42,8 @@ android {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 104
-        versionName "4.1.9"
+        versionCode 200
+        versionName "10.1.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -44,6 +51,8 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            proguardFile 'C:/ws/myTTR-master/proguard-project.txt'
         }
         debug {
 //            testCoverageEnabled = true
@@ -73,8 +82,6 @@ android {
 //        debug.setRoot('build-types/debug')
 //        release.setRoot('build-types/release')
 //    }
-
-
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:25.+'
@@ -86,11 +93,10 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
-
     // Robolectric
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-//    testCompile 'org.hamcrest:hamcrest-core:1.3'
+    //    testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'org.hamcrest:hamcrest-library:1.3'
     testCompile 'org.hamcrest:hamcrest-integration:1.3'
     testCompile('org.robolectric:robolectric:2.4') {
@@ -111,7 +117,7 @@ dependencies {
         exclude module: 'wagon-provider-api'
     }
     //    compile group: 'ch.acra' , name: 'acra' , version: '4.5.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
         transitive = true;
     }
 }

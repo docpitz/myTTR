@@ -49,7 +49,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             long start = System.currentTimeMillis();
             callParser();
             Log.i(Constants.LOG_TAG, "parser time " + (System.currentTimeMillis() - start) + " ms");
-        } catch (ValidationException | NetworkException e) {
+        } catch (ValidationException e) {
             errorMessage = e.getMessage();
             logError(e);
         } catch (LoginExpiredException e) {
@@ -74,6 +74,8 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                 logError(e);
                 errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
             }
+        } catch (NetworkException e) {
+            errorMessage = "Das Netzwerk antwortet zu langsam oder ist ausgeschaltet";
         } catch (Exception e) {
 //            catch all others
             logError(e);
