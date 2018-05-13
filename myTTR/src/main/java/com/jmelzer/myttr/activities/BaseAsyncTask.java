@@ -4,17 +4,25 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
+import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -25,6 +33,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     Activity parent;
     private ProgressDialog progressDialog;
     Class targetClz;
+    boolean notSoNice = false;
 
     public BaseAsyncTask(Activity parent, Class targetClz) {
         if (parent == null) throw new IllegalArgumentException("parent must not be null");
@@ -76,7 +85,13 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             }
         } catch (NetworkException e) {
             errorMessage = "Das Netzwerk antwortet zu langsam oder ist ausgeschaltet";
-        } catch (Exception e) {
+        }
+        catch (NiceGuysException e) {
+            Crashlytics.log(e.getMessage() + " ausgelogged: " + MyApplication.getLoginUser().getRealName());
+            Crashlytics.logException(e);
+            notSoNice = true;
+
+        }catch (Exception e) {
 //            catch all others
             logError(e);
             errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
@@ -106,7 +121,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     }
 
 
-    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException;
+    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException, NiceGuysException;
 
     @Override
     protected void onPostExecute(Integer integer) {
@@ -116,6 +131,35 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             }
         } catch (Exception e) {
             //see myttr-62
+        }
+        if (notSoNice) {
+            final ErrorDialog dialog = new ErrorDialog(parent, "Nur nette Menschen dürfen meine App benutzen ....", 2000);
+            dialog.show();
+            final Timer timer2 = new Timer();
+            timer2.schedule(new TimerTask() {
+                public void run() {
+                    dialog.dismiss();
+                    timer2.cancel(); //this will cancel the timer of the system
+                    new LoginDataBaseAdapter(parent).deleteAllEntries();
+                    parent.finishAffinity();
+//                    System.exit(-1);
+                }
+            }, 2000); // the timer will count 5 seconds....
+
+//            Toast.makeText(parent, "Nur nette Menschen dürfen meine App benutzen ....", Toast.LENGTH_LONG).show();
+//            Thread.currentThread();
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e1) {
+//
+//            }
+//            System.exit(-1);
+            return;
         }
         if (errorMessage != null) {
             new ErrorDialog(parent, errorMessage, Client.lastUrl()).show();

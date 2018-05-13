@@ -19,6 +19,14 @@ import com.jmelzer.myttr.R;
 public class ErrorDialog extends Dialog {
     String msg;
     String url;
+    int duration = -1;
+
+    public ErrorDialog(@NonNull Context context, String msg, int duration) {
+        super(context);
+        setTitle("myTTR ");
+        this.msg = msg;
+        this.duration = duration;
+    }
 
     public ErrorDialog(@NonNull Context context, String msg, String url) {
         super(context);
@@ -52,5 +60,17 @@ public class ErrorDialog extends Dialog {
                 getContext().startActivity(browserIntent);
             }
         });
+
+        if (duration > 0) {
+            buttonVisit.setVisibility(View.INVISIBLE);
+            ok.setVisibility(View.INVISIBLE);
+//            try {
+//                Thread.sleep(duration);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            this.dismiss();
+
+        }
     }
 }

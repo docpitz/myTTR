@@ -110,7 +110,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
         }
     }
 
-    void readSpieleAndTest(Liga liga) throws NetworkException {
+    void readSpieleAndTest(Liga liga) throws Exception {
         if (liga.getUrlRR() == null && liga.getUrlVR() == null && liga.getUrlGesamt() == null) {
             Log.e(Constants.LOG_TAG, "keine vorrunde / rueckrunde / gesamt fuer  " + liga);
             return;

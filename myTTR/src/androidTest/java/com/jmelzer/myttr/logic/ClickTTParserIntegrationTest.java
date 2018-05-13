@@ -25,6 +25,7 @@ import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.model.Cup;
 import com.jmelzer.myttr.model.Saison;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testReadIntegration() throws NetworkException {
+    public void testReadIntegration() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
         assertEquals(13, verbaende.size());
         Verband v = verbaende.get(0);
@@ -101,7 +102,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 
     }
 
-    void ligaTest(Liga liga, String name, int mcount) throws NetworkException {
+    void ligaTest(Liga liga, String name, int mcount) throws Exception {
         parser.readLiga(liga);
         Log.d(Constants.LOG_TAG, "liga = " + liga);
 
@@ -179,7 +180,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         }
     }
 
-    private Verband testDTTB() throws NetworkException {
+    private Verband testDTTB() throws Exception {
         Verband dttb = parser.readTopLigen(ACTUAL_SAISON);
         parser.readLigen(dttb, ACTUAL_SAISON);
         for (Liga liga : dttb.getLigaList()) {
@@ -194,7 +195,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         return dttb;
     }
 
-    void readSpieleAndTest(Liga liga) throws NetworkException {
+    void readSpieleAndTest(Liga liga) throws Exception {
         if (liga.getUrlRR() == null && liga.getUrlVR() == null && liga.getUrlGesamt() == null) {
             Log.e(Constants.LOG_TAG, "keine vorrunde / rueckrunde / gesamt fuer  " + liga);
             return;
@@ -236,7 +237,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         }
     }
 
-    void readLigenAndTest(Verband verband) throws NetworkException {
+    void readLigenAndTest(Verband verband) throws Exception {
         Log.i(Constants.LOG_TAG, "read ligen from '" + verband.getName() + "'");
         parser.readLigen(verband, Saison.SAISON_2015);
         for (Liga liga : verband.getLigaList()) {
@@ -299,9 +300,9 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     }
     @SmallTest
     public void testCups() throws Exception {
-        List<Verband> verbaende = Verband.cups();
-        for (Verband verband : verbaende) {
-            List<Tournament> tournaments = parser.readCups(verband, new Date());
+        List<Cup> cups = Cup.cups();
+        for (Cup cup : cups) {
+            List<Tournament> tournaments = parser.readCups(cup, new Date());
             for (Tournament tournament : tournaments) {
                 parser.readTournamentDetail(tournament);
                 for (Competition competition : tournament.getCompetitions()) {

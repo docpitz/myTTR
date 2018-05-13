@@ -70,6 +70,7 @@ public class LoginActivity extends Activity {
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
+
         super.onPostCreate(savedInstanceState);
         if (MyApplication.getPoints() > 0) {
             gotoNextActivity();
@@ -82,7 +83,6 @@ public class LoginActivity extends Activity {
     }
 
     public void login(final View view) {
-
         String username = ((EditText) findViewById(R.id.username)).getText().toString();
         String pw = ((EditText) findViewById(R.id.password)).getText().toString();
 

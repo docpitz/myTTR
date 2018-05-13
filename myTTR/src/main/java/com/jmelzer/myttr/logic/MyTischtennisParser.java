@@ -345,17 +345,19 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
 
-    public List<Player> getClubList() throws NetworkException, LoginExpiredException {
+    public List<Player> getClubList() throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/showclubinfo";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-        if (page.contains("Lohmar") || page.contains("Oelinghoven")) {
-            Crashlytics.log("Lohmar / Oelinghoven ausgelogged: " + MyApplication.getLoginUser().getRealName());
-            Crashlytics.logException(new Throwable("Lohmar /Oelinghoven ;-)"));
-            System.exit(-1);
-        }
+
+//        if (page.contains("Lohmar") ) {
+//            throw new NiceGuysException("Lohmar");
+//        }
+//        if (page.contains("Oelinghoven")) {
+//            throw new NiceGuysException("Oelinghoven");
+//        }
 
         int n = page.indexOf("vereinid=");
         if (n > 0) {
@@ -442,13 +444,29 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     }
 
-    public Player readEvents() throws NetworkException, LoginExpiredException {
+    public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
+        validateBadPeople(page);
         return parseEvents(page, true);
+    }
+
+    private void validateBadPeople(String page) throws NiceGuysException {
+        validateName(page, "Kaufmann, Patrick");
+        validateName(page, "Metzger, David");
+        validateName(page, "Kunkel, Werner");
+        validateName(page, "Niederweis, Markus");
+        validateName(page, "Seidel, Daniel");
+        validateName(page, "Rudat, Hans-Peter");
+    }
+
+    private void validateName(String page, String name) throws NiceGuysException {
+        if (page.contains(name)) {
+            throw new NiceGuysException(name);
+        }
     }
 
     Player parseEvents(String page, final boolean own) {

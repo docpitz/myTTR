@@ -125,6 +125,6 @@ Fehlerhandling
 
 4.1.9
 -----------
-- Bilanzen
 - Besser auf mytt logout reagieren
 - Route bei Turnieren
+- Spielerbilanz

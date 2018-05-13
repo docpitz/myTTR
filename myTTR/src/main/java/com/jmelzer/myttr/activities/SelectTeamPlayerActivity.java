@@ -21,6 +21,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.TooManyPlayersFound;
 import com.jmelzer.myttr.logic.ValidationException;
 
@@ -127,7 +128,7 @@ public class SelectTeamPlayerActivity extends BaseActivity {
         }
 
         @Override
-        protected void callParser() throws NetworkException, LoginExpiredException {
+        protected void callParser() throws NetworkException, LoginExpiredException, NiceGuysException {
             if (MyApplication.clubPlayers == null) {
                 MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
             }
