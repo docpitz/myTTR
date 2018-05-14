@@ -33,6 +33,7 @@ public class SearchPlayer implements Serializable, Favorite {
     //url of the search for persistence
     private String url;
     private Date changedAt;
+    boolean actual = true;
 
     public String getLastname() {
         return lastname;
@@ -158,6 +159,14 @@ public class SearchPlayer implements Serializable, Favorite {
             return "Alle Spieler";
         }
         return name;
+    }
+
+    public boolean isActual() {
+        return actual;
+    }
+
+    public void setActual(boolean actual) {
+        this.actual = actual;
     }
 
     public String convertToJson() throws JSONException {

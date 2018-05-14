@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
@@ -194,6 +193,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (sp.getTtrFrom() > 0) {
             builder.appendQueryParameter("ttrVon", "" + sp.getTtrFrom());
         }
+        if (!sp.isActual() ) {
+            builder.appendQueryParameter("ttrQuartalorAktuell", "quartal");
+        }
         if (sp.getTtrTo() > 0) {
             builder.appendQueryParameter("ttrBis", "" + sp.getTtrTo());
         }
@@ -345,19 +347,17 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
 
-    public List<Player> getClubList() throws NetworkException, LoginExpiredException, NiceGuysException {
+    /**
+     * get clublist from mytt
+     *
+     * @param actual false if qttr
+     */
+    public List<Player> getClubList(boolean actual) throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/showclubinfo";
         String page = Client.getPage(url);
         if (redirectedToLogin(page)) {
             throw new LoginExpiredException();
         }
-
-//        if (page.contains("Lohmar") ) {
-//            throw new NiceGuysException("Lohmar");
-//        }
-//        if (page.contains("Oelinghoven")) {
-//            throw new NiceGuysException("Oelinghoven");
-//        }
 
         int n = page.indexOf("vereinid=");
         if (n > 0) {
@@ -366,6 +366,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
             String clubListUrl = "https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=" + id +
                     "&alleSpielberechtigen=yes";
+            if (actual==false) {
+                clubListUrl += "&ttrQuartalorAktuell=quartal";
+            }
             page = Client.getPage(clubListUrl);
             List<Player> list = new ArrayList<>();
             try {
@@ -455,12 +458,16 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private void validateBadPeople(String page) throws NiceGuysException {
+        long start = System.currentTimeMillis();
         validateName(page, "Kaufmann, Patrick");
         validateName(page, "Metzger, David");
         validateName(page, "Kunkel, Werner");
         validateName(page, "Niederweis, Markus");
         validateName(page, "Seidel, Daniel");
         validateName(page, "Rudat, Hans-Peter");
+        validateName(page, "Hartmann, Adelheid");
+        validateName(page, "Domscheit, Celina");
+        Log.i(Constants.LOG_TAG, "validate time " + (System.currentTimeMillis() - start) + " ms");
     }
 
     private void validateName(String page, String name) throws NiceGuysException {

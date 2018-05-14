@@ -69,6 +69,7 @@
     <string name="search">Suche</string>
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
+    <string name="qttr">QTTR</string>
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
     <string name="text_event_details">Wähle ein Spieler aus um Details zu sehen</string>
     <string name="text_select_player">Durch die Auswahl eines Teamspielers kannst du TTR Werte auch für ihn berechnen. Du siehst dann oben ein Symbol mit dem du es wieder beenden kannst.</string>

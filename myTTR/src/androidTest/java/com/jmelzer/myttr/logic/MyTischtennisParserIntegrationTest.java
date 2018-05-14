@@ -160,7 +160,7 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
     public void testGetClubList() throws Exception {
         login();
         MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        List<Player> clublist = myTischtennisParser.getClubList();
+        List<Player> clublist = myTischtennisParser.getClubList(true);
         for (Player player : clublist) {
             assertTrue(player.toString(), player.getPersonId() > 0);
             assertNotNull(player.toString(), player.getFirstname());

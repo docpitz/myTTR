@@ -130,7 +130,7 @@ public class SelectTeamPlayerActivity extends BaseActivity {
         @Override
         protected void callParser() throws NetworkException, LoginExpiredException, NiceGuysException {
             if (MyApplication.clubPlayers == null) {
-                MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
+                MyApplication.clubPlayers = new MyTischtennisParser().getClubList(true);
             }
             for (Player clubPlayer : MyApplication.clubPlayers) {
                 if (clubPlayer.getFirstname().equals(selectedPlayer.getFirstname()) &&

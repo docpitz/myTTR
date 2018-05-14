@@ -30,14 +30,9 @@ import android.widget.TextView;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.ClubParser;
-import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
-import com.jmelzer.myttr.logic.NetworkException;
-import com.jmelzer.myttr.logic.TooManyPlayersFound;
-import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.SearchPlayer;
 
@@ -199,12 +194,6 @@ public class SearchActivity extends BaseActivity {
         } else {
             String firstname = ((EditText) findViewById(R.id.detail_firstname)).getText().toString();
             String lastname = ((EditText) findViewById(R.id.detail_lastname)).getText().toString();
-//            if (("".equals(firstname) || "".equals(lastname)) && "".equals(clubname)) {
-//                Toast.makeText(SearchActivity.this,
-//                        getString(R.string.error_search_required_fields),
-//                        Toast.LENGTH_SHORT).show();
-//                return;
-//            }
             searchPlayer.setFirstname(firstname);
             searchPlayer.setClub(verein);
             searchPlayer.setLastname(lastname);
@@ -234,64 +223,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void findPlayer() {
-
-
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(SearchActivity.this, goBackToClass) {
-            Player foundSinglePlayer;
-
-            @Override
-            protected void putExtra(Intent target) {
-                target.putExtra(SearchActivity.BACK_TO, goBackToClass);
-                target.putExtra(SearchActivity.INTENT_SP, searchPlayer);
-            }
-
-            @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
-                List<Player> p = null;
-                errorMessage = null;
-                try {
-                    p = myTischtennisParser.findPlayer(searchPlayer);
-                } catch (TooManyPlayersFound tooManyPlayersFound) {
-                    errorMessage = "Es wurden zu viele Spieler gefunden.";
-                    return;
-                }
-                if (p != null) {
-
-                    if (p.size() == 1) {
-
-                        Player p1 = p.get(0);
-                        if (MyApplication.actualPlayer != null) {
-                            MyApplication.actualPlayer.copy(p1);
-                        } else {
-                            MyApplication.actualPlayer = p1;
-                        }
-                        MyApplication.addTTRCalcPlayer(p1);
-                        foundSinglePlayer = p1;
-
-                    } else if (p.size() > 1) {
-                        targetClz = SearchResultActivity.class;
-                        MyApplication.searchResult = p;
-                    } else {
-                        errorMessage = "Es wurden keine Spieler gefunden.";
-                    }
-                }
-            }
-
-            @Override
-            protected void startNextActivity() {
-                if (goBackToClass.equals(EventsActivity.class) && foundSinglePlayer != null) {
-                    new EventsAsyncTask(parent, EventsActivity.class, foundSinglePlayer).execute();
-                } else {
-                    super.startNextActivity();
-                }
-            }
-
-            @Override
-            protected boolean dataLoaded() {
-                return errorMessage == null;
-            }
-
-        };
+        AsyncTask<String, Void, Integer> task = new SearchAsyncTask(this, goBackToClass, searchPlayer);
         task.execute();
     }
 
@@ -346,4 +278,5 @@ public class SearchActivity extends BaseActivity {
         favoriteManager.startFavorite(item.getItemId(), SearchPlayer.class);
         return super.onOptionsItemSelected(item);
     }
+
 }

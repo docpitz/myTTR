@@ -2,8 +2,10 @@ package com.jmelzer.myttr.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,10 +17,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -132,6 +137,7 @@ public class SearchResultActivity extends BaseActivity {
             super(context, resource, players);
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -164,6 +170,29 @@ public class SearchResultActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.searchresult_actions, menu);
+        MenuItem item = menu.findItem(R.id.checkable_menu);
+        item.setActionView(R.layout.menu_switch);
+        ToggleButton toggleButton = menu.findItem(R.id.checkable_menu).getActionView().findViewById(R.id.toggle_ttr);
+        toggleButton.setChecked(MyApplication.actualTTR);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        ToggleButton toggleButton = menu.findItem(R.id.checkable_menu).getActionView().findViewById(R.id.toggle_ttr);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Log.d(Constants.LOG_TAG, "checked  = " + b);
+                MyApplication.actualTTR = b;
+                searchPlayer.setActual(b);
+                AsyncTask<String, Void, Integer> task =
+                        new SearchAsyncTask(SearchResultActivity.this, goBackToClass, searchPlayer);
+                task.execute();
+            }
+        });
+
         return true;
     }
 

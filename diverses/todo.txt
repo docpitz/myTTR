@@ -128,3 +128,7 @@ Fehlerhandling
 - Besser auf mytt logout reagieren
 - Route bei Turnieren
 - Spielerbilanz
+
+4.2.2
+---------------
+fix some PTTV

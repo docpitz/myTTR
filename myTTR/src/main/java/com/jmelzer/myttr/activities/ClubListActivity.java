@@ -15,17 +15,23 @@ package com.jmelzer.myttr.activities;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
@@ -58,20 +64,36 @@ public class ClubListActivity extends BaseActivity {
         listview.setAdapter(adapter);
         detailHelper = new DetailHelper(this, listview, MyApplication.clubPlayers);
 
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                view.setSelected(true);
-//                if (position > -1 && position < MyApplication.clubPlayers.size()) {
-//                    Player p = MyApplication.clubPlayers.get(position);
-//
-//                    new EventsAsyncTask(ClubListActivity.this, EventsActivity.class, p).execute();
-//                }
-//            }
-//        });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.clublist_actions, menu);
+        MenuItem item = menu.findItem(R.id.checkable_menu);
+        item.setActionView(R.layout.menu_switch);
+        ToggleButton toggleButton = menu.findItem(R.id.checkable_menu).getActionView().findViewById(R.id.toggle_ttr);
+        toggleButton.setChecked(MyApplication.actualTTR);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        ToggleButton toggleButton = menu.findItem(R.id.checkable_menu).getActionView().findViewById(R.id.toggle_ttr);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                MyApplication.actualTTR = b;
+                Log.d(Constants.LOG_TAG, "checked  = " + b);
+                AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(ClubListActivity.this, b);
+                task.execute();
+            }
+        });
+
+        return true;
+    }
+
 
     private static class ViewHolder {
         TextView textNr;
@@ -138,6 +160,7 @@ public class ClubListActivity extends BaseActivity {
             return convertView;
         }
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         detailHelper.createMenu(menu);

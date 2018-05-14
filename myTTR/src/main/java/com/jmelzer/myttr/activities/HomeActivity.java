@@ -26,10 +26,11 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
-import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.model.Favorite;
 
 import java.util.List;
+
+import static com.jmelzer.myttr.MyApplication.actualTTR;
 
 public class HomeActivity extends BaseActivity {
 
@@ -85,7 +86,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void clublist(View view) {
-        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(this, ClubListActivity.class);
+        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(this, actualTTR);
         task.execute();
     }
 
@@ -135,24 +136,6 @@ public class HomeActivity extends BaseActivity {
     public void cups(View view) {
         Intent target = new Intent(this, CupsActivity.class);
         startActivity(target);
-    }
-
-    private class ClubListAsyncTask extends BaseAsyncTask {
-
-        public ClubListAsyncTask(Activity parent, Class targetClz) {
-            super(parent, targetClz);
-        }
-
-        @Override
-        protected void callParser() throws NetworkException, LoginExpiredException, NiceGuysException {
-            MyApplication.clubPlayers = new MyTischtennisParser().getClubList();
-        }
-
-
-        @Override
-        protected boolean dataLoaded() {
-            return MyApplication.clubPlayers != null;
-        }
     }
 
     private class LigaRanglisteAsyncTask extends BaseAsyncTask {
