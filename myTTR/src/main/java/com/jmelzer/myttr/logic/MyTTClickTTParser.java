@@ -41,5 +41,6 @@ public interface MyTTClickTTParser {
     Spieler readPopUp(String name, MyTTPlayerIds myTTPlayerIdsForPlayer) throws NetworkException, NoClickTTException, LoginExpiredException;
 
     Verband readTopLigen() throws NetworkException, LoginExpiredException;
+    Verein readOwnVerein() throws NetworkException, LoginExpiredException, NoClickTTException;
 
 }

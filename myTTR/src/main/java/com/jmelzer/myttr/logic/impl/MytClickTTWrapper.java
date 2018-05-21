@@ -49,7 +49,7 @@ public class MytClickTTWrapper {
     }
 
     boolean isClickTT(Saison saison) {
-        return !(saison == Saison.SAISON_2018 );
+        return !(saison == Saison.SAISON_2018);
 //        return false;
     }
 
@@ -102,6 +102,9 @@ public class MytClickTTWrapper {
         }
     }
 
+    /**
+     * e.g. https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156012/TTG-St-Augustin/info
+     */
     public Verein readVerein(String url, Saison saison) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (isClickTT(saison)) {
             return clickTTParser.readVerein(url);
@@ -124,5 +127,9 @@ public class MytClickTTWrapper {
         } else {
             return newParser.readTopLigen();
         }
+    }
+
+    public Verein readOwnVerein() throws LoginExpiredException, NetworkException, NoClickTTException {
+        return newParser.readOwnVerein();
     }
 }

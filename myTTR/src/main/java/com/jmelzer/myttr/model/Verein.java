@@ -149,6 +149,25 @@ public class Verein implements Favorite {
         mannschaften.clear();
     }
 
+    @Override
+    public String toString() {
+        return "Verein{" +
+                "name='" + name + '\'' +
+                ", nr=" + nr +
+                ", gruendungsjahr=" + gruendungsjahr +
+                ", lokale=" + lokale +
+                ", lokaleUnformatted=" + lokaleUnformatted +
+                ", letzteSpiele=" + letzteSpiele +
+                ", naechsteSpiele=" + naechsteSpiele +
+                ", mannschaften=" + mannschaften +
+                ", kontakt=" + kontakt +
+                ", changedAt=" + changedAt +
+                ", urlMannschaften='" + urlMannschaften + '\'' +
+                ", url='" + url + '\'' +
+                ", spielplan=" + spielplan +
+                '}';
+    }
+
     static public class Kontakt {
         String nameAddress;
         String mail;

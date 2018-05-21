@@ -29,8 +29,9 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Cups für mehrere Jahre
 - Mehr UI Tests
 - Vereinswechsellisten
- - QTTR- Werte
 - Mehr Statistiken
+- AUswahl der Mannschaften: https://www.mytischtennis.de/community/ttrrechner/index
+-Noch mehr Fehlerhandling für mytt.de
 
 erledigt
 ---------
@@ -132,3 +133,8 @@ Fehlerhandling
 4.2.2
 ---------------
 fix some PTTV
+
+4.3.1
+---------
+Ligaansicht fixed
+Dein Verein als Favorit

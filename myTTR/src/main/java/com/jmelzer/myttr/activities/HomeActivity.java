@@ -203,6 +203,7 @@ public class HomeActivity extends BaseActivity {
         subm.clear(); // delete place holder
         List<Favorite> list = favoriteManager.getFavorites();
         int id = 100;
+        subm.add(0, 99, Menu.NONE, "Mein Verein");
         for (Favorite favorite : list) {
             subm.add(0, id++, Menu.NONE, favorite.typeForMenu() + ": " + favorite.getName());
         }
@@ -218,6 +219,10 @@ public class HomeActivity extends BaseActivity {
             case R.id.menu_settings: {
                 Intent intent = new Intent(this, MySettingsActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case 99: {
+                favoriteManager.startOwnVerein();
                 break;
             }
 //            case R.id.action_home: {

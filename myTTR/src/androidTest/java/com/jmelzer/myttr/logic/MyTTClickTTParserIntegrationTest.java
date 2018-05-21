@@ -15,12 +15,14 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Saison;
+import com.jmelzer.myttr.model.Verein;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
+import static com.jmelzer.myttr.Verband.dttb;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -49,17 +51,25 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
     }
 
     @Test
+    public void testreadOwnVerein() throws Exception {
+        login();
+
+        Verein verein = parser.readOwnVerein();
+        Log.d(Constants.LOG_TAG, "verein = " + verein);
+    }
+
+    @Test
     public void testAllVerbaende() throws Exception {
 
         //bezirke
         for (Verband verband : Verband.verbaende) {
             Log.d(Constants.LOG_TAG, "verband '" + verband.getName() + "'");
-            if (!verband.getName().equals("Badischer TTV")) {
-                continue;
-            }
-//            if (verband == dttb) {
+//            if (!verband.getName().equals("Badischer TTV")) {
 //                continue;
 //            }
+            if (verband == dttb) {
+                continue;
+            }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
             parser.readBezirkeAndLigen(verband, SAISON);
@@ -97,7 +107,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
                                     Log.e(Constants.LOG_TAG, "NPE in  " + liga);
                                 }
                                 readSpieleAndTest(liga);
-                                if (kc++>2) break;
+                                if (kc++ > 2) break;
 
                             }
                             kreis.addAllLigen(new ArrayList<Liga>()); //clear memory
@@ -153,6 +163,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
 
     /**
      * sometime no games avaible on click-tt in RR or VR. strange
+     *
      * @param s reason
      * @param b to check
      */

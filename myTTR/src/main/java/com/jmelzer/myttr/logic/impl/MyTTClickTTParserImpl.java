@@ -41,8 +41,8 @@ import static com.jmelzer.myttr.util.UrlUtil.safeUrl;
  */
 public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTClickTTParser {
 
-    public static final String CONTAINER_START_TAG = "<div class=\"col-sm-6 col-xs-12\">";
-    private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht"};
+    public static final String CONTAINER_START_TAG = "<div class=\"col-sm-4 col-xs-12\">";
+    private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht", "Teilnahmeverzicht"};
     public static final String EMPTY_NAME = "--------";
 
     public String parseError(String page) {
@@ -168,6 +168,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         kreis.addAllLigen(ligen);
     }
 
+    /**
+     * e.g. https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/156012/TTG-St-Augustin/info
+     */
     @Override
     public Verein readVerein(String url) throws NetworkException, NoClickTTException, LoginExpiredException {
         String page = Client.getPage(url);
@@ -264,6 +267,25 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             dttb.addAllLigen(ligen, saison);
         }
         return dttb;
+    }
+
+    /**
+     * see https://www.mytischtennis.de/clicktt/home#tab_verein
+     * for example
+     * @return Verein or null
+     * @throws NetworkException in case of error
+     * @throws LoginExpiredException in case of error
+     */
+    @Override
+    public Verein readOwnVerein() throws NetworkException, LoginExpiredException, NoClickTTException {
+        String url = "https://www.mytischtennis.de/clicktt/home-tab?id=verein";
+        String page = Client.getPage(url);
+        validatePage(page);
+
+        Verein v = new Verein("Dein Verein", url);
+        parseVereinMannschaften(v, page);
+
+        return v;
     }
 
     @Override

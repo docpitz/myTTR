@@ -150,6 +150,24 @@ public class FavoriteManager {
         task.execute();
     }
 
+    public void startOwnVerein() {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(parent, LigaVereinActivity.class) {
+
+            @Override
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
+                MyApplication.selectedVerein = clickTTWrapper.readOwnVerein();
+            }
+
+            @Override
+            protected boolean dataLoaded() {
+                return MyApplication.selectedVerein != null;
+            }
+
+
+        };
+        task.execute();
+    }
+
 
     public void favorite(Liga liga) {
         if (liga == null) {
