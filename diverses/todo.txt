@@ -32,6 +32,7 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Mehr Statistiken
 - AUswahl der Mannschaften: https://www.mytischtennis.de/community/ttrrechner/index
 -Noch mehr Fehlerhandling für mytt.de
+- Verbandsoberligen fehlen https://www.mytischtennis.de/clicktt/DTTB/17-18/ligen/VOL-Ost-Nord-17-18
 
 erledigt
 ---------
@@ -138,3 +139,7 @@ fix some PTTV
 ---------
 Ligaansicht fixed
 Dein Verein als Favorit
+
+4.3.2
+---------
+- Simulation Workaround
