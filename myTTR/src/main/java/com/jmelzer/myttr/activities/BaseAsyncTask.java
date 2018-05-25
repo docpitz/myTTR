@@ -18,6 +18,7 @@ import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 
@@ -79,12 +80,17 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             } catch (NoClickTTException e2) {
                 logError(e);
                 errorMessage = new MyTTClickTTParserImpl().parseError(Client.lastHtml);
-            } catch (Exception e2) {
+            }
+            catch (Exception e2) {
                 logError(e);
                 errorMessage = "Fehler beim Lesen der Webseite \n" + Client.shortenUrl();
             }
         } catch (NetworkException e) {
             errorMessage = "Das Netzwerk antwortet zu langsam oder ist ausgeschaltet";
+        }
+        catch (NoDataException ed) {
+            logError(ed);
+            errorMessage = "Mytischtennis.de meldet: " + ed.getMessage();
         }
         catch (NiceGuysException e) {
             Crashlytics.log(e.getMessage() + " ausgelogged: " + MyApplication.getLoginUser().getRealName());
@@ -121,7 +127,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     }
 
 
-    protected abstract void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException, NiceGuysException;
+    protected abstract void callParser() throws NoDataException, NetworkException, LoginExpiredException, ValidationException, NoClickTTException, NiceGuysException;
 
     @Override
     protected void onPostExecute(Integer integer) {

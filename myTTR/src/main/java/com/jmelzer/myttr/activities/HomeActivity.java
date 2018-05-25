@@ -26,6 +26,8 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoDataException;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.Favorite;
 
 import java.util.List;
@@ -165,7 +167,7 @@ public class HomeActivity extends BaseActivity {
         }
 
         @Override
-        protected void callParser() throws NetworkException, LoginExpiredException {
+        protected void callParser() throws NoDataException, NetworkException, LoginExpiredException, ValidationException {
             MyApplication.myTeamPlayers = new MyTischtennisParser().readPlayersFromTeam(null);
         }
 

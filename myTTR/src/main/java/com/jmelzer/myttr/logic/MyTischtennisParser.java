@@ -154,6 +154,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return findPlayer(sp);
     }
 
+    void validatePage(String page) throws NoDataException {
+        if (page.contains("Der Spieler ist noch keinem Team zugeordnet!")) {
+            throw new NoDataException("Der Spieler ist noch keinem Team zugeordnet!");
+        }
+    }
     /**
      * @param firstName
      * @param lastName
@@ -231,9 +236,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
 
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+        validateStillLoginActive(page);
         if (page.contains("Keine Daten vorhanden!")) {
             throw new ValidationException("Keine Daten vorhanden!");
         }
@@ -355,9 +358,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
     public List<Player> getClubList(boolean actual) throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/showclubinfo";
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+
+        validateStillLoginActive(page);
 
         int n = page.indexOf("vereinid=");
         if (n > 0) {
@@ -381,8 +383,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return null;
     }
 
-    private boolean redirectedToLogin(String page) {
-        return page.contains("<title>Login");
+    private void validateStillLoginActive(String page) throws LoginExpiredException {
+       if(page.contains("<title>Login") || page.contains("XML does not fit processing settings"))
+           throw new LoginExpiredException();
     }
 
     public String getNameOfOwnClub() {
@@ -435,24 +438,46 @@ public class MyTischtennisParser extends AbstractBaseParser {
         result = readBetween(result.result, 0, "<span>", "</span>");
         return result.result.trim();
     }
+    public List<Player> readClubPlayers() throws LoginExpiredException, NetworkException, ValidationException, TooManyPlayersFound {
 
-    public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException {
+        String page = Client.getPage("https://www.mytischtennis.de/community/ranking?showmyclub=1");
+        validateStillLoginActive(page);
+        if (page.contains("Keine Daten vorhanden!")) {
+            throw new ValidationException("Keine Daten vorhanden!");
+        }
+//        ParseResult result = readBetween(page, 0, "<input type=\"hidden\" name=\"vereinId\"" , ">");
+        ParseResult result = readBetween(page, 0, "url: 'ajax/_rankingList" , "'");
+        if (!isEmpty(result)) {
+            String url = "https://www.mytischtennis.de/community/ajax/_rankingList" + result.result;
+            page = Client.getPage(url);
+        }
+        //id=\"vereinId\" value=\"156012,WTTV\">", )
+        return parseForPlayer("", "", page, new ArrayList<Player>(), 0);
+    }
+    public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
 
         String url = "https://www.mytischtennis.de/community/teamplayers";
         if (id != null) {
             url += "?teamId=" + id;
         }
         String page = Client.getPage(url);
-        return parsePlayerFromTeam(page);
+        try {
+            return parsePlayerFromTeam(page);
+        } catch (NoDataException e) {
+            try {
+                return readClubPlayers();
+            } catch (TooManyPlayersFound tooManyPlayersFound) {
+                //ok
+                throw e;
+            }
+        }
 
     }
 
     public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+        validateStillLoginActive(page);
         validateBadPeople(page);
         return parseEvents(page, true);
     }
@@ -574,7 +599,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
 
-    List<Player> parsePlayerFromTeam(String page) {
+    List<Player> parsePlayerFromTeam(String page) throws NoDataException {
+        validatePage(page);
         Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
             @Override
             public int compare(Player lhs, Player rhs) {
@@ -710,6 +736,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     public EventDetail readEventDetail(Event event) throws NetworkException, LoginExpiredException {
         String url = "https://www.mytischtennis.de/community/eventDetails?eventId=" + event.getEventId();
         String page = Client.getPage(url);
+        validateStillLoginActive(page);
         return parseDetail(page);
     }
 
@@ -772,9 +799,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
         String url = "https://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+
+        validateStillLoginActive(page);
+
         Player p = parseEvents(page, false);
         p.setPersonId(playerId);
         return p;
@@ -786,9 +813,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
         String url = "https://www.mytischtennis.de/community/events?personId=" + player.getPersonId();
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+        validateStillLoginActive(page);
+
         ParseResult result = readBetween(page, 0, "<h3>", "<br class");
         result = readBetween(result.result, 0, "</span>", null);
         player.setTtrPoints(Integer.valueOf(result.result.trim()));
@@ -798,9 +824,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
     public List<Head2HeadResult> readHead2Head(long id) throws NetworkException, LoginExpiredException {
         String url = "https://www.mytischtennis.de/community/headTohead?gegnerId=" + id;
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+        validateStillLoginActive(page);
+
         return parseHead2Head(page);
     }
 
@@ -932,9 +957,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
     public List<MyTTLiga> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
         String url = "https://www.mytischtennis.de/community/group";
         String page = Client.getPage(url);
-        if (redirectedToLogin(page)) {
-            throw new LoginExpiredException();
-        }
+        validateStillLoginActive(page);
+
         List<String> groupIds = parseGroupForRanking(page);
         List<MyTTLiga> ligen = new ArrayList<>();
         for (String groupId : groupIds) {
