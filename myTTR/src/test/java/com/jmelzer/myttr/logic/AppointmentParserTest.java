@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = "src/main/AndroidManifest.xml", emulateSdk = 18)
+@Config(manifest = "src/main/AndroidManifest.xml")
 public class AppointmentParserTest {
 
     @Test

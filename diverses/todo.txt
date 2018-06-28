@@ -143,3 +143,4 @@ Dein Verein als Favorit
 4.3.2
 ---------
 - Simulation Workaround
+- Neue Vereinsliste

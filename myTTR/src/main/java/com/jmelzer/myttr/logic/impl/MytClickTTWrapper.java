@@ -49,7 +49,7 @@ public class MytClickTTWrapper {
     }
 
     boolean isClickTT(Saison saison) {
-        return !(saison == Saison.SAISON_2018);
+        return !(saison == Saison.SAISON_2019);
 //        return false;
     }
 

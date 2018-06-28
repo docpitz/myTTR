@@ -7,88 +7,90 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.jmelzer.myttr.model.Saison.SAISON_2019;
+
 /**
  * Created by J. Melzer on 19.02.2015.
  * e.g. wttv
  */
 public class Verband {
     public static Verband dttb = new Verband("DTTB",
-            "https://www.mytischtennis.de/clicktt/DTTB/17-18/ligen",
+            "https://www.mytischtennis.de/clicktt/DTTB/18-19/ligen",
             "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15",
             "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=DTTB");
     public static List<Verband> verbaende = new ArrayList<>();
 
     public static Verband WTTV = new Verband("Westdeutscher TTV",
-            "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen",
+            "https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen",
             "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/leaguePage?championship=WTTV%2014/15",
             "https://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV");
 
     static {
         verbaende.add(dttb);
         verbaende.add(new Verband("Badischer TTV",
-                "https://www.mytischtennis.de/clicktt/BaTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/BaTTV/18-19/ligen",
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+Bad.+14/15",
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/tournamentCalendar?federation=BaTTV"));
         verbaende.add(new Verband("Bayerischer TTV",
-                "https://www.mytischtennis.de/clicktt/ByTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/ByTTV/18-19/ligen",
                 "https://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=V000+2014%2F15",
                 "https://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV"));
 //        verbaende.add(new Verband("Berliner TTV", "https://bettv.tischtennislive.de/"));
         verbaende.add(new Verband("TTV Brandenburg",
-                "https://www.mytischtennis.de/clicktt/TTVB/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVB/18-19/ligen",
                 "https://ttvb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=VOL+Ost%2FNord+16%2F17",
                 "https://ttvb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVB"));
         verbaende.add(new Verband("FTT Bremen",
-                "https://www.mytischtennis.de/clicktt/FTTB/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/FTTB/18-19/ligen",
                 "https://fttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN+14/15",
                 "https://fttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=FTTB"));
         verbaende.add(new Verband("Hessischer TTV",
-                "https://www.mytischtennis.de/clicktt/HeTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/HeTTV/18-19/ligen",
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HTTV%2014/15",
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV"));
         verbaende.add(new Verband("Hamburger TTV",
-                "https://www.mytischtennis.de/clicktt/HaTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/HaTTV/18-19/ligen",
                 "http://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HaTTV+15%2F16",
                 "http://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HaTTV"));
         verbaende.add(new Verband("TTV Mecklenburg-Vorpommern",
-                "https://www.mytischtennis.de/clicktt/TTVMV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVMV/18-19/ligen",
                 "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",
                 "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVMV"));
         verbaende.add(new Verband("TTV Niedersachsen",
-                "https://www.mytischtennis.de/clicktt/TTVN/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVN/18-19/ligen",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=TTVN"));
         verbaende.add(new Verband("Pfälzischer TTV",
-                "https://www.mytischtennis.de/clicktt/PTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/PTTV/18-19/ligen",
                 "https://pttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=PTTV+14/15",
                 "https://pttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=PTTV"));
         verbaende.add(new Verband("Rheinhessischer TTV",
-                "https://www.mytischtennis.de/clicktt/RTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/RTTV/18-19/ligen",
                 "https://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=RTTV+14/15",
                 "https://rttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=RTTV"));
         verbaende.add(new Verband("TTV Rheinland",
-                "https://www.mytischtennis.de/clicktt/TTVR/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVR/18-19/ligen",
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVR+14/15",
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVR"));
         verbaende.add(new Verband("Saarländischer TTB",
-                "https://www.mytischtennis.de/clicktt/STTB/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/STTB/18-19/ligen",
                 "https://sttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=STTB+14/15",
                 "https://sttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=STTB"));
         verbaende.add(new Verband("TTV Sachsen-Anhalt",
-                "https://www.mytischtennis.de/clicktt/TTVSA/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVSA/18-19/ligen",
                 "https://ttvsa.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVSA+14/15",
                 null));
 //        verbaende.add(new Verband("TTV Schleswig-Holstein", "https://ttvsh.tischtennislive.de/"));
         verbaende.add(new Verband("Südbadischer Tischtennis-Verband",
-                "https://www.mytischtennis.de/clicktt/SbTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/SbTTV/18-19/ligen",
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=VSK+SbTTV+14/15",
                 "https://ttvbw.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/tournamentCalendar?federation=SbTTV"));
         verbaende.add(new Verband("Thüringer TTV",
-                "https://www.mytischtennis.de/clicktt/TTTV/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTTV/18-19/ligen",
                 "https://tttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTTV%2016/17",
                 "https://tttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTTV"));
         verbaende.add(new Verband("TTV Württemberg-Hohenzollern",
-                "https://www.mytischtennis.de/clicktt/TTVWH/17-18/ligen",
+                "https://www.mytischtennis.de/clicktt/TTVWH/18-19/ligen",
                 "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/leaguePage?championship=SK+TTVWH+14/15",
                 "https://ttvwh.click-tt.de/cgi-bin/WebObjects/ClickTTVBW.woa/wa/tournamentCalendar?federation=TTVWH"));
         verbaende.add(WTTV);
@@ -143,7 +145,8 @@ public class Verband {
     }
 
     private boolean isMyTTUrl(Saison saison) {
-        return saison != null && myTTClickTTUrl != null && Saison.SAISON_2018 == saison;
+        return saison != null && myTTClickTTUrl != null &&
+                (SAISON_2019 == saison);
     }
 
     public void setBezirkList(List<Bezirk> bezirkList, Saison saison) {
@@ -188,6 +191,16 @@ public class Verband {
                     return url.replace("RTTV+14/15", "RTTV+2016/2017");
                 }
                 return url.replace("14/15", "16/17").replace("2014%2F15", "2016%2F17");
+            case SAISON_2019:
+                //silly workaround
+                if (url.contains("rttv.click-tt.de")) {
+                    return url.replace("RTTV+14/15", "RTTV+2018/2019");
+                }
+                return url.replace("14/15", "18/19").
+                        replace("2014%2F15", "2018%2F19").
+                        replace("2016/17", "2018/19").
+                        replace("16%2F17", "18%2F19");
+
             case SAISON_2018:
                 //silly workaround
                 if (url.contains("rttv.click-tt.de")) {

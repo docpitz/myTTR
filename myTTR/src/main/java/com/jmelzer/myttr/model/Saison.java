@@ -17,6 +17,7 @@ public enum Saison {
 
     public static List<String> saisons = new ArrayList<>();
     static {
+        saisons.add(SAISON_2019.getName());
         saisons.add(SAISON_2018.getName());
         saisons.add(SAISON_2017.getName());
         saisons.add(SAISON_2016.getName());

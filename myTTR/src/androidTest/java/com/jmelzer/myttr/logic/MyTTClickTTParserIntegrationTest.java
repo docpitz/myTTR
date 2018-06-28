@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.greaterThan;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
-    public static final Saison SAISON = Saison.SAISON_2018;
+    public static final Saison SAISON = Saison.SAISON_2019;
     MytClickTTWrapper parser = new MytClickTTWrapper();
 
     @SmallTest
