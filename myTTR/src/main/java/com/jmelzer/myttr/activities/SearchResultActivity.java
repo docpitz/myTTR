@@ -49,7 +49,7 @@ public class SearchResultActivity extends BaseActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.searchResult != null;
+        return MyApplication.searchResult != null ;
     }
 
     @Override
@@ -188,7 +188,7 @@ public class SearchResultActivity extends BaseActivity {
                 MyApplication.actualTTR = b;
                 searchPlayer.setActual(b);
                 AsyncTask<String, Void, Integer> task =
-                        new SearchAsyncTask(SearchResultActivity.this, goBackToClass, searchPlayer);
+                        new SearchAsyncTask(SearchResultActivity.this, goBackToClass, searchPlayer, EventsActivity.class);
                 task.execute();
             }
         });

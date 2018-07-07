@@ -33,16 +33,17 @@ android {
     }
     defaultConfig {
         applicationId "com.jmelzer.myttr"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 27
-        versionCode 120
-        versionName "5.0.0"
+        versionCode 121
+        versionName "5.0.1"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFile 'proguard-project.txt'
+            minifyEnabled false
+            useProguard false
+//            proguardFile 'proguard-project.txt'
         }
         debug {
 //            testCoverageEnabled = true

@@ -41,9 +41,11 @@ import java.util.List;
 public class SearchActivity extends BaseActivity {
 
     public static final String BACK_TO = "BACK_TO";
+    public static final String TARGET = "TARGET";
     public static final String INTENT_SP = "INTENT_SP";
     public static final String INTENT_LIGA_PLAYER = "lp";
     Class goBackToClass = TTRCalculatorActivity.class;
+    private Class targetClz = EventsActivity.class;
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
@@ -69,11 +71,17 @@ public class SearchActivity extends BaseActivity {
 
         clubEdit = findViewById(R.id.detail_club);
 
-        if (i != null && i.getExtras() != null && i.getExtras().getSerializable(BACK_TO) != null) {
-            goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
-        }
-        if (i != null && i.getExtras() != null && i.getExtras().getSerializable(INTENT_SP) != null) {
-            searchPlayer = (SearchPlayer) i.getExtras().getSerializable(INTENT_SP);
+        if (i != null && i.getExtras() != null ) {
+
+            if (i.getExtras().getSerializable(BACK_TO) != null) {
+                goBackToClass = (Class) i.getExtras().getSerializable(BACK_TO);
+            }
+            if (i.getExtras().getSerializable(INTENT_SP) != null) {
+                searchPlayer = (SearchPlayer) i.getExtras().getSerializable(INTENT_SP);
+            }
+            if (i.getExtras().getSerializable(TARGET) != null) {
+                targetClz = (Class) i.getExtras().getSerializable(TARGET);
+            }
         }
 //        clubEdit.setText("TTG St. Augustin");
 
@@ -223,7 +231,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void findPlayer() {
-        AsyncTask<String, Void, Integer> task = new SearchAsyncTask(this, goBackToClass, searchPlayer);
+        AsyncTask<String, Void, Integer> task = new SearchAsyncTask(this, goBackToClass, searchPlayer, targetClz);
         task.execute();
     }
 

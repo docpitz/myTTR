@@ -174,6 +174,8 @@ public class MyApplication extends Application {
     }
 
     public static void addTTRCalcPlayer(final Player p) {
+        if (ttrCalcPlayer.contains(p))
+            return;
         Player toAdd = new Player();
         toAdd.copy(p);
         toAdd.setChecked(false);

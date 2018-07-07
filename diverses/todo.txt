@@ -144,3 +144,8 @@ Dein Verein als Favorit
 ---------
 - Simulation Workaround
 - Neue Vereinsliste
+
+5.0.0
+-----
+- Upgrade Libs
+- Saison 18/19

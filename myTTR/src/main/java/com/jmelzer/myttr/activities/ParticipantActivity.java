@@ -119,6 +119,7 @@ public class ParticipantActivity extends BaseActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
         intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
+        intent.putExtra(SearchActivity.TARGET, EventsActivity.class);
         startActivity(intent);
     }
 
@@ -128,6 +129,7 @@ public class ParticipantActivity extends BaseActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, true);
         intent.putExtra(SearchActivity.BACK_TO, TTRCalculatorActivity.class);
+        intent.putExtra(SearchActivity.TARGET, TTRCalculatorActivity.class);
         startActivity(intent);
     }
 

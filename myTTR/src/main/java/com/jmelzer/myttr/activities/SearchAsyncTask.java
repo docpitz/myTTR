@@ -22,8 +22,8 @@ class SearchAsyncTask extends BaseAsyncTask {
     SearchPlayer searchPlayer;
     Player foundSinglePlayer;
 
-    public SearchAsyncTask(Activity parent, Class goBackToClass, SearchPlayer searchPlayer) {
-        super(parent, SearchResultActivity.class);
+    public SearchAsyncTask(Activity parent, Class goBackToClass, SearchPlayer searchPlayer, Class targetClz) {
+        super(parent, targetClz);
         this.goBackToClass = goBackToClass;
         this.searchPlayer = searchPlayer;
     }

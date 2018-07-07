@@ -12,6 +12,7 @@ import android.util.Log;
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
+import com.jmelzer.myttr.model.ClubSearchResult;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +20,9 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,13 +102,21 @@ public class ClubParser {
     }
 
     public List<String> getClubNameUnsharp(String searchString, float minScore, boolean recursiv) {
+        List<ClubSearchResult> list = getClubNameUnsharpSorted(searchString, minScore, recursiv);
+        List<String> listR = new ArrayList<>();
+        for (ClubSearchResult clubSearchResult : list) {
+            listR.add(clubSearchResult.getName());
+        }
+        return listR;
+    }
+    public List<ClubSearchResult> getClubNameUnsharpSorted(String searchString, float minScore, boolean recursiv) {
         long start = System.currentTimeMillis();
         readClubs();
-        String[] searchWords = searchString.toUpperCase().split(" |-");
+        String[] toSearchWords = searchString.toUpperCase().split(" |-");
 
-        List<String> subentries = new ArrayList<>();
+        List<ClubSearchResult> subentries = new ArrayList<>();
         if (clubHashMap.containsKey(searchString)) {
-            subentries.add(searchString);
+            subentries.add(new ClubSearchResult(clubHashMap.get(searchString).getName(), 1.0f));
             return subentries;
         }
 
@@ -120,18 +132,18 @@ public class ClubParser {
             for (String myClubPart : myClubParts) {
                 stringSumLength += myClubPart.length();
             }
-            searchWords = removeStopWords(searchWords);
-            for (String part : searchWords) {
+            toSearchWords = removeStopWords(toSearchWords);
+            for (String part : toSearchWords) {
                 osum += part.length();
             }
             stringSumLength = Math.max(osum, stringSumLength);
 
-            for (String searchWord : searchWords) {
+            for (String searchWord : toSearchWords) {
                 // The entry needs to contain all portions of the
                 // search string *but* in any order
                 for (String myClubPart : myClubParts) {
                     if (!stopWords.contains(myClubPart) && searchWord.equals(myClubPart)) {
-                        score += 1;
+                        score += 2; //exact match of a word
                     } else if (myClubPart.startsWith(searchWord)) {
                         score += calcScore(stringSumLength, searchWord, 1.f);
                         break;
@@ -143,10 +155,10 @@ public class ClubParser {
             }
             if (score > 0) {
                 Log.d(Constants.LOG_TAG, "match found score=" + score + ", searchwords='" +
-                        Arrays.toString(searchWords) + "', entry='" + entry + "', cleaned=" + Arrays.toString(myClubParts));
+                        Arrays.toString(toSearchWords) + "', entry='" + entry + "', cleaned=" + Arrays.toString(myClubParts));
 
                 if (score > minScore) {
-                    subentries.add(entry.getValue().getName());
+                    subentries.add(new ClubSearchResult(entry.getValue().getName(), score));
                     Log.d(Constants.LOG_TAG, "added match " + entry);
                 } else {
                     Log.d(Constants.LOG_TAG, "score not greate enough: " + score + " < " + minScore);
@@ -156,8 +168,14 @@ public class ClubParser {
         }
         Log.i(Constants.LOG_TAG, "club search time " + (System.currentTimeMillis() - start) + " ms");
         if (recursiv && subentries.size() == 0 && minScore > 0.1f) {
-            return getClubNameUnsharp(searchString, minScore - 0.2f, recursiv);
+            return getClubNameUnsharpSorted(searchString, minScore - 0.2f, recursiv);
         }
+        Collections.sort(subentries, new Comparator<ClubSearchResult>() {
+            @Override
+            public int compare(ClubSearchResult o1, ClubSearchResult o2) {
+                return -1*Float.compare(o1.getScore(), o2.getScore());
+            }
+        });
         return subentries;
 
     }
