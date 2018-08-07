@@ -104,7 +104,7 @@ public class AbstractBaseParser {
 
     protected ParseResult readBetweenOpenTag(String page, int start, String tagStart, String tagEnd, boolean ignoreCase) {
         ParseResult result = readBetween(page, start, tagStart, tagEnd, ignoreCase);
-        if (result != null) {
+        if (!isEmpty(result)) {
             ParseResult result2 = readBetween(result.result, 0, ">", null, ignoreCase);
             result2.end = result.end;
             return result2;

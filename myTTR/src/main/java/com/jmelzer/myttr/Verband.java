@@ -50,12 +50,12 @@ public class Verband {
                 "https://httv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HeTTV"));
         verbaende.add(new Verband("Hamburger TTV",
                 "https://www.mytischtennis.de/clicktt/HaTTV/18-19/ligen",
-                "http://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HaTTV+15%2F16",
+                "https://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HaTTV+15%2F16",
                 "http://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HaTTV"));
         verbaende.add(new Verband("TTV Mecklenburg-Vorpommern",
                 "https://www.mytischtennis.de/clicktt/TTVMV/18-19/ligen",
-                "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",
-                "http://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVMV"));
+                "https://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",
+                "https://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=TTVMV"));
         verbaende.add(new Verband("TTV Niedersachsen",
                 "https://www.mytischtennis.de/clicktt/TTVN/18-19/ligen",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=TTVN%2014/15",
@@ -190,7 +190,18 @@ public class Verband {
                 if (url.contains("rttv.click-tt.de")) {
                     return url.replace("RTTV+14/15", "RTTV+2016/2017");
                 }
-                return url.replace("14/15", "16/17").replace("2014%2F15", "2016%2F17");
+                return url.replace("14/15", "16/17").
+                        replace("2014%2F15", "2016%2F17").replace("15%2F16", "16%2F17");
+
+            case SAISON_2018:
+                //silly workaround
+                if (url.contains("rttv.click-tt.de")) {
+                    return url.replace("RTTV+14/15", "RTTV+2017/2018");
+                }
+                return url.replace("14/15", "17/18").replace("2014%2F15", "2016%2F17").
+                        replace("2016/17", "2017/18")
+                        .replace("15%2F16", "17%2F18")
+                        .replace("16%2F17", "17%2F18");
             case SAISON_2019:
                 //silly workaround
                 if (url.contains("rttv.click-tt.de")) {
@@ -201,13 +212,6 @@ public class Verband {
                         replace("2016/17", "2018/19").
                         replace("16%2F17", "18%2F19");
 
-            case SAISON_2018:
-                //silly workaround
-                if (url.contains("rttv.click-tt.de")) {
-                    return url.replace("RTTV+14/15", "RTTV+2017/2018");
-                }
-                return url.replace("14/15", "17/18").replace("2014%2F15", "2016%2F17").
-                        replace("2016/17", "2017/18").replace("16%2F17", "17%2F18");
             case SAISON_2014:
                 return url.replace("14/15", "13/14").replace("2014%2F15", "2013%2F14");
             default:

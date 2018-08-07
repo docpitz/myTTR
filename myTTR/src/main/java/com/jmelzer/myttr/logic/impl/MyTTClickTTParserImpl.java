@@ -212,7 +212,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 if (!ahref[0].isEmpty())
                     m.setUrlDetail(MYTT + ahref[0]);
             } else {
-                m.setErgebnis(row[6]);
+//                m.setErgebnis(row[6]);
+                m.setErgebnis(null);
             }
             ahref = readHrefAndATag(row[4]);
             Mannschaft heimMannschaft = new Mannschaft(ahref[1]);
@@ -532,8 +533,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 url = MYTT + url;
 
             String ergebnis = readHrefAndATag(row[5])[1];
-            if (ergebnis == null || ergebnis.isEmpty())
-                ergebnis = row[5].replaceAll(" ", "");
+            if (ergebnis == null || ergebnis.isEmpty()) {
+                ergebnis = null;//row[5].replaceAll(" ", "");
+                url = null;
+            }
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,
                     findMannschaft(liga, readHrefAndATag(row[3])[1]),

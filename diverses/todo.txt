@@ -33,6 +33,8 @@ https://www.mytischtennis.de/community/events?personId=417195
 - AUswahl der Mannschaften: https://www.mytischtennis.de/community/ttrrechner/index
 -Noch mehr Fehlerhandling für mytt.de
 - Verbandsoberligen fehlen https://www.mytischtennis.de/clicktt/DTTB/17-18/ligen/VOL-Ost-Nord-17-18
+- Liga-Rangliste für beliebige Klassen
+TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 
 erledigt
 ---------
