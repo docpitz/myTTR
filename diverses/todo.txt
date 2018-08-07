@@ -151,3 +151,7 @@ Dein Verein als Favorit
 -----
 - Upgrade Libs
 - Saison 18/19
+
+-----
+5.0.3.
+Pfalz Trophy fixed (neue URL)

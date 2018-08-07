@@ -25,7 +25,7 @@ public class Cup {
         cups.add(new Cup("TTVN-Race",
                 "https://ttvn.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/tournamentCalendar?federation=TTVN&circuit=TTVN-Race"));
         cups.add(new Cup("tt-megastore Pfalz Trophy",
-                "https://pttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=PTTV&circuit=tt-megastore%20Pfalz%20Trophy"));
+                "https://pttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=PTTV&circuit=tt-megastore+Pfalz+Trophy+2018"));
         cups.add(new Cup("TTVR Rheinland Cup",
                 "http://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=VOL%20R7&circuit=Rheinland%20Cup"));
         cups.add(new Cup("Clickball Rheinland Cup",
