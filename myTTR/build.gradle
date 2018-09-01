@@ -34,9 +34,9 @@ android {
     defaultConfig {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 122
-        versionName "5.0.2"
+        versionName "5.0.3"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
