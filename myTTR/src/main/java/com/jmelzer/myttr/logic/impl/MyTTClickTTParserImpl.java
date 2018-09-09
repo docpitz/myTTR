@@ -1,5 +1,6 @@
 package com.jmelzer.myttr.logic.impl;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
@@ -17,6 +18,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
@@ -52,6 +54,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         ParseResult result = readBetweenOpenTag(page, 0, "<p class=\"alert alert-danger\"", "</p>");
         return "Mytischtennis Meldung: " + result.result;
     }
+
     @Override
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         String url = "";
@@ -186,8 +189,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return v;
     }
 
-    void parseVereinSpielplan(Verein v, String page) {
+    void parseVereinSpielplan(Verein v, String page) throws NoClickTTException {
         ParseResult table = readBetween(page, 0, "<tbody>", "</table>");
+        if (table == null) {
+            throw new NoClickTTException();
+        }
         int idx = 0;
         String lastdate = "";
         while (true) {
@@ -200,13 +206,18 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String[] row = tableRowAsArray("<td>" + resultrow.result, 8, false);
 //            printRows(row);
             Mannschaftspiel m = new Mannschaftspiel();
+
             if (!row[0].isEmpty()) {
-                lastdate = row[0];
+                ParseResult pr = readBetween(row[0], 0, "</span>", "</span>");
+                if (!isEmpty(pr)) {
+                    lastdate = pr.result;
+                } else
+                    lastdate = "";
             }
             String uhrzeit = row[1];
             uhrzeit = removeHtml(uhrzeit);
             m.setDate(lastdate + " " + uhrzeit);
-            String ahref[] = readHrefAndATag(row[6]);
+            String ahref[] = readHrefAndATag(row[7]);
             if (ahref[1] != null) {
                 m.setErgebnis(ahref[1].replaceAll(" ", ""));
                 if (!ahref[0].isEmpty())
@@ -238,7 +249,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     String removeHtml(String string) {
         string = string.replaceAll("\r\n", "");
-        return string.replaceAll("<a.*</a>", "");
+        string = string.replaceAll("<a.*</a>", "");
+        return string.replaceAll(" <script.*", "");
     }
 
     private void printRows(String[] row) {
@@ -273,8 +285,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     /**
      * see https://www.mytischtennis.de/clicktt/home#tab_verein
      * for example
+     *
      * @return Verein or null
-     * @throws NetworkException in case of error
+     * @throws NetworkException      in case of error
      * @throws LoginExpiredException in case of error
      */
     @Override
@@ -524,15 +537,25 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 //            printRows(row);
             String datum = row[0];
             String time = "";
-            if (row[1] != null && !row[1].isEmpty() && row[1].length() <= 5)
-                time = " " + row[1];
-            if (datum != null && !datum.isEmpty())
-                datum += time;
-            String url = readHrefAndATag(row[5])[0];
+            if (row[1] != null && !row[1].isEmpty()) {
+                time = " " + removeHtml(row[1]);
+            }
+            if (datum != null && !datum.isEmpty()) {
+                ParseResult pr = readBetween(datum, 0, "</span>", "</span>");
+                if (!isEmpty(pr)) {
+                    datum = pr.result;
+                    datum = shortenDate(datum);
+                    lastDate = datum;
+                    datum += time;
+                } else {
+                    datum = lastDate;
+                }
+            }
+            String url = readHrefAndATag(row[6])[0];
             if (url != null && !url.isEmpty())
                 url = MYTT + url;
 
-            String ergebnis = readHrefAndATag(row[5])[1];
+            String ergebnis = readHrefAndATag(row[6])[1];
             if (ergebnis == null || ergebnis.isEmpty()) {
                 ergebnis = null;//row[5].replaceAll(" ", "");
                 url = null;
@@ -554,6 +577,17 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
         }
 
+    }
+
+    @NonNull
+    private String shortenDate(String datum) {
+        //todo generic
+        if (datum.endsWith("2018")) {
+            datum = datum.substring(0, datum.length() - 4) + "18";
+        } else if (datum.endsWith("2019")) {
+            datum = datum.substring(0, datum.length() - 4) + "19";
+        }
+        return datum;
     }
 
     private Mannschaft findMannschaft(Liga liga, String name) {

@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
@@ -104,6 +105,20 @@ public class MyTTClickTTParserTest {
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
             assertNotNull(mannschaftspiel.getDate());
+        }
+    }
+    @Test
+    public void parseErgebnisseNeu() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-spielplan-neu.html");
+        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/aktuell");
+
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
+        assertEquals(55, liga.getSpieleVorrunde().size());
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel.getDate());
+            assertTrue(mannschaftspiel.toString(), mannschaftspiel.getDate().contains(":"));
+            assertFalse(mannschaftspiel.toString(), mannschaftspiel.getDate().contains("<"));
         }
     }
 

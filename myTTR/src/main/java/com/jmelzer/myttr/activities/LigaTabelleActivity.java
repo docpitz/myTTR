@@ -81,6 +81,7 @@ public class LigaTabelleActivity extends BaseActivity {
                     //todo check wether this is correct here
                     p.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
                 }
+                //rodo opimize  load on demand
                 p.readVR(MyApplication.saison, liga);
                 p.readRR(MyApplication.saison, liga);
                 p.readGesamtSpielplan(MyApplication.saison, liga);

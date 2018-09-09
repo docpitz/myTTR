@@ -118,6 +118,11 @@ https://www.mytischtennis.de/community/events?personId=0
 SearchActivity
 https://www.mytischtennis.de/community/ajax/_rankingList?verein=SV+Wilhelmsburg&vereinId=1380%2CHTTV&alleSpielberechtigen=yes
 
+- Kalender Export
+- Optimierung Laden Liga
+- Vereins Bookmark geht nicjt !!
+- Wieder click-tt benutzen siehe https://openuserjs.org/scripts/MaoDelinSc/noMyTT/source
+
 4.1.5
 ---------------
 - Auf-, und Absteiger markiert

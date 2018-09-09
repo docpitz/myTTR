@@ -598,6 +598,7 @@ public class ClickTTParser extends AbstractBaseParser {
     public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
         String page = Client.getPage(mannschaft.getUrl());
         parseDetail(page, mannschaft);
+
     }
 
     void parseDetail(String page, Mannschaft mannschaft) {
