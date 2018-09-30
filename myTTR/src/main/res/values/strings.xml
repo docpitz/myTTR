@@ -67,6 +67,9 @@
     <string name="statistik">Statistiken</string>
     <string name="player_sim">Simulation</string>
     <string name="search">Suche</string>
+    <string name="spielplan">Spielplan</string>
+    <string name="aufstellung">Aufstellung</string>
+    <string name="tabelle">Tabelle</string>
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
     <string name="qttr">QTTR</string>
@@ -173,6 +176,7 @@
     <string name="header_ttrRelevant">TTR</string>
     <string name="label_turniere">Turniere</string>
     <string name="label_cups">Cups</string>
+    <string name="label_team">Team</string>
     <string name="dialog_default_title">myTTR Fehler</string>
     <string name="no_data_found">Keine Daten gefunden</string>
     <string-array name="sex_array">

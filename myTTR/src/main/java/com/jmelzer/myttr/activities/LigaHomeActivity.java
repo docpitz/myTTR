@@ -147,20 +147,10 @@ public class LigaHomeActivity extends BaseActivity {
 
 
     public void tabelle() {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");
+        MyApplication.setSelectedLiga(liga);
 
-            @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
-                clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
-            }
-
-            @Override
-            protected boolean dataLoaded() {
-                return MyApplication.getSelectedLiga().getMannschaften().size() > 0;
-            }
-
-
-        };
+        AsyncTask<String, Void, Integer> task = new LigaTabelleAsyncTask(this);
         task.execute();
     }
 

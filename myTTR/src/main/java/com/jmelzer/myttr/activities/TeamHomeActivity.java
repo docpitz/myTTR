@@ -34,7 +34,7 @@ import java.util.List;
 
 import static com.jmelzer.myttr.MyApplication.actualTTR;
 
-public class HomeActivity extends BaseActivity {
+public class TeamHomeActivity extends BaseActivity {
 
     public static final String BEARBEITEN = "Bearbeiten...";
     FavoriteManager favoriteManager;
@@ -52,7 +52,7 @@ public class HomeActivity extends BaseActivity {
             return;
         }
 
-        setContentView(R.layout.home);
+        setContentView(R.layout.team_home);
 
         favoriteManager = new FavoriteManager(this, getApplicationContext());
 
@@ -130,19 +130,13 @@ public class HomeActivity extends BaseActivity {
         about.show();
     }
 
-    public void tournament(View view) {
-        Intent target = new Intent(this, TournamentsActivity.class);
-        startActivity(target);
-    }
-
-    public void cups(View view) {
-        Intent target = new Intent(this, CupsActivity.class);
-        startActivity(target);
-    }
 
     public void team(View view) {
-        Intent target = new Intent(this, TeamHomeActivity.class);
-        startActivity(target);
+    }
+
+    public void tabelle(View view) {
+        AsyncTask<String, Void, Integer> task = new LigaTabelleAsyncTask(this);
+        task.execute();
     }
 
     private class LigaRanglisteAsyncTask extends BaseAsyncTask {
@@ -248,7 +242,7 @@ public class HomeActivity extends BaseActivity {
             }
             case R.id.action_remove_sim: {
                 MyApplication.simPlayer = null;
-                Intent intent = new Intent(this, HomeActivity.class);
+                Intent intent = new Intent(this, TeamHomeActivity.class);
                 startActivity(intent);
                 Toast.makeText(this, "Simulation wurde beendet", Toast.LENGTH_SHORT).show();
                 break;

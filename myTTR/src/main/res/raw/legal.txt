@@ -1,2 +1,4 @@
 All rights reserved.
 This app runs under the Apache License.
+
+Some Icons from www.flaticon.com
