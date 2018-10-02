@@ -23,6 +23,7 @@ public class User {
     int points;
     Date changedAt;
     int ak;
+    boolean registered = true;
 
     public User(String realName, int points) {
         this.realName = realName;
@@ -91,6 +92,14 @@ public class User {
 
     public String getClubName() {
         return clubName;
+    }
+
+    public boolean isRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
     }
 
     @Override

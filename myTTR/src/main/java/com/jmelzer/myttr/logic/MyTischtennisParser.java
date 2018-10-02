@@ -67,10 +67,19 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return 0;
     }
 
-    public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException, LoginExpiredException {
+    public User getPointsAndRealName() throws PlayerNotWellRegistered, NetworkException, LoginExpiredException, ValidationException, LoginException {
         String url = "https://www.mytischtennis.de/community/index";
 
         String page = Client.getPage(url);
+        if (page.contains("Zu viele Fehlversuche")) {
+            throw new LoginException("Zu viele Fehlversuche, das Konto wurde gesperrt! Nutze bitte die 'Passwort vergessen'-Funktion um dein Konto wieder freizuschalten.");
+        }
+        if (page.contains("<title>Login")) {
+            throw new LoginException("Benutzername oder Passwort ist falsch");
+        }
+        if (page.contains("bitte überprüfe deine Angaben")) {
+            throw new ValidationException("Du musst dich bitte 1x auf mytischtennis.de einloggen und speichern drücken");
+        }
         if (page.contains("Du bist für uns leider nicht eindeutig zu identifizieren!")) {
             throw new PlayerNotWellRegistered();
         }
@@ -108,11 +117,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
     File getLogDir() {
         File directory = null;
         /*
-             * This sections checks the phone to see if there is a SD card. if
-             * there is an SD card, a directory is created on the SD card to
-             * store the test log results. If there is not a SD card, then the
-             * directory is created on the phones internal hard drive
-             */
+         * This sections checks the phone to see if there is a SD card. if
+         * there is an SD card, a directory is created on the SD card to
+         * store the test log results. If there is not a SD card, then the
+         * directory is created on the phones internal hard drive
+         */
         //if there is no SD card, create new directory objects to make directory on device
         if (Environment.getExternalStorageState() == null) {
             //create new file directory object
@@ -159,6 +168,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             throw new NoDataException("Der Spieler ist noch keinem Team zugeordnet!");
         }
     }
+
     /**
      * @param firstName
      * @param lastName
@@ -198,7 +208,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (sp.getTtrFrom() > 0) {
             builder.appendQueryParameter("ttrVon", "" + sp.getTtrFrom());
         }
-        if (!sp.isActual() ) {
+        if (!sp.isActual()) {
             builder.appendQueryParameter("ttrQuartalorAktuell", "quartal");
         }
         if (sp.getTtrTo() > 0) {
@@ -368,7 +378,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
             String clubListUrl = "https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=" + id +
                     "&alleSpielberechtigen=yes";
-            if (actual==false) {
+            if (actual == false) {
                 clubListUrl += "&ttrQuartalorAktuell=quartal";
             }
             page = Client.getPage(clubListUrl);
@@ -384,8 +394,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private void validateStillLoginActive(String page) throws LoginExpiredException {
-       if(page.contains("<title>Login") || page.contains("XML does not fit processing settings"))
-           throw new LoginExpiredException();
+        if (page.contains("<title>Login") || page.contains("XML does not fit processing settings"))
+            throw new LoginExpiredException();
     }
 
     public String getNameOfOwnClub() {
@@ -438,6 +448,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         result = readBetween(result.result, 0, "<span>", "</span>");
         return result.result.trim();
     }
+
     public List<Player> readClubPlayers() throws LoginExpiredException, NetworkException, ValidationException, TooManyPlayersFound {
 
         String page = Client.getPage("https://www.mytischtennis.de/community/ranking?showmyclub=1");
@@ -446,7 +457,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             throw new ValidationException("Keine Daten vorhanden!");
         }
 //        ParseResult result = readBetween(page, 0, "<input type=\"hidden\" name=\"vereinId\"" , ">");
-        ParseResult result = readBetween(page, 0, "url: 'ajax/_rankingList" , "'");
+        ParseResult result = readBetween(page, 0, "url: 'ajax/_rankingList", "'");
         if (!isEmpty(result)) {
             String url = "https://www.mytischtennis.de/community/ajax/_rankingList" + result.result;
             page = Client.getPage(url);
@@ -454,6 +465,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         //id=\"vereinId\" value=\"156012,WTTV\">", )
         return parseForPlayer("", "", page, new ArrayList<Player>(), 0);
     }
+
     public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
 
         String url = "https://www.mytischtennis.de/community/teamplayers";
@@ -532,7 +544,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 event.setEvent(readBetween(result.result, 0, "Details anzeigen\">", "</a>").result);
 //
                 event.setAk(cells[3]);
-                event.setTtr(Integer.valueOf(cells[7]));
+                try {
+                    event.setTtr(Integer.valueOf(cells[7]));
+                } catch (NumberFormatException e) {
+                    //ok
+                }
                 event.setSum(Short.valueOf(readBetweenOpenTag(cells[8], 0, "<span", "</span").result));
 //
                 event.setBilanz(cells[4]);
@@ -561,11 +577,27 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     private Player parsePlayerFromEventPage(String page, boolean own) {
         Player p = new Player();
-        ParseResult result = readBetween(page, 0, "<strong>TTR: </strong>", "</p>");
-        p.setTtrPoints(Integer.valueOf(result.result.trim()));
+        ParseResult result = null;
+        try {
+            result = readBetween(page, 0, "<strong>TTR: </strong>", "</p>");
+            p.setTtrPoints(Integer.valueOf(result.result.trim()));
+        } catch (NumberFormatException e) {
+            //ok
+            try {
+                result = readBetween(page, 0, "<h3>", "</h3>");
+                if (result != null) {
+                    result = readBetween(result, 0, "</span> ", "<span");
+                    if (result !=null) {
+                        p.setTtrPoints(Integer.valueOf(result.result.trim()));
+                    }
+                }
+            } catch (NumberFormatException e1) {
+                //ok
+            }
+        }
 
         if (!own) {
-            result = readBetween(page, 0, "<h3>", "<span>");
+            result = readBetween(page, 0, "<h3>", "</h3>");
             p.setFirstname(parseFirstnameFromBadName(result.result));
             p.setLastname(parseLastNameFromBadName(result.result));
 
@@ -579,7 +611,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
     //samples: Michel, Dennis'
 //    Lüdinghausen, Jakob vons
     String parseFirstnameFromBadName(String line) {
-        String s = line.substring(line.indexOf(",") + 2);
+        String s = line;
+        if (line.contains("<"))
+            s = line.substring(0, line.indexOf("<"));
+
+        s = s.substring(s.indexOf(",") + 2);
         //strip possible s oder '
         return s.substring(0, s.length() - 1);
     }
@@ -816,8 +852,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateStillLoginActive(page);
 
         ParseResult result = readBetween(page, 0, "<h3>", "<br class");
-        result = readBetween(result.result, 0, "</span>", null);
-        player.setTtrPoints(Integer.valueOf(result.result.trim()));
+        if (!isEmpty(result)) {
+            result = readBetween(result.result, 0, "</span>", null);
+            player.setTtrPoints(Integer.valueOf(result.result.trim()));
+        }
         return player;
     }
 

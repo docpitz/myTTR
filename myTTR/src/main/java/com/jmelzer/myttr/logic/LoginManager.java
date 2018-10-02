@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.jmelzer.myttr.logic.Client.readGzippedResponse;
+
 public class LoginManager {
     public static final String LOGGEDINAS = "MYTT_COOKIESOK";
     public static final String MYTT_COOKIE2 = "cfid";
@@ -64,10 +66,7 @@ public class LoginManager {
         }
         try {
             return login(un, pw) != null;
-        } catch (PlayerNotWellRegistered playerNotWellRegistered) {
-            //shall not be possible on relogin
-            return false;
-        } catch (LoginException e) {
+        } catch (PlayerNotWellRegistered | ValidationException | LoginException e) {
             return false;
         }
 
@@ -81,7 +80,7 @@ public class LoginManager {
         Client.getCookieStore().clear();
     }
 
-    public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered, LoginException {
+    public User login(String username, String password) throws IOException, NetworkException, PlayerNotWellRegistered, LoginException, ValidationException {
         long start = System.currentTimeMillis();
         logout();
         HttpPost httpPost = new HttpPost("https://www.mytischtennis.de/community/login");
@@ -104,17 +103,24 @@ public class LoginManager {
 //            Log.d(Constants.LOG_TAG, "cookie = " + cookie.getName());
 //        }
 
-//        if (page.contains("Deine Zugangsdaten sind nicht korrekt!")) {
-//            throw new PlayerWrongLogin();
-//        }
+        String page = readGzippedResponse(response);
         response.getEntity().consumeContent();
+        if (page.contains("Deine Zugangsdaten sind nicht korrekt!")) {
+            throw new LoginException("Deine Zugangsdaten sind nicht korrekt");
+        }
 
         User user = null;
         try {
             user = new MyTischtennisParser().getPointsAndRealName();
             user.setPassword(password);
             user.setUsername(username);
+        } catch (LoginException e) {
+            throw e;
+        } catch (ValidationException e) {
+            MyApplication.getLoginUser().setRegistered(false);
+            throw e;
         } catch (Exception e) {
+            MyApplication.getLoginUser().setRegistered(false);
             Log.e(Constants.LOG_TAG, "getPointsAndRealName", e);
             throw new LoginException("myTTR konnte deinen Namen nicht feststellen\n" +
                     "Fehlermeldung: " + e.getMessage());

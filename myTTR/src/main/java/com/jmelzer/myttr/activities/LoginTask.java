@@ -16,6 +16,7 @@ import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.VersionChecker;
 
 import java.io.IOException;
@@ -128,6 +129,9 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
             playerNotWellRegistered = true;
             store(new User(username, pw), new MyTischtennisParser());
+        } catch (ValidationException e) {
+            errorMessage = e.getMessage();
+            loginSuccess = false;
         } catch (LoginException e) {
             errorMessage = e.getErrorMessage();
             loginSuccess = false;
