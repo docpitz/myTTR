@@ -64,6 +64,23 @@ public class MyTTClickTTParserTest {
         assertEquals(12, liga.getMannschaften().size());
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             System.out.println("mannschaft = " + mannschaft);
+            assertTrue(liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size() > 0);
+        }
+    }
+
+    @Test
+    public void parseLigaHome() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/click-tt-home.html");
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");
+        parser.parseLiga(page, liga);
+
+        assertNotNull(liga.getUrlVR());
+
+        assertEquals(12, liga.getMannschaften().size());
+        for (Mannschaft mannschaft : liga.getMannschaften()) {
+            System.out.println("mannschaft = " + mannschaft);
+            assertNotNull(mannschaft.getUrl());
+            assertTrue(liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size() > 0);
         }
     }
 

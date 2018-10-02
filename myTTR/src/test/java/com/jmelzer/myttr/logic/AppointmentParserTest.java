@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;

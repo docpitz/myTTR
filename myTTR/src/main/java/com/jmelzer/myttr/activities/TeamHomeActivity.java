@@ -20,6 +20,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
@@ -87,16 +88,7 @@ public class TeamHomeActivity extends BaseActivity {
         }
     }
 
-    public void clublist(View view) {
-        AsyncTask<String, Void, Integer> task = new ClubListAsyncTask(this, actualTTR);
-        task.execute();
-    }
 
-    public void statistik(View view) {
-        MyApplication.selectedPlayerName = null;
-        AsyncTask<String, Void, Integer> task = new EventsAsyncTask(this, EventsActivity.class);
-        task.execute();
-    }
 
     public void liga(View view) {
         if (MyApplication.selectedVerband == null) {
@@ -108,17 +100,6 @@ public class TeamHomeActivity extends BaseActivity {
         }
     }
 
-    public void player_sim(View view) {
-        AsyncTask<String, Void, Integer> task = new OwnClubListAsyncTask(this,
-                SelectTeamPlayerActivity.class);
-        task.execute();
-    }
-
-    public void search(View view) {
-        Intent target = new Intent(this, SearchActivity.class);
-        target.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
-        startActivity(target);
-    }
 
     public void ligaranking(View view) {
         AsyncTask<String, Void, Integer> task = new LigaRanglisteAsyncTask(this);
@@ -135,6 +116,9 @@ public class TeamHomeActivity extends BaseActivity {
     }
 
     public void tabelle(View view) {
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home-tab?id=gruppe");
+        MyApplication.setSelectedLiga(liga);
+
         AsyncTask<String, Void, Integer> task = new LigaTabelleAsyncTask(this);
         task.execute();
     }

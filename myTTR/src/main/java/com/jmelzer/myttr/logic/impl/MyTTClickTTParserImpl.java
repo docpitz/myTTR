@@ -148,7 +148,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     @Override
     public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (liga.getUrlGesamt() != null) {
-            String url = liga.getHttpAndDomain() + liga.getUrlGesamt();
+            String url = liga.getUrlGesamt();
+            if (!url.contains(liga.getHttpAndDomain()))
+                url = liga.getHttpAndDomain() + url;
             String page = Client.getPage(url);
             validatePage(page);
             parseErgebnisse(page, liga, Liga.Spielplan.GESAMT);
@@ -745,10 +747,25 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     private void parseSpielplanLinks(Liga liga, String page) {
         String url = liga.getUrl();
-        url = url.substring(0, url.indexOf("/tabelle"));
-        liga.setUrlVR(url + "/spielplan/vr");
-        liga.setUrlRR(url + "/spielplan/rr");
-        liga.setUrlGesamt(null);
+        if (url.contains("/tabelle")) {
+            url = url.substring(0, url.indexOf("/tabelle"));
+            liga.setUrlVR(url + "/spielplan/vr");
+            liga.setUrlRR(url + "/spielplan/rr");
+            liga.setUrlGesamt(null);
+        } else {
+            ParseResult result = readBetween(page, 0, "</h1>", null);
+            result = readBetween(result, 0, "<div", "</div");
+            //now we have all a tags to read
+            ParseResult aresult = readBetween(result, 0, "<a", "</a");
+            String href[] = readHrefAndATag(aresult.result);
+            String realUrl = MYTT + href[0];
+            realUrl = realUrl.replace("/tabelle/", "/spielplan/");
+            realUrl = realUrl.substring(0, realUrl.length() - 3);
+            liga.setUrlVR(realUrl + "/vr");
+            liga.setUrlRR(realUrl + "/rr");
+            liga.setUrlGesamt(null);
+//            liga.setUrlGesamt(url + "/gesamt");
+        }
     }
 
     List<Bezirk> parseLinksBezirke(String page) {
