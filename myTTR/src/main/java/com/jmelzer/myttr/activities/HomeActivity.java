@@ -145,23 +145,6 @@ public class HomeActivity extends BaseActivity {
         startActivity(target);
     }
 
-    private class LigaRanglisteAsyncTask extends BaseAsyncTask {
-
-        public LigaRanglisteAsyncTask(Activity parent) {
-            super(parent, LigaRanglisteActivity.class);
-        }
-
-        @Override
-        protected void callParser() throws NetworkException, LoginExpiredException {
-            MyApplication.myTTLigen = new MyTischtennisParser().readOwnLigaRanking();
-        }
-
-
-        @Override
-        protected boolean dataLoaded() {
-            return MyApplication.myTTLigen != null;
-        }
-    }
 
 
     class OwnClubListAsyncTask extends BaseAsyncTask {

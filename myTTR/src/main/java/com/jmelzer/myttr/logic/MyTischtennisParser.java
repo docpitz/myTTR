@@ -9,6 +9,7 @@ package com.jmelzer.myttr.logic;
 
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.jmelzer.myttr.Club;
@@ -16,11 +17,15 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Mannschaft;
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.model.Head2HeadResult;
+import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.io.File;
@@ -466,6 +471,64 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return parseForPlayer("", "", page, new ArrayList<Player>(), 0);
     }
 
+    public Mannschaft readOwnTeam() throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
+        String url = "https://www.mytischtennis.de/community/team";
+        String page = Client.getPage(url);
+        return parseOwnTeam(page);
+
+    }
+
+    @NonNull
+    Mannschaft parseOwnTeam(String page) throws NoDataException {
+        Mannschaft mannschaft = new Mannschaft();
+
+        List<SpielerAndBilanz> players = parsePlayerFromTeamV2(page);
+        mannschaft.setSpielerBilanzen(players);
+
+        List<Mannschaftspiel> spiele = parseSpiele(page);
+        mannschaft.setSpiele(spiele);
+
+        return mannschaft;
+    }
+
+    List<Mannschaftspiel> parseSpiele(String page) throws NoDataException {
+        validatePage(page);
+        List<Mannschaftspiel> mannschaftspiels = new ArrayList<>();
+        ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Spielplan</h3>", "</table>");
+        int idx = 0;
+        while (true) {
+            //mytt have a bug here: no opening tr element
+            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            String[] row = tableRowAsArray("<td>" + resultrow.result, 11, false);
+            String[] ahref = readHrefAndATag(row[1]);
+            printRows(row);
+            String datetime = "";
+            ParseResult dr = readBetween(row[0], 0, "<span class=\"hidden-xs\">", "</span>");
+            datetime += dr.result;
+            dr = readBetween(row[0], dr.end, "</span>", "<span ");
+            datetime += " " + dr.result;
+
+            String heim = readHrefAndATag(row[1])[1];
+            String gast = readHrefAndATag(row[2])[1];
+            Mannschaftspiel spiel = new Mannschaftspiel();
+            spiel.setDate(datetime);
+            spiel.setHeimMannschaft(new Mannschaft(heim));
+            spiel.setGastMannschaft(new Mannschaft(gast));
+            String erg = row[4];
+            if (erg != null) {
+                erg = readHrefAndATag(erg)[1];
+                spiel.setPlayed(!erg.equals("0 : 0"));
+            }
+            spiel.setErgebnis(erg);
+            mannschaftspiels.add(spiel);
+        }
+        return mannschaftspiels;
+    }
+
     public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
 
         String url = "https://www.mytischtennis.de/community/teamplayers";
@@ -587,7 +650,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 result = readBetween(page, 0, "<h3>", "</h3>");
                 if (result != null) {
                     result = readBetween(result, 0, "</span> ", "<span");
-                    if (result !=null) {
+                    if (result != null) {
                         p.setTtrPoints(Integer.valueOf(result.result.trim()));
                     }
                 }
@@ -634,6 +697,43 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return ret;
     }
 
+
+    List<SpielerAndBilanz> parsePlayerFromTeamV2(String page) throws NoDataException {
+        validatePage(page);
+        List<SpielerAndBilanz> players = new ArrayList<>();
+        ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Einzelbilanzen</h3>", "</table>");
+        int idx = 0;
+        while (true) {
+            //mytt have a bug here: no opening tr element
+            ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
+            if (isEmpty(resultrow)) {
+                break;
+            }
+            idx = resultrow.end;
+            String[] row = tableRowAsArray("<td>" + resultrow.result, 11, false);
+            String[] ahref = readHrefAndATag(row[1]);
+//            printRows(row);
+            List<String[]> posResults = new ArrayList<>();
+            for (int i = 3; i < 8; i++) {
+                if (!row[i].isEmpty())
+                    posResults.add(new String[]{"" + (i - 2), row[i]});
+
+            }
+            String gesamt = row[10];
+            MyTTPlayerIds ids = parsePlayerIds(row[1]);
+
+            SpielerAndBilanz bilanz = new SpielerAndBilanz(row[0],
+                    ahref[1],
+                    row[2], posResults, gesamt, ids);
+            players.add(bilanz);
+        }
+        return players;
+    }
+
+    MyTTPlayerIds parsePlayerIds(String line) {
+        ParseResult personId = readBetween(line, 0, "tooltipdata=\"", ";");
+        return new MyTTPlayerIds(personId.result, null);
+    }
 
     List<Player> parsePlayerFromTeam(String page) throws NoDataException {
         validatePage(page);

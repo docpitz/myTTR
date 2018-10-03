@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.activities;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -125,46 +121,6 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
         };
         task.execute();
-    }
-
-    class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
-
-        public SpielAdapter(Context context, int resource, List<Mannschaftspiel> list) {
-            super(context, resource, list);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, final ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View rowView = inflater.inflate(R.layout.liga_mannschaft_results_row, parent, false);
-            final Mannschaftspiel spiel = getItem(position);
-
-            TextView textView = rowView.findViewById(R.id.date);
-            textView.setText(spiel.getDate());
-
-            textView = rowView.findViewById(R.id.heim);
-            textView.setText(spiel.getHeimMannschaft().getName());
-            textView = rowView.findViewById(R.id.gast);
-            textView.setText(spiel.getGastMannschaft().getName());
-            textView = rowView.findViewById(R.id.result);
-            textView.setText(spiel.getErgebnis());
-
-            final ImageView arrow = rowView.findViewById(R.id.arrow);
-            if (spiel.getUrlDetail() == null || spiel.getUrlDetail().isEmpty()) {
-                arrow.setVisibility(View.INVISIBLE);
-            } else {
-                arrow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MyApplication.selectedMannschaftSpiel = spiel;
-                        callMannschaftSpielDetail();
-                    }
-                });
-            }
-            return rowView;
-        }
     }
 
     void configList(List<Mannschaftspiel> list) {

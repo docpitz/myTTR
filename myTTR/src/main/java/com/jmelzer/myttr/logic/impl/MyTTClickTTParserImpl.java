@@ -11,6 +11,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.logic.AbstractBaseParser;
 import com.jmelzer.myttr.logic.Client;
@@ -18,7 +19,6 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
-import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
@@ -133,7 +133,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readVR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlVR() != null) {
             String page = Client.getPage(liga.getUrlVR());
-            parseErgebnisse(page, liga, Liga.Spielplan.VR);
+            if (page.contains("Vorrunde"))
+                parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
     }
 
@@ -141,7 +142,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readRR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlRR() != null) {
             String page = Client.getPage(liga.getUrlRR());
-            parseErgebnisse(page, liga, Liga.Spielplan.RR);
+            if (page.contains("Rückrunde"))
+                parseErgebnisse(page, liga, Liga.Spielplan.RR);
         }
     }
 
@@ -764,7 +766,6 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             liga.setUrlVR(realUrl + "/vr");
             liga.setUrlRR(realUrl + "/rr");
             liga.setUrlGesamt(null);
-//            liga.setUrlGesamt(url + "/gesamt");
         }
     }
 
@@ -915,7 +916,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String gesamt = row[9].replace("\r\n", "");
             String[] ahref = readHrefAndATag(row[1]);
             MyTTPlayerIds ids = parsePlayerIds(row[1]);
-            Mannschaft.SpielerBilanz bilanz = new Mannschaft.SpielerBilanz(row[0],
+            SpielerAndBilanz bilanz = new SpielerAndBilanz(row[0],
                     ahref[1],
                     row[2], posResults, gesamt, ids);
             mannschaft.addBilanz(bilanz);

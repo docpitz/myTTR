@@ -476,6 +476,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmelzer.myttr.activities.HomeActivity"/>
         </activity>
+        <activity android:name=".activities.TeamSpielPlanActivity" />
+
         <service android:name=".logic.SyncManager" android:label="myTTR Background Sync"
                  android:icon="@drawable/ic_action_actionbar">
         </service>

@@ -1,7 +1,6 @@
 package com.jmelzer.myttr;
 
 import com.jmelzer.myttr.model.LigaPosType;
-import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
@@ -17,74 +16,6 @@ import java.util.TreeMap;
 public class Mannschaft {
 
 
-
-    public static class SpielerBilanz {
-        String pos;
-        String name;
-        String einsaetze;
-        //first entry against, seconfd bilanz
-        List<String[]> posResults = new ArrayList<>(6);
-        String gesamt;
-        MyTTPlayerIds ids;
-
-        public SpielerBilanz(String pos, String name, String einsaetze) {
-            this.pos = pos;
-            this.name = name;
-            this.einsaetze = einsaetze;
-        }
-
-        public SpielerBilanz(String pos, String name, String einsaetze, List<String[]> posResults, String gesamt, MyTTPlayerIds ids) {
-            this.pos = pos;
-            this.name = name;
-            this.einsaetze = einsaetze;
-            this.posResults = posResults;
-            this.gesamt = gesamt;
-            this.ids = ids;
-        }
-
-        public SpielerBilanz(String pos, String name, String einsaetze, List<String[]> posResults, String gesamt) {
-            this.pos = pos;
-            this.name = name;
-            this.einsaetze = einsaetze;
-            this.posResults = posResults;
-            this.gesamt = gesamt;
-        }
-
-        public MyTTPlayerIds getIds() {
-            return ids;
-        }
-
-        public String getPos() {
-            return pos;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getEinsaetze() {
-            return einsaetze;
-        }
-
-        public List<String[]> getPosResults() {
-            return posResults;
-        }
-
-        public String getGesamt() {
-            return gesamt;
-        }
-
-        @Override
-        public String toString() {
-            return "SpielerBilanz{" +
-                    "pos='" + pos + '\'' +
-                    ", name='" + name + '\'' +
-                    ", einsaetze='" + einsaetze + '\'' +
-                    ", gesamt='" + gesamt + '\'' +
-                    ", ids='" + ids + '\'' +
-                    '}';
-        }
-    }
     public String getSpielLokal(int nrSpielLokal) {
         return spielLokale.get(nrSpielLokal);
     }
@@ -118,7 +49,8 @@ public class Mannschaft {
     LigaPosType ligaPosTyp = LigaPosType.NOTHING;
 
     Map<Integer, String> spielLokale = new TreeMap<>();
-    List<SpielerBilanz> spielerBilanzen = new ArrayList<>();
+    List<SpielerAndBilanz> spielerBilanzen = new ArrayList<>();
+    List<Mannschaftspiel> spiele = new ArrayList<>();
 
     public Mannschaft(LigaPosType ligaPosType, String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
@@ -138,8 +70,8 @@ public class Mannschaft {
 
     }
 
-    public Mannschaft(String n) {
-        this.name = n;
+    public Mannschaft(String name) {
+        this.name = name;
     }
 
     public String getKontaktNr() {
@@ -214,7 +146,7 @@ public class Mannschaft {
     public String toString() {
         return "Mannschaft{" +
                 "type='" + ligaPosTyp+ '\'' +
-                ", name='=" + name +
+                ", name=" + name +
                 ", position=" + position +
                 ", gamesCount=" + gamesCount +
                 ", win=" + win +
@@ -251,7 +183,6 @@ public class Mannschaft {
         return UrlUtil.getHttpAndDomain(url);
     }
 
-
     public List<String> getSpielLokale() {
 
         List<String> list = new ArrayList<>();
@@ -261,7 +192,7 @@ public class Mannschaft {
         return Collections.unmodifiableList(list);
     }
 
-    public List<SpielerBilanz> getSpielerBilanzen() {
+    public List<SpielerAndBilanz> getSpielerBilanzen() {
         return Collections.unmodifiableList(spielerBilanzen);
     }
     public void addSpielLokale(Map<Integer, String> integerStringMap) {
@@ -271,8 +202,12 @@ public class Mannschaft {
         spielLokale.put(1, spielLokal);
     }
 
-    public void addBilanz(SpielerBilanz b) {
+    public void addBilanz(SpielerAndBilanz b) {
         spielerBilanzen.add(b);
+    }
+
+    public void setSpielerBilanzen(List<SpielerAndBilanz> spielerBilanzen) {
+        this.spielerBilanzen = spielerBilanzen;
     }
 
     public void clearBilanzen() {
@@ -281,5 +216,13 @@ public class Mannschaft {
 
     public void removeAllSpielLokale() {
         spielLokale.clear();
+    }
+
+    public List<Mannschaftspiel> getSpiele() {
+        return spiele;
+    }
+
+    public void setSpiele(List<Mannschaftspiel> spiele) {
+        this.spiele = spiele;
     }
 }

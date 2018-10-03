@@ -16,6 +16,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.SpielerAndBilanz;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +48,11 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
         textView.setText("Bilanzen für die Mannschaft " + mannschaft.getName());
 
         List<String> groupList = new ArrayList<>();
-        List<Mannschaft.SpielerBilanz> children = new ArrayList<>();
+        List<SpielerAndBilanz> children = new ArrayList<>();
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
 
-        for (Mannschaft.SpielerBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
+        for (SpielerAndBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
             groupList.add(spielerBilanz.getPos() + " "  + spielerBilanz.getName());
 
         }
@@ -65,10 +66,10 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
     class BilanzAdapter extends BaseExpandableListAdapter {
         LayoutInflater layInflator;
         List<String> groupList;
-        List<Mannschaft.SpielerBilanz> children;
+        List<SpielerAndBilanz> children;
         Context context;
 
-        BilanzAdapter(Context context, List<String> groupList, List<Mannschaft.SpielerBilanz> children) {
+        BilanzAdapter(Context context, List<String> groupList, List<SpielerAndBilanz> children) {
             this.context = context;
             this.groupList = groupList;
             this.children = children;
@@ -123,7 +124,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            final Mannschaft.SpielerBilanz bilanz = (Mannschaft.SpielerBilanz) getChild(groupPosition, childPosition);
+            final SpielerAndBilanz bilanz = (SpielerAndBilanz) getChild(groupPosition, childPosition);
             //we can not reuse the view here
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.liga_mannschaft_bilanz_detail_row, null);

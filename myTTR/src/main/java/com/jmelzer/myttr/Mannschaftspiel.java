@@ -20,9 +20,11 @@ public class Mannschaftspiel {
     boolean genehmigt;
     String baelle;
     String saetze;
+    boolean played;
     List<Spielbericht> spiele = new ArrayList<>();
 
     public Mannschaftspiel() {
+        played = false;
     }
 
     public Mannschaftspiel(String date, Mannschaft heimMannschaft, Mannschaft gastMannschaft, String ergebnis, String urlDetail, boolean genehmigt) {
@@ -32,6 +34,7 @@ public class Mannschaftspiel {
         this.ergebnis = ergebnis;
         this.urlDetail = urlDetail;
         this.genehmigt = genehmigt;
+        played = ergebnis != null;
     }
 
     public String getUrlSpielLokal() {
@@ -68,6 +71,14 @@ public class Mannschaftspiel {
 
     public void setBaelle(String baelle) {
         this.baelle = baelle;
+    }
+
+    public boolean isPlayed() {
+        return played;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
     }
 
     @Override

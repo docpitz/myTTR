@@ -13,6 +13,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.TournamentGame;
 import com.jmelzer.myttr.Verband;
@@ -657,7 +658,7 @@ public class ClickTTParser extends AbstractBaseParser {
                     idx = resultrow.end;
                     continue;//skip first header row
                 }
-                Mannschaft.SpielerBilanz bilanz = parseBilanzRow(resultrow.result, header);
+                SpielerAndBilanz bilanz = parseBilanzRow(resultrow.result, header);
                 if (bilanz == null) {
                     break;
                 }
@@ -714,7 +715,7 @@ public class ClickTTParser extends AbstractBaseParser {
         return entries;
     }
 
-    private Mannschaft.SpielerBilanz parseBilanzRow(String row, List<String> header) {
+    private SpielerAndBilanz parseBilanzRow(String row, List<String> header) {
         ParseResult result = readBetweenOpenTag(row, 0, "<td", "</td>", true);
         if (isEmpty(result)) {
             return null;
@@ -742,9 +743,9 @@ public class ClickTTParser extends AbstractBaseParser {
             }
             result = readBetweenOpenTag(row, result.end - 3, "<td", "</td>", true);
             String gesamt = safeResult(result);
-            return new Mannschaft.SpielerBilanz(pos, name, einsaetze, posResults, gesamt);
+            return new SpielerAndBilanz(pos, name, einsaetze, posResults, gesamt);
         } else {
-            return new Mannschaft.SpielerBilanz(pos, name, einsaetze);
+            return new SpielerAndBilanz(pos, name, einsaetze);
         }
     }
 

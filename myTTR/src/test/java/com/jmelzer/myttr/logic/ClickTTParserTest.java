@@ -18,6 +18,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.model.Verein;
@@ -446,8 +447,8 @@ public class ClickTTParserTest {
         assertEquals("Hildebrandt, Manfred\nTel.: 02241 314799", mannschaft.getKontakt());
         assertEquals("manfred.und.petra.hildebrandt@t-online.de", mannschaft.getMailTo());
         assertNotNull(mannschaft.getVereinUrl());
-        List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
-        for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
+        List<SpielerAndBilanz> bilanzen = mannschaft.getSpielerBilanzen();
+        for (SpielerAndBilanz spielerBilanz : bilanzen) {
             System.out.println("spielerBilanz = " + spielerBilanz);
             for (String[] strings : spielerBilanz.getPosResults()) {
                 System.out.println(strings[0] + " : " + strings[1]);
@@ -461,8 +462,8 @@ public class ClickTTParserTest {
         Mannschaft mannschaft = new Mannschaft();
         parser.parseDetail(page, mannschaft);
 
-        List<Mannschaft.SpielerBilanz> bilanzen = mannschaft.getSpielerBilanzen();
-        for (Mannschaft.SpielerBilanz spielerBilanz : bilanzen) {
+        List<SpielerAndBilanz> bilanzen = mannschaft.getSpielerBilanzen();
+        for (SpielerAndBilanz spielerBilanz : bilanzen) {
             System.out.println("spielerBilanz = " + spielerBilanz);
             for (String[] strings : spielerBilanz.getPosResults()) {
                 System.out.println(strings[0] + " : " + strings[1]);

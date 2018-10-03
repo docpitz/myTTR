@@ -1,8 +1,11 @@
 package com.jmelzer.myttr.logic;
 
 import com.jmelzer.myttr.EventDetail;
+import com.jmelzer.myttr.Mannschaft;
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.model.Head2HeadResult;
 
 import junit.framework.Assert;
@@ -43,6 +46,23 @@ public class MyTischtennisParserTest {
     @Test
     public void parseLastnameFromBadName() throws Exception {
         assertEquals("Michel", parser.parseLastNameFromBadName("Michel, Dennis'"));
+    }
+
+    @Test
+    public void readOwnTeam() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/team.html");
+        Mannschaft mannschaft = parser.parseOwnTeam(page);
+        assertNotNull(mannschaft);
+        assertEquals(10, mannschaft.getSpielerBilanzen().size());
+        for (SpielerAndBilanz spielerAndBilanz : mannschaft.getSpielerBilanzen()) {
+            System.out.println("spielerAndBilanz = " + spielerAndBilanz);
+        }
+        assertEquals(22, mannschaft.getSpiele().size());
+        for (Mannschaftspiel ms : mannschaft.getSpiele()) {
+            System.out.println(ms.getDate() + "  " + ms.getHeimMannschaft().getName() +
+                    "  " + ms.getGastMannschaft().getName() +  " " + ms.getErgebnis());
+//            System.out.println("mannschaftspiel = " + ms);
+        }
     }
 
     @Test
@@ -110,6 +130,7 @@ public class MyTischtennisParserTest {
         assertEquals("Köhler", players.get(1).getLastname());
         assertEquals("SC 1904 Nürnberg e.V.", players.get(1).getClub());
     }
+
     @Test
     public void testDirk() throws Exception {
         String page = readFile(ASSETS_DIR + "/parsertest/rankingListDirk.htm");
@@ -126,6 +147,7 @@ public class MyTischtennisParserTest {
 //            System.out.println("player = " + player);
         }
     }
+
     @Test
     public void testFindPlayerBug57() throws Exception {
         String page = readFile(ASSETS_DIR + "/parsertest/rankingList.htm");

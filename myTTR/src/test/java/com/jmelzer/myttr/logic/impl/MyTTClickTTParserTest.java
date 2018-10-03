@@ -7,6 +7,7 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.Spielbericht;
 import com.jmelzer.myttr.Spieler;
+import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.TestUtil;
@@ -184,7 +185,7 @@ public class MyTTClickTTParserTest {
         assertEquals("8:0", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[1]);
         assertEquals("2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[0]);
         assertEquals("8:2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[1]);
-        for (Mannschaft.SpielerBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
+        for (SpielerAndBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
             System.out.println("spielerBilanz = " + spielerBilanz);
         }
     }
