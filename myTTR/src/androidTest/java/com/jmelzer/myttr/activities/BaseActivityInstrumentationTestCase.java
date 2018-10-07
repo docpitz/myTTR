@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.widget.EditText;
@@ -20,22 +23,26 @@ import com.jmelzer.myttr.logic.SyncManager;
 import com.robotium.solo.Solo;
 
 import org.apache.http.impl.cookie.BasicClientCookie;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Created by J. Melzer on 01.05.2015.
  * Base class handle
  */
-public abstract class BaseActivityInstrumentationTestCase<T extends Activity> extends ActivityInstrumentationTestCase2<T> {
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public abstract class BaseActivityInstrumentationTestCase<T extends Activity>  {
 
     //switch wether we read html from file system or calling mytt.de
     boolean offline = false;
 
     protected static final int STANDARD_TIMEOUT = 20000;
-
-
-    public BaseActivityInstrumentationTestCase(Class<T> activityClass) {
-        super(activityClass);
-    }
 
     protected MockHttpClient mockHttpClient;
     protected Solo solo;
