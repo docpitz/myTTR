@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 
 import junit.framework.TestCase;
 

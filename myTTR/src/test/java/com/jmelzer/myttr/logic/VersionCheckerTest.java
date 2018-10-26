@@ -1,6 +1,5 @@
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 

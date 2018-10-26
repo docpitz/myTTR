@@ -1,9 +1,9 @@
 1. BSV Wulferdingsen,186054,WTTV
 1. FC 1946 Großwenkheim e.V.,102029,ByTTV
-1. FC Arnstein,706046,ByTTV
+1. FC Arnstein,102002,ByTTV
 1. FC Baunach,501008,ByTTV
-1. FC Bayreuth,508007,ByTTV
-1. FC Beilngries,101002,ByTTV
+1. FC Bayreuth,206007,ByTTV
+1. FC Beilngries,414007,ByTTV
 1. FC Bocholt,175021,WTTV
 1. FC Brelingen,2194820,TTVN
 1. FC Bruchsal,105,BaTTV
@@ -47,7 +47,7 @@
 1. TTC Bremen,70,FTTB
 1. TTC Bürgeln 1982,13012,HeTTV
 1. TTC Frankenthal,059,PTTV
-1. TTC Greifswald,751879,TTVMV
+1. TTC Greifswald,11879,TTVMV
 1. TTC Hardt-Venn,143004,WTTV
 1. TTC Ketsch,805,BaTTV
 1. TTC Köln,151012,WTTV
@@ -93,11 +93,11 @@ ASV Adelheidsdorf,3250100,TTVN
 ASV Aichwald,05002,TTVWH
 ASV Altenlingen,4410140,TTVN
 ASV Arrach,405002,ByTTV
-ASV Arzheim,8,PTTV
+ASV Arzheim,008,PTTV
 ASV Au,416004,ByTTV
 ASV Bellenberg,15006,TTVWH
 ASV Berlin,52,BTTV
-ASV Biburg,312006,ByTTV
+ASV Biburg,104002,ByTTV
 ASV Birkenheide,016,PTTV
 ASV Botnang,14003,TTVWH
 ASV Buchenbühl,207009,ByTTV
@@ -110,13 +110,13 @@ ASV Eppelheim,308,BaTTV
 ASV Faßberg,3253800,TTVN
 ASV Fellheim,310027,ByTTV
 ASV Forth,207026,ByTTV
-ASV Frankenstein,058,PTTV
+ASV Frankenstein,58,PTTV
 ASV Fronberg,208021,ByTTV
 ASV Glonn,311018,ByTTV
 ASV Grassau e.V.,416027,ByTTV
 ASV Großweil,312027,ByTTV
 ASV Grünwettersbach,412,BaTTV
-ASV Harthausen,74,PTTV
+ASV Harthausen,074,PTTV
 ASV Hegge,310038,ByTTV
 ASV Hessheim,83,PTTV
 ASV Hofstetten 1949,101039,ByTTV
@@ -138,10 +138,10 @@ ASV Rott-Inn,416071,ByTTV
 ASV SR Aachen,157012,WTTV
 ASV Scheppach-Adolzfurt,07006,TTVWH
 ASV Sembach,202,PTTV
-ASV Sindelsdorf,108029,ByTTV
+ASV Sindelsdorf,312078,ByTTV
 ASV St. Augustin,156019,WTTV
 ASV Steinach,201025,ByTTV
-ASV Suffersheim,607017,ByTTV
+ASV Suffersheim,104091,ByTTV
 ASV Tönisheide,144021,WTTV
 ASV Undorf,413084,ByTTV
 ASV Vorwärts Rothenburg,1231,STTV
@@ -163,7 +163,7 @@ ATSV Erlangen,604005,ByTTV
 ATSV Espelkamp,186037,WTTV
 ATSV Gebirge Gelobtland,4219,STTV
 ATSV Habenhausen,21,FTTB
-ATSV Kelheim,205002,ByTTV
+ATSV Kelheim,413034,ByTTV
 ATSV Kirchseeon e.V.,311032,ByTTV
 ATSV Oberkotzau,206062,ByTTV
 ATSV Reichenbach,206070,ByTTV
@@ -199,7 +199,7 @@ Austria,AUT-0046,Ausland
 BC 1921 Nauborn,32045,HeTTV
 BC Bliesheim,155024,WTTV
 BC Efferen,151025,WTTV
-BC Huisheim e.V.,308017,ByTTV
+BC Huisheim e.V.,309051,ByTTV
 BC Marktlustenau,07044,TTVWH
 BC Rinnenthal e.V.,309088,ByTTV
 BC Viktoria Glesch-Paffendorf,151001,WTTV
@@ -234,6 +234,7 @@ BSG Wesertal Hameln,2184320,TTVN
 BSV 04 Bad Berka,113001,TTTV
 BSV 19,0090,HTTV
 BSV 68 Sebnitz,2429,STTV
+BSV 92,664,BTTV
 BSV AOK Dresden,2101,STTV
 BSV Akademie der Wissenschaften Berlin,0672,BTTV
 BSV Bayreuth,508004,ByTTV
@@ -249,6 +250,7 @@ BSV Hannovera Gleidingen,2192400,TTVN
 BSV Holzhausen,4472220,TTVN
 BSV KMW,344,RTTV
 BSV Kickers Emden,4400110,TTVN
+BSV Lünen,177019,WTTV
 BSV Märkische Bauunion Potsdam,2409,TTVB
 BSV München,105016,ByTTV
 BSV Neuburg-Donau,414062,ByTTV
@@ -283,7 +285,7 @@ Bad Doberaner Sportverein 90,510030,TTVMV
 Badenstedter SC,2205100,TTVN
 Bahrenfelder SV,0090,HaTTV
 Bahrenfelder TV,0100,HaTTV
-Baiersdorfer SV,604037,ByTTV
+Baiersdorfer SV,207005,ByTTV
 Ball- u. Spielgem Aufbau Eisleben,11908,TTVSA
 Ballenstedter TTV Gut Spiel,11702,TTVSA
 Ballspielverein 90 Grimmen,570185,TTVMV
@@ -364,7 +366,7 @@ Brügger SV,70984,TTVSH
 Budapest,HUN-02,Ausland
 Burger Ballspiel Club 08,11220,TTVSA
 Burgkemnitzer SV Heide 90,11103,TTVSA
-Buxtehuder TSV,0250,HaTTV
+Buxtehuder TSV,0250,HTTV
 Börnsen, VfL,0225,HTTV
 Büdelsdorfer TSV,70899,TTVSH
 Bültener SC,1130900,TTVN
@@ -400,7 +402,7 @@ Caputher SV 1981,2411,TTVB
 CdT 1955 Philippsthal,11027,HeTTV
 CfL Berlin,1018,BTTV
 Charlottenburger TSV,0990,BTTV
-Charlottenburger TTC 70,986,BTTV
+Charlottenburger TTC 70,0986,BTTV
 Chemnitzer WSV,4115,STTV
 Chile,CHI-ITTF,Ausland
 Club der TT-Freunde Beckum,177034,WTTV
@@ -461,9 +463,9 @@ DJK Blau-Weiß Hildesheim,2212920,TTVN
 DJK Blau-Weiß Schinkel,4480700,TTVN
 DJK Bleibtreu Münsterbusch,157031,WTTV
 DJK Borussia Münster,172001,WTTV
-DJK Brebersdorf,706045,ByTTV
+DJK Brebersdorf,102007,ByTTV
 DJK Buchholz,001979,TTVR
-DJK Burghausen,706002,ByTTV
+DJK Burghausen,102010,ByTTV
 DJK Büdesheim,206,RTTV
 DJK Concordia Fürth,104033,ByTTV
 DJK Darching 1959 e.V.,312010,ByTTV
@@ -471,14 +473,15 @@ DJK Daxlanden,404,BaTTV
 DJK Dellwig,145034,WTTV
 DJK Dockendorf-Ingendorf,002803,TTVR
 DJK Dockweiler,002185,TTVR
-DJK Don Bosco Bamberg,501001,ByTTV
+DJK Don Bosco Bamberg,205003,ByTTV
 DJK Donaueschingen,26004,SbTTV
 DJK Dudweiler,206,STTB
 DJK Duggendorf,413025,ByTTV
 DJK Duisburg-Buchholz,148039,WTTV
-DJK Dörfles-Esbach,504002,ByTTV
+DJK Dörfles-Esbach,205021,ByTTV
 DJK Dürrfeld,102012,ByTTV
-DJK Ebnath,408016,BTTV
+DJK Ebnath,408016,ByTTV
+DJK Eckartshausen,102093,ByTTV
 DJK Eging,415017,ByTTV
 DJK Eichstätt,101006,ByTTV
 DJK Eintracht Borbeck,145006,WTTV
@@ -492,8 +495,8 @@ DJK Eintracht Papenburg,4412870,TTVN
 DJK Eintracht Süd Nürnberg,207075,ByTTV
 DJK Ellwangen,10014,TTVWH
 DJK Elversberg,109,STTB
-DJK Erbshausen-Sulzwiese,704002,ByTTV
-DJK Erlenbach am Main,702007,ByTTV
+DJK Erbshausen-Sulzwiese,103008,ByTTV
+DJK Erlenbach am Main,101017,ByTTV
 DJK Ettmannsdorf,208015,ByTTV
 DJK Ewaldi Aplerbeck,112028,WTTV
 DJK Falke Nürnberg,207076,ByTTV
@@ -550,7 +553,7 @@ DJK Kleinkahl 1986 e.V.,101050,ByTTV
 DJK Kleinwallstadt,101052,ByTTV
 DJK Krebeck,1082300,TTVN
 DJK Käfertal,502,BaTTV
-DJK Kösching,101011,ByTTV
+DJK Kösching,414043,ByTTV
 DJK Laurensberg,157016,WTTV
 DJK Leidersbach,101055,ByTTV
 DJK Leutershausen,102050,ByTTV
@@ -591,11 +594,11 @@ DJK Pfersee e.V.,309081,ByTTV
 DJK Pressath,208051,ByTTV
 DJK Preußen Bochum,111017,WTTV
 DJK Prüm - Enz,002309,TTVR
-DJK Pörndorf,415055,ByTTV
+DJK Pörndorf,206024,ByTTV
 DJK Quettingen,153042,WTTV
 DJK RW Finthen,309,RTTV
 DJK Rasensport Brand,157007,WTTV
-DJK Rattenberg,201016,ByTTV
+DJK Rattenberg,415057,ByTTV
 DJK Reding-Mittich,206028,ByTTV
 DJK Regensburg Nord,413057,ByTTV
 DJK Rettenbach,401008,ByTTV
@@ -630,7 +633,7 @@ DJK SSG Paderborn,187009,WTTV
 DJK SSG SB Frankfurt,43016,HeTTV
 DJK SSV Ommerborn-Sand,153050,WTTV
 DJK SV Adlkofen,414001,ByTTV
-DJK SV Berg,403002,ByTTV
+DJK SV Berg,413010,ByTTV
 DJK SV Eiche Offenbach,46031,HeTTV
 DJK SV Eschweiler-Dürwiß,158007,WTTV
 DJK SV Furth,414022,ByTTV
@@ -646,7 +649,7 @@ DJK SV Raitenhaslach,416064,ByTTV
 DJK SV Schwarz-Weiß Braunschweig,1051420,TTVN
 DJK SV Steinberg,208065,ByTTV
 DJK SV Werpeloh,4414000,TTVN
-DJK SV e.V. Hartkirchen,206012,ByTTV
+DJK SV e.V. Hartkirchen,415026,ByTTV
 DJK SW Duisburg,148004,WTTV
 DJK SW Griesheim,43029,HeTTV
 DJK Saarbrücken-Rastpfuhl,227,STTB
@@ -676,7 +679,7 @@ DJK Stuttgart-Süd,14038,TTVWH
 DJK Styrum 06,148043,WTTV
 DJK SuS Brambauer,177018,WTTV
 DJK TB 08 Ratingen,141038,WTTV
-DJK TG Hausen,706047,ByTTV
+DJK TG Hausen,102035,ByTTV
 DJK TSV 1946 Pinzberg,207092,ByTTV
 DJK TSV Ast,202036,ByTTV
 DJK TSV Kersbach,207051,ByTTV
@@ -757,7 +760,10 @@ DSC Kaiserberg 47,148013,WTTV
 DSC Oldenburg,4462100,TTVN
 DSC Wanne-Eickel,111043,WTTV
 DSJ Bochum-Harpen,111026,WTTV
+DT Berbuerg,LUX-L12010,Ausland
 DT Fiels-Haler, Luxemburg,12014,Ausland
+DT Meechtem, Luxemburg,2-2014,Ausland
+DT Mäertert, Luxemburg,4-2014,Ausland
 DTV Diespeck,104021,ByTTV
 Dahlenburger SK,3290442,TTVN
 Danstedter Tischtennis-Club 04,11706,TTVSA
@@ -801,6 +807,7 @@ ESV Achim-Börßum,1150120,TTVN
 ESV BR Bonn,154005,WTTV
 ESV Bavaria Gemünden,101027,ByTTV
 ESV Bitterfeld,11102,TTVSA
+ESV Bremerhaven,FTTB-44,TTVN
 ESV Büchen,70274,TTVSH
 ESV Crailsheim,07010,TTVWH
 ESV Delitzsch,3305,STTV
@@ -851,7 +858,7 @@ ESV Lüneburg,3290021,TTVN
 ESV Merseburg,12011,TTVSA
 ESV München-Freimann e.V.,311053,ByTTV
 ESV München-Ost,311058,ByTTV
-ESV Neuhaus,605016,ByTTV
+ESV Neuhaus,207067,ByTTV
 ESV Neustadt,70615,TTVSH
 ESV Nürnberg Rbf e.V.,606007,ByTTV
 ESV Pforzheim,725,BaTTV
@@ -935,7 +942,7 @@ FC 1931 Rüddingshausen,22057,HeTTV
 FC 1968 Laimbach,33041,HeTTV
 FC AS Hachetal,2170070,TTVN
 FC Adler 1919 Weidhausen,205097,ByTTV
-FC Affing,306022,ByTTV
+FC Affing,309002,ByTTV
 FC Alemania Plaidt,000586,TTVR
 FC Ampertal Unterbruck,414076,ByTTV
 FC Arminia Adersheim,1150160,TTVN
@@ -957,7 +964,7 @@ FC Bundorf 1946 e.V.,707020,ByTTV
 FC Burk,207011,ByTTV
 FC Bühne,183025,WTTV
 FC Chamerau,413020,ByTTV
-FC Chammünster,405007,ByTTV
+FC Chammünster,413021,ByTTV
 FC Creglingen,07012,TTVWH
 FC Deining,413022,ByTTV
 FC Dörlesberg,1004,BaTTV
@@ -966,7 +973,6 @@ FC Ehekirchen,414013,ByTTV
 FC Eintracht Polle,2221730,TTVN
 FC Emersacker,306020,ByTTV
 FC Emsen,3272050,TTVN
-FC Eschenau,604013,ByTTV
 FC Eubigheim,204,BaTTV
 FC Ezelsdorf 1923,207115,ByTTV
 FC Flegessen-Hasperde,2181100,TTVN
@@ -974,7 +980,7 @@ FC Fortuna Schatthausen,331,BaTTV
 FC Fraunberg,414019,ByTTV
 FC Freihung,208019,ByTTV
 FC GW Siegen,116028,WTTV
-FC Geldersheim,706007,ByTTV
+FC Geldersheim,102021,ByTTV
 FC Germ. 1907 Leeheim,44016,HeTTV
 FC Germania Vossenack,157014,WTTV
 FC Gerolfing 1930 e.V.,414027,ByTTV
@@ -989,6 +995,7 @@ FC Heilsbronn,601014,ByTTV
 FC Heimertingen e.V.,310039,ByTTV
 FC Hertha München,311038,ByTTV
 FC Hesedorf,3312240,TTVN
+FC Hoffnung Pilsum,4370702,TTVN
 FC Hofstetten,312030,ByTTV
 FC Holzhausen,09021,TTVWH
 FC Holzkirchen,704010,ByTTV
@@ -1039,7 +1046,7 @@ FC Pech,154028,WTTV
 FC Penzing,312065,ByTTV
 FC Perach,416059,ByTTV
 FC Pfeil Broistedt (neu dazu),1130800,TTVN
-FC Puchheim,104013,ByTTV
+FC Puchheim,312069,ByTTV
 FC Pungelscheid,115008,WTTV
 FC Queidersbach,181,PTTV
 FC RW 1902 Kirchberg,14021,HeTTV
@@ -1051,7 +1058,7 @@ FC Reflexa Rettenbach,309085,ByTTV
 FC Reutlingen,01050,TTVWH
 FC Rhenania Immendorf,159019,WTTV
 FC Rinchnach,415061,ByTTV
-FC Roßbach,206021,ByTTV
+FC Roßbach,415064,ByTTV
 FC Ruppertsweiler,243,PTTV
 FC Ruthe,2214620,TTVN
 FC SW 1921 Dorndorf,33014,HeTTV
@@ -1071,10 +1078,9 @@ FC Stern Völlenerfehn,4447300,TTVN
 FC Strass,15057,TTVWH
 FC Stukenbrock,187006,WTTV
 FC Stätzling,309090,ByTTV
-FC Stöckach,506016,ByTTV
 FC Tegernheim,401012,ByTTV
 FC Teisbach,414075,ByTTV
-FC Teugn,205018,ByTTV
+FC Teugn,413078,ByTTV
 FC Thalmassing 1932 e.V.,413080,ByTTV
 FC Thyrnau,415082,ByTTV
 FC Train e.V.,413082,ByTTV
@@ -1090,10 +1096,10 @@ FC Wesuwe,4414020,TTVN
 FC Windhausen,1125300,TTVN
 FC Wolfach,24057,SbTTV
 FC Würzburger Kickers,103064,ByTTV
-FC Zandt,405028,ByTTV
-FC-DJK Burgoberbach,601008,ByTTV
+FC Zandt,413093,ByTTV
+FC-DJK Burgoberbach,104016,ByTTV
 FC-SF Münklingen,03021,TTVWH
-FC-TSV Rödental,504030,ByTTV
+FC-TSV Rödental,205070,ByTTV
 FCR Duisburg,147027,WTTV
 FCS Düsseldorf Sportverein,141008,WTTV
 FCV Beckum,177028,WTTV
@@ -1103,6 +1109,7 @@ FRA-ITTF,FRA-ITTF,Ausland
 FSC Biengen,22027,SbTTV
 FSC Dynamo Windrad Kassel,12087,HeTTV
 FSC Stendorf,3308550,TTVN
+FSG Pollhagen-Nordsehl Lauenhagen,2241540,TTVN
 FSK Lohfelden,12043,HeTTV
 FSK Vollmarshausen 1897,12070,HeTTV
 FST Heddesheim,1105,BaTTV
@@ -1123,13 +1130,13 @@ FSV Dieblich,000117,TTVR
 FSV Dörnhagen 1899,12012,HeTTV
 FSV Ebringen,22010,SbTTV
 FSV Eltz Moselkern,000479,TTVR
-FSV Erlangen-Bruck,604008,ByTTV
+FSV Erlangen-Bruck,207022,ByTTV
 FSV Ernzen,000149,TTVR
-FSV Freimersheim,062,PTTV
+FSV Freimersheim,62,PTTV
 FSV Germania 09 Fulda,21013,HeTTV
 FSV Glauberg,25026,HeTTV
 FSV Großaitingen,310032,ByTTV
-FSV Großenseebach,604033,ByTTV
+FSV Großenseebach,207033,ByTTV
 FSV Hohenroth e.V.,102040,ByTTV
 FSV Jägersburg,122,STTB
 FSV Klappholz,71715,TTVSH
@@ -1139,14 +1146,15 @@ FSV Nauendorf 1896,12015,TTVSA
 FSV Nienburg 1990,12115,TTVSA
 FSV Plein,004307,TTVR
 FSV Rehborn,004705,TTVR
+FSV Rühn,722308,TTVMV
 FSV Sarstedt,2214800,TTVN
 FSV Saulheim,120,RTTV
 FSV Uder 1921 e.V.,114023,TTTV
 FSV Wehringen,309099,ByTTV
-FSV Weißenbrunn,605028,ByTTV
+FSV Weißenbrunn,207108,ByTTV
 FT 1848 Fulda,21014,HeTTV
 FT 1897 Kassel-Niederzwehren,12051,HeTTV
-FT 1900 Bamberg,501002,ByTTV
+FT 1900 Bamberg,205004,ByTTV
 FT Adler Kiel,70155,TTVSH
 FT Blumenthal,75,FTTB
 FT Braunschweig,1051700,TTVN
@@ -1185,15 +1193,17 @@ FV Rußheim,130,BaTTV
 FV SF Neubrunn e.V.,704015,ByTTV
 FV Wehrda 1919,13056,HeTTV
 FV Wiesental,136,BaTTV
-FV Winterrieden,303021,ByTTV
+FV Winterrieden,310102,ByTTV
 FVP Maximiliansau,153,PTTV
 FZC Lambsbachtal,127,PTTV
 Fakel Gazprom Orenburg,RUS-00000001,Ausland
+Falkenberg BTK,SWE-77,Ausland
 Falkenhainer SV 1898,3111,STTV
 Farmsen-Bramfeld, SG,0420,HTTV
 Fermersleber SV 1895 Magdeburg (K),11807,TTVSA
 Finkenwerder, SC,0430,HTTV
 Finkenwerder, TuS,0440,HTTV
+Finland,FIN-ITTF,Ausland
 Fischbek, TV,0450,HTTV
 Fitness-Club Großschafhausen,04021,TTVWH
 Flechtinger SV,11418,TTVSA
@@ -1216,14 +1226,12 @@ Fuhlsbüttel, Eintracht,0455,HTTV
 Fun-Ball Dortelweil,25061,HeTTV
 Förder- und SG Theo Neuss,142013,WTTV
 Förderverein Jgd Leistungssport Rheinland,009950,TTVR
-Fürstenberger SV,1113,TTVB
 GDED Ehrang,003888,TTVR
 GFC Düren,158041,WTTV
 GFSV,0500,HTTV
 GHC - TTC Güsen (K),11214,TTVSA
 GHV Eggerscheidt,141048,WTTV
 GSBV Halle (K),11613,TTVSA
-GSV Dürnau,13009,TTVWH
 GSV Eintracht Baunatal,12003,HeTTV
 GSV Fröndenberg,114038,WTTV
 GSV Gundernhausen,42025,HeTTV
@@ -1239,11 +1247,13 @@ GTV Hohenacker,11025,TTVWH
 GV Trulben,217,PTTV
 GVO Oldenburg,4462270,TTVN
 GW Westkirchen,172035,WTTV
+GWN Sport-Team e.V.,142042,WTTV
 GWR- TuS Osdorf,0520,HTTV
 Gadderbaumer TV Bielefeld,181034,WTTV
 Garather SV,141040,WTTV
 Gardinger TSV,70415,TTVSH
 Gautinger SC e.V.,312020,ByTTV
+Geestemünder SC,FTTB-46,TTVN
 Geestemünder TV,FTTB-47,TTVN
 Geesthacht, VfL,0470,HTTV
 Geesthachter SV,0460,HTTV
@@ -1266,6 +1276,7 @@ Golzower SV,1105,TTVB
 Gothaer SV,107011,TTTV
 Goyatzer SV,3317,TTVB
 Grabower SV 08,760314,TTVMV
+Grebser TSV,2419,TTVB
 Greece,GRE-ITTF,Ausland
 Griebeler SV,70641,TTVSH
 Grodener SV,3260440,TTVN
@@ -1276,6 +1287,7 @@ Grünheider SV,1433,TTVB
 Grünhof-Tesperhude, VfL,0510,HTTV
 Gülzower SV,721286,TTVMV
 Gülzower Sportverein,531286,TTVMV
+Güstrower SC 09,720213,TTVMV
 HC Haiterbach,12019,TTVWH
 HEBC,0370,HTTV
 HH-Eimsbütteler Ballsport-Club,0370,HaTTV
@@ -1366,6 +1378,7 @@ Horner TV,0730,HTTV
 Hummelsbütteler SV,0740,HaTTV
 Hundener TTV,3273550,TTVN
 Hundsmühler TV,4453150,TTVN
+Hungary,HUN-ITTF,Ausland
 Hunsrücker Spvgg. Sargenroth,000885,TTVR
 Hunteburger SV,4472280,TTVN
 Husumer SV,70417,TTVSH
@@ -1697,7 +1710,7 @@ Mecklenburger Sportverein,580809,TTVMV
 Mecklenburger Stiere Schwerin,040627,TTVMV
 Mehlemer Sportverein e.V.,154049,WTTV
 Meidericher TTC 47,148020,WTTV
-Meiendorfer SV,0820,HTTV
+Meiendorfer SV,0820,HaTTV
 Meißner SV 08,2210,STTV
 Mellendorfer TV,2194875,TTVN
 Merseburger SV 1990 (K),12012,TTVSA
@@ -1729,12 +1742,12 @@ Neumühler SV,040629,TTVMV
 Neumühler Sportverein 1990,40629,TTVMV
 Neurönnebecker TV,31,FTTB
 Nidderauer TTC,23041,HeTTV
-Niendorfer TSV,0880,HaTTV
+Niendorfer TSV,0880,HTTV
 Nikolausberger SC,1091620,TTVN
 Noer-Lindhöfter SV,70891,TTVSH
 Norderstedt, 1. SC,0900,HTTV
 Nordhäuser Sportvereine,110013,TTTV
-Norway,NOR-ITTF,Ausland
+Norway,NOR-00000002,Ausland
 Nusser TSV,70261,TTVSH
 Nützenberger TV,144043,WTTV
 OESG Viktoria Dortmund,112002,WTTV
@@ -1747,7 +1760,7 @@ OSV Hannover,2205313,TTVN
 OSV Zittau,1237,STTV
 OTG 1902 Gera,204002,TTTV
 Oberahrtaler Sportfreunde,001047,TTVR
-Oberalster VfW,0910,HaTTV
+Oberalster VfW,0910,HTTV
 Obercarsdorfer SV 1925,2417,STTV
 Oelixdorfer Schützen,71265,TTVSH
 Ohrdrufer Sportverein,107009,TTTV
@@ -1770,7 +1783,7 @@ Ottensen, TuS,0970,HTTV
 Otterwischer SV,3123,STTV
 Ovelgönner TV,4508950,TTVN
 PPC 1946 Neu-Isenburg,46023,HeTTV
-PPC Erfweiler,49,PTTV
+PPC Erfweiler,049,PTTV
 PSG Backnang,11004,TTVWH
 PSG Ludwigsburg,08048,TTVWH
 PSG Schwäbisch Hall,07062,TTVWH
@@ -1825,12 +1838,12 @@ Post SG Segeberg,71136,TTVSH
 Post SG Wernigerode,11725,TTVSA
 Post SV 1926 Magdeburg,11821,TTVSA
 Post SV Alfeld,2210320,TTVN
-Post SV Ansbach,601001,ByTTV
+Post SV Ansbach,104006,ByTTV
 Post SV Augsburg,309008,ByTTV
 Post SV BG 1934-61 Fulda,21015,HeTTV
 Post SV BW Duisburg,148026,WTTV
 Post SV Bad Pyrmont,2183620,TTVN
-Post SV Bamberg 1928,501006,ByTTV
+Post SV Bamberg 1928,205006,ByTTV
 Post SV Blau-Gelb Salzgitter,1140081,TTVN
 Post SV Bochum-Langendreer,111011,WTTV
 Post SV Buxtehude,3331600,TTVN
@@ -1868,7 +1881,7 @@ Post SV Lichtenfels,205049,ByTTV
 Post SV Lüdenscheid,115017,WTTV
 Post SV Mainz,325,RTTV
 Post SV Minden,186028,WTTV
-Post SV Mühldorf a. Inn,113018,ByTTV
+Post SV Mühldorf a. Inn,416047,ByTTV
 Post SV Mühlhausen,109017,TTTV
 Post SV Neumünster,70380,TTVSH
 Post SV Norden,4370119,TTVN
@@ -2001,6 +2014,7 @@ Ruder-Gesellschaft Lauenburg,70257,TTVSH
 Ruhrorter TV,148022,WTTV
 Rödemisser SV,70449,TTVSH
 Röwitzer SV (K),11029,TTVSA
+S.C. Fortuna Köln e.V.,151044,WTTV
 SAG Cestas,FRA-1111,Ausland
 SB Bayern 07 e.V. Nürnberg,207081,ByTTV
 SB DJK Rosenheim,416069,ByTTV
@@ -2015,7 +2029,7 @@ SC 1900 Schweinfurt e.V.,102074,ByTTV
 SC 1904 Nürnberg e.V.,207082,ByTTV
 SC 1920 Niedervorschütz,14032,HeTTV
 SC 1929 Waldgirmes,32066,HeTTV
-SC 1947 Haßlach b.T. e.V.,505007,ByTTV
+SC 1947 Haßlach b.T. e.V.,206025,ByTTV
 SC 1948 Aurachtal Münchaurach,207066,ByTTV
 SC 28 Nordwalde,174031,WTTV
 SC Achmer,4470100,TTVN
@@ -2029,7 +2043,6 @@ SC Aplerbeck 09,112001,WTTV
 SC Arminia Ochtrup,174021,WTTV
 SC Athletik Nördlingen,309074,ByTTV
 SC Atzum,1150220,TTVN
-SC Au e.V.,311005,ByTTV
 SC Auetal,2241590,TTVN
 SC BW Ostenland,187014,WTTV
 SC BW Ottmarsbocholt,177026,WTTV
@@ -2060,10 +2073,10 @@ SC Bühlertann,07008,TTVWH
 SC Charlottenburg,3376,BTTV
 SC Condor Hamburg,0270,HaTTV
 SC Deckbergen-Schaumburg,2240565,TTVN
-SC Dietersheim 1963,602021,ByTTV
+SC Dietersheim 1963,104023,ByTTV
 SC Ebrach,501029,ByTTV
 SC Eching,414012,ByTTV
-SC Egglfing-Inn,206017,ByTTV
+SC Egglfing-Inn,415015,ByTTV
 SC Egling e.V.,312012,ByTTV
 SC Eichenstein-Issigau,507020,ByTTV
 SC Einheit Luckau,3324,TTVB
@@ -2150,7 +2163,7 @@ SC Michelbach-a.Wald,07045,TTVWH
 SC Mittelpunkt Nortorf,73127,TTVSH
 SC Mitterfecking,205016,ByTTV
 SC Mühlhausen,04036,TTVWH
-SC München-Freimann,103027,ByTTV
+SC München-Freimann,311054,ByTTV
 SC Müssingen,172033,WTTV
 SC Neuenstein,11043,HeTTV
 SC Niederzissen,000514,TTVR
@@ -2160,11 +2173,12 @@ SC Obermichelbach,104063,ByTTV
 SC Oberweikertshofen,104024,ByTTV
 SC Oberweikertshofen e.V.,312056,ByTTV
 SC Offenburg,24038,SbTTV
+SC Ossiachersee Bodensdorf,AUT-072273,Ausland
 SC Pforzheim e.V.,728,BaTTV
 SC Pinneberg,70738,TTVSH
 SC Pollanten,413054,ByTTV
 SC Polonia Hannover,2205352,TTVN
-SC Poppenbüttel,0990,HaTTV
+SC Poppenbüttel,0990,HTTV
 SC Postau,414068,ByTTV
 SC Pöcking-Possenhofen,312066,ByTTV
 SC Pühlheim,207094,ByTTV
@@ -2185,7 +2199,7 @@ SC Rot-Weiß Volkmarode,1054940,TTVN
 SC Rot-Weiß Wolfsburg,1161440,TTVN
 SC Rothenhausen,70283,TTVSH
 SC Roßbrunn-Mädelhofen e.V.,704022,ByTTV
-SC Schiffdorferdamm,FTTB-50,TTVN
+SC Schiffdorferdamm,50,FTTB
 SC Schwalbe Möllenbeck,2241330,TTVN
 SC Schwarz-Weiß Kellenhusen,70613,TTVSH
 SC Schölerberg,4483800,TTVN
@@ -2202,11 +2216,11 @@ SC Steinau-Odisheim,3262740,TTVN
 SC Steinberg 1953,46039,HeTTV
 SC Steinhude,2195315,TTVN
 SC Stolzenau,2231650,TTVN
-SC Syrau 1919,4332,STTV
+SC Syrau 1919,4333,STTV
 SC Söhre 2018 - Söhrewald e.V.,12091,HeTTV
 SC Südlohn,175024,WTTV
 SC Tewel,3327050,TTVN
-SC Thaldorf,205008,ByTTV
+SC Thaldorf,413079,ByTTV
 SC Twistringen,2174620,TTVN
 SC Uchte,2231670,TTVN
 SC Union Emlichheim,4431200,TTVN
@@ -2221,7 +2235,7 @@ SC Vahr-Blockdiek,9,FTTB
 SC Velpe Süd,174009,WTTV
 SC Victoria Lavelsloh,2230860,TTVN
 SC Victoria Neuenbeken,187007,WTTV
-SC Vier- und Marschlande,1245,HaTTV
+SC Vier- und Marschlande,0145,HTTV
 SC Vierhöfen,3277700,TTVN
 SC Vierkirchen e.V.,103016,ByTTV
 SC Vogt,02052,TTVWH
@@ -2251,9 +2265,10 @@ SCH.V. Durlangen,11013,TTVWH
 SCW Göttingen,1091740,TTVN
 SF 1931 Kraftsolms,32039,HeTTV
 SF 1951 Bischofsheim,44004,HeTTV
-SF 1984 Gefrees e.V.,507027,ByTTV
+SF 1984 Gefrees e.V.,206020,ByTTV
 SF Aegidienberg,156004,WTTV
 SF Bichl,312007,ByTTV
+SF Bietzen-Harlingen,304,STTB
 SF Bruck 96 e.V.,208009,ByTTV
 SF DJK Leverkusen,153004,WTTV
 SF Darum,4485200,TTVN
@@ -2286,13 +2301,13 @@ SF Waldbröl,152018,WTTV
 SF Walshausen,225,PTTV
 SF Wernau,05066,TTVWH
 SF Windach,312098,ByTTV
-SF Zeilarn,206015,ByTTV
+SF Zeilarn,415090,ByTTV
 SFC Bombogen,004834,TTVR
 SFC St. Antonius,5,FTTB
 SFD 1975 Düsseldorf-Süd,141037,WTTV
 SFD Diakonie Bad Kreuznach,004316,TTVR
 SFG Bernkastel-Kues,002045,TTVR
-SFL Bremerhaven,FTTB-51,TTVN
+SFL Bremerhaven,51,FTTB
 SFV Nordprignitz,700074,TTVMV
 SG 03 Mitlechtern,41056,HeTTV
 SG 04 Niederbiel,32048,HeTTV
@@ -2398,6 +2413,7 @@ SG DJK Karlsruhe Ost-Polizei SV Karlsruhe,452,BaTTV
 SG DJK Lindenhof-St.Hildegard,530,BaTTV
 SG DJK Rüppurr-TS Durlach,454,BaTTV
 SG DJK-BSC-PSV Mainz,324,RTTV
+SG DJK-SVNA,0295,HaTTV
 SG Dabrun,12310,TTVSA
 SG Dahlem-Schmidtheim,155032,WTTV
 SG Damelang,2435,TTVB
@@ -2483,6 +2499,7 @@ SG Götzenhain 1945,46008,HeTTV
 SG Halsbek,4362250,TTVN
 SG Hambrücken-Weiher,143,BaTTV
 SG Handwerk Rabenstein,4121,STTV
+SG Hangelsberg 47,1438,TTVB
 SG Hankenberge Wellendorf,4471860,TTVN
 SG Hausen,31014,HeTTV
 SG Hausham 1901,312028,ByTTV
@@ -2557,6 +2574,7 @@ SG Motor Gohlis Nord Leipzig,3217,STTV
 SG Motor Halle,11603,TTVSA
 SG Motor Hohenthurm,12004,TTVSA
 SG Motor Wilsdruff,2433,STTV
+SG Mutlangen,11069,TTVWH
 SG Mühlbachtal,000505,TTVR
 SG Münchwald,003723,TTVR
 SG Nellingen,15039,TTVWH
@@ -2598,6 +2616,7 @@ SG Randersacker,103035,ByTTV
 SG Regnitzlosau,206068,ByTTV
 SG Reich-Michelbach,002620,TTVR
 SG Reinhardtsdorf,2426,STTV
+SG Reudnitz 2011,3219,STTV
 SG Reutlingen,01046,TTVWH
 SG Rhume,1083475,TTVN
 SG Riebau,11017,TTVSA
@@ -2631,11 +2650,12 @@ SG Schrezheim,10042,TTVWH
 SG Schwalbach 1910,32059,HeTTV
 SG Schwarz-Weiß Gattendorf,206019,ByTTV
 SG Schwarz-Weiß Oldenburg,4464400,TTVN
-SG Schönau,115030,ByTTV
+SG Schönau,416076,ByTTV
 SG Schönfeld Kassel 1989,12085,HeTTV
 SG Seidenbuch,41043,HeTTV
 SG Sendenhorst,172027,WTTV
 SG Seth,71142,TTVSH
+SG Sieg,000203,TTVR
 SG Siemens Erlangen,207019,ByTTV
 SG Simmern-DJK Hillscheid,001788,TTVR
 SG Simmertal-Weiler,000652,TTVR
@@ -2658,11 +2678,11 @@ SG Straßberg,4331,STTV
 SG Straßenbahner Karlsruhe,421,BaTTV
 SG Strietwald 1950 e.V.,701042,ByTTV
 SG Stupferich,442,BaTTV
-SG Sturmvogel Lohme,732282,TTVMV
+SG Sturmvogel Lohme,612282,TTVMV
 SG Stützerbach-Ilmenau,303017,TTTV
 SG Suderwich,176034,WTTV
 SG Sulzheim-Rommersheim,124,RTTV
-SG Südstern Senzig,3119,TTVB
+SG Südstern Senzig,3319,TTVB
 SG TSV-DJK Herrieden,104044,ByTTV
 SG TT Laubenheim,317,RTTV
 SG TTC GWR Nienstedten-TuS Osdorf,0520,HaTTV
@@ -2874,7 +2894,7 @@ SSV Groß Santersleben-Hermsdorf 1995,11422,TTVSA
 SSV Groß-Hehlen,3254350,TTVN
 SSV Gädheim,707003,ByTTV
 SSV Güster,70254,TTVSH
-SSV Hagen,3333850,TTVN
+SSV Hagen,114009,WTTV
 SSV Happerschoss,156041,WTTV
 SSV Hargarten-Reimsbach,313,STTB
 SSV Hattert,000946,TTVR
@@ -2948,6 +2968,7 @@ SSV Wertach,310098,ByTTV
 SSV Wildpoldsried,310101,ByTTV
 SSV Wilthen,1151,STTV
 SSV Wittenberge,4366500,TTVN
+SSV Wittow-Ost,730979,TTVMV
 SSV Wollishausen,309105,ByTTV
 SSV Ziethen,70236,TTVSH
 SSV Zschopau,4260,STTV
@@ -2988,6 +3009,7 @@ SV 1910 Kahla,202004,TTTV
 SV 1910 Neuhof,21040,HeTTV
 SV 1910 Reichensachsen,16031,HeTTV
 SV 1911 Hof,507006,ByTTV
+SV 1912 Guhrow,3357,TTVB
 SV 1912 Klein-Gerau,44014,HeTTV
 SV 1912 Stüdenitz,2242,TTVB
 SV 1913 Erbach,35011,HeTTV
@@ -2997,7 +3019,7 @@ SV 1916 Großrudestedt,105018,TTTV
 SV 1919 Prösen,3327,TTVB
 SV 1919 Woltersdorf,1116,TTVB
 SV 1919 Zeilsheim,43053,HeTTV
-SV 1920 Albstadt,701001,ByTTV
+SV 1920 Albstadt,101002,ByTTV
 SV 1920 Heftrich,35018,HeTTV
 SV 1920 Herrenhaide,2325,STTV
 SV 1920 Seulberg,31027,HeTTV
@@ -3007,7 +3029,7 @@ SV 1920 Tiefenbach,413081,ByTTV
 SV 1920 Zella-Loshausen,14055,HeTTV
 SV 1921 Dillhausen,33012,HeTTV
 SV 1921 Ettingshausen,22013,HeTTV
-SV 1921 Heinersreuth,508036,ByTTV
+SV 1921 Heinersreuth,206026,ByTTV
 SV 1921 Herbstein,24023,HeTTV
 SV 1921 Ottenhausen e.V.,112004,TTTV
 SV 1921 Walldorf,304012,TTTV
@@ -3106,7 +3128,7 @@ SV Alfeld,2210420,TTVN
 SV Allemannia 08 Jessen,12306,TTVSA
 SV Allensbach,21002,SbTTV
 SV Allstedt (K),11902,TTVSA
-SV Alsenbrück-Langmeil,004,PTTV
+SV Alsenbrück-Langmeil,4,PTTV
 SV Altencelle,3250350,TTVN
 SV Altendorf e.V.,208001,ByTTV
 SV Altendorf-Ulfkotte,176032,WTTV
@@ -3121,7 +3143,7 @@ SV Altstadt Dieburg,42059,HeTTV
 SV Am Gorbitzbach,2106,STTV
 SV Amelsen,1110400,TTVN
 SV Amendingen,303001,ByTTV
-SV Ampermoching,103001,ByTTV
+SV Ampermoching,311001,ByTTV
 SV Amtzell,02003,TTVWH
 SV Angern,11402,TTVSA
 SV Anhalt Oranienbaum,12314,TTVSA
@@ -3170,7 +3192,6 @@ SV BW Münster-Sarmsheim,238,RTTV
 SV BW Neustadt,208012,TTTV
 SV BW Oedekoven,154054,WTTV
 SV BW Sande,187015,WTTV
-SV BW Wiehre-Freiburg,22060,SbTTV
 SV Bad Bentheim,4430500,TTVN
 SV Bad Buchau,04008,TTVWH
 SV Bad Laer,4472500,TTVN
@@ -3198,7 +3219,7 @@ SV Bendestorf,3270450,TTVN
 SV Bendingbostel,3350800,TTVN
 SV Berenbrock,113046,WTTV
 SV Berfa 1926,24005,HeTTV
-SV Berg,507019,ByTTV
+SV Berg,206008,ByTTV
 SV Bergatreute,02009,TTVWH
 SV Bergdorf Höhn,504001,ByTTV
 SV Bergedorf-West,0150,HaTTV
@@ -3243,7 +3264,7 @@ SV Blau-Weiß Bennewitz,3102,STTV
 SV Blau-Weiß Borssum,4401680,TTVN
 SV Blau-Weiß Breitenhagen,12104,TTVSA
 SV Blau-Weiß Creuzburg,301017,TTTV
-SV Blau-Weiß Crottendorf,4209,STTV
+SV Blau-Weiß Crottendorf,4210,STTV
 SV Blau-Weiß Dachwig-Döllstädt e.V.,105017,TTTV
 SV Blau-Weiß Dahlewitz,2127,TTVB
 SV Blau-Weiß Deutzen,3109,STTV
@@ -3322,7 +3343,6 @@ SV Börninghausen,186051,WTTV
 SV Bösensell,172053,WTTV
 SV Böttingen,01009,TTVWH
 SV Büchenbronn,703,BaTTV
-SV Bühl,01032,TTVWH
 SV Büppel,4421270,TTVN
 SV Cainsdorf,4401,STTV
 SV Calau,3333,TTVB
@@ -3330,7 +3350,6 @@ SV Cambodunum Kempten e.V.,310045,ByTTV
 SV Capellenhagen-Fölziehausen,2211340,TTVN
 SV Casino Kleinwalsertal,310049,ByTTV
 SV Chattia 1921 Ulrichstein,24048,HeTTV
-SV Chemie Böhlen,3104,STTV
 SV Chemie Genthin,11204,TTVSA
 SV Chemie Mieste,11016,TTVSA
 SV Chemie Nünchritz,2216,STTV
@@ -3433,7 +3452,7 @@ SV Einheit Ueckermünde,750751,TTVMV
 SV Einheit Weißenborn-Lüderode,114025,TTTV
 SV Einigkeit Niendorf (K),11438,TTVSA
 SV Eintracht Afferde,2180260,TTVN
-SV Eintracht Alesheim,607014,ByTTV
+SV Eintracht Alesheim,104001,ByTTV
 SV Eintracht Bad Fallingbostel,3322550,TTVN
 SV Eintracht Badersleben,11701,TTVSA
 SV Eintracht Bennungen,11903,TTVSA
@@ -3488,6 +3507,7 @@ SV Empede-Himmelreich,2193020,TTVN
 SV Empor Bad Langensalza,109031,TTTV
 SV Empor Buttstädt,112001,TTTV
 SV Empor Heßberg e.V.,302011,TTTV
+SV Empor Koserow,751188,TTVMV
 SV Empor Schenkenberg 1928,2250,TTVB
 SV Ems Jemgum,4442800,TTVN
 SV Energie Görlitz,1208,STTV
@@ -3499,7 +3519,7 @@ SV Erfurt-West 90 e.V.,105005,TTTV
 SV Ergersheim e.V,104028,ByTTV
 SV Erichshagen,2230340,TTVN
 SV Erlenbach,101018,ByTTV
-SV Erlenbrunn,51,PTTV
+SV Erlenbrunn,051,PTTV
 SV Erlenmoos,04014,TTVWH
 SV Erolzheim,310025,ByTTV
 SV Erpfting e.V.,312013,ByTTV
@@ -3523,6 +3543,7 @@ SV Falkensee-Finkenkrug,2253,TTVB
 SV Farnewinkel-Nindorf,70058,TTVSH
 SV Fasanenhof,14007,TTVWH
 SV Fehmarn,70659,TTVSH
+SV Feldberg 1990 e.V.,710419,TTVMV
 SV Feldrom,184044,WTTV
 SV Fellbach,11015,TTVWH
 SV Felm,71862,TTVSH
@@ -3530,6 +3551,7 @@ SV Ferch,2441,TTVB
 SV Ferschweiler,000905,TTVR
 SV Fichte Baruth,2126,TTVB
 SV Finsterau,415018,ByTTV
+SV Fischbach,55,PTTV
 SV Fischbach 1912,34009,HeTTV
 SV Fleckeby,71023,TTVSH
 SV Fockbek,71004,TTVSH
@@ -3553,7 +3575,7 @@ SV Fortuna Schönbrunn,4328,STTV
 SV Fortuna Stampe,71003,TTVSH
 SV Fortuna Tützpatz,710007,TTVMV
 SV Francke 08,11604,TTVSA
-SV Frankenheim,705008,ByTTV
+SV Frankenheim,102016,ByTTV
 SV Frankonia Lengfurt,101056,ByTTV
 SV Frauenzimmern,06022,TTVWH
 SV Frechenrieden,303033,ByTTV
@@ -3582,14 +3604,13 @@ SV Föhren,000165,TTVR
 SV Förderstedt,12108,TTVSA
 SV Füchse Uhsmannsdorf,1235,STTV
 SV Fünfstetten,309037,ByTTV
-SV Fürth,41014,HeTTV
 SV GA Steinenbrück,153048,WTTV
 SV GW Lütgeneder,183033,WTTV
 SV GW Steinhausen,113043,WTTV
 SV Gablingen 1935,309038,ByTTV
 SV Gadderbaum,181008,WTTV
 SV Gailenkirchen,07020,TTVWH
-SV Garitz,705009,ByTTV
+SV Garitz,102020,ByTTV
 SV Gaußig,1112,STTV
 SV Gebersheim,03010,TTVWH
 SV Gehlenberg-Neuvrees,4386800,TTVN
@@ -3623,7 +3644,7 @@ SV Germania Schafstädt,12020,TTVSA
 SV Germania Stirpe,113049,WTTV
 SV Germering,104006,ByTTV
 SV Gernrode 1889,114009,TTTV
-SV Geroldshausen,704003,ByTTV
+SV Geroldshausen,103014,ByTTV
 SV Gersdorf 1953 e.V.,207029,ByTTV
 SV Gescher,175014,WTTV
 SV Glatten,12016,TTVWH
@@ -3686,7 +3707,6 @@ SV Grün-Weiß Vallstedt,1134700,TTVN
 SV Grün-Weiß Waggum,1055380,TTVN
 SV Grünbach,4310,STTV
 SV Gründelhardt,07028,TTVWH
-SV Guhrow 1912,3357,TTVB
 SV Gundelsheim,501023,ByTTV
 SV Gutenswegen - Klein Ammensleben 1990,11424,TTVSA
 SV Gymn. Dreikönigsschule Dresden,2102,STTV
@@ -3694,7 +3714,7 @@ SV Gymnasium Dreikönigsschule,2102,STTV
 SV Gödens,4422250,TTVN
 SV Görgeshausen,002901,TTVR
 SV Göttingen,15022,TTVWH
-SV Gößweinstein,506019,ByTTV
+SV Gößweinstein,207030,ByTTV
 SV Gültlingen,12018,TTVWH
 SV Gündlkofen,414029,ByTTV
 SV Haag,001570,TTVR
@@ -3714,6 +3734,7 @@ SV Hamersen,3311920,TTVN
 SV Hammer Kiel,70216,TTVSH
 SV Hammerschmiede Augsburg,309011,ByTTV
 SV Hammoor,71297,TTVSH
+SV Handwerk Cottbus 1964 e.V.,3383,TTVB
 SV Hansa Friesoythe,4386100,TTVN
 SV Hansühn,70601,TTVSH
 SV Harderberg,4471880,TTVN
@@ -3761,7 +3782,7 @@ SV Herzebrock,189021,WTTV
 SV Hesepe-Sögeln,4472060,TTVN
 SV Heslach,14012,TTVWH
 SV Hetzerath,000255,TTVR
-SV Heuchelheim-Klingen,87,PTTV
+SV Heuchelheim-Klingen,087,PTTV
 SV Hildesia Diekholzen,2211520,TTVN
 SV Hilkenbrook,4411150,TTVN
 SV Hiltpoltstein 1949,506009,ByTTV
@@ -3772,9 +3793,9 @@ SV Hirten,114008,ByTTV
 SV Hochdorf,22032,SbTTV
 SV Hodenhagen,3323250,TTVN
 SV Hoffeld,14014,TTVWH
-SV Hohenfurch e.V.,108031,ByTTV
+SV Hohenfurch e.V.,312031,ByTTV
 SV Hohengöhren,12205,TTVSA
-SV Hohenkammer,112017,ByTTV
+SV Hohenkammer,414032,ByTTV
 SV Hohenmölsen 1919,11304,TTVSA
 SV Hohenprießnitz,3307,STTV
 SV Hohenstadt,207048,ByTTV
@@ -3814,6 +3835,7 @@ SV Igling,312037,ByTTV
 SV Ihme-Roloven,2193615,TTVN
 SV Ihrlerstein 1958,205015,ByTTV
 SV Illingen,08033,TTVWH
+SV Illmensee,21025,SbTTV
 SV Illschwang e.V.,208026,ByTTV
 SV Ilmenau,3290542,TTVN
 SV Ilmetal,1115900,TTVN
@@ -3846,7 +3868,7 @@ SV Katzweiler,111,PTTV
 SV Kaufungen 07,12086,HeTTV
 SV Kay,416038,ByTTV
 SV Kelbra 1920,11910,TTVSA
-SV Kelheimwinzer,205003,ByTTV
+SV Kelheimwinzer,413035,ByTTV
 SV Kell,000352,TTVR
 SV Kesseling,001833,TTVR
 SV Kickers 16,43012,HeTTV
@@ -3856,7 +3878,7 @@ SV Kirchahorn e.V.,508037,ByTTV
 SV Kirchberg i. Wald e.V.,415035,ByTTV
 SV Kirchboitzen,3323800,TTVN
 SV Kirchdorf-Iller,310048,ByTTV
-SV Kirchheim,112,PTTV
+SV Kirchheim,155021,WTTV
 SV Kirchheimbolanden,113,PTTV
 SV Kirchweyhe,2172460,TTVN
 SV Kirchzarten,22035,SbTTV
@@ -3885,7 +3907,7 @@ SV Kurort Rathen 52,2424,STTV
 SV Königshain,1219,STTV
 SV Königsmoor,3273900,TTVN
 SV Kühnhaide,4232,STTV
-SV Kürnach 1946 e.V.,708016,ByTTV
+SV Kürnach 1946 e.V.,103027,ByTTV
 SV Landau West,130,PTTV
 SV Langen,4411300,TTVN
 SV Langenau,206042,ByTTV
@@ -3916,10 +3938,10 @@ SV Lindenau 1848,3221,STTV
 SV Lindschied 1975,35050,HeTTV
 SV Linsburg,2230950,TTVN
 SV Lippach,10031,TTVWH
-SV Lippertshofen,101013,ByTTV
+SV Lippertshofen,414052,ByTTV
 SV Liptingen,09022,TTVWH
 SV Litzelstetten,21016,SbTTV
-SV Lohhof e.V.,103010,ByTTV
+SV Lohhof e.V.,311034,ByTTV
 SV Lohsa,1131,STTV
 SV Lok Jerichow,11222,TTVSA
 SV Lok Ketzin,2203,TTVB
@@ -3976,15 +3998,16 @@ SV Molbergen,4389350,TTVN
 SV Moltkeplatz Essen,145017,WTTV
 SV Moosbach,207064,ByTTV
 SV Morbach,000472,TTVR
-SV Morsbach,152006,WTTV
+SV Morsbach,07048,TTVWH
 SV Morscheid,000868,TTVR
 SV Morshausen-Beulich,000093,TTVR
 SV Motor 1951 Falkensee,2222,TTVB
+SV Motor Cottbus-Saspow,3363,TTVB
 SV Motor Eberswalde,1004,TTVB
 SV Motor Hainichen 1949,2321,STTV
 SV Motor Mickten-Dresden,2114,STTV
 SV Motor Tambach-Dietharz,107013,TTTV
-SV Motor Wildau,30208,BTTV
+SV Motor Wildau,3124,TTVB
 SV Motor Wolgast 1949,750819,TTVMV
 SV Mulda 1879,2337,STTV
 SV Muldental Wilkau-Haßlau,4421,STTV
@@ -3998,6 +4021,7 @@ SV Mörtelstein,608,BaTTV
 SV Mühlbach,2336,STTV
 SV Mühlhausen,413044,ByTTV
 SV Münchweier,24028,SbTTV
+SV Münster,22048,HeTTV
 SV Münsterhausen,309070,ByTTV
 SV Nabern,05035,TTVWH
 SV Naundorf,3311,STTV
@@ -4043,7 +4067,7 @@ SV Oberessendorf,04038,TTVWH
 SV Obergurig,1135,STTV
 SV Obernau,01010,TTVWH
 SV Obernkirchen,2241480,TTVN
-SV Oberostendorf,302032,ByTTV
+SV Oberostendorf,310068,ByTTV
 SV Oberschöna 1902,2342,STTV
 SV Oberteisendorf,416055,ByTTV
 SV Oberteuringen,02044,TTVWH
@@ -4073,15 +4097,15 @@ SV Osterbach 1967,11025,HeTTV
 SV Osterdorf,104066,ByTTV
 SV Ostermünchen,416056,ByTTV
 SV Ottenau,25025,SbTTV
-SV Ottmaring,305024,ByTTV
+SV Ottmaring,309079,ByTTV
 SV Ottmarshausen,309080,ByTTV
 SV Ottoschwanden,22044,SbTTV
-SV Pang,116015,ByTTV
+SV Pang,416058,ByTTV
 SV Parsberg,312060,ByTTV
 SV Pattonville,08057,TTVWH
 SV Peheim-Grönheim,4389500,TTVN
 SV Perleberg 1994,2211,TTVB
-SV Petermännchen Pinnow,762431,TTVMV
+SV Petermännchen Pinnow,602431,TTVMV
 SV Petersdorf,4389520,TTVN
 SV Petershain 73,1228,STTV
 SV Petershausen,103012,ByTTV
@@ -4112,7 +4136,7 @@ SV Pullach,105003,ByTTV
 SV Puschendorf 1949,104071,ByTTV
 SV Putzbrunn,311070,ByTTV
 SV Päpinghausen-Cammer,186003,WTTV
-SV Pöhlatal Königswalde,4232,STTV
+SV Pöhlatal Königswalde,4231,STTV
 SV Querum,1055540,TTVN
 SV Quitt Ankum,4470260,TTVN
 SV RW 22 Burghaun,21005,HeTTV
@@ -4333,7 +4357,7 @@ SV Sulmetingen,04054,TTVWH
 SV Suppingen,15005,TTVWH
 SV Surberg,416086,ByTTV
 SV Surwold,4413745,TTVN
-SV Söchering,108025,ByTTV
+SV Söchering,312079,ByTTV
 SV Söchtenau-Krottenmühl,416081,ByTTV
 SV Söcking 1943,312080,ByTTV
 SV Sömmerda,112006,TTTV
@@ -4399,7 +4423,7 @@ SV Universitätsklinikum Dresden,2130,STTV
 SV Unter--Oberbrunn,312088,ByTTV
 SV Untereuerheim,102084,ByTTV
 SV Unterferrieden,207103,ByTTV
-SV Unterhausen,108018,ByTTV
+SV Unterhausen,312087,ByTTV
 SV Unterknöringen,309095,ByTTV
 SV Untermeitingen,310091,ByTTV
 SV Unterneukirchen,416099,ByTTV
@@ -4435,6 +4459,7 @@ SV Viktoria Wertheim 2000,1021,BaTTV
 SV Viktoria Woltwiesche,1135550,TTVN
 SV Vilich-Müldorf,154034,WTTV
 SV Villenbach,309096,ByTTV
+SV Vogelsberg,112008,TTTV
 SV Vogtareuth,416102,ByTTV
 SV Vorgebirge,154052,WTTV
 SV Vorwärts Buschhausen,3301100,TTVN
@@ -4513,7 +4538,7 @@ SV Wieslet,23032,SbTTV
 SV Wietmarschen,4437900,TTVN
 SV Wildenreuth,408013,ByTTV
 SV Wildflecken,102090,ByTTV
-SV Wilhelmsburg,1380,HTTV
+SV Wilhelmsburg,1380,HaTTV
 SV Wilkenburg,2192050,TTVN
 SV Willhelmsburg,1380,HTTV
 SV Wimmer,4476600,TTVN
@@ -4596,7 +4621,7 @@ SpVgg 09 Ansbach,601002,ByTTV
 SpVgg 1920 Untertheres,707021,ByTTV
 SpVgg 1927 Trunstadt,205089,ByTTV
 SpVgg 1946 Uehlfeld e.V.,104095,ByTTV
-SpVgg Adelsberg,703001,ByTTV
+SpVgg Adelsberg,101001,ByTTV
 SpVgg Attenkirchen,414005,ByTTV
 SpVgg Buchenbach,22008,SbTTV
 SpVgg DJK Wolframs-Eschenbach,104111,ByTTV
@@ -4609,7 +4634,7 @@ SpVgg Ederheim 1949 e.V.,309034,ByTTV
 SpVgg Eintracht Emetzheim 1949 e.V.,104027,ByTTV
 SpVgg Erdweg e.V.,311013,ByTTV
 SpVgg Erlangen,207020,ByTTV
-SpVgg Fassmannsreuth,507016,ByTTV
+SpVgg Fassmannsreuth,206016,ByTTV
 SpVgg Germania Ebing,501019,ByTTV
 SpVgg Giebelstadt,708012,ByTTV
 SpVgg Greuther Fürth e.V.,104034,ByTTV
@@ -4635,18 +4660,18 @@ SpVgg Pfreimd e.V.,208049,ByTTV
 SpVgg Rieden,302013,ByTTV
 SpVgg Riedlingen,309087,ByTTV
 SpVgg Röhrmoos-Großinzemoos,311071,ByTTV
-SpVgg Steinkirchen,102017,ByTTV
+SpVgg Steinkirchen,414074,ByTTV
 SpVgg Stephansposching,415074,ByTTV
 SpVgg Stetten e.V.,101083,ByTTV
 SpVgg Teisnach,415081,ByTTV
 SpVgg Thalkirchen e.V.,311077,ByTTV
 SpVgg Trabitz,407012,ByTTV
 SpVgg Weiboldshausen e.V.,104102,ByTTV
-SpVgg Weißenohe,506017,ByTTV
-SpVgg Wellheim-Konstein,101017,ByTTV
+SpVgg Weißenohe,207110,ByTTV
+SpVgg Wellheim-Konstein,414081,ByTTV
 SpVgg Westheim,309104,ByTTV
 SpVgg Wiedergeltingen,310099,ByTTV
-SpVgg Wildenroth,104016,ByTTV
+SpVgg Wildenroth,312097,ByTTV
 SpVgg Wonsees,206092,ByTTV
 SpVgg Zabo Eintracht e.V.,207083,ByTTV
 SpVgg Zeckern,207114,ByTTV
@@ -4767,6 +4792,7 @@ Spvgg. 1939 Bimbach,21003,HeTTV
 Spvgg. 1950 Sandlofs,24060,HeTTV
 Spvgg. 1950 Ulm-Allendorf,32065,HeTTV
 Spvgg. 1951 Frankenbach,22014,HeTTV
+Spvgg. Blankenese,0210,HaTTV
 Spvgg. Blau Weiß 96 Schenefeld,1070,HaTTV
 Spvgg. Brandlecht-Hestrup,4430800,TTVN
 Spvgg. Bürbach 09,116027,WTTV
@@ -4792,7 +4818,7 @@ Startschuss SLSV,1130,HTTV
 Startschuss SLSV Hamburg,1130,HaTTV
 Stavenhagener SV,710350,TTVMV
 Stavenhagener Sportverein von 1863,520350,TTVMV
-Steglitzer Tischtennis Klub Berlin e.V.,4089,BTTV
+Steglitzer Tischtennis Klub Berlin e.V.,000001,BTTV
 Stellauer SC,1140,HTTV
 Stellingen, TSV,1150,HTTV
 Strasburger Sportverein,620702,TTVMV
@@ -4866,7 +4892,7 @@ TB Wilferdingen,735,BaTTV
 TC Bad Grund,1121050,TTVN
 TC Grün-Weiß Oldenburg,70652,TTVSH
 TC Hameln,2182180,TTVN
-TC Lauterbach,103024,ByTTV
+TC Lauterbach,311033,ByTTV
 TC Lichtendorf,114020,WTTV
 TC Lindenberg,02037,TTVWH
 TC Obergriesbach,309076,ByTTV
@@ -4919,7 +4945,6 @@ TG Leun 1907,32041,HeTTV
 TG Lämmerspiel 1905,46019,HeTTV
 TG Mittel-Gründau,23038,HeTTV
 TG Mülheim am Rhein,153007,WTTV
-TG Münster,172018,WTTV
 TG Nieder-Ingelheim,221,RTTV
 TG Nürtingen,05044,TTVWH
 TG Oberlahnstein,001120,TTVR
@@ -4927,7 +4952,7 @@ TG Offenau,06052,TTVWH
 TG Offenbach 1885,46033,HeTTV
 TG Oggersheim,171,PTTV
 TG Osthofen,418,RTTV
-TG Rheingönheim,078,PTTV
+TG Rheingönheim,78,PTTV
 TG Rommersheim,119,RTTV
 TG Sachsenhausen 04,43044,HeTTV
 TG Schwenningen,09035,TTVWH
@@ -4970,7 +4995,7 @@ TLV 1977 Eichenzell,21010,HeTTV
 TLV Simonswald,22043,SbTTV
 TMW Lüdge,184054,WTTV
 TPSG-FA Göppingen,13012,TTVWH
-TS 1851 e.V. Schwarzenbach-Saale,206075,ByTTV
+TS 1851 e.V. Schwarzenbach-Saale,507013,ByTTV
 TS 1861 Kronach,206039,ByTTV
 TS 1886 Bischofsheim,23004,HeTTV
 TS 1887 Marktredwitz-Dörflas,208038,ByTTV
@@ -5007,7 +5032,7 @@ TSC Obernburg e.V.,101070,ByTTV
 TSC Pottenstein,206065,ByTTV
 TSC Sack,2214640,TTVN
 TSC Steinbeck-Meilsen,3276540,TTVN
-TSC Wellingsbüttel,1330,HTTV
+TSC Wellingsbüttel,1330,HaTTV
 TSCH. Langenau,23038,SbTTV
 TSF 1901-20 Bracht,143027,WTTV
 TSF Ditzingen,08009,TTVWH
@@ -5037,14 +5062,14 @@ TSG 1902 Wilhelmsfeld,340,BaTTV
 TSG 1908 Reiskirchen,22054,HeTTV
 TSG 1920 Mackenzell,21034,HeTTV
 TSG 1965 Lübben,3322,TTVB
-TSG 2005 Bamberg e.V.,501007,ByTTV
+TSG 2005 Bamberg e.V.,205005,ByTTV
 TSG 63 Lübbenau,3323,TTVB
 TSG 78 Heidelberg,313,BaTTV
 TSG Abtsgmünd,10004,TTVWH
 TSG Adler Dielfen,116008,WTTV
 TSG Ahe-Kohlenstädt,2240100,TTVN
 TSG Ahlten,2192810,TTVN
-TSG Ailingen,02001,TTVWH
+TSG Ailingen,02001,SbTTV
 TSG Aufbau-Union Dessau,11506,TTVSA
 TSG Augsburg 1885 e.V.,309015,ByTTV
 TSG Backnang,11005,TTVWH
@@ -5054,6 +5079,7 @@ TSG Bergedorf,0140,HaTTV
 TSG Blankenloch,401,BaTTV
 TSG Bodelshausen,01008,TTVWH
 TSG Bokel,4360750,TTVN
+TSG Brück,2245,TTVB
 TSG Burg Gretesch,4486600,TTVN
 TSG Burhave,4503300,TTVN
 TSG Calbe-S.,12105,TTVSA
@@ -5064,7 +5090,7 @@ TSG Drais,307,RTTV
 TSG Dülmen,175004,WTTV
 TSG Ehlhalten 1893,34005,HeTTV
 TSG Eintracht Plankstadt,812,BaTTV
-TSG Eisenberg,44,PTTV
+TSG Eisenberg,044,PTTV
 TSG Eislingen,13011,TTVWH
 TSG Emmerthal,2181020,TTVN
 TSG Erlensee 1874,23012,HeTTV
@@ -5102,7 +5128,7 @@ TSG Lindau-Zech,02036,TTVWH
 TSG Ludwigslust,760288,TTVMV
 TSG Lützelsachsen,1111,BaTTV
 TSG Mainflingen 1909,46020,HeTTV
-TSG Mantel-Weiherhammer,206007,ByTTV
+TSG Mantel-Weiherhammer,208037,ByTTV
 TSG Margrethausen,04031,TTVWH
 TSG Markkleeberg v.1903,3121,STTV
 TSG Maselheim,04032,TTVWH
@@ -5157,6 +5183,7 @@ TSG Welgesheim,234,RTTV
 TSG Westerstede,4366250,TTVN
 TSG Wildemann,1073560,TTVN
 TSG Wismar,740812,TTVMV
+TSG Wittenberg,12311,TTVSA
 TSG Wixhausen 1882,42056,HeTTV
 TSG Wörpedorf-Grasberg-Eickedorf,3308900,TTVN
 TSG Wörsdorf 1887,35045,HeTTV
@@ -5173,7 +5200,7 @@ TSK SW Rimbach,41040,HeTTV
 TSR Olympia Wilhelmshaven,4511600,TTVN
 TSSV BW 1912 Schönbach,32058,HeTTV
 TSSV Bottrop,176016,WTTV
-TSSV Fürth am Berg,504007,ByTTV
+TSSV Fürth am Berg,205030,ByTTV
 TST Buer-Mitte,176017,WTTV
 TSV 03 Hümme,12029,HeTTV
 TSV 03 Niederissigheim,23043,HeTTV
@@ -5185,6 +5212,7 @@ TSV 07 Ellenberg,14011,HeTTV
 TSV 07 Höchst,23027,HeTTV
 TSV 07 Londorf,22043,HeTTV
 TSV 07-02 Ost--Mosheim,14036,HeTTV
+TSV 08 Berndorf,15007,HeTTV
 TSV 08 Dodenau,15013,HeTTV
 TSV 08 Gleichamberg,302010,TTTV
 TSV 08 Massing,206022,ByTTV
@@ -5195,11 +5223,12 @@ TSV 1847 Weilheim,312094,ByTTV
 TSV 1852 Neuötting e.V.,416050,ByTTV
 TSV 1857 Thiersheim,509012,ByTTV
 TSV 1859 Wehrsdorf,1147,STTV
-TSV 1860 Bad Rodach e.V.,503017,ByTTV
+TSV 1860 Bad Rodach e.V.,205002,ByTTV
 TSV 1860 Erbach,45006,HeTTV
 TSV 1860 Markt Erlbach,104054,ByTTV
+TSV 1860 Mühldorf e.V.,416048,ByTTV
 TSV 1860 Staffelstein,502015,ByTTV
-TSV 1860 Stralsund,730672,TTVMV
+TSV 1860 Stralsund,50672,TTVMV
 TSV 1860 Weißenburg,104106,ByTTV
 TSV 1860 e.V. Scheinfeld,104080,ByTTV
 TSV 1861 Bad Tennstedt,109033,TTTV
@@ -5224,7 +5253,6 @@ TSV 1863 e.V. Schwabmünchen,304029,ByTTV
 TSV 1864 Haag,416030,ByTTV
 TSV 1864 Mengersgereuth-Hämmern,307007,TTTV
 TSV 1864 Schlettau,4244,STTV
-TSV 1865 Dachau,103006,ByTTV
 TSV 1865 Langewiesen e.V.,303014,TTTV
 TSV 1868 Aichach,309003,ByTTV
 TSV 1869 Herleshausen,16015,HeTTV
@@ -5261,7 +5289,7 @@ TSV 1889 Stockheim,206080,ByTTV
 TSV 1889-06 Immenhausen,12031,HeTTV
 TSV 1890 Oberschleichach,707014,ByTTV
 TSV 1890 Spalt,104088,ByTTV
-TSV 1890 e.V. Alzenau,701002,ByTTV
+TSV 1890 e.V. Alzenau,101003,ByTTV
 TSV 1891 Breitenworbis,114004,TTTV
 TSV 1891 Himmelstadt e.V.,101037,ByTTV
 TSV 1891 Kassel-Oberzwehren,12039,HeTTV
@@ -5273,13 +5301,14 @@ TSV 1893 Großkorbetha,11303,TTVSA
 TSV 1893 Reichenbach,41039,HeTTV
 TSV 1893 Taufkirchen-Vils,416090,ByTTV
 TSV 1893 Wendelstein,207111,ByTTV
-TSV 1894 Ebersdorf e.V.,505003,ByTTV
+TSV 1894 Ebersdorf e.V.,206015,ByTTV
 TSV 1894 Heustreu e.V.,102038,ByTTV
 TSV 1895 Burgfarrnbach,104015,ByTTV
 TSV 1895 Teisendorf,416091,ByTTV
 TSV 1896 Gernsheim,44009,HeTTV
 TSV 1896 Guntershausen,12020,HeTTV
 TSV 1896 Rain-Lech,309083,ByTTV
+TSV 1896 Wildenbörten e.V.,201017,TTTV
 TSV 1897 Breitenbach,12006,HeTTV
 TSV 1898 Bechhofen e.V.,104011,ByTTV
 TSV 1898 Marburg-Ockershausen,13043,HeTTV
@@ -5299,7 +5328,7 @@ TSV 1904 Schwebheim,102072,ByTTV
 TSV 1904 Weiher,41050,HeTTV
 TSV 1905 Trebur,44026,HeTTV
 TSV 1905 Treis-Lda,22062,HeTTV
-TSV 1905 e.V. Albertshofen,708001,ByTTV
+TSV 1905 e.V. Albertshofen,103001,ByTTV
 TSV 1906 Brandenf.Nesselröden,16005,HeTTV
 TSV 1906 Eintr. Naumburg,12046,HeTTV
 TSV 1906 Gochsheim,102024,ByTTV
@@ -5322,7 +5351,7 @@ TSV 1910 Lauter,22037,HeTTV
 TSV 1910 Martinhagen,12044,HeTTV
 TSV 1910 Ndr.-Ramstadt,42038,HeTTV
 TSV 1910 Niemberg (K),12016,TTVSA
-TSV 1910 Rannungen e.V.,102065,ByTTV
+TSV 1910 Rannungen e.V.,705025,ByTTV
 TSV 1910 Wetterburg,15049,HeTTV
 TSV 1911 Amönau,13001,HeTTV
 TSV 1911 Wasenberg,14051,HeTTV
@@ -5354,7 +5383,7 @@ TSV 1924 Ellhofen,02027,TTVWH
 TSV 1924 Ernsthausen,15016,HeTTV
 TSV 1924 Spiegelau,415073,ByTTV
 TSV 1925 Binswangen,309023,ByTTV
-TSV 1925 Gemünda,205032,ByTTV
+TSV 1925 Gemünda,503035,HTTV
 TSV 1925 Keilberg e.V.,101048,ByTTV
 TSV 1925 Saal-Saale,102068,ByTTV
 TSV 1926 Herbsen,15026,HeTTV
@@ -5365,7 +5394,7 @@ TSV 1945 Rothwesten,12058,HeTTV
 TSV 1946 Altenberg e.V.,104004,ByTTV
 TSV 1946 Hombressen,12028,HeTTV
 TSV 1946 Langenhain,16020,HeTTV
-TSV 1947 Geiselwind,708009,ByTTV
+TSV 1947 Geiselwind,103011,ByTTV
 TSV 1947 Rothenbuch,101076,ByTTV
 TSV 1949 Ostheim-Zwergen,12056,HeTTV
 TSV 1951 Altenschlirf,24003,HeTTV
@@ -5393,7 +5422,7 @@ TSV 74 Lengefeld,15033,HeTTV
 TSV 90 Zehdenick,1410,TTVB
 TSV Aach-Linz,21001,SbTTV
 TSV Abbenseth,3262000,TTVN
-TSV Abensberg,205001,ByTTV
+TSV Abensberg,413001,ByTTV
 TSV Achim,3350500,TTVN
 TSV Adelebsen,1080180,TTVN
 TSV Adelmannsfelden,10005,TTVWH
@@ -5407,7 +5436,7 @@ TSV Ahlden,3320140,TTVN
 TSV Ahnsen,2240120,TTVN
 TSV Alfdorf,11001,TTVWH
 TSV Algesdorf,2240140,TTVN
-TSV Allersberg,608030,ByTTV
+TSV Allersberg,104003,ByTTV
 TSV Allmersbach,11003,TTVWH
 TSV Alteglofsheim,413003,ByTTV
 TSV Altenbruch,3260120,TTVN
@@ -5417,12 +5446,12 @@ TSV Altenholz,70957,TTVSH
 TSV Altenmarkt,415002,ByTTV
 TSV Altenmarkt-Alz,416001,ByTTV
 TSV Altenmedingen,3340200,TTVN
-TSV Altenstadt,312002,ByTTV
+TSV Altenstadt,310001,ByTTV
 TSV Altheim,10006,TTVWH
 TSV Altheim 1912,12023,TTVWH
 TSV Althütte,11014,TTVWH
 TSV Altingen,01002,TTVWH
-TSV Altmannstein e.V.,101001,ByTTV
+TSV Altmannstein e.V.,414004,ByTTV
 TSV Altomünster,103030,ByTTV
 TSV Altusried,301001,ByTTV
 TSV Altusried-Krugzell,310002,ByTTV
@@ -5435,13 +5464,13 @@ TSV Anemolter-Schinna,2230120,TTVN
 TSV Angelmodde,172021,WTTV
 TSV Angerstein,1110500,TTVN
 TSV Annweiler,7,PTTV
-TSV Ansbach,601003,ByTTV
+TSV Ansbach,104008,ByTTV
 TSV Apensen,3330400,TTVN
 TSV Arenborn,1110001,TTVN
 TSV Arendsee,11001,TTVSA
 TSV Arminia Vöhrum,1135050,TTVN
 TSV Armsheim-Schimsh.,104,RTTV
-TSV Arnshausen,705001,ByTTV
+TSV Arnshausen,102001,ByTTV
 TSV Aschach e.V.,705002,ByTTV
 TSV Asendorf,2170260,TTVN
 TSV Asperg,08002,TTVWH
@@ -5485,7 +5514,7 @@ TSV Bentrup-Lossbruch,184035,WTTV
 TSV Benz Nüchel,70671,TTVSH
 TSV Berching,413009,ByTTV
 TSV Berghülen,15008,TTVWH
-TSV Bergkirchen,311007,ByTTV
+TSV Bergkirchen,103002,ByTTV
 TSV Bergrheinfeld 07 e.V.,102006,ByTTV
 TSV Beringstedt,71035,TTVSH
 TSV Berkenthin,70252,TTVSH
@@ -5494,9 +5523,9 @@ TSV Bernhardswald,402026,ByTTV
 TSV Bernhausen,05006,TTVWH
 TSV Bernstadt,15010,TTVWH
 TSV Bertelsdorf,503002,ByTTV
-TSV Bertoldshofen,302001,ByTTV
+TSV Bertoldshofen,310008,ByTTV
 TSV Besse,14004,HeTTV
-TSV Betzigau 1947 e.V.,301026,ByTTV
+TSV Betzigau 1947 e.V.,310009,ByTTV
 TSV Betzingen,01006,TTVWH
 TSV Beuern,22007,HeTTV
 TSV Bevern,3310460,TTVN
@@ -5508,10 +5537,10 @@ TSV Bierden,3350950,TTVN
 TSV Biessenhofen,310010,ByTTV
 TSV Bietigheim,08006,TTVWH
 TSV Bildung Peine,1133650,TTVN
-TSV Bindlach,508009,ByTTV
+TSV Bindlach,206009,ByTTV
 TSV Binz 27,730579,TTVMV
 TSV Birkach,14002,TTVWH
-TSV Bischofsgrün,508038,ByTTV
+TSV Bischofsgrün,206010,ByTTV
 TSV Bisperode,2180680,TTVN
 TSV Bitzfeld,07005,TTVWH
 TSV Blaibach,413013,ByTTV
@@ -5551,7 +5580,7 @@ TSV Brand e.V.,207008,ByTTV
 TSV Brannenburg,416010,ByTTV
 TSV Braunshardt 1889,42006,HeTTV
 TSV Bredelem,1070320,TTVN
-TSV Breitengüssbach,501009,ByTTV
+TSV Breitengüssbach,205011,ByTTV
 TSV Bremervörde,3310860,TTVN
 TSV Bremke-Ischenrode,1080620,TTVN
 TSV Brendlorenzen,102008,ByTTV
@@ -5561,7 +5590,7 @@ TSV Breuna 1946,12007,HeTTV
 TSV Brockum,2170900,TTVN
 TSV Brokstedt,71226,TTVSH
 TSV Brunkensen,2211300,TTVN
-TSV Brunn,402027,ByTTV
+TSV Brunn,413017,ByTTV
 TSV Brunsbüttel,70041,TTVSH
 TSV Brunsen,1111000,TTVN
 TSV Brüderschaft Meerdorf,1132250,TTVN
@@ -5592,13 +5621,13 @@ TSV Bülkau,3262100,TTVN
 TSV Büsum,70043,TTVSH
 TSV Büttel-Neuenlande,3263380,TTVN
 TSV Büttstedt 1914 e.V.,114005,TTTV
-TSV Cadolzburg e.V.,603003,ByTTV
+TSV Cadolzburg e.V.,104019,ByTTV
 TSV Cappel 1906,13013,HeTTV
 TSV Chemie Premnitz,2201,TTVB
 TSV Chieming,416014,ByTTV
 TSV Clarholz,189008,WTTV
 TSV Cleebronn,06014,TTVWH
-TSV Coburg-Scheuerfeld 1900 e.V.,503019,ByTTV
+TSV Coburg-Scheuerfeld 1900 e.V.,205018,ByTTV
 TSV Collenberg,101012,ByTTV
 TSV Coppengrave,2211400,TTVN
 TSV Cornau,2171020,TTVN
@@ -5625,10 +5654,10 @@ TSV Dewangen,10010,TTVWH
 TSV Diedelsheim,106,BaTTV
 TSV Dietenheim,15014,TTVWH
 TSV Dietfurt,403004,ByTTV
-TSV Dietmannsried 1905 e.V.,310017,ByTTV
+TSV Dietmannsried 1905 e.V.,301037,TTVR
 TSV Dietramszell,312011,ByTTV
 TSV Dinkelhausen,1111500,TTVN
-TSV Dinkelsbühl,601010,ByTTV
+TSV Dinkelsbühl,104024,ByTTV
 TSV Dinkelscherben,309031,ByTTV
 TSV Dollbergen,2194620,TTVN
 TSV Donndorf-Eckersdorf,206014,ByTTV
@@ -5690,7 +5719,7 @@ TSV Ellerbek,70688,TTVSH
 TSV Ellhofen,06018,TTVWH
 TSV Elnhausen 1911,13019,HeTTV
 TSV Elpersbüttel-Eesch,70059,TTVSH
-TSV Elsa 1872,503011,ByTTV
+TSV Elsa 1872,205026,ByTTV
 TSV Elstorf (neu dazu),3271950,TTVN
 TSV Eltingen,03008,TTVWH
 TSV Elvershausen,1113250,TTVN
@@ -5729,7 +5758,7 @@ TSV Fahretoft-Waygaard,70498,TTVSH
 TSV Farge-Rekum,16,FTTB
 TSV Feichten-Alz,416019,ByTTV
 TSV Feldkirchen,311014,ByTTV
-TSV Feldmoching,103020,ByTTV
+TSV Feldmoching,311015,ByTTV
 TSV Fichte Hagen-Dahl,114005,WTTV
 TSV Fichte Helmstedt,1101120,TTVN
 TSV Finning,312016,ByTTV
@@ -5752,7 +5781,7 @@ TSV Fremdiswalde,3112,STTV
 TSV Freudenstadt,12014,TTVWH
 TSV Frickenhausen,05021,TTVWH
 TSV Fridolfing,416022,ByTTV
-TSV Friedenfels 1904,408015,ByTTV
+TSV Friedenfels 1904,208020,ByTTV
 TSV Friedrichsfeld 1924,12016,HeTTV
 TSV Friesen Hänigsen,2194655,TTVN
 TSV Friesenried,310031,ByTTV
@@ -5773,7 +5802,7 @@ TSV Geismar,15020,HeTTV
 TSV Geitelde,1056540,TTVN
 TSV Gellersen,3290505,TTVN
 TSV Georgensgmünd,104036,ByTTV
-TSV Georgii Allianz,14001,TTVWH
+TSV Georgii Allianz,104002,TTVWH
 TSV Gerabronn,07023,TTVWH
 TSV Gerchsheim,1005,BaTTV
 TSV Germania Cadenberge,3262140,TTVN
@@ -5788,7 +5817,7 @@ TSV Germania Lamme,1056580,TTVN
 TSV Germania Lauenberg,1116800,TTVN
 TSV Germania Lüthorst,1117050,TTVN
 TSV Germania Werdau 1862,4420,STTV
-TSV Gernach 1928,706008,ByTTV
+TSV Gernach 1928,102023,ByTTV
 TSV Gernlinden,312022,ByTTV
 TSV Gersthofen 1909,309039,ByTTV
 TSV Geslau 1974,601033,ByTTV
@@ -5840,7 +5869,7 @@ TSV Grußendorf,1060950,TTVN
 TSV Gräfelfing e.V.,312025,ByTTV
 TSV Gräfenberg 09,207031,ByTTV
 TSV Grötzingen 1890 e.V.,446,BaTTV
-TSV Grün-Weiß Bergen,730948,TTVMV
+TSV Grün-Weiß Bergen,610948,TTVMV
 TSV Grün-Weiß Bregenstedt,11410,TTVSA
 TSV Grün-Weiß Klein Mühlingen-Zens,12111,TTVSA
 TSV Grün-Weiß Mildenau,4236,STTV
@@ -5854,12 +5883,13 @@ TSV Grünwald,311019,ByTTV
 TSV Gudow,70240,TTVSH
 TSV Gut-Heil Heist,70718,TTVSH
 TSV GutsMuths,4916,BTTV
+TSV Gägelow,742046,TTVMV
 TSV Göggingen 1875 e.V.,309041,ByTTV
 TSV Göhren,760299,TTVMV
 TSV Güglingen,06025,TTVWH
 TSV Gülzow,70297,TTVSH
 TSV Günterfürst 1909,45011,HeTTV
-TSV Güntersleben,704005,ByTTV
+TSV Güntersleben,103017,ByTTV
 TSV H. 1848 Frankenberg,15018,HeTTV
 TSV Haar,311020,ByTTV
 TSV Hachmühlen,2181320,TTVN
@@ -5922,7 +5952,7 @@ TSV Hirschhausen 1909,33035,HeTTV
 TSV Hochdahl,141063,WTTV
 TSV Hochdorf-Enz,08027,TTVWH
 TSV Hochmössingen,09020,TTVWH
-TSV Hof 1861 e.V.,507007,ByTTV
+TSV Hof 1861 e.V.,206030,ByTTV
 TSV Hofolding,311026,ByTTV
 TSV Hohenbrunn-Riemerling,110003,ByTTV
 TSV Hohenfeld,103021,ByTTV
@@ -5994,6 +6024,7 @@ TSV Kareth-Lappersdorf,413033,ByTTV
 TSV Karlsdorf,116,BaTTV
 TSV Karlstadt e.V.,101047,ByTTV
 TSV Kastl,416037,ByTTV
+TSV Kathrinhagen,A2240950,TTVN
 TSV Kattendorf,71547,TTVSH
 TSV Katzwang,207050,ByTTV
 TSV Kellmünz,310044,ByTTV
@@ -6048,7 +6079,7 @@ TSV Königsbrunn,309057,ByTTV
 TSV Kücknitz,70345,TTVSH
 TSV Kühbach 1924 e.V.,309060,ByTTV
 TSV Kührstedt,3264240,TTVN
-TSV Kützberg 1928 e.V.,706050,ByTTV
+TSV Kützberg 1928 e.V.,102048,ByTTV
 TSV Ladelund,70486,TTVSH
 TSV Laichingen,15030,TTVWH
 TSV Laiz,04024,TTVWH
@@ -6063,7 +6094,7 @@ TSV Langenhorn,70439,TTVSH
 TSV Langenprozelten,101053,ByTTV
 TSV Langenzenn,104049,ByTTV
 TSV Langgöns 1898,22035,HeTTV
-TSV Langquaid,205004,ByTTV
+TSV Langquaid,413038,ByTTV
 TSV Langreder,2191110,TTVN
 TSV Laubach,04025,TTVWH
 TSV Lauf,207058,ByTTV
@@ -6117,6 +6148,7 @@ TSV Lütjenburg,70802,TTVSH
 TSV Lütjensee,71292,TTVSH
 TSV MAKKABI Stuttgart,14006,TTVWH
 TSV Maccabi München e.V.,311046,ByTTV
+TSV Maccabi Nürnberg e.V.,207117,ByTTV
 TSV Mailing-Feldkirchen,414053,ByTTV
 TSV Mainburg,414054,ByTTV
 TSV Malente,70557,TTVSH
@@ -6129,7 +6161,7 @@ TSV Marienhagen,2214140,TTVN
 TSV Mariensee-Wulfelade,2193073,TTVN
 TSV Markelsheim,07043,TTVWH
 TSV Marklkofen,414057,ByTTV
-TSV Marktbergel,602007,ByTTV
+TSV Marktbergel,104055,ByTTV
 TSV Marktoberdorf,310058,ByTTV
 TSV Marl-Hüls,176026,WTTV
 TSV Martfeld,2172980,TTVN
@@ -6211,7 +6243,7 @@ TSV Neunmühlental,4318,STTV
 TSV Neunstetten,211,BaTTV
 TSV Neuried e.V.,311064,ByTTV
 TSV Neustadt,2193145,TTVN
-TSV Neustadt-Donau,205005,ByTTV
+TSV Neustadt-Donau,413048,ByTTV
 TSV Neusäß,309072,ByTTV
 TSV Neutraubling,413049,ByTTV
 TSV Neuwittenbek,71036,TTVSH
@@ -6265,7 +6297,7 @@ TSV Ohmden,05049,TTVWH
 TSV Olching 1920,312057,ByTTV
 TSV Oldenswort,70533,TTVSH
 TSV Oldersbek,70448,TTVSH
-TSV Olympia Eisenbach,702005,ByTTV
+TSV Olympia Eisenbach,101015,ByTTV
 TSV Opfenbach,02045,TTVWH
 TSV Ostenfeld-Wittbek-Winnert,70431,TTVSH
 TSV Ostenfelde,172007,WTTV
@@ -6277,7 +6309,7 @@ TSV Ostseebad Grömitz,70667,TTVSH
 TSV Ottenbach 1904,13005,TTVWH
 TSV Otterfing,312058,ByTTV
 TSV Otterndorf,3262690,TTVN
-TSV Ottersberg,3353353,TTVN
+TSV Ottersberg,3353350,TTVN
 TSV Otterstedt,3353400,TTVN
 TSV Ottobeuren,310070,ByTTV
 TSV Ottobrunn e.V.,311065,ByTTV
@@ -6302,6 +6334,7 @@ TSV Pilsting,201007,ByTTV
 TSV Plattenhardt,05052,TTVWH
 TSV Plauen 1990,4323,STTV
 TSV Pliening-Landsham,311068,ByTTV
+TSV Plön,70800,TTVSH
 TSV Poggenhagen,2193170,TTVN
 TSV Poing,311069,ByTTV
 TSV Posthausen,3353650,TTVN
@@ -6337,7 +6370,7 @@ TSV Reischach,416066,ByTTV
 TSV Reiterswiesen,102066,ByTTV
 TSV Rethen,2192495,TTVN
 TSV Rettigheim,327,BaTTV
-TSV Reute,02026,TTVWH
+TSV Reute,04042,TTVWH
 TSV Rheden,2214560,TTVN
 TSV Rhüden,1072920,TTVN
 TSV Riederich,01052,TTVWH
@@ -6349,7 +6382,7 @@ TSV Ringheim,101074,ByTTV
 TSV Ringstedt,3265780,TTVN
 TSV Risstissen,15050,TTVWH
 TSV Ristedt,2173460,TTVN
-TSV Rohr 1921 e.V.,205006,ByTTV
+TSV Rohr 1921 e.V.,413064,ByTTV
 TSV Rossfeld,07058,TTVWH
 TSV Rostock Süd,030861,TTVMV
 TSV Rot an der Rot,04005,TTVWH
@@ -6363,7 +6396,7 @@ TSV Rottach-Egern e.V. 1896,312072,ByTTV
 TSV Rottenbauer,103040,ByTTV
 TSV Rottenbuch,108015,ByTTV
 TSV Rottendorf 1869,103041,ByTTV
-TSV Rotthalmünster,206008,ByTTV
+TSV Rotthalmünster,415065,ByTTV
 TSV Rottorf-Groß Steinum,1101980,TTVN
 TSV Roßdorf 08,304022,TTTV
 TSV Rudersberg,11044,TTVWH
@@ -6374,13 +6407,14 @@ TSV Röttenbach e.V. 1927,104077,ByTTV
 TSV Rümmingen,23023,SbTTV
 TSV Ründeroth,152011,WTTV
 TSV Rüningen,1056620,TTVN
+TSV S.-W. Vöhl 1864,15047,HeTTV
 TSV Sachsenhausen 1857,43045,HeTTV
 TSV Sackenbach,703030,ByTTV
 TSV Salzgitter,1140093,TTVN
 TSV Sandhausen,3307200,TTVN
 TSV Sandstedt,3265800,TTVN
 TSV Sankt Jürgen,3307400,TTVR
-TSV Sasel,1060,HTTV
+TSV Sasel,1060,HaTTV
 TSV Schaalby,71451,TTVSH
 TSV Schapen,1056660,TTVN
 TSV Scharnhausen,05058,TTVWH
@@ -6409,7 +6443,7 @@ TSV Schornbach,11048,TTVWH
 TSV Schornsheim,121,RTTV
 TSV Schott Mainz,327,RTTV
 TSV Schrozberg,07060,TTVWH
-TSV Schwabhausen 1929,103015,ByTTV
+TSV Schwabhausen 1929,311074,ByTTV
 TSV Schwaförden,2174240,TTVN
 TSV Schwaikheim,11053,TTVWH
 TSV Schwalbe Tündern,2184140,TTVN
@@ -6493,6 +6527,7 @@ TSV Stuckenborstel,3315950,TTVN
 TSV Stulln e.V.,208066,ByTTV
 TSV Stuttgart-Mühlhausen,14016,TTVWH
 TSV Stuttgart-Münster,14037,TTVWH
+TSV Stötten a. A.,310082,ByTTV
 TSV Sudheim,1119180,TTVN
 TSV Suhlendorf (neu dazu),3344100,TTVN
 TSV Sulzbach,1114,BaTTV
@@ -6518,7 +6553,7 @@ TSV Taufkirchen,415080,ByTTV
 TSV Temp.-Mariendorf,4972,BTTV
 TSV Teuschnitz,206082,ByTTV
 TSV Thedinghausen,3354300,TTVN
-TSV Theilheim,706036,ByTTV
+TSV Theilheim,102081,ByTTV
 TSV Thiede,1140123,TTVN
 TSV Tinnum,70493,TTVSH
 TSV Todenmann-Rinteln,2242280,TTVN
@@ -6531,7 +6566,7 @@ TSV Trubenhausen 1919,16034,HeTTV
 TSV Trunkelsberg,310087,ByTTV
 TSV Tröglitz,11313,TTVSA
 TSV Turnerbund München e.V.,311047,ByTTV
-TSV Tutzing 1893,311074,ByTTV
+TSV Tutzing 1893,312086,ByTTV
 TSV Twieflingen,1102560,TTVN
 TSV Täfertingen,306019,ByTTV
 TSV Ueffeln,4475950,TTVN
@@ -6551,10 +6586,10 @@ TSV Unterlauter,205091,ByTTV
 TSV Unterpfaffenhofen-Germering,312089,ByTTV
 TSV Unterschwaningen,601034,ByTTV
 TSV Untersiemau,205092,ByTTV
-TSV Unterthingau,302023,ByTTV
+TSV Unterthingau,310093,ByTTV
 TSV Urach,01067,TTVWH
 TSV Urdenbach,141043,WTTV
-TSV Urspringen,703038,ByTTV
+TSV Urspringen,101092,ByTTV
 TSV Utphe 1930,22064,HeTTV
 TSV Utting,312090,ByTTV
 TSV Varrel,2174740,TTVN
@@ -6661,7 +6696,7 @@ TSV Wolfsburg,1161680,TTVN
 TSV Wolfsmünster,101097,ByTTV
 TSV Wolfstein,413090,ByTTV
 TSV Wolkersdorf,104112,ByTTV
-TSV Wolnzach,102019,ByTTV
+TSV Wolnzach,414082,ByTTV
 TSV Worpswede,3309400,TTVN
 TSV Wrestedt-Stederdorf,3345650,TTVN
 TSV Wriedel,3345800,TTVN
@@ -6783,7 +6818,7 @@ TTC 64 Heidelberg,314,BaTTV
 TTC 65 Wippershain,11036,HeTTV
 TTC 66 Mündersbach,002274,TTVR
 TTC 68 Eichholz,183013,WTTV
-TTC 70 Bruckberg e.V.,601007,ByTTV
+TTC 70 Bruckberg e.V.,104013,ByTTV
 TTC 75 Neckarsteinach,324,BaTTV
 TTC 79 Aschersleben e.V.,12122,TTVSA
 TTC 80 Aßlar,32002,HeTTV
@@ -6814,7 +6849,7 @@ TTC Altenglan,5,PTTV
 TTC Altenhagen,181014,WTTV
 TTC Altenhundem,116011,WTTV
 TTC Altenwald,101,STTB
-TTC Altrip,006,PTTV
+TTC Altrip,6,PTTV
 TTC Amelith,1110380,TTVN
 TTC Anhalt Zerbst,11116,TTVSA
 TTC Anna-Schmidt-Schule Frankfurt,43055,HeTTV
@@ -6885,11 +6920,11 @@ TTC Bernbach,23002,HeTTV
 TTC Berrenrath,151020,WTTV
 TTC Berus,302,STTB
 TTC Beuren a.d.Aach,21004,SbTTV
-TTC Bienwald-Schaidt,15,PTTV
+TTC Bienwald-Schaidt,015,PTTV
 TTC Bietigheim-Bissingen,08074,TTVWH
 TTC Bilfingen,701,BaTTV
 TTC Binder,1150360,TTVN
-TTC Birkenfeld,12006,TTVWH
+TTC Birkenfeld,104012,ByTTV
 TTC Birkland,312008,ByTTV
 TTC Bischoffingen,22024,SbTTV
 TTC Bitz,04009,TTVWH
@@ -6897,6 +6932,7 @@ TTC Blau Gold Bad Homburg,31006,HeTTV
 TTC Blau-Gold,4720,BTTV
 TTC Blau-Gold Hamburg,0220,HaTTV
 TTC Blau-Rot Walsrode,3328350,TTVN
+TTC Blau-Weiss Freiburg,22060,SbTTV
 TTC Blau-Weiss Vallendar,001484,TTVR
 TTC Blau-Weiß Harsum,2212680,TTVN
 TTC Blau-Weiß Hessisch Oldendorf,2182600,TTVN
@@ -6921,7 +6957,7 @@ TTC Brochdorf,3321500,TTVN
 TTC Bruchweiler,27,PTTV
 TTC Brullsen,2180780,TTVN
 TTC Bräunlingen,26003,SbTTV
-TTC Brücken,28,PTTV
+TTC Brücken,028,PTTV
 TTC Bubenheim,205,RTTV
 TTC Burgberg,10009,TTVWH
 TTC Burgkunstadt,205013,ByTTV
@@ -6933,13 +6969,14 @@ TTC Böbrach,204003,ByTTV
 TTC Börde Magdeburg,11804,TTVSA
 TTC Börrstadt,21,PTTV
 TTC Büchelberg,029,PTTV
-TTC Büttelbronn e.V.,607001,ByTTV
+TTC Bürgel,46003,HeTTV
+TTC Büttelbronn e.V.,104018,ByTTV
 TTC Calden-Westuffeln,12082,HeTTV
 TTC Campemoor,4490300,TTVN
 TTC Champions Düsseldorf,141055,WTTV
 TTC Cleeberg,32064,HeTTV
 TTC Concordia Welsleben,12121,TTVSA
-TTC Creussen,508010,ByTTV
+TTC Creussen,206012,ByTTV
 TTC DIE STERNE Elmshorn,73041,TTVSH
 TTC DJK Bad Westerkotten,113047,WTTV
 TTC DJK Dreiborn,155019,WTTV
@@ -6949,7 +6986,7 @@ TTC DJK Lendringsen,114034,WTTV
 TTC DJK Neukirchen,142015,WTTV
 TTC DJK Schlich,158016,WTTV
 TTC DJK Vogelheim,145032,WTTV
-TTC Dahn,70,PTTV
+TTC Dahn,070,PTTV
 TTC Daisbach,904,BaTTV
 TTC Dansweiler,151005,WTTV
 TTC Darlaten,2230220,TTVN
@@ -6960,7 +6997,7 @@ TTC Deitersen,1111350,TTVN
 TTC Delmenhorst,4394600,TTVN
 TTC Dernau,001708,TTVR
 TTC Detmerode-Wolfsburg,1160220,TTVN
-TTC Diedesfeld,036,PTTV
+TTC Diedesfeld,36,PTTV
 TTC Diemeltal e.V.,183042,WTTV
 TTC Dietlingen,704,BaTTV
 TTC Dillhausen-Barig-Selbenhausen,33081,HeTTV
@@ -7019,7 +7056,7 @@ TTC Erdesbach,048,PTTV
 TTC Ergenzingen,01018,TTVWH
 TTC Erichshof,2171680,TTVN
 TTC Ersingen,708,BaTTV
-TTC Eschbach,31008,HeTTV
+TTC Eschbach,22015,SbTTV
 TTC Eschi Frohnlach,205029,ByTTV
 TTC Eschmar,156042,WTTV
 TTC Eslarn 1969 e.V.,208014,ByTTV
@@ -7051,10 +7088,10 @@ TTC Frickenfelden,104032,ByTTV
 TTC Friedberg e.V.,309036,ByTTV
 TTC Friedrichsthal,31010,HeTTV
 TTC Friedrichweiler,221,STTB
-TTC Friesendorf,504005,ByTTV
+TTC Friesendorf,205028,ByTTV
 TTC Friesenheim,24010,SbTTV
 TTC Frimmersdorf-Neurath,142020,WTTV
-TTC Fuchsstadt,706006,ByTTV
+TTC Fuchsstadt,102017,ByTTV
 TTC Förste,1120700,TTVN
 TTC G.-W. Staffel 1953,33066,HeTTV
 TTC GW 1954 Mittelkalbach,21038,HeTTV
@@ -7075,8 +7112,8 @@ TTC Gelnhausen,23015,HeTTV
 TTC Gemmingen,911,BaTTV
 TTC Gengenbach,24011,SbTTV
 TTC Gerlingen,116007,WTTV
-TTC Germersheim,65,PTTV
-TTC Gersbach,66,PTTV
+TTC Germersheim,065,PTTV
+TTC Gersbach,066,PTTV
 TTC Gersweiler,212,STTB
 TTC Geutenreuth,205034,ByTTV
 TTC Ginsheim,44010,HeTTV
@@ -7128,7 +7165,7 @@ TTC Hagen,114007,WTTV
 TTC Halle,11602,TTVSA
 TTC Hambach,158044,WTTV
 TTC Hamberg,710,BaTTV
-TTC Hammerbach,604016,ByTTV
+TTC Hammerbach,207036,ByTTV
 TTC Handwerk Magdeburg,11816,TTVSA
 TTC Hankensbüttel,1061100,TTVN
 TTC Hanseat Wismar,740797,TTVMV
@@ -7140,7 +7177,7 @@ TTC Hasel,23009,SbTTV
 TTC Haselbach e.V.,310035,ByTTV
 TTC Haslach,24013,SbTTV
 TTC Hasslinghausen,114025,WTTV
-TTC Hauenstein,077,PTTV
+TTC Hauenstein,77,PTTV
 TTC Hauneck-Wippershain,11010,HeTTV
 TTC Hausen,005005,TTVR
 TTC Hausen 1975,33031,HeTTV
@@ -7159,7 +7196,7 @@ TTC Heimbach Düren,158022,WTTV
 TTC Helga Hannover,2205940,TTVN
 TTC Hemmersdorf,315,STTB
 TTC Hemstedt (K),11026,TTVSA
-TTC Hengersberg,204006,ByTTV
+TTC Hengersberg,415031,ByTTV
 TTC Heppenheim,41053,HeTTV
 TTC Herbrechtingen,10022,TTVWH
 TTC Hermeskeil,002461,TTVR
@@ -7238,7 +7275,7 @@ TTC Kimbach,45016,HeTTV
 TTC Kirchardt,916,BaTTV
 TTC Kirchenlamitz,509003,ByTTV
 TTC Kirchlengern,182011,WTTV
-TTC Kist-Würzburg,704012,ByTTV
+TTC Kist,103024,ByTTV
 TTC Kleeden-Beuchow,3303,TTVB
 TTC Klein Gladebrügge,71637,TTVSH
 TTC Kleinblittersdorf,218,STTB
@@ -7256,7 +7293,7 @@ TTC Konnersreuth e.V.,408012,ByTTV
 TTC Korb,210,BaTTV
 TTC Korschenbroich,143057,WTTV
 TTC Kottspiel,07038,TTVWH
-TTC Kraisdorf,707013,ByTTV
+TTC Kraisdorf,102047,ByTTV
 TTC Kranenburg,146006,WTTV
 TTC Kreimbach-Kaulbach,122,PTTV
 TTC Krickenbach,123,PTTV
@@ -7306,7 +7343,7 @@ TTC Lengerich,174003,WTTV
 TTC Lenne,2221500,TTVN
 TTC Leutesdorf,004348,TTVR
 TTC Lichtenfels,15034,HeTTV
-TTC Limbach,606,BaTTV
+TTC Limbach,414,STTB
 TTC Lindenholzhausen,33045,HeTTV
 TTC Lindental,147006,WTTV
 TTC Lindscheid,408,STTB
@@ -7453,7 +7490,6 @@ TTC Ottenbronn,12034,TTVWH
 TTC Otzberg,42039,HeTTV
 TTC Otze,2191310,TTVN
 TTC Pallas-Grunewald,4736,BTTV
-TTC Pe-La-Ka,1123750,TTVN
 TTC Pelkum,112047,WTTV
 TTC Penzberg,108014,ByTTV
 TTC Perlach,311066,ByTTV
@@ -7525,7 +7561,7 @@ TTC Rot-Weiß Stiddien,1056220,TTVN
 TTC Rot-Weiß Uetze,2194705,TTVN
 TTC Rotation Leegebruch,1016,TTVB
 TTC Roth,002569,TTVR
-TTC Roth am Forst,504022,ByTTV
+TTC Roth am Forst,205072,ByTTV
 TTC Rottenburg a.d.L. e.V.,414070,ByTTV
 TTC Rotthausen,176012,WTTV
 TTC Rottweil,09032,TTVWH
@@ -7613,7 +7649,7 @@ TTC Staffort,441,BaTTV
 TTC Stahl Senftenberg,3329,TTVB
 TTC Stammbach,206078,ByTTV
 TTC Staufen,22048,SbTTV
-TTC Stein,01060,TTVWH
+TTC Stein,002368,TTVR
 TTC Stein e.V.,732,BaTTV
 TTC Stein-Bockenheim 2014 e.V.,139,RTTV
 TTC Steinach,24051,SbTTV
@@ -7673,7 +7709,7 @@ TTC Victoria Härtsfeld 08,10043,TTVWH
 TTC Vielbrunn,45030,HeTTV
 TTC Viktoria Thönse,2191497,TTVN
 TTC Villach,AUT-10345009,Ausland
-TTC Villingen,09041,TTVWH
+TTC Villingen,26035,SbTTV
 TTC Vinnhorst,2205944,TTVN
 TTC Vockenrod,24050,HeTTV
 TTC Vockerode,12309,TTVSA
@@ -7766,7 +7802,7 @@ TTC turflon Werl,113007,WTTV
 TTC Übach-Palenberg,159030,WTTV
 TTC „Viktoria“ Straeten,159025,WTTV
 TTC-74 Tettnang,02050,TTVWH
-TTC-FW Gestungshausen,504008,ByTTV
+TTC-FW Gestungshausen,205033,ByTTV
 TTC-SG Türnich-Brüggen,151014,WTTV
 TTC73 Oberderdingen,08060,TTVWH
 TTF 03 Rheinstetten,449,BaTTV
@@ -7785,6 +7821,7 @@ TTF Bad Wörishofen 1955 e.V.,310006,ByTTV
 TTF Barmingholten,148041,WTTV
 TTF Besseringen,303,STTB
 TTF Blaichach-Burgberg,310011,ByTTV
+TTF Bönen,112052,WTTV
 TTF Dannstadt-Sch'heim,34,PTTV
 TTF Dannstadt-Schauernheim,034,PTTV
 TTF Dedenbach,003905,TTVR
@@ -7923,7 +7960,7 @@ TTG Hargesheim-Roxheim,009006,TTVR
 TTG Heiligenwald,119,STTB
 TTG Hinsbeck-Leuth,143008,WTTV
 TTG Holz-Wahlschied,411,STTB
-TTG Hundheim-Bell,009004,TTVR
+TTG Hundheim-Bell,010005,TTVR
 TTG Huttenheim,114,BaTTV
 TTG Hönnersum,2213620,TTVN
 TTG Ikenhausen,183005,WTTV
@@ -7954,6 +7991,7 @@ TTG Menden e.V.,114034,WTTV
 TTG Morschen-Heina,14028,HeTTV
 TTG Moseltal,000331,TTVR
 TTG Mußbach,160,PTTV
+TTG Mücke,24059,HeTTV
 TTG Mündersbach-Höchstenbach,009013,TTVR
 TTG Neckarbischofsheim,920,BaTTV
 TTG Netphen,116012,WTTV
@@ -8072,7 +8110,7 @@ TTSV Aufbau Jatznick,751654,TTVMV
 TTSV Blau-Weiß Hagenwerder,1213,STTV
 TTSV Blau-Weiß Hagenwerder 1990,1213,STTV
 TTSV Delmenhorst,4391300,TTVN
-TTSV Demminer Hanseat,710105,TTVMV
+TTSV Demminer Hanseat,520105,TTVMV
 TTSV Groß Ammensleben 1995,11421,TTVSA
 TTSV Groß Krams,760251,TTVMV
 TTSV Grün-Weiß Immelborn e.V,301005,TTTV
@@ -8092,6 +8130,7 @@ TTSV-DJK Bous,306,STTB
 TTT Nord Garbsen,2191664,TTVN
 TTU Bad Oeynhausen,186006,WTTV
 TTV 02 Hasselroth,23065,HeTTV
+TTV 03 Demmin,712422,TTVMV
 TTV 04 Trusetal-Brotterode e.V.,304026,TTTV
 TTV 06 Aulatal,11042,HeTTV
 TTV 07 Ballweiler,147,STTB
@@ -8116,7 +8155,7 @@ TTV 1990 Wurzen,3126,STTV
 TTV 1994 Korbach,15029,HeTTV
 TTV 2011 Menteroda e.V.,109047,TTTV
 TTV 2015 Seelze,2193893,TTVN
-TTV 45 Altenkunstadt 1997,502030,ByTTV
+TTV 45 Altenkunstadt 1997,205001,ByTTV
 TTV 48 Schmalkalden e.V.,304023,TTTV
 TTV 55 Mockrehna,3309,STTV
 TTV 59 Bergisch-Gladbach,153041,WTTV
@@ -8174,6 +8213,7 @@ TTV Busenborn,24008,HeTTV
 TTV Büchlberg,415011,ByTTV
 TTV Bühlertal,25009,SbTTV
 TTV Centrum Magdeburg,11817,TTVSA
+TTV Chemie Böhlen,3104,STTV
 TTV Cloppenburg,4383700,TTVN
 TTV Cottbus,3328,TTVB
 TTV DJK Altenessen,145010,WTTV
@@ -8194,13 +8234,14 @@ TTV Dudenrode,16006,HeTTV
 TTV Dunningen,09010,TTVWH
 TTV Eberswalde,1441,TTVB
 TTV Ebsdorfergrund,13017,HeTTV
-TTV Edenkoben,42,PTTV
+TTV Edenkoben,042,PTTV
 TTV Eibingen 1960,35008,HeTTV
 TTV Einheit Potsdam,2202,TTVB
 TTV Einigkeit Gladbeck,176024,WTTV
 TTV Einigkeit Süchteln-Vorst,143033,WTTV
 TTV Eintracht Autenried,309019,ByTTV
 TTV Eintracht Erfurt,105020,TTTV
+TTV Eisenhüttenstadt,1113,TTVB
 TTV Eitzum,1150900,TTVN
 TTV Eiweiler-Niedersalbach,207,STTB
 TTV Elstal,2209,TTVB
@@ -8209,7 +8250,7 @@ TTV Empor Schwedt,1007,TTVB
 TTV Emsdetten,174013,WTTV
 TTV Ense 1975,113001,WTTV
 TTV Erdmannhausen,08013,TTVWH
-TTV Erzenhausen,52,PTTV
+TTV Erzenhausen,052,PTTV
 TTV Eschelbronn,910,BaTTV
 TTV Ettlingen,407,BaTTV
 TTV Ettlingenweier,408,BaTTV
@@ -8257,6 +8298,7 @@ TTV Hardt,09019,TTVWH
 TTV Hasborn,409,STTB
 TTV Heidelberg,315,BaTTV
 TTV Heiden,175028,WTTV
+TTV Heiligenstadt 2018 e.V.,114028,TTTV
 TTV Hellental,2220890,TTVN
 TTV Hervest Dorsten,176028,WTTV
 TTV Hildburghausen 90,302008,TTTV
@@ -8382,7 +8424,7 @@ TTV Schönheide,4246,STTV
 TTV Siegelbach,203,PTTV
 TTV Sigmaringen,04050,TTVWH
 TTV Somborn,23053,HeTTV
-TTV Speicher e. V.,005300,TTVR
+TTV Speicher e. V.,005298,TTVR
 TTV Springpfuhl,4761,BTTV
 TTV Stadtlengsfeld,301007,TTTV
 TTV Staßfurt 1970,12120,TTVSA
@@ -8509,13 +8551,13 @@ TV 1861 Thierstein,208068,ByTTV
 TV 1861 Wallau,34031,HeTTV
 TV 1862 Bensheim,41003,HeTTV
 TV 1862 Biedenkopf,13006,HeTTV
-TV 1862 Dettelbach e.V.,708005,ByTTV
+TV 1862 Dettelbach e.V.,103006,ByTTV
 TV 1862 Dillingen,309030,ByTTV
-TV 1862 Gefrees,507021,ByTTV
+TV 1862 Gefrees,206021,ByTTV
 TV 1862 Haaren,157040,WTTV
 TV 1862 Homberg,24025,HeTTV
 TV 1862 Leutershausen,104052,ByTTV
-TV 1862 Marktgraitz,502009,ByTTV
+TV 1862 Marktgraitz,205052,ByTTV
 TV 1862 Unterdürrbach,103051,ByTTV
 TV 1863 Gersfeld,21017,HeTTV
 TV 1863 Groß-Zimmern,42024,HeTTV
@@ -8591,7 +8633,7 @@ TV 1900 Unteröwisheim,133,BaTTV
 TV 1901 Katzenfurt,32038,HeTTV
 TV 1901 Mittelsinn e.V.,101061,ByTTV
 TV 1903 Sterbfritz,23055,HeTTV
-TV 1903 e.V. Sulzbach,702029,ByTTV
+TV 1903 e.V. Sulzbach,101088,ByTTV
 TV 1904 Bermbach,35004,HeTTV
 TV 1905 Niederselters,33052,HeTTV
 TV 1905 Wetter,13061,HeTTV
@@ -8658,9 +8700,10 @@ TV Aschhausen,4360300,TTVN
 TV Asendorf-Dierkshausen,3270250,TTVN
 TV Attendorn,116043,WTTV
 TV Auersmacher,201,STTB
-TV Bad Grönenbach 1894 e.V.,303006,ByTTV
+TV Bad Grönenbach 1894 e.V.,310005,ByTTV
 TV Bad Vilbel 1881,25004,HeTTV
 TV Barbing,413007,ByTTV
+TV Belsen,01004,TTVWH
 TV Bempflingen,05004,TTVWH
 TV Bergheim-Sieg,156026,WTTV
 TV Bergkrug,2240400,TTVN
@@ -8694,7 +8737,7 @@ TV Burtscheid,157009,WTTV
 TV Busenbach,403,BaTTV
 TV Bötzingen,22005,SbTTV
 TV Bühl,25008,SbTTV
-TV Bürgstadt 1885,702002,ByTTV
+TV Bürgstadt 1885,101011,ByTTV
 TV Calmbach,12007,TTVWH
 TV Cannstatt,14005,TTVWH
 TV Coburg-Ketschendorf,503005,ByTTV
@@ -8706,10 +8749,10 @@ TV Delkenheim 1902,36005,HeTTV
 TV Dellbrück,153005,WTTV
 TV Denzlingen,22009,SbTTV
 TV Derendingen,01013,TTVWH
-TV Dettingen,701010,ByTTV
+TV Dettingen,101013,ByTTV
 TV Dielheim,303,BaTTV
 TV Dienheim,305,RTTV
-TV Dietenhofen,601009,ByTTV
+TV Dietenhofen,104022,ByTTV
 TV Dingolfing,415013,ByTTV
 TV Dinklage,4491300,TTVN
 TV Dolgesheim,306,RTTV
@@ -8740,7 +8783,7 @@ TV Elgersweier,24007,SbTTV
 TV Ellefeld,4306,STTV
 TV Ellerstadt,045,PTTV
 TV Elm,312,STTB
-TV Elsava Elsenfeld,702006,ByTTV
+TV Elsava Elsenfeld,101016,ByTTV
 TV Elverdissen,182020,WTTV
 TV Engelsbrand,707,BaTTV
 TV Ennigerloh,172055,WTTV
@@ -8755,7 +8798,7 @@ TV Eschborn 1888,34008,HeTTV
 TV Eschersheim 1895,43007,HeTTV
 TV Esenshamm,4504700,TTVN
 TV Etterzhausen,413026,ByTTV
-TV Etwashausen,708007,ByTTV
+TV Etwashausen,103010,ByTTV
 TV Falkenberg,3301200,TTVN
 TV Faulbach,101021,ByTTV
 TV Feldkirchen 1903 e.V.,416020,ByTTV
@@ -8793,7 +8836,7 @@ TV Germania Gustorf,142024,WTTV
 TV Germania Horbach,097,PTTV
 TV Germania Wiedelah,1073600,TTVN
 TV Gernsbach,25013,SbTTV
-TV Gerolzhofen 1862,706009,ByTTV
+TV Gerolzhofen 1862,103015,ByTTV
 TV Gerthe,111016,WTTV
 TV Geseke,187016,WTTV
 TV Gimbsheim,407,RTTV
@@ -8821,7 +8864,7 @@ TV Hagenbach,72,PTTV
 TV Hahnstätten,003332,TTVR
 TV Haldenwang,310033,ByTTV
 TV Hallstadt 1890,205039,ByTTV
-TV Hambach,073,PTTV
+TV Hambach,73,PTTV
 TV Hambrücken,140,BaTTV
 TV Hardheim,206,BaTTV
 TV Haseldorf,70719,TTVSH
@@ -8852,7 +8895,7 @@ TV Hosenfeld 1911,21026,HeTTV
 TV Huchem-Stammeln,158014,WTTV
 TV Huchenfeld,712,BaTTV
 TV Hude,4453100,TTVN
-TV Höfen,157018,WTTV
+TV Höfen,12021,TTVWH
 TV Höheinöd,92,PTTV
 TV Hückelhoven-Ratheim,143049,WTTV
 TV Ibbenbüren,174005,WTTV
@@ -8896,7 +8939,7 @@ TV Kupferdreh,145014,WTTV
 TV Kusel,124,PTTV
 TV Kärlich,000330,TTVR
 TV Köngernheim,315,RTTV
-TV Königsberg 1862 e.V.,707022,ByTTV
+TV Königsberg 1862 e.V.,102046,ByTTV
 TV Königswinter,156031,WTTV
 TV Laasphe,116023,WTTV
 TV Lahr,24023,SbTTV
@@ -8979,13 +9022,13 @@ TV Neerstedt,4453850,TTVN
 TV Nellingen,05039,TTVWH
 TV Nendingen,09026,TTVWH
 TV Neuenbürg,12032,TTVWH
-TV Neuenkirchen,4473150,TTVN
+TV Neuenkirchen,2173140,TTVN
 TV Neugablonz,310063,ByTTV
 TV Neuhausen,01038,TTVWH
 TV Neuler,10035,TTVWH
 TV Neulingen,720,BaTTV
 TV Neunkirchen,116009,WTTV
-TV Neustadt,26019,SbTTV
+TV Neustadt,4506900,TTVN
 TV Neuweier,25022,SbTTV
 TV Niederlahnstein,001079,TTVR
 TV Niederrad,43037,HeTTV
@@ -9031,7 +9074,7 @@ TV Ratingen,141025,WTTV
 TV Rebbelroth,152015,WTTV
 TV Rechberghausen,13017,TTVWH
 TV Refrath,153026,WTTV
-TV Rehau 1884,206016,ByTTV
+TV Rehau 1884,206069,ByTTV
 TV Reichenbach,05055,TTVWH
 TV Reisbach e.V.,414069,ByTTV
 TV Rengsdorf,001287,TTVR
@@ -9043,7 +9086,6 @@ TV Riesel,183014,WTTV
 TV Rodenbach,197,PTTV
 TV Roetgen,157036,WTTV
 TV Rosbach,156006,WTTV
-TV Rot-a.see,07059,TTVWH
 TV Rottenburg,01054,TTVWH
 TV Ruhmannsfelden,415066,ByTTV
 TV Rätzlingen,3343450,TTVN
@@ -9063,7 +9105,7 @@ TV Schwanenberg,143031,WTTV
 TV Schweiburg,4509320,TTVN
 TV Schwetzingen,814,BaTTV
 TV Schwörstadt,23026,SbTTV
-TV Schönwald,26026,SbTTV
+TV Schönwald,509010,ByTTV
 TV Schützingen,08068,TTVWH
 TV Seckbach 1875,43048,HeTTV
 TV Selb-Plössberg,509022,ByTTV
@@ -9161,7 +9203,7 @@ TV Wunsiedel 1861,208082,ByTTV
 TV Würges 1904,33077,HeTTV
 TV Zazenhausen,14045,TTVWH
 TV Zeil,707019,ByTTV
-TV Zell,001017,TTVR
+TV Zell,05068,TTVWH
 TV Zuffenhausen,14046,TTVWH
 TV Öschelbronn,723,BaTTV
 TV Überlingen,21029,SbTTV
@@ -9205,7 +9247,7 @@ Tischtennisverein Teterow,532703,TTVMV
 Tischtennisverein Zons,142026,WTTV
 Todtglüsinger SV,3277050,TTVN
 Top Spin Bernau,31920,BTTV
-TopSpin Wandsbek,1280,HaTTV
+TopSpin Wandsbek,1280,HTTV
 Torpedo Göttingen,1091140,TTVN
 Tralauer SV,71320,TTVSH
 Tribseeser SV,730686,TTVMV
@@ -9237,7 +9279,7 @@ TuS 09 Schweppenhausen,001325,TTVR
 TuS 1860 Pfarrkirchen,415052,ByTTV
 TuS 1862-1911 Fritzlar,14013,HeTTV
 TuS 1865 Hilchenbach,116042,WTTV
-TuS 1866 Vilseck e.V.,404013,ByTTV
+TuS 1866 Vilseck e.V.,208072,ByTTV
 TuS 1872 Schwanheim,43046,HeTTV
 TuS 1875 Großschirma,2320,STTV
 TuS 1883 Nordenstadt,36015,HeTTV
@@ -9252,6 +9294,7 @@ TuS 1892 Nuttlar,113026,WTTV
 TuS 1897 Linter,33046,HeTTV
 TuS 1899 Griesheim,42021,HeTTV
 TuS 1900 Eisern,116034,WTTV
+TuS 1900 Thür,000698,TTVR
 TuS 1903 Weilmünster,33071,HeTTV
 TuS 1904 Himmighofen,000996,TTVR
 TuS 1904 Weinbach,33072,HeTTV
@@ -9324,7 +9367,7 @@ TuS Borgloh,4470820,TTVN
 TuS Borstel-Hohenraden,70772,TTVSH
 TuS Borth,146027,WTTV
 TuS Bothfeld,2205115,TTVN
-TuS Brake 1896,181021,WTTV
+TuS Brake,181021,WTTV
 TuS Brake-Lippe,184038,WTTV
 TuS Bramsche,4470930,TTVN
 TuS Breithardt 1904,35006,HeTTV
@@ -9413,7 +9456,7 @@ TuS Fortschritt Haldensleben,11426,TTVSA
 TuS Fortuna Kottenheim,000315,TTVR
 TuS Fortuna Lauenhagen,2241130,TTVN
 TuS Framersheim,111,RTTV
-TuS Frammersbach,703009,ByTTV
+TuS Frammersbach,101022,ByTTV
 TuS Freckenhorst,172036,WTTV
 TuS Frei-Laubersheim,132,RTTV
 TuS Freya Friedewalde,186052,WTTV
@@ -9470,13 +9513,14 @@ TuS Hilgert,000219,TTVR
 TuS Hilter,4472120,TTVN
 TuS Hiltrup,172002,WTTV
 TuS Hipstedt,3312380,TTVN
-TuS Hirschhorn,089,PTTV
+TuS Hirschhorn,89,PTTV
 TuS Hochheim,410,RTTV
 TuS Hochspeyer,90,PTTV
 TuS Hohen-Sülzen,411,RTTV
 TuS Hohenecken,95,PTTV
 TuS Hoheneggelsen,2213680,TTVN
 TuS Hohenschönhausen,4912,BTTV
+TuS Hohne-Spechtshorn,3254950,TTVN
 TuS Hohnstorf-Elbe,3290532,TTVN
 TuS Hohwacht,70811,TTVSH
 TuS Hoisdorf,71416,TTVSH
@@ -9576,6 +9620,7 @@ TuS Neuerkirch-Külz,000534,TTVR
 TuS Neuhofen 1966 e.V.,415048,ByTTV
 TuS Neunkirchen,130,STTB
 TuS Neuss-Reuschenberg,142031,WTTV
+TuS Nieder-Wiesen 1957 e.V.,141,RTTV
 TuS Niederense,113010,WTTV
 TuS Niedernwöhren,2241400,TTVN
 TuS Niederoberweiler,000520,TTVR
@@ -9601,7 +9646,7 @@ TuS Porselen,159012,WTTV
 TuS Porta Barkhausen,186030,WTTV
 TuS Porta Westfalica,186025,WTTV
 TuS Prien,416062,ByTTV
-TuS Pullenreuth,408008,ByTTV
+TuS Pullenreuth,208053,ByTTV
 TuS Quelle,181013,WTTV
 TuS Querenburg,111010,WTTV
 TuS RW Peckelsheim,183012,WTTV
@@ -9622,7 +9667,7 @@ TuS Rosenberg 1911,208054,ByTTV
 TuS Rostrup,4365300,TTVN
 TuS Rot-Weiss Koblenz,000334,TTVR
 TuS Rotenhof Rendsburg,70924,TTVSH
-TuS Röllbach 1929 e.V.,702034,ByTTV
+TuS Röllbach 1929 e.V.,101075,ByTTV
 TuS Salzwedel,11019,TTVSA
 TuS Sande,4425050,TTVN
 TuS Sandhorst,4370965,TTVN
@@ -9677,7 +9722,7 @@ TuS Vendersheim,126,RTTV
 TuS Victorbur,4371220,TTVN
 TuS Viktoria Dehme,186008,WTTV
 TuS Vossheide,184020,WTTV
-TuS Wachenheim,220,PTTV
+TuS Wachenheim,428,RTTV
 TuS Wadersloh,113054,WTTV
 TuS Waffensen,3316700,TTVN
 TuS Wagenfeld,2174900,TTVN
@@ -9749,6 +9794,7 @@ Turnerschaft 1860 Großauheim,23069,HeTTV
 Turnerschaft Hannover von 1852,2205808,TTVN
 Turnerschaft Klinkrade,70270,TTVSH
 Turnerschaft Krefeld,147009,WTTV
+Turnerschaft Sparkasse Innsbruck,AUT-5354,Ausland
 Turngemeinde Bielefeld,181032,WTTV
 Turngemeinde Lennep,144054,WTTV
 Turngemeinde Neuss,142028,WTTV
@@ -9758,6 +9804,7 @@ Turnverein Barntrup,184046,WTTV
 Turnverein Blomberg,184002,WTTV
 Turnverein Boisheim,143029,WTTV
 Turnverein Erkelenz,143011,WTTV
+Turnverein Germania 03 Obermaubach e.V.,158046,WTTV
 Turnverein Hösel,141007,WTTV
 Turnverein Sundwig,114008,WTTV
 Turnverein Unterbach,141044,WTTV
@@ -9847,6 +9894,7 @@ VSC Rot-Weiß Mannheim,523,BaTTV
 VSG 1882 Oberdorla,109022,TTTV
 VSG 1990 Bestensee,3109,TTVB
 VSG 1998 Halberstadt,11714,TTVSA
+VSG Bad Frankenhausen,111015,TTTV
 VSG Kugelberg Weißenfels,11315,TTVSA
 VSG Stapelfeld,71325,TTVSH
 VSK Bungerhof-Delmenhorst,4394950,TTVN
@@ -9882,7 +9930,7 @@ VfB 1919 Vacha e.V.,301009,TTTV
 VfB 1921 Krieschow,3345,TTVB
 VfB 1928 Wilden e.V.,116069,WTTV
 VfB Adersbach,901,BaTTV
-VfB Bach e.V.,401019,ByTTV
+VfB Bach e.V.,413005,ByTTV
 VfB Bodenburg,2211100,TTVN
 VfB Bodenheim,301,RTTV
 VfB Born,11408,TTVSA
@@ -9904,7 +9952,7 @@ VfB Hallbergmoos-Goldach,414031,ByTTV
 VfB Hellerau-Klotzsche,2108,STTV
 VfB Hermsdorf,5089,BTTV
 VfB Hochstadt,91,PTTV
-VfB Humprechtshausen,707009,ByTTV
+VfB Humprechtshausen,102041,ByTTV
 VfB Jützenbach 1922,114006,TTTV
 VfB Kipfenberg,101024,ByTTV
 VfB Kirchhellen,176045,WTTV
@@ -9972,7 +10020,6 @@ VfL Borussia Mönchengladbach,143020,WTTV
 VfL Buchloe,310014,ByTTV
 VfL Börnsen,0225,HaTTV
 VfL Bückeburg,2240550,TTVN
-VfL Büren,174012,WTTV
 VfL Dermbach,000972,TTVR
 VfL Dreihausen 1909,13016,HeTTV
 VfL Duttweiler,41,PTTV
@@ -9991,6 +10038,7 @@ VfL Gehrden,11121,TTVSA
 VfL Germania Ummern,1062880,TTVN
 VfL Grasdorf,2192425,TTVN
 VfL Grün-Gold Güstrow,530213,TTVMV
+VfL Grünhof-Tesperhude,0510,HaTTV
 VfL Gummersbach,152026,WTTV
 VfL Gundersheim,408,RTTV
 VfL Günzburg,309043,ByTTV
@@ -10001,7 +10049,6 @@ VfL Heiligkreuzsteinach,316,BaTTV
 VfL Herkersdorf-Offhausen,000908,TTVR
 VfL Hiddesen,184030,WTTV
 VfL Horneburg (neu dazu),3334750,TTVN
-VfL Hüls,176035,WTTV
 VfL Iheringsfehn,4442600,TTVN
 VfL Jesteburg,3273650,TTVN
 VfL Kalbe-Milde,11011,TTVSA
@@ -10065,7 +10112,7 @@ VfL Tegel,5138,BTTV
 VfL Theesen,181012,WTTV
 VfL Thüle,187023,WTTV
 VfL Traben-Trarbach 1861,000716,TTVR
-VfL Treuchtlingen,607028,ByTTV
+VfL Treuchtlingen,104093,ByTTV
 VfL Ummeln,181025,WTTV
 VfL Verna-Allendorf,14049,HeTTV
 VfL Viktoria Flachsmeer,4441350,TTVN
@@ -10076,7 +10123,7 @@ VfL Waldbreitbach,002417,TTVR
 VfL Waldkraiburg e.V.,416104,ByTTV
 VfL Wanfried,16042,HeTTV
 VfL Wathlingen,3256550,TTVN
-VfL Weierbach,010003,TTVR
+VfL Weierbach,009003,TTVR
 VfL Westendorf,309103,ByTTV
 VfL Westercelle,3256750,TTVN
 VfL Wilhelmshaven,4515200,TTVN
@@ -10087,7 +10134,7 @@ VfL Woltorf,1133500,TTVN
 VfL Zusamaltheim,309106,ByTTV
 VfLSpremberg,3331,TTVB
 VfN Blau-Rot Hattersheim,34013,HeTTV
-VfR Burggrumbach,704001,ByTTV
+VfR Burggrumbach,103005,ByTTV
 VfR Büttgen,142008,WTTV
 VfR Döhren,2205327,TTVN
 VfR Eintracht Koblenz,000938,TTVR
