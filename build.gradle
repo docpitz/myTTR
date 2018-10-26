@@ -12,7 +12,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
 //        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.1"
 //        classpath 'com.github.jcandksolutions.gradle:android-unit-test:2.1.1'
         // NOTE: Do not place your application dependencies here; they belong
@@ -33,6 +33,14 @@ allprojects {
 
 ext {
     useTesting = Boolean.parseBoolean(project.USE_TDD)
+    coreVersion = "1.0.0-beta02"
+    extJUnitVersion = "1.0.0-beta02"
+    runnerVersion = "1.1.0-beta02"
+    rulesVersion = "1.1.0-beta02"
+    espressoVersion = "3.1.0-beta02"
+    extJUnitVersion = "1.0.0-beta02"
+    extTruthVersion = "1.0.0-beta02"
+
 }
 
 // get Git revision as a NUMBER (subversion style of revision)

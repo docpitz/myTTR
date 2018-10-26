@@ -1,9 +1,6 @@
 package com.jmelzer.myttr.logic;
 
 
-import android.support.test.filters.MediumTest;
-import android.support.test.filters.SmallTest;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
@@ -22,11 +19,15 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
+import androidx.test.filters.SmallTest;
+
 import static com.jmelzer.myttr.Verband.dttb;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
 
 /**
  * Created by cicgfp on 26.11.2017.

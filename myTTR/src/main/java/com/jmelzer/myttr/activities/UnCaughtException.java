@@ -29,7 +29,7 @@ public class UnCaughtException implements UncaughtExceptionHandler {
             orgHandler.uncaughtException(thread, ex);
         } else {
             Log.e(Constants.LOG_TAG, "uncaught", ex);
-            System.exit(0);
+//            System.exit(0);
         }
     }
 }

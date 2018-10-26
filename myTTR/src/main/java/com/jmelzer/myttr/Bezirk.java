@@ -15,6 +15,10 @@ public class Bezirk {
     List<Kreis> kreise = new ArrayList<>();
     List<Liga> ligen = new ArrayList<>();
 
+    public Bezirk(String name) {
+        this.name = name;
+    }
+
     public Bezirk(String name, String url) {
         this.name = name;
         this.url = url;
@@ -57,6 +61,21 @@ public class Bezirk {
 
     public List<Kreis> getKreise() {
         return kreise;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Bezirk bezirk = (Bezirk) o;
+
+        return name.equals(bezirk.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     @Override

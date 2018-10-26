@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;
@@ -31,6 +30,8 @@ import com.jmelzer.myttr.model.Saison;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import androidx.test.filters.SmallTest;
 
 import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 

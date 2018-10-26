@@ -11,9 +11,9 @@
 package com.jmelzer.myttr.logic;
 
 
-import android.test.suitebuilder.annotation.SmallTest;
-
 import junit.framework.Assert;
+
+import androidx.test.filters.SmallTest;
 
 public class LoginManagerTest extends BaseTestCase {
 

@@ -1,12 +1,12 @@
 package com.jmelzer.myttr.logic;
 
-import android.support.test.filters.SmallTest;
-import android.support.test.runner.AndroidJUnit4;
-
 import com.jmelzer.myttr.model.LastNotification;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 
 /**
  * Created by J. Melzer on 03.09.2017.

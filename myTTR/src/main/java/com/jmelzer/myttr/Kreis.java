@@ -4,6 +4,7 @@ import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -18,6 +19,10 @@ public class Kreis {
     public Kreis(String name, String url) {
         this.name = name;
         this.url = url;
+    }
+
+    public Kreis(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -56,5 +61,19 @@ public class Kreis {
 
     public void setBezirk(Bezirk bezirk) {
         this.bezirk = bezirk;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kreis kreis = (Kreis) o;
+        return Objects.equals(name, kreis.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name);
     }
 }

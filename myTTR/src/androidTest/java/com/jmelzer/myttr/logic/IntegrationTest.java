@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
@@ -22,8 +21,9 @@ import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.db.NotificationDataBaseAdapter;
 import com.jmelzer.myttr.model.LastNotification;
 
-import java.io.IOException;
 import java.util.List;
+
+import androidx.test.filters.SmallTest;
 
 public class IntegrationTest extends BaseTestCase {
     @Override

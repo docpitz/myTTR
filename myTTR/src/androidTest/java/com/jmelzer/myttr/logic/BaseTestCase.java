@@ -38,7 +38,7 @@ public class BaseTestCase extends TestCase {
         //prepare cookies
         prepareMocks();
         prepareCookiesForLogin();
-        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
+        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou12"));
     }
 
     private void prepareCookiesForLogin() {

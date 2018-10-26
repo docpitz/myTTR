@@ -10,7 +10,6 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 
 import com.jmelzer.myttr.Constants;
@@ -23,6 +22,8 @@ import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.model.SearchPlayer;
 
 import java.util.List;
+
+import androidx.test.filters.SmallTest;
 
 public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 

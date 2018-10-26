@@ -3,6 +3,8 @@ package com.jmelzer.myttr;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.util.UrlUtil;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -107,6 +109,10 @@ public class Verband {
 
     List<Bezirk> bezirkList = new ArrayList<>();
     List<Liga> ligaList = new ArrayList<>();
+
+    public Verband(String name) {
+        this.name = name;
+    }
 
     public Verband(String name, String myTTClickTTUrl, String url, String tUrl) {
         this(name, url, tUrl);
@@ -238,5 +244,17 @@ public class Verband {
         for (Liga liga : ligen) {
             liga.setUrl(UrlUtil.safeUrl(getHttpAndDomain(saison), liga.getUrl()));
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(name)
+                .toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Verband)obj).name.equals(name);
     }
 }

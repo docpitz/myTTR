@@ -1,6 +1,6 @@
 package com.jmelzer.myttr.model;
 
-import android.test.suitebuilder.annotation.SmallTest;
+
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.model.SearchPlayer;
@@ -8,6 +8,8 @@ import com.jmelzer.myttr.model.SearchPlayer;
 import junit.framework.TestCase;
 
 import org.junit.Test;
+
+import androidx.test.filters.SmallTest;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;

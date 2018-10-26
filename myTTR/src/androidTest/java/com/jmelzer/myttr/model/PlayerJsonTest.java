@@ -1,11 +1,11 @@
 package com.jmelzer.myttr.model;
 
-import android.test.suitebuilder.annotation.SmallTest;
 
-import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Player;
 
 import junit.framework.TestCase;
+
+import androidx.test.filters.SmallTest;
 
 /**
  * Created by J. Melzer on 31.12.2017.

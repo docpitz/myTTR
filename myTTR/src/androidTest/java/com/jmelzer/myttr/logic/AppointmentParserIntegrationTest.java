@@ -10,14 +10,7 @@
 
 package com.jmelzer.myttr.logic;
 
-import android.test.suitebuilder.annotation.SmallTest;
-import android.util.Log;
-
-import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.TeamAppointment;
-
-import java.io.IOException;
-import java.util.List;
+import androidx.test.filters.SmallTest;
 
 public class AppointmentParserIntegrationTest extends BaseTestCase {
 
