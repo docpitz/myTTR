@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Constants;
@@ -17,6 +18,10 @@ import com.jmelzer.myttr.Verband;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.SyncManager;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,22 +38,17 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasShortClassName;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.hamcrest.CoreMatchers.anything;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -61,6 +61,7 @@ public class LigaIntegrationTest {
 
 
     public static final String MANNSCHAFT_TO_CLICK = "TTG St. Augustin IV";
+    public static final String RESULT_TO_CLICK = "TV Rosbach";
     public static final String PACKAGE_NAME = "com.jmelzer.myttr";
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
@@ -97,22 +98,53 @@ public class LigaIntegrationTest {
 
         onView(withText("1. Kreisklasse 1")).perform(click());
 
-        ligaMannschaftResultsActivity();
+        try {
+            ligaMannschaftResultsActivity();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private void ligaMannschaftResultsActivity() {
 
         onView(withText("LigaTabelleActivity"));
-        onView(withText(MANNSCHAFT_TO_CLICK));
         onView(withText(MANNSCHAFT_TO_CLICK)).perform(click());
 
-//
+        // LigaMannschaftResultsActivity
         onView(withText(MANNSCHAFT_TO_CLICK + " - Ergebnisse"));
 
 //        onData(allOf(is(instanceOf(Mannschaftspiel.class)), hasToString(MANNSCHAFT_TO_CLICK))).check();
         //prevent html
+
+        //LigaMannschaftOrLigaResultsFragment
+        //iterate through all entries and check wether html is inside
+
+//        DataInteraction v2 = onData(withText(RESULT_TO_CLICK)).inAdapterView(withId(R.id.liga_mannschaft_detail_row));//.perform(click());
+
+        onData(anything())
+                .inAdapterView(allOf(withId(R.id.liga_mannschaft_detail_row), isCompletelyDisplayed()))
+                .atPosition(0).perform(click());
+//
+//        DataInteraction linearLayout4 = onData(anything())
+//                .inAdapterView(Matchers.allOf(withId(R.id.liga_mannschaft_detail_row),
+//                        childAtPosition(
+//                                withClassName(Matchers.is("android.widget.LinearLayout")),
+//                                2)))
+//                .atPosition(3);
+//        linearLayout4.perform(click());
+
+//        onView(withText(RESULT_TO_CLICK)).perform(click());
+//        onData(instanceOf(Mannschaftspiel.class)).atPosition(0).perform(click());
+//        onView(withId(R.id.liga_mannschaft_detail_row)).perform(click());
+
+//        for (int i = 0; i < 5; i++) {
+//            DataInteraction dataInteraction = onData(instanceOf(Mannschaftspiel.class)).atPosition(i);
+//            dataInteraction.check(matches(withText("Augustin")));
+//            System.out.println("dataInteraction = " + dataInteraction)
+//        }
 //        onData(allOf(is(instanceOf(Mannschaftspiel.class)), not(hasToString("<"))));
-        onView(withId(R.id.liga_mannschaft_detail_row)).check(matches(withText(MANNSCHAFT_TO_CLICK)));
+//        onView(withId(R.id.liga_mannschaft_detail_row)).check(matches(withText(MANNSCHAFT_TO_CLICK)));
 //
 //        LigaMannschaftResultsActivity activity = (LigaMannschaftResultsActivity) solo.getCurrentActivity();
 //        if (activity.startWithRR()) {
@@ -166,4 +198,22 @@ public class LigaIntegrationTest {
         d.perform(click());
     }
 
+    private static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
+
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
+    }
 }
