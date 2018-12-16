@@ -45,14 +45,18 @@ public class LigaSpielberichtActivity extends BaseActivity {
 
         setContentView(R.layout.liga_spielbericht);
 
-        final ListView listview = (ListView) findViewById(R.id.liga_spielbericht_row);
+        final ListView listview = findViewById(R.id.liga_spielbericht_row);
         final SpielberichtAdapter adapter = new SpielberichtAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.selectedMannschaftSpiel.getSpiele());
         listview.setAdapter(adapter);
-        TextView tv = (TextView) findViewById(R.id.textHeader);
-        tv.setText(MyApplication.selectedMannschaftSpiel.getHeimMannschaft().getName() + " - " +
-                MyApplication.selectedMannschaftSpiel.getGastMannschaft().getName() + "    " + MyApplication.selectedMannschaftSpiel.getErgebnis());
+        TextView tv = findViewById(R.id.textHeader);
+        tv.setText(String.format("%s - %s    %s",
+                MyApplication.selectedMannschaftSpiel.getHeimMannschaft().getName(),
+                MyApplication.selectedMannschaftSpiel.getGastMannschaft().getName(),
+                MyApplication.selectedMannschaftSpiel.getErgebnis()));
+
+        setTitle("Spielbericht");
     }
 
     private static class ViewHolder {
