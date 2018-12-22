@@ -7,8 +7,6 @@ import com.jmelzer.myttr.TeamAppointment;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,8 +17,6 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest = "src/main/AndroidManifest.xml")
 public class AppointmentParserTest {
 
     @Test

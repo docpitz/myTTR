@@ -24,6 +24,8 @@ public class Mannschaft {
         spielLokale.clear();
     }
 
+
+    private Liga liga;
     String name;
     int position;
     int gamesCount;
@@ -224,5 +226,17 @@ public class Mannschaft {
 
     public void setSpiele(List<Mannschaftspiel> spiele) {
         this.spiele = spiele;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLiga(Liga liga) {
+        this.liga = liga;
+    }
+
+    public Liga getLiga() {
+        return liga;
     }
 }

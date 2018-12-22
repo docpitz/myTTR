@@ -36,6 +36,7 @@ import com.jmelzer.myttr.model.Favorite;
 import java.util.List;
 
 import static com.jmelzer.myttr.MyApplication.actualTTR;
+import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
 public class TeamHomeActivity extends BaseActivity {
 
@@ -76,12 +77,13 @@ public class TeamHomeActivity extends BaseActivity {
         liga.setUrlRR("https://www.mytischtennis.de/clicktt/home-tab?id=plan");
         MyApplication.setSelectedLiga(liga);
 
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TeamHomeActivity.this, TeamSpielPlanActivity.class) {
+        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TeamHomeActivity.this, LigaMannschaftResultsActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException, NoDataException, ValidationException {
                 MyTischtennisParser p = new MyTischtennisParser();
                 MyApplication.selectedMannschaft = p.readOwnTeam();
+                MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
             }
 
             @Override

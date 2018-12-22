@@ -45,7 +45,7 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
         textView.setText(spiel.getHeimMannschaft().getName());
         textView = rowView.findViewById(R.id.gast);
         textView.setText(spiel.getGastMannschaft().getName());
-        Log.i(Constants.LOG_TAG, "hast=" + spiel.getGastMannschaft().getName());
+//        Log.i(Constants.LOG_TAG, "hast=" + spiel.getGastMannschaft().getName());
         textView = rowView.findViewById(R.id.result);
         if (spiel.isPlayed())
             textView.setText(spiel.getErgebnis());

@@ -521,7 +521,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             return s;
     }
 
-    void parseErgebnisse(String page, Liga liga, Liga.Spielplan spielplan) {
+    public void parseErgebnisse(String page, Liga liga, Liga.Spielplan spielplan) {
         int c = 0;
         int idx = 0;
         String lastDate = null;
@@ -679,7 +679,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return s;
     }
 
-    void parseLiga(String page, Liga liga) {
+    void parseLiga(String page, Liga liga) throws LoginExpiredException {
+
+        if (page.contains("Nicht eindeutig identifiziert")) {
+            throw new LoginExpiredException();
+        }
 
         parseSpielplanLinks(liga, page);
 
@@ -747,7 +751,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return LigaPosType.NOTHING;
     }
 
-    private void parseSpielplanLinks(Liga liga, String page) {
+    public void parseSpielplanLinks(Liga liga, String page) {
         String url = liga.getUrl();
         if (url.contains("/tabelle")) {
             url = url.substring(0, url.indexOf("/tabelle"));

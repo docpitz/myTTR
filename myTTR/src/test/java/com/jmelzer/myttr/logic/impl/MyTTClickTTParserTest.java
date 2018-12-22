@@ -76,12 +76,43 @@ public class MyTTClickTTParserTest {
         parser.parseLiga(page, liga);
 
         assertNotNull(liga.getUrlVR());
+        assertNotNull(liga.getUrlRR());
 
         assertEquals(12, liga.getMannschaften().size());
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             System.out.println("mannschaft = " + mannschaft);
             assertNotNull(mannschaft.getUrl());
-            assertTrue(liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size() > 0);
+            assertEquals("Can't get spiele from this page", 0, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size());
+            assertEquals(0, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.RR).size());
+        }
+    }
+
+    @Test
+    public void parseLigaHometab_plan() throws Exception {
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");
+        String page = TestUtil.readFile(ASSETS_DIR + "/click-tt-home.html");
+        parser.parseLiga(page, liga);
+
+        //https://www.mytischtennis.de/clicktt/home-tab?id=plan
+        String page2 = TestUtil.readFile(ASSETS_DIR + "/click-tt-home_tabplan.html");
+        Liga.Spielplan spielplan = Liga.Spielplan.RR;
+        if (page2.contains("Gruppenspielplan (Vorrunde)")) {
+            spielplan = Liga.Spielplan.VR;
+        }
+
+        parser.parseErgebnisse(page2, liga, spielplan);
+
+        assertNotNull(liga.getUrlVR());
+        assertNotNull(liga.getUrlRR());
+        String page3 = TestUtil.readFile(ASSETS_DIR + "/click-tt-home_tabplan_next_is_rr.html");
+        parser.parseErgebnisse(page3, liga, Liga.Spielplan.RR);
+
+        assertEquals(12, liga.getMannschaften().size());
+        for (Mannschaft mannschaft : liga.getMannschaften()) {
+            System.out.println("mannschaft = " + mannschaft);
+            assertNotNull(mannschaft.getUrl());
+            assertEquals(11, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size());
+            assertEquals(11, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.RR).size());
         }
     }
 
@@ -125,6 +156,11 @@ public class MyTTClickTTParserTest {
             assertNotNull(mannschaftspiel.getDate());
         }
     }
+
+    /**
+     * Gruppenspielplan
+     * https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/NRW-Liga-3/gruppe/334215/spielplan/vr
+     */
     @Test
     public void parseErgebnisseNeu() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-spielplan-neu.html");
@@ -133,6 +169,26 @@ public class MyTTClickTTParserTest {
         parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         assertEquals(55, liga.getSpieleVorrunde().size());
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel.getDate());
+            assertTrue(mannschaftspiel.toString(), mannschaftspiel.getDate().contains(":"));
+            assertFalse(mannschaftspiel.toString(), mannschaftspiel.getDate().contains("<"));
+        }
+    }
+
+    /**
+     * Gruppenspielplan
+     * https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/gesamt
+     */
+    @Test
+    public void parseErgebnisseGesamt() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-spielplan-gesamt.html");
+        Liga liga = new Liga("Herren Landesliga 12",
+                "https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/tabelle/gesamt");
+
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.GESAMT);
+        assertEquals(132, liga.getSpieleGesamt().size());
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleGesamt()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
             assertNotNull(mannschaftspiel.getDate());
             assertTrue(mannschaftspiel.toString(), mannschaftspiel.getDate().contains(":"));
@@ -169,6 +225,7 @@ public class MyTTClickTTParserTest {
         Mannschaft mannschaft = new Mannschaft();
         parser.parseBilanzen(page, mannschaft);
     }
+
     @Test
     public void parseBilanzen() throws Exception {
 
@@ -261,7 +318,7 @@ public class MyTTClickTTParserTest {
                 v.getSpielplan().get(0).getGastMannschaft().getUrl());
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/151020/TTC-Berrenrath/info",
                 v.getSpielplan().get(0).getUrlSpielLokal());
-        assertEquals(1,  v.getSpielplan().get(0).getNrSpielLokal());
+        assertEquals(1, v.getSpielplan().get(0).getNrSpielLokal());
 
         assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
         assertEquals("", v.getSpielplan().get(59).getErgebnis());
@@ -320,7 +377,7 @@ public class MyTTClickTTParserTest {
         Spieler spieler = parser.parseLinksForPlayer(page, "dummy");
         assertNotNull(spieler);
         assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/spieler/143001489/spielerportrait", spieler.getMytTTClickTTUrl());
-        assertEquals(297020L, (long)spieler.getPersonId());
+        assertEquals(297020L, (long) spieler.getPersonId());
         assertEquals("https://www.mytischtennis.de/community/headTohead?gegnerId=297020", spieler.getHead2head());
     }
 

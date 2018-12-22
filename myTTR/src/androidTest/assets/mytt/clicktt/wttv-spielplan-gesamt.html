@@ -1,0 +1,5592 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- WTTV 2018/19
+- Herren Landesliga 12
+</title>
+<base href="//www.mytischtennis.de">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=9-6-0-2" type="text/javascript"></script>
+<script src="/_sharedJS/jBox-0.4.9/Source/jBox.min.js?v=9-6-0-2" type="text/javascript"></script>
+<script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
+<script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/clicktt/includes/css/click-tt.css?v=9-6-0-2" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/jBox.css?v=9-6-0-2" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=9-6-0-2" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_AdCall.js"></script>
+<script src="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+</head>
+<body class="click-tt">
+<!-- Version: 9.6.0.2 -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<div class="partition">
+<form action="/community/login" method="post" class="form-inline">
+<div class="form-group">
+<input type="text" name="userNameB" class="form-control input-sm" placeholder="Name">
+</div>
+<div class="form-group">
+<input type="password" name="userPassWordB" class="form-control input-sm" placeholder="Passwort">
+</div>
+<div class="checkbox">
+<label>
+<input type="checkbox" class="checkbox" name="permalogin" value="1"> Angemeldet bleiben
+</label>
+</div>
+<input type="hidden" name="targetPage" value="/clicktt//WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/gesamt">
+<button type="submit" class="btn btn-primary btn-xs" id="headerLoginButton">Login</button>
+</form>
+</div>
+<div class="partition right">
+<a href="/community/passwordrecovery" class="pw" title="Passwort vergessen?">Passwort vergessen?</a>
+<a href="/community/register" class="reg" title="Registrieren">Registrieren »</a>
+</div>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home">
+<img src='/public/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/verbaende" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index" class="" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home">
+<img src="/public/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user icon-grey"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 250px; padding: 18px">
+<li>
+<div class="row">
+<div class="col-md-12">
+<form action="/community/login.cfm" method="post" class="form-horizontal" id="login-nav">
+<input type="hidden" name="targetPage" value="http://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/gesamt">
+<div class="form-group">
+<label class="sr-only" for="quicknav-username">Nutzername</label>
+<input type="text" id="quicknav-username" name="userNameB" class="form-control" placeholder="Name" required>
+</div>
+<div class="form-group">
+<label class="sr-only" for="exampleInputPassword2">Passwort</label>
+<input type="password" id="quicknav-password" name="userPassWordB" class="form-control" placeholder="Passwort" required>
+</div>
+<div class="form-group">
+<div class="checkbox">
+<label>
+<input type="checkbox" name="permalogin" value="1"> Angemeldet bleiben
+</label>
+</div>
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-primary btn-block">Einloggen</button>
+</div>
+</form>
+<a href="/community/passwordrecovery" class="pw" title="Passwort vergessen?">Passwort vergessen?</a><br/>
+<a href="/community/register" class="reg" title="Registrieren">Registrieren »</a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/verbaende"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/clicktt/verbaende">Verbände</a>
+</li>
+<li class="">
+<a href="/clicktt/home">Mein click-TT</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan (WTTV) <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/18-19/ligen" id="activeFedIsWTTV">Ligenplan (WTTV)</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/P-18-19/pokalspiele">Ligenplan Pokal (WTTV)</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/vereinssuche">Vereinssuche</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/spielersuche">Spielersuche</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home" title="Home">Home</a>
+<li><a href="/clicktt/WTTV/18-19/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/WTTV/18-19/ligen/WTTV-18-19" title="WTTV 2018/19(WTTV 18/19)">WTTV 2018/19</a></li>
+<li class="active">Herren Landesliga 12</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Liga &nbsp; Spielplan</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right">
+<a href="javascript:void(0);" id="settooltip78EC9C1F-7B45-42C4-8FE7F0C37B4D92D7">
+<button class="btn btn-default disabled m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></button>
+</a>
+<script type="text/javascript">
+var toolTipContent = "Hier kommst du direkt zur TTR-Rangliste. Für diese Funktion musst du mit einem myTischtennis.de-Account eingeloggt sein.";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip78EC9C1F-7B45-42C4-8FE7F0C37B4D92D7',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</div>
+<h1>
+Herren Landesliga 12
+<span class="btn-group hidden-print">
+<a href="javascript:void(0);" id="settooltip3CFE88D7-A3D1-43DD-8709C03A1D7AA075">
+<button type="button" class="btn btn-pill btn-default btn-xs dropdown-toggle disabled" aria-haspopup="true" aria-expanded="false">
+<i class="fa fa-star"></i>
+</button>
+</a>
+<script type="text/javascript">
+var toolTipContent = "Hier kannst du die Liga zu deinen Favoriten hinzufügen. Für diese Funktion musst du mit einem myTischtennis.de-Account eingeloggt sein.";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip3CFE88D7-A3D1-43DD-8709C03A1D7AA075',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
+</h1>
+<ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/tabelle/gesamt" data-target="#groupTeamInfos" role="tab">
+Tabelle
+</a>
+</li>
+<li role="presentation" class="active">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/vr" role="tab">
+Gruppenspielplan
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/adressen" data-target="#groupTeamAddresses" role="tab">
+Kontakte
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/bilanzuebersichten/vr" data-target="#groupTeamStats" role="tab">
+Bilanzen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/mannschaftsmeldungen/vr"
+data-target="#groupTeamPools" role="tab">
+Meldungen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/gruppen-ranglisten/spieler/vr"
+data-target="#groupTeamPools" role="tab">
+Ranglisten
+</a>
+</li>
+</ul>
+<div class="pull-right">
+<div class="btn-group hidden-print">
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/vr" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/spielplan/rr" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+</div>
+</div>
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Gruppenspielplan (gesamt)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th>Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+01.09.2018
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763639/TTC-BW-Bruehl-Vochem-III-vs-TTG-St-Augustin-II">
+5:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763640/TTF-Wahn-Grengel-vs-TTV-DJK-Huerth">
+3:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:40 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763648/TTG-Niederkassel-II-vs-SV-Ennert">
+9:3
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+02.09.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763612/TTC-RG-Porz-III-vs-TTC-BW-Lechenich">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:10 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763588/TTF-Bad-Honnef-vs-TV-Suerth">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+08.09.2018
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763647/TTC-BW-Bruehl-Vochem-III-vs-TuRa-Oberdrees-III">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763616/TTC-BW-Lechenich-vs-TTG-Niederkassel-II">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763646/TTG-Witterschlick-vs-TTF-Wahn-Grengel">
+4:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763600/TTV-DJK-Huerth-vs-TTC-RG-Porz-III">
+2:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+09.09.2018
+</span>
+</td>
+<td>
+11:00 
+<a href="javascript:void(0);" id="settooltip818F3BC4-D09C-45B2-930255DFE9AED594">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip818F3BC4-D09C-45B2-930255DFE9AED594',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip95269273-4D4F-49B4-B034F5E4776CD9E1">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 02.09.2018 11:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip95269273-4D4F-49B4-B034F5E4776CD9E1',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763614/TTG-Witterschlick-vs-TuRa-Oberdrees-III">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763595/TTG-St-Augustin-II-vs-TV-Suerth">
+9:0
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+16.09.2018
+</span>
+</td>
+<td>
+11:00 
+<a href="javascript:void(0);" id="settooltip994B65A9-BB88-4EC1-AB3B82828F2FC365">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 08.09.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip994B65A9-BB88-4EC1-AB3B82828F2FC365',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763601/SV-Ennert-vs-TTF-Bad-Honnef">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+22.09.2018
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763615/TTF-Wahn-Grengel-vs-TTC-BW-Bruehl-Vochem-III">
+6:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763625/TTG-Niederkassel-II-vs-TTV-DJK-Huerth">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763642/TV-Suerth-vs-SV-Ennert">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+23.09.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763598/TTC-RG-Porz-III-vs-TTG-Witterschlick">
+6:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763586/TuRa-Oberdrees-III-vs-TTG-St-Augustin-II">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763622/TTF-Bad-Honnef-vs-TTC-BW-Lechenich">
+5:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+29.09.2018
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763621/TTC-BW-Bruehl-Vochem-III-vs-TTC-RG-Porz-III">
+0:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763624/TTC-BW-Lechenich-vs-TV-Suerth">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763636/TTV-DJK-Huerth-vs-TTF-Bad-Honnef">
+3:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763609/TTG-Witterschlick-vs-TTG-Niederkassel-II">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+30.09.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763620/TTG-St-Augustin-II-vs-SV-Ennert">
+4:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763608/TuRa-Oberdrees-III-vs-TTF-Wahn-Grengel">
+5:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+06.10.2018
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763618/TTF-Wahn-Grengel-vs-TTG-St-Augustin-II">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763619/SV-Ennert-vs-TTC-BW-Lechenich">
+6:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763604/TTG-Niederkassel-II-vs-TTC-BW-Bruehl-Vochem-III">
+9:0
+</a>
+&nbsp;&nbsp;
+<a href="javascript:void(0);" id="settooltip7E00DD43-DA4A-4349-9B69F7840A420488">NA</a>
+<script type="text/javascript">
+var toolTipContent = "Gastmannschaft ist zur Begegnung nicht angetreten";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7E00DD43-DA4A-4349-9B69F7840A420488',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip76D692F1-9E53-41B8-96E65D2ECB620393">W</a>
+<script type="text/javascript">
+var toolTipContent = "(Straf-)Wertung gegen Gastmannschaft";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip76D692F1-9E53-41B8-96E65D2ECB620393',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:45 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763629/TV-Suerth-vs-TTV-DJK-Huerth">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+07.10.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763611/TTF-Bad-Honnef-vs-TTG-Witterschlick">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763631/TTC-RG-Porz-III-vs-TuRa-Oberdrees-III">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+12.10.2018
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip66CDF3C0-A1C3-4892-9B47D3236C955E7F">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 13.10.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip66CDF3C0-A1C3-4892-9B47D3236C955E7F',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763644/TTF-Wahn-Grengel-vs-TTC-RG-Porz-III">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+13.10.2018
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763605/TTC-BW-Bruehl-Vochem-III-vs-TTF-Bad-Honnef">
+9:3
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763593/TTV-DJK-Huerth-vs-SV-Ennert">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:35 
+<a href="javascript:void(0);" id="settooltip273274B3-1B33-4A6B-BB333357E3914F6B">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip273274B3-1B33-4A6B-BB333357E3914F6B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="javascript:void(0);" id="settooltipC0704239-84B4-4087-A178AEEDCA1A5A4E">H</a>
+<script type="text/javascript">
+var toolTipContent = "Wallraf-Schule, Ecke Secundastr./Wallrafstraße; 53332 Bornheim";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipC0704239-84B4-4087-A178AEEDCA1A5A4E',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>Spiellokal: 
+<a href="javascript:void(0);" id="settooltip213A9AF2-4B4F-4C30-A082F3A5016B0F17">H</a>
+<script type="text/javascript">
+var toolTipContent = "Wallraf-Schule, Ecke Secundastr./Wallrafstraße; 53332 Bornheim";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip213A9AF2-4B4F-4C30-A082F3A5016B0F17',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763632/TTG-Witterschlick-vs-TV-Suerth">
+9:1
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+14.10.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763603/TuRa-Oberdrees-III-vs-TTG-Niederkassel-II">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763617/TTG-St-Augustin-II-vs-TTC-BW-Lechenich">
+2:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+03.11.2018
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763628/SV-Ennert-vs-TTG-Witterschlick">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763599/TV-Suerth-vs-TTC-BW-Bruehl-Vochem-III">
+1:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:35 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763587/TTC-BW-Lechenich-vs-TTV-DJK-Huerth">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+04.11.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763607/TTF-Bad-Honnef-vs-TuRa-Oberdrees-III">
+3:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763589/TTC-RG-Porz-III-vs-TTG-St-Augustin-II">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+10.11.2018
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763596/TTC-BW-Bruehl-Vochem-III-vs-SV-Ennert">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763643/TTF-Wahn-Grengel-vs-TTF-Bad-Honnef">
+9:6
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:35 
+<a href="javascript:void(0);" id="settooltip752D4337-67E7-4211-8243E4A171C52CBC">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip752D4337-67E7-4211-8243E4A171C52CBC',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763602/TTG-Witterschlick-vs-TTC-BW-Lechenich">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+11.11.2018
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763637/TuRa-Oberdrees-III-vs-TV-Suerth">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763606/TTC-RG-Porz-III-vs-TTG-Niederkassel-II">
+7:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:11 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763590/TTG-St-Augustin-II-vs-TTV-DJK-Huerth">
+6:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+17.11.2018
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763645/TTG-Niederkassel-II-vs-TTG-St-Augustin-II">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763634/TTF-Bad-Honnef-vs-TTC-RG-Porz-III">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763592/TTV-DJK-Huerth-vs-TTG-Witterschlick">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763633/TV-Suerth-vs-TTF-Wahn-Grengel">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763627/SV-Ennert-vs-TuRa-Oberdrees-III">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763591/TTC-BW-Lechenich-vs-TTC-BW-Bruehl-Vochem-III">
+9:1
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+24.11.2018
+</span>
+</td>
+<td>
+17:30 
+<a href="javascript:void(0);" id="settooltip70BDB2E1-6620-4F69-B50FA886E3D07212">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 24.11.2018 18:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip70BDB2E1-6620-4F69-B50FA886E3D07212',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763613/TTC-BW-Bruehl-Vochem-III-vs-TTV-DJK-Huerth">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763583/TTF-Wahn-Grengel-vs-SV-Ennert">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763626/TTC-RG-Porz-III-vs-TV-Suerth">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+25.11.2018
+</span>
+</td>
+<td>
+18:00 
+<a href="javascript:void(0);" id="settooltipFCDB1D05-1469-4821-AC68949F280BB5A1">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 24.11.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipFCDB1D05-1469-4821-AC68949F280BB5A1',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763585/TTG-St-Augustin-II-vs-TTG-Witterschlick">
+6:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+01.12.2018
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763641/TV-Suerth-vs-TTG-Niederkassel-II">
+4:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763630/TTV-DJK-Huerth-vs-TuRa-Oberdrees-III">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763610/SV-Ennert-vs-TTC-RG-Porz-III">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763638/TTG-Witterschlick-vs-TTC-BW-Bruehl-Vochem-III">
+9:5
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763597/TTC-BW-Lechenich-vs-TTF-Wahn-Grengel">
+9:3
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+02.12.2018
+</span>
+</td>
+<td>
+11:00 
+<a href="javascript:void(0);" id="settooltip55BA8E58-9309-4424-8278F68DDFD9C06A">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip55BA8E58-9309-4424-8278F68DDFD9C06A',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltipADDF1A0F-B7EC-4D05-965779896E2F5ED6">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 03.11.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipADDF1A0F-B7EC-4D05-965779896E2F5ED6',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">3
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">3</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763584/TTG-Niederkassel-II-vs-TTF-Wahn-Grengel">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763635/TTF-Bad-Honnef-vs-TTG-St-Augustin-II">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+08.12.2018
+</span>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip7C88E14B-4960-4CA0-BA516EAB152A70FB">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 08.12.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7C88E14B-4960-4CA0-BA516EAB152A70FB',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763623/TTG-Niederkassel-II-vs-TTF-Bad-Honnef">
+9:1
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+09.12.2018
+</span>
+</td>
+<td>
+11:00 
+<a href="javascript:void(0);" id="settooltip3C339A57-E439-4FE5-92B67E9F8E2277A6">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 24.11.2018 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip3C339A57-E439-4FE5-92B67E9F8E2277A6',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763594/TuRa-Oberdrees-III-vs-TTC-BW-Lechenich">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+12.01.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+13.01.2019
+</span>
+</td>
+<td>
+11:00 
+<a href="javascript:void(0);" id="settooltipD1996AF9-B9DB-4D18-A17113478732E30A">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipD1996AF9-B9DB-4D18-A17113478732E30A',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip1C31C9F3-FE41-443E-824C18425F221CA5">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 12.01.2019 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip1C31C9F3-FE41-443E-824C18425F221CA5',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+26.01.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+27.01.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+02.02.2019
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+03.02.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+09.02.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+10.02.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+16.02.2019
+</span>
+</td>
+<td>
+18:30 
+<a href="javascript:void(0);" id="settooltip2A561E80-35E3-465F-90C6B9A4B88329C6">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip2A561E80-35E3-465F-90C6B9A4B88329C6',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltipE41DA0D9-3B7E-4235-ABEAB733E56F9EE7">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 16.02.2019 18:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipE41DA0D9-3B7E-4235-ABEAB733E56F9EE7',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+17.02.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.02.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+24.02.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+09.03.2019
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+10.03.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+16.03.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+17.03.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.03.2019
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+24.03.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+30.03.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+31.03.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154023/TTF-Bad-Honnef/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+06.04.2019
+</span>
+</td>
+<td>
+18:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/vr">TTG Witterschlick</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151023/TTC-BW-Bruehl-Vochem-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/vr">TTG Niederkassel II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/vr">TV Sürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156009/TTG-Niederkassel-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/vr">TTF Wahn-Grengel</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/vr">TTC BW Lechenich</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153012/TTF-Wahn-Grengel/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+07.04.2019
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/vr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/vr">TTC RG Porz III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/vr">SV Ennert</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/153027/TTC-RG-Porz-III/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/vr">TuRa Oberdrees III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/vr">TTV DJK Hürth</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Shop-Partner
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8300" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8300','Shop-Partner
+']);" title="Shop-Partner
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/xmas-3.gif" alt="Shop-Partner
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">andro &ndash; offizieller Verbandsausr&uuml;ster
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7869" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7869','andro &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="andro &ndash; offizieller Verbandsausr&uuml;ster
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/AND_www_HexerGrip_300x250.gif" alt="andro &ndash; offizieller Verbandsausr&uuml;ster
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/misc/12578/Datenschutz-WTTV" id="Datenschutz_link_WTTV" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12402/impressum-WTTV" id="Impressum_link_WTTV" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12465/kontakt-WTTV" id="Kontakt_link_WTTV" title="Kontakt">Kontakt</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2018 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=9-6-0-2" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "WTTV"
+},
+urls: {
+playerPopover: '/clicktt/WTTV/player/popover',
+groupPopover: '/clicktt/WTTV/group/popover',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+<script src="/public/javascripts/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
+</body>
+</html>

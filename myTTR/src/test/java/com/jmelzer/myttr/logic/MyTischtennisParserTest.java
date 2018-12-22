@@ -14,8 +14,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +55,13 @@ public class MyTischtennisParserTest {
         for (SpielerAndBilanz spielerAndBilanz : mannschaft.getSpielerBilanzen()) {
             System.out.println("spielerAndBilanz = " + spielerAndBilanz);
         }
-        assertEquals(22, mannschaft.getSpiele().size());
-        for (Mannschaftspiel ms : mannschaft.getSpiele()) {
-            System.out.println(ms.getDate() + "  " + ms.getHeimMannschaft().getName() +
-                    "  " + ms.getGastMannschaft().getName() +  " " + ms.getErgebnis());
+        assertEquals(0, mannschaft.getSpiele().size());
+        assertEquals("TTG St. Augustin II", mannschaft.getName());
+//        for (Mannschaftspiel ms : mannschaft.getSpiele()) {
+//            System.out.println(ms.getDate() + "  " + ms.getHeimMannschaft().getName() +
+//                    "  " + ms.getGastMannschaft().getName() +  " " + ms.getErgebnis());
 //            System.out.println("mannschaftspiel = " + ms);
-        }
+//        }
     }
 
     @Test

@@ -17,6 +17,7 @@ import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
+import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
@@ -24,6 +25,7 @@ import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.User;
+import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 import com.jmelzer.myttr.model.Head2HeadResult;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.SearchPlayer;
@@ -471,11 +473,40 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return parseForPlayer("", "", page, new ArrayList<Player>(), 0);
     }
 
+    /**
+     * this is complicated cause the url https://www.mytischtennis.de/community/group doesn't
+     * have all informations, sow need https://www.mytischtennis.de/clicktt/home#tab_plan too
+     */
     public Mannschaft readOwnTeam() throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
         String url = "https://www.mytischtennis.de/community/team";
         String page = Client.getPage(url);
-        return parseOwnTeam(page);
+        Mannschaft mannschaft = parseOwnTeam(page);
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");
 
+        page = Client.getPage("https://www.mytischtennis.de/clicktt/home-tab?id=plan");
+        Liga.Spielplan spielplan = Liga.Spielplan.RR;
+        Liga.Spielplan spielplan2 = Liga.Spielplan.VR;
+        if (page.contains("Gruppenspielplan (Vorrunde)")) {
+            spielplan = Liga.Spielplan.VR;
+            spielplan2 = Liga.Spielplan.RR;
+        }
+        MyTTClickTTParserImpl parser = new MyTTClickTTParserImpl();
+        parser.parseErgebnisse(page, liga, spielplan);
+        parser.parseSpielplanLinks(liga, page);
+        if (spielplan2 == Liga.Spielplan.RR) {
+            page = Client.getPage(liga.getUrlRR());
+            parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
+        }
+        else {
+            page = Client.getPage(liga.getUrlVR());
+            parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
+        }
+//todo
+        mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
+        mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan2));
+
+        mannschaft.setLiga(liga);
+        return mannschaft;
     }
 
     @NonNull
@@ -485,9 +516,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
         List<SpielerAndBilanz> players = parsePlayerFromTeamV2(page);
         mannschaft.setSpielerBilanzen(players);
 
-        List<Mannschaftspiel> spiele = parseSpiele(page);
-        mannschaft.setSpiele(spiele);
+//        List<Mannschaftspiel> spiele = parseSpiele(page);
+//        mannschaft.setSpiele(spiele);
 
+        mannschaft.setName(readBetween(page, 0, "<h2>", " - ").result);
         return mannschaft;
     }
 
