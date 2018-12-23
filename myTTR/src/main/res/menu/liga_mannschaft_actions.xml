@@ -37,7 +37,7 @@
         android:text="@string/action_calendar"
         android:onClick="calendar"
         android:showAsAction="always"
-        android:icon="@drawable/ic_plan"
+        android:icon="@drawable/ic_actionbar_plan"
         android:title="@string/action_calendar"
         tools:ignore="AppCompatResource"/>
 </menu>

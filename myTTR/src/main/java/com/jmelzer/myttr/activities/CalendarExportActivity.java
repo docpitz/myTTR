@@ -70,15 +70,6 @@ public class CalendarExportActivity extends BaseActivity {
 
         setContentView(R.layout.calendar);
 
-
-//        checkPermissions(42, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR);
-// Submit the query and get a Cursor object back.
-
-//
-//        int counter = 0;
-
-//        if ( calID > 0 ) {
-
         Date now = new Date();
         List<Mannschaftspiel> list = new ArrayList<>();
 
@@ -86,22 +77,6 @@ public class CalendarExportActivity extends BaseActivity {
             try {
                 Date d = format.parse(mannschaftspiel.getDate());
                 if (now.getTime() < d.getTime()) {
-                    Log.d(Constants.LOG_TAG, "Date=" + d);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(d);
-                    cal.add(Calendar.HOUR, 3); // 3h
-                    String title = String.format("%s - %s",
-                            mannschaftspiel.getHeimMannschaft().getName(),
-                            mannschaftspiel.getGastMannschaft().getName());
-//                        if (!isEventAlreadyExist(title)) {
-//                            ContentValues values = createEntry(calID, d.getTime(), cal.getTimeInMillis(), title, title);
-//                            cr.insert(CalendarContract.Events.CONTENT_URI, values);
-//                            Log.d(Constants.LOG_TAG, "created=" + values);
-//                            counter++;
-//                        } else {
-//
-//                            Log.d(Constants.LOG_TAG, "event exists " + title);
-//                        }
                     list.add(mannschaftspiel);
                 }
             } catch (ParseException e) {
@@ -164,7 +139,7 @@ public class CalendarExportActivity extends BaseActivity {
     }
 
     public void addAll(View view) {
-
+        checkPermissions(42, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions

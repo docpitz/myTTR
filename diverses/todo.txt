@@ -47,6 +47,8 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
     - Icon in schwarz
     - Kalender listen und auswählen
     - Löschen alter Einträge?
+    - Spielverlegung
+    - Adresse einfügen
 
 erledigt
 ---------
