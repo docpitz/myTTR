@@ -47,8 +47,8 @@ android {
         }
         debug {
 //            testCoverageEnabled = true
-//            debuggable true
-//            ext.alwaysUpdateBuildId = false
+            debuggable true
+            ext.alwaysUpdateBuildId = false
         }
     }
     compileOptions {

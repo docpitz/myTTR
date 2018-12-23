@@ -554,6 +554,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (row[1] != null && !row[1].isEmpty()) {
                 time = " " + removeHtml(row[1]);
             }
+
             if (datum != null && !datum.isEmpty()) {
                 ParseResult pr = readBetween(datum, 0, "</span>", "</span>");
                 if (!isEmpty(pr)) {
@@ -561,11 +562,14 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                     datum = shortenDate(datum);
                     lastDate = datum;
                     datum += time;
-                } else {
-                    datum = lastDate;
                 }
             }
-
+            else {
+                if (lastDate.contains(" ")) { //strip time
+                    lastDate = lastDate.substring(0, lastDate.indexOf(' '));
+                }
+                datum = lastDate + time;
+            }
             String url = readHrefAndATag(row[6])[0];
             if (url != null && !url.isEmpty())
                 url = MYTT + url;
