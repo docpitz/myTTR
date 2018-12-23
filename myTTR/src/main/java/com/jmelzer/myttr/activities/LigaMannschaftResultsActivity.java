@@ -109,4 +109,8 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         };
         task.execute();
     }
+
+    public void calendar(MenuItem item) {
+        readInfoAndStartActivity(CalendarExportActivity.class);
+    }
 }

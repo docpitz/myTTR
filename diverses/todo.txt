@@ -166,3 +166,8 @@ Dein Verein als Favorit
 5.0.3.
 Pfalz Trophy fixed (neue URL)
 Amdroid 9
+
+-----
+6.0.0
+- Neuer Menupunkt: Mein Team
+- Neue Cups Urls

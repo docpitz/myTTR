@@ -56,10 +56,6 @@ public class LigaIntegrationTest {
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
 
-//    public LigaIntegrationTest() {
-//        super(LoginActivity.class);
-//    }
-
     @Before
     public void setUp() {
         SyncManager.testIsRun = true;
@@ -86,7 +82,6 @@ public class LigaIntegrationTest {
         login();
 
         ligaSelect1KK();
-
 
         ligaMannschaftResultsActivity();
     }

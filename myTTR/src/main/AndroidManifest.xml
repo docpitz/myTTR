@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) Juergen Melzer
   ~
   ~ 2015.
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.jmelzer.myttr"
-          android:installLocation="auto">
+    package="com.jmelzer.myttr"
+    android:installLocation="auto">
 
-    <uses-sdk
-        android:maxSdkVersion="28"
-        />
+    <uses-sdk android:maxSdkVersion="28" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
     <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
 
     <application
         android:name="com.jmelzer.myttr.MyApplication"
-        android:theme="@style/MyTheme"
-        android:label="@string/app_name"
+        android:allowBackup="false"
         android:icon="@drawable/ic_myttr_app"
-        android:allowBackup="false">
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
             android:name="com.jmelzer.myttr.activities.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -40,8 +41,8 @@
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -49,36 +50,36 @@
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.SearchActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TTRCalculatorActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.HomeActivity"/>
+                android:value=".activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.NextAppointmentsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TTRCalculatorActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.HomeActivity"/>
+                android:value=".activities.HomeActivity" />
         </activity>
 
         <activity
@@ -86,93 +87,94 @@
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.NextAppointmentsActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.NextAppointmentsActivity"/>
+                android:value="com.jmelzer.myttr.activities.NextAppointmentsActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.ResultActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TTRCalculatorActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.TTRCalculatorActivity"/>
+                android:value=".activities.TTRCalculatorActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.EnterTTRActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.EnterClubNameActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="ManualClubName"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="ManualClubName" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.EnterAKActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="AK"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="AK" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.EnterTimeActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="Time"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="Time" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.ClubListActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name="com.jmelzer.myttr.activities.MySettingsActivity"
-            android:label="@string/menu_settings"/>
+            android:label="@string/menu_settings" />
         <!--<activity
             android:name="com.jmelzer.myttr.activities.NewPointsActivity"
             android:label="@string/notifcation_result">
@@ -185,253 +187,253 @@
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
-       <!-- <activity
-            android:name="com.jmelzer.myttr.activities.EventsTTRChartFragment"
-            android:label="@string/app_name"
-            android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
-        </activity>-->
+        <!-- <activity
+             android:name="com.jmelzer.myttr.activities.EventsTTRChartFragment"
+             android:label="@string/app_name"
+             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.VIEW"/>
+                 <category android:name="android.intent.category.DEFAULT"/>
+             </intent-filter>
+             <meta-data
+                 android:name="android.support.PARENT_ACTIVITY"
+                 android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+         </activity>-->
         <activity
             android:name="com.jmelzer.myttr.activities.EventDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.SelectTeamPlayerActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.jmelzer.myttr.activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.SearchResultActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.SearchActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaHomeActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaTabelleActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaMannschaftResultsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaTabelleActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaAllResultsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaTabelleActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaMannschaftInfoActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
                 <data android:scheme="geo" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaSpielberichtActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.EditFavoritesActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaSpielerResultsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaMannschaftBilanzActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaHomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaHomeActivity" />
         </activity>
         <activity
             android:name=".activities.LigaVereinActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.LigaMannschaftResultsActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.LigaMannschaftResultsActivity"/>
+                android:value="com.jmelzer.myttr.activities.LigaMannschaftResultsActivity" />
         </activity>
         <activity
             android:name=".activities.LigaRanglisteActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.SearchResultMultiSelectActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.NextAppointmentPlayersActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.NextAppointmentPlayersActivity"/>
+                android:value="com.jmelzer.myttr.activities.NextAppointmentPlayersActivity" />
         </activity>
         <activity
             android:name=".activities.TournamentsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.TournamentDetailActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TournamentsActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.TournamentsActivity"/>
+                android:value="com.jmelzer.myttr.activities.TournamentsActivity" />
         </activity>
         <activity
             android:name=".activities.ParticipantActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TournamentDetailActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.TournamentDetailActivity"/>
+                android:value="com.jmelzer.myttr.activities.TournamentDetailActivity" />
         </activity>
         <activity
             android:name=".activities.TournamentResultsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activities.TournamentDetailActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.TournamentDetailActivity"/>
+                android:value="com.jmelzer.myttr.activities.TournamentDetailActivity" />
         </activity>
 
         <activity
@@ -439,48 +441,56 @@
             android:label="@string/app_name"
             android:parentActivityName=".activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.CupsActivity"/>
+                android:value="com.jmelzer.myttr.activities.CupsActivity" />
         </activity>
-        <activity android:name=".activities.SearchFilterActivity"  android:label="@string/app_name"
+        <activity
+            android:name=".activities.SearchFilterActivity"
+            android:label="@string/app_name"
             android:parentActivityName=".activities.SearchResultActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.SearchResultActivity"/>
+                android:value="com.jmelzer.myttr.activities.SearchResultActivity" />
         </activity>
-        <activity android:name=".activities.Head2HeadActivity"  android:label="@string/app_name"
+        <activity
+            android:name=".activities.Head2HeadActivity"
+            android:label="@string/app_name"
             android:parentActivityName=".activities.EventDetailActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.EventDetailActivity"/>
+                android:value="com.jmelzer.myttr.activities.EventDetailActivity" />
         </activity>
-        <activity android:name=".activities.TeamHomeActivity"  android:label="@string/app_name"
+        <activity
+            android:name=".activities.TeamHomeActivity"
+            android:label="@string/app_name"
             android:parentActivityName=".activities.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.jmelzer.myttr.activities.HomeActivity"/>
+                android:value="com.jmelzer.myttr.activities.HomeActivity" />
         </activity>
         <activity android:name=".activities.TeamSpielPlanActivity" />
+        <activity android:name=".activities.CalendarExportActivity" />
 
-        <service android:name=".logic.SyncManager" android:label="myTTR Background Sync"
-                 android:icon="@drawable/ic_action_actionbar">
-        </service>
+        <service
+            android:name=".logic.SyncManager"
+            android:icon="@drawable/ic_action_actionbar"
+            android:label="myTTR Background Sync"></service>
         <!--<receiver android:name=".BootUpReceiver" android:enabled="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

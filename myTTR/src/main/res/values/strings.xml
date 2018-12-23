@@ -57,6 +57,7 @@
     <string name="pref_version">Versionsprüfung</string>
     <string name="next_appointments_search">Über nächste Termine suchen</string>
     <string name="action_mannschafts_info">Mannschaftsinfo</string>
+    <string name="action_calendar">Kalender</string>
     <string name="action_favorite">Als Favorit speichern</string>
     <string name="action_edit_favorites">Favorit verwalten</string>
     <string name="action_filter">Filter</string>

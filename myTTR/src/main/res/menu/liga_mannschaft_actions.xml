@@ -32,4 +32,12 @@
         android:icon="@drawable/ic_info_action"
         android:title="@string/action_mannschafts_info"
         tools:ignore="AppCompatResource"/>
+    <item
+        android:id="@+id/action_cal"
+        android:text="@string/action_calendar"
+        android:onClick="calendar"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_plan"
+        android:title="@string/action_calendar"
+        tools:ignore="AppCompatResource"/>
 </menu>
