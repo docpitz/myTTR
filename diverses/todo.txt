@@ -38,6 +38,7 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 - Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
 - Doppelte bEinträge in den Masken, wenn 2x aufgerufen (z.B Spiellokale)
 
+- Neue Cups
 
 erledigt
 ---------
