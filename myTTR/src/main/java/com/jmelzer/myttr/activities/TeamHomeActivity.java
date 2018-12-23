@@ -73,25 +73,10 @@ public class TeamHomeActivity extends BaseActivity {
     }
 
     public void spielplan(View view) {
+        new ReadOwnTeamTask(this, LigaMannschaftResultsActivity.class).execute();
+    }
 
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TeamHomeActivity.this, LigaMannschaftResultsActivity.class) {
-
-            @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
-                MyTischtennisParser p = new MyTischtennisParser();
-                MyApplication.selectedMannschaft = p.readOwnTeam();
-//                List<Mannschaftspiel> mannschaftspiels = selectedMannschaft.getLiga().getSpieleFor(selectedMannschaft.getName(), Liga.Spielplan.VR);
-//                mannschaftspiels.get(0).get
-                MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
-            }
-
-            @Override
-            protected boolean dataLoaded() {
-                return MyApplication.selectedMannschaft != null;
-            }
-
-
-        };
-        task.execute();
+    public void aufstellungen(View view) {
+        new ReadOwnTeamTask(this, LigaMannschaftBilanzActivity.class).execute();
     }
 }
