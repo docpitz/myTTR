@@ -122,10 +122,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
         if (mannschaft.getUrl() == null) //zurueckgezogen
             return;
-        String url = mannschaft.getUrl().substring(0, mannschaft.getUrl().indexOf("/spielerbilanzen"));
-        String page = Client.getPage(url + "/infos");
+
+        //https://www.mytischtennis.de/clicktt/xxxxx/gruppe/345988/mannschaft/2190980/TV-Bergheim-IV/spielerbilanzen/vr
+        //->
+        //https://www.mytischtennis.de/clicktt/xxxxx/gruppe/345988/mannschaft/2190980/TV-Bergheim-IV/infos
+        String urlInfo = mannschaft.getUrl().substring(0, mannschaft.getUrl().indexOf("/spielerbilanzen")) + "/infos";
+        String urlBilanz = mannschaft.getUrl();
+
+        String page = Client.getPage(urlInfo);
         parseMannschaftsDetail(page, mannschaft);
-        page = Client.getPage(mannschaft.getUrl());
+        page = Client.getPage(urlBilanz);
         parseBilanzen(page, mannschaft);
     }
 
@@ -239,15 +245,19 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             gastMannschaft.setUrl(MYTT + ahref[0]);
             m.setGastMannschaft(gastMannschaft);
 
-            ahref = readHrefAndATag(row[2]);
-            m.setUrlSpielLokal(MYTT + ahref[0]);
-            try {
-                m.setNrSpielLokal(Integer.parseInt(ahref[1]));
-            } catch (NumberFormatException e) {
-                Log.d(Constants.LOG_TAG, "couldn't parse number ahref[1]");
-                m.setNrSpielLokal(-1);
-            }
+            parseAndWriteSpielLokalNummer(row[2], m);
             v.addSpielPlanSpiel(m);
+        }
+    }
+
+    private void parseAndWriteSpielLokalNummer(String row, Mannschaftspiel m) {
+        String[] ahref = readHrefAndATag(row);
+        m.setUrlSpielLokal(MYTT + ahref[0]);
+        try {
+            m.setNrSpielLokal(Integer.parseInt(ahref[1]));
+        } catch (NumberFormatException e) {
+            Log.d(Constants.LOG_TAG, "couldn't parse number ahref[1]");
+            m.setNrSpielLokal(-1);
         }
     }
 
@@ -538,7 +548,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 continue;//skip first row
             }
             String[] row = tableRowAsArray(resultrow.result, 10, false);
-//            printRows(row);
+            printRows(row);
             String datum = row[0];
             String time = "";
             if (row[1] != null && !row[1].isEmpty()) {
@@ -555,6 +565,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                     datum = lastDate;
                 }
             }
+
             String url = readHrefAndATag(row[6])[0];
             if (url != null && !url.isEmpty())
                 url = MYTT + url;
@@ -565,17 +576,25 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 url = null;
             }
 //            String datum = row[0].substring(0,row[0].length()-2);
+            Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
+            String ahref[] = readHrefAndATag(row[3]);
+            heim.setUrl(MYTT + ahref[0]);
+            Mannschaft gast = findMannschaft(liga, readHrefAndATag(row[4])[1]);
+//            ahref = readHrefAndATag(row[5]);
+//            heim.setUrl(MYTT + ahref[0]);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,
-                    findMannschaft(liga, readHrefAndATag(row[3])[1]),
-                    findMannschaft(liga, readHrefAndATag(row[4])[1]),
+                    heim,
+                    gast,
                     ergebnis,
                     url,
                     true);
+            parseAndWriteSpielLokalNummer(row[2], mannschaftspiel);
             if (mannschaftspiel.getDate() == null || mannschaftspiel.getDate().isEmpty()) {
                 mannschaftspiel.setDate(lastDate);
             } else {
                 lastDate = mannschaftspiel.getDate();
             }
+            liga.addMannschaft(heim);
             liga.addSpiel(mannschaftspiel, spielplan);
             idx = resultrow.end;
 

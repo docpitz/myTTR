@@ -35,6 +35,9 @@ https://www.mytischtennis.de/community/events?personId=417195
 - Verbandsoberligen fehlen https://www.mytischtennis.de/clicktt/DTTB/17-18/ligen/VOL-Ost-Nord-17-18
 - Liga-Rangliste für beliebige Klassen
 TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
+- Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
+- Doppelte bEinträge in den Masken, wenn 2x aufgerufen (z.B Spiellokale)
+
 
 erledigt
 ---------

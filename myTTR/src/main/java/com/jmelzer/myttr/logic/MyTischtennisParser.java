@@ -496,17 +496,27 @@ public class MyTischtennisParser extends AbstractBaseParser {
         if (spielplan2 == Liga.Spielplan.RR) {
             page = Client.getPage(liga.getUrlRR());
             parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
-        }
-        else {
+        } else {
             page = Client.getPage(liga.getUrlVR());
             parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
-//todo
+
+        mannschaft.setUrl(findUrlForMannschaft(mannschaft.getName(), liga));
+
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
-        mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan2));
+        mannschaft.getSpiele().addAll(liga.getSpieleFor(mannschaft.getName(), spielplan2));
 
         mannschaft.setLiga(liga);
         return mannschaft;
+    }
+
+    private String findUrlForMannschaft(String name, Liga liga) {
+        for (Mannschaft mannschaft : liga.getMannschaften()) {
+            if (name.equals(mannschaft.getName())) {
+                return mannschaft.getUrl();
+            }
+        }
+        return null;
     }
 
     @NonNull

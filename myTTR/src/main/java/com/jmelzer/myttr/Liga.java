@@ -103,7 +103,8 @@ public class Liga implements Favorite {
     }
 
     public void addMannschaft(Mannschaft m) {
-        mannschaften.add(m);
+        if (!mannschaften.contains(m))
+            mannschaften.add(m);
     }
 
     public void clearMannschaften() {

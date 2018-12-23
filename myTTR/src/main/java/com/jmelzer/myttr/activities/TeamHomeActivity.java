@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Liga;
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
@@ -72,17 +73,15 @@ public class TeamHomeActivity extends BaseActivity {
     }
 
     public void spielplan(View view) {
-        final Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home-tab?id=gruppe");
-        liga.setUrlVR("https://www.mytischtennis.de/clicktt/home-tab?id=plan");
-        liga.setUrlRR("https://www.mytischtennis.de/clicktt/home-tab?id=plan");
-        MyApplication.setSelectedLiga(liga);
 
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(TeamHomeActivity.this, LigaMannschaftResultsActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException, NoDataException, ValidationException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
                 MyTischtennisParser p = new MyTischtennisParser();
                 MyApplication.selectedMannschaft = p.readOwnTeam();
+//                List<Mannschaftspiel> mannschaftspiels = selectedMannschaft.getLiga().getSpieleFor(selectedMannschaft.getName(), Liga.Spielplan.VR);
+//                mannschaftspiels.get(0).get
                 MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
             }
 

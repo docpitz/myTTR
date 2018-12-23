@@ -114,6 +114,10 @@ public class MyTTClickTTParserTest {
             assertEquals(11, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size());
             assertEquals(11, liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.RR).size());
         }
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
+            assertNotEquals(0, mannschaftspiel.getNrSpielLokal());
+
+        }
     }
 
     @Test

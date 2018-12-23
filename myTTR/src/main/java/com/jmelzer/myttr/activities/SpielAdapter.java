@@ -19,6 +19,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
+import com.jmelzer.myttr.util.GoogleMapStarter;
 
 import java.util.List;
 
@@ -31,11 +32,11 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
     }
 
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup viewGroup) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.liga_mannschaft_results_row, parent, false);
+        View rowView = inflater.inflate(R.layout.liga_mannschaft_results_row, viewGroup, false);
         final Mannschaftspiel spiel = getItem(position);
 
         TextView textView = rowView.findViewById(R.id.date);
@@ -56,6 +57,35 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
         if (spiel.getUrlDetail() == null || spiel.getUrlDetail().isEmpty()) {
             arrow.setVisibility(View.INVISIBLE);
         } else {
+            arrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.selectedMannschaftSpiel = spiel;
+                    callMannschaftSpielDetail();
+                }
+            });
+        }
+
+        final ImageView map = rowView.findViewById(R.id.map);
+        if (spiel.getUrlDetail() == null) {
+            arrow.setVisibility(View.INVISIBLE);
+            if (spiel.getNrSpielLokal() > -1) {
+                map.setVisibility(View.VISIBLE);
+                map.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (spiel.getHeimMannschaft().getSpielLokale().size() == 0) {
+                            new ReadInfoAsyncTask(spiel.getHeimMannschaft(),
+                                    spiel.getNrSpielLokal(), parent).execute();
+                        } else
+                            GoogleMapStarter.showMap(parent, spiel.getActualSpellokal());
+                    }
+                });
+            } else {
+                map.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            map.setVisibility(View.INVISIBLE);
             arrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
