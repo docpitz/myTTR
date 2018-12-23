@@ -2,10 +2,12 @@ package com.jmelzer.myttr.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -152,15 +154,20 @@ public class CalendarExportActivity extends BaseActivity {
                     Toast.LENGTH_LONG).show();
             return;
         }
-        Log.d(Constants.LOG_TAG, "-------------------");
+
+//        CalendarSelectionDialog dlg = new CalendarSelectionDialog(this);
+//        dlg.show();
+
 
         ContentResolver cr = getContentResolver();
         Uri uri = CalendarContract.Calendars.CONTENT_URI;
-        String selection = CalendarContract.Calendars.VISIBLE + " = 1 AND " + CalendarContract.Calendars.IS_PRIMARY + "=1";
+        String selection = CalendarContract.Calendars.VISIBLE + " = 1 ";//AND " + CalendarContract.Calendars.IS_PRIMARY + "=1";
         Cursor cur = cr.query(uri, EVENT_PROJECTION, selection, null, null);
 
         long calID = 0;
-        if (cur != null && cur.moveToNext()) {
+        final List<String> names = new ArrayList<>();
+        final List<Long> ids = new ArrayList<>();
+        while (cur != null && cur.moveToNext()) {
             String displayName = null;
             String accountName = null;
             String ownerName = null;
@@ -171,13 +178,39 @@ public class CalendarExportActivity extends BaseActivity {
             accountName = cur.getString(PROJECTION_ACCOUNT_NAME_INDEX);
             ownerName = cur.getString(PROJECTION_OWNER_ACCOUNT_INDEX);
 
+            names.add(displayName);
+            ids.add(calID);
+
             // Do something with the values...
             String calendarInfo = String.format("Calendar ID: %s\nDisplay Name: %s\nAccount Name: %s\nOwner Name: %s", calID, displayName, accountName, ownerName);
 
             Log.d(Constants.LOG_TAG, calendarInfo);
-            cur.close();
 
         }
+        cur.close();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Export. Bitte Kalender auswählen").setItems(names.toArray(new String[0]), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                export(ids.get(which));
+            }
+
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+    }
+
+    @SuppressLint("MissingPermission")
+    private void export(Long calID) {
+        ContentResolver cr = getContentResolver();
         Date now = new Date();
         int counter = 0;
         int exists = 0;
@@ -202,6 +235,7 @@ public class CalendarExportActivity extends BaseActivity {
                         Log.d(Constants.LOG_TAG, "event exists " + title);
                     }
                 }
+                //todo remove before online
                 if (counter > 0 || exists > 0) break;
             } catch (ParseException e) {
                 Log.e(Constants.LOG_TAG, e.getMessage());
@@ -211,9 +245,8 @@ public class CalendarExportActivity extends BaseActivity {
 
         Toast.makeText(this,
                 "Es wurden " + counter + " Einträge in den Kalender geschrieben\n" +
-                exists + " Einträge existierten bereits",
+                        exists + " Einträge existierten bereits",
                 Toast.LENGTH_LONG).show();
-
     }
 
     private static class ViewHolder {
