@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/RowListStyle"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/cal_date"
+            style="@style/TextListStyle"
+            android:layout_width="0px"
+            android:layout_weight="2"
+            android:layout_marginEnd="5dp"
+            tools:text="17.11.18 18:00"/>
+
+        <TextView
+            android:id="@+id/cal_name"
+            style="@style/TextListStyle"
+            android:layout_width="0px"
+            android:layout_weight="5"
+            tools:text="TTC RG Porz III - TTG St. Augustin II"/>
+
+
+
+    </LinearLayout>
+</LinearLayout>

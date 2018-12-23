@@ -12,8 +12,11 @@ https://www.mytischtennis.de/community/ajax/_rankingList?vereinid=22343&alleSpie
 SearchActivity
 https://www.mytischtennis.de/community/events?personId=417195
 
-- Favoriten umbenennen
 - Bug: Klick auf Verein - Mannschaften zeigt nur RR an
+
+Features
+---------------
+- Favoriten umbenennen
 - Doppelte Requests vermeiden
 - URLs aufrufen wenn lange drücken
 - Pfeile in Tabelle
@@ -38,7 +41,12 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 - Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
 - Doppelte bEinträge in den Masken, wenn 2x aufgerufen (z.B Spiellokale)
 
-- Neue Cups
+
+- Kalender: offene Punkte
+    - Auswhl von Einträgen
+    - Icon in schwarz
+    - Kalender listen und auswählen
+    - Löschen alter Einträge?
 
 erledigt
 ---------
