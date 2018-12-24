@@ -245,4 +245,13 @@ public class Liga implements Favorite {
         result = 31 * result + url.hashCode();
         return result;
     }
+
+    public Mannschaft findMannschaftByName(String name) {
+        for (Mannschaft mannschaft : mannschaften) {
+            if (name.equals(mannschaft.getName())) {
+                return mannschaft;
+            }
+        }
+        return null;
+    }
 }

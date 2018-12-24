@@ -293,6 +293,7 @@ public class MyTTClickTTParserTest {
 
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             assertTrue(mannschaft.toString(), mannschaft.getSpielLokale().size() > 0);
+            assertNotNull(mannschaft.toString(), mannschaft.getVereinUrl());
         }
     }
     @Test

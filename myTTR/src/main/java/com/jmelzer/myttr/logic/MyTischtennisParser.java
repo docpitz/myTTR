@@ -506,22 +506,13 @@ public class MyTischtennisParser extends AbstractBaseParser {
         page = Client.getPage("https://www.mytischtennis.de/clicktt/home-tab?id=adressen");
         parser.parseLigaAdressen(page, liga);
 
-        mannschaft = findUrlForMannschaft(mannschaft.getName(), liga);
+        mannschaft = liga.findMannschaftByName(mannschaft.getName());
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
         mannschaft.getSpiele().addAll(liga.getSpieleFor(mannschaft.getName(), spielplan2));
 
         mannschaft.setLiga(liga);
         return mannschaft;
-    }
-
-    private Mannschaft findUrlForMannschaft(String name, Liga liga) {
-        for (Mannschaft mannschaft : liga.getMannschaften()) {
-            if (name.equals(mannschaft.getName())) {
-                return mannschaft;
-            }
-        }
-        return null;
     }
 
     @NonNull

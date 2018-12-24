@@ -972,15 +972,21 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     public void parseLigaAdressen(String page, Liga liga) {
-        String fixedPage = page.replace(" Herren ", " ");
         for (Mannschaft mannschaft : liga.getMannschaften()) {
-            System.out.println("mannschaft = " + mannschaft);
-            ParseResult result = readBetween(fixedPage, 0, mannschaft.getVereinId(), "<div class=\"panel-heading\">");
-            if (isEmpty(result)) //last entry
-                result = readBetween(fixedPage, 0, mannschaft.getVereinId(), null);
+            ParseResult result = readBetween(page, 0, mannschaft.getVereinId(), "<div class=\"panel-heading\">");
+            //last entry
+            if (isEmpty(result)) {
+                result = readBetween(page, 0, mannschaft.getVereinId(), null);
+            }
 
             parseMannschaftsLokale(result.result, mannschaft);
 
+            ParseResult  resultUrl = readBetween(page, result.start - 70, "<div class=\"panel-heading\">", "</div>");
+
+            String href[] = readHrefAndATag(resultUrl.result);
+            String url = href[0];
+            mannschaft.setVereinUrl(MYTT + url);
+//            System.out.println("url= " + mannschaft.getVereinUrl());
         }
     }
 
@@ -993,10 +999,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             if (isEmpty(result))
                 break;
-
+//todo nr !!!!!
             String lokal = cleanupSpielLokalHtml(result.result);
             mannschaft.addSpielLokal(lokal);
-            System.out.println("lokal = " + lokal);
+//            System.out.println("lokal = " + lokal);
             idx = result.end;
 
         }

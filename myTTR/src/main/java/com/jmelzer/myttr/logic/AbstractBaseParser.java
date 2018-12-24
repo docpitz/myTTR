@@ -59,7 +59,12 @@ public class AbstractBaseParser {
         public String result;
 
         public int end;
+        public int start;
 
+        ParseResult(String result, int start, int end) {
+            this(result, end);
+            this.start = start;
+        }
         ParseResult(String result, int end) {
             trim(result);
             this.end = end;
@@ -140,7 +145,7 @@ public class AbstractBaseParser {
         if (idxEndTag == -1) {
             return new ParseResult(null, end);
         } else {
-            return new ParseResult(page.substring(s + l, idxEndTag), end);
+            return new ParseResult(page.substring(s + l, idxEndTag), s, end);
         }
     }
 

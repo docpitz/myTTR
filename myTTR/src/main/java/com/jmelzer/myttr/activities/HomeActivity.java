@@ -193,7 +193,7 @@ public class HomeActivity extends BaseActivity {
         subm.clear(); // delete place holder
         List<Favorite> list = favoriteManager.getFavorites();
         int id = 100;
-        subm.add(0, 99, Menu.NONE, "Mein Verein");
+//        subm.add(0, 99, Menu.NONE, "Mein Verein");
         for (Favorite favorite : list) {
             subm.add(0, id++, Menu.NONE, favorite.typeForMenu() + ": " + favorite.getName());
         }

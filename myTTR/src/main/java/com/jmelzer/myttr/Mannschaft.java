@@ -161,6 +161,7 @@ public class Mannschaft {
                 ", sum='" + sum + '\'' +
                 ", points='" + points + '\'' +
                 ", url='" + url + '\'' +
+                ", vereinUrl='" + vereinUrl + '\'' +
                 '}';
     }
 

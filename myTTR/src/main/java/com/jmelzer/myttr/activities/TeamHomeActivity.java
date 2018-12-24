@@ -79,4 +79,8 @@ public class TeamHomeActivity extends BaseActivity {
     public void aufstellungen(View view) {
         new ReadOwnTeamTask(this, LigaMannschaftBilanzActivity.class).execute();
     }
+
+    public void club(View view) {
+        new ReadOwnTeamTask(this, LigaVereinActivity.class).execute();
+    }
 }

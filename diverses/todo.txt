@@ -39,12 +39,11 @@ Features
 - Liga-Rangliste für beliebige Klassen
 TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 - Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
-- Doppelte bEinträge in den Masken, wenn 2x aufgerufen (z.B Spiellokale)
 
 
 - Kalender: offene Punkte
-    - Löschen alter Einträge?
     - Spielverlegung
+    - Löschen alter Einträge?
     - Calls reduzieren, zum schluss machen
     - Schöneren Dialog machen?
     - todo aus activity entfernen
