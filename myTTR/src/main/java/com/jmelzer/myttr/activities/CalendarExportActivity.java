@@ -21,6 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +86,7 @@ public class CalendarExportActivity extends BaseActivity {
             try {
                 Date d = format.parse(mannschaftspiel.getDate());
                 if (now.getTime() < d.getTime()) {
+                    mannschaftspiel.setChecked(true);
                     list.add(mannschaftspiel);
                 }
             } catch (ParseException e) {
@@ -170,10 +174,6 @@ public class CalendarExportActivity extends BaseActivity {
             return;
         }
 
-//        CalendarSelectionDialog dlg = new CalendarSelectionDialog(this);
-//        dlg.show();
-
-
         ContentResolver cr = getContentResolver();
         Uri uri = CalendarContract.Calendars.CONTENT_URI;
         String selection = CalendarContract.Calendars.VISIBLE + " = 1 ";//AND " + CalendarContract.Calendars.IS_PRIMARY + "=1";
@@ -229,6 +229,9 @@ public class CalendarExportActivity extends BaseActivity {
         int counter = 0;
         int exists = 0;
         for (Mannschaftspiel mannschaftspiel : selectedMannschaft.getSpiele()) {
+            if (!mannschaftspiel.getChecked())
+                continue;
+
             try {
                 Date d = format.parse(mannschaftspiel.getDate());
                 if (now.getTime() < d.getTime()) {
@@ -266,6 +269,7 @@ public class CalendarExportActivity extends BaseActivity {
     private static class ViewHolder {
         TextView date;
         TextView title;
+        CheckBox checkbox;
     }
 
     class CalendarRowAdapter extends ArrayAdapter<Mannschaftspiel> {
@@ -285,21 +289,35 @@ public class CalendarExportActivity extends BaseActivity {
                 convertView = layoutInflater.inflate(R.layout.calendar_row, parent, false);
                 holder = new ViewHolder();
                 holder.date = convertView.findViewById(R.id.cal_date);
-                holder.title = (TextView) convertView.findViewById(R.id.cal_name);
+                holder.title = convertView.findViewById(R.id.cal_name);
+                holder.checkbox = convertView.findViewById(R.id.checkBoxCal);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            Mannschaftspiel item = getItem(position);
+            final Mannschaftspiel item = getItem(position);
             holder.date.setText(item.getDate());
             String title = String.format("%s - %s",
                     item.getHeimMannschaft().getName(),
                     item.getGastMannschaft().getName());
-//
             holder.title.setText(title);
+
+            holder.checkbox.setId(position);
+            holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    changeButton();
+                    item.setChecked(isChecked);
+                }
+            });
 
             return convertView;
         }
+    }
+    void changeButton() {
+        Button button = findViewById(R.id.btnActionCal);
+        button.setText("Ausgwählte Einträge in den Kalendar übernehmen");
+
     }
 }

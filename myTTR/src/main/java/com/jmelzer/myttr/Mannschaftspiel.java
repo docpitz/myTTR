@@ -22,6 +22,8 @@ public class Mannschaftspiel {
     String saetze;
     boolean played;
     List<Spielbericht> spiele = new ArrayList<>();
+    /** for ui */
+    private boolean checked;
 
     public Mannschaftspiel() {
         played = false;
@@ -150,5 +152,13 @@ public class Mannschaftspiel {
 
     public String oneLine() {
         return date + "  " + heimMannschaft.getName() + " - " + gastMannschaft.getName() + "  " + ergebnis;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public boolean getChecked() {
+        return checked;
     }
 }

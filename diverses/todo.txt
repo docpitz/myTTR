@@ -43,10 +43,11 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 
 
 - Kalender: offene Punkte
-    - Auswhl von Einträgen
     - Löschen alter Einträge?
     - Spielverlegung
     - Calls reduzieren, zum schluss machen
+    - Schöneren Dialog machen?
+    - todo aus activity entfernen
 
 erledigt
 ---------

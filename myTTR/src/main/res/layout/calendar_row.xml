@@ -25,6 +25,12 @@
             tools:text="TTC RG Porz III - TTG St. Augustin II"/>
 
 
-
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBoxCal"
+            android:layout_marginLeft="3dp"
+            android:checked="true"
+            android:layout_weight="0.5"/>
     </LinearLayout>
 </LinearLayout>
