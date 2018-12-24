@@ -17,6 +17,8 @@ import java.util.TreeMap;
 public class Mannschaft {
 
 
+    private String vereinId;
+
     public String getSpielLokal(int nrSpielLokal) {
         return spielLokale.get(nrSpielLokal);
     }
@@ -253,5 +255,13 @@ public class Mannschaft {
     public int hashCode() {
 
         return Objects.hash(name);
+    }
+
+    public void setVereinId(String vereinId) {
+        this.vereinId = vereinId;
+    }
+
+    public String getVereinId() {
+        return vereinId;
     }
 }

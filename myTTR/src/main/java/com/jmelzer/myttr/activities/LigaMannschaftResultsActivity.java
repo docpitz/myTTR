@@ -67,7 +67,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, clz) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-                clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
+//                clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
             }
 
             @Override

@@ -493,6 +493,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
         MyTTClickTTParserImpl parser = new MyTTClickTTParserImpl();
         parser.parseErgebnisse(page, liga, spielplan);
         parser.parseSpielplanLinks(liga, page);
+
+
         if (spielplan2 == Liga.Spielplan.RR) {
             page = Client.getPage(liga.getUrlRR());
             parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
@@ -501,7 +503,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
             parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
 
-        mannschaft.setUrl(findUrlForMannschaft(mannschaft.getName(), liga));
+        page = Client.getPage("https://www.mytischtennis.de/clicktt/home-tab?id=adressen");
+        parser.parseLigaAdressen(page, liga);
+
+        mannschaft = findUrlForMannschaft(mannschaft.getName(), liga);
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
         mannschaft.getSpiele().addAll(liga.getSpieleFor(mannschaft.getName(), spielplan2));
@@ -510,10 +515,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return mannschaft;
     }
 
-    private String findUrlForMannschaft(String name, Liga liga) {
+    private Mannschaft findUrlForMannschaft(String name, Liga liga) {
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             if (name.equals(mannschaft.getName())) {
-                return mannschaft.getUrl();
+                return mannschaft;
             }
         }
         return null;

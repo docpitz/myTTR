@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.R;
+import com.jmelzer.myttr.model.Saison;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,10 +38,12 @@ import java.util.Date;
 import java.util.List;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
 public class CalendarExportActivity extends BaseActivity {
 
+    public static final String ORGANIZER = "myttrinfo@gmail.com";
     @SuppressLint("SimpleDateFormat")
     SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy HH:mm");
 
@@ -104,8 +108,9 @@ public class CalendarExportActivity extends BaseActivity {
 
 
         // The ID of the recurring event whose instances you are searching for in the Instances table
-        String selection = CalendarContract.Instances.TITLE + " = ?";
-        String[] selectionArgs = new String[]{eventTitle};
+        String selection = CalendarContract.Instances.TITLE + " = ? AND " +
+                CalendarContract.Instances.ORGANIZER + " = ?" ;
+        String[] selectionArgs = new String[]{eventTitle, ORGANIZER};
 
         // Construct the query with the desired date range.
         Uri.Builder builder = CalendarContract.Instances.CONTENT_URI.buildUpon();
@@ -114,20 +119,30 @@ public class CalendarExportActivity extends BaseActivity {
 
         // Submit the query
         Cursor cur = getContentResolver().query(builder.build(), INSTANCE_PROJECTION, selection, selectionArgs, null);
-
-        return cur.getCount() > 0;
+        if (cur != null) {
+            boolean b = cur.getCount() > 0;
+            cur.close();
+            return b;
+        }
+        return false;
     }
 
-    ContentValues createEntry(long calID, long startMillis, long endMillis, String title, String description) {
+    ContentValues createEntry(long calID, long startMillis, long endMillis, String title, String location) {
         ContentValues values = new ContentValues();
         values.put(CalendarContract.Events.DTSTART, startMillis);
         values.put(CalendarContract.Events.DTEND, endMillis);
         values.put(CalendarContract.Events.TITLE, title);
-        values.put(CalendarContract.Events.DESCRIPTION, description);
+        values.put(CalendarContract.Events.EVENT_LOCATION, location.replace("\n", " "));
         values.put(CalendarContract.Events.CALENDAR_ID, calID);
+        values.put(CalendarContract.Events.DESCRIPTION, saison());
         values.put(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Berlin");
-        values.put(CalendarContract.Events.ORGANIZER, "myttrinfo@gmail.com");
+        values.put(CalendarContract.Events.ORGANIZER, ORGANIZER);
         return values;
+    }
+
+    @NonNull
+    private String saison() {
+        return "Saison " + ACTUAL_SAISON.getName();
     }
 
     private void checkPermissions(int callbackId, String... permissionsId) {
@@ -205,7 +220,6 @@ public class CalendarExportActivity extends BaseActivity {
         dialog.show();
 
 
-
     }
 
     @SuppressLint("MissingPermission")
@@ -226,7 +240,7 @@ public class CalendarExportActivity extends BaseActivity {
                             mannschaftspiel.getHeimMannschaft().getName(),
                             mannschaftspiel.getGastMannschaft().getName());
                     if (!isEventAlreadyExist(title, d.getTime(), cal.getTimeInMillis())) {
-                        ContentValues values = createEntry(calID, d.getTime(), cal.getTimeInMillis(), title, title);
+                        ContentValues values = createEntry(calID, d.getTime(), cal.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
                         cr.insert(CalendarContract.Events.CONTENT_URI, values);
                         Log.d(Constants.LOG_TAG, "created=" + values);
                         counter++;

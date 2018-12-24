@@ -43,11 +43,10 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 
 
 - Kalender: offene Punkte
-    - Kalender listen und auswählen
     - Auswhl von Einträgen
     - Löschen alter Einträge?
     - Spielverlegung
-    - Adresse einfügen
+    - Calls reduzieren, zum schluss machen
 
 erledigt
 ---------
