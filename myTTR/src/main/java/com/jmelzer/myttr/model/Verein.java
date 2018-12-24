@@ -16,8 +16,6 @@ import java.util.TreeMap;
 public class Verein implements Favorite {
 
 
-
-
     public static class SpielLokal {
         public Integer nr;
         public String text;
@@ -105,17 +103,21 @@ public class Verein implements Favorite {
     public String getNameForFav() {
         return name;
     }
+
     public void addSpielLokale(Map<Integer, String> integerStringMap) {
         lokaleUnformatted.putAll(integerStringMap);
     }
+
     public void addSpielLokal(int nr, String lokal) {
-        lokaleUnformatted.put(nr , lokal);
+        lokaleUnformatted.put(nr, lokal);
     }
 
     public List<String> getLokaleUnformatted() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < lokaleUnformatted.size(); i++) {
-            list.add(lokaleUnformatted.get(1));
+        for (String s : lokaleUnformatted.values()) {
+            if (!s.isEmpty())
+                list.add(lokaleUnformatted.get(1));
+
         }
         return Collections.unmodifiableList(list);
     }
@@ -138,7 +140,7 @@ public class Verein implements Favorite {
     }
 
     public void addSpielLokal(SpielLokal lokal) {
-        lokale.put(lokal.nr , lokal);
+        lokale.put(lokal.nr, lokal);
     }
 
     public void addMannschaft(Mannschaft m) {
@@ -236,6 +238,7 @@ public class Verein implements Favorite {
     public SpielLokal getLokal(int nr) {
         return lokale.get(nr);
     }
+
     public List<SpielLokal> getLokale() {
         List<SpielLokal> list = new ArrayList<>();
         for (int i = 1; i < lokale.size(); i++) {
