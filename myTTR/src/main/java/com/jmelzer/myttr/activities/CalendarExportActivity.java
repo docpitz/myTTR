@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.model.Saison;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -103,6 +102,60 @@ public class CalendarExportActivity extends BaseActivity {
 
     }
 
+    private long findEventsByTitle(String eventTitle, long starttime, boolean checkTime) {
+        final String[] INSTANCE_PROJECTION = new String[]{
+                CalendarContract.Instances.EVENT_ID,       // 0
+                CalendarContract.Instances.BEGIN,         // 1
+                CalendarContract.Instances.TITLE,        // 2
+                CalendarContract.Instances.ORGANIZER    //3
+        };
+
+        // Specify the date range you want to search for recurring event instances
+        Calendar beginTime = Calendar.getInstance();
+        long startMillis = beginTime.getTimeInMillis();
+        Calendar endTime = Calendar.getInstance();
+        endTime.add(Calendar.MONTH, 6);
+        long endMillis = endTime.getTimeInMillis();
+
+
+        // The ID of the recurring event whose instances you are searching for in the Instances table
+        String selection = CalendarContract.Instances.TITLE + " = ?";
+        String[] selectionArgs = new String[]{eventTitle};
+
+        // Construct the query with the desired date range.
+        Uri.Builder builder = CalendarContract.Instances.CONTENT_URI.buildUpon();
+        ContentUris.appendId(builder, startMillis);
+        ContentUris.appendId(builder, endMillis);
+
+        // Submit the query
+        Cursor cur = getContentResolver().query(builder.build(), INSTANCE_PROJECTION, selection, selectionArgs, null);
+
+        long id = -1;
+        if (cur != null) {
+            if (cur.moveToNext()) {
+                // Get the field values
+                long timeStart = cur.getLong(1);
+                if (checkTime) {
+                    if (timeStart != starttime) {
+                        id = (cur.getLong(0));
+                    }
+                } else
+                    id = (cur.getLong(0));
+
+
+            }
+
+            cur.close();
+        }
+        return id;
+    }
+
+    private void deleteEvent(long eventID) {
+        Uri deleteUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventID);
+        int rows = getContentResolver().delete(deleteUri, null, null);
+        Log.i("Calendar", "Rows deleted: " + rows);
+    }
+
     private boolean isEventAlreadyExist(String eventTitle, long startMillis, long endMillis) {
         final String[] INSTANCE_PROJECTION = new String[]{
                 CalendarContract.Instances.EVENT_ID,      // 0
@@ -113,14 +166,24 @@ public class CalendarExportActivity extends BaseActivity {
 
         // The ID of the recurring event whose instances you are searching for in the Instances table
         String selection = CalendarContract.Instances.TITLE + " = ? AND " +
-                CalendarContract.Instances.ORGANIZER + " = ?" ;
-        String[] selectionArgs = new String[]{eventTitle, ORGANIZER};
+                CalendarContract.Instances.ORGANIZER + " = ? AND " +
+                CalendarContract.Instances.DESCRIPTION + " = ?";
+        String[] selectionArgs = new String[]{eventTitle, ORGANIZER, saison()};
+
+//        String selection = CalendarContract.Instances.TITLE + " = ?";
+//        String[] selectionArgs = new String[] {eventTitle};
+
+        Calendar beginTime = Calendar.getInstance();
+        startMillis = beginTime.getTimeInMillis();
+        Calendar endTime = Calendar.getInstance();
+        endTime.add(Calendar.MONTH, 6);
+        endMillis = endTime.getTimeInMillis();
 
         // Construct the query with the desired date range.
         Uri.Builder builder = CalendarContract.Instances.CONTENT_URI.buildUpon();
         ContentUris.appendId(builder, startMillis);
         ContentUris.appendId(builder, endMillis);
-
+//
         // Submit the query
         Cursor cur = getContentResolver().query(builder.build(), INSTANCE_PROJECTION, selection, selectionArgs, null);
         if (cur != null) {
@@ -227,29 +290,40 @@ public class CalendarExportActivity extends BaseActivity {
         ContentResolver cr = getContentResolver();
         Date now = new Date();
         int counter = 0;
+        int moved = 0;
         int exists = 0;
         for (Mannschaftspiel mannschaftspiel : selectedMannschaft.getSpiele()) {
             if (!mannschaftspiel.getChecked())
                 continue;
 
             try {
-                Date d = format.parse(mannschaftspiel.getDate());
-                if (now.getTime() < d.getTime()) {
-                    Log.d(Constants.LOG_TAG, "Date=" + d);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(d);
-                    cal.add(Calendar.HOUR, 3); // 3h
+                Date startTime = format.parse(mannschaftspiel.getDate());
+                if (now.getTime() < startTime.getTime()) {
+                    Log.d(Constants.LOG_TAG, "Date=" + startTime);
+                    Calendar endTime = Calendar.getInstance();
+                    endTime.setTime(startTime);
+                    endTime.add(Calendar.HOUR, 3); // 3h
                     String title = String.format("%s - %s",
                             mannschaftspiel.getHeimMannschaft().getName(),
                             mannschaftspiel.getGastMannschaft().getName());
-                    if (!isEventAlreadyExist(title, d.getTime(), cal.getTimeInMillis())) {
-                        ContentValues values = createEntry(calID, d.getTime(), cal.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
+                    long id = findEventsByTitle(title, startTime.getTime(), false);
+                    if (id == -1) {
+                        ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
                         cr.insert(CalendarContract.Events.CONTENT_URI, values);
                         Log.d(Constants.LOG_TAG, "created=" + values);
                         counter++;
                     } else {
-                        exists++;
-                        Log.d(Constants.LOG_TAG, "event exists " + title);
+                        //Spielverlegung?
+                        id = findEventsByTitle(title, startTime.getTime(), true);
+                        if (id > -1) {
+                            deleteEvent(id);
+                            ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
+                            cr.insert(CalendarContract.Events.CONTENT_URI, values);
+                            moved++;
+                        } else {
+                            exists++;
+                            Log.d(Constants.LOG_TAG, "event exists " + title);
+                        }
                     }
                 }
                 //todo remove before online
@@ -261,8 +335,9 @@ public class CalendarExportActivity extends BaseActivity {
         }
 
         Toast.makeText(this,
-                "Es wurden " + counter + " Einträge in den Kalender geschrieben\n" +
-                        exists + " Einträge existierten bereits",
+                "Es wurden " + counter + " neue Einträge in den Kalender geschrieben\n" +
+                        exists + " Einträge existierten bereits\n" +
+                        moved + " Spielverlegungen geändert.",
                 Toast.LENGTH_LONG).show();
     }
 
@@ -315,6 +390,7 @@ public class CalendarExportActivity extends BaseActivity {
             return convertView;
         }
     }
+
     void changeButton() {
         Button button = findViewById(R.id.btnActionCal);
         button.setText("Ausgwählte Einträge in den Kalendar übernehmen");
