@@ -41,6 +41,7 @@ import java.util.List;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
+import static com.jmelzer.myttr.MyApplication.getSpieleForActualMannschaft;
 import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
 public class CalendarExportActivity extends BaseActivity {
@@ -60,9 +61,8 @@ public class CalendarExportActivity extends BaseActivity {
 
     // The indices for the projection array above.
     private static final int PROJECTION_ID_INDEX = 0;
-    private static final int PROJECTION_ACCOUNT_NAME_INDEX = 1;
     private static final int PROJECTION_DISPLAY_NAME_INDEX = 2;
-    private static final int PROJECTION_OWNER_ACCOUNT_INDEX = 3;
+    private List<Mannschaftspiel> gamesInFuture;
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
@@ -78,15 +78,17 @@ public class CalendarExportActivity extends BaseActivity {
 
         setContentView(R.layout.calendar);
 
-        Date now = new Date();
-        List<Mannschaftspiel> list = new ArrayList<>();
+        List<Mannschaftspiel> spiele = getSpieleForActualMannschaft();
 
-        for (Mannschaftspiel mannschaftspiel : selectedMannschaft.getSpiele()) {
+        Date now = new Date();
+        gamesInFuture = new ArrayList<>();
+
+        for (Mannschaftspiel mannschaftspiel : spiele) {
             try {
                 Date d = format.parse(mannschaftspiel.getDate());
                 if (now.getTime() < d.getTime()) {
                     mannschaftspiel.setChecked(true);
-                    list.add(mannschaftspiel);
+                    gamesInFuture.add(mannschaftspiel);
                 }
             } catch (ParseException e) {
                 Log.e(Constants.LOG_TAG, e.getMessage());
@@ -96,7 +98,7 @@ public class CalendarExportActivity extends BaseActivity {
         ListView listview = findViewById(R.id.cal_list);
         CalendarRowAdapter adapter = new CalendarRowAdapter(this,
                 android.R.layout.simple_list_item_1,
-                list);
+                gamesInFuture);
         listview.setAdapter(adapter);
 
 
@@ -156,50 +158,15 @@ public class CalendarExportActivity extends BaseActivity {
         Log.i("Calendar", "Rows deleted: " + rows);
     }
 
-    private boolean isEventAlreadyExist(String eventTitle, long startMillis, long endMillis) {
-        final String[] INSTANCE_PROJECTION = new String[]{
-                CalendarContract.Instances.EVENT_ID,      // 0
-                CalendarContract.Instances.BEGIN,         // 1
-                CalendarContract.Instances.TITLE          // 2
-        };
-
-
-        // The ID of the recurring event whose instances you are searching for in the Instances table
-        String selection = CalendarContract.Instances.TITLE + " = ? AND " +
-                CalendarContract.Instances.ORGANIZER + " = ? AND " +
-                CalendarContract.Instances.DESCRIPTION + " = ?";
-        String[] selectionArgs = new String[]{eventTitle, ORGANIZER, saison()};
-
-//        String selection = CalendarContract.Instances.TITLE + " = ?";
-//        String[] selectionArgs = new String[] {eventTitle};
-
-        Calendar beginTime = Calendar.getInstance();
-        startMillis = beginTime.getTimeInMillis();
-        Calendar endTime = Calendar.getInstance();
-        endTime.add(Calendar.MONTH, 6);
-        endMillis = endTime.getTimeInMillis();
-
-        // Construct the query with the desired date range.
-        Uri.Builder builder = CalendarContract.Instances.CONTENT_URI.buildUpon();
-        ContentUris.appendId(builder, startMillis);
-        ContentUris.appendId(builder, endMillis);
-//
-        // Submit the query
-        Cursor cur = getContentResolver().query(builder.build(), INSTANCE_PROJECTION, selection, selectionArgs, null);
-        if (cur != null) {
-            boolean b = cur.getCount() > 0;
-            cur.close();
-            return b;
-        }
-        return false;
-    }
-
     ContentValues createEntry(long calID, long startMillis, long endMillis, String title, String location) {
         ContentValues values = new ContentValues();
         values.put(CalendarContract.Events.DTSTART, startMillis);
         values.put(CalendarContract.Events.DTEND, endMillis);
         values.put(CalendarContract.Events.TITLE, title);
-        values.put(CalendarContract.Events.EVENT_LOCATION, location.replace("\n", " "));
+        if (location != null) {
+            String cleanedLocatiom = location.replace("\n", " ");
+            values.put(CalendarContract.Events.EVENT_LOCATION, cleanedLocatiom);
+        }
         values.put(CalendarContract.Events.CALENDAR_ID, calID);
         values.put(CalendarContract.Events.DESCRIPTION, saison());
         values.put(CalendarContract.Events.EVENT_TIMEZONE, "Europe/Berlin");
@@ -245,25 +212,14 @@ public class CalendarExportActivity extends BaseActivity {
         long calID = 0;
         final List<String> names = new ArrayList<>();
         final List<Long> ids = new ArrayList<>();
-        while (cur != null && cur.moveToNext()) {
-            String displayName = null;
-            String accountName = null;
-            String ownerName = null;
-
-            // Get the field values
+        if (cur == null) {
+            Toast.makeText(CalendarExportActivity.this, "Konnte den Kalender nicht lesen", Toast.LENGTH_LONG).show();
+            return;
+        }
+        while (cur.moveToNext()) {
             calID = cur.getLong(PROJECTION_ID_INDEX);
-            displayName = cur.getString(PROJECTION_DISPLAY_NAME_INDEX);
-            accountName = cur.getString(PROJECTION_ACCOUNT_NAME_INDEX);
-            ownerName = cur.getString(PROJECTION_OWNER_ACCOUNT_INDEX);
-
-            names.add(displayName);
+            names.add(cur.getString(PROJECTION_DISPLAY_NAME_INDEX));
             ids.add(calID);
-
-            // Do something with the values...
-            String calendarInfo = String.format("Calendar ID: %s\nDisplay Name: %s\nAccount Name: %s\nOwner Name: %s", calID, displayName, accountName, ownerName);
-
-            Log.d(Constants.LOG_TAG, calendarInfo);
-
         }
         cur.close();
 
@@ -292,7 +248,7 @@ public class CalendarExportActivity extends BaseActivity {
         int counter = 0;
         int moved = 0;
         int exists = 0;
-        for (Mannschaftspiel mannschaftspiel : selectedMannschaft.getSpiele()) {
+        for (Mannschaftspiel mannschaftspiel : gamesInFuture) {
             if (!mannschaftspiel.getChecked())
                 continue;
 
@@ -309,8 +265,9 @@ public class CalendarExportActivity extends BaseActivity {
                     long id = findEventsByTitle(title, startTime.getTime(), false);
                     if (id == -1) {
                         ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
-                        cr.insert(CalendarContract.Events.CONTENT_URI, values);
+                        Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
                         Log.d(Constants.LOG_TAG, "created=" + values);
+                        Log.d(Constants.LOG_TAG, "uri=" + uri);
                         counter++;
                     } else {
                         //Spielverlegung?
@@ -326,8 +283,6 @@ public class CalendarExportActivity extends BaseActivity {
                         }
                     }
                 }
-                //todo remove before online
-                if (counter > 0 || exists > 0) break;
             } catch (ParseException e) {
                 Log.e(Constants.LOG_TAG, e.getMessage());
             }
@@ -337,7 +292,7 @@ public class CalendarExportActivity extends BaseActivity {
         Toast.makeText(this,
                 "Es wurden " + counter + " neue Einträge in den Kalender geschrieben\n" +
                         exists + " Einträge existierten bereits\n" +
-                        moved + " Spielverlegungen geändert.",
+                        moved + " Spiele aktualisiert.",
                 Toast.LENGTH_LONG).show();
     }
 

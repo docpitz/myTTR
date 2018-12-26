@@ -20,6 +20,8 @@ import java.util.List;
 /**
  * Created by J. Melzer on 21.02.2015.
  * Shows the results of a team in a saison.
+ *
+ * @see LigaMannschaftOrLigaResultsFragment
  */
 public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     MytClickTTWrapper clickTTWrapper = new MytClickTTWrapper();
@@ -67,7 +69,24 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, clz) {
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException {
-//                clickTTWrapper.readMannschaftsInfo(MyApplication.saison, MyApplication.selectedMannschaft);
+                boolean read = false;
+                boolean own = false;
+
+                for (Mannschaftspiel mannschaftspiel : MyApplication.getSpieleForActualMannschaft()) {
+                    if (mannschaftspiel.getHeimMannschaft().getSpielLokale().size() == 0) {
+                        read = true;
+                        if (mannschaftspiel.getHeimMannschaft().getLiga().getUrl().contains("/clicktt/home"))
+                            own = true;
+
+                        break;
+                    }
+                }
+                if (read) {
+                    if (own)
+                        clickTTWrapper.readOwnAdressen(MyApplication.selectedMannschaft.getLiga());
+                    else
+                        clickTTWrapper.readAdressen(MyApplication.saison, MyApplication.getSelectedLiga());
+                }
             }
 
             @Override

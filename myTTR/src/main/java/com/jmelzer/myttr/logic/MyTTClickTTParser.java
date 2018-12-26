@@ -43,4 +43,7 @@ public interface MyTTClickTTParser {
     Verband readTopLigen() throws NetworkException, LoginExpiredException;
     Verein readOwnVerein() throws NetworkException, LoginExpiredException, NoClickTTException;
 
+    void readAdressen(Liga mannschaft) throws LoginExpiredException, NetworkException;
+
+    void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException;
 }

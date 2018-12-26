@@ -125,6 +125,11 @@ public class MyApplication extends Application {
         MyApplication.selectedLiga = selectedLiga;
     }
 
+    public static List<Mannschaftspiel> getSpieleForActualMannschaft() {
+        if (selectedMannschaft.getSpiele().size() > 0)
+            return selectedMannschaft.getSpiele();
+        return selectedLiga.getSpieleFor(selectedMannschaft.getName());
+    }
     public static Liga getSelectedLiga() {
         return selectedLiga;
     }

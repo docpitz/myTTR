@@ -503,8 +503,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
 
-        page = Client.getPage("https://www.mytischtennis.de/clicktt/home-tab?id=adressen");
-        parser.parseLigaAdressen(page, liga);
+
 
         mannschaft = liga.findMannschaftByName(mannschaft.getName());
 

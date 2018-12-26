@@ -16,6 +16,8 @@ import java.util.List;
 public class Liga implements Favorite {
 
 
+
+
     public enum Spielplan {
         VR,
         RR,
@@ -105,6 +107,8 @@ public class Liga implements Favorite {
     public void addMannschaft(Mannschaft m) {
         if (!mannschaften.contains(m))
             mannschaften.add(m);
+
+        m.setLiga(this);
     }
 
     public void clearMannschaften() {
@@ -174,6 +178,11 @@ public class Liga implements Favorite {
         return urlVR;
     }
 
+    public List<Mannschaftspiel> getSpieleFor(String name) {
+        List<Mannschaftspiel> list = filterSpiele(spieleVorrunde, name);
+        list.addAll(filterSpiele(spieleRueckrunde, name));
+        return list;
+    }
     public List<Mannschaftspiel> getSpieleFor(String mannschaft, Spielplan spielplan) {
         if (spielplan == Spielplan.VR) {
             if (mannschaft != null) {

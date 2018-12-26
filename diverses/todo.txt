@@ -34,7 +34,6 @@ Features
 - Vereinswechsellisten
 - Mehr Statistiken
 - AUswahl der Mannschaften: https://www.mytischtennis.de/community/ttrrechner/index
--Noch mehr Fehlerhandling für mytt.de
 - Verbandsoberligen fehlen https://www.mytischtennis.de/clicktt/DTTB/17-18/ligen/VOL-Ost-Nord-17-18
 - Liga-Rangliste für beliebige Klassen
 TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
@@ -42,12 +41,8 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 
 
 - Kalender: offene Punkte
-    - Spielverlegung
-    - Löschen alter Einträge?
-    - Calls reduzieren, zum schluss machen
     - Schöneren Dialog machen?
     - Querformat
-    - todo aus activity entfernen
 
 erledigt
 ---------
@@ -179,4 +174,5 @@ Amdroid 9
 -----
 6.0.0
 - Neuer Menupunkt: Mein Team
+- Export von Terminen in den Google Kalender (inkl Updates von Spielverleggungen für beliebige Mannschaften)
 - Neue Cups Urls

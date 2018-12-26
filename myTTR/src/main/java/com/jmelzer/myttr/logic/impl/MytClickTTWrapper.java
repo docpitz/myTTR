@@ -132,4 +132,16 @@ public class MytClickTTWrapper {
     public Verein readOwnVerein() throws LoginExpiredException, NetworkException, NoClickTTException {
         return newParser.readOwnVerein();
     }
+
+    public void readAdressen(Saison saison, Liga liga) throws LoginExpiredException, NetworkException {
+        if (isClickTT(saison)) {
+            return;
+        } else {
+            newParser.readAdressen(liga);
+        }
+    }
+
+    public void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException {
+        newParser.readOwnAdressen(liga);
+    }
 }
