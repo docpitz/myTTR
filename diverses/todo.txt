@@ -126,8 +126,6 @@ https://www.mytischtennis.de/community/events?personId=0
 SearchActivity
 https://www.mytischtennis.de/community/ajax/_rankingList?verein=SV+Wilhelmsburg&vereinId=1380%2CHTTV&alleSpielberechtigen=yes
 
-- Kalender Export
-    https://developer.android.com/guide/topics/providers/calendar-provider
 - Optimierung Laden Liga
 - Vereins Bookmark geht nicjt !!
 - Wieder click-tt benutzen siehe https://openuserjs.org/scripts/MaoDelinSc/noMyTT/source
@@ -171,8 +169,7 @@ Dein Verein als Favorit
 Pfalz Trophy fixed (neue URL)
 Amdroid 9
 
------
 6.0.0
-- Neuer Menupunkt: Mein Team
-- Export von Terminen in den Google Kalender (inkl Updates von Spielverleggungen für beliebige Mannschaften)
-- Neue Cups Urls
+-----------
+Jetzt mit Teamfunktionen und Kalenderexport aus dem Spielplan für beliebige Ligen
+Neue Cups für 2019

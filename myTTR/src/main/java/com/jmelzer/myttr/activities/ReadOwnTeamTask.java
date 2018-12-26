@@ -24,9 +24,13 @@ public class ReadOwnTeamTask extends BaseAsyncTask {
         MyTischtennisParser p = new MyTischtennisParser();
         MyTTClickTTParser newParser = new MyTTClickTTParserImpl();
         MyApplication.selectedMannschaft = p.readOwnTeam();
-        if (targetClz == LigaVereinActivity.class)
-            MyApplication.selectedVerein = newParser.readVerein(selectedMannschaft.getVereinUrl());
+        if (targetClz == LigaVereinActivity.class) {
+            if (selectedMannschaft.getVereinUrl() == null) {
+                newParser.readOwnAdressen(selectedMannschaft.getLiga());
+            }
 
+            MyApplication.selectedVerein = newParser.readVerein(selectedMannschaft.getVereinUrl());
+        }
         MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
     }
 

@@ -1,4 +1,4 @@
 <h3>myTTR</h3>
-Version 5.0.6<br>
-Copyright 2014-2018<br>
+Version 6.0.1<br>
+Copyright 2014-2019<br>
 Juergen Melzer

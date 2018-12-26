@@ -186,6 +186,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
      */
     @Override
     public Verein readVerein(String url) throws NetworkException, NoClickTTException, LoginExpiredException {
+        if (url == null)
+            throw new NoClickTTException();
+        
         String page = Client.getPage(url);
         validatePage(page);
         Verein v = parseVerein(page);
