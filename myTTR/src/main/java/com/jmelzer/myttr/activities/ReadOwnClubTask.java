@@ -38,7 +38,7 @@ public class ReadOwnClubTask extends BaseAsyncTask {
 
     @Override
     protected boolean dataLoaded() {
-        return selectedMannschaft.getVereinUrl() != null ;
+        return selectedMannschaft.getVereinUrl() != null;
     }
 
 }
