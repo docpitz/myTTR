@@ -81,6 +81,6 @@ public class TeamHomeActivity extends BaseActivity {
     }
 
     public void club(View view) {
-        new ReadOwnTeamTask(this, LigaVereinActivity.class).execute();
+        new ReadOwnClubTask(this, LigaVereinActivity.class).execute();
     }
 }

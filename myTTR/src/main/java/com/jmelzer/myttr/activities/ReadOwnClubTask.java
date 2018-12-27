@@ -15,8 +15,8 @@ import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 
 import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
-public class ReadOwnTeamTask extends BaseAsyncTask {
-    public ReadOwnTeamTask(Activity parent, Class targetClz) {
+public class ReadOwnClubTask extends BaseAsyncTask {
+    public ReadOwnClubTask(Activity parent, Class targetClz) {
         super(parent, targetClz);
     }
 
@@ -25,22 +25,20 @@ public class ReadOwnTeamTask extends BaseAsyncTask {
         MyTischtennisParser p = new MyTischtennisParser();
         MyTTClickTTParser newParser = new MyTTClickTTParserImpl();
         MyApplication.selectedMannschaft = p.readOwnTeam();
-        if (targetClz == LigaVereinActivity.class) {
-            if (selectedMannschaft.getVereinUrl() == null) {
-                newParser.readOwnAdressen(selectedMannschaft.getLiga());
-            }
-            if (selectedMannschaft.getVereinUrl() == null) {
-                Toast.makeText(parent, "Konnte die URL des Vereines nicht ermitteln", Toast.LENGTH_LONG).show();
-            } else {
-                MyApplication.selectedVerein = newParser.readVerein(selectedMannschaft.getVereinUrl());
-            }
+        if (selectedMannschaft.getVereinUrl() == null) {
+            newParser.readOwnAdressen(selectedMannschaft.getLiga());
         }
-        MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
+        if (selectedMannschaft.getVereinUrl() == null) {
+            errorMessage = "Konnte die URL des Vereines nicht ermitteln";
+        } else {
+            MyApplication.selectedVerein = newParser.readVerein(selectedMannschaft.getVereinUrl());
+            MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
+        }
     }
 
     @Override
     protected boolean dataLoaded() {
-        return selectedMannschaft.getVereinUrl() != null && MyApplication.selectedMannschaft != null;
+        return selectedMannschaft.getVereinUrl() != null ;
     }
 
 }

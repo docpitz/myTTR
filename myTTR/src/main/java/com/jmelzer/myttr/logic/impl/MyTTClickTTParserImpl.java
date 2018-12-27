@@ -53,7 +53,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
 
         ParseResult result = readBetweenOpenTag(page, 0, "<p class=\"alert alert-danger\"", "</p>");
-        return "Mytischtennis Meldung: " + result.result;
+        return "Mytischtennis Meldung: " + safeResult(result);
     }
 
     @Override
@@ -1044,8 +1044,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             String href[] = readHrefAndATag(resultUrl.result);
             String url = href[0];
-            mannschaft.setVereinUrl(MYTT + url);
-//            System.out.println("url= " + mannschaft.getVereinUrl());
+            if (url.length() > 0) {
+                mannschaft.setVereinUrl(MYTT + url);
+            }
         }
     }
 

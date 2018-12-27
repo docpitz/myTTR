@@ -92,7 +92,6 @@ public class FavoriteDataBaseAdapter implements DbAdapter {
             String url = cursor.getString(cursor.getColumnIndex("URL"));
             String ds = cursor.getString(cursor.getColumnIndex("CHANGED_AT"));
             String clzName = cursor.getString(cursor.getColumnIndex("CLZ"));
-            Log.i(Constants.LOG_TAG, "clzName="+clzName);
             try {
                 Date d = DbUtil.formatter.parse(ds);
                 Class clz = Class.forName(clzName);
