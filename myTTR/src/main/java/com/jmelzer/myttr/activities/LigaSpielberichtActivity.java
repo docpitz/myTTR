@@ -133,6 +133,10 @@ public class LigaSpielberichtActivity extends BaseActivity {
     }
 
     private void startSpielerDetail(final String name, final String url, final MyTTPlayerIds myTTPlayerIdsForPlayer) {
+        if (myTTPlayerIdsForPlayer == null) {
+            return;
+        }
+
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaSpielerResultsActivity.class) {
 
             @Override

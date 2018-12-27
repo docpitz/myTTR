@@ -48,8 +48,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public static final String EMPTY_NAME = "--------";
 
     public String parseError(String page) {
-        if (page == null)
+        if (page == null) {
             return "unbekannt";
+        }
 
         ParseResult result = readBetweenOpenTag(page, 0, "<p class=\"alert alert-danger\"", "</p>");
         return "Mytischtennis Meldung: " + result.result;
@@ -98,8 +99,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         if (!isEmpty(result)) {
             while (true) {
                 ParseResult resultP = readBetween(result.result, start, "<p", "</p>");
-                if (isEmpty(resultP))
+                if (isEmpty(resultP)) {
                     break;
+                }
                 String ahref[] = readHrefAndATag(resultP.result);
                 String url = ahref[0];
                 String name = readBetween(ahref[1], 0, "<strong>", "</strong>").result;
@@ -121,7 +123,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     @Override
     public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
         if (mannschaft.getUrl() == null) //zurueckgezogen
+        {
             return;
+        }
 
         //https://www.mytischtennis.de/clicktt/xxxxx/gruppe/345988/mannschaft/2190980/TV-Bergheim-IV/spielerbilanzen/vr
         //->
@@ -139,8 +143,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readVR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlVR() != null) {
             String page = Client.getPage(liga.getUrlVR());
-            if (page.contains("Vorrunde"))
+            if (page.contains("Vorrunde")) {
                 parseErgebnisse(page, liga, Liga.Spielplan.VR);
+            }
         }
     }
 
@@ -148,8 +153,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readRR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlRR() != null) {
             String page = Client.getPage(liga.getUrlRR());
-            if (page.contains("Rückrunde"))
+            if (page.contains("Rückrunde")) {
                 parseErgebnisse(page, liga, Liga.Spielplan.RR);
+            }
         }
     }
 
@@ -157,8 +163,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (liga.getUrlGesamt() != null) {
             String url = liga.getUrlGesamt();
-            if (!url.contains(liga.getHttpAndDomain()))
+            if (!url.contains(liga.getHttpAndDomain())) {
                 url = liga.getHttpAndDomain() + url;
+            }
             String page = Client.getPage(url);
             validatePage(page);
             parseErgebnisse(page, liga, Liga.Spielplan.GESAMT);
@@ -186,9 +193,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
      */
     @Override
     public Verein readVerein(String url) throws NetworkException, NoClickTTException, LoginExpiredException {
-        if (url == null)
+        if (url == null) {
             throw new NoClickTTException();
-        
+        }
+
         String page = Client.getPage(url);
         validatePage(page);
         Verein v = parseVerein(page);
@@ -224,8 +232,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 ParseResult pr = readBetween(row[0], 0, "</span>", "</span>");
                 if (!isEmpty(pr)) {
                     lastdate = pr.result;
-                } else
+                } else {
                     lastdate = "";
+                }
             }
             String uhrzeit = row[1];
             uhrzeit = removeHtml(uhrzeit);
@@ -233,8 +242,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String ahref[] = readHrefAndATag(row[7]);
             if (ahref[1] != null) {
                 m.setErgebnis(ahref[1].replaceAll(" ", ""));
-                if (!ahref[0].isEmpty())
+                if (!ahref[0].isEmpty()) {
                     m.setUrlDetail(MYTT + ahref[0]);
+                }
             } else {
 //                m.setErgebnis(row[6]);
                 m.setErgebnis(null);
@@ -518,15 +528,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 spielbericht.setSpieler2Name(spielbericht.getSpieler2Name() + " / " + playerName(ahref[1]));
             } else {
                 String line = row[2];
-                if (!line.contains("nicht anwesend")) {
+                if (!unparsablePlayer(line)) {
                     spielbericht.setMyTTPlayerIdsForPlayer1(parsePlayerIds(line));
                     String[] ahref = readHrefAndATag(line);
                     spielbericht.setSpieler1Name(ahref[1]);
-                } else
+                } else {
                     spielbericht.setSpieler1Name(EMPTY_NAME);
+                }
 
                 line = row[4];
-                if (!line.contains("nicht anwesend")) {
+                if (!unparsablePlayer(line)) {
                     spielbericht.setMyTTPlayerIdsForPlayer2(parsePlayerIds(line));
                     String[] ahref = readHrefAndATag(line);
                     spielbericht.setSpieler2Name(ahref[1]);
@@ -543,11 +554,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
     }
 
+    private boolean unparsablePlayer(String line) {
+        return line.contains("nicht anwesend") || line.contains("sonstiger Spieler");
+    }
+
     private String playerName(String s) {
-        if (s == null || s.isEmpty())
+        if (s == null || s.isEmpty()) {
             return EMPTY_NAME;
-        else
+        } else {
             return s;
+        }
     }
 
     public void parseErgebnisse(String page, Liga liga, Liga.Spielplan spielplan) {
@@ -557,6 +573,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         liga.clearSpiele(spielplan);
 
         ParseResult table = readBetweenOpenTag(page, 0, "<table class=\"table table-mytt", "</table>");
+        if (isEmpty(table)) {
+            return;
+        }
+
         while (true) {
             ParseResult resultrow = readBetween(table.result, idx, "<tr>", "</tr>");
             if (isEmpty(resultrow)) {
@@ -582,15 +602,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                     lastDate = datum;
                     datum += time;
                 }
-            } else {
+            } else if (lastDate != null) {
                 if (lastDate.contains(" ")) { //strip time
                     lastDate = lastDate.substring(0, lastDate.indexOf(' '));
                 }
                 datum = lastDate + time;
             }
             String url = readHrefAndATag(row[6])[0];
-            if (url != null && !url.isEmpty())
+            if (url != null && !url.isEmpty()) {
                 url = MYTT + url;
+            }
 
             String ergebnis = readHrefAndATag(row[6])[1];
             if (ergebnis == null || ergebnis.isEmpty()) {
@@ -675,8 +696,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (!isEmpty(resultNr)) {
                 mannschaft.setKontaktNr(resultNr.result);
                 resultNr = readBetween(result.result, resultNr.end, "<i class=\"icon-phone\"></i>", "<");
-                if (!isEmpty(resultNr))
+                if (!isEmpty(resultNr)) {
                     mannschaft.setKontaktNr2(resultNr.result);
+                }
             }
         }
     }
@@ -784,16 +806,21 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     private LigaPosType parsePosType(String s) {
-        if (s == null)
+        if (s == null) {
             return LigaPosType.NOTHING;
-        if (s.contains("Relegation") && s.contains("green"))
+        }
+        if (s.contains("Relegation") && s.contains("green")) {
             return LigaPosType.AUF_RELEGATION;
-        if (s.contains("Aufsteiger"))
+        }
+        if (s.contains("Aufsteiger")) {
             return LigaPosType.AUFSTEIGER;
-        if (s.contains("Relegation") && s.contains("red"))
+        }
+        if (s.contains("Relegation") && s.contains("red")) {
             return LigaPosType.AB_RELEGATION;
-        if (s.contains("Absteiger"))
+        }
+        if (s.contains("Absteiger")) {
             return LigaPosType.ABSTEIGER;
+        }
 
         return LigaPosType.NOTHING;
     }
@@ -861,8 +888,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     void parseLigaLinks(List<Liga> ligen, ParseResult startResult) {
         String kategorie = readKategorie(startResult);
-        if (kategorie == null)
+        if (kategorie == null) {
             return;
+        }
 
         ParseResult result;
         int idx = 0;
@@ -900,13 +928,17 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         int idx = 0;
         while (true) {
             ParseResult pr = readBetween(page, idx, "<a", "</a>");
-            if (isEmpty(pr))
+            if (isEmpty(pr)) {
                 break;
+            }
             String ahref[] = readHrefAndATag("<a" + pr.result + "</a>");
-            if (ahref == null) break;
+            if (ahref == null) {
+                break;
+            }
             idx = pr.end;
-            if (ahref[1].contains("click-TT-Spielerportrait"))
+            if (ahref[1].contains("click-TT-Spielerportrait")) {
                 ahref[1] = "click-TT-Spielerportrait";
+            }
             links.put(ahref[1], MYTT + ahref[0]);
         }
         spieler.setHead2head(links.get("Head to Head Ergebnisse"));
@@ -941,8 +973,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     void parseBilanzen(String page, Mannschaft mannschaft) {
-        if (page.contains("Die Pokalspiele sind noch nicht fertig"))
+        if (page.contains("Die Pokalspiele sind noch nicht fertig")) {
             return;
+        }
         ParseResult table = readBetween(page, 0, "gamestatsTable", null);
         mannschaft.clearBilanzen();
         int idx = 0;
@@ -955,13 +988,15 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             idx = resultrow.end;
             String[] row = tableRowAsArray("<td>" + resultrow.result, 10, false);
 //            printRows(row);
-            if (row[1].isEmpty())
+            if (row[1].isEmpty()) {
                 break;
+            }
 
             List<String[]> posResults = new ArrayList<>();
             for (int i = 3; i < 8; i++) {
-                if (!row[i].isEmpty())
+                if (!row[i].isEmpty()) {
                     posResults.add(new String[]{"" + (i - 2), row[i]});
+                }
 
             }
             String gesamt = row[9].replace("\r\n", "");
@@ -976,7 +1011,13 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     MyTTPlayerIds parsePlayerIds(String line) {
         ParseResult personId = readBetween(line, 0, "personId: '", "'");
+        if (isEmpty(personId)) {
+            return null;
+        }
         ParseResult clubNr = readBetween(line, 0, "clubNr: '", "'");
+        if (isEmpty(clubNr)) {
+            return null;
+        }
         return new MyTTPlayerIds(personId.result, clubNr.result);
     }
 
@@ -999,7 +1040,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             parseMannschaftsLokale(result.result, mannschaft);
 
-            ParseResult  resultUrl = readBetween(page, result.start - 70, "<div class=\"panel-heading\">", "</div>");
+            ParseResult resultUrl = readBetween(page, result.start - 70, "<div class=\"panel-heading\">", "</div>");
 
             String href[] = readHrefAndATag(resultUrl.result);
             String url = href[0];
@@ -1015,8 +1056,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         while (true) {
             ParseResult result = readBetween(resultAll, idx, "</strong>", "<strong>");
 
-            if (isEmpty(result))
+            if (isEmpty(result)) {
                 break;
+            }
 //todo nr !!!!!
             String lokal = cleanupSpielLokalHtml(result.result);
             mannschaft.addSpielLokal(lokal);
