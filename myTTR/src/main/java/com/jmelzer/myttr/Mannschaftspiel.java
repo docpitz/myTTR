@@ -114,7 +114,7 @@ public class Mannschaftspiel {
         this.date = date;
     }
 
-    public String getActualSpellokal() {
+    public String getActualSpiellokal() {
         return getHeimMannschaft().getSpielLokal(nrSpielLokal);
     }
     public Mannschaft getHeimMannschaft() {

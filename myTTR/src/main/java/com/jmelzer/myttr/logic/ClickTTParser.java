@@ -621,6 +621,7 @@ public class ClickTTParser extends AbstractBaseParser {
         mannschaft.setVereinUrl(UrlUtil.safeUrl(mannschaft.getHttpAndDomain(), aref[0]));
         //block with spiellokale
         result = readBetween(result.result, 0, "<td>", "</td>");
+        int nr = 1;
         if (result != null && !result.isEmpty()) {
             int idx = 0;
             while (true) {
@@ -636,7 +637,7 @@ public class ClickTTParser extends AbstractBaseParser {
                 idx = resultLokal.end - 3;
                 String lokal = cleanupSpielLokalHtml(resultLokal.result);
 //                resultLokal = readBetween(result.result, idx, "</b>", "<br />");
-                mannschaft.addSpielLokal(lokal);
+                mannschaft.addSpielLokal(nr++, lokal);
             }
         }
 //        Spielerbilanzen

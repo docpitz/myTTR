@@ -152,19 +152,6 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
                 }
             }, 2000); // the timer will count 5 seconds....
 
-//            Toast.makeText(parent, "Nur nette Menschen dürfen meine App benutzen ....", Toast.LENGTH_LONG).show();
-//            Thread.currentThread();
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e1) {
-//
-//            }
-//            System.exit(-1);
             return;
         }
         if (errorMessage != null) {

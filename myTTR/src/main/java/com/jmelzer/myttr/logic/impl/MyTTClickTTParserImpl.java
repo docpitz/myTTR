@@ -270,7 +270,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             m.setNrSpielLokal(Integer.parseInt(ahref[1]));
             heim.setVereinId(readBetween(ahref[0], 0, "/verein/", "/").result);
         } catch (NumberFormatException e) {
-            Log.d(Constants.LOG_TAG, "couldn't parse number ahref[1]");
+            Log.d(Constants.LOG_TAG, "couldn't parse number ahref[1]:" + ahref[1]);
             m.setNrSpielLokal(-1);
         }
     }
@@ -1053,6 +1053,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     private void parseMannschaftsLokale(String part, Mannschaft mannschaft) {
         ParseResult resultAll = readBetween(part, 0, "<strong>Spiellokal", "Mannschaftskontakt");
         int idx = 0;
+        int nr = 1;
 
         while (true) {
             ParseResult result = readBetween(resultAll, idx, "</strong>", "<strong>");
@@ -1062,7 +1063,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
 //todo nr !!!!!
             String lokal = cleanupSpielLokalHtml(result.result);
-            mannschaft.addSpielLokal(lokal);
+            mannschaft.addSpielLokal(nr++, lokal);
 //            System.out.println("lokal = " + lokal);
             idx = result.end;
 

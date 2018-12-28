@@ -204,8 +204,8 @@ public class Mannschaft {
     public void addSpielLokale(Map<Integer, String> integerStringMap) {
         spielLokale.putAll(integerStringMap);
     }
-    public void addSpielLokal(String spielLokal) {
-        spielLokale.put(1, spielLokal);
+    public void addSpielLokal(int nr, String spielLokal) {
+        spielLokale.put(nr, spielLokal);
     }
 
     public void addBilanz(SpielerAndBilanz b) {

@@ -42,7 +42,6 @@ import java.util.List;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 import static com.jmelzer.myttr.MyApplication.getSpieleForActualMannschaft;
-import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
 public class CalendarExportActivity extends BaseActivity {
 
@@ -56,12 +55,14 @@ public class CalendarExportActivity extends BaseActivity {
             CalendarContract.Calendars._ID,                           // 0
             CalendarContract.Calendars.ACCOUNT_NAME,                  // 1
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,         // 2
-            CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
+            CalendarContract.Calendars.OWNER_ACCOUNT,                  // 3
+            CalendarContract.Calendars.CALENDAR_LOCATION              // 4
     };
 
     // The indices for the projection array above.
     private static final int PROJECTION_ID_INDEX = 0;
     private static final int PROJECTION_DISPLAY_NAME_INDEX = 2;
+    private static final int PROJECTION_CALENDAR_LOCATION = 4;
     private List<Mannschaftspiel> gamesInFuture;
 
     @Override
@@ -104,12 +105,13 @@ public class CalendarExportActivity extends BaseActivity {
 
     }
 
-    private long findEventsByTitle(String eventTitle, long starttime, boolean checkTime) {
+    private long findEventsByTitleAndLocation(String eventTitle, long starttime, String location, boolean checkAllParamms) {
         final String[] INSTANCE_PROJECTION = new String[]{
                 CalendarContract.Instances.EVENT_ID,       // 0
                 CalendarContract.Instances.BEGIN,         // 1
                 CalendarContract.Instances.TITLE,        // 2
-                CalendarContract.Instances.ORGANIZER    //3
+                CalendarContract.Instances.ORGANIZER,    //3
+                CalendarContract.Instances.EVENT_LOCATION  // 4
         };
 
         // Specify the date range you want to search for recurring event instances
@@ -137,14 +139,15 @@ public class CalendarExportActivity extends BaseActivity {
             if (cur.moveToNext()) {
                 // Get the field values
                 long timeStart = cur.getLong(1);
-                if (checkTime) {
+                if (checkAllParamms) {
                     if (timeStart != starttime) {
                         id = (cur.getLong(0));
+                    } else if (!location.replaceAll("\n", " ").equals(cur.getString(PROJECTION_CALENDAR_LOCATION))) {
+                        id = (cur.getLong(0));
                     }
-                } else
+                } else {
                     id = (cur.getLong(0));
-
-
+                }
             }
 
             cur.close();
@@ -185,8 +188,9 @@ public class CalendarExportActivity extends BaseActivity {
             permissions = permissions && ContextCompat.checkSelfPermission(this, p) == PERMISSION_GRANTED;
         }
 
-        if (!permissions)
+        if (!permissions) {
             ActivityCompat.requestPermissions(this, permissionsId, callbackId);
+        }
     }
 
     public void addAll(View view) {
@@ -249,8 +253,9 @@ public class CalendarExportActivity extends BaseActivity {
         int moved = 0;
         int exists = 0;
         for (Mannschaftspiel mannschaftspiel : gamesInFuture) {
-            if (!mannschaftspiel.getChecked())
+            if (!mannschaftspiel.getChecked()) {
                 continue;
+            }
 
             try {
                 Date startTime = format.parse(mannschaftspiel.getDate());
@@ -262,19 +267,19 @@ public class CalendarExportActivity extends BaseActivity {
                     String title = String.format("%s - %s",
                             mannschaftspiel.getHeimMannschaft().getName(),
                             mannschaftspiel.getGastMannschaft().getName());
-                    long id = findEventsByTitle(title, startTime.getTime(), false);
+                    long id = findEventsByTitleAndLocation(title, startTime.getTime(), mannschaftspiel.getActualSpiellokal(), false);
                     if (id == -1) {
-                        ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
+                        ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpiellokal());
                         Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
                         Log.d(Constants.LOG_TAG, "created=" + values);
                         Log.d(Constants.LOG_TAG, "uri=" + uri);
                         counter++;
                     } else {
                         //Spielverlegung?
-                        id = findEventsByTitle(title, startTime.getTime(), true);
+                        id = findEventsByTitleAndLocation(title, startTime.getTime(), mannschaftspiel.getActualSpiellokal(), true);
                         if (id > -1) {
                             deleteEvent(id);
-                            ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpellokal());
+                            ContentValues values = createEntry(calID, startTime.getTime(), endTime.getTimeInMillis(), title, mannschaftspiel.getActualSpiellokal());
                             cr.insert(CalendarContract.Events.CONTENT_URI, values);
                             moved++;
                         } else {

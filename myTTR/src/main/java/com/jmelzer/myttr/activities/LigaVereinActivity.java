@@ -249,7 +249,7 @@ public class LigaVereinActivity extends BaseActivity {
                                     new ReadInfoAsyncTask(childElem.mannschaftspiel.getHeimMannschaft(),
                                             childElem.mannschaftspiel.getNrSpielLokal(), LigaVereinActivity.this).execute();
                                 } else
-                                    GoogleMapStarter.showMap(LigaVereinActivity.this, childElem.mannschaftspiel.getActualSpellokal());
+                                    GoogleMapStarter.showMap(LigaVereinActivity.this, childElem.mannschaftspiel.getActualSpiellokal());
                             }
                         });
                     } else {

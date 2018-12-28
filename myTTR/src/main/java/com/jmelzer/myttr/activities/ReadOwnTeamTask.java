@@ -23,24 +23,13 @@ public class ReadOwnTeamTask extends BaseAsyncTask {
     @Override
     protected void callParser() throws NetworkException, LoginExpiredException, NoDataException, ValidationException, NoClickTTException {
         MyTischtennisParser p = new MyTischtennisParser();
-        MyTTClickTTParser newParser = new MyTTClickTTParserImpl();
         MyApplication.selectedMannschaft = p.readOwnTeam();
-        if (targetClz == LigaVereinActivity.class) {
-            if (selectedMannschaft.getVereinUrl() == null) {
-                newParser.readOwnAdressen(selectedMannschaft.getLiga());
-            }
-            if (selectedMannschaft.getVereinUrl() == null) {
-                Toast.makeText(parent, "Konnte die URL des Vereines nicht ermitteln", Toast.LENGTH_LONG).show();
-            } else {
-                MyApplication.selectedVerein = newParser.readVerein(selectedMannschaft.getVereinUrl());
-            }
-        }
         MyApplication.setSelectedLiga(selectedMannschaft.getLiga());
     }
 
     @Override
     protected boolean dataLoaded() {
-        return selectedMannschaft.getVereinUrl() != null && MyApplication.selectedMannschaft != null;
+        return MyApplication.selectedMannschaft != null;
     }
 
 }

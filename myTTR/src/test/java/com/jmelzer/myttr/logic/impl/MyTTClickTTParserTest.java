@@ -294,8 +294,14 @@ public class MyTTClickTTParserTest {
         for (Mannschaft mannschaft : liga.getMannschaften()) {
             assertTrue(mannschaft.toString(), mannschaft.getSpielLokale().size() > 0);
             assertNotNull(mannschaft.toString(), mannschaft.getVereinUrl());
+            if (mannschaft.getName().contains("Hürth")) {
+                assertTrue(mannschaft.getSpielLokal(1).contains("Clementinenschule"));
+                assertTrue(mannschaft.getSpielLokal(2).contains("Kendenich"));
+                assertTrue(mannschaft.getSpielLokal(3).contains("Friedrich-Ebert-Realschule"));
+            }
         }
     }
+
     @Test
     public void parseVerein() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein.html");
