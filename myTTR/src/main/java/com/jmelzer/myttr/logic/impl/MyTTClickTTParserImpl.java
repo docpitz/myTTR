@@ -341,8 +341,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException {
+    public void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException, NoClickTTException {
         String page = Client.getPage("https://www.mytischtennis.de/clicktt/home-tab?id=adressen");
+        validatePage(page);
         parseLigaAdressen(page, liga);
     }
 

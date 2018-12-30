@@ -45,5 +45,5 @@ public interface MyTTClickTTParser {
 
     void readAdressen(Liga mannschaft) throws LoginExpiredException, NetworkException;
 
-    void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException;
+    void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException, NoClickTTException;
 }

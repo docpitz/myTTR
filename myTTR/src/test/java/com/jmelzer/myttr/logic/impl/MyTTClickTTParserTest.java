@@ -64,8 +64,11 @@ public class MyTTClickTTParserTest {
         parser.parseLiga(page, liga);
         assertEquals(12, liga.getMannschaften().size());
         for (Mannschaft mannschaft : liga.getMannschaften()) {
-            System.out.println("mannschaft = " + mannschaft);
-            assertTrue(liga.getSpieleFor(mannschaft.getName(), Liga.Spielplan.VR).size() > 0);
+//            System.out.println("mannschaft = " + mannschaft);
+            assertNotNull(mannschaft.getName());
+            assertNotNull(mannschaft.getUrl());
+            assertNotNull(mannschaft.getGameStatistic());
+            assertNotNull(mannschaft.getLiga());
         }
     }
 
@@ -364,25 +367,26 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan.html");
         Verein v = new Verein();
         parser.parseVereinSpielplan(v, page);
-        assertEquals(60, v.getSpielplan().size());
-        assertEquals("Fr. 09.02.2018 19:30", v.getSpielplan().get(0).getDate());
-        assertEquals("9:1", v.getSpielplan().get(2).getErgebnis());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
-                v.getSpielplan().get(3).getUrlDetail());
-        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
-        assertEquals("TTC Berrenrath", v.getSpielplan().get(0).getHeimMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Senioren-60-Bezirksliga/gruppe/309305/mannschaft/1952624/TTC-Berrenrath/spielerbilanzen/rr",
+        assertEquals(121, v.getSpielplan().size());
+        assertEquals("07.01.2019 19:30", v.getSpielplan().get(0).getDate());
+//        assertEquals("9:1", v.getSpielplan().get(2).getErgebnis());
+//        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
+//                v.getSpielplan().get(3).getUrlDetail());
+//        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
+        assertEquals("TV Bergheim IV", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-3-Kreisklasse-B-Gruppe-2-Rueckrunde/gruppe/345988/mannschaft/2190980/TV-Bergheim-IV/spielerbilanzen/vr",
                 v.getSpielplan().get(0).getHeimMannschaft().getUrl());
-        assertEquals("TTG St. Augustin", v.getSpielplan().get(0).getGastMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Senioren-60-Bezirksliga/gruppe/309305/mannschaft/1956159/TTG-St-Augustin/spielerbilanzen/rr",
+        assertEquals("TTG St. Augustin IX", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-3-Kreisklasse-B-Gruppe-2-Rueckrunde/gruppe/345988/mannschaft/2132351/TTG-St-Augustin-IX/spielerbilanzen/vr",
                 v.getSpielplan().get(0).getGastMannschaft().getUrl());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/verein/151020/TTC-Berrenrath/info",
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/verein/156026/TV-Bergheim-IV/info",
                 v.getSpielplan().get(0).getUrlSpielLokal());
         assertEquals(1, v.getSpielplan().get(0).getNrSpielLokal());
+        assertEquals(2, v.getSpielplan().get(2).getNrSpielLokal());
 
-        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
-        assertEquals("", v.getSpielplan().get(59).getErgebnis());
-        assertNull(v.getSpielplan().get(59).getUrlDetail());
+//        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
+//        assertEquals("", v.getSpielplan().get(59).getErgebnis());
+//        assertNull(v.getSpielplan().get(59).getUrlDetail());
 
     }
 
@@ -390,15 +394,6 @@ public class MyTTClickTTParserTest {
     public void removeHtml() {
         assertEquals("18:30", parser.removeHtml("18:30\r\n" +
                 "<a data-toggle='tooltip' title='Heimrecht in der Begegnung wurde getauscht'>t</a>"));
-    }
-
-    @Test
-    public void parseVereinSpielplan2() throws Exception {
-        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan2.html");
-        Verein v = new Verein();
-        parser.parseVereinSpielplan(v, page);
-        assertEquals(95, v.getSpielplan().size());
-        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(94).getDate());
     }
 
     @Test

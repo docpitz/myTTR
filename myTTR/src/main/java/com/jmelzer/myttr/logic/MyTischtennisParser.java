@@ -170,9 +170,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return findPlayer(sp);
     }
 
-    void validatePage(String page) throws NoDataException {
+    void validatePage(String page) throws NoDataException, LoginExpiredException {
         if (page.contains("Der Spieler ist noch keinem Team zugeordnet!")) {
             throw new NoDataException("Der Spieler ist noch keinem Team zugeordnet!");
+        }
+        if (page.contains("Hier einloggen")) {
+            throw new LoginExpiredException();
         }
     }
 
@@ -401,8 +404,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private void validateStillLoginActive(String page) throws LoginExpiredException {
-        if (page.contains("<title>Login") || page.contains("XML does not fit processing settings"))
+        if (page.contains("<title>Login") || page.contains("XML does not fit processing settings")) {
             throw new LoginExpiredException();
+        }
     }
 
     public String getNameOfOwnClub() {
@@ -504,7 +508,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
 
 
-
         mannschaft = liga.findMannschaftByName(mannschaft.getName());
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
@@ -515,7 +518,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     @NonNull
-    Mannschaft parseOwnTeam(String page) throws NoDataException {
+    Mannschaft parseOwnTeam(String page) throws NoDataException, LoginExpiredException {
         Mannschaft mannschaft = new Mannschaft();
 
         List<SpielerAndBilanz> players = parsePlayerFromTeamV2(page);
@@ -528,7 +531,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return mannschaft;
     }
 
-    List<Mannschaftspiel> parseSpiele(String page) throws NoDataException {
+    List<Mannschaftspiel> parseSpiele(String page) throws NoDataException, LoginExpiredException {
         validatePage(page);
         List<Mannschaftspiel> mannschaftspiels = new ArrayList<>();
         ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Spielplan</h3>", "</table>");
@@ -712,8 +715,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //    Lüdinghausen, Jakob vons
     String parseFirstnameFromBadName(String line) {
         String s = line;
-        if (line.contains("<"))
+        if (line.contains("<")) {
             s = line.substring(0, line.indexOf("<"));
+        }
 
         s = s.substring(s.indexOf(",") + 2);
         //strip possible s oder '
@@ -735,7 +739,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
 
-    List<SpielerAndBilanz> parsePlayerFromTeamV2(String page) throws NoDataException {
+    List<SpielerAndBilanz> parsePlayerFromTeamV2(String page) throws NoDataException, LoginExpiredException {
         validatePage(page);
         List<SpielerAndBilanz> players = new ArrayList<>();
         ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Einzelbilanzen</h3>", "</table>");
@@ -755,8 +759,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
 //            printRows(row);
             List<String[]> posResults = new ArrayList<>();
             for (int i = 3; i < 8; i++) {
-                if (!row[i].isEmpty())
+                if (!row[i].isEmpty()) {
                     posResults.add(new String[]{"" + (i - 2), row[i]});
+                }
 
             }
             String gesamt = row[10];
@@ -775,7 +780,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return new MyTTPlayerIds(personId.result, null);
     }
 
-    List<Player> parsePlayerFromTeam(String page) throws NoDataException {
+    List<Player> parsePlayerFromTeam(String page) throws NoDataException, LoginExpiredException {
         validatePage(page);
         Set<Player> set = new TreeSet<Player>(new Comparator<Player>() {
             @Override
@@ -1035,10 +1040,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
             printRows(row);
             String date = row[0];
             String type;
-            if (row[1].contains("span"))
+            if (row[1].contains("span")) {
                 type = readBetween(row[1], 0, ">", "</span>").result;
-            else
+            } else {
                 type = row[1];
+            }
             Game game = new Game();
             String erg = readBetweenOpenTag(row[2], 0, "<strong", "</strong>").result;
             game.addSet(row[3]);

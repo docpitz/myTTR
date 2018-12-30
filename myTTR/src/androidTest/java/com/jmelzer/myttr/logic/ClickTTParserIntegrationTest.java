@@ -1,11 +1,11 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
+/*
+ * Copyright (C) allesklar.com AG
+ * All rights reserved.
+ *
+ * Author: juergi
+ * Date: 27.12.13
+ *
+ */
 
 
 package com.jmelzer.myttr.logic;
@@ -143,7 +143,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
 //            }
 
             Log.i(Constants.LOG_TAG, "read bezirke from '" + verband.getName() + "'");
-            parser.readBezirke(verband, Saison.SAISON_2015);
+            parser.readBezirke(verband, Saison.SAISON_2018);
             if (verband.getBezirkList().size() == 0) {
                 Log.e(Constants.LOG_TAG, "no bezirk in '" + verband.getName() + "'");
             } else {
@@ -286,6 +286,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
             }
         }
     }
+
     @SmallTest
     public void testOneCup() throws Exception {
         Tournament tournament = new Tournament();
@@ -295,10 +296,11 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         for (Competition competition : tournament.getCompetitions()) {
             parser.readTournamentResults(competition);
             if (competition.getResults() != null) {
-                assertTrue(competition.getGroups().size()>0);
+                assertTrue(competition.getGroups().size() > 0);
             }
         }
     }
+
     @SmallTest
     public void testCups() throws Exception {
         List<Cup> cups = Cup.cups();
@@ -317,9 +319,10 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
                     }
                     parser.readTournamentResults(competition);
                     if (competition.getResults() != null) {
-                        if(competition.getGroups().size()==0)
+                        if (competition.getGroups().size() == 0) {
                             System.out.println("break");
-                        assertTrue(competition.getGroups().size()>0);
+                        }
+                        assertTrue(competition.getGroups().size() > 0);
                     }
                 }
             }

@@ -114,6 +114,7 @@ public class Verband {
         this.name = name;
     }
 
+
     public Verband(String name, String myTTClickTTUrl, String url, String tUrl) {
         this(name, url, tUrl);
         this.myTTClickTTUrl = myTTClickTTUrl;
@@ -137,17 +138,19 @@ public class Verband {
         List<Verband> list = new ArrayList<>();
         list.add(new Verband("", "", null));
         for (Verband verband : verbaende) {
-            if (verband.gettUrl() != null)
+            if (verband.gettUrl() != null) {
                 list.add(verband);
+            }
         }
         return list;
     }
 
     public String getHttpAndDomain(Saison saison) {
-        if (isMyTTUrl(saison))
+        if (isMyTTUrl(saison)) {
             return UrlUtil.getHttpAndDomain(myTTClickTTUrl);
-        else
+        } else {
             return UrlUtil.getHttpAndDomain(url);
+        }
     }
 
     private boolean isMyTTUrl(Saison saison) {
@@ -175,10 +178,11 @@ public class Verband {
     }
 
     public String getUrlFixed(Saison saison) {
-        if (isMyTTUrl(saison))
+        if (isMyTTUrl(saison)) {
             return myTTClickTTUrl;
-        else
+        } else {
             return replaceYear(url, saison);
+        }
     }
 
     String replaceYear(String url, Saison saison) {
@@ -255,6 +259,16 @@ public class Verband {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Verband)obj).name.equals(name);
+        return ((Verband) obj).name.equals(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Verband{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", myTTClickTTUrl='" + myTTClickTTUrl + '\'' +
+                ", tUrl='" + tUrl + '\'' +
+                '}';
     }
 }

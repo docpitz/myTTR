@@ -142,7 +142,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException {
+    public void readOwnAdressen(Liga liga) throws LoginExpiredException, NetworkException, NoClickTTException {
         newParser.readOwnAdressen(liga);
     }
 }

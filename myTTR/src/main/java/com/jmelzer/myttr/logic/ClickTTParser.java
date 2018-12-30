@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -425,7 +427,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     public Verband readTopLigen(Saison saison) throws NetworkException, LoginExpiredException {
         String url = "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         Verband.dttb.addAllLigen(ligen, saison);
         return Verband.dttb;
@@ -439,20 +441,20 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public void readLiga(Liga liga) throws NetworkException, LoginExpiredException {
         String url = liga.getUrl();
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         parseLiga(liga, page);
     }
 
     public void readDetail(Mannschaftspiel spiel) throws NetworkException, LoginExpiredException {
         String url = spiel.getUrlDetail();
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         parseMannschaftspiel(page, spiel);
     }
 
     public void readVR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlVR() != null) {
             String url = liga.getHttpAndDomain() + liga.getUrlVR();
-            String page = Client.getPage(url);
+            String page = getFixedPage(url);
             parseErgebnisse(liga, page, Liga.Spielplan.VR);
         }
     }
@@ -460,7 +462,7 @@ public class ClickTTParser extends AbstractBaseParser {
     public void readRR(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlRR() != null) {
             String url = liga.getHttpAndDomain() + liga.getUrlRR();
-            String page = Client.getPage(url);
+            String page = getFixedPage(url);
             parseErgebnisse(liga, page, Liga.Spielplan.RR);
         }
     }
@@ -468,7 +470,7 @@ public class ClickTTParser extends AbstractBaseParser {
     public void readGesamtSpielplan(Liga liga) throws NetworkException, LoginExpiredException {
         if (liga.getUrlGesamt() != null) {
             String url = liga.getHttpAndDomain() + liga.getUrlGesamt();
-            String page = Client.getPage(url);
+            String page = getFixedPage(url);
             parseErgebnisse(liga, page, Liga.Spielplan.GESAMT);
         }
     }
@@ -479,9 +481,28 @@ public class ClickTTParser extends AbstractBaseParser {
     public void readLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         String url = "";
         url += verband.getUrlFixed(saison);
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         verband.addAllLigen(ligen, saison);
+    }
+
+    private String getFixedPage(String url) throws NetworkException, LoginExpiredException {
+        String page = Client.getPage(url);
+        Pattern pattern = Pattern.compile("https://www\\.mytischtennis\\.de/clicktt/([^/]+)/.+?/gruppe/([^/]+)/tabelle/gesamt");
+        ParseResult resultMeta = readBetween(page, 0, "name=\"nuLigaStatsUrl\" content=\"/nuLigaTTDE/wa/leaguePage/view" , "\"");
+
+        Matcher matcher = pattern.matcher(page);
+
+        StringBuffer sb = new StringBuffer(page.length());
+
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, "https://$1.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage" +
+                    resultMeta.result + "&group=$2");
+        }
+
+        matcher.appendTail(sb);
+        page = sb.toString().replaceAll(" target=\"_blank\" ", " ");
+        return page;
     }
 
     /**
@@ -490,7 +511,7 @@ public class ClickTTParser extends AbstractBaseParser {
     public void readBezirkeAndLigen(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         String url = "";
         url += verband.getUrlFixed(saison);
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         verband.addAllLigen(ligen, saison);
         List<Bezirk> list = parseLinksBezirke(page);
@@ -502,7 +523,7 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public void readBezirke(Verband verband, Saison saison) throws NetworkException, LoginExpiredException {
         String url = verband.getUrlFixed(saison);
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Bezirk> list = parseLinksBezirke(page);
         verband.setBezirkList(list, saison);
     }
@@ -556,7 +577,7 @@ public class ClickTTParser extends AbstractBaseParser {
             return;
         }
         String url = bezirk.getUrl();
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Kreis> list = parseLinksKreise(page);
         bezirk.setKreise(list);
         List<Liga> listLiga = parseLigaLinks(page);
@@ -591,13 +612,13 @@ public class ClickTTParser extends AbstractBaseParser {
      */
     public void readLigen(Kreis kreis) throws NetworkException, LoginExpiredException {
         String url = kreis.getUrl();
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         kreis.addAllLigen(ligen);
     }
 
     public void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException {
-        String page = Client.getPage(mannschaft.getUrl());
+        String page = getFixedPage(mannschaft.getUrl());
         parseDetail(page, mannschaft);
 
     }
@@ -763,8 +784,9 @@ public class ClickTTParser extends AbstractBaseParser {
 
 
     String unencodeMail(ParseResult result) {
-        if (result == null)
+        if (result == null) {
             return "";
+        }
         return unencodeMail(result.result);
     }
 
@@ -795,7 +817,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public Spieler readSpielerDetail(String name, String url) throws NetworkException, LoginExpiredException {
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         return parseSpieler(name, page);
     }
 
@@ -940,12 +962,12 @@ public class ClickTTParser extends AbstractBaseParser {
      * read the ligen from the url inside the verband
      */
     public Verein readVerein(String url) throws NetworkException, LoginExpiredException {
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         Verein v = parseVerein(page);
         v.setUrl(url);
 
         String urlM = UrlUtil.getHttpAndDomain(url) + v.getUrlMannschaften();
-        page = Client.getPage(urlM);
+        page = getFixedPage(urlM);
         parseVereinMannschaften(page, v);
 
         return v;
@@ -1115,15 +1137,16 @@ public class ClickTTParser extends AbstractBaseParser {
      * read the tournaments from the url
      */
     public List<Tournament> readTournaments(Verband verband, Date date) throws NetworkException, LoginExpiredException {
-        if (verband.gettUrl() == null)
+        if (verband.gettUrl() == null) {
             return new ArrayList<>();
+        }
 //        String url = "http://wttv.click-tt.de/cgi-bin/WebObjects/ClickWTTV.woa/wa/tournamentCalendar?federation=WTTV";
 //        String url = "http://bttv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=ByTTV";
         String url = verband.gettUrl();
         if (date != null) {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         return parseTournamentLinks(page, verband.getHttpAndDomain(null), false);
     }
 
@@ -1131,13 +1154,14 @@ public class ClickTTParser extends AbstractBaseParser {
      * read the cups from the url
      */
     public List<Tournament> readCups(Cup cup, Date date) throws NetworkException, LoginExpiredException {
-        if (cup.getCupUrl() == null)
+        if (cup.getCupUrl() == null) {
             return new ArrayList<>();
+        }
         String url = cup.getCupUrl();
         if (date != null) {
             url += "&date=" + DateFormatUtils.format(date, "yyyy-MM") + "-01";
         }
-        String page = Client.getPage(url);
+        String page = getFixedPage(url);
         return parseTournamentLinks(page, cup.getHttpAndDomain(), true);
     }
 
@@ -1196,7 +1220,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public void readTournamentDetail(Tournament selectedTournament) throws NetworkException, LoginExpiredException {
-        String page = Client.getPage(selectedTournament.getUrl());
+        String page = getFixedPage(selectedTournament.getUrl());
         parseTournamentDetail(page, selectedTournament);
     }
 
@@ -1261,8 +1285,9 @@ public class ClickTTParser extends AbstractBaseParser {
             String[] columns = tableRowAsArray(resultrow.result, 7, false);
             Competition competition = new Competition();
             competition.setName(cleanHtml(columns[col]));
-            if (!tournament.isCup())
+            if (!tournament.isCup()) {
                 competition.setQttr(columns[++col]);
+            }
 
             competition.setOpenFor(cleanHtml(columns[++col]));
             competition.setDate(columns[++col]);
@@ -1284,7 +1309,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     public void readTournamentParticipants(Competition competition) throws NetworkException, LoginExpiredException {
         if (competition.getParticipants() != null) {
-            String page = Client.getPage(competition.getParticipants());
+            String page = getFixedPage(competition.getParticipants());
             parseTournamentParticipants(page, competition);
         }
     }
@@ -1310,7 +1335,9 @@ public class ClickTTParser extends AbstractBaseParser {
         }
 
         for (String[] row : rows) {
-            if (rowNr++ == 0) continue;
+            if (rowNr++ == 0) {
+                continue;
+            }
 
 //            Log.d(Constants.LOG_TAG, "row = " + Arrays.toString(row));
             int col = start;
@@ -1332,7 +1359,9 @@ public class ClickTTParser extends AbstractBaseParser {
      * Bla bla (1333) -> Bla bla
      */
     private String removeBracket(String club) {
-        if (club == null) return null;
+        if (club == null) {
+            return null;
+        }
         int b = club.indexOf('(');
         if (b > -1) {
             return club.substring(0, b).trim();
@@ -1342,7 +1371,7 @@ public class ClickTTParser extends AbstractBaseParser {
 
     public void readTournamentResults(Competition competition) throws NetworkException, LoginExpiredException {
         if (competition.getResults() != null) {
-            String page = Client.getPage(competition.getResults());
+            String page = getFixedPage(competition.getResults());
             parseTournamentResults(page, competition);
         }
     }
@@ -1389,10 +1418,12 @@ public class ClickTTParser extends AbstractBaseParser {
             game.addSet(row[9]);
             game.addSet(row[10]);
             game.setResult(row[11]);
-            if (group != null)
+            if (group != null) {
                 group.addGame(game);
-            if (koPhase != null)
+            }
+            if (koPhase != null) {
                 koPhase.addGame(game);
+            }
 
 //            System.out.println("row = " + game);
         }
@@ -1410,8 +1441,9 @@ public class ClickTTParser extends AbstractBaseParser {
 
     private String contains(List<String> koNames, String name) {
         for (String koName : koNames) {
-            if (name.contains(koName))
+            if (name.contains(koName)) {
                 return koName;
+            }
         }
         return null;
     }

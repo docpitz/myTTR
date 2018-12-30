@@ -68,7 +68,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     private void readInfoAndStartActivity(Class clz) {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, clz) {
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
                 boolean read = false;
                 boolean own = false;
 
