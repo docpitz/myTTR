@@ -154,7 +154,7 @@ public class TournamentsActivity extends BaseActivity {
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.myTournaments != null;
+                return MyApplication.myTournaments != null && MyApplication.myTournaments.size() > 0;
             }
 
             @Override
