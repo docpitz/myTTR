@@ -12,6 +12,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
@@ -40,7 +41,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readLiga(Saison saison, Liga liga) throws NetworkException, LoginExpiredException {
+    public void readLiga(Saison saison, Liga liga) throws NetworkException, LoginExpiredException, ValidationException {
         if (isClickTT(saison)) {
             clickTTParser.readLiga(liga);
         } else {

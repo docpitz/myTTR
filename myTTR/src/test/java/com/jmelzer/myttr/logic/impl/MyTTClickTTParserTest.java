@@ -303,6 +303,35 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void parseLigaAdressen486() throws Exception {
+
+        String page = TestUtil.readFile(ASSETS_DIR + "/bug-486/tabelle.html");
+        Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");
+        parser.parseLiga(page, liga);
+
+        assertEquals(10, liga.getMannschaften().size());
+
+        String page2 = TestUtil.readFile(ASSETS_DIR + "/bug-486/spielplan.html");
+        parser.parseErgebnisse(page2, liga, Liga.Spielplan.RR);
+
+        //https://www.mytischtennis.de/clicktt/home-tab?id=adressen
+        page = TestUtil.readFile(ASSETS_DIR + "/bug-486/kontakte-bug-486.html");
+        parser.parseLigaAdressen(page, liga);
+
+        for (Mannschaft mannschaft : liga.getMannschaften()) {
+            if (mannschaft.getName().contains("Siegertshofen")) {
+                assertEquals(mannschaft.toString(), 0, mannschaft.getSpielLokale().size());
+            } else if (mannschaft.getName().contains("Mindelzell")) {
+                assertEquals(mannschaft.toString(), 0, mannschaft.getSpielLokale().size());
+            } else {
+                assertTrue(mannschaft.toString(), mannschaft.getSpielLokale().size() > 0);
+                assertNotNull(mannschaft.toString(), mannschaft.getVereinUrl());
+
+            }
+        }
+    }
+
+    @Test
     public void parseVerein() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein.html");
         Verein v = parser.parseVerein(page);

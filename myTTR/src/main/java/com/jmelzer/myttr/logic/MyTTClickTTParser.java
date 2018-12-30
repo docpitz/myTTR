@@ -20,7 +20,7 @@ public interface MyTTClickTTParser {
 
     void readKreiseAndLigen(Bezirk bezirk) throws NetworkException, LoginExpiredException;
 
-    void readLiga(Liga liga) throws NetworkException, LoginExpiredException;
+    void readLiga(Liga liga) throws NetworkException, LoginExpiredException, ValidationException;
 
     void readMannschaftsInfo(Mannschaft mannschaft) throws NetworkException, LoginExpiredException;
 

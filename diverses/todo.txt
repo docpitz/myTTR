@@ -185,3 +185,12 @@ Fixes aus Crashlytics
           at com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl.parsePlayerIds(MyTTClickTTParserImpl.java:980)
  - Non-fatal Exception: java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.jmelzer.myttr.logic.AbstractBaseParser$ParseResult.result' on a null object reference
           at com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl.parseErgebnisse(MyTTClickTTParserImpl.java:561)
+
+6.0.2 & 3
+--------
+Weitere Fixes
+
+6.0.4
+----------
+- #484
+- #486

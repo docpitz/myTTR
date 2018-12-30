@@ -61,7 +61,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             Log.i(Constants.LOG_TAG, "parser time " + (System.currentTimeMillis() - start) + " ms");
         } catch (ValidationException e) {
             errorMessage = e.getMessage();
-            logError(e);
+            Log.i(Constants.LOG_TAG, e.getMessage());
         } catch (LoginExpiredException e) {
             try {
                 new LoginManager().relogin();

@@ -21,6 +21,7 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.GoogleMapStarter;
@@ -279,7 +280,7 @@ public class LigaVereinActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
                 Liga liga = new Liga();
                 if (!m.url.startsWith("http"))
                     liga.setUrl(UrlUtil.getHttpAndDomain(MyApplication.selectedVerein.getUrl()) + m.url);

@@ -17,6 +17,7 @@ import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.model.SearchPlayer;
@@ -118,7 +119,7 @@ public class FavoriteManager {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(parent, LigaTabelleActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
                 clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 

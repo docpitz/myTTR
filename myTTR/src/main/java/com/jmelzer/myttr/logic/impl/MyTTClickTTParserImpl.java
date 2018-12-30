@@ -19,6 +19,7 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.LigaPosType;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 import com.jmelzer.myttr.model.Saison;
@@ -114,7 +115,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readLiga(Liga liga) throws NetworkException, LoginExpiredException {
+    public void readLiga(Liga liga) throws NetworkException, LoginExpiredException, ValidationException {
         String url = liga.getUrl();
         String page = Client.getPage(url);
         parseLiga(page, liga);
@@ -747,7 +748,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return s;
     }
 
-    void parseLiga(String page, Liga liga) throws LoginExpiredException {
+    void parseLiga(String page, Liga liga) throws LoginExpiredException, ValidationException {
 
         if (page.contains("Nicht eindeutig identifiziert")) {
             throw new LoginExpiredException();
@@ -825,7 +826,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return LigaPosType.NOTHING;
     }
 
-    public void parseSpielplanLinks(Liga liga, String page) {
+    public void parseSpielplanLinks(Liga liga, String page) throws ValidationException {
         String url = liga.getUrl();
         if (url.contains("/tabelle")) {
             url = url.substring(0, url.indexOf("/tabelle"));
@@ -837,6 +838,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             result = readBetween(result, 0, "<div", "</div");
             //now we have all a tags to read
             ParseResult aresult = readBetween(result, 0, "<a", "</a");
+            if (isEmpty(aresult)) {
+                throw new ValidationException("myTTR konnte die Links nicht finden");
+            }
+
             String href[] = readHrefAndATag(aresult.result);
             String realUrl = MYTT + href[0];
             realUrl = realUrl.replace("/tabelle/", "/spielplan/");
@@ -1032,6 +1037,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     public void parseLigaAdressen(String page, Liga liga) {
         for (Mannschaft mannschaft : liga.getMannschaften()) {
+            if (mannschaft.getVereinId() == null) {
+                continue;
+            }
             ParseResult result = readBetween(page, 0, mannschaft.getVereinId(), "<div class=\"panel-heading\">");
             //last entry
             if (isEmpty(result)) {
@@ -1044,7 +1052,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             String href[] = readHrefAndATag(resultUrl.result);
             String url = href[0];
-            if (url.length() > 0) {
+            if (url != null && url.length() > 0) {
                 mannschaft.setVereinUrl(MYTT + url);
             }
         }
