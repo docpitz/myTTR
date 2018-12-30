@@ -740,6 +740,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
         List<SpielerAndBilanz> players = new ArrayList<>();
         ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Einzelbilanzen</h3>", "</table>");
         int idx = 0;
+        if (isEmpty(table)) {
+            throw new NoDataException("myTTR jonnte die Einzelbilanzen nicht finden");
+        }
         while (true) {
             //mytt have a bug here: no opening tr element
             ParseResult resultrow = readBetween(table.result, idx, "<td>", "</tr>");
