@@ -27,11 +27,13 @@ import androidx.test.filters.SmallTest;
 
 public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 
+    MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+    
     @SmallTest
     public void testgetPoints() throws Exception {
         login();
 
-        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
+        
         int myPoints = myTischtennisParser.getPoints();
         assertTrue(myPoints > 1600);
     }
@@ -241,7 +243,7 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
         boolean found = false;
         for (Player player : players) {
 //            Log.i(Constants.LOG_TAG, player.toString());
-            if (player.getLastname().equals("Schramm")) {
+            if (player.getLastname().equals("Nega")) {
                 found = true;
             }
         }
@@ -268,7 +270,7 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 
         MyApplication.manualClub = null;
         name = myTischtennisParser.getNameOfOwnClub();
-        assertEquals("TTF Bad Honnef", name);
+        assertEquals("TTG St. Augustin", name);
 
     }
 
@@ -297,8 +299,12 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 //            Log.i(Constants.LOG_TAG, player.toString());
 //        }
         myTischtennisParser = new MyTischtennisParser();
-        players = myTischtennisParser.findPlayer("Peter", "Meyers", null);
-        assertEquals(0, players.size());
+        try {
+            myTischtennisParser.findPlayer("Peter", "Meyers", null);
+            fail();
+        } catch (ValidationException e) {
+            //ok
+        }
     }
 
     @SmallTest
@@ -311,20 +317,10 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
     }
 
     @SmallTest
-    public void testFindPlayer() throws Exception {
+    public void testFindPlayerWithClubName() throws Exception {
         login();
 
-        MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
-        SearchPlayer searchPlayer = new SearchPlayer();
-        List<Player> players = myTischtennisParser.findPlayer(searchPlayer);
-        assertEquals(100, players.size());
-
-        players = myTischtennisParser.findPlayer("Astrid", "Schulz", null);
-        assertEquals(3, players.size());
-
-        assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
-
-        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim/Sieg").get(0).getTtrPoints() > 1500);
+        assertTrue(myTischtennisParser.findPlayer("Jens", "Bauer", "TV Bergheim-Sieg").get(0).getTtrPoints() > 1500);
         List<Player> p = myTischtennisParser.findPlayer("christian", "hinrichs", "TTG St. Augustin");
         assertEquals("Hinrichs", p.get(0).getLastname());
         assertEquals("Christian", p.get(0).getFirstname());
@@ -336,9 +332,25 @@ public class MyTischtennisParserIntegrationTest extends BaseTestCase {
 
         p = myTischtennisParser.findPlayer("Patrick", "Kaufmann", "Aggertaler TTC Gummersbach");
         assertNotNull(p);
+    }
+    @SmallTest
+    public void testFindPlayer() throws Exception {
+        login();
 
-        p = myTischtennisParser.findPlayer("Johannes ", "hinrichs", "");
-        assertNotNull(p);
+        
+        SearchPlayer searchPlayer = new SearchPlayer();
+        List<Player> players = myTischtennisParser.findPlayer(searchPlayer);
+        assertEquals(100, players.size());
+
+        players = myTischtennisParser.findPlayer("Astrid", "Schulz", null);
+        assertEquals(3, players.size());
+
+        assertTrue(myTischtennisParser.findPlayer("Marco", "Vester", null).get(0).getTtrPoints() > 1900);
+
+        
+
+        players = myTischtennisParser.findPlayer("Johannes ", "hinrichs", "");
+        assertNotNull(players);
 //        152009
 
     }

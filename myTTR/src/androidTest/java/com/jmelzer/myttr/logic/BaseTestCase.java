@@ -3,7 +3,7 @@ package com.jmelzer.myttr.logic;
 import com.jmelzer.myttr.MockHttpClient;
 import com.jmelzer.myttr.MockResponses;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import junit.framework.TestCase;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -38,7 +38,7 @@ public class BaseTestCase extends TestCase {
         //prepare cookies
         prepareMocks();
         prepareCookiesForLogin();
-        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou12"));
+        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
     }
 
     private void prepareCookiesForLogin() {

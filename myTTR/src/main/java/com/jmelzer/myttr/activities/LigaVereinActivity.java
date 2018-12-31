@@ -71,7 +71,7 @@ public class LigaVereinActivity extends BaseActivity {
         p.children.add(new Child(verein.getKontakt() == null ? "Unbekannt" : verein.getKontakt().getNameAddress()));
         list.add(p);
         p = new Parent();
-        p.name = "Spielokale";
+        p.name = "Spiellokale";
         for (Verein.SpielLokal l : verein.getLokale()) {
             p.children.add(new Child(l.formatted()));
         }

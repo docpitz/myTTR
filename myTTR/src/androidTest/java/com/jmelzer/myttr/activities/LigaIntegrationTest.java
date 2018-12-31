@@ -35,6 +35,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static com.jmelzer.myttr.activities.TestHelper.login;
+import static com.jmelzer.myttr.activities.TestHelper.setUpIT;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.instanceOf;
@@ -58,21 +60,7 @@ public class LigaIntegrationTest {
 
     @Before
     public void setUp() {
-        SyncManager.testIsRun = true;
-        Log.d(Constants.LOG_TAG, "------  starting test " + getClass().getCanonicalName() + " ----- ");
-
-        Context context = getInstrumentation().getTargetContext();
-        LoginDataBaseAdapter adapter = new LoginDataBaseAdapter(context);
-        adapter.open();
-        adapter.deleteAllEntries();
-
-        //prepare the db and prefs to automatic
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putBoolean(MySettingsActivity.KEY_PREF_SAVE_USER, false).commit();
-        sharedPref.edit().putInt(MySettingsActivity.KEY_PREF_TIMER, 10).commit();
-
-
+      setUpIT();
     }
 
     @Test
@@ -120,16 +108,7 @@ public class LigaIntegrationTest {
 
     }
 
-    void login() {
-        onView(withId(R.id.username)).perform(typeText("chokdee"), closeSoftKeyboard());
-        onView(withId(R.id.password)).perform(typeText("fuckyou123"), closeSoftKeyboard());
 
-        onView(withId(R.id.button_login)).perform(click());
-        Log.d(Constants.LOG_TAG, "after login");
-
-        assertNotNull(MyApplication.getLoginUser());
-        assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
-    }
 
     private void ligaSelect1KK() {
         onView(withId(R.id.imageButton6)).perform(click());

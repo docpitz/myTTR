@@ -13,6 +13,8 @@ package com.jmelzer.myttr.logic;
 
 import junit.framework.Assert;
 
+import java.io.IOException;
+
 import androidx.test.filters.SmallTest;
 
 public class LoginManagerTest extends BaseTestCase {
@@ -24,12 +26,17 @@ public class LoginManagerTest extends BaseTestCase {
         if (!offline) {
             try {
                 loginManager.login("KKöhler", "pass123.");
-                fail("PlayerNotWellRegistered");
-            } catch (PlayerNotWellRegistered e) {
+                fail("ValidationException");
+            } catch (ValidationException e) {
                 //expexted
             }
 
-            assertNull(loginManager.login("dasdad", "sdada."));
+            try {
+                loginManager.login("dasdad", "sdada.");
+                fail();
+            } catch (LoginException e) {
+                //ok
+            }
         }
 
     }
