@@ -24,6 +24,15 @@ public class AbstractBaseParserTest {
     }
 
     @Test
+    public void testreadBetweenOpenTag() {
+        String s = "<td class=\"tabelle-rowspan\"> dummy </td>";
+        AbstractBaseParser.ParseResult result = new AbstractBaseParser().readBetweenOpenTag(s, 0, "<td", "</td>");
+        assertNotNull(result);
+        assertEquals("dummy", result.result);
+        assertEquals(s.length(), result.end);
+    }
+
+    @Test
     public void testReadTableRow() throws Exception {
         String page = readFile(ASSETS_DIR + "/readtablerow-test1.txt");
 

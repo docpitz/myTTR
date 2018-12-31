@@ -37,7 +37,7 @@ public class VerbandTest {
             assertFalse(verband.gettUrl() + " -> " + u, u.contains("16"));
         }
         try {
-            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2019);
+            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2020);
             fail("not configured");
         } catch (IllegalArgumentException e) {
             //ok

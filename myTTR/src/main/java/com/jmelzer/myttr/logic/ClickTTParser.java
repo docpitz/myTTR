@@ -426,7 +426,7 @@ public class ClickTTParser extends AbstractBaseParser {
     }
 
     public Verband readTopLigen(Saison saison) throws NetworkException, LoginExpiredException {
-        String url = "https://dttb.click-tt.de/cgi-bin/WebObjects/ClickNTTV.woa/wa/leaguePage?championship=DTTB+14/15";
+        String url = Verband.dttb.getUrlFixed(saison);
         String page = getFixedPage(url);
         List<Liga> ligen = parseLigaLinks(page);
         Verband.dttb.addAllLigen(ligen, saison);
@@ -935,7 +935,7 @@ public class ClickTTParser extends AbstractBaseParser {
         String gegner = readHrefAndATag(safeResult(result))[1];
         result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
         String erg = safeResult(result);
-        erg = Html.fromHtml(erg).toString();
+        erg = erg.replaceAll("<.*?>","");
         String saetze = "";
         for (int i = 1; i < 6; i++) {
             result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);

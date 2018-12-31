@@ -11,6 +11,13 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.SyncManager;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -48,5 +55,20 @@ public class TestHelper {
 
         assertNotNull(MyApplication.getLoginUser());
         assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
+    }
+
+    public static String readFile(String file) throws IOException {
+        InputStream in = TestHelper.class.getClassLoader().getResourceAsStream(file);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(ls);
+        }
+
+        return StringEscapeUtils.unescapeHtml4(stringBuilder.toString());
     }
 }

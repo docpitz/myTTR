@@ -13,7 +13,8 @@ public enum Saison {
     SAISON_2016("15/16"),
     SAISON_2017("16/17"),
     SAISON_2018("17/18"),
-    SAISON_2019("18/19");
+    SAISON_2019("18/19"),
+    SAISON_2020("19/20");
 
     public static List<String> saisons = new ArrayList<>();
     static {

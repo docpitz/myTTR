@@ -1,13 +1,3 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
-
-
 package com.jmelzer.myttr.logic;
 
 import com.jmelzer.myttr.Bezirk;
@@ -51,7 +41,6 @@ public class ClickTTParserTest {
 
 
     @Test
-    @Ignore
     public void testReadTopligen() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
@@ -64,7 +53,6 @@ public class ClickTTParserTest {
     }
 
     @Test
-    @Ignore
     public void testBrandenBurg() throws Exception {
         String page = readFile(ASSETS_DIR + "/ttv-brandenburg.htm");
         assertNotNull(page);
@@ -239,7 +227,6 @@ public class ClickTTParserTest {
     }
 
     @Test
-    @Ignore
     public void testParseLigaLinks() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
@@ -296,7 +283,6 @@ public class ClickTTParserTest {
     }
 
     @Test
-    @Ignore
     public void testParseLinksSubLigen() throws Exception {
         String page = readFile(ASSETS_DIR + "/dttb-click-TT-Ligen.htm");
         assertNotNull(page);
@@ -309,7 +295,6 @@ public class ClickTTParserTest {
 
 
     @Test
-    @Ignore
     public void testReadStaffel() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-after-215.htm");
         assertNotNull(page);
@@ -320,12 +305,11 @@ public class ClickTTParserTest {
         assertNotNull(liga.getUrlRR());
 
         for (Mannschaft m : liga.getMannschaften()) {
-            System.out.println("m = " + m);
+            assertNotNull(m.getName());
         }
     }
 
     @Test
-    @Ignore
     public void testReadStaffelHttv() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-hl-httv.htm");
         assertNotNull(page);
@@ -334,11 +318,11 @@ public class ClickTTParserTest {
 
         for (Mannschaft m : liga.getMannschaften()) {
             System.out.println("m = " + m);
+            assertNotNull(m.getName());
         }
     }
 
     @Test
-    @Ignore
     public void testReadStaffeErrorIntl() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-2.bl-d.htm");
         assertNotNull(page);
@@ -348,11 +332,11 @@ public class ClickTTParserTest {
 
         for (Mannschaft m : liga.getMannschaften()) {
             System.out.println("m = " + m);
+            assertNotNull(m.getName());
         }
     }
 
     @Test
-    @Ignore
     public void testReadStaffelGesamtSpielPlan() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-gesamt-spiel-plan.htm");
         assertNotNull(page);
@@ -364,7 +348,6 @@ public class ClickTTParserTest {
     }
 
     @Test
-    @Ignore
     public void testReadStaffeErrorZ() throws Exception {
         String page = readFile(ASSETS_DIR + "/staffel-zurueckgezogene-mannschaft.htm");
         assertNotNull(page);
@@ -380,7 +363,6 @@ public class ClickTTParserTest {
     }
 
     @Test
-    @Ignore
     public void testParseErgebnisse() throws Exception {
         Liga liga = ergebnisse();
 
@@ -495,23 +477,23 @@ public class ClickTTParserTest {
 
         String page = readFile(ASSETS_DIR + "/spielerportrait.htm");
         assertNotNull(page);
-        Spieler spieler = parser.parseSpieler("Fritz, Heinz", page);
-        assertEquals("Fritz, Heinz", spieler.getName());
-        assertEquals("SSF Bonn 1905 e.V.", spieler.getClubName());
-        assertEquals("Herren: VR 1.2 RR 1.3\n" +
-                "Jungen: VR 1.1 RR 1.1", spieler.getPosition());
+        Spieler spieler = parser.parseSpieler("Endemann, Henrik", page);
+        assertEquals("Endemann, Henrik", spieler.getName());
+        assertEquals("TTG St. Augustin", spieler.getClubName());
+        assertEquals("Herren: VR 8.4 RR 7.4\n" +
+                "Schüler A: VR 1.1 RR 1.1", spieler.getPosition());
 
         assertEquals(2, spieler.getEinsaetze().size());
         for (Spieler.Einsatz einsatz : spieler.getEinsaetze()) {
             System.out.println("einsatz = " + einsatz);
         }
         Spieler.Einsatz einsatz = spieler.getEinsaetze().get(0);
-        assertEquals("Herren", einsatz.getKategorie());
-        assertEquals("Herren-Bezirksliga 2", einsatz.getLigaName());
+        assertEquals("Herren VIII", einsatz.getKategorie());
+        assertEquals("Herren- 3. Kreisklasse B Gruppe 1", einsatz.getLigaName());
         assertTrue(einsatz.getUrl().startsWith("/cgi-bin"));
         einsatz = spieler.getEinsaetze().get(1);
-        assertEquals("Jungen", einsatz.getKategorie());
-        assertEquals("Jungen-Verbandsliga 4", einsatz.getLigaName());
+        assertEquals("Schüler A", einsatz.getKategorie());
+        assertEquals("Schüler A- Kreisliga", einsatz.getLigaName());
         assertTrue(einsatz.getUrl().startsWith("/cgi-bin"));
 
         assertEquals(2, spieler.getBilanzen().size());

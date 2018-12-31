@@ -1,13 +1,3 @@
-/*
- * Copyright (C) allesklar.com AG
- * All rights reserved.
- *
- * Author: juergi
- * Date: 27.12.13
- *
- */
-
-
 package com.jmelzer.myttr.logic;
 
 import android.util.Log;
@@ -24,63 +14,60 @@ import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
+import com.jmelzer.myttr.activities.LoginActivity;
 import com.jmelzer.myttr.model.Cup;
 import com.jmelzer.myttr.model.Saison;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
+import androidx.test.rule.ActivityTestRule;
 
 import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class ClickTTParserIntegrationTest {
 
-public class ClickTTParserIntegrationTest extends BaseTestCase {
+    @Rule
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
-    ClickTTParser parser;
+    ClickTTParser parser = new ClickTTParser();
+    Saison saisonToTest = Saison.SAISON_2018;
 
-    @Override
-    protected void setUp() throws Exception {
-        parser = new ClickTTParser();
-        prepareMocks();
-    }
-
-    @Override
-    protected void prepareMocks() {
-        super.prepareMocks();
-        MockResponses.forRequestDoAnswer(".*championship=DTTB.14/15", "clicktt/dttb_ligen_plan.htm");
-        MockResponses.forRequestDoAnswer(".*championship=WTTV.*14/15", "clicktt/wttv_ligen_plan.htm");
-        MockResponses.forRequestDoAnswer(".*meeting=7371117.*", "clicktt/mannschafts_detail_kreisliga.htm");
-        MockResponses.forRequestDoAnswer(".*championship=B15.14%2F15", "clicktt/mittelrhein_ligen_plan.htm");
-        MockResponses.forRequestDoAnswer(".*displayTyp=vorrunde.*", "clicktt/kreisliga_vorrunde.htm");
-        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15", "clicktt/rhein_sieg_ligen_plan.htm");
-        MockResponses.forRequestDoAnswer(".*championship=K156.14%2F15&group=225345", "clicktt/kreisliga.htm");
-        MockResponses.forRequestDoAnswer(".*person=974254.*", "clicktt/player_974254.htm");
-        MockResponses.forRequestDoAnswer(".*RL-OL.West.*", "clicktt/regional_west.htm");
-        MockResponses.forRequestDoAnswer(".*pttv.click-tt.de.*", "clicktt/pttvmain.htm");
-    }
-
-    @SmallTest
+    @Test
     public void testReadIntegration() throws Exception {
         List<Verband> verbaende = parser.readVerbaende();
-        assertEquals(13, verbaende.size());
+        assertEquals(18, verbaende.size());
         Verband v = verbaende.get(0);
         assertNotNull(v);
         assertSame(Verband.dttb, v);
 
         //first one is dttp
-        Verband verband = parser.readTopLigen(ACTUAL_SAISON);
+        Verband verband = parser.readTopLigen(saisonToTest);
         assertSame(Verband.dttb, verband);
-        assertEquals("must be 62 ", 62, verband.getLigaList().size());
+        assertEquals("must be 58 ", 58, verband.getLigaList().size());
 
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
-        parser.readLigen(nrw, Saison.SAISON_2017);
+        parser.readLigen(nrw, saisonToTest);
         assertTrue("must be greater than 20, we don't exactly the size",
                 nrw.getLigaList().size() > 20);
 
-        parser.readBezirke(nrw, ACTUAL_SAISON);
+        parser.readBezirke(nrw, saisonToTest);
         assertEquals(5, nrw.getBezirkList().size());
 
         Bezirk bezirk = nrw.getBezirkList().get(2);
@@ -97,8 +84,7 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
         ligaTest(liga, "Kreisliga", 12);
 
         //selecting one liga
-        //todo better to find by name here
-        liga = verband.getLigaList().get(8);
+        liga = verband.getLigaByName("Regionalliga West");
         ligaTest(liga, "Regionalliga West", 10);
 
     }
@@ -182,8 +168,8 @@ public class ClickTTParserIntegrationTest extends BaseTestCase {
     }
 
     private Verband testDTTB() throws Exception {
-        Verband dttb = parser.readTopLigen(ACTUAL_SAISON);
-        parser.readLigen(dttb, ACTUAL_SAISON);
+        Verband dttb = parser.readTopLigen(saisonToTest);
+        parser.readLigen(dttb, saisonToTest);
         for (Liga liga : dttb.getLigaList()) {
             Log.i(Constants.LOG_TAG, "read liga '" + liga.getNameForFav() + "'");
             parser.readLiga(liga);

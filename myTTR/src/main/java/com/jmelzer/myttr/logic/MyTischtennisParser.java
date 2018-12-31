@@ -720,6 +720,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
 
         s = s.substring(s.indexOf(",") + 2);
+        s = s.replace("\r\n", "");
         //strip possible s oder '
         return s.substring(0, s.length() - 1);
     }

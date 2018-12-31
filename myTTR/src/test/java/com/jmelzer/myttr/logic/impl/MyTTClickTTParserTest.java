@@ -13,6 +13,7 @@ import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.TestUtil;
 import com.jmelzer.myttr.model.Verein;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -124,6 +125,7 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    @Ignore("need new file")
     public void parseErgebnisseNotComplete() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-liga-notcomplete.html");
         Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/aktuell");

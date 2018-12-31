@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 
+import static org.junit.Assert.*;
+
 /**
  * Created by J. Melzer on 03.09.2017.
  */

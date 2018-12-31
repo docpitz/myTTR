@@ -1,19 +1,11 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
-
-
 package com.jmelzer.myttr.logic;
 
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Player;
+import com.jmelzer.myttr.activities.LoginActivity;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,10 +14,17 @@ import java.util.Random;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
+import androidx.test.rule.ActivityTestRule;
+
+import static com.jmelzer.myttr.activities.TestHelper.login;
+import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
-public class ClubParserTest extends BaseTestCase {
+public class ClubParserTest  {
+
+    @Rule
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void testGetVereinExact() {
@@ -67,23 +66,23 @@ public class ClubParserTest extends BaseTestCase {
 //        assertEquals(0, clubParser.getClubNameUnsharp("Bjsagsjdgla").size());
 
         assertResultGreater("Hausen", 0.5f, 3, true);
-//        assertResultGreater("Köln", 0.3f, 3, true);
-//        assertResultExact("Weinh", 0.3f, 3, true);
-//        assertResultExact("TuRa Germania Oberdrees", 0.8f, 1, false);
-//        assertResultGreater("Telekom-Post", 0.3f, 0, false);
-//        assertResultExact("Oberdrees", 0.3f, 1, true);
-//        assertResultExact("Neuss", 0.3f, 6, true);
-//        assertResultExact("Augustin", 0.3f, 3, true);
-//        assertResultExact("Bergheim", 0.3f, 5, true);
-//        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 0, false);
-//        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 1, true);
-//        assertNotNull(clubParser.getClubExact("ESV BR Bonn"));
-//        assertTrue(clubParser.getClubNameUnsharp("ESV Bonn").size() > 0);
-//        assertTrue(clubParser.getClubNameUnsharp("TTC Blau-Rot 1963 Uedorf").size() > 0);
-//        assertTrue(clubParser.getClubNameUnsharp("1. TTC Münster").size() > 0);
-//        assertResultExact("München", 0.3f, 31, true);
-//        assertResultExact("Bonn", 0.3f, 9, true);
-//        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.3f, 1, true);
+        assertResultGreater("Köln", 0.3f, 3, true);
+        assertResultExact("Weinh", 0.3f, 3, true);
+        assertResultExact("TuRa Germania Oberdrees", 0.8f, 1, false);
+        assertResultGreater("Telekom-Post", 0.3f, 0, false);
+        assertResultExact("Oberdrees", 0.3f, 1, true);
+        assertResultExact("Neuss", 0.3f, 6, true);
+        assertResultExact("Augustin", 0.3f, 3, true);
+        assertResultExact("Bergheim", 0.3f, 5, true);
+        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 0, false);
+        assertResultGreater("ESV Blau-Rot Bonn", 0.3f, 1, true);
+        assertNotNull(clubParser.getClubExact("ESV BR Bonn"));
+        assertTrue(clubParser.getClubNameUnsharp("ESV Bonn").size() > 0);
+        assertTrue(clubParser.getClubNameUnsharp("TTC Blau-Rot 1963 Uedorf").size() > 0);
+        assertTrue(clubParser.getClubNameUnsharp("1. TTC Münster").size() > 0);
+        assertResultExact("München", 0.3f, 34, true);
+        assertResultExact("Bonn", 0.3f, 9, true);
+        assertResultExact("TTC Rhön-Sprudel Fulda-Maberzell", 0.3f, 1, true);
 
     }
 

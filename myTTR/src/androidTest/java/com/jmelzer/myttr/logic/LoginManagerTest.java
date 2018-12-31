@@ -1,25 +1,31 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
-
-
 package com.jmelzer.myttr.logic;
 
 
+import com.jmelzer.myttr.activities.LoginActivity;
+
 import junit.framework.Assert;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
+import androidx.test.rule.ActivityTestRule;
 
-public class LoginManagerTest extends BaseTestCase {
+import static org.junit.Assert.*;
 
-    @SmallTest
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class LoginManagerTest {
+    boolean offline = false;
+    @Rule
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
+
+    @Test
     public void testlogin() throws Exception {
         LoginManager loginManager = new LoginManager();
         Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));

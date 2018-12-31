@@ -2,21 +2,32 @@ package com.jmelzer.myttr.logic;
 
 import com.jmelzer.myttr.MockHttpClient;
 import com.jmelzer.myttr.MockResponses;
+import com.jmelzer.myttr.activities.LoginActivity;
 
 import org.junit.Assert;
 import junit.framework.TestCase;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.http.impl.cookie.BasicClientCookie;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- */
-public class BaseTestCase extends TestCase {
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class BaseTestCase {
+
+    @Rule
+    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
+
     //switch wether we read html from file system or calling mytt.de
     boolean offline = false;
     protected MockHttpClient mockHttpClient;

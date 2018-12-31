@@ -14,6 +14,8 @@ import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,19 +30,26 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
- * Created by cicgfp on 26.11.2017.
+ * Created by jmelzer on 26.11.2017.
  */
 @MediumTest
 @RunWith(AndroidJUnit4.class)
-public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
+public class MyTTClickTTParserIntegrationTest {
     public static final Saison SAISON = Saison.SAISON_2019;
+    private static final int BEZIRK_COUNT = 2;
     MytClickTTWrapper parser = new MytClickTTWrapper();
+
+    @Before
+    public void before() throws Exception {
+        LoginManager loginManager = new LoginManager();
+        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
+    }
 
     @SmallTest
     public void testReadBezirkeAndLigen() throws Exception {
-        login();
 
         Verband wttv = Verband.verbaende.get(Verband.verbaende.size() - 1);
         parser.readBezirkeAndLigen(wttv, Saison.SAISON_2018);
@@ -53,7 +62,6 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
 
     @Test
     public void testreadOwnVerein() throws Exception {
-        login();
 
         Verein verein = parser.readOwnVerein();
         Log.d(Constants.LOG_TAG, "verein = " + verein);
@@ -65,9 +73,9 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
         //bezirke
         for (Verband verband : Verband.verbaende) {
             Log.d(Constants.LOG_TAG, "verband '" + verband.getName() + "'");
-//            if (!verband.getName().equals("Badischer TTV")) {
-//                continue;
-//            }
+            if (!verband.getName().equals("Westdeutscher TTV")) {
+                continue;
+            }
             if (verband == dttb) {
                 continue;
             }
@@ -83,6 +91,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
                 Log.e(Constants.LOG_TAG, "no bezirk in '" + verband.getName() + "'");
                 assertThat(verband.getName(), notNullValue());
             } else {
+                int bezCount = 0;
                 for (Bezirk bezirk : verband.getBezirkList()) {
                     Log.i(Constants.LOG_TAG, "read kreis & liga from '" + bezirk.getName() + "'");
                     parser.readKreiseAndLigen(SAISON, bezirk);
@@ -92,7 +101,7 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
                         Log.i(Constants.LOG_TAG, "read liga '" + liga + "'");
                         parser.readLiga(SAISON, liga);
                         readSpieleAndTest(liga);
-                        if (count++ > 5) break; //5 are enough: todo get it random
+                        if (++count > 0) break; //5 are enough: todo get it random
                     }
                     if (bezirk.getKreise().size() == 0) {
                         Log.e(Constants.LOG_TAG, "bezirk don't have kreise " + bezirk.getName() + " - " + bezirk.getUrl());
@@ -108,12 +117,13 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
                                     Log.e(Constants.LOG_TAG, "NPE in  " + liga);
                                 }
                                 readSpieleAndTest(liga);
-                                if (kc++ > 2) break;
+                                if (++kc > 0) break;
 
                             }
                             kreis.addAllLigen(new ArrayList<Liga>()); //clear memory
                         }
                     }
+                    if (++bezCount >= BEZIRK_COUNT) break;
                     bezirk.addAllLigen(new ArrayList<Liga>()); //clear memory
 //                    assertTrue(bezirk.getKreise().size() > 0);
                 }
@@ -135,10 +145,12 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
 
             softassertTrue("Mannschaften sind 0 " + liga.toString(), liga.getMannschaften().size() > 0);
 
+            int km = 0;
             for (Mannschaft mannschaft : liga.getMannschaften()) {
                 assertNotNull(mannschaft.toString(), mannschaft.getName());
                 parser.readMannschaftsInfo(SAISON, mannschaft);
                 softassertTrue(mannschaft.toString(), mannschaft.getKontakt() != null);
+                if (++km > 2) break;
             }
             if (liga.getUrlGesamt() == null) {
                 softassertTrue(liga.getName(), liga.getSpieleVorrunde().size() > 0);
@@ -146,16 +158,20 @@ public class MyTTClickTTParserIntegrationTest extends BaseTestCase {
             } else {
                 softassertTrue(liga.toString(), liga.getSpieleGesamt().size() > 0);
             }
+            km = 0;
             for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
                 //                Log.i(Constants.LOG_TAG, "mannschaftspiel = " + mannschaftspiel);
                 assertNotNull(mannschaftspiel);
                 assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getGastMannschaft());
                 assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getHeimMannschaft());
+                if (++km > 2) break;
             }
+            km = 0;
             for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
                 assertNotNull(mannschaftspiel);
                 assertNotNull(mannschaftspiel.getGastMannschaft());
                 assertNotNull(mannschaftspiel.getHeimMannschaft());
+                if (++km > 2) break;
             }
         } catch (NullPointerException e) {
             Log.e(Constants.LOG_TAG, "NPE in  " + liga, e);

@@ -1,13 +1,3 @@
-/* 
-* Copyright (C) allesklar.com AG
-* All rights reserved.
-*
-* Author: juergi
-* Date: 27.12.13 
-*
-*/
-
-
 package com.jmelzer.myttr.logic;
 
 

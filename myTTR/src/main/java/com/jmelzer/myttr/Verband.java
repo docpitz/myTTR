@@ -271,4 +271,13 @@ public class Verband {
                 ", tUrl='" + tUrl + '\'' +
                 '}';
     }
+
+    public Liga getLigaByName(String name) {
+        for (Liga liga : ligaList) {
+            if (liga.getName().equals(name)) {
+                return liga;
+            }
+        }
+        return null;
+    }
 }
