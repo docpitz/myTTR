@@ -19,9 +19,9 @@
         android:title="@string/action_favorite"/>
     <item
         android:id="@+id/action_head2head"
-        android:text="@string/action_favorite"
+        android:text="@string/action_head2head"
         android:onClick="head2head"
         android:showAsAction="always"
-        android:icon="@drawable/ic_head2head"
-        android:title="@string/action_favorite"/>
+        android:icon="@drawable/ic_action_head2head"
+        android:title="@string/action_head2head"/>
 </menu>
