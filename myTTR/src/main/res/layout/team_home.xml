@@ -46,7 +46,7 @@
                     style="@style/DashboardButton"
                     android:layout_column="0"
                     android:layout_row="0"
-                    android:drawableTop="@drawable/icon_liga_rangliste"
+                    android:drawableTop="@drawable/ic_launcher_liga_rangliste"
                     android:onClick="ligaranking"
                     android:text="@string/liga_rangl"
 
@@ -76,7 +76,7 @@
                     style="@style/DashboardButton"
                     android:layout_column="1"
                     android:layout_row="1"
-                    android:drawableTop="@drawable/ic_team"
+                    android:drawableTop="@drawable/ic_launcher_team"
                     android:onClick="aufstellungen"
                     android:text="@string/aufstellung"
                     />

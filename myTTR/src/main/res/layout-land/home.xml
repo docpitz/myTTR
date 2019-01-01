@@ -41,7 +41,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="0"
                 android:layout_row="0"
-                android:drawableTop="@drawable/ic_action_stat"
+                android:drawableTop="@drawable/ic_launcher_statistics"
                 android:onClick="statistik"
                 android:text="@string/statistik"
                 />
@@ -51,7 +51,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="1"
                 android:layout_row="0"
-                android:drawableTop="@drawable/icon_club_list"
+                android:drawableTop="@drawable/ic_launcher_club_list"
                 android:onClick="clublist"
                 android:text="@string/clublist"
                 />
@@ -61,7 +61,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="2"
                 android:layout_row="0"
-                android:drawableTop="@drawable/ic_ttr"
+                android:drawableTop="@drawable/ic_launcher_ttr"
                 android:onClick="manual"
                 android:text="@string/enter_manual"
                 />
@@ -71,7 +71,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="3"
                 android:layout_row="0"
-                android:drawableTop="@drawable/ic_sim"
+                android:drawableTop="@drawable/ic_launcher_sim"
                 android:onClick="player_sim"
                 android:text="@string/player_sim"
                 />
@@ -81,7 +81,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="0"
                 android:layout_row="1"
-                android:drawableTop="@drawable/ic_action_search"
+                android:drawableTop="@drawable/ic_launcher_search"
                 android:onClick="search"
                 android:text="@string/search"
                 />
@@ -91,7 +91,7 @@
                 style="@style/DashboardButton"
                 android:layout_column="1"
                 android:layout_row="1"
-                android:drawableTop="@drawable/ic_click_tt"
+                android:drawableTop="@drawable/ic_launcher_liga"
                 android:onClick="liga"
                 android:text="@string/liga"
 
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:layout_row="1"
-                android:drawableTop="@drawable/ic_team"
+                android:drawableTop="@drawable/ic_launcher_team"
                 android:onClick="team"
                 android:text="@string/label_team" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="3"
                 android:layout_row="1"
-                android:drawableTop="@drawable/ic_tournament"
+                android:drawableTop="@drawable/ic_launcher_tournament"
                 android:onClick="tournament"
                 android:text="@string/label_turniere" />
             <Button
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="4"
                 android:layout_row="1"
-                android:drawableTop="@drawable/ic_cup"
+                android:drawableTop="@drawable/ic_launcher_cup"
                 android:onClick="cups"
                 android:text="@string/label_cups" />
         </GridLayout>
