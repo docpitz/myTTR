@@ -42,9 +42,6 @@ import static org.junit.Assert.assertTrue;
 @LargeTest
 public class ClickTTParserIntegrationTest {
 
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
-
     ClickTTParser parser = new ClickTTParser();
     Saison saisonToTest = Saison.SAISON_2018;
 

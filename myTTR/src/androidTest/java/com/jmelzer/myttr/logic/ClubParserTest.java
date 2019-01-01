@@ -5,6 +5,7 @@ import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.activities.LoginActivity;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,17 +15,13 @@ import java.util.Random;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
-import androidx.test.rule.ActivityTestRule;
 
-import static com.jmelzer.myttr.activities.TestHelper.login;
+import static com.jmelzer.myttr.logic.LogicTestHelper.login;
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
 public class ClubParserTest  {
-
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void testGetVereinExact() {
@@ -38,7 +35,7 @@ public class ClubParserTest  {
 
 
     @Test
-//    @Ignore
+    @Ignore("manuell test, weil manche Vereine keine Spieler haben")
     public void callSome() throws Exception {
         login();
 
@@ -55,7 +52,7 @@ public class ClubParserTest  {
             } catch (ValidationException e) {
                 System.err.println(e.getMessage() +" - " + randomValue);
             }
-            assertNotNull(list);
+            assertNotNull(randomValue.toString(), list);
         }
     }
 

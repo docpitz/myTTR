@@ -241,8 +241,8 @@ public class Verein implements Favorite {
 
     public List<SpielLokal> getLokale() {
         List<SpielLokal> list = new ArrayList<>();
-        for (int i = 1; i < lokale.size(); i++) {
-            list.add(lokale.get(i));
+        for (int i = 0; i < lokale.size(); i++) {
+            list.add(lokale.get(i+1));
         }
         return Collections.unmodifiableList(list);
     }

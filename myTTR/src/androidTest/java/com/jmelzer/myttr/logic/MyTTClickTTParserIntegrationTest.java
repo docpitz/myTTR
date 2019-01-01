@@ -26,6 +26,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.filters.SmallTest;
 
 import static com.jmelzer.myttr.Verband.dttb;
+import static com.jmelzer.myttr.logic.LogicTestHelper.login;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -38,14 +39,14 @@ import static org.junit.Assert.*;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class MyTTClickTTParserIntegrationTest {
+
     public static final Saison SAISON = Saison.SAISON_2019;
     private static final int BEZIRK_COUNT = 2;
     MytClickTTWrapper parser = new MytClickTTWrapper();
 
     @Before
     public void before() throws Exception {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
+
     }
 
     @SmallTest
@@ -62,7 +63,7 @@ public class MyTTClickTTParserIntegrationTest {
 
     @Test
     public void testreadOwnVerein() throws Exception {
-
+        login();
         Verein verein = parser.readOwnVerein();
         Log.d(Constants.LOG_TAG, "verein = " + verein);
     }
@@ -101,7 +102,9 @@ public class MyTTClickTTParserIntegrationTest {
                         Log.i(Constants.LOG_TAG, "read liga '" + liga + "'");
                         parser.readLiga(SAISON, liga);
                         readSpieleAndTest(liga);
-                        if (++count > 0) break; //5 are enough: todo get it random
+                        if (++count > 0) {
+                            break; //5 are enough: todo get it random
+                        }
                     }
                     if (bezirk.getKreise().size() == 0) {
                         Log.e(Constants.LOG_TAG, "bezirk don't have kreise " + bezirk.getName() + " - " + bezirk.getUrl());
@@ -117,13 +120,17 @@ public class MyTTClickTTParserIntegrationTest {
                                     Log.e(Constants.LOG_TAG, "NPE in  " + liga);
                                 }
                                 readSpieleAndTest(liga);
-                                if (++kc > 0) break;
+                                if (++kc > 0) {
+                                    break;
+                                }
 
                             }
                             kreis.addAllLigen(new ArrayList<Liga>()); //clear memory
                         }
                     }
-                    if (++bezCount >= BEZIRK_COUNT) break;
+                    if (++bezCount >= BEZIRK_COUNT) {
+                        break;
+                    }
                     bezirk.addAllLigen(new ArrayList<Liga>()); //clear memory
 //                    assertTrue(bezirk.getKreise().size() > 0);
                 }
@@ -140,8 +147,9 @@ public class MyTTClickTTParserIntegrationTest {
             parser.readVR(SAISON, liga);
             parser.readRR(SAISON, liga);
             parser.readGesamtSpielplan(SAISON, liga);
-            if (liga.getName().contains("WDM"))
+            if (liga.getName().contains("WDM")) {
                 return;
+            }
 
             softassertTrue("Mannschaften sind 0 " + liga.toString(), liga.getMannschaften().size() > 0);
 
@@ -150,7 +158,9 @@ public class MyTTClickTTParserIntegrationTest {
                 assertNotNull(mannschaft.toString(), mannschaft.getName());
                 parser.readMannschaftsInfo(SAISON, mannschaft);
                 softassertTrue(mannschaft.toString(), mannschaft.getKontakt() != null);
-                if (++km > 2) break;
+                if (++km > 2) {
+                    break;
+                }
             }
             if (liga.getUrlGesamt() == null) {
                 softassertTrue(liga.getName(), liga.getSpieleVorrunde().size() > 0);
@@ -164,14 +174,18 @@ public class MyTTClickTTParserIntegrationTest {
                 assertNotNull(mannschaftspiel);
                 assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getGastMannschaft());
                 assertNotNull(mannschaftspiel.toString(), mannschaftspiel.getHeimMannschaft());
-                if (++km > 2) break;
+                if (++km > 2) {
+                    break;
+                }
             }
             km = 0;
             for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
                 assertNotNull(mannschaftspiel);
                 assertNotNull(mannschaftspiel.getGastMannschaft());
                 assertNotNull(mannschaftspiel.getHeimMannschaft());
-                if (++km > 2) break;
+                if (++km > 2) {
+                    break;
+                }
             }
         } catch (NullPointerException e) {
             Log.e(Constants.LOG_TAG, "NPE in  " + liga, e);

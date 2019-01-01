@@ -16,15 +16,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
-import static com.jmelzer.myttr.activities.TestHelper.login;
+import static com.jmelzer.myttr.logic.LogicTestHelper.login;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class AppointmentParserIntegrationTest {
-
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void testRead() throws Exception {

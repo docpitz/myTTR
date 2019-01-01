@@ -489,7 +489,7 @@ public class ClickTTParser extends AbstractBaseParser {
     private String getFixedPage(String url) throws NetworkException, LoginExpiredException {
         String page = Client.getPage(url);
         Pattern pattern = Pattern.compile("https://www\\.mytischtennis\\.de/clicktt/([^/]+)/.+?/gruppe/([^/]+)/tabelle/gesamt");
-        ParseResult resultMeta = readBetween(page, 0, "name=\"nuLigaStatsUrl\" content=\"/nuLigaTTDE/wa/leaguePage/view" , "\"");
+        ParseResult resultMeta = readBetween(page, 0, "name=\"nuLigaStatsUrl\" content=\"/nuLigaTTDE/wa/leaguePage/view", "\"");
 
         Matcher matcher = pattern.matcher(page);
 
@@ -935,7 +935,7 @@ public class ClickTTParser extends AbstractBaseParser {
         String gegner = readHrefAndATag(safeResult(result))[1];
         result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
         String erg = safeResult(result);
-        erg = erg.replaceAll("<.*?>","");
+        erg = erg.replaceAll("<.*?>", "");
         String saetze = "";
         for (int i = 1; i < 6; i++) {
             result = readBetweenOpenTag(resultrow.result, result.end - 3, "<td", "</td>", true);
@@ -1019,6 +1019,7 @@ public class ClickTTParser extends AbstractBaseParser {
                         //ignore
                     }
                 }
+                lokal.nr = verein.getLokale().size() + 1;
                 verein.addSpielLokal(lokal);
                 idx = result.end;
 
@@ -1067,9 +1068,6 @@ public class ClickTTParser extends AbstractBaseParser {
 
     private Mannschaftspiel parseVereinSpieleTableRow(ParseResult resultrow, boolean hasNr) {
         String cols[] = tableRowAsArray(resultrow.result, hasNr ? 11 : 10, false);
-        for (String c : cols) {
-            System.out.println("c = " + c);
-        }
         int idx = 0;
         String datum = cols[idx++];
         datum += " " + cols[idx++];

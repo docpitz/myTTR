@@ -23,7 +23,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
-import static com.jmelzer.myttr.activities.TestHelper.readFile;
+import static com.jmelzer.myttr.logic.LogicTestHelper.login;
+import static com.jmelzer.myttr.logic.LogicTestHelper.readFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -40,8 +41,7 @@ public class MyTischtennisParserIntegrationTest {
 
     @Before
     public void before() throws Exception {
-        LoginManager loginManager = new LoginManager();
-        Assert.assertNotNull(loginManager.login("chokdee", "fuckyou123"));
+        login();
     }
 
     @Test
@@ -217,7 +217,7 @@ public class MyTischtennisParserIntegrationTest {
         boolean found = false;
         for (Player player : players) {
 //            Log.i(Constants.LOG_TAG, player.toString());
-            if (player.getLastname().equals("Nega")) {
+            if (player.getLastname().equals("Zenner")) {
                 found = true;
             }
         }

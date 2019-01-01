@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
@@ -53,24 +54,20 @@ public class TTRCalculatorActivity extends BaseActivity {
 
         setContentView(R.layout.ttr_calc);
 
-        final ListView listview = (ListView) findViewById(R.id.playerlistview);
+        final ListView listview = findViewById(R.id.playerlistview);
 
         final EntryPlayerAdapter adapter = new EntryPlayerAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.getTtrCalcPlayer());
         listview.setAdapter(adapter);
 
-
         if (MyApplication.getTtrCalcPlayer() == null || MyApplication.getTtrCalcPlayer().isEmpty()) {
-            findViewById(R.id.txt_player_list).setVisibility(View.GONE);
-            findViewById(R.id.txt_player_list_empty).setVisibility(View.VISIBLE);
+            TextView textView = findViewById(R.id.txt_player_list);
+            textView.setText(R.string.txt_player_list_empty);
         } else {
-            findViewById(R.id.txt_player_list).setVisibility(View.VISIBLE);
-            findViewById(R.id.txt_player_list_empty).setVisibility(View.GONE);
+            TextView textView = findViewById(R.id.txt_player_list);
+            textView.setText(R.string.txt_player_list);
 
-//            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams) findViewById(R.id.header).getLayoutParams();
-//            p.addRule(RelativeLayout.BELOW, R.id.txt_player_list);
-//            findViewById(R.id.header).setLayoutParams(p);
         }
     }
 
@@ -89,8 +86,6 @@ public class TTRCalculatorActivity extends BaseActivity {
 
         for (Player player : MyApplication.getTtrCalcPlayer()) {
             list.add(new TTRCalculator.Game(player.getTtrPoints(), player.isChecked()));
-//            newV += calculator.calcPoints(newV, player.getTtrPoints(), player.isChecked(),
-//                    MyApplication.getAk());
         }
         actualPoints += calculator.calcPoints(actualPoints, list, MyApplication.getAk());
         MyApplication.result = actualPoints;
@@ -99,11 +94,6 @@ public class TTRCalculatorActivity extends BaseActivity {
     }
 
     public void nextAppointments(MenuItem item) {
-        readNextAppointments();
-
-    }
-
-    public void nextAppointments(View v) {
         readNextAppointments();
 
     }
@@ -135,15 +125,12 @@ public class TTRCalculatorActivity extends BaseActivity {
     }
 
     public void newplayer(MenuItem item) {
-        Intent target = new Intent(this, SearchActivity.class);
         MyApplication.actualPlayer = new Player();
-        startActivity(target);
-    }
-
-    public void newplayer(View item) {
-        Intent target = new Intent(this, SearchActivity.class);
-        MyApplication.actualPlayer = new Player();
-        startActivity(target);
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, false);
+        intent.putExtra(SearchActivity.BACK_TO, TTRCalculatorActivity.class);
+        intent.putExtra(SearchActivity.TARGET, TTRCalculatorActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -152,19 +139,4 @@ public class TTRCalculatorActivity extends BaseActivity {
         menuInflater.inflate(R.menu.ttr_actions, menu);
         return true;
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        Player p = (Player) data.getSerializableExtra("PLAYER");
-//        Toast.makeText(this, p.getFullName(), Toast.LENGTH_LONG).show();
-//        //is this really needed?
-//        if (MyApplication.actualPlayer != null) {
-//            MyApplication.actualPlayer.copy(p);
-//        } else {
-//            MyApplication.actualPlayer = p;
-//        }
-//        MyApplication.addPlayer(MyApplication.actualPlayer);
-//    }
 }

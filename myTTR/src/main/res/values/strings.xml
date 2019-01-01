@@ -37,7 +37,7 @@
     <string name="btn_results">Aktuelle Ergebnisse ansehen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string>
     <!--<string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltfläche rechts</string>-->
-    <string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt. Benutze die Schaltflächen oben</string>
+    <string name="txt_player_list_empty">Du hast noch keine Spieler ausgewählt.\nBenutze die Schaltflächen oben</string>
     <string name="txt_search_explain">Entweder Vorname und Nachname oder Vereinsname eingeben. Oder alles zusammen.</string>
     <string name="result_txt">Das Ergebnis</string>
     <string name="txt_enterttr">Du hast deinen Registrierungsvorgang nicht abgeschlossen.\nEinige Funktionen werden nicht richtig funktionieren!\nDarum konnte dein Verein und deine Punkte nicht festgestellt werden.\nDu musst diese jetzt noch eingeben</string>

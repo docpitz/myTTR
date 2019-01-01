@@ -27,7 +27,7 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class TestHelper {
+class TestHelper {
 
     public static void setUpIT() {
         SyncManager.testIsRun = true;
@@ -57,18 +57,4 @@ public class TestHelper {
         assertEquals("chokdee", MyApplication.getLoginUser().getUsername());
     }
 
-    public static String readFile(String file) throws IOException {
-        InputStream in = TestHelper.class.getClassLoader().getResourceAsStream(file);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String line = null;
-        StringBuilder stringBuilder = new StringBuilder();
-        String ls = System.getProperty("line.separator");
-
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
-        }
-
-        return StringEscapeUtils.unescapeHtml4(stringBuilder.toString());
-    }
 }

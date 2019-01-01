@@ -22,8 +22,6 @@ import static org.junit.Assert.*;
 @LargeTest
 public class LoginManagerTest {
     boolean offline = false;
-    @Rule
-    public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
     public void testlogin() throws Exception {

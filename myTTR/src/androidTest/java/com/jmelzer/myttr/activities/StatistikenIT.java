@@ -45,15 +45,11 @@ public class StatistikenIT {
     @Rule
     public ActivityTestRule<LoginActivity> mActivityTestRule = new ActivityTestRule<>(LoginActivity.class);
 
-    @Before
-    public void before() {
-        setUpIT();
-
-    }
     @Test
     public void statistikenIT() {
-        login();
+        setUpIT();
 
+        login();
 
         ViewInteraction button2 = onView(
                 allOf(withId(R.id.imageButton1), withText("Statistiken"),

@@ -126,10 +126,17 @@ public class MyApplication extends Application {
     }
 
     public static List<Mannschaftspiel> getSpieleForActualMannschaft() {
-        if (selectedMannschaft.getSpiele().size() > 0)
-            return selectedMannschaft.getSpiele();
-        return selectedLiga.getSpieleFor(selectedMannschaft.getName());
+        if (selectedMannschaft != null) {
+            if (selectedMannschaft.getSpiele().size() > 0) {
+                return selectedMannschaft.getSpiele();
+            }
+            if (selectedLiga != null) {
+                return selectedLiga.getSpieleFor(selectedMannschaft.getName());
+            }
+        }
+        return new ArrayList<>();
     }
+
     public static Liga getSelectedLiga() {
         return selectedLiga;
     }
@@ -179,8 +186,9 @@ public class MyApplication extends Application {
     }
 
     public static void addTTRCalcPlayer(final Player p) {
-        if (ttrCalcPlayer.contains(p))
+        if (ttrCalcPlayer.contains(p)) {
             return;
+        }
         Player toAdd = new Player();
         toAdd.copy(p);
         toAdd.setChecked(false);
