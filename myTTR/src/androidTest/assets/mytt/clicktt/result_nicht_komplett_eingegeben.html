@@ -1,0 +1,3150 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- Bezirk Mittelrhein 2018/19
+- Herren-Bezirksklasse 1
+</title>
+<base href="//www.mytischtennis.de">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=9-8-0" type="text/javascript"></script>
+<script src="/_sharedJS/jBox-0.4.9/Source/jBox.min.js?v=9-8-0" type="text/javascript"></script>
+<script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
+<script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/clicktt/includes/css/click-tt.css?v=9-8-0" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/jBox.css?v=9-8-0" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=9-8-0" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_AdCall.js"></script>
+<script src="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+</head>
+<body class="click-tt">
+<!-- Version: 9.8.0 -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="/clicktt//WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/spielplan/rr">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home">
+<img src='/public/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index" class="" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home">
+<img src="/public/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/clicktt/verbaende">Verbände</a>
+</li>
+<li class="">
+<a href="/clicktt/home">Mein click-TT</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan (WTTV) <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/18-19/ligen" id="activeFedIsWTTV">Ligenplan (WTTV)</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/P-18-19/pokalspiele">Ligenplan Pokal (WTTV)</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/WTTV/vereinssuche">Vereinssuche</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/spielersuche">Spielersuche</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home" title="Home">Home</a>
+<li><a href="/clicktt/WTTV/18-19/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/WTTV/18-19/ligen/Mittelrhein-18-19" title="Bezirk Mittelrhein 2018/19(Mittelrhein 18/19)">Bezirk Mittelrhein 2018/19</a></li>
+<li class="active">Herren-Bezirksklasse 1</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Liga &nbsp; Spielplan</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right">
+<a href="/community/ranking?showgroupid=334353" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
+</div>
+<h1>
+Herren-Bezirksklasse 1
+<span class="btn-group hidden-print" data-bind="with:$root.group">
+<button type="button" class="btn btn-pill btn-xs dropdown-toggle"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+data-bind="css: ((favoriteStatus() == 'added') ? 'btn-primary' : 'btn-default')">
+<i class="fa fa-star" data-bind="css: ((favoriteStatus() == 'added') ? 'fa-star' : 'fa-star-o')"></i>
+</button>
+<ul class="dropdown-menu disabled">
+<!-- ko if: favoriteStatus() == "added" -->
+<li><a href="#" data-bind="click: removeFavorite"><i class="fa fa-fw fa-trash"></i> Von meinen Favoriten-Ligen entfernen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noadded" -->
+<li><a href="" data-bind="click: addFavorite"><i class="fa fa-fw fa-plus-circle"></i> Zu meinen Favoriten-Ligen hinzufügen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noaddedAndOverloaded" -->
+<li><a href="#" data-toggle="tooltip" title="Sie haben die Favoriten-Ligen voll">Favoriten-Ligen voll</a></li>
+<!-- /ko -->
+<li><a href="clicktt/home#tab_ligen"><i class="fa fa-fw fa-list"></i> Favoriten-Ligen anzeigen</a></li>
+</ul>
+</span>
+<script src="/clicktt/includes/js/group.js?v=9-8-0" type="text/javascript"></script>
+<script type="text/javascript">
+if (!window.koModels) {
+window.koModels = {};
+}
+// hook for loading-process of mainViewModel
+window.koModels.group = function(mainData, mainModel) {
+return new window.ClickTTGroupViewModel("noadded"
+, "/clicktt/WTTV/group/removeFavorite?groupid=334353"
+, "/clicktt/WTTV/group/addFavorite?groupid=334353");
+};
+</script>
+</h1>
+<ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/tabelle/gesamt" data-target="#groupTeamInfos" role="tab">
+Tabelle
+</a>
+</li>
+<li role="presentation" class="active">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/spielplan/rr" role="tab">
+Gruppenspielplan
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/adressen" data-target="#groupTeamAddresses" role="tab">
+Kontakte
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/bilanzuebersichten/rr" data-target="#groupTeamStats" role="tab">
+Bilanzen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/mannschaftsmeldungen/rr"
+data-target="#groupTeamPools" role="tab">
+Meldungen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/gruppen-ranglisten/spieler/rr"
+data-target="#groupTeamPools" role="tab">
+Ranglisten
+</a>
+</li>
+</ul>
+<div class="pull-right">
+<div class="btn-group hidden-print">
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/spielplan/vr" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/WTTV/18-19/ligen/Bezirksklasse-1/gruppe/334353/spielplan/rr" class="m-b-md btn btn-sm btn-info active">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+</div>
+</div>
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Gruppenspielplan (Rückrunde)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th>Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Mo. </span>
+07.01.2019
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip678C1DF4-C2D2-4B14-9C737210B7579AAC">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 11.01.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip678C1DF4-C2D2-4B14-9C737210B7579AAC',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773441/TuS-Porselen-II-vs-TTV-Gangelt-Birgden">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+12.01.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773444/TTC-Unterbruch-III-vs-TTC-Karken">
+9:4
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773429/TTC-Tueddern-vs-SV-Sportfreunde-Hoern">
+9:7
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773491/TTC-Oidtweiler-III-vs-Eintracht-Aachen">
+3:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+<a href="javascript:void(0);" id="settooltip0011DC10-C9B1-426E-806F0297BC79BE98">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip0011DC10-C9B1-426E-806F0297BC79BE98',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltipFFCDC9A9-C3A7-49E1-AB5CBCE96B204C3A">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 13.01.2019 10:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipFFCDC9A9-C3A7-49E1-AB5CBCE96B204C3A',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773451/DJK-UEbach-Palenberg-vs-TTC-Baesweiler">
+8:8
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Mi. </span>
+16.01.2019
+</span>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltipE5528D0A-C1C0-4C8B-AF9E0A7A867DA293">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 27.01.2019 11:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipE5528D0A-C1C0-4C8B-AF9E0A7A867DA293',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/spielbericht/10773432/Eintracht-Aachen-II-vs-Eintracht-Aachen">
+3:9
+</a>
+&nbsp;&nbsp;
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+18.01.2019
+</span>
+</td>
+<td>
+19:00 
+<a href="javascript:void(0);" id="settooltip12C49500-DAA9-496F-86414939431E84E5">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip12C49500-DAA9-496F-86414939431E84E5',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip2C5C55C6-5AB3-4EB9-885C542539E8DEFB">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 18.01.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip2C5C55C6-5AB3-4EB9-885C542539E8DEFB',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+9:0
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+19.01.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+25.01.2019
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip707A55D8-6F15-4271-9C2979276CB29B75">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 19.01.2019 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip707A55D8-6F15-4271-9C2979276CB29B75',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+26.01.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Mo. </span>
+28.01.2019
+</span>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip2D1480A5-9B61-415A-A55C51F8E38AB37F">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 11.01.2019 19:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip2D1480A5-9B61-415A-A55C51F8E38AB37F',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+01.02.2019
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:45 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+02.02.2019
+</span>
+</td>
+<td>
+18:30 
+<a href="javascript:void(0);" id="settooltipD23BFC40-912D-4892-95B25C6E5DEFEF23">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 26.01.2019 18:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipD23BFC40-912D-4892-95B25C6E5DEFEF23',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+<a href="javascript:void(0);" id="settooltip45A6C0D5-9EB6-40AE-9CFDB94D9B908F1B">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip45A6C0D5-9EB6-40AE-9CFDB94D9B908F1B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="javascript:void(0);" id="settooltip27847098-8064-4512-97F99C747758630B">H</a>
+<script type="text/javascript">
+var toolTipContent = "TH GS Karken, Holzgraben, Heinsberg-Karken";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip27847098-8064-4512-97F99C747758630B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>Spiellokal: 
+<a href="javascript:void(0);" id="settooltip0051CB02-4366-466C-B00A8EB390B62EAA">H</a>
+<script type="text/javascript">
+var toolTipContent = "TH GS Karken, Holzgraben, Heinsberg-Karken";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip0051CB02-4366-466C-B00A8EB390B62EAA',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+03.02.2019
+</span>
+</td>
+<td>
+10:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+08.02.2019
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+09.02.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+10.02.2019
+</span>
+</td>
+<td>
+10:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Mi. </span>
+13.02.2019
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltipD3E3E101-71D1-450F-9DC79AF41469AAE1">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 25.01.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipD3E3E101-71D1-450F-9DC79AF41469AAE1',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+15.02.2019
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:45 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+16.02.2019
+</span>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+<a href="javascript:void(0);" id="settooltipC7A8652E-FA34-455E-9128F3E6503F3443">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipC7A8652E-FA34-455E-9128F3E6503F3443',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="javascript:void(0);" id="settooltip399A6853-897C-4D50-B11D9F7DFB9C64E5">H</a>
+<script type="text/javascript">
+var toolTipContent = "TH GS Karken, Holzgraben, Heinsberg-Karken";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip399A6853-897C-4D50-B11D9F7DFB9C64E5',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>Spiellokal: 
+<a href="javascript:void(0);" id="settooltipBA3050E0-0B3C-4B21-B08AE5142098ED45">H</a>
+<script type="text/javascript">
+var toolTipContent = "TH GS Karken, Holzgraben, Heinsberg-Karken";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipBA3050E0-0B3C-4B21-B08AE5142098ED45',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+22.02.2019
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.02.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+24.02.2019
+</span>
+</td>
+<td>
+10:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Mi. </span>
+27.02.2019
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltipA64DFB20-9C40-4726-8058800CCCF8E11A">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 18.01.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipA64DFB20-9C40-4726-8058800CCCF8E11A',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+08.03.2019
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:45 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+09.03.2019
+</span>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+15.03.2019
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip23B80F39-DBE8-4358-BA82BDED5F72E1FA">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip23B80F39-DBE8-4358-BA82BDED5F72E1FA',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip65FBBD89-46BF-43CB-B32BE5112E6CE369">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 18.01.2019 19:45&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip65FBBD89-46BF-43CB-B32BE5112E6CE369',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="javascript:void(0);" id="settooltipDB7BFEF6-ADD5-4301-B83C202091860D03">H</a>
+<script type="text/javascript">
+var toolTipContent = "MZH Porselen, Ullrichstraße,Heinsberg-Porselen";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipDB7BFEF6-ADD5-4301-B83C202091860D03',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>Spiellokal: 
+<a href="javascript:void(0);" id="settooltipC296BEA6-59B0-4DA8-B9A029F6F99BD7D8">H</a>
+<script type="text/javascript">
+var toolTipContent = "MZH Porselen, Ullrichstraße,Heinsberg-Porselen";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipC296BEA6-59B0-4DA8-B9A029F6F99BD7D8',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+16.03.2019
+</span>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159018/DJK-UEbach-Palenberg/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+17.03.2019
+</span>
+</td>
+<td>
+10:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+22.03.2019
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:45 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157021/DJK-Westwacht-Weiden/info">2</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159010/TTV-Gangelt-Birgden/info">3</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159011/TTC-Karken/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.03.2019
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157026/SV-Sportfreunde-Hoern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+29.03.2019
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121314/TuS-Porselen-II/spielerbilanzen/rr">TuS Porselen II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121720/Eintracht-Aachen-II/spielerbilanzen/rr">Eintracht Aachen II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159012/TuS-Porselen-II/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125336/Eintracht-Aachen/spielerbilanzen/rr">Eintracht Aachen</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123188/DJK-UEbach-Palenberg/spielerbilanzen/rr">DJK Übach-Palenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/157002/Eintracht-Aachen/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+30.03.2019
+</span>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2121959/TTC-Tueddern/spielerbilanzen/rr">TTC Tüddern</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2125129/DJK-Westwacht-Weiden/spielerbilanzen/rr">DJK Westwacht Weiden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159033/TTC-Tueddern/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123220/TTC-Oidtweiler-III/spielerbilanzen/rr">TTC Oidtweiler III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2124682/TTC-Karken/spielerbilanzen/rr">TTC Karken</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159007/TTC-Oidtweiler-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2122935/TTC-Unterbruch-III/spielerbilanzen/rr">TTC Unterbruch III</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2120134/TTV-Gangelt-Birgden/spielerbilanzen/rr">TTV Gangelt-Birgden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159024/TTC-Unterbruch-III/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+31.03.2019
+</span>
+</td>
+<td>
+10:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2123351/TTC-Baesweiler/spielerbilanzen/rr">TTC Baesweiler</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Bezirksklasse-1/gruppe/334353/mannschaft/2119471/SV-Sportfreunde-Hoern/spielerbilanzen/rr">SV Sportfreunde Hörn</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/159002/TTC-Baesweiler/info">1</a>
+</div>
+</td>
+<td>
+&nbsp;&nbsp;
+</td>
+</tr>
+</tbody>
+</table>
+<div>
+<a href="https://wttv.click-tt.de/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=ScheduleReportFOP&type=small&roundTyp=rueckrunde&group=334353" class="m-b-md btn btn-sm btn-info" target="_blank">
+PDF-Version <i class="fa fa-file-pdf-o"></i>
+</a>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Shop-Partner
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8395" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8395','Shop-Partner
+']);" title="Shop-Partner
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/xmas-61.gif" alt="Shop-Partner
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">andro &ndash; offizieller Verbandsausr&uuml;ster
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7869" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7869','andro &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="andro &ndash; offizieller Verbandsausr&uuml;ster
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/AND_www_HexerGrip_300x250.gif" alt="andro &ndash; offizieller Verbandsausr&uuml;ster
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/misc/12578/Datenschutz-WTTV" id="Datenschutz_link_WTTV" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12402/impressum-WTTV" id="Impressum_link_WTTV" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12465/kontakt-WTTV" id="Kontakt_link_WTTV" title="Kontakt">Kontakt</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2019 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=9-8-0" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "WTTV"
+},
+urls: {
+playerPopover: '/clicktt/WTTV/player/popover',
+groupPopover: '/clicktt/WTTV/group/popover',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+<script src="/public/javascripts/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
+</body>
+</html>

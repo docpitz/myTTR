@@ -617,7 +617,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             String ergebnis = readHrefAndATag(row[6])[1];
             if (ergebnis == null || ergebnis.isEmpty()) {
-                ergebnis = null;//row[5].replaceAll(" ", "");
+                ergebnis = row[6];
                 url = null;
             }
 //            String datum = row[0].substring(0,row[0].length()-2);

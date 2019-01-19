@@ -130,8 +130,9 @@ public class TournamentsActivity extends BaseActivity {
             if (MyApplication.selectedVerband == null) {
                 return;
             }
-            if (MyApplication.selectedVerband.gettUrl() == null)
+            if (MyApplication.selectedVerband.gettUrl() == null) {
                 return;
+            }
 
             refreshList();
 
@@ -160,23 +161,24 @@ public class TournamentsActivity extends BaseActivity {
             @Override
             protected void onPostExecute(Integer integer) {
                 super.onPostExecute(integer);
+                if (dataLoaded()) {
+                    final ListView listview = findViewById(R.id.tournament_row);
+                    final RowAdapter adapter = new RowAdapter(TournamentsActivity.this,
+                            android.R.layout.simple_list_item_1,
+                            MyApplication.myTournaments);
+                    listview.setAdapter(adapter);
 
-                final ListView listview = findViewById(R.id.tournament_row);
-                final RowAdapter adapter = new RowAdapter(TournamentsActivity.this,
-                        android.R.layout.simple_list_item_1,
-                        MyApplication.myTournaments);
-                listview.setAdapter(adapter);
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            MyApplication.selectedTournament = (Tournament) parent.getItemAtPosition(position);
+                            callDetail();
 
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-                        MyApplication.selectedTournament = (Tournament) parent.getItemAtPosition(position);
-                        callDetail();
-
-                    }
-                });
+                        }
+                    });
+                }
             }
         };
         task.execute();
