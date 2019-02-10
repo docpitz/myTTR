@@ -11,9 +11,12 @@
         <!--<item name="android:background">#f3e45252</item>-->
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Myttr</item>
         <item name="android:selectableItemBackground">@null</item>
-
+        <!--<item name="android:actionMenuTextColor">@color/pink</item>-->
+        <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
-
+    <style name="MenuItemTextAppearance">
+        <item name="android:textColor">@color/white</item>
+    </style>
     <style name="ActionBar.Solid.Myttr" parent="@android:style/Widget.Holo.ActionBar.Solid">
         <item name="android:background">@drawable/ab_solid_myttr</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_myttr</item>
