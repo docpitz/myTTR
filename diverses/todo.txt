@@ -201,3 +201,5 @@ Weitere Fixes
 ---------
 - Menufarbe in Android 9
 - Livelinks gefixed
+- Neue Vereinsliste
+- Rheinland Cup 2019
