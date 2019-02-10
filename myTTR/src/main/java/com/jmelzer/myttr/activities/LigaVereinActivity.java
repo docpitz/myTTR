@@ -280,7 +280,7 @@ public class LigaVereinActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
                 Liga liga = new Liga();
                 if (!m.url.startsWith("http"))
                     liga.setUrl(UrlUtil.getHttpAndDomain(MyApplication.selectedVerein.getUrl()) + m.url);

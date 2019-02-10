@@ -72,6 +72,17 @@ public class MyTTClickTTParserTest {
             assertNotNull(mannschaft.getLiga());
         }
     }
+    @Test
+    public void parseLigaLiveEdit() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/live-active.overview.html");
+        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/gesamt");
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+        }
+        assertEquals("0:0", liga.getSpieleRueckrunde().get(15).getErgebnis());
+        assertEquals(11, liga.getMannschaften().size());
+    }
 
     @Test
     public void parseLigaHome() throws Exception {

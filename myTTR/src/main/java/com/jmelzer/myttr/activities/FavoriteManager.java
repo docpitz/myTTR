@@ -119,7 +119,7 @@ public class FavoriteManager {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(parent, LigaTabelleActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
                 clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 

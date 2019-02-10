@@ -151,7 +151,7 @@ public class LigaHomeActivity extends BaseActivity {
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, LigaTabelleActivity.class) {
 
             @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
+            protected void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
                 clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
             }
 

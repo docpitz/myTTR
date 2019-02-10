@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
@@ -16,7 +17,7 @@ public class LigaTabelleAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void callParser() throws NetworkException, LoginExpiredException, ValidationException {
+    protected void callParser() throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
         clickTTWrapper.readLiga(MyApplication.saison, MyApplication.getSelectedLiga());
     }
 

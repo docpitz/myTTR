@@ -45,7 +45,7 @@ ext {
 
 // get Git revision as a NUMBER (subversion style of revision)
 def gitRevision() {
-    return "git rev-list --count HEAD".execute().text.trim();
+    return "";//"""git rev-list --count HEAD".execute().text.trim();
 }
 
 /* PRINT to output configuration details of the build. */

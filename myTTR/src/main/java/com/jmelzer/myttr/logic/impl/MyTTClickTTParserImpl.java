@@ -115,7 +115,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     }
 
     @Override
-    public void readLiga(Liga liga) throws NetworkException, LoginExpiredException, ValidationException {
+    public void readLiga(Liga liga) throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
         String url = liga.getUrl();
         String page = Client.getPage(url);
         parseLiga(page, liga);
@@ -589,7 +589,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 continue;//skip first row
             }
             String[] row = tableRowAsArray(resultrow.result, 10, false);
-//            printRows(row);
+            printRows(row);
             String datum = row[0];
             String time = "";
             if (row[1] != null && !row[1].isEmpty()) {
@@ -619,6 +619,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ergebnis == null || ergebnis.isEmpty()) {
                 ergebnis = row[6];
                 url = null;
+            }
+            if (ergebnis.startsWith("<")) {
+                ergebnis = readBetween(ergebnis, 0, ">" , "<").result;
             }
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
@@ -749,11 +752,12 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return s;
     }
 
-    void parseLiga(String page, Liga liga) throws LoginExpiredException, ValidationException {
+    void parseLiga(String page, Liga liga) throws LoginExpiredException, ValidationException, NoClickTTException {
 
         if (page.contains("Nicht eindeutig identifiziert")) {
             throw new LoginExpiredException();
         }
+        validatePage(page);
 
         parseSpielplanLinks(liga, page);
 

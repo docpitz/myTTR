@@ -41,7 +41,7 @@ public class MytClickTTWrapper {
         }
     }
 
-    public void readLiga(Saison saison, Liga liga) throws NetworkException, LoginExpiredException, ValidationException {
+    public void readLiga(Saison saison, Liga liga) throws NetworkException, LoginExpiredException, ValidationException, NoClickTTException {
         if (isClickTT(saison)) {
             clickTTParser.readLiga(liga);
         } else {
