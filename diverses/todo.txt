@@ -199,3 +199,5 @@ Weitere Fixes
 
 6.0.5
 ---------
+- Menufarbe in Android 9
+- Livelinks gefixed
