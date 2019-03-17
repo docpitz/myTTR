@@ -393,22 +393,23 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan.html");
         Verein v = new Verein();
         parser.parseVereinSpielplan(v, page);
-        assertEquals(121, v.getSpielplan().size());
-        assertEquals("07.01.2019 19:30", v.getSpielplan().get(0).getDate());
+        assertEquals(33, v.getSpielplan().size());
+        assertEquals("09.03.2019 18:30", v.getSpielplan().get(0).getDate());
 //        assertEquals("9:1", v.getSpielplan().get(2).getErgebnis());
 //        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
 //                v.getSpielplan().get(3).getUrlDetail());
 //        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
-        assertEquals("TV Bergheim IV", v.getSpielplan().get(0).getHeimMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-3-Kreisklasse-B-Gruppe-2-Rueckrunde/gruppe/345988/mannschaft/2190980/TV-Bergheim-IV/spielerbilanzen/vr",
+        assertEquals("TuRa Oberdrees", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-NRW-Liga-3/gruppe/334215/mannschaft/2124227/TuRa-Oberdrees/spielerbilanzen/rr",
                 v.getSpielplan().get(0).getHeimMannschaft().getUrl());
-        assertEquals("TTG St. Augustin IX", v.getSpielplan().get(0).getGastMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-3-Kreisklasse-B-Gruppe-2-Rueckrunde/gruppe/345988/mannschaft/2132351/TTG-St-Augustin-IX/spielerbilanzen/vr",
+        assertEquals("TTG St. Augustin", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-NRW-Liga-3/gruppe/334215/mannschaft/2091020/TTG-St-Augustin/spielerbilanzen/rr",
                 v.getSpielplan().get(0).getGastMannschaft().getUrl());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/verein/156026/TV-Bergheim-IV/info",
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees/info",
                 v.getSpielplan().get(0).getUrlSpielLokal());
         assertEquals(1, v.getSpielplan().get(0).getNrSpielLokal());
-        assertEquals(2, v.getSpielplan().get(2).getNrSpielLokal());
+        assertEquals(1, v.getSpielplan().get(2).getNrSpielLokal());
+        assertEquals("0:0", v.getSpielplan().get(12).getErgebnis());
 
 //        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
 //        assertEquals("", v.getSpielplan().get(59).getErgebnis());

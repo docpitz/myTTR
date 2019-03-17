@@ -195,7 +195,7 @@ public class LigaVereinActivity extends BaseActivity {
                 ((TextView) convertView.findViewById(R.id.heim)).setText(childElem.mannschaftspiel.getHeimMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.gast)).setText(childElem.mannschaftspiel.getGastMannschaft().getName());
                 ((TextView) convertView.findViewById(R.id.result)).setText(childElem.mannschaftspiel.getErgebnis());
-                convertView.findViewById(R.id.map).setVisibility(View.VISIBLE);
+
             } else if (groupPosition == SPIELLOKALE_POS) {
                 final String text = childElem.text;
                 convertView = infalInflater.inflate(R.layout.liga_spiellokal_row, null);
@@ -240,7 +240,11 @@ public class LigaVereinActivity extends BaseActivity {
             final ImageView arrow = convertView.findViewById(R.id.arrow);
             final ImageView map = convertView.findViewById(R.id.map);
             if (childElem.mannschaftspiel != null) {
-                if (childElem.mannschaftspiel.getUrlDetail() == null) {
+
+                boolean haveNoResult = (childElem.mannschaftspiel.getErgebnis() == null || childElem.mannschaftspiel.getErgebnis().equals("0:0"));
+
+                if (haveNoResult || childElem.mannschaftspiel.getUrlDetail() == null) {
+                    map.setVisibility(View.VISIBLE);
                     arrow.setVisibility(View.INVISIBLE);
                     if (childElem.mannschaftspiel.getNrSpielLokal() > -1) {
                         map.setOnClickListener(new View.OnClickListener() {
@@ -253,8 +257,6 @@ public class LigaVereinActivity extends BaseActivity {
                                     GoogleMapStarter.showMap(LigaVereinActivity.this, childElem.mannschaftspiel.getActualSpiellokal());
                             }
                         });
-                    } else {
-                        map.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     map.setVisibility(View.INVISIBLE);
