@@ -254,19 +254,30 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschafts-bilanzen.html");
         Mannschaft mannschaft = new Mannschaft();
         parser.parseBilanzen(page, mannschaft);
-        assertEquals(10, mannschaft.getSpielerBilanzen().size());
-        assertEquals("10", mannschaft.getSpielerBilanzen().get(0).getEinsaetze());
-        assertEquals("Gatzmanga, Mario", mannschaft.getSpielerBilanzen().get(0).getName());
-        assertEquals("16:2", mannschaft.getSpielerBilanzen().get(0).getGesamt());
-        assertEquals("1.1", mannschaft.getSpielerBilanzen().get(0).getPos());
+        assertEquals(12, mannschaft.getSpielerBilanzen().size());
+        assertEquals("2", mannschaft.getSpielerBilanzen().get(0).getEinsaetze());
+        assertEquals("Intakoon, Nantawat", mannschaft.getSpielerBilanzen().get(0).getName());
+        assertEquals("4:0", mannschaft.getSpielerBilanzen().get(0).getGesamt());
+        assertEquals("2.1", mannschaft.getSpielerBilanzen().get(0).getPos());
         assertEquals(2, mannschaft.getSpielerBilanzen().get(0).getPosResults().size());
         assertEquals("1", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[0]);
-        assertEquals("8:0", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[1]);
+        assertEquals("2:0", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(0)[1]);
         assertEquals("2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[0]);
-        assertEquals("8:2", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[1]);
+        assertEquals("2:0", mannschaft.getSpielerBilanzen().get(0).getPosResults().get(1)[1]);
         for (SpielerAndBilanz spielerBilanz : mannschaft.getSpielerBilanzen()) {
             System.out.println("spielerBilanz = " + spielerBilanz);
         }
+        assertEquals(4, mannschaft.getSpielerBilanzen().get(7).getPosResults().size());
+    }
+
+    @Test
+    public void parseBilanzen4er() throws Exception {
+
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-mannschafts-bilanzen-4er.html");
+        Mannschaft mannschaft = new Mannschaft();
+        parser.parseBilanzen(page, mannschaft);
+        assertEquals(9, mannschaft.getSpielerBilanzen().size());
+        assertEquals(4, mannschaft.getSpielerBilanzen().get(5).getPosResults().size());
     }
 
     @Test

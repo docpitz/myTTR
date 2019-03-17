@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
@@ -46,10 +47,11 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
         textView.setText(spiel.getGastMannschaft().getName());
 //        Log.i(Constants.LOG_TAG, "hast=" + spiel.getGastMannschaft().getName());
         textView = rowView.findViewById(R.id.result);
-        if (spiel.isPlayed())
+        if (spiel.isPlayed()) {
             textView.setText(spiel.getErgebnis());
-        else
+        } else {
             textView.setText("");
+        }
 
         final ImageView arrow = rowView.findViewById(R.id.arrow);
         if (spiel.getUrlDetail() == null || spiel.getUrlDetail().isEmpty()) {
@@ -59,7 +61,11 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
                 @Override
                 public void onClick(View v) {
                     MyApplication.selectedMannschaftSpiel = spiel;
-                    callMannschaftSpielDetail();
+                    if (MyApplication.selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
+                        Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
+                    } else {
+                        callMannschaftSpielDetail();
+                    }
                 }
             });
         }
@@ -75,8 +81,9 @@ class SpielAdapter extends ArrayAdapter<Mannschaftspiel> {
                         if (spiel.getHeimMannschaft().getSpielLokale().size() == 0) {
                             new ReadInfoAsyncTask(spiel.getHeimMannschaft(),
                                     spiel.getNrSpielLokal(), parent).execute();
-                        } else
+                        } else {
                             GoogleMapStarter.showMap(parent, spiel.getActualSpiellokal());
+                        }
                     }
                 });
             } else {

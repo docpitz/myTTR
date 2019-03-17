@@ -2,34 +2,40 @@
 <html><head>
 <title>
 myTischtennis.de - click-TT
-- Kreis Rhein-Sieg 2017/18
-- Herren Kreisliga
-- SV Leuscheid
-- Herren
+- WTTV 2018/19
+- Herren Landesliga 12
+- TTG St. Augustin
+- Herren II
 </title>
 <base href="//www.mytischtennis.de">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
 <script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
-<script src="/_sharedJS/common.js?v=8-3-0" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=10-3-1" type="text/javascript"></script>
+<script src="/_sharedJS/jBox-0.4.9/Source/jBox.min.js?v=10-3-1" type="text/javascript"></script>
 <script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
 <script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
-<link href="/clicktt/includes/css/click-tt.css?v=8-3-0" media="all" rel="stylesheet" type="text/css" />
+<link href="/clicktt/includes/css/click-tt.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/jBox.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_PreCall.js"></script>
 <script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
 <script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/wttv.de_AdCall.js"></script>
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
 </head>
 <body class="click-tt">
-<!-- Version: 8.3.0 -->
+<!-- Version: 10.3.1 -->
+<!-- init on 78 @ {ts '2019-03-15 16:00:48'} -->
 <div class="top-bar hidden-xs hidden-sm hidden-print">
 <div class="container">
 <div class="col-md-offset-3 col-md-9 text-right">
 <form action="/community/logout" method="post" class="form-inline pull-right">
 <a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
 <button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
-<input type="hidden" name="targetPage" value="/clicktt//WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">
+<input type="hidden" name="targetPage" value="/clicktt//WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">
 </form>
 </div>
 </div>
@@ -43,7 +49,6 @@ myTischtennis.de - click-TT
 </h1>
 <ul class="mytt-tabs">
 <li class="click-tt">
-<img class="beta" src="/images/beta.png" alt="BETA"/>
 <a href="/clicktt/home" class="current" title="click-TT">click-TT</a>
 </li>
 <li class="portal">
@@ -89,7 +94,6 @@ Toggle navigation
 </div>
 <div class="navbar-subnav">
 <span class="click-tt">
-<img class="beta" src="/images/beta.png" alt="BETA"/>
 <a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
 </span>
 <span class="portal">
@@ -108,8 +112,19 @@ Toggle navigation
 <li class="">
 <a href="/clicktt/home">Mein click-TT</a>
 </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan (WTTV) <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
 <li class="">
-<a href="/clicktt/WTTV/17-18/ligen" data-disabled-reason="Um den Ligenplan nutzen zu können, musst du zuerst einen Verband auswählen.">Ligenplan (WTTV)</a>
+<a href="/clicktt/WTTV/18-19/ligen" id="activeFedIsWTTV">Ligenplan (WTTV)</a>
+</li>
+<li class="">
+<a href="/clicktt/WTTV/P-18-19/pokalspiele">Ligenplan Pokal (WTTV)</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/clicktt/livescoring/start">Livescoring [Beta]</a>
 </li>
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
@@ -132,11 +147,11 @@ Toggle navigation
 <a name="content"></a>
 <ol class="breadcrumb"> 
 <li><a href="/clicktt/home" title="Home">Home</a>
-<li><a href="/clicktt/WTTV/season/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
-<li><a href="/clicktt/WTTV/17-18/ligen/Rhein-Sieg-17-18" title="Kreis Rhein-Sieg 2017/18(Rhein-Sieg 17/18)">Kreis Rhein-Sieg 2017/18</a></li>
-<li><a href="/clicktt/WTTV/17-18/ligen/Kreisliga/gruppe/305886/tabelle/gesamt" title="Rhein-Sieg 17/18 &ndash; Herren Kreisliga">Herren Kreisliga</a></li>
-<li><a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/mannschaften" title="SV Leuscheid Herren Rhein-Sieg">SV Leuscheid</a></li>
-<li class="active">Herren</li>
+<li><a href="/clicktt/WTTV/18-19/ligen" title="Westdeutscher Tischtennis-Verband e.V. &ndash; Ligenplan">WTTV &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/WTTV/18-19/ligen/WTTV-18-19" title="WTTV 2018/19(WTTV 18/19)">WTTV 2018/19</a></li>
+<li><a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/tabelle/gesamt" title="WTTV 18/19 &ndash; Herren Landesliga 12">Herren Landesliga 12</a></li>
+<li><a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin/mannschaften?contesttype=ligen" title="TTG St. Augustin Herren II Rhein-Sieg">TTG St. Augustin</a></li>
+<li class="active">Herren II</li>
 </ol>
 </div>
 </div>
@@ -173,534 +188,578 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791
 <a href="javascript:window.print();" class="m-b-md btn btn-sm btn-info">Drucken <i class="fa fa-print"></i></a>
 </div>
 <h1>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">SV Leuscheid </a> - Herren - <small>Rhein-Sieg</small>
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin/info">TTG St. Augustin </a> - Herren II - <small>Rhein-Sieg</small>
 </h1>
 <ul class="nav nav-tabs m-b-md hidden-print" role="tablist" id="team-tabs">
 <li role="presentation" class="active">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr" role="tab">Bilanzen</a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr" role="tab">Bilanzen</a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielplan/aktuell" role="tab">Spielplan und Tabelle</a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielplan/aktuell" role="tab">Spielplan und Tabelle</a>
 </li>
 <li role="presentation" class="">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/infos" role="tab">Mannschaftsinfos</a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/infos" role="tab">Mannschaftsinfos</a>
 </li>
 </ul>
 <div class="pull-right">
 <div class="btn-group hidden-print">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr" class="m-b-md btn btn-sm btn-info active">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/rr" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/gesamt" class="m-b-md btn btn-sm btn-info ">Gesamt <i class="fa fa-dot-circle-o"></i></a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/vr" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr" class="m-b-md btn btn-sm btn-info active">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/gesamt" class="m-b-md btn btn-sm btn-info ">Gesamt <i class="fa fa-dot-circle-o"></i></a>
 </div>
 </div>
-<h3>Spielplan (Vorrunde)</h3>
-<table class="table table-mytt table-striped table-bordered hidden-xs hidden-sm hidden-md" id="playingPlanDesktop">
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Spielplan (Rückrunde)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
 <thead>
 <tr>
 <th>Datum</th>
 <th>Zeit</th>
-<th>Halle</th>
-<th>Heimmannschaft</th>
-<th>Gastmannschaft</th>
-<th>Spiele</th>
-<th></th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th colspan="2">Spiele</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>
-Sa. 02.09.2017
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+13.01.2019
+</span>
 </td>
 <td>
-18:00
+11:00 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955731/SSV-Happerschoß/spielerbilanzen/vr">SSV Happerschoß</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231687/SV-Leuscheid-vs-SSV-Happerschoß">
-9: 1
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Sa. 09.09.2017
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/rr">TTC BW Brühl-Vochem III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2123368/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/rr">TTC BW Brühl-Vochem III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
 </td>
 <td>
-18:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156001/SV-Oelinghoven/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954345/SV-Oelinghoven/spielerbilanzen/vr">SV Oelinghoven</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231701/SV-Oelinghoven-vs-SV-Leuscheid">
-0: 9
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763703/TTG-St-Augustin-II-vs-TTC-BW-Bruehl-Vochem-III">
+7:9
 </a>
 </td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
 <td>
-Mo. 18.09.2017
-</td>
-<td>
-20:00
-<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 23.09.2017 18:00&nbsp;Uhr'>v</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1950282/DJK-Stallberg-Wolsdorf-II/spielerbilanzen/vr">DJK Stallberg-Wolsdorf II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231706/SV-Leuscheid-vs-DJK-Stallberg-Wolsdorf-II">
-9: 1
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Fr. 29.09.2017
-</td>
-<td>
-19:55
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel-IV/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1951063/TTG-Niederkassel-IV/spielerbilanzen/vr">TTG Niederkassel IV</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231703/TTG-Niederkassel-IV-vs-SV-Leuscheid">
-3: 9
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Mo. 02.10.2017
-</td>
-<td>
-20:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1952040/TV-Donrath/spielerbilanzen/vr">TV Donrath</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231731/SV-Leuscheid-vs-TV-Donrath">
-9: 0
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Mo. 09.10.2017
-</td>
-<td>
-20:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1951155/TTC-Troisdorf-II/spielerbilanzen/vr">TTC Troisdorf II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231716/SV-Leuscheid-vs-TTC-Troisdorf-II">
-9: 5
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Fr. 20.10.2017
-</td>
-<td>
-20:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156005/DJK-Eintracht-Eitorf-III/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955021/DJK-Eintracht-Eitorf-III/spielerbilanzen/vr">DJK Eintracht Eitorf III</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231708/DJK-Eintracht-Eitorf-III-vs-SV-Leuscheid">
-4: 9
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Sa. 11.11.2017
-</td>
-<td>
-18:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1953135/HSG-Siebengebirge-Thomasberg-II/spielerbilanzen/vr">HSG Siebengebirge-Thomasberg II</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231736/SV-Leuscheid-vs-HSG-Siebengebirge-Thomasberg-II">
-9: 3
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Mo. 13.11.2017
-</td>
-<td>
-20:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156018/TuS-Meindorf/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955212/TuS-Meindorf/spielerbilanzen/vr">TuS Meindorf</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231725/TuS-Meindorf-vs-SV-Leuscheid">
-2: 9
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Sa. 25.11.2017
-</td>
-<td>
-18:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954936/TTG-St-Augustin-III/spielerbilanzen/vr">TTG St. Augustin III</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231732/SV-Leuscheid-vs-TTG-St-Augustin-III">
-8: 8
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-<tr>
-<td>
-Fr. 01.12.2017
-</td>
-<td>
-20:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/verein/156017/TTC-DJK-Hennef-III/info">1</a></td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1952224/TTC-DJK-Hennef-III/spielerbilanzen/vr">TTC DJK Hennef III</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231680/TTC-DJK-Hennef-III-vs-SV-Leuscheid">
-1: 9
-</a>
-</td>
-<td><i class="fa fa-check green"></i></td>
-</tr>
-</tbody>
-</table>
-<table class="table table-mytt table-striped table-bordered table-mini visible-sm visible-xs visible-md">
-<thead>
-<tr>
-<th>Datum</th>
-<th></th>
-<th>Mannschaften</th>
-<th>Spiele</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-02.09.17
-</td>
-<td>
-18:00
-</td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955731/SSV-Happerschoß/spielerbilanzen/vr">SSV Happerschoß</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231687/SV-Leuscheid-vs-SSV-Happerschoß">
-9: 1
-</a>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-09.09.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+26.01.2019
+</span>
 </td>
 <td>
-18:00
+18:30 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954345/SV-Oelinghoven/spielerbilanzen/vr">SV Oelinghoven</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156001/SV-Oelinghoven/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231701/SV-Oelinghoven-vs-SV-Leuscheid">
-0: 9
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/rr">TV Sürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121404/TV-Suerth/spielerbilanzen/rr">TV Sürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151050/TV-Suerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763706/TV-Suerth-vs-TTG-St-Augustin-II">
+8:8
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-18.09.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+03.02.2019
+</span>
 </td>
 <td>
-20:00
-<a data-toggle='tooltip' title='Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 23.09.2017 18:00&nbsp;Uhr'>v</a>
+11:00 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1950282/DJK-Stallberg-Wolsdorf-II/spielerbilanzen/vr">DJK Stallberg-Wolsdorf II</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231706/SV-Leuscheid-vs-DJK-Stallberg-Wolsdorf-II">
-9: 1
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/rr">TuRa Oberdrees III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2125082/TuRa-Oberdrees-III/spielerbilanzen/rr">TuRa Oberdrees III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763708/TTG-St-Augustin-II-vs-TuRa-Oberdrees-III">
+9:1
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-29.09.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+09.02.2019
+</span>
 </td>
 <td>
-19:55
+18:30 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1951063/TTG-Niederkassel-IV/spielerbilanzen/vr">TTG Niederkassel IV</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156009/TTG-Niederkassel-IV/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231703/TTG-Niederkassel-IV-vs-SV-Leuscheid">
-3: 9
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2122131/SV-Ennert/spielerbilanzen/rr">SV Ennert</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154016/SV-Ennert/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763687/SV-Ennert-vs-TTG-St-Augustin-II">
+8:8
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-02.10.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+17.02.2019
+</span>
 </td>
 <td>
-20:00
+11:00 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1952040/TV-Donrath/spielerbilanzen/vr">TV Donrath</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231731/SV-Leuscheid-vs-TV-Donrath">
-9: 0
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/rr">TTF Wahn-Grengel</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121120/TTF-Wahn-Grengel/spielerbilanzen/rr">TTF Wahn-Grengel</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763680/TTG-St-Augustin-II-vs-TTF-Wahn-Grengel">
+9:4
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-09.10.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.02.2019
+</span>
 </td>
 <td>
-20:00
+18:30 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1951155/TTC-Troisdorf-II/spielerbilanzen/vr">TTC Troisdorf II</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231716/SV-Leuscheid-vs-TTC-Troisdorf-II">
-9: 5
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/rr">TTC BW Lechenich</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124053/TTC-BW-Lechenich/spielerbilanzen/rr">TTC BW Lechenich</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/155029/TTC-BW-Lechenich/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763698/TTC-BW-Lechenich-vs-TTG-St-Augustin-II">
+9:4
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-20.10.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+10.03.2019
+</span>
 </td>
 <td>
-20:00
+11:00 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955021/DJK-Eintracht-Eitorf-III/spielerbilanzen/vr">DJK Eintracht Eitorf III</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156005/DJK-Eintracht-Eitorf-III/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231708/DJK-Eintracht-Eitorf-III-vs-SV-Leuscheid">
-4: 9
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124052/TTC-RG-Porz-III/spielerbilanzen/rr">TTC RG Porz III</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763657/TTG-St-Augustin-II-vs-TTC-RG-Porz-III">
+9:4
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-11.11.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+16.03.2019
+</span>
 </td>
 <td>
-18:00
+18:30 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1953135/HSG-Siebengebirge-Thomasberg-II/spielerbilanzen/vr">HSG Siebengebirge-Thomasberg II</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231736/SV-Leuscheid-vs-HSG-Siebengebirge-Thomasberg-II">
-9: 3
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1
 </a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/rr">TTV DJK Hürth</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2119287/TTV-DJK-Huerth/spielerbilanzen/rr">TTV DJK Hürth</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/151030/TTV-DJK-Huerth/info">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/spielbericht/10763705/TTV-DJK-Huerth-vs-TTG-St-Augustin-II">
+7:9
+</a>
+</td>
+<td>
 <i class="fa fa-check green"></i>
 </td>
 </tr>
 <tr>
 <td>
-13.11.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.03.2019
+</span>
 </td>
 <td>
-20:00
+18:30 
+<a href="javascript:void(0);" id="settooltip498CB15B-FC2E-48DD-90B59EC10FE25531">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sun. 24.03.2019 11:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip498CB15B-FC2E-48DD-90B59EC10FE25531',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1955212/TuS-Meindorf/spielerbilanzen/vr">TuS Meindorf</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156018/TuS-Meindorf/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231725/TuS-Meindorf-vs-SV-Leuscheid">
-2: 9
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
-<i class="fa fa-check green"></i>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/rr">TTG Niederkassel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2120711/TTG-Niederkassel-II/spielerbilanzen/rr">TTG Niederkassel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip610BA29E-7740-4053-B29601ECB8C1C87D"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip610BA29E-7740-4053-B29601ECB8C1C87D',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
 </td>
 </tr>
 <tr>
 <td>
-25.11.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+30.03.2019
+</span>
 </td>
 <td>
-18:00
+18:30 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954936/TTG-St-Augustin-III/spielerbilanzen/vr">TTG St. Augustin III</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156035/SV-Leuscheid/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231732/SV-Leuscheid-vs-TTG-St-Augustin-III">
-8: 8
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1
 </a>
-<i class="fa fa-check green"></i>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/rr">TTG Witterschlick</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121500/TTG-Witterschlick/spielerbilanzen/rr">TTG Witterschlick</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/154021/TTG-Witterschlick/info">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip7AFEF5FB-772E-43B1-8AA0C2787B50DAFB"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7AFEF5FB-772E-43B1-8AA0C2787B50DAFB',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
 </td>
 </tr>
 <tr>
 <td>
-01.12.17
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+07.04.2019
+</span>
 </td>
 <td>
-20:00
+11:00 
 </td>
-<td>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1952224/TTC-DJK-Hennef-III/spielerbilanzen/vr">TTC DJK Hennef III</a>
-<br>
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/spielerbilanzen/vr">SV Leuscheid</a>
-<br>Spiellokal:
-<a href="/clicktt/WTTV/17-18/verein/156017/TTC-DJK-Hennef-III/info">1</a>
-</td>
-<td class="text-center">
-<a href="/clicktt/WTTV/17-18/ligen/Herren-Kreisliga/gruppe/305886/spielbericht/10231680/TTC-DJK-Hennef-III-vs-SV-Leuscheid">
-1: 9
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1
 </a>
-<i class="fa fa-check green"></i>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/rr">TTF Bad Honnef</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/spielerbilanzen/rr">TTG St. Augustin II</a>
+</div>
+<div>
+<a href="/clicktt/WTTV/18-19/ligen/Herren-Landesliga-12/gruppe/334231/mannschaft/2121839/TTF-Bad-Honnef/spielerbilanzen/rr">TTF Bad Honnef</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/156012/TTG-St-Augustin-II/info">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip6715D97D-FC74-4BC4-9C5018656A233DDE"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip6715D97D-FC74-4BC4-9C5018656A233DDE',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
 </td>
 </tr>
 </tbody>
 </table>
 <h3>
-<a href="/clicktt/WTTV/17-18/ligen/Kreisliga/gruppe/305886/mannschaft/1954044/SV-Leuscheid/infos">
-SV Leuscheid
+<a href="/clicktt/WTTV/18-19/ligen/Landesliga-12/gruppe/334231/mannschaft/2124304/TTG-St-Augustin-II/infos">
+TTG St. Augustin II
 <i class="icon-circle-arrow-right hidden-print"></i>
-(Vorrunde)
+(Rückrunde)
 </a>
 </h3>
 <table class="table table-mytt table-mini-xs table-bordered table-condensed" id="gamestatsTable">
@@ -720,448 +779,39 @@ SV Leuscheid
 </thead>
 <tbody>
 <tr class="even">
-<td>1.1</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224714', clubNr: '156035' }">
-Gatzmanga, Mario
-</a>
-</td>
-<td id="singleEinsaetze1">10</td>
-<td class="hidden-xs hidden-sm">
-8:0
-</td>
-<td class="hidden-xs hidden-sm">
-8:2
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="visible-md visible-lg visible-xl">
-16:
-2
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-1" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-1">
-<i class="icon-info-sign green hidden-print"></i>
-16:2&nbsp;
-</a>
-</td>
-</tr>
-<tr class="even collapse" id="pos-1954044-vr-1-1">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-8:0
-</td>
-<td class="col-xs-2 text-center">
-8:2
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="odd">
-<td>1.2</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU288226', clubNr: '156035' }">
-Ückerseifer, Uwe
-</a>
-</td>
-<td id="singleEinsaetze2">10</td>
-<td class="hidden-xs hidden-sm">
-6:4
-</td>
-<td class="hidden-xs hidden-sm">
-3:2
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="visible-md visible-lg visible-xl">
-9:
-6
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-2" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-2">
-<i class="icon-info-sign green hidden-print"></i>
-&nbsp;9:6&nbsp;
-</a>
-</td>
-</tr>
-<tr class="odd collapse" id="pos-1954044-vr-1-2">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-6:4
-</td>
-<td class="col-xs-2 text-center">
-3:2
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="even">
-<td>1.3</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224713', clubNr: '156035' }">
-Gatzmanga, Heiko
-</a>
-</td>
-<td id="singleEinsaetze3">10</td>
-<td class="hidden-xs hidden-sm">
-2:0
-</td>
-<td class="hidden-xs hidden-sm">
-1:1
-</td>
-<td class="hidden-xs hidden-sm">
-2:1
-</td>
-<td class="hidden-xs hidden-sm">
-6:2
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="visible-md visible-lg visible-xl">
-11:
-4
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-3" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-3">
-<i class="icon-info-sign green hidden-print"></i>
-11:4&nbsp;
-</a>
-</td>
-</tr>
-<tr class="even collapse" id="pos-1954044-vr-1-3">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-2:0
-</td>
-<td class="col-xs-2 text-center">
-1:1
-</td>
-<td class="col-xs-2 text-center">
-2:1
-</td>
-<td class="col-xs-2 text-center">
-6:2
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="odd">
-<td>1.4</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU604944', clubNr: '156035' }">
-Birk, Andreas
-</a>
-</td>
-<td id="singleEinsaetze4">11</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-10:0
-</td>
-<td class="hidden-xs hidden-sm">
-4:1
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="visible-md visible-lg visible-xl">
-14:
-1
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-4" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-4">
-<i class="icon-info-sign green hidden-print"></i>
-14:1&nbsp;
-</a>
-</td>
-</tr>
-<tr class="odd collapse" id="pos-1954044-vr-1-4">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-10:0
-</td>
-<td class="col-xs-2 text-center">
-4:1
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="even">
-<td>1.5</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU232944', clubNr: '156035' }">
-Hermes, Daniel
-</a>
-</td>
-<td id="singleEinsaetze5">10</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-3:0
-</td>
-<td class="hidden-xs hidden-sm">
-0:1
-</td>
-<td class="hidden-xs hidden-sm">
-0:1
-</td>
-<td class="hidden-xs hidden-sm">
-6:1
-</td>
-<td class="visible-md visible-lg visible-xl">
-9:
-3
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-5" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-5">
-<i class="icon-info-sign green hidden-print"></i>
-&nbsp;9:3&nbsp;
-</a>
-</td>
-</tr>
-<tr class="even collapse" id="pos-1954044-vr-1-5">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-3:0
-</td>
-<td class="col-xs-2 text-center">
-0:1
-</td>
-<td class="col-xs-2 text-center">
-0:1
-</td>
-<td class="col-xs-2 text-center">
-6:1
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="odd">
-<td>1.6</td>
-<td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU216280', clubNr: '156035' }">
-Denkhaus, Timo
-</a>
-</td>
-<td id="singleEinsaetze6">10</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-7:0
-</td>
-<td class="hidden-xs hidden-sm">
-3:1
-</td>
-<td class="visible-md visible-lg visible-xl">
-10:
-1
-</td>
-<td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-1-6" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-1-6">
-<i class="icon-info-sign green hidden-print"></i>
-10:1&nbsp;
-</a>
-</td>
-</tr>
-<tr class="odd collapse" id="pos-1954044-vr-1-6">
-<td colspan="4">
-<table class="table table-mini table-mytt">
-<thead>
-<tr>
-<th class="text-center">1</th>
-<th class="text-center">2</th>
-<th class="text-center">3</th>
-<th class="text-center">4</th>
-<th class="text-center">5</th>
-<th class="text-center">6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-7:0
-</td>
-<td class="col-xs-2 text-center">
-3:1
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="even">
 <td>2.1</td>
 <td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU273391', clubNr: '156035' }">
-Schenk, Günther
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2151701', clubNr: '156012' }">
+Intakoon, Nantawat
 </a>
 </td>
-<td id="singleEinsaetze7">1</td>
+<td id="singleEinsaetze1">2</td>
 <td class="hidden-xs hidden-sm">
+2:0
+</td>
+<td class="hidden-xs hidden-sm">
+2:0
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-1:0
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="visible-md visible-lg visible-xl">
-1:
+4:
 0
 </td>
 <td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-2-1" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-2-1">
+<a href="#pos-2124304-rr-2-1" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-1">
 <i class="icon-info-sign green hidden-print"></i>
-&nbsp;1:0&nbsp;
+&nbsp;4:0&nbsp;
 </a>
 </td>
 </tr>
-<tr class="even collapse" id="pos-1954044-vr-2-1">
+<tr class="even collapse" id="pos-2124304-rr-2-1">
 <td colspan="4">
 <table class="table table-mini table-mytt">
 <thead>
@@ -1177,15 +827,16 @@ Schenk, Günther
 <tbody>
 <tr>
 <td class="col-xs-2 text-center">
+2:0
+</td>
+<td class="col-xs-2 text-center">
+2:0
 </td>
 <td class="col-xs-2 text-center">
 </td>
 <td class="col-xs-2 text-center">
 </td>
 <td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-1:0
 </td>
 <td class="col-xs-2 text-center">
 </td>
@@ -1197,36 +848,37 @@ Schenk, Günther
 <tr class="odd">
 <td>2.2</td>
 <td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU260777', clubNr: '156035' }">
-Nissel, Sven
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU423987', clubNr: '156012' }">
+Hintz, Philippe
 </a>
 </td>
-<td id="singleEinsaetze8">2</td>
+<td id="singleEinsaetze2">8</td>
 <td class="hidden-xs hidden-sm">
+3:5
+</td>
+<td class="hidden-xs hidden-sm">
+7:1
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-0:2
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="visible-md visible-lg visible-xl">
-0:
-2
+10:
+6
 </td>
 <td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-2-2">
+<a href="#pos-2124304-rr-2-2" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-2">
 <i class="icon-info-sign green hidden-print"></i>
-&nbsp;0:2&nbsp;
+10:6&nbsp;
 </a>
 </td>
 </tr>
-<tr class="odd collapse" id="pos-1954044-vr-2-2">
+<tr class="odd collapse" id="pos-2124304-rr-2-2">
 <td colspan="4">
 <table class="table table-mini table-mytt">
 <thead>
@@ -1242,15 +894,16 @@ Nissel, Sven
 <tbody>
 <tr>
 <td class="col-xs-2 text-center">
+3:5
+</td>
+<td class="col-xs-2 text-center">
+7:1
 </td>
 <td class="col-xs-2 text-center">
 </td>
 <td class="col-xs-2 text-center">
 </td>
 <td class="col-xs-2 text-center">
-</td>
-<td class="col-xs-2 text-center">
-0:2
 </td>
 <td class="col-xs-2 text-center">
 </td>
@@ -1262,36 +915,315 @@ Nissel, Sven
 <tr class="even">
 <td>2.3</td>
 <td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224053', clubNr: '156035' }">
-Fuchs, Michael
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU611466', clubNr: '156012' }">
+Vergaro, Timo
 </a>
 </td>
-<td id="singleEinsaetze9">1</td>
+<td id="singleEinsaetze3">2</td>
 <td class="hidden-xs hidden-sm">
+1:1
+</td>
+<td class="hidden-xs hidden-sm">
+1:1
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="hidden-xs hidden-sm">
-</td>
-<td class="hidden-xs hidden-sm">
-1:0
 </td>
 <td class="hidden-xs hidden-sm">
 </td>
 <td class="visible-md visible-lg visible-xl">
-1:
-0
+2:
+2
 </td>
 <td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-2-3">
+<a href="#pos-2124304-rr-2-3" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-3">
 <i class="icon-info-sign green hidden-print"></i>
-&nbsp;1:0&nbsp;
+&nbsp;2:2&nbsp;
 </a>
 </td>
 </tr>
-<tr class="even collapse" id="pos-1954044-vr-2-3">
+<tr class="even collapse" id="pos-2124304-rr-2-3">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+1:1
+</td>
+<td class="col-xs-2 text-center">
+1:1
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="odd">
+<td>2.4</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1612206', clubNr: '156012' }">
+Keßler, Vincent
+</a>
+</td>
+<td id="singleEinsaetze4">6</td>
+<td class="hidden-xs hidden-sm">
+2:1
+</td>
+<td class="hidden-xs hidden-sm">
+1:1
+</td>
+<td class="hidden-xs hidden-sm">
+2:1
+</td>
+<td class="hidden-xs hidden-sm">
+2:1
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="visible-md visible-lg visible-xl">
+7:
+4
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-4">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;7:4&nbsp;
+</a>
+</td>
+</tr>
+<tr class="odd collapse" id="pos-2124304-rr-2-4">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+2:1
+</td>
+<td class="col-xs-2 text-center">
+1:1
+</td>
+<td class="col-xs-2 text-center">
+2:1
+</td>
+<td class="col-xs-2 text-center">
+2:1
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="even">
+<td>2.5</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
+</a>
+</td>
+<td id="singleEinsaetze5">8</td>
+<td class="hidden-xs hidden-sm">
+0:1
+</td>
+<td class="hidden-xs hidden-sm">
+0:1
+</td>
+<td class="hidden-xs hidden-sm">
+3:3
+</td>
+<td class="hidden-xs hidden-sm">
+5:2
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="visible-md visible-lg visible-xl">
+8:
+7
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-2-5" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-5">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;8:7&nbsp;
+</a>
+</td>
+</tr>
+<tr class="even collapse" id="pos-2124304-rr-2-5">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+0:1
+</td>
+<td class="col-xs-2 text-center">
+0:1
+</td>
+<td class="col-xs-2 text-center">
+3:3
+</td>
+<td class="col-xs-2 text-center">
+5:2
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="odd">
+<td>2.6</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259532', clubNr: '156012' }">
+Nega, Christoph
+</a>
+</td>
+<td id="singleEinsaetze6">8</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+1:4
+</td>
+<td class="hidden-xs hidden-sm">
+0:4
+</td>
+<td class="hidden-xs hidden-sm">
+0:1
+</td>
+<td class="hidden-xs hidden-sm">
+2:1
+</td>
+<td class="visible-md visible-lg visible-xl">
+3:
+10
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-2-6" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-6">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;3:10
+</a>
+</td>
+</tr>
+<tr class="odd collapse" id="pos-2124304-rr-2-6">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+1:4
+</td>
+<td class="col-xs-2 text-center">
+0:4
+</td>
+<td class="col-xs-2 text-center">
+0:1
+</td>
+<td class="col-xs-2 text-center">
+2:1
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="even">
+<td>2.7</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU256713', clubNr: '156012' }">
+Michelmann, Andreas
+</a>
+</td>
+<td id="singleEinsaetze7">0</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="visible-md visible-lg visible-xl">
+0:
+0
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-2-7" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-2-7">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;0:0&nbsp;
+</a>
+</td>
+</tr>
+<tr class="even collapse" id="pos-2124304-rr-2-7">
 <td colspan="4">
 <table class="table table-mini table-mytt">
 <thead>
@@ -1315,7 +1247,6 @@ Fuchs, Michael
 <td class="col-xs-2 text-center">
 </td>
 <td class="col-xs-2 text-center">
-1:0
 </td>
 <td class="col-xs-2 text-center">
 </td>
@@ -1325,10 +1256,148 @@ Fuchs, Michael
 </td>
 </tr>
 <tr class="odd">
-<td>2.4</td>
+<td>3.1</td>
 <td>
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259784', clubNr: '156035' }">
-Neubert, Martin
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1429844', clubNr: '156012' }">
+Melzer, Jürgen
+</a>
+</td>
+<td id="singleEinsaetze8">6</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+1:0
+</td>
+<td class="hidden-xs hidden-sm">
+1:0
+</td>
+<td class="hidden-xs hidden-sm">
+3:0
+</td>
+<td class="hidden-xs hidden-sm">
+2:2
+</td>
+<td class="visible-md visible-lg visible-xl">
+7:
+2
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-3-1" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-3-1">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;7:2&nbsp;
+</a>
+</td>
+</tr>
+<tr class="odd collapse" id="pos-2124304-rr-3-1">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+1:0
+</td>
+<td class="col-xs-2 text-center">
+1:0
+</td>
+<td class="col-xs-2 text-center">
+3:0
+</td>
+<td class="col-xs-2 text-center">
+2:2
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="even">
+<td>3.2</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2104779', clubNr: '156012' }">
+Nitibowonkun, Kasidach
+</a>
+</td>
+<td id="singleEinsaetze9">3</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+2:1
+</td>
+<td class="hidden-xs hidden-sm">
+1:0
+</td>
+<td class="visible-md visible-lg visible-xl">
+3:
+1
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-3-2" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-3-2">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;3:1&nbsp;
+</a>
+</td>
+</tr>
+<tr class="even collapse" id="pos-2124304-rr-3-2">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+2:1
+</td>
+<td class="col-xs-2 text-center">
+1:0
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="odd">
+<td>3.3</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2104778', clubNr: '156012' }">
+Prakobvaitayakij, Panyathat
 </a>
 </td>
 <td id="singleEinsaetze10">1</td>
@@ -1344,19 +1413,20 @@ Neubert, Martin
 0:1
 </td>
 <td class="hidden-xs hidden-sm">
+0:1
 </td>
 <td class="visible-md visible-lg visible-xl">
 0:
-1
+2
 </td>
 <td class="visible-xs visible-sm">
-<a href="#pos-1954044-vr-2-4" data-toggle="collapse" aria-expanded="false" aria-controls="pos-1954044-vr-2-4">
+<a href="#pos-2124304-rr-3-3" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-3-3">
 <i class="icon-info-sign green hidden-print"></i>
-&nbsp;0:1&nbsp;
+&nbsp;0:2&nbsp;
 </a>
 </td>
 </tr>
-<tr class="odd collapse" id="pos-1954044-vr-2-4">
+<tr class="odd collapse" id="pos-2124304-rr-3-3">
 <td colspan="4">
 <table class="table table-mini table-mytt">
 <thead>
@@ -1383,6 +1453,7 @@ Neubert, Martin
 0:1
 </td>
 <td class="col-xs-2 text-center">
+0:1
 </td>
 </tr>
 </tbody>
@@ -1390,14 +1461,137 @@ Neubert, Martin
 </td>
 </tr>
 <tr class="even">
-<td class="visible-xs visible-sm"></td>
-<td class="visible-xs visible-sm" colspan="2">"kampflos"-Einzel</td>
-<td class="hidden-xs hidden-sm" colspan="3"></td>
-<td class="hidden-xs hidden-sm" colspan="6">"kampflos"-Einzel</td>
+<td>3.4</td>
 <td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU246522', clubNr: '156012' }">
+Kraut, Maurice
+</a>
+</td>
+<td id="singleEinsaetze11">2</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+2:0
+</td>
+<td class="hidden-xs hidden-sm">
+1:1
+</td>
+<td class="visible-md visible-lg visible-xl">
+3:
 1
-:
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-3-4" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-3-4">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;3:1&nbsp;
+</a>
+</td>
+</tr>
+<tr class="even collapse" id="pos-2124304-rr-3-4">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+2:0
+</td>
+<td class="col-xs-2 text-center">
+1:1
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="odd">
+<td>3.6</td>
+<td>
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU219310', clubNr: '156012' }">
+Eich, Reiner
+</a>
+</td>
+<td id="singleEinsaetze12">2</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+</td>
+<td class="hidden-xs hidden-sm">
+2:0
+</td>
+<td class="hidden-xs hidden-sm">
+1:0
+</td>
+<td class="visible-md visible-lg visible-xl">
+3:
 0
+</td>
+<td class="visible-xs visible-sm">
+<a href="#pos-2124304-rr-3-6" data-toggle="collapse" aria-expanded="false" aria-controls="pos-2124304-rr-3-6">
+<i class="icon-info-sign green hidden-print"></i>
+&nbsp;3:0&nbsp;
+</a>
+</td>
+</tr>
+<tr class="odd collapse" id="pos-2124304-rr-3-6">
+<td colspan="4">
+<table class="table table-mini table-mytt">
+<thead>
+<tr>
+<th class="text-center">1</th>
+<th class="text-center">2</th>
+<th class="text-center">3</th>
+<th class="text-center">4</th>
+<th class="text-center">5</th>
+<th class="text-center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+</td>
+<td class="col-xs-2 text-center">
+2:0
+</td>
+<td class="col-xs-2 text-center">
+1:0
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr class="divider-muted">
@@ -1407,125 +1601,204 @@ Neubert, Martin
 <td class="hidden-xs hidden-sm" colspan="6"><strong>Einzel</strong></td>
 <td>
 <strong>
-72:20
+50:35
 </strong>
 </td>
 </tr>
 <tr class="odd">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU604944', clubNr: '156035' }">
-Birk, Andreas
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1612206', clubNr: '156012' }">
+Keßler, Vincent
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU216280', clubNr: '156035' }">
-Denkhaus, Timo
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259532', clubNr: '156012' }">
+Nega, Christoph
 </a>
 </td>
-<td id="doubleEinsaetze1">10</td>
+<td id="doubleEinsaetze1">5</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
-<td>8:2</td>
+<td>2:3</td>
 </tr>
 <tr class="even">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224714', clubNr: '156035' }">
-Gatzmanga, Mario
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU423987', clubNr: '156012' }">
+Hintz, Philippe
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224713', clubNr: '156035' }">
-Gatzmanga, Heiko
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1429844', clubNr: '156012' }">
+Melzer, Jürgen
 </a>
 </td>
-<td id="doubleEinsaetze2">9</td>
+<td id="doubleEinsaetze2">4</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
-<td>8:1</td>
+<td>2:3</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU288226', clubNr: '156035' }">
-Ückerseifer, Uwe
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU232944', clubNr: '156035' }">
-Hermes, Daniel
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1429844', clubNr: '156012' }">
+Melzer, Jürgen
 </a>
 </td>
-<td id="doubleEinsaetze3">9</td>
+<td id="doubleEinsaetze3">3</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
-<td>8:2</td>
+<td>1:2</td>
 </tr>
 <tr class="even">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU604944', clubNr: '156035' }">
-Birk, Andreas
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2151701', clubNr: '156012' }">
+Intakoon, Nantawat
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU260777', clubNr: '156035' }">
-Nissel, Sven
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU423987', clubNr: '156012' }">
+Hintz, Philippe
 </a>
 </td>
-<td id="doubleEinsaetze4">1</td>
+<td id="doubleEinsaetze4">2</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>3:0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259532', clubNr: '156012' }">
+Nega, Christoph
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU246522', clubNr: '156012' }">
+Kraut, Maurice
+</a>
+</td>
+<td id="doubleEinsaetze5">2</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>0:2</td>
+</tr>
+<tr class="even">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1429844', clubNr: '156012' }">
+Melzer, Jürgen
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU219310', clubNr: '156012' }">
+Eich, Reiner
+</a>
+</td>
+<td id="doubleEinsaetze6">1</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
 <td>1:0</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224714', clubNr: '156035' }">
-Gatzmanga, Mario
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU423987', clubNr: '156012' }">
+Hintz, Philippe
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224053', clubNr: '156035' }">
-Fuchs, Michael
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2104779', clubNr: '156012' }">
+Nitibowonkun, Kasidach
 </a>
 </td>
-<td id="doubleEinsaetze5">1</td>
+<td id="doubleEinsaetze7">1</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>1:0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU611466', clubNr: '156012' }">
+Vergaro, Timo
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2104779', clubNr: '156012' }">
+Nitibowonkun, Kasidach
+</a>
+</td>
+<td id="doubleEinsaetze8">1</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>1:0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU219310', clubNr: '156012' }">
+Eich, Reiner
+</a>
+</td>
+<td id="doubleEinsaetze9">1</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>1:0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU611466', clubNr: '156012' }">
+Vergaro, Timo
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU1612206', clubNr: '156012' }">
+Keßler, Vincent
+</a>
+</td>
+<td id="doubleEinsaetze10">1</td>
+<td class="visible-md visible-lg visible-xl" colspan="6"></td>
+<td>1:1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td colspan="1">
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
+</a>
+/
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU2104778', clubNr: '156012' }">
+Prakobvaitayakij, Panyathat
+</a>
+</td>
+<td id="doubleEinsaetze11">1</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
 <td>0:1</td>
 </tr>
 <tr class="even">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU224713', clubNr: '156035' }">
-Gatzmanga, Heiko
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259784', clubNr: '156035' }">
-Neubert, Martin
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU259532', clubNr: '156012' }">
+Nega, Christoph
 </a>
 </td>
-<td id="doubleEinsaetze6">1</td>
+<td id="doubleEinsaetze12">1</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
 <td>0:1</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td colspan="1">
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU232944', clubNr: '156035' }">
-Hermes, Daniel
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU423987', clubNr: '156012' }">
+Hintz, Philippe
 </a>
 /
-<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU260777', clubNr: '156035' }">
-Nissel, Sven
+<a role="button" tabindex="0" href="#" data-bind="playerPopover: { personId: 'NU285509', clubNr: '156012' }">
+Tamimzadeh, Mohammad Ali
 </a>
 </td>
-<td id="doubleEinsaetze7">1</td>
+<td id="doubleEinsaetze13">1</td>
 <td class="visible-md visible-lg visible-xl" colspan="6"></td>
-<td>0:1</td>
-</tr>
-<tr class="even">
-<td class="visible-xs visible-sm"></td>
-<td class="visible-xs visible-sm" colspan="2">"kampflos"-Doppel</td>
-<td class="hidden-xs hidden-sm" colspan="3"></td>
-<td class="hidden-xs hidden-sm" colspan="6">"kampflos"-Doppel</td>
-<td>
-1
-:
-0
-</td>
+<td>0:2</td>
 </tr>
 <tr class="divider-muted">
 <td class="visible-xs visible-sm"></td>
@@ -1534,7 +1807,7 @@ Nissel, Sven
 <td class="hidden-xs hidden-sm" colspan="6"><strong>Doppel</strong></td>
 <td>
 <strong>
-26:8
+13:15
 </strong>
 </td>
 <tr>
@@ -1545,7 +1818,7 @@ Nissel, Sven
 <td class="hidden-xs hidden-sm" colspan="6"><strong>gesamt</strong></td>
 <td>
 <strong>
-98:28
+63:50
 </strong>
 </td>
 </tr>
@@ -1554,11 +1827,9 @@ Nissel, Sven
 </div>
 <div class="panel-footer"></div>
 </div>
-<div class="panel panel-primary hidden-print">
-<div class="panel-heading">
-<h3 class="panel-title">Anzeige</h3>
-</div>
-<div class="panel-body text-center">
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
 <!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
 <!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
 <div id='div-gpt-ad-518943210402310848-3'>
@@ -1575,15 +1846,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 <div id="right-col" class="hidden-xs hidden-sm">
 <div class="panel panel-primary">
 <div class="panel-heading">
-<h3 class="panel-title">JOOLA
+<h3 class="panel-title">Shop-Partner
 </h3>
 </div>
 <div class="panel-body text-center">
-<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7108" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7108','JOOLA
-']);" title="JOOLA
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8567" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8567','Shop-Partner
+']);" title="Shop-Partner
 " class="adLink" target="_blank">
-<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/xmas.gif" alt="JOOLA
-"></a>
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/spring-sale-5.gif" alt="Shop-Partner
+">
+</a>
 </div>
 <div class="panel-footer"></div>
 </div>
@@ -1620,15 +1892,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 </div>
 <div class="panel panel-primary">
 <div class="panel-heading">
-<h3 class="panel-title">andro &ndash; offizieller Ausr&uuml;ster des WTTV
+<h3 class="panel-title">andro &ndash; offizieller Verbandsausr&uuml;ster
 </h3>
 </div>
 <div class="panel-body text-center">
-<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7061','andro &ndash; offizieller Ausr&uuml;ster des WTTV
-']);" title="andro &ndash; offizieller Ausr&uuml;ster des WTTV
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8565" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8565','andro &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="andro &ndash; offizieller Verbandsausr&uuml;ster
 " class="adLink" target="_blank">
-<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/Rasanter_Revolution_300x250_clickTT.GIF" alt="andro &ndash; offizieller Ausr&uuml;ster des WTTV
-"></a>
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/andro_SFX_MyTT_300x250.gif" alt="andro &ndash; offizieller Verbandsausr&uuml;ster
+">
+</a>
 </div>
 <div class="panel-footer"></div>
 </div>
@@ -1641,26 +1914,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 <div class="whitebox_fx mt_30">
 <div class="bg_spon_top"></div>
 <div class="bg_spon_bottom"></div>
-</div> 
+</div>
 <div class="graybox_fx">
 <div class="container">
 <div class="row">
-<div class="col-xs-6 col-sm-3 col-md-2">
-<div class="headline"><h5>Service</h5></div>
-<ul>
-<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>
-<li><a href="/community/faq" title="FAQ">FAQ</a></li>
-<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
-<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>
-</ul>
-</div>
 <div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
 <div class="headline"><h5>Informationen</h5></div>
 <ul>
-<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
-<li><a href="/public/agb" title="AGB">AGB</a></li>
-<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>
-<li><a href="/public/mytischtennis-news/9997/wir-ueber-uns" title="Wir über uns">Wir über uns</a></li>
+<li><a href="/public/misc/12578/Datenschutz-WTTV" id="Datenschutz_link_WTTV" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12402/impressum-WTTV" id="Impressum_link_WTTV" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12465/kontakt-WTTV" id="Kontakt_link_WTTV" title="Kontakt">Kontakt</a></li>
 </ul>
 </div>
 </div>
@@ -1670,11 +1933,11 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 <p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
 </div>
 <div class="onbottomnavi_fx bg_ci_blue text-center">
-<p class="m-t white m-b">Copyright &copy; 2017 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+<p class="m-t white m-b">Copyright &copy; 2019 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
 </div>
 </div>
 <script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
-<script src="/clicktt/includes/js/global.js?v=8-3-0" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=10-3-1" type="text/javascript"></script>
 <script type="text/html" id="popover-friendship-template">
 <p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
 <label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
@@ -1702,14 +1965,28 @@ viewModel.bind();
 window.mainModel = viewModel;
 </script>
 <script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-19104087-1']);
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
 _gaq.push(['_trackPageview']);
 (function() {
 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
 </script>
 <!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
 <!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
@@ -1719,5 +1996,23 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848
 </script>
 </div>
 <!-- End AdSlot 5 -->
+<script src="/public/javascripts/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
 </body>
 </html>

@@ -1003,7 +1003,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
 
             List<String[]> posResults = new ArrayList<>();
-            for (int i = 3; i < 8; i++) {
+            //10 entries, but what about 4er?
+            for (int i = 3; i < 9; i++) {
                 if (!row[i].isEmpty()) {
                     posResults.add(new String[]{"" + (i - 2), row[i]});
                 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -66,7 +67,11 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 MyApplication.selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
-                callMannschaftSpielDetail();
+                if (MyApplication.selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
+                    Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
+                } else {
+                    callMannschaftSpielDetail();
+                }
 
             }
         });
