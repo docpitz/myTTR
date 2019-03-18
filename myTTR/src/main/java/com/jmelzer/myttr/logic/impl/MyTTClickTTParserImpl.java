@@ -600,7 +600,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 continue;//skip first row
             }
             String[] row = tableRowAsArray(resultrow.result, 10, false);
-            printRows(row);
+//            printRows(row);
             String datum = row[0];
             String time = "";
             if (row[1] != null && !row[1].isEmpty()) {
@@ -770,6 +770,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         }
         validatePage(page);
 
+        if (!page.contains("+/-")) {
+            throw new ValidationException("Keine Tabellen-Daten vorhanden");
+        }
         parseSpielplanLinks(liga, page);
 
         liga.clearMannschaften();

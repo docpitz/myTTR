@@ -11,6 +11,7 @@ import com.jmelzer.myttr.SpielerAndBilanz;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.TestUtil;
+import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.Verein;
 
 import org.junit.Ignore;
@@ -72,6 +73,14 @@ public class MyTTClickTTParserTest {
             assertNotNull(mannschaft.getLiga());
         }
     }
+
+    @Test(expected = ValidationException.class)
+    public void parseLigaPlayOff() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/playoff.html");
+        Liga liga = new Liga("Bundesliga Playoof", "https://www.mytischtennis.de/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/tabelle/gesamt");
+        parser.parseLiga(page, liga);
+    }
+
     @Test
     public void parseLigaLiveEdit() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/live-active.overview.html");
