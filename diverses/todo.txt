@@ -203,3 +203,11 @@ Weitere Fixes
 - Livelinks gefixed
 - Neue Vereinsliste
 - Rheinland Cup 2019
+
+6.0.6
+-------
+- Liveview Bugs
+
+6.0.7
+---------
+- Vereinsids
