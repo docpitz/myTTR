@@ -80,9 +80,9 @@ public class ClubParser {
         String id = line.substring(n + 1, n2);
         String verband = line.substring(n + id.length() + 2);
         //seems to be this is fixed in mytt -->
-//        if (id.length() < 3) {
-//            id = String.format("%03d", Long.valueOf(id));
-//        }
+        if (!verband.equals("FTTB") && id.length() < 3) {
+            id = String.format("%03d", Long.valueOf(id));
+        }
         return new Club(name, id, verband);
     }
 

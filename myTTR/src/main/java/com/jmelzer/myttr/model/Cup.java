@@ -31,7 +31,8 @@ public class Cup {
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=VOL%20R7&circuit=RheinlandCup2019"));
         cups.add(new Cup("Clickball Rheinland Cup",
                 "https://ttvr.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?circuit=Clickball+Rheinland+Cup&federation=VOL+R7"));
-
+        cups.add(new Cup("FTTB GO2019 Race",
+                "https://fttb.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=FTTB&circuit=FTTB%20GO2019%20Race"));
     }
 
 
