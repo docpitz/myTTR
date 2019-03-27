@@ -211,3 +211,7 @@ Weitere Fixes
 6.0.7
 ---------
 - Vereinsids
+
+6.0.8
+---------
+Neuer Cup
