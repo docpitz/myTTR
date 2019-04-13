@@ -53,7 +53,7 @@ public class Verband {
         verbaende.add(new Verband("Hamburger TTV",
                 "https://www.mytischtennis.de/clicktt/HaTTV/18-19/ligen",
                 "https://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=HaTTV+15%2F16",
-                "http://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HaTTV"));
+                "https://hattv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/tournamentCalendar?federation=HaTTV"));
         verbaende.add(new Verband("TTV Mecklenburg-Vorpommern",
                 "https://www.mytischtennis.de/clicktt/TTVMV/18-19/ligen",
                 "https://ttvmv.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/leaguePage?championship=TTVMV%2016/17",
