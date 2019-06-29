@@ -19,7 +19,6 @@ public class VerbandTest {
         List<Verband> verbandList = Verband.verbaende;
         for (Verband verband : verbandList) {
             assertEquals(verband.url, verband.replaceYear(verband.url, Saison.SAISON_2015));
-            System.out.println(verband.replaceYear(verband.url, Saison.SAISON_2018));
         }
 
         for (Verband verband : verbandList) {
@@ -36,8 +35,16 @@ public class VerbandTest {
             assertFalse(verband.gettUrl() + " -> " + u, u.contains("15"));
             assertFalse(verband.gettUrl() + " -> " + u, u.contains("16"));
         }
+        for (Verband verband : verbandList) {
+            String u = verband.replaceYear(verband.url, Saison.SAISON_2020);
+            System.out.println(u);
+
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("14"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("15"));
+            assertFalse(verband.gettUrl() + " -> " + u, u.contains("18"));
+        }
         try {
-            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2020);
+            Verband.dttb.replaceYear(Verband.dttb.url, Saison.SAISON_2021);
             fail("not configured");
         } catch (IllegalArgumentException e) {
             //ok

@@ -19,5 +19,5 @@ public interface Constants {
     String MYTT_ERROR = "die Webseite meldet zur Zeit einen %d Fehler zurück :-(";
     String LOG_TAG = "myttr";
     String MYTT = "https://www.mytischtennis.de";
-    Saison ACTUAL_SAISON = Saison.SAISON_2019;
+    Saison ACTUAL_SAISON = Saison.SAISON_2020;
 }

@@ -215,3 +215,9 @@ Weitere Fixes
 6.0.8
 ---------
 Neuer Cup
+
+6.5
+-------
+- Saison 2019/20
+- Leere Kontakte
+- Neue Vereine

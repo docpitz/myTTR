@@ -103,12 +103,16 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 if (isEmpty(resultP)) {
                     break;
                 }
-                String ahref[] = readHrefAndATag(resultP.result);
+                start = resultP.end;
+                String[] ahref = readHrefAndATag(resultP.result);
                 String url = ahref[0];
+                if (url == null) {
+                    continue;
+                }
+
                 String name = readBetween(ahref[1], 0, "<strong>", "</strong>").result;
                 Kreis kreis = new Kreis(name, url);
                 kreuse.add(kreis);
-                start = resultP.end;
             }
         }
         return kreuse;
@@ -246,7 +250,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 ergebnis = row[6];
             }
             if (ergebnis.startsWith("<")) {
-                ergebnis = readBetween(ergebnis, 0, ">" , "<").result;
+                ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
             if (!ahref[0].isEmpty()) {
                 m.setUrlDetail(MYTT + ahref[0]);
@@ -632,7 +636,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 url = null;
             }
             if (ergebnis.startsWith("<")) {
-                ergebnis = readBetween(ergebnis, 0, ">" , "<").result;
+                ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
 //            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
@@ -735,19 +739,22 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             int nr = Integer.valueOf(nrS);
             resultLokal = readBetween(part, idx, null, "</div>");
             String lokal = cleanupSpielLokalHtml(resultLokal.result);
-            lokale.put(nr, lokal);
+            if (lokal != null && !lokal.isEmpty()) {
+                lokale.put(nr, lokal);
+            }
         }
         return lokale;
     }
 
     String cleanupSpielLokalHtml(String s) {
-        String result = s.replaceAll("\r\n", "");
+        String result = s.replaceAll("\r\n", " ");
         result = result.replaceAll("<br>", "\n");
         result = result.replaceAll("<br/>", "\n");
         result = result.replaceAll("<br />", "\n");
         result = result.replaceAll("\n\n", "\n");
         result = result.replaceAll("<i class.*", "");
         result = result.replaceAll("</div><div class=\"col-sm-4 col-xs-12\">", "");
+        result = result.replaceAll("\n[ \t]", "\n");
         //remove the last \n
         result = removeLastNewLine(result);
         return result.trim();
@@ -1066,6 +1073,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 result = readBetween(page, 0, mannschaft.getVereinId(), null);
             }
 
+            mannschaft.clearLokale();
             parseMannschaftsLokale(result.result, mannschaft);
 
             ParseResult resultUrl = readBetween(page, result.start - 70, "<div class=\"panel-heading\">", "</div>");

@@ -14,10 +14,12 @@ public enum Saison {
     SAISON_2017("16/17"),
     SAISON_2018("17/18"),
     SAISON_2019("18/19"),
-    SAISON_2020("19/20");
+    SAISON_2020("19/20"),
+    SAISON_2021("20/21");
 
     public static List<String> saisons = new ArrayList<>();
     static {
+        saisons.add(SAISON_2020.getName());
         saisons.add(SAISON_2019.getName());
         saisons.add(SAISON_2018.getName());
         saisons.add(SAISON_2017.getName());

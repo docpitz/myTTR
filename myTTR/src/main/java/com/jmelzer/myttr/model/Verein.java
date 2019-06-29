@@ -116,7 +116,7 @@ public class Verein implements Favorite {
         List<String> list = new ArrayList<>();
         for (String s : lokaleUnformatted.values()) {
             if (!s.isEmpty())
-                list.add(lokaleUnformatted.get(1));
+                list.add(s);
 
         }
         return Collections.unmodifiableList(list);

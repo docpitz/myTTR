@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class MyTTClickTTParserIntegrationTest {
 
-    public static final Saison SAISON = Saison.SAISON_2019;
+    public static final Saison SAISON = Saison.SAISON_2020;
     private static final int BEZIRK_COUNT = 2;
     MytClickTTWrapper parser = new MytClickTTWrapper();
 
@@ -53,7 +53,7 @@ public class MyTTClickTTParserIntegrationTest {
     public void testReadBezirkeAndLigen() throws Exception {
 
         Verband wttv = Verband.verbaende.get(Verband.verbaende.size() - 1);
-        parser.readBezirkeAndLigen(wttv, Saison.SAISON_2018);
+        parser.readBezirkeAndLigen(wttv, Saison.SAISON_2020);
         assertEquals(5, wttv.getBezirkList().size());
         for (Bezirk bezirk : wttv.getBezirkList()) {
             Log.d(Constants.LOG_TAG, "bezirk = " + bezirk);

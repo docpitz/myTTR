@@ -57,7 +57,7 @@ public class LigaMannschaftInfoActivity extends BaseActivity {
                 startActivity(Intent.createChooser(intent, "Wähle eine Email App aus:"));
             }
         });
-        final ListView listview = (ListView) findViewById(R.id.spiellokale_row);
+        final ListView listview = findViewById(R.id.spiellokale_row);
         final SpiellokalAdapter adapter = new SpiellokalAdapter(this,
                 android.R.layout.simple_list_item_1,
                 m.getSpielLokale());

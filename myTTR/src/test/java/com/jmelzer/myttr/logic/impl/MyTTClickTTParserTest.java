@@ -384,6 +384,26 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void parseVerein2() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein2.html");
+        Verein v = parser.parseVerein(page);
+        assertNotNull(v);
+        assertEquals("TTF Bad Honnef", v.getName());
+        assertEquals("Schomisch, Stefan\n" +
+                "Breitbacher Graben 11\n" +
+                "53604 Bad Honnef", v.getKontakt().getNameAddress());
+        assertEquals("ttf.badhonnef@web.de", v.getKontakt().getMail());
+        assertEquals("http://www.ttfbadhonnef.de", v.getKontakt().getUrl());
+        assertEquals(2, v.getLokaleUnformatted().size());
+        assertEquals("Sporthalle im Sportzentrum\n" +
+                "Menzenberger Straße\n" +
+                "53604 Bad Honnef", v.getLokaleUnformatted().get(0));
+        assertEquals("Turnhalle der Löwenburgschule\n" +
+                "Am Feuerschlößchen\n" +
+                "53604 Bad Honnef", v.getLokaleUnformatted().get(1));
+    }
+
+    @Test
     public void parseVereinMannschaften() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-mannschaften.html");
         Verein v = new Verein();
