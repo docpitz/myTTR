@@ -65,6 +65,14 @@ public class MyTischtennisParserTest {
     }
 
     @Test
+    public void readOwnTeamEmptyTable() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/teamEmptyTable.htm");
+        Mannschaft mannschaft = parser.parseOwnTeam(page);
+        assertNotNull(mannschaft);
+        assertEquals(0, mannschaft.getSpielerBilanzen().size());
+    }
+
+    @Test
     public void testParseEventsWithPlayerId() throws Exception {
         String page = readFile(ASSETS_DIR + "/events_425165.htm");
         assertNotNull(page);

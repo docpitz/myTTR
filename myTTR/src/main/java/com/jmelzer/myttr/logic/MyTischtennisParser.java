@@ -521,8 +521,12 @@ public class MyTischtennisParser extends AbstractBaseParser {
     Mannschaft parseOwnTeam(String page) throws NoDataException, LoginExpiredException {
         Mannschaft mannschaft = new Mannschaft();
 
-        List<SpielerAndBilanz> players = parsePlayerFromTeamV2(page);
-        mannschaft.setSpielerBilanzen(players);
+        try {
+            List<SpielerAndBilanz> players = parsePlayerFromTeamV2(page);
+            mannschaft.setSpielerBilanzen(players);
+        } catch (NoDataException e) {
+            //ok
+        }
 
 //        List<Mannschaftspiel> spiele = parseSpiele(page);
 //        mannschaft.setSpiele(spiele);
@@ -746,7 +750,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         ParseResult table = readBetween(page, 0, "<h3 class=\"table-headline\">Einzelbilanzen</h3>", "</table>");
         int idx = 0;
         if (isEmpty(table)) {
-            throw new NoDataException("myTTR jonnte die Einzelbilanzen nicht finden");
+            throw new NoDataException("myTTR konnte die Einzelbilanzen nicht finden");
         }
         while (true) {
             //mytt have a bug here: no opening tr element
