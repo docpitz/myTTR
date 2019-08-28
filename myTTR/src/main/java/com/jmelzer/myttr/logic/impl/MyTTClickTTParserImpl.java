@@ -299,7 +299,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
     private void printRows(String[] row) {
         for (int i = 0; i < row.length; i++) {
-            System.out.println(i + " = " + row[i]);
+            Log.d(Constants.LOG_TAG, i + " = " + row[i]);
         }
     }
 
@@ -638,7 +638,6 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ergebnis.startsWith("<")) {
                 ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
-//            String datum = row[0].substring(0,row[0].length()-2);
             Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
             String ahref[] = readHrefAndATag(row[3]);
             heim.setUrl(MYTT + ahref[0]);
@@ -657,8 +656,10 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             } else {
                 lastDate = mannschaftspiel.getDate();
             }
-            liga.addMannschaft(heim);
-            liga.addSpiel(mannschaftspiel, spielplan);
+            if (heim.getName() != null) {//sometime happen
+                liga.addMannschaft(heim);
+                liga.addSpiel(mannschaftspiel, spielplan);
+            }
             idx = resultrow.end;
 
         }
