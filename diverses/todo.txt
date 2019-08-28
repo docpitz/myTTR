@@ -44,6 +44,9 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
     - Schöneren Dialog machen?
     - Querformat
 
+Franz-Josef Ney
+ Kalenderexport funktioniert prima! Kleiner Verbesserungswunsch: ich spiele in der Herren 2 und Senioren 2. Beim Export steht beides Male TTC Köllerbach II. Kann man vielleicht noch Herren / Senioren / Jugend vorranstellen? So dass der Export dann Herren TTC Köllerbach II ergibt?
+
 erledigt
 ---------
 - Versionsprüfung!!
@@ -221,3 +224,7 @@ Neuer Cup
 - Saison 2019/20
 - Leere Kontakte
 - Neue Vereine
+
+6.5.2
+--------
+Kleine Fehler behoben
