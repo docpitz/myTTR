@@ -67,7 +67,9 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 MyApplication.selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
-                if (MyApplication.selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
+                if (MyApplication.selectedMannschaftSpiel != null &&
+                        MyApplication.selectedMannschaftSpiel.getUrlDetail() != null &&
+                        MyApplication.selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
                     Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
                 } else {
                     callMannschaftSpielDetail();
