@@ -139,7 +139,8 @@ public class CalendarExportActivity extends BaseActivity {
             if (cur.moveToNext()) {
                 // Get the field values
                 long timeStart = cur.getLong(1);
-                if (checkAllParamms) {
+                Log.d(Constants.LOG_TAG, "Location " + location);
+                if (location != null && checkAllParamms) {
                     if (timeStart != starttime) {
                         id = (cur.getLong(0));
                     } else if (!location.replaceAll("\n", " ").equals(cur.getString(PROJECTION_CALENDAR_LOCATION))) {

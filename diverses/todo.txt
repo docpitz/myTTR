@@ -228,3 +228,8 @@ Neuer Cup
 6.5.2
 --------
 Kleine Fehler behoben
+
+6.5.3
+---------
+Vorrunde wird richtig ausgewählt
+Kalenderexport wenn kein Spielort angegeben wurde funktioniert jetzt

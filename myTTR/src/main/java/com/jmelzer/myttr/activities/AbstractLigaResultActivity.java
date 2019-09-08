@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 
@@ -65,7 +66,7 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
             }
         };
         if (!hasGesamt()) {
-            boolean b = startWithRR();
+            boolean b = isVRCompleted();
             actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
             actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
         } else {
@@ -74,7 +75,13 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
     }
 
     abstract boolean startWithRR();
-
+    boolean isVRCompleted() {
+        for (Mannschaftspiel mannschaftspiel : MyApplication.getSelectedLiga().getSpieleVorrunde()) {
+            if (mannschaftspiel.getErgebnis() == null || mannschaftspiel.getErgebnis().isEmpty())
+                return false;
+        }
+        return true;
+    }
     boolean hasGesamt() {
         return MyApplication.getSelectedLiga().getUrlGesamt() != null;
     }
