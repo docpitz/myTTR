@@ -4,14 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,20 +19,14 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.jmelzer.myttr.Constants;
-import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.db.FavoriteDataBaseAdapter;
 import com.jmelzer.myttr.model.SearchPlayer;
-import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.tasks.Head2HeadAsyncTask;
-
-import org.json.JSONException;
 
 import java.util.List;
 

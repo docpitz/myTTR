@@ -2,7 +2,7 @@ package com.jmelzer.myttr.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;

@@ -2,21 +2,18 @@ package com.jmelzer.myttr.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.view.ContextMenu;
+import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jmelzer.myttr.Game;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.model.Head2HeadResult;
-import com.jmelzer.myttr.tasks.Head2HeadAsyncTask;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.jmelzer.myttr.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class ClubSearchResult implements Comparable<ClubSearchResult>{
     String name;

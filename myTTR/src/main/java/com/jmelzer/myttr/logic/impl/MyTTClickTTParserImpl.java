@@ -1,6 +1,6 @@
 package com.jmelzer.myttr.logic.impl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.jmelzer.myttr.Bezirk;

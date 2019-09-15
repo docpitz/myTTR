@@ -47,6 +47,9 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 Franz-Josef Ney
  Kalenderexport funktioniert prima! Kleiner Verbesserungswunsch: ich spiele in der Herren 2 und Senioren 2. Beim Export steht beides Male TTC Köllerbach II. Kann man vielleicht noch Herren / Senioren / Jugend vorranstellen? So dass der Export dann Herren TTC Köllerbach II ergibt?
 
+Frank Narden
+- Andere Mannschaft für TTR Rechner auswählen, wenn man Ersatz spielt
+
 erledigt
 ---------
 - Versionsprüfung!!
@@ -233,3 +236,7 @@ Kleine Fehler behoben
 ---------
 Vorrunde wird richtig ausgewählt
 Kalenderexport wenn kein Spielort angegeben wurde funktioniert jetzt
+
+6.5.4
+-------
+Android 10
