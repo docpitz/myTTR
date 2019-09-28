@@ -185,6 +185,7 @@ public class MyTTClickTTParserTest {
         for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
             System.out.println("mannschaftspiel = " + mannschaftspiel);
             assertNotNull(mannschaftspiel.getDate());
+            assertFalse(mannschaftspiel.getDate(), mannschaftspiel.getDate().contains("<"));
         }
     }
 

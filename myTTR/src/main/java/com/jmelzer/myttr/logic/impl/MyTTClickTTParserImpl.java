@@ -612,7 +612,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
 
             if (datum != null && !datum.isEmpty()) {
-                ParseResult pr = readBetween(datum, 0, "</span>", "</span>");
+                ParseResult pr = readBetween(datum, 0, "<span>", "</span>");
                 if (!isEmpty(pr)) {
                     datum = pr.result;
                     datum = shortenDate(datum);
@@ -620,9 +620,6 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                     datum += time;
                 }
             } else if (lastDate != null) {
-                if (lastDate.contains(" ")) { //strip time
-                    lastDate = lastDate.substring(0, lastDate.indexOf(' '));
-                }
                 datum = lastDate + time;
             }
             String url = readHrefAndATag(row[6])[0];
@@ -639,7 +636,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
             Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
-            String ahref[] = readHrefAndATag(row[3]);
+            String[] ahref = readHrefAndATag(row[3]);
             heim.setUrl(MYTT + ahref[0]);
             Mannschaft gast = findMannschaft(liga, readHrefAndATag(row[4])[1]);
 //            ahref = readHrefAndATag(row[5]);
@@ -653,9 +650,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             parseAndWriteSpielLokalNummer(row[2], mannschaftspiel, heim);
             if (mannschaftspiel.getDate() == null || mannschaftspiel.getDate().isEmpty()) {
                 mannschaftspiel.setDate(lastDate);
-            } else {
-                lastDate = mannschaftspiel.getDate();
             }
+
             if (heim.getName() != null) {//sometime happen
                 liga.addMannschaft(heim);
                 liga.addSpiel(mannschaftspiel, spielplan);
@@ -673,6 +669,8 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             datum = datum.substring(0, datum.length() - 4) + "18";
         } else if (datum.endsWith("2019")) {
             datum = datum.substring(0, datum.length() - 4) + "19";
+        } else if (datum.endsWith("2020")) {
+            datum = datum.substring(0, datum.length() - 4) + "20";
         }
         return datum;
     }

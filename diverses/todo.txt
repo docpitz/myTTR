@@ -240,3 +240,6 @@ Kalenderexport wenn kein Spielort angegeben wurde funktioniert jetzt
 6.5.4
 -------
 Android 10
+
+6.5.5
+--------
