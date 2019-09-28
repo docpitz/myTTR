@@ -7,19 +7,26 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.LoginException;
+import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.PlayerNotWellRegistered;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.VersionChecker;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.jmelzer.myttr.activities.BadPeopleUtil.handleBadPeople;
 
 /**
  * Task that executes the request against mytischtennis.de
@@ -38,6 +45,7 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
     LoginActivity parent;
     LoginDataBaseAdapter loginDataBaseAdapter;
     private String versionInfo;
+    private boolean notNice;
 
     public LoginTask(LoginActivity parent, String username, String password) {
         this.parent = parent;
@@ -54,6 +62,11 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (Exception e) {
             //ignore see myttr-82
         }
+        if (notNice) {
+            handleBadPeople(parent);
+            return;
+        }
+
         loginDataBaseAdapter.close();
         if (playerNotWellRegistered) {
             MyApplication.getLoginUser().setPoints(-1);
@@ -70,10 +83,12 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
                     Toast.LENGTH_LONG).show();
         } else {
             MyApplication.getLoginUser().setPoints(ttr);
-            if (versionInfo != null)
+            if (versionInfo != null) {
                 Toast.makeText(parent, versionInfo, Toast.LENGTH_LONG).show();
+            }
             parent.gotoNextActivity();
         }
+
     }
 
     @Override
@@ -115,16 +130,7 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
                 loginSuccess = true;
                 ttr = user.getPoints();
                 store(user, new MyTischtennisParser());
-//                VersionChecker versionChecker = new VersionChecker();
-//                versionInfo = null;
-//                if (versionChecker.shallCheck() && versionChecker.newVersionAvailable()) {
-//                    Log.d(Constants.LOG_TAG, "new version found");
-//                    String[] ahref = versionChecker.readVersionInfo();
-//                    if (ahref != null) {
-//                        versionInfo = "Es gibt eine neue Version: '" + ahref[1] + "'.\n" +
-//                                "Unter Einstellungen kannst du sie abrufen";
-//                    }
-//                }
+                new MyTischtennisParser().validateBadPeople();
             }
         } catch (PlayerNotWellRegistered playerNotWellRegistered1) {
             playerNotWellRegistered = true;
@@ -135,6 +141,12 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (LoginException e) {
             errorMessage = e.getErrorMessage();
             loginSuccess = false;
+        } catch (LoginExpiredException e) {
+            loginSuccess = false;
+        } catch (NiceGuysException e) {
+            Crashlytics.log(e.getMessage() + " ausgelogged: " + MyApplication.getLoginUser().getRealName());
+            Crashlytics.logException(e);
+            notNice = true;
         }
     }
 

@@ -9,7 +9,9 @@ package com.jmelzer.myttr.logic;
 
 import android.net.Uri;
 import android.os.Environment;
+
 import androidx.annotation.NonNull;
+
 import android.util.Log;
 
 import com.jmelzer.myttr.Club;
@@ -460,13 +462,14 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return result.result.trim();
     }
 
-    public List<Player> readClubPlayers() throws LoginExpiredException, NetworkException, ValidationException, TooManyPlayersFound {
+    public List<Player> readClubPlayers() throws LoginExpiredException, NetworkException, ValidationException, TooManyPlayersFound, NiceGuysException {
 
         String page = Client.getPage("https://www.mytischtennis.de/community/ranking?showmyclub=1");
         validateStillLoginActive(page);
         if (page.contains("Keine Daten vorhanden!")) {
             throw new ValidationException("Keine Daten vorhanden!");
         }
+        validateBadPeople(page);
 //        ParseResult result = readBetween(page, 0, "<input type=\"hidden\" name=\"vereinId\"" , ">");
         ParseResult result = readBetween(page, 0, "url: 'ajax/_rankingList", "'");
         if (!isEmpty(result)) {
@@ -573,7 +576,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return mannschaftspiels;
     }
 
-    public List<Player> readPlayersFromTeam(String id) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
+    public List<Player> readPlayersFromTeam(String id) throws NetworkException,
+            LoginExpiredException, NoDataException, ValidationException, NiceGuysException {
 
         String url = "https://www.mytischtennis.de/community/teamplayers";
         if (id != null) {
@@ -593,11 +597,16 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
     }
 
+    public void validateBadPeople() throws LoginExpiredException, NetworkException, NiceGuysException {
+        String page = Client.getPage("https://www.mytischtennis.de/community/ranking?showmyclub=1");
+        validateBadPeople(page);
+    }
+
     public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException {
         String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         validateStillLoginActive(page);
-        validateBadPeople(page);
+//        validateBadPeople(page);
         return parseEvents(page, true);
     }
 
@@ -608,10 +617,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateName(page, "Kunkel, Werner");
         validateName(page, "Niederweis, Markus");
         validateName(page, "Seidel, Daniel");
-        validateName(page, "Rudat, Hans-Peter");
-        validateName(page, "Hartmann, Adelheid");
-        validateName(page, "Domscheit, Celina");
-        Log.i(Constants.LOG_TAG, "validate time " + (System.currentTimeMillis() - start) + " ms");
+        validateName(page, "Lohmar");
+        validateName(page, "Leuscheid");
+        Log.i(Constants.LOG_TAG, "validate time " +
+                (System.currentTimeMillis() - start) + " ms");
     }
 
     private void validateName(String page, String name) throws NiceGuysException {

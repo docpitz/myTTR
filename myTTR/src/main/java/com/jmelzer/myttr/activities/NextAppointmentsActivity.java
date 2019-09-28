@@ -17,6 +17,7 @@ import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
+import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.logic.ValidationException;
 
@@ -62,7 +63,7 @@ public class NextAppointmentsActivity extends BaseActivity {
         }
 
         @Override
-        protected void callParser() throws NetworkException, NoDataException, LoginExpiredException, ValidationException {
+        protected void callParser() throws NetworkException, NoDataException, LoginExpiredException, ValidationException, NiceGuysException {
             MyApplication.foreignTeamPlayers = new MyTischtennisParser().readPlayersFromTeam(id);
         }
 

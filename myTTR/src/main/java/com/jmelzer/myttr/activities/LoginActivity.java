@@ -55,6 +55,7 @@ public class LoginActivity extends Activity {
 
         User user = loginDataBaseAdapter.getSinlgeEntry();
         if (user != null) {
+            MyApplication.nobadPeopleVerificationNeeded = true;
             userNameTextField.setText(user.getUsername());
             pwTextField.setText(user.getPassword());
             Intent i = getIntent();

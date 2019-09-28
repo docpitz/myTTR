@@ -25,6 +25,8 @@ import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.jmelzer.myttr.activities.BadPeopleUtil.handleBadPeople;
+
 
 /**
  * Base class for same error handling.
@@ -139,19 +141,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             //see myttr-62
         }
         if (notSoNice) {
-            final ErrorDialog dialog = new ErrorDialog(parent, "Nur nette Menschen dürfen meine App benutzen ....", 2000);
-            dialog.show();
-            final Timer timer2 = new Timer();
-            timer2.schedule(new TimerTask() {
-                public void run() {
-                    dialog.dismiss();
-                    timer2.cancel(); //this will cancel the timer of the system
-                    new LoginDataBaseAdapter(parent).deleteAllEntries();
-                    parent.finishAffinity();
-//                    System.exit(-1);
-                }
-            }, 2000); // the timer will count 5 seconds....
-
+            handleBadPeople(parent);
             return;
         }
         if (errorMessage != null) {

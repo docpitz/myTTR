@@ -36,6 +36,7 @@ import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 
 public class MyApplication extends Application {
 
+    public static boolean nobadPeopleVerificationNeeded = false;
     private static Context context;
     private static User loginUser;
     private static List<Player> ttrCalcPlayer = new ArrayList<Player>();
