@@ -50,6 +50,13 @@ Franz-Josef Ney
 Frank Narden
 - Andere Mannschaft für TTR Rechner auswählen, wenn man Ersatz spielt
 
+Marcel: Head2Head
+Case 1. Head 2 head funktioniert wenn man über ganz konkrete spielergebnisse hinnavigiert.
+Ligatabelle > spielergebnisse > irgendeine begegnung auswählen > person xy selektieren > chart > head2head > ok
+Case 2. Geht man wie folgt vor geht's nicht.
+Ligatabelle > verein auswählen > bilanzubersicht/mannschaftsaufstellung > person xy selektieren > chart > head2head > empty.
+
+
 erledigt
 ---------
 - Versionsprüfung!!
@@ -243,3 +250,4 @@ Android 10
 
 6.5.5
 --------
+Kalenderexportfehler: Unparseable date: "Fr 18.10.19 19:30"

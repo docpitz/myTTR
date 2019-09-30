@@ -8,6 +8,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -31,6 +32,8 @@ import android.widget.Toast;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.R;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,7 +89,7 @@ public class CalendarExportActivity extends BaseActivity {
 
         for (Mannschaftspiel mannschaftspiel : spiele) {
             try {
-                Date d = format.parse(mannschaftspiel.getDate());
+                Date d = getDate(mannschaftspiel);
                 if (now.getTime() < d.getTime()) {
                     mannschaftspiel.setChecked(true);
                     gamesInFuture.add(mannschaftspiel);
@@ -103,6 +106,16 @@ public class CalendarExportActivity extends BaseActivity {
         listview.setAdapter(adapter);
 
 
+    }
+
+    private Date getDate(Mannschaftspiel mannschaftspiel) throws ParseException {
+        String sd = mannschaftspiel.getDate();
+//                "Fr 18.10.19 19:30"
+        //cut the string if day of week in front
+        if (StringUtils.countMatches(sd, ' ') > 1) {
+            sd = sd.substring(sd.indexOf(' '));
+        }
+        return format.parse(sd);
     }
 
     private long findEventsByTitleAndLocation(String eventTitle, long starttime, String location, boolean checkAllParamms) {
@@ -232,6 +245,8 @@ public class CalendarExportActivity extends BaseActivity {
         builder.setTitle("Export. Bitte Kalender auswählen").setItems(names.toArray(new String[0]), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 export(ids.get(which));
+                Intent target = new Intent(CalendarExportActivity.this, LigaMannschaftResultsActivity.class);
+                startActivity(target);
             }
 
         });
@@ -259,7 +274,7 @@ public class CalendarExportActivity extends BaseActivity {
             }
 
             try {
-                Date startTime = format.parse(mannschaftspiel.getDate());
+                Date startTime = getDate(mannschaftspiel);
                 if (now.getTime() < startTime.getTime()) {
                     Log.d(Constants.LOG_TAG, "Date=" + startTime);
                     Calendar endTime = Calendar.getInstance();
