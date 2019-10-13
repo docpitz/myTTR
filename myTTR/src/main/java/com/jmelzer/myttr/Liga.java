@@ -24,7 +24,10 @@ public class Liga implements Favorite {
         GESAMT
     }
 
-    public static List<String> alleKategorien = Arrays.asList("Herren", "Damen", "Jungen", "Mädchen", "Schüler", "B-Schüler",
+    public static List<String> alleKategorien = Arrays.asList("Herren", "Damen", "Jungen 18",
+            "Jungen 15", "Jungen 13", "Jungen",
+            "Mädchen 13", "Mädchen 15", "Mädchen 18", "Mädchen",
+            "Schüler", "B-Schüler",
             "Männliche Jugend", "Schüler A", "Weibliche Jugend", "Jugend", "Jungen U18",
             "Senioren 40", "Seniorinnen 40", "Senioren 50", "Seniorinnen 50",
             "Senioren 60", "Seniorinnen 60", "Senioren 70", "Seniorinnen 70", "Senioren");
