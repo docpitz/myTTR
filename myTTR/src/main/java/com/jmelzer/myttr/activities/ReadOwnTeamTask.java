@@ -1,8 +1,10 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.MyTTClickTTParser;
@@ -18,6 +20,7 @@ import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 public class ReadOwnTeamTask extends BaseAsyncTask {
     public ReadOwnTeamTask(Activity parent, Class targetClz) {
         super(parent, targetClz);
+        Log.d(Constants.LOG_TAG, "myttr is going to start activity " + targetClz);
     }
 
     @Override

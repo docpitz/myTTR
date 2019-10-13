@@ -255,10 +255,12 @@ public class Liga implements Favorite {
         return result;
     }
 
-    public Mannschaft findMannschaftByName(String name) {
+    public Mannschaft replaceMannschaftInList(Mannschaft m) {
         for (Mannschaft mannschaft : mannschaften) {
-            if (name.equals(mannschaft.getName())) {
-                return mannschaft;
+            if (m.getName().equals(mannschaft.getName())) {
+                mannschaften.remove(mannschaft);
+                mannschaften.add(m);
+                return m;
             }
         }
         return null;

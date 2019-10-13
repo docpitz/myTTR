@@ -511,7 +511,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
 
 
-        mannschaft = liga.findMannschaftByName(mannschaft.getName());
+        mannschaft = liga.replaceMannschaftInList(mannschaft);
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
         mannschaft.getSpiele().addAll(liga.getSpieleFor(mannschaft.getName(), spielplan2));
@@ -624,6 +624,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private void validateName(String page, String name) throws NiceGuysException {
+        //whitelist
+        if (MyApplication.getLoginUser().getRealName().contains("Ana Beja-Pütz")) {
+            return;
+        }
+
         if (page.contains(name)) {
             throw new NiceGuysException(name);
         }

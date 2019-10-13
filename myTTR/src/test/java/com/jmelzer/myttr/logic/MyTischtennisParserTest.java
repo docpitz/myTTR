@@ -51,12 +51,12 @@ public class MyTischtennisParserTest {
         String page = readFile(ASSETS_DIR + "/mytt/team.html");
         Mannschaft mannschaft = parser.parseOwnTeam(page);
         assertNotNull(mannschaft);
-        assertEquals(10, mannschaft.getSpielerBilanzen().size());
+        assertEquals(13, mannschaft.getSpielerBilanzen().size());
         for (SpielerAndBilanz spielerAndBilanz : mannschaft.getSpielerBilanzen()) {
             System.out.println("spielerAndBilanz = " + spielerAndBilanz);
         }
         assertEquals(0, mannschaft.getSpiele().size());
-        assertEquals("TTG St. Augustin II", mannschaft.getName());
+        assertEquals("TTG St. Augustin III", mannschaft.getName());
 //        for (Mannschaftspiel ms : mannschaft.getSpiele()) {
 //            System.out.println(ms.getDate() + "  " + ms.getHeimMannschaft().getName() +
 //                    "  " + ms.getGastMannschaft().getName() +  " " + ms.getErgebnis());
