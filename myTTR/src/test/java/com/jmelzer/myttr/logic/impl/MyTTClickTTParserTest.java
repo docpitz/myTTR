@@ -425,21 +425,21 @@ public class MyTTClickTTParserTest {
         parser.parseVereinSpielplan(v, page);
         assertEquals(143, v.getSpielplan().size());
         assertEquals("8:5", v.getSpielplan().get(8).getErgebnis());
-        assertEquals("02.11.2019 16:30", v.getSpielplan().get(0).getDate());
+        assertEquals("Sa 02.11.19 16:30", v.getSpielplan().get(0).getDate());
 //        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
 //                v.getSpielplan().get(3).getUrlDetail());
 //        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
-        assertEquals("TuRa Oberdrees", v.getSpielplan().get(0).getHeimMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-NRW-Liga-3/gruppe/334215/mannschaft/2124227/TuRa-Oberdrees/spielerbilanzen/rr",
+        assertEquals("TTG St. Augustin", v.getSpielplan().get(0).getHeimMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/19-20/ligen/Jungen-18-Kreisliga/gruppe/357048/mannschaft/2253010/TTG-St-Augustin/spielerbilanzen/vr/",
                 v.getSpielplan().get(0).getHeimMannschaft().getUrl());
-        assertEquals("TTG St. Augustin", v.getSpielplan().get(0).getGastMannschaft().getName());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/Herren-NRW-Liga-3/gruppe/334215/mannschaft/2091020/TTG-St-Augustin/spielerbilanzen/rr",
+        assertEquals("HSG Siebengebirge-Thomasberg III", v.getSpielplan().get(0).getGastMannschaft().getName());
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/19-20/ligen/Jungen-18-Kreisliga/gruppe/357048/mannschaft/2229482/HSG-Siebengebirge-Thomasberg-III/spielerbilanzen/vr/",
                 v.getSpielplan().get(0).getGastMannschaft().getUrl());
-        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/18-19/verein/154047/TuRa-Oberdrees/info",
+        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/19-20/verein/156012/TTG-St-Augustin/info/",
                 v.getSpielplan().get(0).getUrlSpielLokal());
         assertEquals(1, v.getSpielplan().get(0).getNrSpielLokal());
         assertEquals(1, v.getSpielplan().get(2).getNrSpielLokal());
-        assertEquals("0:0", v.getSpielplan().get(12).getErgebnis());
+        assertEquals("9:3", v.getSpielplan().get(10).getErgebnis());
 
 //        assertEquals("Sa. 21.04.2018 18:30", v.getSpielplan().get(59).getDate());
 //        assertEquals("", v.getSpielplan().get(59).getErgebnis());

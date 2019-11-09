@@ -236,7 +236,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             Mannschaftspiel m = new Mannschaftspiel();
 
             if (!row[0].isEmpty()) {
-                ParseResult pr = readBetween(row[0], 0, "</span>", "</span>");
+                ParseResult pr = readBetween(row[0], 0, "<span>", "</span>");
                 if (!isEmpty(pr)) {
                     lastdate = pr.result;
                 } else {
