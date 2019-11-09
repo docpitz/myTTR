@@ -510,7 +510,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
             parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
 
-
+        if (mannschaft.getName().contains("Augustin")) {
+            System.out.println();
+        }
         mannschaft = liga.replaceMannschaftInList(mannschaft);
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));

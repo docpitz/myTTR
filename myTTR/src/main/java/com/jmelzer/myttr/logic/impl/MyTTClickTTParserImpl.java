@@ -26,6 +26,8 @@ import com.jmelzer.myttr.model.Saison;
 import com.jmelzer.myttr.model.Verein;
 import com.jmelzer.myttr.util.UrlUtil;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -244,15 +246,15 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String uhrzeit = row[1];
             uhrzeit = removeHtml(uhrzeit);
             m.setDate(lastdate + " " + uhrzeit);
-            String ahref[] = readHrefAndATag(row[7]);
+            String[] ahref = readHrefAndATag(row[7]);
             String ergebnis = ahref[1];
             if (ergebnis == null || ergebnis.isEmpty()) {
-                ergebnis = row[6];
+                ergebnis = row[7];
             }
             if (ergebnis.startsWith("<")) {
                 ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
-            if (!ahref[0].isEmpty()) {
+            if (!StringUtils.isEmpty(ahref[0])) {
                 m.setUrlDetail(MYTT + ahref[0]);
             }
             m.setErgebnis(ergebnis);
@@ -1077,7 +1079,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
 
             ParseResult resultUrl = readBetween(page, result.start - 70, "<div class=\"panel-heading\">", "</div>");
 
-            String href[] = readHrefAndATag(resultUrl.result);
+            String[] href = readHrefAndATag(resultUrl.result);
             String url = href[0];
             if (url != null && url.length() > 0) {
                 mannschaft.setVereinUrl(MYTT + url);

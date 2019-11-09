@@ -262,6 +262,8 @@ public class Liga implements Favorite {
         for (Mannschaft mannschaft : mannschaften) {
             if (m.getName().equals(mannschaft.getName())) {
                 mannschaften.remove(mannschaft);
+                m.setVereinId(mannschaft.getVereinId());
+                m.setVereinUrl(mannschaft.getVereinUrl());
                 mannschaften.add(m);
                 return m;
             }

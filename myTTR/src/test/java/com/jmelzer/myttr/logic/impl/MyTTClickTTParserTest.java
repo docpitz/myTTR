@@ -423,9 +423,9 @@ public class MyTTClickTTParserTest {
         String page = TestUtil.readFile(ASSETS_DIR + "/wttv-verein-spielplan.html");
         Verein v = new Verein();
         parser.parseVereinSpielplan(v, page);
-        assertEquals(33, v.getSpielplan().size());
-        assertEquals("09.03.2019 18:30", v.getSpielplan().get(0).getDate());
-//        assertEquals("9:1", v.getSpielplan().get(2).getErgebnis());
+        assertEquals(143, v.getSpielplan().size());
+        assertEquals("8:5", v.getSpielplan().get(8).getErgebnis());
+        assertEquals("02.11.2019 16:30", v.getSpielplan().get(0).getDate());
 //        assertEquals("https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Herren-1-Kreisklasse-1/gruppe/305887/spielbericht/9968514/TTG-St-Augustin-IV-vs-TuS-Birk",
 //                v.getSpielplan().get(3).getUrlDetail());
 //        assertEquals("9:0", v.getSpielplan().get(3).getErgebnis());
