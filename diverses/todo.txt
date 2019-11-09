@@ -251,3 +251,11 @@ Android 10
 6.5.5
 --------
 Kalenderexportfehler: Unparseable date: "Fr 18.10.19 19:30"
+
+6.5.7
+--------
+Einige Fehler behoben
+  - Vereinsspielplan & Datum
+  - Aufstellung
+  - Ergebnisse, wenn noch keine Details vorhanden
+  - Neue Jugendklassen
