@@ -619,6 +619,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateName(page, "Kunkel, Werner");
         validateName(page, "Niederweis, Markus");
         validateName(page, "Seidel, Daniel");
+        validateName(page, "Hersel");
         validateName(page, "Lohmar");
         validateName(page, "Leuscheid");
         Log.i(Constants.LOG_TAG, "validate time " +
