@@ -23,7 +23,9 @@ Features
 - Bug: Cup Icon Größe
 - Todos entfernen
 - Schriftgröße: Konfiguration
-
+- Verschiedene Thems (Hell/Dunkel)
+        https://developer.android.com/guide/topics/resources/providing-resources#Accessing
+        Unterschiedlich Icons notwendig
 - Filter bei Turnieren
 - Filter siehe Kayak o.ä (slidemenu)
 - Pokalspiel
@@ -38,6 +40,7 @@ Features
 - Liga-Rangliste für beliebige Klassen
 TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 - Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
+
 
 
 - Kalender: offene Punkte
@@ -56,6 +59,12 @@ Ligatabelle > spielergebnisse > irgendeine begegnung auswählen > person xy sele
 Case 2. Geht man wie folgt vor geht's nicht.
 Ligatabelle > verein auswählen > bilanzubersicht/mannschaftsaufstellung > person xy selektieren > chart > head2head > empty.
 
+
+Auswahl nächste Version:
+----------------------
+- Mehrfachauswahl TTR Rechner (SearchResultMultiSelectActivity auch bei normaler suche)
+- Neue Races: URLs
+- Crashalytics anschauen
 
 erledigt
 ---------
@@ -259,3 +268,8 @@ Einige Fehler behoben
   - Aufstellung
   - Ergebnisse, wenn noch keine Details vorhanden
   - Neue Jugendklassen
+
+6.6
+-------
+Kalenderauswahl:  alle zu sehen
+TT Races 2020
