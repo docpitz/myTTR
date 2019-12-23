@@ -35,7 +35,7 @@ android {
         applicationId "com.jmelzer.myttr"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 178
+        versionCode 179
         versionName "6.5.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
