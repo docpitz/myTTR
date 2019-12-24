@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Liga;
@@ -103,10 +104,14 @@ public class FavoriteManager {
                 e.printStackTrace();
                 return;
             }
-            Intent target = new Intent(context, SearchActivity.class);
-            target.putExtra(SearchActivity.BACK_TO, SearchActivity.class);
-            target.putExtra(SearchActivity.INTENT_SP, searchPlayer);
-            context.startActivity(target);
+            if (searchPlayer != null) {
+                Intent target = new Intent(context, SearchActivity.class);
+                target.putExtra(SearchActivity.BACK_TO, SearchActivity.class);
+                target.putExtra(SearchActivity.INTENT_SP, searchPlayer);
+                context.startActivity(target);
+            } else {
+                Toast.makeText(parent, "Fehler bem Laden", Toast.LENGTH_LONG).show();
+            }
         }
 
     }

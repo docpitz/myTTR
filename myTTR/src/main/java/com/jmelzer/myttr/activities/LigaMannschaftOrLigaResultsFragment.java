@@ -2,13 +2,14 @@ package com.jmelzer.myttr.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
@@ -80,7 +81,8 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         // the list will be filled
         Liga.Spielplan spielplan = Liga.Spielplan.GESAMT;
         if ((liga != null && liga.getUrlGesamt() == null) ||
-                MyApplication.getSelectedLiga().getUrlGesamt() == null) {
+                (MyApplication.getSelectedLiga() != null &&
+                        MyApplication.getSelectedLiga().getUrlGesamt() == null)) {
             if (pos == 0) {
                 spielplan = Liga.Spielplan.VR;
             } else {

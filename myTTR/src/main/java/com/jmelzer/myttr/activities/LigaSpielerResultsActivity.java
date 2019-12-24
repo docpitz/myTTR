@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Player;
@@ -181,10 +182,14 @@ public class LigaSpielerResultsActivity extends BaseActivity {
             intent.putExtra(SearchActivity.BACK_TO, EventsActivity.class);
             startActivity(intent);
         } else {
-            Player p = new Player("", MyApplication.getSelectedLigaSpieler().getName());
-            p.setPersonId(MyApplication.getSelectedLigaSpieler().getPersonId());
+            if (MyApplication.getSelectedLigaSpieler().getPersonId() != null) {
+                Player p = new Player("", MyApplication.getSelectedLigaSpieler().getName());
+                p.setPersonId(MyApplication.getSelectedLigaSpieler().getPersonId());
 
-            new EventsAsyncTask(this, EventsActivity.class, p).execute();
+                new EventsAsyncTask(this, EventsActivity.class, p).execute();
+            } else {
+                Toast.makeText(this, "Der Spieler hat kein ID.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

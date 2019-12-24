@@ -63,8 +63,8 @@ Ligatabelle > verein auswählen > bilanzubersicht/mannschaftsaufstellung > perso
 Auswahl nächste Version:
 ----------------------
 - Mehrfachauswahl TTR Rechner (SearchResultMultiSelectActivity auch bei normaler suche)
-- Neue Races: URLs
 - Crashalytics anschauen
+- Punkte direkt anzeigen aus mytt bei den Ligen
 
 erledigt
 ---------

@@ -3,11 +3,12 @@ package com.jmelzer.myttr.activities;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import androidx.viewpager.widget.ViewPager;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -112,6 +113,10 @@ public class EventsActivity extends BaseActivity {
 
 
     public void head2head(MenuItem item) {
-        new Head2HeadAsyncTask(this, MyApplication.selectedPlayer.getPersonId(), Head2HeadActivity.class).execute();
+        if (MyApplication.selectedPlayer != null) {
+            new Head2HeadAsyncTask(this, MyApplication.selectedPlayer.getPersonId(), Head2HeadActivity.class).execute();
+        } else {
+            Toast.makeText(this, "myTTR konnte keinen Spieler finden", Toast.LENGTH_LONG).show();
+        }
     }
 }
