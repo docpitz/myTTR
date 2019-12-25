@@ -48,7 +48,8 @@ TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
     - Querformat
 
 Franz-Josef Ney
- Kalenderexport funktioniert prima! Kleiner Verbesserungswunsch: ich spiele in der Herren 2 und Senioren 2. Beim Export steht beides Male TTC Köllerbach II. Kann man vielleicht noch Herren / Senioren / Jugend vorranstellen? So dass der Export dann Herren TTC Köllerbach II ergibt?
+ Kalenderexport funktioniert prima! Kleiner Verbesserungswunsch:
+ ich spiele in der Herren 2 und Senioren 2. Beim Export steht beides Male TTC Köllerbach II. Kann man vielleicht noch Herren / Senioren / Jugend vorranstellen? So dass der Export dann Herren TTC Köllerbach II ergibt?
 
 Frank Narden
 - Andere Mannschaft für TTR Rechner auswählen, wenn man Ersatz spielt
@@ -59,6 +60,7 @@ Ligatabelle > spielergebnisse > irgendeine begegnung auswählen > person xy sele
 Case 2. Geht man wie folgt vor geht's nicht.
 Ligatabelle > verein auswählen > bilanzubersicht/mannschaftsaufstellung > person xy selektieren > chart > head2head > empty.
 
+- Head2head für sich elbst ignorieren
 
 Auswahl nächste Version:
 ----------------------
