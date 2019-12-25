@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html><head>
+<title>Mannschaft | Teamsport
+| Deutschlands größte Tischtennis-Community
+| myTischtennis.de</title>
+<base href="//www.mytischtennis.de/community/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="description" content="" />
+<script src="/_sharedJS/package-jquery-mh-rs-bootstrap.min.js?v=1" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=8-1-2" type="text/javascript"></script>
+<script src="/community/js/global.js?v=8-1-2" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/community/css/community.css?v=8-1-2" media="all" rel="stylesheet" type="text/css" />
+<link rel="apple-touch-icon" sizes="57x57" href="/community/imagesStatic/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/community/imagesStatic/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/community/imagesStatic/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/community/imagesStatic/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/community/imagesStatic/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/community/imagesStatic/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/community/imagesStatic/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/community/imagesStatic/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/community/imagesStatic/favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/community/imagesStatic/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/community/imagesStatic/favicons/manifest.json">
+<link rel="mask-icon" href="/community/imagesStatic/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/community/imagesStatic/favicons/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<style type="text/css">
+.hideOwn75974 { display: none !important; }
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+/* bootstrap popovers*/
+$.fn.popover.Constructor.DEFAULTS.trigger = 'focus';
+$.fn.popover.Constructor.DEFAULTS.placement = 'auto top'; 
+$.fn.popover.Constructor.DEFAULTS.template = '<div class="popover" role="tooltip"><h3 class="popover-title"></h3><div class="popover-content"></div></div>'; // arrow is removed here
+$.fn.popover.Constructor.DEFAULTS.viewport = { selector: "#content-container", padding: 15 }
+var tooltipsCache = {};
+var loadAjaxTooltip = function($trigger, beforeSend) {
+var hash = $trigger.attr("data-tooltipdata");
+var tooltipdata = hash.split(';');
+// url param for _tooltippStuff telling if head to head should be written in db or not
+var writeToDB = false;
+var otherClickTTId = tooltipdata[0];
+var otherUsersUserid = tooltipdata[1];
+var otherUsersName = encodeURIComponent(tooltipdata[2]);
+if (tooltipdata[3] != undefined) {
+writeToDB = true;
+}
+var url = '/community/ajax/_tooltippstuff?writetodb='+writeToDB+'&otherUsersClickTTId='+otherClickTTId+'&otherUsersUserId='+otherUsersUserid+'&nameOfOtherUser='+otherUsersName;
+if (!tooltipsCache[hash]) {
+tooltipsCache[hash] = $.ajax({
+url: url,
+cache: false,
+beforeSend: beforeSend
+});
+}
+return tooltipsCache[hash];
+}
+var ajaxTooltipConfig = {
+over: function() {
+var $trigger = $(this);
+var $tooltip = $trigger.next(".bigtooltip");
+loadAjaxTooltip(
+$trigger,
+function() {
+$tooltip.html('<div class="center"><img src="/images/ajax-loader_snake.gif"></div>');
+}
+).done(function(html) {
+// this is called everytime its hovered (and reforces a re-display, which was the behaviour as before)
+$tooltip.html(html);
+});
+},
+timeout: 300, // number = milliseconds delay before onMouseOut
+out: function() {} // function = onMouseOut callback (REQUIRED)
+};
+function initToolTips () {
+// new tooltips named: popover (but looks the same)
+// apply with jquery.on() to all tooltips the are or might be added into the dom
+$('body').popover({
+selector: '.user-popover',
+trigger: 'focus', // hover does not work here as expected, it closes the popover, when the trigger is hovered out. But focus is more consistent with behavour on mobile
+delay: { show: 200, hide: 100 },
+html: true,
+// we use this as a little hack, to trigger the ajax call
+// we replace the ajax loaded in the popover with the actual content coming from the ajax call
+placement: function (popover, trigger) {
+var $trigger = $(trigger), $popover = $(popover);
+loadAjaxTooltip($trigger)
+.done(function(html) {
+$popover.html(html);
+});
+// return the placement options
+return $.fn.popover.Constructor.DEFAULTS.placement;
+},
+// we return the loader as content for the popover
+content: function() {
+return '<div class="user-popover-loader"><img src="/images/ajax-loader_snake.gif" alt="loading"></div>';
+}
+});
+}
+$.fn.bootstrapTooltip = $.fn.tooltip;
+/* bootstrap tooltips */
+$('body').bootstrapTooltip({
+selector: '[data-toggle="tooltip"]',
+});
+$('[data-toggle="popover"]').each(function() {
+var $trigger = $(this);
+var data = $trigger.data();
+var options = {};
+if (data.contentFind) {
+// load content from the dataattribute called "data-content-find" which searches IN the trigger-element
+options.content = function () {
+return $trigger.find(data.contentFind).clone(true).show().removeClass('hidden');
+};
+options.html = true;
+}
+// apply bootstrap popover to the trigger element
+$trigger
+.popover(options)
+.click(function(e) {
+e.preventDefault();
+});
+});
+// now init tooltips with the jquery-ui tooltip
+initToolTips();
+// used in joola ranking
+window.initToolTips = initToolTips;
+jQuery(".trigger").click(function(){
+jQuery(this).toggleClass("active").next().slideToggle("slow");
+});
+}); /* Doc Ready END */
+</script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/community/mytischtennis.de_community_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/community/mytischtennis.de_community_AdCall.js"></script>
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+</head>
+<body class="community">
+<!-- Version: 8.1.2 -->
+<div id="loadToolTipFunctionsHere"></div>
+<div style="display:none;">
+<!-- SZM VERSION="2.0" --> 
+<script type="text/javascript"> 
+var iam_data = { 
+"st":"mytisch", // site/domain 
+"cp":"comm", // code 
+"sv":"ke", // Es wird keine Befragungseinladung ausgeliefert. "
+"co":"http://www.mytischtennis.de:80/community/team.cfm?fromlogin=1" // comment 
+} 
+iom.c(iam_data); 
+</script> 
+<!--/SZM --> 
+</div>
+<div class="top-bar hidden-xs hidden-sm">
+<div class="container">
+<div class="col-md-3">
+<a href="/community/secure/premiumsubscription" class="flat-link">
+Premium bis 28.02.2019
+</a>
+</div>
+<div class="col-md-9 text-right">
+<a href="/community/friends" class="flat-link">
+<i class="icon-group"></i> 
+</a>
+<a href="/community/mailbox?messageTab=1" class="flat-link">
+<i class="icon-envelope"></i> 
+</a>
+<a href="/community/personalprofil" class="user-image">
+<div style="background-image:url(/community/images/user_images_placeholder/NoAvatar_Boy30.jpg);" class="userimagewrapper smallUserImageFromComponent"></div>
+<span>Stefan&nbsp;Rötticher</span>
+</a>
+<a href="/community/logout" class="flat-link"><i class="icon-off"></i></a>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-sm hidden-xs">
+<div class="container">
+<h1>
+<a href="/community/">
+<img src="/public/images/mytt_logo_orange_340x69.png" alt="myTischtennis.de">
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/" class="" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/" class="current" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-top-mobile" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/community/">
+<img src="/public/images/mytt_logo_orange_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<img class="beta" src="/images/beta.png" alt="BETA"/>
+<a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/community/" title="myTischtennis - Community">Home</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profil <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li><a href="/community/personalprofil" title="Pers&ouml;nliches Profil">Pers&ouml;nliches Profil</a></li> <li><a href="/community/sportprofil" title="Sport-Profil">Sport-Profil</a></li> <li><a href="/community/secure/userSettings" title="Einstellungen">Einstellungen</a></li> <li><a href="/community/userMasterPage" title="Stammblatt">Stammblatt</a></li> </ul> </li>
+<li id="Teamsport" class="active dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teamsport <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li><a href="/community/showclubinfo" title="Verein">Verein</a></li> <li><a href="/community/group" title="Liga">Liga</a></li> <li class="active"><a href="/community/team" title="Mannschaft">Mannschaft</a></li> </ul> </li>
+<li id="Ranglisten" class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ranglisten + Statistiken <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/ranking" title="JOOLA-Rangliste">JOOLA-Rangliste</a></li> <li> <a href="/community/events" title="TTR-Historie">Meine TTR-Historie</a></li> <li> <a href="/community/matches" title="Meine Statistiken">Meine Statistiken</a></li> <li> <a href="/community/eventsCompare" title="TTR-Vergleich">TTR-Vergleich</a></li> </ul> </li>
+<li class="break visible-md">
+</li>
+<li class="dropdown" id="Turniere">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Turniere <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"><li> <a href="/community/eventcalendar" title="Allg. Turniere">Allgemeine Turniere</a></li>
+<li >
+<a href="/community/turnierserie?fedNickname=ByTTV" title="Bavarian TT-Race">Bavarian TT-Race</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=VOL R7_2" title="Rheinland Cup">Rheinland Cup</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=VOL R7_1" title="Clickball Rheinland Cup">Clickball Rheinland Cup</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=HeTTV" title="VR-Cup des HTTV">VR-Cup des HTTV</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=WTTV" title="andro WTTV-Cup">andro WTTV-Cup</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=TTVN" title="TTVN-Race">TTVN-Race</a>
+</li>
+<li >
+<a href="/community/turnierserie?fedNickname=PTTV" title="Pfalz Trophy">Pfalz Trophy</a>
+</li>
+</ul> </li>
+<li id="Training" class="hidden-xs hidden-sm hidden-md dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Training <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/uebungen" title="Übungen">Übungen</a></li> <li> <a href="/community/tt-kurse" title="TT-Kurse">TT-Kurse</a></li> </ul> </li>
+<li class="hidden-lg hidden-xl">
+<a href="/community/uebungen" title="Übungen">Übungen</a>
+</li>
+<li id="Community" class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Community <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/friends" title="Freunde">Freunde</a></li> <li> <a href="/community/pendingrequests" title="Anfragen">Anfragen </a></li> <li> <a href="/community/mailbox?messageTab=1" title="Nachrichten">Nachrichten </a></li> <li> <a href="/community/searchPerson" title="Suche">Suche</a></li> <li> <a href="/community/mybadges" title="Meine Badges">Meine Badges</a></li> </ul> </li>
+<li class="dropdown" id="Services">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/holzassistent" title="Holz-Assistent">Holz-Assistent</a></li> <li> <a href="/community/opponents" title="Gemerkte Gegner">Gemerkte Gegner</a></li> <li> <a href="/community/meineligen" title="Meine Ligen">Meine Ligen</a></li> <li> <a href="/community/ttrrechner" title="TTR-Rechner">TTR-Rechner</a></li> </ul> </li>
+<li id="Premium" class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Premium <span class="caret"></span></a> <ul class="dropdown-menu" role="menu"> <li> <a href="/community/premium" title="Infos">Infos</a></li> <li> <a href="/community/secure/premiumsubscription" title="Mitgliedschaft abschließen">Mitgliedschaft abschließen</a></li> <li> <a href="/community/redeemCode" title="Code einlösen">Code einlösen</a></li> </ul>
+</li>
+<li class="visible-xs visible-sm">
+<a href="/community/logout">Logout</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row">
+<div class="col-md-12">
+<ul class="breadcrumbs">
+<li class="first"><a href="/community/index" title="Home">Home</a></li>
+<li><a href="/community/showclubinfo" title="Teamsport">Teamsport</a></li>
+<li><a href="/community/team" title="Mannschaft">Mannschaft</a></li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="text-center ontopbanner" id="topBanner-community">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<style type="text/css" media="screen">
+.meinTeam2109442 a, .meinTeam a{
+font-weight: bold; color: #000;
+}
+</style>
+<div class="row">
+<div class="col-xs-12">
+<ul class="tabs center" style="float: none">
+<li class="current">
+<a href="team?teamId=2109442" id="hrefmannschaft">Mannschaft</a>
+</li>
+<li>
+<a href="teamplayers?teamId=2109442" id="hrefspieler">Spieler</a>
+</li>
+<li>
+<a href="showclubinfo?clubId=3938">Verein</a>
+</li>
+</ul>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title"></h3>
+</div>
+<div class="panel-body">
+<div class="row">
+<div class="col-xs-9">
+<h2>FC Rastede V - TTVN</h2>
+<a href="group?groupId=337066">
+1. Kreisklasse Herren
+</a>
+<a href="meineligen?do=add&groupId=337066" title="Diese Liga merken" class="tooli1000"><img src="../images/Icon_Liga_hinzu.png"></a>
+</div>
+<div class="col-xs-3">
+<a class="normal" href="group?groupId=337066">
+Aktuelle Position: 8 </a><br>
+Aktuelle Punkte: 4:12
+</div>
+</div>
+</div>
+<div class="panel-body">
+<h3 class="table-headline">Spielplan</h3>
+<table class="table table-condensed table-mytt table-striped">
+<thead>
+<tr>
+<th>Datum</th>
+<th class="hidden-xs">Heimmannschaft</th>
+<th class="hidden-xs">Gastmannschaft</th>
+<th class="visible-xs">Mannschaften</th>
+<th class="text-center">Spiele</th>
+<th class="hidden-xs hidden-sm">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="hidden-xs">
+21.09.18 
+</span>
+<span class="visible-xs">
+21.09 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2111946">
+SSV Gristede
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2111946">
+SSV Gristede
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2111946&amp;teamGuest=2109442&amp;scheduled=2018-09-21 20:00:00">
+9&nbsp;:&nbsp;0</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+28.09.18 
+</span>
+<span class="visible-xs">
+28.09 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2110515">
+SSV Jeddeloh III
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2110515">
+SSV Jeddeloh III
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2110515&amp;teamGuest=2109442&amp;scheduled=2018-09-28 20:00:00">
+8&nbsp;:&nbsp;8</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+29.09.18 
+</span>
+<span class="visible-xs">
+29.09 
+</span>
+15:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109324">
+FC Rastede IV
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2109324">
+FC Rastede IV
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2109442&amp;teamGuest=2109324&amp;scheduled=2018-09-29 15:00:00">
+9&nbsp;:&nbsp;0</a>
+</td>
+<td class="hidden-xs hidden-sm">kl. gegen Gast</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+10.10.18 
+</span>
+<span class="visible-xs">
+10.10 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2114452">
+TSG Bokel III
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2114452">
+TSG Bokel III
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2109442&amp;teamGuest=2114452&amp;scheduled=2018-10-10 20:00:00">
+4&nbsp;:&nbsp;9</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+17.10.18 
+</span>
+<span class="visible-xs">
+17.10 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2114450">
+TSG Westerstede IV
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2114450">
+TSG Westerstede IV
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2109442&amp;teamGuest=2114450&amp;scheduled=2018-10-17 20:00:00">
+8&nbsp;:&nbsp;8</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+26.10.18 
+</span>
+<span class="visible-xs">
+26.10 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2112734">
+TV Aschhausen
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2112734">
+TV Aschhausen
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2112734&amp;teamGuest=2109442&amp;scheduled=2018-10-26 20:00:00">
+9&nbsp;:&nbsp;5</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+03.12.18 
+</span>
+<span class="visible-xs">
+03.12 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2111540">
+TuS Ofen II
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2111540">
+TuS Ofen II
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2111540&amp;teamGuest=2109442&amp;scheduled=2018-12-03 20:00:00">
+9&nbsp;:&nbsp;5</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+<tr>
+<td>
+<span class="hidden-xs">
+07.12.18 
+</span>
+<span class="visible-xs">
+07.12 
+</span>
+20:00
+<span class="hidden-xs">&nbsp;Uhr</span>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</td>
+<td class="hidden-xs">
+<a href="/community/team?teamid=2111671">
+TuS Augustfehn
+</a>
+</td>
+<td class="visible-xs">
+<span class="visible-xs">
+<a href="/community/team?teamid=2109442">
+FC Rastede V
+</a>
+</span>
+<span class="visible-xs">
+<a href="/community/team?teamid=2111671">
+TuS Augustfehn
+</a>
+</span>
+</td>
+<td class="text-center">
+<a href="gameReport?groupid=337066&amp;teamHome=2109442&amp;teamGuest=2111671&amp;scheduled=2018-12-07 20:00:00">
+0&nbsp;:&nbsp;9</a>
+</td>
+<td class="hidden-xs hidden-sm">abgeschlossen</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-body">
+<h3 class="table-headline">Einzelbilanzen</h3>
+<table class="table-condensed table-mytt table-striped fw">
+<thead>
+<tr>
+<th>Rang</th>
+<th>Name, Vorname</th>
+<th class="text-center">Einsätze</th>
+<th class="text-center">
+<span class="hidden-xs">Einzel/Doppel</span>
+<span class="visible-xs">E/D</span>
+</th>
+<th class="hidden-xs">1</th>
+<th class="hidden-xs">2</th>
+<th class="hidden-xs">3</th>
+<th class="hidden-xs">4</th>
+<th class="hidden-xs">5</th>
+<th class="hidden-xs">6</th>
+<th class="text-center">Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+5.1
+</td>
+<td>
+<a class="person75974 user-popover no-link" role="button" tabindex="0" data-tooltipdata="75974;0;Rötticher, Stefan;true">
+Rötticher, Stefan
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+7 
+</td>
+<td class="text-center">
+7 
+</td>
+<td class="hidden-xs">
+2:3
+</td>
+<td class="hidden-xs">
+3:4
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+5:7
+</td>
+</tr>
+<tr class="even">
+<td>
+5.2
+</td>
+<td>
+<a class="person104796 user-popover no-link" role="button" tabindex="0" data-tooltipdata="104796;0;Koopmann, Gerd;true">
+Koopmann, Gerd
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="hidden-xs">
+3:5
+</td>
+<td class="hidden-xs">
+1:5
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+4:10
+</td>
+</tr>
+<tr>
+<td>
+5.3
+</td>
+<td>
+<a class="person119175 user-popover no-link" role="button" tabindex="0" data-tooltipdata="119175;0;Lau, Robert;true">
+Lau, Robert
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+7 
+</td>
+<td class="text-center">
+7 
+</td>
+<td class="hidden-xs">
+0:1
+</td>
+<td class="hidden-xs">
+0:1
+</td>
+<td class="hidden-xs">
+2:1
+</td>
+<td class="hidden-xs">
+2:4
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+4:7
+</td>
+</tr>
+<tr class="even">
+<td>
+5.4
+</td>
+<td>
+<a class="person1278139 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1278139;0;Nack, Oliver;true">
+Nack, Oliver
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+4 
+</td>
+<td class="text-center">
+4 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+1:3
+</td>
+<td class="hidden-xs">
+2:0
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+3:3
+</td>
+</tr>
+<tr>
+<td>
+5.5
+</td>
+<td>
+<a class="person109399 user-popover no-link" role="button" tabindex="0" data-tooltipdata="109399;0;Bohlen, Uwe;true">
+Bohlen, Uwe
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+0 
+</td>
+<td class="text-center">
+0 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+0:0
+</td>
+</tr>
+<tr class="even">
+<td>
+5.6
+</td>
+<td>
+<a class="person1770446 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1770446;0;Gebhardt, Kai;true">
+Gebhardt, Kai
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+1:3
+</td>
+<td class="hidden-xs">
+2:1
+</td>
+<td class="hidden-xs">
+0:2
+</td>
+<td class="hidden-xs">
+1:3
+</td>
+<td class="text-center">
+4:9
+</td>
+</tr>
+<tr>
+<td>
+6.4
+</td>
+<td>
+<a class="person87884 user-popover no-link" role="button" tabindex="0" data-tooltipdata="87884;0;Westermann, Andreas;true">
+Westermann, Andreas
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="text-center">
+8 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+0:2
+</td>
+<td class="hidden-xs">
+0:2
+</td>
+<td class="hidden-xs">
+1:4
+</td>
+<td class="hidden-xs">
+1:2
+</td>
+<td class="text-center">
+2:10
+</td>
+</tr>
+<tr class="even">
+<td>
+6.7
+</td>
+<td>
+<a class="person77837 user-popover no-link" role="button" tabindex="0" data-tooltipdata="77837;0;Schlüsche, Hans-Gerd;true">
+Schlüsche, Hans-Gerd
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+3 
+</td>
+<td class="text-center">
+3 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+1:1
+</td>
+<td class="hidden-xs">
+0:3
+</td>
+<td class="text-center">
+1:4
+</td>
+</tr>
+<tr>
+<td>
+6.8
+</td>
+<td>
+<a class="person79904 user-popover no-link" role="button" tabindex="0" data-tooltipdata="79904;0;Schulze, Nils;true">
+Schulze, Nils
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+1:0
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+1:0
+</td>
+</tr>
+<tr class="even">
+<td>
+6.12
+</td>
+<td>
+<a class="person1516016 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1516016;0;Burow, Monika;true">
+Burow, Monika
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+0:1
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+0:1
+</td>
+</tr>
+<tr>
+<td>
+6.13
+</td>
+<td>
+<a class="person109775 user-popover no-link" role="button" tabindex="0" data-tooltipdata="109775;0;Krügel, Hans-Joachim;true">
+Krügel, Hans-Joachim
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="text-center">
+1 
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+</td>
+<td class="hidden-xs">
+0:1
+</td>
+<td class="hidden-xs">
+</td>
+<td class="text-center">
+0:1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-body">
+<h3 class="table-headline">DOPPELBILANZEN</h3>
+<table class="table-condensed table-mytt table-striped fw">
+<thead>
+<tr>
+<th>Doppel</th>
+<th class="center">Einsätze</th>
+<th class="center">Gesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a class="person1770446 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1770446;0;Gebhardt, Kai;true">
+Gebhardt, Kai
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person104796 user-popover no-link" role="button" tabindex="0" data-tooltipdata="104796;0;Koopmann, Gerd;true">
+Koopmann, Gerd
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+8
+</td>
+<td class="text-center">
+2&nbsp;:&nbsp;6
+</td>
+</tr>
+<tr class="even">
+<td>
+<a class="person75974 user-popover no-link" role="button" tabindex="0" data-tooltipdata="75974;0;Rötticher, Stefan;true">
+Rötticher, Stefan
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person87884 user-popover no-link" role="button" tabindex="0" data-tooltipdata="87884;0;Westermann, Andreas;true">
+Westermann, Andreas
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+7
+</td>
+<td class="text-center">
+2&nbsp;:&nbsp;7
+</td>
+</tr>
+<tr>
+<td>
+<a class="person119175 user-popover no-link" role="button" tabindex="0" data-tooltipdata="119175;0;Lau, Robert;true">
+Lau, Robert
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person1278139 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1278139;0;Nack, Oliver;true">
+Nack, Oliver
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+4
+</td>
+<td class="text-center">
+2&nbsp;:&nbsp;2
+</td>
+</tr>
+<tr class="even">
+<td>
+<a class="person77837 user-popover no-link" role="button" tabindex="0" data-tooltipdata="77837;0;Schlüsche, Hans-Gerd;true">
+Schlüsche, Hans-Gerd
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person87884 user-popover no-link" role="button" tabindex="0" data-tooltipdata="87884;0;Westermann, Andreas;true">
+Westermann, Andreas
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1
+</td>
+<td class="text-center">
+1&nbsp;:&nbsp;0
+</td>
+</tr>
+<tr>
+<td>
+<a class="person119175 user-popover no-link" role="button" tabindex="0" data-tooltipdata="119175;0;Lau, Robert;true">
+Lau, Robert
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person77837 user-popover no-link" role="button" tabindex="0" data-tooltipdata="77837;0;Schlüsche, Hans-Gerd;true">
+Schlüsche, Hans-Gerd
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1
+</td>
+<td class="text-center">
+1&nbsp;:&nbsp;0
+</td>
+</tr>
+<tr class="even">
+<td>
+<a class="person1516016 user-popover no-link" role="button" tabindex="0" data-tooltipdata="1516016;0;Burow, Monika;true">
+Burow, Monika
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person119175 user-popover no-link" role="button" tabindex="0" data-tooltipdata="119175;0;Lau, Robert;true">
+Lau, Robert
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1
+</td>
+<td class="text-center">
+0&nbsp;:&nbsp;1
+</td>
+</tr>
+<tr>
+<td>
+<a class="person77837 user-popover no-link" role="button" tabindex="0" data-tooltipdata="77837;0;Schlüsche, Hans-Gerd;true">
+Schlüsche, Hans-Gerd
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person79904 user-popover no-link" role="button" tabindex="0" data-tooltipdata="79904;0;Schulze, Nils;true">
+Schulze, Nils
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1
+</td>
+<td class="text-center">
+0&nbsp;:&nbsp;1
+</td>
+</tr>
+<tr class="even">
+<td>
+<a class="person109775 user-popover no-link" role="button" tabindex="0" data-tooltipdata="109775;0;Krügel, Hans-Joachim;true">
+Krügel, Hans-Joachim
+</a>
+<div class="bigtooltip"></div>
+&nbsp;/&nbsp;
+<a class="person119175 user-popover no-link" role="button" tabindex="0" data-tooltipdata="119175;0;Lau, Robert;true">
+Lau, Robert
+</a>
+<div class="bigtooltip"></div>
+</td>
+<td class="text-center">
+1
+</td>
+<td class="text-center">
+0&nbsp;:&nbsp;1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title"></h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH ### size: [[728,90],[300,250],[320,50],[320,75],[320,100]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-149594444772628791-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="container">
+<div class="row sponbox">
+<div class="hidden-xs col-md-1"></div>
+<div class="col-xs-6 col-md-2">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=1" class="spon01">Joola</a>
+</div>
+<div class="col-xs-6 col-md-2">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=185" class="spon03">Schöler Micke</a>
+</div>
+<div class="col-xs-6 col-md-2">
+<a href="http://www.mytischtennis.de/public/countAndRedirect?id=186" class="spon04">andro</a>
+</div>
+<div class="col-xs-6 col-md-2">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=7805" class="spon07">Victas</a>
+</div>
+<div class="col-xs-6 col-md-2">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=2364" class="spon06">Stiga</a>
+</div>
+<div class="hidden-xs col-md-1"></div>
+</div>
+</div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-md-2">
+<div class="headline"><h5>Service</h5></div>
+<ul>
+<li><a href="/public/newsletterSubscribe" title="Newsletter">Newsletter</a></li>
+<li><a href="/community/faq" title="FAQ">FAQ</a></li>
+<li><a href="/public/datenschutz" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/mediadaten" title="Mediadaten">Mediadaten</a></li>
+</ul>
+</div>
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/impressum" title="Impressum">Impressum</a></li>
+<li><a href="/public/agb" title="AGB">AGB</a></li>
+<li><a href="/public/kontakt" title="Kontakt">Kontakt</a></li>
+<li><a href="/public/mytischtennis-news/9997/wir-ueber-uns" title="Wir über uns">Wir über uns</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="onbottomnavi_fx text-center">
+<p>Copyright &copy; 2018 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<div class="modal fade" tabindex="-1" role="dialog" id="club-search-help-modal-normal">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title">Informationen zur Vereinssuche</h4>
+</div>
+<div class="modal-body">
+<h2 class="m-t-0">Ich finde einen Verein nicht</h2>
+<p>Vielleicht unterscheidet sich die Schreibweise die Du benutzt, von der Schreibweise wie der Verein in der Datenbank angelegt ist.</p>
+<p><strong>Beispiel</strong>: Du suchst den Verein 'Gr&uuml;n Wei&szlig; Musterstadt' und suchen deshalb nach 'Gr&uuml;n Wei&szlig;' und findest den Verein nicht. Vielleicht weil er in der Datenbank mit GW Musterstadt angelegt ist.</p>
+<p><i><strong>Suche deshalb am besten nach einem Teil aus dem Verein, der i.d.R. nicht abgek&uuml;rzt wird</strong></i> und w&auml;hle dann den Verein aus der Liste aus, in dem Beispiel also nur 'Musterstadt'.</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="club-search-help-modal-register">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title">Informationen zur Vereinssuche</h4>
+</div>
+<div class="modal-body">
+<h2 class="m-t-0">Verein suchen</h2>
+<p>Damit wir den Verein genau zuordnen k&ouml;nnen, m&uuml;ssen Sie Ihren Verein suchen und aus der sich &ouml;ffnenden Liste ausw&auml;hlen.</p>
+<h2>Ich finde meinen Verein nicht</h2>
+<p>Vielleicht unterscheidet sich die Schreibweise die Sie benutzen, von der Schreibweise wie der Verein in der Datenbank angelegt ist.</p>
+<p><strong>Beispiel</strong>: Sie sind im Verein 'Gr&uuml;n Wei&szlig; Musterstadt' und suchen deshalb nach 'Gr&uuml;n Wei&szlig;' und finden Ihren Verein nicht. Vielleicht weil er in der Datenbank mit GW Musterstadt angelegt ist.</p>
+<p><i><strong>Suchen Sie deshalb am besten nach einem Teil aus dem Verein, der i.d.R. nicht abgek&uuml;rzt wird</strong></i> und w&auml;hlen dann Ihren Verein aus der Liste aus, in dem Beispiel also Musterstadt.</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+<script>
+var anUrl = "/fusionreactor/UEM.cfm?db=1&wr=22&s=68F7E09D8E60DF82BB5D9226D2D889C6&t=52369174";document.write(unescape("%3Cscript src='/fusionreactor/UEMJS.cfm' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="/public/javascripts/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>

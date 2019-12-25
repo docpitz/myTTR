@@ -7,13 +7,17 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   style="@style/RowListStyle"
                   tools:ignore="UselessParent">
+
         <TextView
             android:id="@+id/name"
-            android:layout_width="0px"
-            style="@style/TextListStyle"
-            android:layout_weight=".30"
-            tools:text="Kalender 1">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_weight=".10"
+            tools:text="TTG St. Augustin - Senioren 60 - Senioren 60 Bezirksliga"
+            >
         </TextView>
+
 
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- Deutscher Tischtennis-Bund 2018/19
+- TTBL Play-Offs
+</title>
+<base href="//www.mytischtennis.de">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/_sharedJS/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/_sharedJS/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/_sharedJS/common.js?v=10-3-1" type="text/javascript"></script>
+<script src="/_sharedJS/jBox-0.4.9/Source/jBox.min.js?v=10-3-1" type="text/javascript"></script>
+<script src="/_sharedJS/bootstrap.js" type="text/javascript"></script>
+<script src="/_sharedJS/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/clicktt/includes/css/click-tt.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/jBox.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
+<link href="/_sharedJS/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=10-3-1" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/dttb.click-tt.de_PreCall.js"></script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/dttb.click-tt.de_AdCall.js"></script>
+<script src="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/_sharedJS/node_modules/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+</head>
+<body class="click-tt">
+<!-- Version: 10.3.1 -->
+<!-- init on 79 @ {ts '2019-03-15 16:01:10'} -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="/clicktt//DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/tabelle/gesamt">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home">
+<img src='/public/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<a href="/clicktt/home" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index" class="" title="myTischtennis">myTischtennis</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home">
+<img src="/public/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<a href="/clicktt/home"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/"><i class="icon-user"></i> Community</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="/clicktt/verbaende">Verbände</a>
+</li>
+<li class="">
+<a href="/clicktt/home">Mein click-TT</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan (DTTB) <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/DTTB/18-19/ligen" id="activeFedIsDTTB">Ligenplan (DTTB)</a>
+</li>
+<li class="">
+<a href="/clicktt/DTTB/P-18-19/pokalspiele">Ligenplan Pokal (DTTB)</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="/clicktt/livescoring/start">Livescoring [Beta]</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="/clicktt/DTTB/vereinssuche">Vereinssuche</a>
+</li>
+<li class="">
+<a href="/clicktt/DTTB/spielersuche">Spielersuche</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home" title="Home">Home</a>
+<li><a href="/clicktt/DTTB/18-19/ligen" title="Deutscher Tischtennis-Bund &ndash; Ligenplan">DTTB &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/DTTB/18-19/ligen/DTTB-18-19" title="Deutscher Tischtennis-Bund 2018/19(DTTB 18/19)">Deutscher Tischtennis-Bund 2018/19</a></li>
+<li class="active">TTBL Play-Offs</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Liga</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right">
+<a href="/community/ranking?showgroupid=350030" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
+</div>
+<h1>
+TTBL Play-Offs
+<span class="btn-group hidden-print" data-bind="with:$root.group">
+<button type="button" class="btn btn-pill btn-xs dropdown-toggle"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+data-bind="css: ((favoriteStatus() == 'added') ? 'btn-primary' : 'btn-default')">
+<i class="fa fa-star" data-bind="css: ((favoriteStatus() == 'added') ? 'fa-star' : 'fa-star-o')"></i>
+</button>
+<ul class="dropdown-menu disabled">
+<!-- ko if: favoriteStatus() == "added" -->
+<li><a href="#" data-bind="click: removeFavorite"><i class="fa fa-fw fa-trash"></i> Von meinen Favoriten-Ligen entfernen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noadded" -->
+<li><a href="" data-bind="click: addFavorite"><i class="fa fa-fw fa-plus-circle"></i> Zu meinen Favoriten-Ligen hinzufügen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noaddedAndOverloaded" -->
+<li><a href="#" data-toggle="tooltip" title="Sie haben die Favoriten-Ligen voll">Favoriten-Ligen voll</a></li>
+<!-- /ko -->
+<li><a href="clicktt/home#tab_ligen"><i class="fa fa-fw fa-list"></i> Favoriten-Ligen anzeigen</a></li>
+</ul>
+</span>
+<script src="/clicktt/includes/js/group.js?v=10-3-1" type="text/javascript"></script>
+<script type="text/javascript">
+if (!window.koModels) {
+window.koModels = {};
+}
+// hook for loading-process of mainViewModel
+window.koModels.group = function(mainData, mainModel) {
+return new window.ClickTTGroupViewModel("noadded"
+, "/clicktt/DTTB/group/removeFavorite?groupid=350030"
+, "/clicktt/DTTB/group/addFavorite?groupid=350030");
+};
+</script>
+</h1>
+<ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
+<li role="presentation" class="active">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/tabelle/gesamt" data-target="#groupTeamInfos" role="tab">
+Tabelle
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/spielplan/rr" role="tab">
+Gruppenspielplan
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/adressen" data-target="#groupTeamAddresses" role="tab">
+Kontakte
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/bilanzuebersichten/rr" data-target="#groupTeamStats" role="tab">
+Bilanzen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/mannschaftsmeldungen/rr"
+data-target="#groupTeamPools" role="tab">
+Meldungen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/gruppen-ranglisten/spieler/rr"
+data-target="#groupTeamPools" role="tab" id="tabGroupTeamPools">
+Ranglisten
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/zuschauer-matrix"
+data-target="#groupTeamPools" role="tab" id="tabAttendancesMatrix">
+Zuschauer-Matrix
+</a>
+</li>
+</ul>
+<div class="pull-right">
+<div class="btn-group hidden-print">
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/tabelle/gesamt" class="m-b-md btn btn-sm btn-info active">Gesamt <i class="fa fa-dot-circle-o"></i></a>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-6">
+<h5>Spielsystem: TTBL Spielsystem inkl. Doppel</h5>
+<h5><a role="button" data-toggle="collapse" href="#remark" aria-expanded="false" aria-controls="remark" class="">Bemerkungen <i class="fa fa-info-circle" aria-hidden="true"></i> </a></h5>
+</div>
+</div>
+<div class="alert alert-info collapse" role="alert" id="remark">
+<p>Im Halbfinale wird nach dem Best-of-Three-Prinzip gespielt. Für den Finaleinzug sind somit zwei Siege (ggfs. Entscheidungsspiel) nötig. Die Sieger qualifizieren sich für das <a href="http://ttbl.de/ttbl-finale/tickets">Liebherr TTBL-Finale</a>.</p>
+</div>
+<div class="visible-print">
+<p>Im Halbfinale wird nach dem Best-of-Three-Prinzip gespielt. Für den Finaleinzug sind somit zwei Siege (ggfs. Entscheidungsspiel) nötig. Die Sieger qualifizieren sich für das Liebherr TTBL-Finale.</p>
+</div>
+<h5>Mannschaftsinformationen</h5>
+<div><a href="https://dttb.click-tt.de/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=TeamMaterialsFOP&group=350030" target="_blank">Verwendete Materialien (pdf)</a></div>
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Spielplan (gesamt)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th colspan="2">Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Sa. </span>
+23.03.2019
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVWH/18-19/verein/04029/TTF-Liebherr-Ochsenhausen/info">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+TTF Liebherr Ochsenhausen
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+TTC Schwalbe Bergneustadt
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+TTF Liebherr Ochsenhausen
+</div>
+<div>
+TTC Schwalbe Bergneustadt
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVWH/18-19/verein/04029/TTF-Liebherr-Ochsenhausen/info">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip6074C888-B5AD-4D55-BF0BCEA8F3D696A4"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip6074C888-B5AD-4D55-BF0BCEA8F3D696A4',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+24.03.2019
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/141046/Borussia-Duesseldorf/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+Borussia Düsseldorf
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+1. FC Saarbrücken-TT
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+Borussia Düsseldorf
+</div>
+<div>
+1. FC Saarbrücken-TT
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/141046/Borussia-Duesseldorf/info">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip3EC80F41-337B-4CEC-B6E0E9868442DDD0"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip3EC80F41-337B-4CEC-B6E0E9868442DDD0',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">Fr. </span>
+05.04.2019
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/STTB/18-19/verein/229/1-FC-Saarbruecken-TT/info">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+1. FC Saarbrücken-TT
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+Borussia Düsseldorf
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+1. FC Saarbrücken-TT
+</div>
+<div>
+Borussia Düsseldorf
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/STTB/18-19/verein/229/1-FC-Saarbruecken-TT/info">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltipE48C19BD-1B05-478C-B190C18BDF962920"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipE48C19BD-1B05-478C-B190C18BDF962920',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+<span class="hidden-xs hidden-sm hidden-md">So. </span>
+07.04.2019
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/WTTV/18-19/verein/152010/TTC-Schwalbe-Bergneustadt/info">3
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+TTC Schwalbe Bergneustadt
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+TTF Liebherr Ochsenhausen
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+TTC Schwalbe Bergneustadt
+</div>
+<div>
+TTF Liebherr Ochsenhausen
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/WTTV/18-19/verein/152010/TTC-Schwalbe-Bergneustadt/info">3</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+<span class="forceInactiveSubelements">
+<a href="javascript:void(0);" id="settooltip48562A80-C232-4B63-8E59C0F3BB399958"><i class="fa fa-pencil"></i></a>
+<script type="text/javascript">
+var toolTipContent = "Du kannst diese Begegnung momentan nicht scoren, weil das Spiel noch nicht begonnen hat. Du kannst die Begegnung ab 30 Minuten vor Spielbeginn scoren";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip48562A80-C232-4B63-8E59C0F3BB399958',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+<a href="https://dttb.click-tt.de/cgi-bin/WebObjects/nuLigaDokumentTTDE.woa/wa/nuDokument?dokument=ScheduleReportFOP&group=350030" class="m-b-md btn btn-sm btn-info" target="_blank">
+PDF-Version <i class="fa fa-file-pdf-o"></i>
+</a>
+<a href="/clicktt/DTTB/18-19/ligen/TTBL-Play-Offs/gruppe/350030/spielplan/rr" class="btn btn-primary pull-right hidden-print">Gruppenspielplan <i class="icon-circle-arrow-right"></i></a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Shop-Partner
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8607" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=8607','Shop-Partner
+']);" title="Shop-Partner
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/spring-sale-6.gif" alt="Shop-Partner
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- Beginning Async AdSlot 7 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[7]]) -->
+<div id='div-gpt-ad-518943210402310848-7'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-7'); });
+</script>
+</div>
+<!-- End AdSlot 7 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/misc/12580/Datenschutz-DTTB" id="Datenschutz_link_DTTB" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12388/impressum-DTTB" id="Impressum_link_DTTB" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12450/kontakt-DTTB" id="Kontakt_link_DTTB" title="Kontakt">Kontakt</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2019 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/clicktt/includes/js/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/clicktt/includes/js/global.js?v=10-3-1" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "DTTB"
+},
+urls: {
+playerPopover: '/clicktt/DTTB/player/popover',
+groupPopover: '/clicktt/DTTB/group/popover',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+<script src="/public/javascripts/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
+</body>
+</html>

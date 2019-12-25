@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -45,7 +44,7 @@ public class NextAppointmentsActivity extends BaseActivity {
 
         setContentView(R.layout.nextappointments);
 
-        final ListView listview = (ListView) findViewById(R.id.listview);
+        final ListView listview = findViewById(R.id.listview);
         final AppointmentAdapter adapter = new AppointmentAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.teamAppointments);
@@ -122,7 +121,7 @@ public class NextAppointmentsActivity extends BaseActivity {
                 }
             });
 //            if (!teamAppointment.isFoundTeam()) {
-                holder.textC2.setText(teamAppointment.getTeam2());
+            holder.textC2.setText(teamAppointment.getTeam2());
 //            } else {
 //                holder.textC2.setText("");
 //            }
@@ -135,7 +134,6 @@ public class NextAppointmentsActivity extends BaseActivity {
     void selectTeam(View view, String teamid) {
         view.setSelected(true);
 
-        new ClubListAsyncTask(NextAppointmentsActivity.this,
-                NextAppointmentPlayersActivity.class, teamid).execute();
+        new ClubListAsyncTask(NextAppointmentsActivity.this, NextAppointmentPlayersActivity.class, teamid).execute();
     }
 }

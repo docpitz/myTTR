@@ -8,9 +8,9 @@
 
 
     <ListView
-        android:id="@+id/calendar_rows"
+        android:id="@+id/alertdlg_rows"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/calendar_row2" />
+        tools:listitem="@layout/string_row" />
 
 </LinearLayout>

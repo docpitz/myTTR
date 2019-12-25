@@ -487,6 +487,7 @@
         </activity>
         <activity android:name=".activities.TeamSpielPlanActivity" />
         <activity android:name=".activities.CalendarExportActivity" />
+        <activity android:name=".activities.SelectOtherTeamActivity" />
 
         <service
             android:name=".logic.SyncManager"

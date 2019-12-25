@@ -6,6 +6,7 @@ import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.SpielerAndBilanz;
+import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.model.Head2HeadResult;
 
 import junit.framework.Assert;
@@ -13,14 +14,11 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.jmelzer.myttr.logic.TestUtil.readFile;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,6 +42,39 @@ public class MyTischtennisParserTest {
     @Test
     public void parseLastnameFromBadName() throws Exception {
         assertEquals("Michel", parser.parseLastNameFromBadName("Michel, Dennis'"));
+    }
+
+    @Test
+    public void parseOtherTeam() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/other-team.htm");
+        Mannschaft m = new Mannschaft();
+
+        Mannschaft mannschaft = parser.parseOtherTeam(m, page);
+        assertNotNull(mannschaft);
+        assertEquals(18, mannschaft.getSpiele().size());
+        assertEquals(9, mannschaft.getFutureAppointments().size());
+        for (Mannschaftspiel mannschaftspiel : mannschaft.getSpiele()) {
+            System.out.println("mannschaftspiel.getDate() = " + mannschaftspiel.getDate());
+        }
+
+        for (TeamAppointment appointment : mannschaft.getFutureAppointments()) {
+            assertNotNull(appointment.getId1());
+            assertNotNull(appointment.getId2());
+        }
+    }
+
+    @Test
+    public void parseTTRIndexPage() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/ttrechner-index.htm");
+        List<Mannschaft> mannschaften = parser.parseTTRIndexPage(page);
+        assertNotNull(mannschaften);
+        assertEquals(22, mannschaften.size());
+        for (Mannschaft mannschaft : mannschaften) {
+            assertNotNull(mannschaft.toString(), mannschaft.getVereinId());
+            assertNotNull(mannschaft.toString(), mannschaft.getName());
+            System.out.println("id, name = " + mannschaft.getVereinId() + ", " + mannschaft.getName());
+        }
+
     }
 
     @Test

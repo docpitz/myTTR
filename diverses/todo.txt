@@ -40,7 +40,7 @@ Features
 - Liga-Rangliste für beliebige Klassen
 TTR-Recherns über den Kalender der nächst höheren Mannschaften des Vereins
 - Ausklappen Ligarangliste, wenn nur in einer gespielt, anonsten Überschrift
-
+- Doppelte Einträge im TTR Rechner zulassen (kann bei Turnieren passieren)
 
 
 - Kalender: offene Punkte

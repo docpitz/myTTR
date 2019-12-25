@@ -21,5 +21,12 @@
         android:onClick="nextAppointments"
         android:showAsAction="always"
         android:icon="@drawable/ic_action_appointment"
-        android:title="@string/simulation"/>
+        android:title="@string/next_appointments_search"/>
+    <item
+        android:id="@+id/action_select_team"
+        android:text="@string/action_select_team"
+        android:onClick="selectTeam"
+        android:icon="@drawable/ic_action_select_team"
+        android:showAsAction="always"
+        android:title="@string/action_select_team"/>
 </menu>

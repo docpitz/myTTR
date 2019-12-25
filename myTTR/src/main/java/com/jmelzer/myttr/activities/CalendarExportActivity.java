@@ -260,7 +260,7 @@ public class CalendarExportActivity extends BaseActivity {
         AlertDialog dialog = builder.create();
         LayoutInflater inflater = LayoutInflater.from(this);
         View myview = inflater.inflate(R.layout.scrollable_alertdialog, null);
-        ListView listview = (ListView) myview.findViewById(R.id.calendar_rows);
+        ListView listview = (ListView) myview.findViewById(R.id.alertdlg_rows);
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 names);
