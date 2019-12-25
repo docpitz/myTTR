@@ -29,7 +29,7 @@ import java.util.List;
 public class LigaSpielerResultsActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.getSelectedLigaSpieler() != null;
     }
 

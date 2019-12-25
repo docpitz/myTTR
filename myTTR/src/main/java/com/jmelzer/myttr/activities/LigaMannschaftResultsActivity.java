@@ -27,7 +27,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
     MytClickTTWrapper clickTTWrapper = new MytClickTTWrapper();
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.getSelectedLiga() != null;
     }
 

@@ -42,7 +42,7 @@ public class SearchResultActivity extends BaseActivity {
     int actualPos = -1;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.searchResult != null ;
     }
 

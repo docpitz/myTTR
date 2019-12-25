@@ -1,8 +1,6 @@
 package com.jmelzer.myttr.activities;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.widget.Toast;
 
 import com.jmelzer.myttr.Mannschaft;
@@ -11,7 +9,6 @@ import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 import com.jmelzer.myttr.util.GoogleMapStarter;
-import com.jmelzer.myttr.util.UrlUtil;
 
 /**
  * Reading Details
@@ -38,7 +35,7 @@ public class ReadInfoAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void startNextActivity() {
+    protected void startActivityAfterParsing() {
         String lokal = mannschaft.getSpielLokal(nr);
         if (lokal != null) {
             GoogleMapStarter.showMap(parent, mannschaft.getSpielLokal(nr));

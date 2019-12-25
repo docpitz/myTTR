@@ -34,7 +34,7 @@ import java.util.List;
 public class SelectTeamPlayerActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.myTeamPlayers != null;
     }
 

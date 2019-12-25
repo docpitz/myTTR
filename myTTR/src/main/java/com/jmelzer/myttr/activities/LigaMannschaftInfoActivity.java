@@ -17,7 +17,6 @@ import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.util.GoogleMapStarter;
-import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ import java.util.List;
 public class LigaMannschaftInfoActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedMannschaft != null;
     }
 

@@ -2,7 +2,6 @@ package com.jmelzer.myttr.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -11,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.EventDetail;
 import com.jmelzer.myttr.Game;
@@ -29,7 +30,7 @@ public class EventDetailActivity extends BaseActivity {
     DetailHelper detailHelper;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.currentDetail != null;
     }
 

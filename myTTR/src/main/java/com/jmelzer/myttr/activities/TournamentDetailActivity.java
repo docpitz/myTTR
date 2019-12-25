@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.logic.ClickTTParser;
 import com.jmelzer.myttr.logic.LoginExpiredException;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.util.GoogleMapStarter;
 
@@ -91,7 +89,7 @@ public class TournamentDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.myTournaments != null;
     }
 

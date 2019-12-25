@@ -1,16 +1,11 @@
 package com.jmelzer.myttr.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.ListView;
 
-import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
 import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
-
-import java.util.ArrayList;
 
 /**
  * Created by J. Melzer on 03.10.2018.
@@ -21,7 +16,7 @@ public class TeamSpielPlanActivity extends BaseActivity {
     SpielAdapter adapter;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedMannschaft != null;
     }
 

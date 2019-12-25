@@ -28,7 +28,7 @@ public class SearchResultMultiSelectActivity extends BaseActivity {
     Class goBackToClass;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.searchResult != null;
     }
 

@@ -43,7 +43,7 @@ public class ClubListActivity extends BaseActivity {
     DetailHelper detailHelper;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.clubPlayers != null;
     }
 

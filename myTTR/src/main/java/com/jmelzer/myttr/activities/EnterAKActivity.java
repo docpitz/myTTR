@@ -19,7 +19,7 @@ import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 
 public class EnterAKActivity extends BaseActivity {
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return !MyApplication.userIsEmpty();
     }
 

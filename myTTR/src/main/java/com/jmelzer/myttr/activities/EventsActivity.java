@@ -24,7 +24,7 @@ public class EventsActivity extends BaseActivity {
     FavoriteManager favoriteManager;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
 
 

@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.Participant;
@@ -28,7 +27,7 @@ import java.util.List;
 public class ParticipantActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedCompetition != null;
     }
 

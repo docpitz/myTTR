@@ -175,6 +175,7 @@
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="club">Verein</string>
+    <string name="otherteam">Team</string>
     <string name="points">Punkte</string>
     <string name="header_konkurrenz">Konkurrenz</string>
     <string name="header_qttr">QTTR</string>

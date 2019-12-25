@@ -29,7 +29,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
 
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedMannschaft != null;
     }
 

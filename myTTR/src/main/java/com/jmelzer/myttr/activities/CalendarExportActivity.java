@@ -69,7 +69,7 @@ public class CalendarExportActivity extends BaseActivity {
     private List<Mannschaftspiel> gamesInFuture;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 

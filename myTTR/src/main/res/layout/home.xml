@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:alignmentMode="alignBounds"
                 android:columnCount="3"
-                android:rowCount="4">
+                android:rowCount="3">
 
 
                 <Button
