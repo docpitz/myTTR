@@ -12,7 +12,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -26,6 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
@@ -43,12 +44,14 @@ public class SearchActivity extends BaseActivity {
     public static final String BACK_TO = "BACK_TO";
     public static final String TARGET = "TARGET";
     public static final String INTENT_SP = "INTENT_SP";
+    public static final String INTENT_MULTISELECT = "INTENT_MS";
     public static final String INTENT_LIGA_PLAYER = "lp";
     Class goBackToClass = TTRCalculatorActivity.class;
     private Class targetClz = EventsActivity.class;
     ClubParser clubParser = new ClubParser();
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
     EditText clubEdit;
+    boolean multiSelect = false;
     SearchPlayer searchPlayer = new SearchPlayer();
     FavoriteManager favoriteManager;
 
@@ -64,6 +67,7 @@ public class SearchActivity extends BaseActivity {
             return;
         }
 
+        multiSelect = false;
         favoriteManager = new FavoriteManager(this, getApplicationContext());
         setContentView(R.layout.search);
         Intent i = getIntent();
@@ -94,6 +98,9 @@ public class SearchActivity extends BaseActivity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if (i != null && i.getExtras() != null ) {
+            multiSelect = i.getExtras().getBoolean(INTENT_MULTISELECT, false);
+        }
         if (i != null && i.getExtras() != null && i.getExtras().getBoolean(INTENT_LIGA_PLAYER, false)) {
             EditText firstNameText = findViewById(R.id.detail_firstname);
             EditText lastNameText = findViewById(R.id.detail_lastname);
@@ -231,7 +238,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void findPlayer() {
-        AsyncTask<String, Void, Integer> task = new SearchAsyncTask(this, goBackToClass, searchPlayer, targetClz);
+        AsyncTask<String, Void, Integer> task = new SearchAsyncTask(this, goBackToClass, searchPlayer, targetClz, multiSelect);
         task.execute();
     }
 

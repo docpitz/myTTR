@@ -3,8 +3,9 @@ package com.jmelzer.myttr.activities;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
@@ -39,7 +40,7 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        if (MyApplication.getLoginUser().getUsername().equals("chokdee1")) {
+        if (MyApplication.getLoginUser().getUsername().equals("chokdee")) {
             setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
         }
         ActionBar actionBar = getActionBar();

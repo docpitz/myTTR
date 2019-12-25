@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +40,7 @@ public class TTRCalculatorActivity extends BaseActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvaible() {
-        return MyApplication.getTtrCalcPlayer() != null;
+        return true;
     }
 
     @Override
@@ -130,6 +129,7 @@ public class TTRCalculatorActivity extends BaseActivity {
         intent.putExtra(SearchActivity.INTENT_LIGA_PLAYER, false);
         intent.putExtra(SearchActivity.BACK_TO, TTRCalculatorActivity.class);
         intent.putExtra(SearchActivity.TARGET, TTRCalculatorActivity.class);
+        intent.putExtra(SearchActivity.INTENT_MULTISELECT, Boolean.TRUE);
         startActivity(intent);
     }
 

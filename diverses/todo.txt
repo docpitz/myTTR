@@ -62,9 +62,8 @@ Ligatabelle > verein auswählen > bilanzubersicht/mannschaftsaufstellung > perso
 
 Auswahl nächste Version:
 ----------------------
-- Mehrfachauswahl TTR Rechner (SearchResultMultiSelectActivity auch bei normaler suche)
-- Crashalytics anschauen
 - Punkte direkt anzeigen aus mytt bei den Ligen
+- Neue, schönere Icons
 
 erledigt
 ---------
@@ -273,3 +272,4 @@ Einige Fehler behoben
 -------
 Kalenderauswahl:  alle zu sehen
 TT Races 2020
+Mehrfachauswahl TTR Rechner
