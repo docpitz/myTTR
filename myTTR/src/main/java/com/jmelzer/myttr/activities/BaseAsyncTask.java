@@ -12,6 +12,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoClickTTException;
@@ -31,6 +32,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     private ProgressDialog progressDialog;
     Class targetClz;
     boolean notSoNice = false;
+    MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     public BaseAsyncTask(Activity parent, Class targetClz) {
         if (parent == null) throw new IllegalArgumentException("parent must not be null");

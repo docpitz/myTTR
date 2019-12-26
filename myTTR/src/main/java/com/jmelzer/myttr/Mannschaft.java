@@ -18,6 +18,7 @@ public class Mannschaft {
 
 
     private String vereinId;
+    private String teamId;
 
     public String getSpielLokal(int nrSpielLokal) {
         return spielLokale.get(nrSpielLokal);
@@ -273,5 +274,13 @@ public class Mannschaft {
 
     public List<TeamAppointment> getFutureAppointments() {
         return futureAppointments;
+    }
+
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getTeamId() {
+        return teamId;
     }
 }

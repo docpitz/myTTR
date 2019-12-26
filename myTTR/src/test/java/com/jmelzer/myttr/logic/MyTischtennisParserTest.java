@@ -61,6 +61,9 @@ public class MyTischtennisParserTest {
             assertNotNull(appointment.getId1());
             assertNotNull(appointment.getId2());
         }
+
+        assertNotNull(mannschaft.getLiga());
+        assertNotNull(mannschaft.getLiga().getGroupId());
     }
 
     @Test

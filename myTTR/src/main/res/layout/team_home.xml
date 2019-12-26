@@ -16,18 +16,22 @@
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:src="@drawable/home_self"/>
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/home_self" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:columnCount="2"
                 android:rowCount="3">
@@ -86,7 +90,19 @@
                     android:drawableTop="@drawable/ic_launcher_other_team"
                     android:onClick="otherTeam"
                     android:text="@string/otherteam" />
+
+
             </GridLayout>
+
+            <TextView
+                android:id="@+id/otherteamtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/text_teams_selected"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </ScrollView>
 </LinearLayout>

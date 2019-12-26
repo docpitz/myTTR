@@ -175,7 +175,7 @@
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="club">Verein</string>
-    <string name="otherteam">Team</string>
+    <string name="otherteam">Team ausw.</string>
     <string name="points">Punkte</string>
     <string name="header_konkurrenz">Konkurrenz</string>
     <string name="header_qttr">QTTR</string>
@@ -186,6 +186,7 @@
     <string name="label_team">Team</string>
     <string name="dialog_default_title">myTTR Fehler</string>
     <string name="no_data_found">Keine Daten gefunden</string>
+    <string name="text_teams_selected">Du hast folgendes Team ausgewählt:</string>
     <string-array name="sex_array">
         <item>Herren</item>
         <item>Jugend</item>

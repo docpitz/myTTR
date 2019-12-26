@@ -10,6 +10,7 @@ package com.jmelzer.myttr.activities;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.MyApplication;
@@ -31,6 +32,15 @@ public class TeamHomeActivity extends BaseActivity {
         }
 
         setContentView(R.layout.team_home);
+
+        TextView otherTeamView = findViewById(R.id.otherteamtext);
+        if (MyApplication.selectedOtherTeam != null) {
+            otherTeamView.setVisibility(View.VISIBLE);
+            String txt = getResources().getText(R.string.text_teams_selected) + "\n" + MyApplication.selectedOtherTeam.getName();
+            otherTeamView.setText(txt);
+        } else {
+            otherTeamView.setVisibility(View.INVISIBLE);
+        }
     }
 
 

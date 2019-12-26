@@ -275,8 +275,10 @@ Einige Fehler behoben
 Kalenderauswahl:  alle zu sehen
 TT Races 2020
 Mehrfachauswahl TTR Rechner
-Schönere Icons
+Schönere Icons (noch nicht alle generiert!!)
 Anderes Team auswählen
-- Offen Teamhome
-    -> Icons
-    -> Anderes Team auswählen
+   offen:
+       - Team löschen
+       - Funktionalitäten für dieses bereitstellen wie
+            - Rangliste
+            - Tabelle
