@@ -10,6 +10,7 @@ package com.jmelzer.myttr.activities;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jmelzer.myttr.Liga;
@@ -33,13 +34,20 @@ public class TeamHomeActivity extends BaseActivity {
 
         setContentView(R.layout.team_home);
 
+        otherTeamInfo();
+    }
+
+    private void otherTeamInfo() {
         TextView otherTeamView = findViewById(R.id.otherteamtext);
+        ImageView imageCancel = findViewById(R.id.imageCancel);
         if (MyApplication.selectedOtherTeam != null) {
             otherTeamView.setVisibility(View.VISIBLE);
+            imageCancel.setVisibility(View.VISIBLE);
             String txt = getResources().getText(R.string.text_teams_selected) + "\n" + MyApplication.selectedOtherTeam.getName();
             otherTeamView.setText(txt);
         } else {
             otherTeamView.setVisibility(View.INVISIBLE);
+            imageCancel.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -73,5 +81,10 @@ public class TeamHomeActivity extends BaseActivity {
     public void otherTeam(View view) {
         AsyncTask<String, Void, Integer> task = new SelectOtherTeamAsyncTask(this, TeamHomeActivity.class);
         task.execute();
+    }
+
+    public void cancelOtherTeam(View view) {
+        MyApplication.selectedOtherTeam = null;
+        otherTeamInfo();
     }
 }
