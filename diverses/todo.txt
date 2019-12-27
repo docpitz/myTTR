@@ -280,5 +280,5 @@ Anderes Team auswählen
    offen:
        - Team löschen
        - Funktionalitäten für dieses bereitstellen wie
-            - Rangliste
-            - Tabelle
+            - Aufstellung
+            - Spielplan
