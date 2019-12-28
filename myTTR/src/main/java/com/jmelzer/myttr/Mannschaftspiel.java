@@ -3,6 +3,7 @@ package com.jmelzer.myttr;
 import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,7 @@ public class Mannschaftspiel {
     List<Spielbericht> spiele = new ArrayList<>();
     /** for ui */
     private boolean checked;
+    private Date dateAsDate;
 
     public Mannschaftspiel() {
         played = false;
@@ -160,5 +162,13 @@ public class Mannschaftspiel {
 
     public boolean getChecked() {
         return checked;
+    }
+
+    public void setDateAsDate(Date dateAsDate) {
+        this.dateAsDate = dateAsDate;
+    }
+
+    public Date getDateAsDate() {
+        return dateAsDate;
     }
 }

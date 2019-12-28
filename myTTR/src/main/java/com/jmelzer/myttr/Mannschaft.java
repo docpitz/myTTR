@@ -5,10 +5,13 @@ import com.jmelzer.myttr.util.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
+
+import static com.jmelzer.myttr.model.Saison.getVREndDateForSeason;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -152,7 +155,7 @@ public class Mannschaft {
     @Override
     public String toString() {
         return "Mannschaft{" +
-                "type='" + ligaPosTyp+ '\'' +
+                "type='" + ligaPosTyp + '\'' +
                 ", name=" + name +
                 ", position=" + position +
                 ", gamesCount=" + gamesCount +
@@ -195,7 +198,7 @@ public class Mannschaft {
 
         List<String> list = new ArrayList<>();
         for (int i = 0; i < spielLokale.size(); i++) {
-            list.add(spielLokale.get(i+1));
+            list.add(spielLokale.get(i + 1));
         }
         return Collections.unmodifiableList(list);
     }
@@ -203,9 +206,11 @@ public class Mannschaft {
     public List<SpielerAndBilanz> getSpielerBilanzen() {
         return Collections.unmodifiableList(spielerBilanzen);
     }
+
     public void addSpielLokale(Map<Integer, String> integerStringMap) {
         spielLokale.putAll(integerStringMap);
     }
+
     public void addSpielLokal(int nr, String spielLokal) {
         spielLokale.put(nr, spielLokal);
     }
@@ -229,6 +234,9 @@ public class Mannschaft {
     public List<Mannschaftspiel> getSpiele() {
         return spiele;
     }
+    public void addSpiel(Mannschaftspiel spiel) {
+        spiele.add(spiel);
+    };
 
     public void setSpiele(List<Mannschaftspiel> spiele) {
         this.spiele = spiele;
@@ -248,8 +256,12 @@ public class Mannschaft {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Mannschaft that = (Mannschaft) o;
         return Objects.equals(name, that.name);
     }
@@ -282,5 +294,21 @@ public class Mannschaft {
 
     public String getTeamId() {
         return teamId;
+    }
+
+    public List<Mannschaftspiel> getSpiele(Liga.Spielplan spielplan) {
+        List<Mannschaftspiel> filtered = new ArrayList<>();
+        Date end = getVREndDateForSeason(Constants.ACTUAL_SAISON);
+
+        for (Mannschaftspiel spiel : spiele) {
+            if (spielplan == Liga.Spielplan.VR && spiel.getDateAsDate().before(end)) {
+                filtered.add(spiel);
+            }
+            if (spielplan == Liga.Spielplan.RR && spiel.getDateAsDate().after(end)) {
+                filtered.add(spiel);
+            }
+        }
+
+        return filtered;
     }
 }

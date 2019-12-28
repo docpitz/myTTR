@@ -38,7 +38,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
         if (parent == null) throw new IllegalArgumentException("parent must not be null");
         this.parent = parent;
         this.targetClz = targetClz;
-        Log.d(Constants.LOG_TAG, "myttr is going to start activity " + targetClz);
+        Log.d(Constants.LOG_TAG, "myttr is going to start activity " + targetClz + " from async task " + getClass());
 
     }
 

@@ -543,8 +543,8 @@ public class MyTischtennisParser extends AbstractBaseParser {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm");
         for (Mannschaftspiel spiel : spiele) {
             try {
-                //for next aüüpontments
                 Date d = sdf.parse(spiel.getDate());
+                spiel.setDateAsDate(d);
                 if (d.after(new Date())) {
                     TeamAppointment app = new TeamAppointment();
                     app.setDate(spiel.getDate());
@@ -879,9 +879,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
             String[] ahref = readHrefAndATag(row[1]);
 //            printRows(row);
             List<String[]> posResults = new ArrayList<>();
-            for (int i = 3; i < 8; i++) {
+            for (int i = 4; i <= 9; i++) {
                 if (!row[i].isEmpty()) {
-                    posResults.add(new String[]{"" + (i - 2), row[i]});
+                    posResults.add(new String[]{"" + (i - 3), row[i]});
                 }
 
             }
@@ -1158,7 +1158,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
             String[] row = tableRowAsArray(resultrow.result, 8, false);
-            printRows(row);
+//            printRows(row);
             String date = row[0];
             String type;
             if (row[1].contains("span")) {

@@ -59,8 +59,6 @@ public class MyApplication extends Application {
     public static List<Mannschaft> otherTeams;
     public static boolean actualTTR = true;
 
-    // The following line should be changed to include the correct property id.
-    private static final String PROPERTY_ID = "UA-59824393-1";
     public static Competition selectedCompetition;
     public static Participant selectedParticipant;
 
