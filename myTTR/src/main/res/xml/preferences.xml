@@ -28,7 +28,6 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="SEND_ERROR"
-        android:summary="@string/pref_error_summ"
         android:title="@string/pref_error"/>
    <!-- <CheckBoxPreference
         android:defaultValue="true"
