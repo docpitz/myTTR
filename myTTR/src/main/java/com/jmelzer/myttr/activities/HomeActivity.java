@@ -206,6 +206,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /*
         switch (item.getItemId()) {
             case R.id.menu_settings: {
                 Intent intent = new Intent(this, MySettingsActivity.class);
@@ -260,6 +261,8 @@ public class HomeActivity extends BaseActivity {
         if (item.getTitle().equals(BEARBEITEN)) {
             favoriteEdit();
         }
+
+         */
         return false;
     }
 
