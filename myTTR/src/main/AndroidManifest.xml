@@ -24,9 +24,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
-
--->
         <service
             android:name=".logic.SyncManager"
             android:icon="@drawable/ic_action_actionbar"
