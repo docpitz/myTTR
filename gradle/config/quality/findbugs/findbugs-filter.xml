@@ -24,9 +24,6 @@
     <Package name="android.support"/>
   </Match>
   <Match>
-    <Package name="com.crashlytics.android"/>
-  </Match>
-  <Match>
     <Package name="com.android"/>
   </Match>
   <Match>

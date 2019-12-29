@@ -8,7 +8,6 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.db.LoginDataBaseAdapter;
@@ -71,8 +70,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             } catch (Exception e2) {
                 errorMessage = "Das erneute Anmelden war nicht erfolgreich";
                 Log.e(Constants.LOG_TAG, "", e2);
-                Crashlytics.setString("last_url", Client.lastUrls());
-                Crashlytics.logException(e2);
+
             }
         } catch (NoClickTTException e) {
             Log.d(Constants.LOG_TAG, "second try after no data msg");
@@ -95,8 +93,7 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             errorMessage = "Mytischtennis.de meldet: " + ed.getMessage();
         }
         catch (NiceGuysException e) {
-            Crashlytics.log(e.getMessage() + " ausgelogged: " + MyApplication.getLoginUser().getRealName());
-            Crashlytics.logException(e);
+
             notSoNice = true;
 
         }catch (Exception e) {
@@ -110,10 +107,6 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     private void logError(Exception e) {
         Log.e(Constants.LOG_TAG, "Error reading " + Client.lastUrl(), e);
         Log.e(Constants.LOG_TAG, getLastH1());
-        Crashlytics.setString("last_url", Client.lastUrls());
-        Crashlytics.logException(e);
-        Crashlytics.log(getLastH1());
-
     }
 
     private String getLastH1() {

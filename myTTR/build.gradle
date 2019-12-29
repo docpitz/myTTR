@@ -1,14 +1,6 @@
 buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.27.1'
-    }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+apply plugin: 'com.android.library'
 apply plugin: 'idea'
 
 idea {
@@ -17,22 +9,18 @@ idea {
         downloadSources = true
     }
 }
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
 
 //apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
     useLibrary 'org.apache.http.legacy'
 
     testOptions {
         unitTests.returnDefaultValues = true
     }
     defaultConfig {
-        applicationId "com.jmelzer.myttr"
+        //applicationId "com.jmelzer.myttr"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 178
@@ -42,7 +30,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            useProguard false
 //            proguardFile 'proguard-project.txt'
         }
         debug {
@@ -98,7 +85,4 @@ dependencies {
 //    testImplementation 'org.hamcrest:hamcrest-library:1.3'
 //    testImplementation 'org.hamcrest:hamcrest-integration:1.3'
 //    testImplementation('org.robolectric:robolectric:3.8')
-    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
-        transitive = true;
-    }
 }

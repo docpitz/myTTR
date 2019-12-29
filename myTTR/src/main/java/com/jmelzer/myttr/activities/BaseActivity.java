@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 
@@ -18,7 +17,6 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(Constants.LOG_TAG, "activity " + this + " in oncreate");
-        Crashlytics.setString("activity_name",  getClass().getSimpleName() );
 
         super.onCreate(savedInstanceState);
 
