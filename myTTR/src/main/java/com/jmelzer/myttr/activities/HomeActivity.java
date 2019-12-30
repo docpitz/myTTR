@@ -206,6 +206,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /*
         switch (item.getItemId()) {
             case R.id.menu_settings: {
                 Intent intent = new Intent(this, MySettingsActivity.class);
@@ -255,6 +256,8 @@ public class HomeActivity extends BaseActivity {
 //                break;
 //            }
         }
+
+         */
         if (item.getItemId() > 99)
             favoriteManager.startFavorite(item.getItemId() - 100);
         if (item.getTitle().equals(BEARBEITEN)) {
