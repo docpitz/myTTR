@@ -55,6 +55,8 @@ public class MyApplication extends Application {
     public static Player selectedPlayer;
     public static Player simPlayer;
     public static String manualClub;
+    public static Mannschaft selectedOtherTeam;
+    public static List<Mannschaft> otherTeams;
     public static boolean actualTTR = true;
 
     // The following line should be changed to include the correct property id.

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -20,6 +19,8 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
@@ -181,7 +182,7 @@ public class SearchResultActivity extends BaseActivity {
                 MyApplication.actualTTR = b;
                 searchPlayer.setActual(b);
                 AsyncTask<String, Void, Integer> task =
-                        new SearchAsyncTask(SearchResultActivity.this, goBackToClass, searchPlayer, EventsActivity.class);
+                        new SearchAsyncTask(SearchResultActivity.this, goBackToClass, searchPlayer, EventsActivity.class, false);
                 task.execute();
             }
         });

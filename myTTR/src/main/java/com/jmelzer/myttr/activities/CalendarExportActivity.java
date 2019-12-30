@@ -7,16 +7,12 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +24,10 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -241,24 +241,40 @@ public class CalendarExportActivity extends BaseActivity {
         }
         cur.close();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Export. Bitte Kalender auswählen").setItems(names.toArray(new String[0]), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                export(ids.get(which));
-                Intent target = new Intent(CalendarExportActivity.this, LigaMannschaftResultsActivity.class);
-                startActivity(target);
-            }
+        if (names.isEmpty()) {
+            Toast.makeText(CalendarExportActivity.this, "Konnte keinen Kalender finden", Toast.LENGTH_LONG).show();
+        } else {
+            showCalendarSelectDialog(ids, names);
+        }
 
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
+
+    }
+
+    private void showCalendarSelectDialog(List<Long> ids, List<String> names) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Export. Bitte Kalender auswählen");
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
+            // User cancelled the dialog
         });
         AlertDialog dialog = builder.create();
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View myview = inflater.inflate(R.layout.scrollable_alertdialog, null);
+        ListView listview = (ListView) myview.findViewById(R.id.alertdlg_rows);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                names);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener((parent, view, position, id) -> {
+            export(ids.get(position));
+            Intent target = new Intent(CalendarExportActivity.this, LigaMannschaftResultsActivity.class);
+            startActivity(target);
+
+        });
+
+        dialog.setView(myview);
         dialog.show();
-
-
     }
 
     @SuppressLint("MissingPermission")

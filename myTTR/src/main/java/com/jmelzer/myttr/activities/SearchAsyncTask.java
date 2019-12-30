@@ -21,11 +21,13 @@ class SearchAsyncTask extends BaseAsyncTask {
     Class goBackToClass;
     SearchPlayer searchPlayer;
     Player foundSinglePlayer;
+    boolean multiSelect;
 
-    public SearchAsyncTask(Activity parent, Class goBackToClass, SearchPlayer searchPlayer, Class targetClz) {
+    public SearchAsyncTask(Activity parent, Class goBackToClass, SearchPlayer searchPlayer, Class targetClz, boolean multiSelect) {
         super(parent, targetClz);
         this.goBackToClass = goBackToClass;
         this.searchPlayer = searchPlayer;
+        this.multiSelect = multiSelect;
     }
 
 
@@ -59,7 +61,11 @@ class SearchAsyncTask extends BaseAsyncTask {
                 foundSinglePlayer = p1;
 
             } else if (p.size() > 1) {
-                targetClz = SearchResultActivity.class;
+                if (!multiSelect) {
+                    targetClz = SearchResultActivity.class;
+                } else {
+                    targetClz = SearchResultMultiSelectActivity.class;
+                }
                 MyApplication.searchResult = p;
             } else {
                 errorMessage = "Es wurden keine Spieler gefunden.";

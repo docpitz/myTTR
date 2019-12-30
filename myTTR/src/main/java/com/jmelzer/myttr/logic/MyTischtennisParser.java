@@ -9,10 +9,9 @@ package com.jmelzer.myttr.logic;
 
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
-
-import android.util.Log;
 
 import com.jmelzer.myttr.Club;
 import com.jmelzer.myttr.Constants;
@@ -26,6 +25,7 @@ import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.MyTTLiga;
 import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.SpielerAndBilanz;
+import com.jmelzer.myttr.TeamAppointment;
 import com.jmelzer.myttr.User;
 import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 import com.jmelzer.myttr.model.Head2HeadResult;
@@ -35,8 +35,11 @@ import com.jmelzer.myttr.model.SearchPlayer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -510,9 +513,6 @@ public class MyTischtennisParser extends AbstractBaseParser {
             parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
         }
 
-        if (mannschaft.getName().contains("Augustin")) {
-            System.out.println();
-        }
         mannschaft = liga.replaceMannschaftInList(mannschaft);
 
         mannschaft.setSpiele(liga.getSpieleFor(mannschaft.getName(), spielplan));
@@ -520,6 +520,94 @@ public class MyTischtennisParser extends AbstractBaseParser {
 
         mannschaft.setLiga(liga);
         return mannschaft;
+    }
+
+    public Mannschaft readOtherTeam(Mannschaft mannschaft) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
+        String url = "https://www.mytischtennis.de/community/team?teamId=" + mannschaft.getVereinId();
+        String page = Client.getPage(url);
+        return parseOtherTeam(mannschaft, page);
+    }
+
+    /**
+     * see https://www.mytischtennis.de/community/team?teamId=2227711
+     */
+    Mannschaft parseOtherTeam(Mannschaft m, String page) throws NoDataException, LoginExpiredException {
+        List<Mannschaftspiel> spiele = parseSpiele(page);
+        m.setSpiele(spiele);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm");
+        for (Mannschaftspiel spiel : spiele) {
+            try {
+                Date d = sdf.parse(spiel.getDate());
+                if (d.after(new Date())) {
+                    TeamAppointment app = new TeamAppointment();
+                    app.setDate(spiel.getDate());
+                    app.setTeam1(spiel.getHeimMannschaft().getName());
+                    String url = spiel.getHeimMannschaft().getUrl();
+                    app.setId1(url.substring(url.indexOf("=")+1));
+                    url = spiel.getGastMannschaft().getUrl();
+                    app.setId2(url.substring(url.indexOf("=")+1));
+                    app.setTeam2(spiel.getGastMannschaft().getName());
+                    m.addFutureAppointment(app);
+                } else {
+                    System.out.println(d);
+                }
+
+            } catch (ParseException e) {
+                continue;
+            }
+        }
+        return m;
+    }
+
+    public List<Mannschaft> getOtherTeams() throws LoginExpiredException, NetworkException, NoDataException {
+        if (MyApplication.otherTeams != null) {
+            return MyApplication.otherTeams;
+        }
+        String url = "https://www.mytischtennis.de/community/ttrrechner/index";
+        try {
+            String page = Client.getPage(url);
+            return MyApplication.otherTeams = parseTTRIndexPage(page);
+        } catch (RuntimeException e) {
+            Log.e(Constants.LOG_TAG, "", e);
+        }
+        return null;
+    }
+
+    /**
+     * see https://www.mytischtennis.de/community/ttrrechner/index
+     */
+    List<Mannschaft> parseTTRIndexPage(String page) throws NoDataException, LoginExpiredException {
+        List<Mannschaft> list = new ArrayList<>();
+
+        try {
+            ParseResult options = readBetween(page, 0, "<select name=\"clubteam\" id=\"clubteam\" class=\"form-control\" >", "</select>");
+            if (isEmpty(options)) {
+                throw new NoDataException("myTTR konnte keine anderen Mannschaften finden");
+            }
+            int idx = 0;
+            while (true) {
+
+                ParseResult resultrow = readBetween(options.result, idx, "<option", "</option>");
+
+                if (resultrow == null) {
+                    break;
+                }
+
+                ParseResult value = readBetween(resultrow, 0, "value=\"", "\"");
+                ParseResult name = readBetween(resultrow, 0, "\" >", null);
+                if (!value.result.isEmpty()) {
+                    Mannschaft mannschaft = new Mannschaft();
+                    mannschaft.setVereinId(value.result);
+                    mannschaft.setName(name.result);
+                    list.add(mannschaft);
+                }
+                idx = resultrow.end;
+            }
+        } catch (NoDataException e) {
+            //ok
+        }
+
+        return list;
     }
 
     @NonNull
@@ -561,12 +649,18 @@ public class MyTischtennisParser extends AbstractBaseParser {
             dr = readBetween(row[0], dr.end, "</span>", "<span ");
             datetime += " " + dr.result;
 
-            String heim = readHrefAndATag(row[1])[1];
-            String gast = readHrefAndATag(row[2])[1];
+            ahref = readHrefAndATag(row[1]);
+            String heim = ahref[1];
+            String heimUrl = ahref[0];
+            ahref = readHrefAndATag(row[2]);
+            String gast = ahref[1];
+            String gastUrl = ahref[0];
             Mannschaftspiel spiel = new Mannschaftspiel();
             spiel.setDate(datetime);
             spiel.setHeimMannschaft(new Mannschaft(heim));
+            spiel.getHeimMannschaft().setUrl(heimUrl);
             spiel.setGastMannschaft(new Mannschaft(gast));
+            spiel.getGastMannschaft().setUrl(gastUrl);
             String erg = row[4];
             if (erg != null) {
                 erg = readHrefAndATag(erg)[1];
@@ -619,6 +713,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateName(page, "Kunkel, Werner");
         validateName(page, "Niederweis, Markus");
         validateName(page, "Seidel, Daniel");
+        validateName(page, "Hersel");
         validateName(page, "Lohmar");
         validateName(page, "Leuscheid");
         Log.i(Constants.LOG_TAG, "validate time " +

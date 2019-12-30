@@ -33,6 +33,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="btn_new_player">Spieler eingeben und suchen</string>
+    <string name="action_select_team">Anderes Team aussuchen</string>
     <string name="btn_bilanz">Bilanzen ansehen</string>
     <string name="btn_results">Aktuelle Ergebnisse ansehen</string>
     <string name="txt_player_list">Folgende Spieler sind bereits von dir hinzugefügt worden:</string>
@@ -75,6 +76,7 @@
     <string name="sample_nameclub">"Wolfgang Heinzelmann\n1. FC Bayer Uerdingen"</string>
     <string name="calc">Berechnen</string>
     <string name="qttr">QTTR</string>
+    <string name="text_select_other_team">Wähle ein anderes Team aus, in dem Ersatz spielst</string>
     <string name="text_events">Wähle ein Spiel aus um Details zu sehen</string>
     <string name="text_event_details">Wähle ein Spieler aus um Details zu sehen</string>
     <string name="text_calendar">Hier siehst du die Termine,, die du in deinen Kalender importieren kannst</string>

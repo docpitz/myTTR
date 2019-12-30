@@ -56,6 +56,7 @@ public class Mannschaft {
     Map<Integer, String> spielLokale = new TreeMap<>();
     List<SpielerAndBilanz> spielerBilanzen = new ArrayList<>();
     List<Mannschaftspiel> spiele = new ArrayList<>();
+    List<TeamAppointment> futureAppointments = new ArrayList<>();
 
     public Mannschaft(LigaPosType ligaPosType, String name, int position, int gamesCount, int win, int tied, int lose, String gameStatistic, String sum, String points, String url) {
         this.name = name;
@@ -264,5 +265,13 @@ public class Mannschaft {
 
     public String getVereinId() {
         return vereinId;
+    }
+
+    public void addFutureAppointment(TeamAppointment app) {
+        futureAppointments.add(app);
+    }
+
+    public List<TeamAppointment> getFutureAppointments() {
+        return futureAppointments;
     }
 }
