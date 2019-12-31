@@ -635,7 +635,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ergebnis.startsWith("<")) {
                 ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
-            String[] ahref  = readHrefAndATag(row[3]);
+            String[] ahref = readHrefAndATag(row[3]);
             Mannschaft heim = findMannschaft(liga, ahref[1]);
             ahref = readHrefAndATag(row[3]);
             heim.setUrl(MYTT + ahref[0]);
@@ -1122,5 +1122,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return mannschaft.getName().
                 replace("III", "Herren III").
                 replace("II", "Herren II");
+    }
+
+    public void readBilanzen(Mannschaft team) throws LoginExpiredException, NetworkException {
+        String urlBilanz = team.getUrl();
+        String page = Client.getPage(urlBilanz);
+        parseBilanzen(page, team);
     }
 }

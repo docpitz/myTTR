@@ -1097,7 +1097,10 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     //getting points and events
-    public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
+    public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException, NoDataException {
+
+        if (playerId == 0)
+            throw new NoDataException("Konnte den Spieler nicht finden");
 
         String url = "https://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);

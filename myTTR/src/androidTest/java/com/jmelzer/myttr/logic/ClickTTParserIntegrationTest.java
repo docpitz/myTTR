@@ -2,6 +2,10 @@ package com.jmelzer.myttr.logic;
 
 import android.util.Log;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
+
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Constants;
@@ -9,17 +13,13 @@ import com.jmelzer.myttr.Kreis;
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaft;
 import com.jmelzer.myttr.Mannschaftspiel;
-import com.jmelzer.myttr.MockResponses;
 import com.jmelzer.myttr.Participant;
 import com.jmelzer.myttr.Spieler;
 import com.jmelzer.myttr.Tournament;
 import com.jmelzer.myttr.Verband;
-import com.jmelzer.myttr.activities.LoginActivity;
 import com.jmelzer.myttr.model.Cup;
 import com.jmelzer.myttr.model.Saison;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -27,12 +27,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.filters.SmallTest;
-import androidx.test.rule.ActivityTestRule;
-
-import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
@@ -57,7 +51,9 @@ public class ClickTTParserIntegrationTest {
         Verband verband = parser.readTopLigen(saisonToTest);
         assertSame(Verband.dttb, verband);
         assertEquals("must be 58 ", 58, verband.getLigaList().size());
-
+        for (Liga liga : verband.getLigaList()) {
+            assertTrue(liga.getUrl(), liga.getUrl().startsWith("https://dttb.click-tt.de"));
+        }
         //read ligen for one verband
         Verband nrw = verbaende.get(verbaende.size() - 1);
         parser.readLigen(nrw, saisonToTest);

@@ -3,11 +3,13 @@ package com.jmelzer.myttr;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.util.UrlUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.jmelzer.myttr.model.Saison.getVREndDateForSeason;
 
@@ -17,6 +19,7 @@ import static com.jmelzer.myttr.model.Saison.getVREndDateForSeason;
  */
 public class Liga implements Favorite {
 
+    final SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yy HH:mm", Locale.GERMANY);
 
     private String groupId;
 
@@ -30,8 +33,9 @@ public class Liga implements Favorite {
 
     public Mannschaft getMannschaft(String teamId) {
         for (Mannschaft mannschaft : mannschaften) {
-            if (mannschaft.getTeamId().equals(teamId))
+            if (mannschaft.getTeamId().equals(teamId)) {
                 return mannschaft;
+            }
         }
         return null;
     }
@@ -148,7 +152,12 @@ public class Liga implements Favorite {
 
     public void addSpiel(Mannschaftspiel s, Spielplan spielplan) {
         Date end = getVREndDateForSeason(Constants.ACTUAL_SAISON);
-        boolean isVR = s.getDateAsDate().before(end);
+        boolean isVR;
+        if (s.getDateAsDate() != null) {
+            isVR = s.getDateAsDate().before(end);
+        } else {
+            isVR = spielplan == Spielplan.VR;
+        }
         if (isVR) {
             spieleVorrunde.add(s);
         } else {

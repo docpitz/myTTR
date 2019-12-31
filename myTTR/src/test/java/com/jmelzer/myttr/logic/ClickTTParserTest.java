@@ -48,6 +48,7 @@ public class ClickTTParserTest {
 
         for (Liga liga : ligen) {
             System.out.println("liga = " + liga);
+
         }
         assertTrue("must be > 10 not " + ligen.size(), ligen.size() > 10);
     }
@@ -178,6 +179,7 @@ public class ClickTTParserTest {
             Integer.valueOf(participant.getQttr());
         }
     }
+
     @Test
     public void testParticipants2() throws Exception {
         String page = readFile(ASSETS_DIR + "/tournament_participants2.htm");
@@ -533,7 +535,7 @@ public class ClickTTParserTest {
     @Test
     public void testParseVerein() throws Exception {
         String page = readFile(ASSETS_DIR + "/verein.htm");
-        Verein verein = parser.parseVerein( page);
+        Verein verein = parser.parseVerein(page);
 
         assertNotNull(verein);
         assertEquals("TTG St. Augustin", verein.getName());
@@ -612,6 +614,15 @@ public class ClickTTParserTest {
         assertNotNull(mannschaftspiel.getUrlDetail());
 
         assertNotNull(verein.getUrlMannschaften());
+    }
+
+
+    @Test
+    public void testFixUrls() throws Exception {
+        String page = readFile(ASSETS_DIR + "/click-tt-ligen_with-mytt-urls.htm");
+
+        String p2 = new RemoveMyttLinks().replaceIt(page);
+        System.out.println(p2);
     }
 }
 

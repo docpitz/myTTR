@@ -38,6 +38,10 @@ public class ReadOwnTeamTask extends BaseAsyncTask {
             //selected Mannschaft is out of date now -> refresh
             selectedMannschaft = selectedOtherTeam.getLiga().getMannschaft(selectedOtherTeam.getTeamId());
 
+            if (targetClz == LigaMannschaftBilanzActivity.class) {
+                new MyTTClickTTParserImpl().readBilanzen(selectedMannschaft);
+            }
+
         }
 
         setSelectedLiga(selectedMannschaft.getLiga());

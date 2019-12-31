@@ -15,7 +15,8 @@ public class MytClickTTWrapperTest {
     MytClickTTWrapper wrapper = new MytClickTTWrapper();
     @Test
     public void isClickTT() {
-        assertFalse(wrapper.isClickTT(Saison.SAISON_2019));
+        assertFalse(wrapper.isClickTT(Saison.SAISON_2020));
+        assertTrue(wrapper.isClickTT(Saison.SAISON_2019));
         assertTrue(wrapper.isClickTT(Saison.SAISON_2018));
         assertTrue(wrapper.isClickTT(Saison.SAISON_2017));
 
