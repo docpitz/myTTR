@@ -16,6 +16,8 @@ public class RemoveMyttLinks extends AbstractBaseParser {
         ParseResult resultMeta = readBetween(page, 0, "name=\"nuLigaStatsUrl\"", "/>");
         ParseResult resultFirst = readBetween(resultMeta, 0, "?", "=");
         ParseResult resultSecond = readBetween(resultMeta, 0, "+", "\"");
+        if (isEmpty(resultSecond))
+            return page;
         String param1 = "";
         String param2 = "";
         try {

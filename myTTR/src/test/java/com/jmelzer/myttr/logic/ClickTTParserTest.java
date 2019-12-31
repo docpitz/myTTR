@@ -619,7 +619,8 @@ public class ClickTTParserTest {
 
     @Test
     public void testFixUrls() throws Exception {
-        String page = readFile(ASSETS_DIR + "/click-tt-ligen_with-mytt-urls.htm");
+//        String page = readFile(ASSETS_DIR + "/click-tt-ligen_with-mytt-urls.htm");
+        String page = readFile(ASSETS_DIR + "/click-tt-turnier-with-mytt-urls.htm");
 
         String p2 = new RemoveMyttLinks().replaceIt(page);
         System.out.println(p2);
