@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.User;
@@ -144,8 +143,6 @@ public class LoginTask extends AsyncTask<String, Void, Integer> {
         } catch (LoginExpiredException e) {
             loginSuccess = false;
         } catch (NiceGuysException e) {
-            Crashlytics.log(e.getMessage() + " ausgelogged: " + MyApplication.getLoginUser().getRealName());
-            Crashlytics.logException(e);
             notNice = true;
         }
     }

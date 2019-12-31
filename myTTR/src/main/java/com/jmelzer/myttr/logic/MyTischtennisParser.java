@@ -727,7 +727,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
 
         if (page.contains(name)) {
-            throw new NiceGuysException(name);
+            //throw new NiceGuysException(name);
         }
     }
 

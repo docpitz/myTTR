@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
 import com.jmelzer.myttr.activities.MySettingsActivity;
 import com.jmelzer.myttr.activities.UnCaughtException;
 import com.jmelzer.myttr.db.DataBaseHelper;
@@ -29,8 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import io.fabric.sdk.android.Fabric;
 
 import static com.jmelzer.myttr.Constants.ACTUAL_SAISON;
 
@@ -102,12 +99,14 @@ public class MyApplication extends Application {
     public void onCreate() {
         Log.d(Constants.LOG_TAG, "myapplication oncreate");
         super.onCreate();
+        /*
         try {
             Fabric fabric = new Fabric.Builder(this).kits(new Crashlytics()).debuggable(true).build();
             Fabric.with(fabric);
         } catch (Exception e) {
             //ignore
         }
+         */
         MyApplication.context = getApplicationContext();
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this);
 //        dataBaseHelper.registerAdapter(new FavoriteLigaDataBaseAdapter(this));
