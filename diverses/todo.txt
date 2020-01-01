@@ -270,15 +270,10 @@ Einige Fehler behoben
   - Ergebnisse, wenn noch keine Details vorhanden
   - Neue Jugendklassen
 
-6.6
+7.0
 -------
 Kalenderauswahl:  alle zu sehen
 TT Races 2020
 Mehrfachauswahl TTR Rechner
-Schönere Icons (noch nicht alle generiert!!)
-Anderes Team auswählen
-   offen:
-       - Team löschen
-       - Funktionalitäten für dieses bereitstellen wie
-            - Aufstellung
-            - Spielplan
+Schönere Icons
+Anderes Team als Favorit auswählen
