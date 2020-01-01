@@ -53,6 +53,11 @@ public class LoginManager {
         }
         return false;
     }
+
+    public static boolean existLoginCookie() {
+        return loginCookie != null;
+    }
+
     public boolean relogin() throws IOException, NetworkException {
         if (un == null || pw == null) {
             User user = readUserFromDB();
