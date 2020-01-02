@@ -92,6 +92,17 @@ public class MyTTClickTTParserTest {
     }
 
     @Test
+    public void busParseDate() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/bug_parse_date.htm");
+        Liga liga = new Liga("Kreisoberliga ", "https://www.mytischtennis.de/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/gesamt");
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel.getDateAsDate());
+        }
+    }
+
+    @Test
     public void parseLigaHome() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/click-tt-home.html");
         Liga liga = new Liga("", "https://www.mytischtennis.de/clicktt/home");

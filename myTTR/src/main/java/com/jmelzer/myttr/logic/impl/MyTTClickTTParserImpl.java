@@ -606,7 +606,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String[] row = tableRowAsArray(resultrow.result, 10, false);
 //            printRows(row);
             String datum = row[0];
-            String time = "";
+            String time = " 24:00";
             if (row[1] != null && !row[1].isEmpty()) {
                 time = " " + removeHtml(row[1]);
             }
@@ -652,6 +652,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             }
 
             try {
+                //Unparseable date: "Mo 03.02.20" ??
                 Date d = sdf.parse(mannschaftspiel.getDate());
                 mannschaftspiel.setDateAsDate(d);
             } catch (ParseException e) {

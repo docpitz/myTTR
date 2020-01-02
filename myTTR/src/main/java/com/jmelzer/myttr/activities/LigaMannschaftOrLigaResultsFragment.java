@@ -80,13 +80,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
             }
         });
-        // the list will be filled
         Liga.Spielplan spielplan;
-//        if ((liga != null && liga.getUrlGesamt() == null) ||
-//                (MyApplication.getSelectedLiga() != null &&
-//                        MyApplication.getSelectedLiga().getUrlGesamt() == null)) {
-//
-//        }
         if (pos == 0) {
             spielplan = Liga.Spielplan.VR;
         } else {
@@ -113,7 +107,7 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
                 return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), spielplan);
             }
         } else {
-            return MyApplication.getSelectedLiga().getSpieleFor(null, spielplan);
+            return liga.getSpieleFor(null, spielplan);
         }
     }
 

@@ -1,0 +1,5565 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- Kreisverband Stendal 2019/20
+- Kreisoberliga
+</title>
+<base href="https://www.mytischtennis.de/clicktt/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/includes/javascript/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/includes/javascript/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/includes/javascript/common.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/jBox-0.4.9/Source/jBox.min.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/bootstrap.js" type="text/javascript"></script>
+<script src="/includes/javascript/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/includes/css/click-tt.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<link href="/includes/javascript/jBox-0.4.9/Source/jBox.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<link href="/includes/javascript/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/qmax/QMAX_ttvsa.click-tt.de.js"></script>
+<script src="/includes/javascript/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/includes/javascript/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+</head>
+<body class="click-tt">
+<!-- Version: 12.0.5 -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout/" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="https://www.mytischtennis.de/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/gesamt?fromlogin=1">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home/">
+<img src='/includes/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<a href="/clicktt/home/" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home/" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index/" class="" title="myTischtennis">myTischtennis</a>
+</li>
+<li class="magazin" style="margin-left: 25px;">
+<a href="/magazin/home/" class="" title="Magazin">Magazin</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left navHamburger" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home/">
+<img src="/includes/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm" style="">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout/">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<a href="/clicktt/home/"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/index/"><i class="icon-user"></i> Community</a>
+</span>
+<span class="magazin" style="border-left: 1px solid #eceaea; padding-left: 8px; margin-left: 8px;">
+<a href="/magazin/home/" style="color: #0e7480"><i class="icon-book"></i> Magazin</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="&#x2f;clicktt&#x2f;verbaende&#x2f;">Verbände</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;home&#x2f;">Mein click-TT</a>
+</li>
+<li class="active dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan TTVSA <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class=" active ">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;19-20&#x2f;ligen&#x2f;" id="activeFedIsTTVSA">Ligenplan TTVSA</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;P-19-20&#x2f;pokalspiele&#x2f;">Ligenplan Pokal TTVSA</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;livescoring&#x2f;start&#x2f;">Livescoring</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;vereinssuche&#x2f;">Vereinssuche</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;spielersuche&#x2f;">Spielersuche</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;wettkampfarchiv&#x2f;">Wettkampfarchiv TTVSA</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;TTVSA&#x2f;wechselliste&#x2f;">Wechselliste TTVSA</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home/" title="Home">Home</a>
+<li><a href="/clicktt/TTVSA/19-20/ligen/" title="Tischtennis-Verband Sachsen-Anhalt e. V. &ndash; Ligenplan">TTVSA &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/TTVSA/19-20/ligen/Stendal-19-20/" title="Kreisverband Stendal 2019/20(Stendal 19/20)">Kreisverband Stendal 2019/20</a></li>
+<li class="active">Kreisoberliga</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<div class='aAdTagWrapper visible-xs'><p><a border="0" href="https://www.mytischtennis.de/public/countAndRedirect.cfm?id=9546" id="9521&quot;" public="" target="_blank" www.mytischtennis.de=""><img src="http://www.mytischtennis.de/public/imagedata/2020_01_mytt_gif_320x50px.gif" /></a></p></div>
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Liga &nbsp; Spielplan</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right">
+<a href="/community/ranking?showgroupid=361123" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
+</div>
+<h1>
+Kreisoberliga
+<span class="btn-group hidden-print" data-bind="with:$root.group">
+<button type="button" class="btn btn-pill btn-xs dropdown-toggle"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+data-bind="css: ((favoriteStatus() == 'added') ? 'btn-primary' : 'btn-default')">
+<i class="fa fa-star" data-bind="css: ((favoriteStatus() == 'added') ? 'fa-star' : 'fa-star-o')"></i>
+</button>
+<ul class="dropdown-menu disabled">
+<!-- ko if: favoriteStatus() == "added" -->
+<li><a href="#" data-bind="click: removeFavorite"><i class="fa fa-fw fa-trash"></i> Von meinen Favoriten-Ligen entfernen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noadded" -->
+<li><a href="" data-bind="click: addFavorite"><i class="fa fa-fw fa-plus-circle"></i> Zu meinen Favoriten-Ligen hinzufügen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noaddedAndOverloaded" -->
+<li><a href="#" data-toggle="tooltip" title="Sie haben die Favoriten-Ligen voll">Favoriten-Ligen voll</a></li>
+<!-- /ko -->
+<li><a href="clicktt/home#tab_ligen"><i class="fa fa-fw fa-list"></i> Favoriten-Ligen anzeigen</a></li>
+</ul>
+</span>
+<script src="/includes/javascript/group.js?v=12-0-5" type="text/javascript"></script>
+<script type="text/javascript">
+if (!window.koModels) {
+window.koModels = {};
+}
+// hook for loading-process of mainViewModel
+window.koModels.group = function(mainData, mainModel) {
+return new window.ClickTTGroupViewModel("noadded"
+, "/clicktt/TTVSA/group/removeFavorite?groupid=361123"
+, "/clicktt/TTVSA/group/addFavorite?groupid=361123");
+};
+</script>
+</h1>
+<ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/tabelle/gesamt/" data-target="#groupTeamInfos" role="tab">
+Tabelle
+</a>
+</li>
+<li role="presentation" class="active">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/rr/" role="tab">
+Gruppenspielplan
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/adressen/" data-target="#groupTeamAddresses" role="tab">
+Kontakte
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/bilanzuebersichten/rr/" data-target="#groupTeamStats" role="tab">
+Bilanzen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaftsmeldungen/rr/"
+data-target="#groupTeamPools" role="tab">
+Meldungen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/gruppen-ranglisten/spieler/rr/"
+data-target="#groupTeamPools" role="tab" id="tabGroupTeamPools">
+Ranglisten
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/zuschauer-matrix/"
+data-target="#groupTeamPools" role="tab" id="tabAttendancesMatrix">
+Zuschauer-Matrix
+</a>
+</li>
+</ul>
+<div class="pull-right">
+<div class="btn-group hidden-print">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/vr/" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/rr/" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+</div>
+</div>
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Gruppenspielplan (gesamt)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th colspan="2">Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span>
+Mo 26.08.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621870/TSV-Tangermuende-II-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621848/Klaedener-SV-vs-Germania-Klietz/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 28.08.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621850/SV-Schorstedt-vs-ZSG-Seehausen/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 29.08.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621869/TTC-Lok-Stendal-II-vs-SV-Rochau/">
+11:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 30.08.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621866/Altmark-Iden-vs-Post-Stendal/">
+3:11
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 02.09.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621845/spielfrei-vs-Eintracht-Osterburg/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621840/Klaedener-SV-vs-SV-Rochau/">
+13:1
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 04.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621889/SV-Schorstedt-vs-Post-Stendal/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 05.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621886/TTC-Lok-Stendal-II-vs-Altmark-Iden/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 06.09.19
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621827/TSV-Tangermuende-II-vs-Germania-Klietz/">
+3:11
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621842/SV-Mahlwinkel-II-vs-ZSG-Seehausen/">
+12:2
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 09.09.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621831/spielfrei-vs-Post-Stendal/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+<a href="javascript:void(0);" id="settooltip66D51A0F-6878-433B-9B9646FD51F20124">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip66D51A0F-6878-433B-9B9646FD51F20124',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621856/Klaedener-SV-vs-Eintracht-Osterburg/">
+13:1
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621883/Germania-Klietz-vs-SV-Schorstedt/">
+11:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 12.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621865/ZSG-Seehausen-vs-TTC-Lok-Stendal-II/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 16.09.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621875/SV-Mahlwinkel-II-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621826/Klaedener-SV-vs-TSV-Tangermuende-II/">
+12:2
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 18.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621843/SV-Schorstedt-vs-Eintracht-Osterburg/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 19.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621878/TTC-Lok-Stendal-II-vs-Germania-Klietz/">
+4:10
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 20.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621851/Altmark-Iden-vs-ZSG-Seehausen/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 23.09.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621860/spielfrei-vs-SV-Rochau/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltipFC048416-BE67-4FBD-B15432553222DDDC">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Mon. 16.09.2019 19:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipFC048416-BE67-4FBD-B15432553222DDDC',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621854/Post-Stendal-vs-SV-Rochau/">
+7:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621844/Germania-Klietz-vs-Altmark-Iden/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip7857E72E-4BC4-4EBF-AC05BC4AE2C15353">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7857E72E-4BC4-4EBF-AC05BC4AE2C15353',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621855/Klaedener-SV-vs-SV-Mahlwinkel-II/">
+7:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 26.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621825/ZSG-Seehausen-vs-Post-Stendal/">
+7:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 27.09.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621830/Eintracht-Osterburg-vs-TTC-Lok-Stendal-II/">
+7:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621873/TSV-Tangermuende-II-vs-SV-Schorstedt/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 30.09.19
+</span>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip4A5113AF-D5BE-4D55-BAE433EE7FBFA788">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip4A5113AF-D5BE-4D55-BAE433EE7FBFA788',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip317B5C1A-E7B3-4795-934BDCF99B334AFC">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Mon. 02.12.2019 19:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip317B5C1A-E7B3-4795-934BDCF99B334AFC',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621862/Klaedener-SV-vs-Post-Stendal/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 04.10.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621841/SV-Mahlwinkel-II-vs-Eintracht-Osterburg/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 11.10.19
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621859/TSV-Tangermuende-II-vs-SV-Mahlwinkel-II/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 18.10.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621863/SV-Rochau-vs-Altmark-Iden/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 21.10.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621847/Klaedener-SV-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 23.10.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621890/SV-Schorstedt-vs-SV-Mahlwinkel-II/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltipEBEA1C8D-DF84-4168-912A5482285A6706">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Mon. 21.10.2019 19:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipEBEA1C8D-DF84-4168-912A5482285A6706',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621833/Post-Stendal-vs-Germania-Klietz/">
+4:10
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 24.10.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621871/TTC-Lok-Stendal-II-vs-TSV-Tangermuende-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 25.10.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621852/SV-Rochau-vs-ZSG-Seehausen/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621846/Altmark-Iden-vs-Eintracht-Osterburg/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 04.11.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621885/spielfrei-vs-ZSG-Seehausen/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621857/Klaedener-SV-vs-SV-Schorstedt/">
+11:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621877/Germania-Klietz-vs-SV-Rochau/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 08.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621868/Eintracht-Osterburg-vs-Post-Stendal/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621867/TSV-Tangermuende-II-vs-Altmark-Iden/">
+4:10
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621888/SV-Mahlwinkel-II-vs-TTC-Lok-Stendal-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 11.11.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621832/SV-Schorstedt-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621881/Post-Stendal-vs-TSV-Tangermuende-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip5DA6B548-EF73-4CCA-8E6F836CDC75C97D">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip5DA6B548-EF73-4CCA-8E6F836CDC75C97D',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621880/Klaedener-SV-vs-TTC-Lok-Stendal-II/">
+10:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 14.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621874/ZSG-Seehausen-vs-Germania-Klietz/">
+3:11
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 15.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621834/Altmark-Iden-vs-SV-Mahlwinkel-II/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621858/SV-Rochau-vs-Eintracht-Osterburg/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 18.11.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621836/spielfrei-vs-Germania-Klietz/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621884/Klaedener-SV-vs-Altmark-Iden/">
+6:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 20.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621882/SV-Schorstedt-vs-TTC-Lok-Stendal-II/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 22.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621887/Eintracht-Osterburg-vs-ZSG-Seehausen/">
+10:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621835/TSV-Tangermuende-II-vs-SV-Rochau/">
+7:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 25.11.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621872/Altmark-Iden-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621861/Post-Stendal-vs-TTC-Lok-Stendal-II/">
+8:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621839/Germania-Klietz-vs-SV-Mahlwinkel-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip3682377C-0451-4058-B61B0139FA6C9D08">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip3682377C-0451-4058-B61B0139FA6C9D08',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621876/Klaedener-SV-vs-ZSG-Seehausen/">
+14:0
+</a>
+<a href="javascript:void(0);" id="settooltip538AD3F2-38C2-43DB-99DC42560C74DC4F">NA</a>
+<script type="text/javascript">
+var toolTipContent = "Gastmannschaft ist zur Begegnung nicht angetreten";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip538AD3F2-38C2-43DB-99DC42560C74DC4F',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 29.11.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621838/Eintracht-Osterburg-vs-TSV-Tangermuende-II/">
+13:1
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621828/SV-Rochau-vs-SV-Schorstedt/">
+11:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltipEF6C9EB5-0696-462C-AF29BA3714CE0285">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 22.11.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipEF6C9EB5-0696-462C-AF29BA3714CE0285',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621849/SV-Mahlwinkel-II-vs-Post-Stendal/">
+4:10
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 02.12.19
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621864/TTC-Lok-Stendal-II-vs-spielfrei-/">
+0:0
+</a>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621879/Germania-Klietz-vs-Eintracht-Osterburg/">
+12:2
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 05.12.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621837/ZSG-Seehausen-vs-TSV-Tangermuende-II/">
+4:10
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 06.12.19
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621853/Altmark-Iden-vs-SV-Schorstedt/">
+10:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:15 
+<a href="javascript:void(0);" id="settooltipF2253656-B5C8-4498-A132F3689BDEC214">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 06.12.2019 19:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipF2253656-B5C8-4498-A132F3689BDEC214',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielbericht/11621829/SV-Rochau-vs-SV-Mahlwinkel-II/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 13.01.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 16.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 17.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 20.01.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 22.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 23.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 24.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip7A452851-BAF3-43E8-840CF91451173DA6">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7A452851-BAF3-43E8-840CF91451173DA6',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 27.01.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 30.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 31.01.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 03.02.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 05.02.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 06.02.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 07.02.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip695981F3-903D-49B1-AC1ABBF90FE49557">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip695981F3-903D-49B1-AC1ABBF90FE49557',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 24.02.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 27.02.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 28.02.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 02.03.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 05.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 06.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 09.03.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 11.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 12.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 13.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 16.03.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 19.03.20
+</span>
+</td>
+<td>
+19:00 
+<a href="javascript:void(0);" id="settooltip6D387CC8-8B31-4E09-BDA1254B425A48AA">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip6D387CC8-8B31-4E09-BDA1254B425A48AA',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 20.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 23.03.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+<a href="javascript:void(0);" id="settooltip0F4D97E8-0056-42D4-A104CFDED132AC35">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Thu. 26.03.2020 19:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip0F4D97E8-0056-42D4-A104CFDED132AC35',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12219/Klaedener-SV/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 25.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 26.03.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 27.03.20
+</span>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 30.03.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+spielfrei*
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12218/Germania-Klietz/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Do 02.04.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12211/ZSG-Seehausen/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12216/TTC-Lok-Stendal-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 03.04.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12208/SV-Rochau/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12206/Altmark-Iden/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mo 20.04.20
+</span>
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+spielfrei*
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+spielfrei*
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2234940/TTC-Lok-Stendal-II/spielerbilanzen/rr/">TTC Lok Stendal II</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+<a href="javascript:void(0);" id="settooltip395066D5-ADC8-4D4F-85E01FDF25C7259F">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip395066D5-ADC8-4D4F-85E01FDF25C7259F',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235701/Post-Stendal/spielerbilanzen/rr/">Post Stendal</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235015/Klaedener-SV/spielerbilanzen/rr/">Klädener SV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12213/Post-Stendal/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 22.04.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235047/SV-Schorstedt/spielerbilanzen/rr/">SV Schorstedt</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235448/Altmark-Iden/spielerbilanzen/rr/">Altmark Iden</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12210/SV-Schorstedt/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 24.04.20
+</span>
+</td>
+<td>
+19:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235679/Eintracht-Osterburg/spielerbilanzen/rr/">Eintracht Osterburg</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235262/Germania-Klietz/spielerbilanzen/rr/">Germania Klietz</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12207/Eintracht-Osterburg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235029/TSV-Tangermuende-II/spielerbilanzen/rr/">TSV Tangermünde II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235044/ZSG-Seehausen/spielerbilanzen/rr/">ZSG Seehausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/12217/TSV-Tangermuende-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235500/SV-Mahlwinkel-II/spielerbilanzen/rr/">SV Mahlwinkel II</a>
+</div>
+<div>
+<a href="/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/mannschaft/2235160/SV-Rochau/spielerbilanzen/rr/">SV Rochau</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/TTVSA/19-20/verein/11435/SV-Mahlwinkel-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Shop-Partner
+</h3>
+</div>
+<div class="panel-body text-center">
+<p><a class="adLink" href="https://www.mytischtennis.de/public/countAndRedirect?id=9545" target="_blank"><img alt="Shop-Partner
+" class="img-responsive" src="http://www.mytischtennis.de/public/imagedata/2020_01_mytt_300x250px.gif" /> </a></p>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- isNewColdboxApp: true -->
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">andro &ndash; offizieller Verbandsausr&uuml;ster
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=9406" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=9406','andro &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="andro &ndash; offizieller Verbandsausr&uuml;ster
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/andro_Gauzyblades_300x250.gif" alt="andro &ndash; offizieller Verbandsausr&uuml;ster
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/misc/12575/Datenschutz-TTVSA" id="Datenschutz_link_TTVSA" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12401/impressum-TTVSA" id="Impressum_link_TTVSA" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12463/kontakt-TTVSA" id="Kontakt_link_TTVSA" title="Kontakt">Kontakt</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2020 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/includes/javascript/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/includes/javascript/communityGlobal.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/clickttKnockoutStuff.js?v=12-0-5" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "TTVSA"
+},
+urls: {
+playerPopover: '/clicktt/TTVSA/player/popover/',
+groupPopover: '/clicktt/TTVSA/group/popover/',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+<script src="/includes/javascript/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
+</body>
+</html>
