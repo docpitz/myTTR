@@ -7,6 +7,7 @@
 
 package com.jmelzer.myttr.logic;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.jmelzer.myttr.Club;
@@ -44,7 +45,7 @@ public class ClubParser {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
-            InputStream is = MyApplication.getAppContext().getResources().openRawResource(r);
+            InputStream is = getContext().getResources().openRawResource(r);
             isReader = new InputStreamReader(is);
             reader = new LineNumberReader(isReader);
 
@@ -216,11 +217,11 @@ public class ClubParser {
 
     synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
-            int r = MyApplication.getAppContext().getResources().getIdentifier("raw/stopwords",
+            int r = getContext().getResources().getIdentifier("raw/stopwords",
                     "raw",
                     "com.jmelzer.myttr");
             readStopwords(r);
-            r = MyApplication.getAppContext().getResources().getIdentifier("raw/vereine",
+            r = getContext().getResources().getIdentifier("raw/vereine",
                     "raw",
                     "com.jmelzer.myttr");
             readFile(r);
@@ -233,7 +234,7 @@ public class ClubParser {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
-            InputStream is = MyApplication.getAppContext().getResources().openRawResource(r);
+            InputStream is = getContext().getResources().openRawResource(r);
             isReader = new InputStreamReader(is);
             reader = new LineNumberReader(isReader);
 
@@ -255,5 +256,10 @@ public class ClubParser {
             }
         }
     }
+
+    protected Context getContext() {
+        return MyApplication.getAppContext();
+    }
+
 
 }
