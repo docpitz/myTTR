@@ -40,7 +40,7 @@ public class ClubParser {
     static List<String> clubNames = new ArrayList<>();
 
 
-    private void readFile(int r) {
+    protected void readFile(int r) {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
@@ -72,7 +72,7 @@ public class ClubParser {
         }
     }
 
-    private Club parseLine(String line) {
+    protected Club parseLine(String line) {
 //        'SV%20Bohlingen','21017,STTB','SV Bohlingen'
         int n = line.indexOf(",", 0);
         String name = line.substring(0, n);
@@ -181,7 +181,7 @@ public class ClubParser {
 
     }
 
-    private float calcScore(float sum, String searchWord, float factor) {
+    protected float calcScore(float sum, String searchWord, float factor) {
         float score = 0;
         if (searchWord.length() > 5) {
             score += Math.max(0.5f, (searchWord.length() / sum) * factor);
@@ -190,7 +190,7 @@ public class ClubParser {
         return score;
     }
 
-    private String[] removeStopWords(String[] myClubParts) {
+    protected String[] removeStopWords(String[] myClubParts) {
         List<String> list = new ArrayList<>();
         for (String part : myClubParts) {
             if (!stopWords.contains(part)) {
@@ -200,7 +200,7 @@ public class ClubParser {
         return list.toArray(new String[list.size()]);
     }
 
-    private void readClubNames() {
+    protected void readClubNames() {
         clubNames = new ArrayList<>(clubHashMap.size());
         for (Club club : clubHashMap.values()) {
             clubNames.add(club.getName());
@@ -214,7 +214,7 @@ public class ClubParser {
         return clubHashMap.get(name);
     }
 
-    synchronized void readClubs() {
+    protected synchronized void readClubs() {
         if (clubHashMap.isEmpty()) {
             int r = MyApplication.getAppContext().getResources().getIdentifier("raw/stopwords",
                     "raw",
@@ -229,7 +229,7 @@ public class ClubParser {
         }
     }
 
-    private void readStopwords(int r) {
+    protected void readStopwords(int r) {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
