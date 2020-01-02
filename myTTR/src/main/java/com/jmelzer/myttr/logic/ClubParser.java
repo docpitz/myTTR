@@ -41,7 +41,7 @@ public class ClubParser {
     static List<String> clubNames = new ArrayList<>();
 
 
-    private void readFile(int r) {
+    protected void readFile(int r) {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
@@ -201,7 +201,7 @@ public class ClubParser {
         return list.toArray(new String[list.size()]);
     }
 
-    private void readClubNames() {
+    protected void readClubNames() {
         clubNames = new ArrayList<>(clubHashMap.size());
         for (Club club : clubHashMap.values()) {
             clubNames.add(club.getName());
@@ -230,7 +230,7 @@ public class ClubParser {
         }
     }
 
-    private void readStopwords(int r) {
+    protected void readStopwords(int r) {
         LineNumberReader reader = null;
         InputStreamReader isReader = null;
         try {
