@@ -703,7 +703,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateBadPeople(page);
     }
 
-    public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException {
+    public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException, NoDataException {
         String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         validateStillLoginActive(page);
@@ -736,7 +736,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
 
-    Player parseEvents(String page, final boolean own) {
+    Player parseEvents(String page, final boolean own) throws NoDataException {
         List<Event> events = new ArrayList<Event>();
         boolean rown = own;
         if (!rown && page.contains("<h3>Dein")) {
@@ -798,11 +798,14 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return player;
     }
 
-    private Player parsePlayerFromEventPage(String page, boolean own) {
+    private Player parsePlayerFromEventPage(String page, boolean own) throws NoDataException {
         Player p = new Player();
         ParseResult result = null;
         try {
             result = readBetween(page, 0, "<strong>TTR: </strong>", "</p>");
+            if (result == null) {
+                throw new NoDataException("Keine Daten gefunden");
+            }
             p.setTtrPoints(Integer.valueOf(result.result.trim()));
         } catch (NumberFormatException e) {
             //ok
@@ -1099,8 +1102,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
     //getting points and events
     public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException, NoDataException {
 
-        if (playerId == 0)
+        if (playerId == 0) {
             throw new NoDataException("Konnte den Spieler nicht finden");
+        }
 
         String url = "https://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
