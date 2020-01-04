@@ -26,8 +26,7 @@ public class LigaTabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int index) {
-        LigaMannschaftOrLigaResultsFragment f;
-        f = new LigaMannschaftOrLigaResultsFragment();
+        LigaMannschaftOrLigaResultsFragment f = new LigaMannschaftOrLigaResultsFragment();
         f.setPos(index);
         f.setLiga(liga);
         f.setMannschaft(mannschaft);

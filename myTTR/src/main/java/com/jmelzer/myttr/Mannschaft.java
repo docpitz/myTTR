@@ -234,9 +234,12 @@ public class Mannschaft {
     public List<Mannschaftspiel> getSpiele() {
         return spiele;
     }
+
     public void addSpiel(Mannschaftspiel spiel) {
         spiele.add(spiel);
-    };
+    }
+
+    ;
 
     public void setSpiele(List<Mannschaftspiel> spiele) {
         this.spiele = spiele;
@@ -300,11 +303,22 @@ public class Mannschaft {
         List<Mannschaftspiel> filtered = new ArrayList<>();
         Date end = getVREndDateForSeason(Constants.ACTUAL_SAISON);
 
+        Liga.Spielplan lastSP = Liga.Spielplan.VR;
+
         for (Mannschaftspiel spiel : spiele) {
-            if (spielplan == Liga.Spielplan.VR && spiel.getDateAsDate().before(end)) {
+            Date d = spiel.getDateAsDate();
+            if (d == null) {
+                if (lastSP == spielplan) {
+                    filtered.add(spiel);
+                }
+                continue;
+            }
+            if (spielplan == Liga.Spielplan.VR && d.before(end)) {
+                lastSP = Liga.Spielplan.VR;
                 filtered.add(spiel);
             }
-            if (spielplan == Liga.Spielplan.RR && spiel.getDateAsDate().after(end)) {
+            if (spielplan == Liga.Spielplan.RR && d.after(end)) {
+                lastSP = Liga.Spielplan.RR;
                 filtered.add(spiel);
             }
         }

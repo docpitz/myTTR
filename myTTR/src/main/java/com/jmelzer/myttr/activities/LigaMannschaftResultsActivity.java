@@ -28,7 +28,7 @@ public class LigaMannschaftResultsActivity extends AbstractLigaResultActivity {
 
     @Override
     protected boolean checkIfNeccessryDataIsAvailable() {
-        return MyApplication.getSelectedLiga() != null;
+        return MyApplication.selectedMannschaft != null;
     }
 
 

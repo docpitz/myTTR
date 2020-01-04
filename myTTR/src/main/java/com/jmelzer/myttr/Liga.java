@@ -294,7 +294,7 @@ public class Liga implements Favorite {
 
     public Mannschaft replaceMannschaftInList(Mannschaft m) {
         for (Mannschaft mannschaft : mannschaften) {
-            if (m.getName().equals(mannschaft.getName())) {
+            if (m.getName() != null && m.getName().equals(mannschaft.getName())) {
                 mannschaften.remove(mannschaft);
                 m.setVereinId(mannschaft.getVereinId());
                 m.setVereinUrl(mannschaft.getVereinUrl());

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -64,21 +63,16 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         listview.setAdapter(adapter);
 
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
-                if (selectedMannschaftSpiel != null &&
-                        selectedMannschaftSpiel.getUrlDetail() != null &&
-                        selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
-                    Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
-                } else {
-                    callMannschaftSpielDetail();
-                }
-
+        listview.setOnItemClickListener((parent, view, position, id) -> {
+            selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
+            if (selectedMannschaftSpiel != null &&
+                    selectedMannschaftSpiel.getUrlDetail() != null &&
+                    selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
+                Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
+            } else {
+                callMannschaftSpielDetail();
             }
+
         });
         Liga.Spielplan spielplan;
         if (pos == 0) {
