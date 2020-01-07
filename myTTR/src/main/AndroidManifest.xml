@@ -7,34 +7,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jmelzer.myttr"
     android:installLocation="auto">
-
-    <uses-sdk android:maxSdkVersion="29" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-
     <application
         android:usesCleartextTraffic="true">
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-        <service
-            android:name=".logic.SyncManager"
-            android:icon="@drawable/ic_action_actionbar"
-            android:label="myTTR Background Sync"></service>
-        <!--<receiver android:name=".BootUpReceiver" android:enabled="true" android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>-->
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="6aa5f86cc4f52cbc38718f83c8acfeaa83f10c57" />
     </application>
 
 
