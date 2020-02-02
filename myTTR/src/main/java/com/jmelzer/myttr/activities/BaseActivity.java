@@ -38,7 +38,7 @@ public abstract class BaseActivity extends FragmentActivity {
         } else {
             setTitle(MyApplication.getTitle());
         }
-        if (MyApplication.getLoginUser().getUsername().equals("chokdee")) {
+        if (MyApplication.getLoginUser().getUsername().equals("chokdee1")) {
             setTitle(MyApplication.getTitle() + " - " + getClass().getSimpleName());
         }
         ActionBar actionBar = getActionBar();
@@ -71,7 +71,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected boolean toLoginIfNeccassry() {
 //        if (MyApplication.userIsEmpty() && !getClass().equals(LoginActivity.class)) {
-        if (!checkIfNeccessryDataIsAvaible()) {
+        if (!checkIfNeccessryDataIsAvailable()) {
             Log.i(Constants.LOG_TAG, "restart after stop");
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -84,5 +84,5 @@ public abstract class BaseActivity extends FragmentActivity {
      * sub classes must check if the needed data is avaible otherwise we go back to the login activity
      * @return ture if data is avaible
      */
-    protected abstract boolean checkIfNeccessryDataIsAvaible();
+    protected abstract boolean checkIfNeccessryDataIsAvailable();
 }

@@ -4,25 +4,20 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.MyApplication;
-import com.jmelzer.myttr.db.LoginDataBaseAdapter;
 import com.jmelzer.myttr.logic.Client;
 import com.jmelzer.myttr.logic.LoginExpiredException;
 import com.jmelzer.myttr.logic.LoginManager;
+import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoClickTTException;
 import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.jmelzer.myttr.activities.BadPeopleUtil.handleBadPeople;
 
@@ -36,11 +31,14 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
     private ProgressDialog progressDialog;
     Class targetClz;
     boolean notSoNice = false;
+    MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     public BaseAsyncTask(Activity parent, Class targetClz) {
         if (parent == null) throw new IllegalArgumentException("parent must not be null");
         this.parent = parent;
         this.targetClz = targetClz;
+        Log.d(Constants.LOG_TAG, "myttr is going to start activity " + targetClz + " from async task " + getClass());
+
     }
 
     @Override
@@ -142,11 +140,11 @@ public abstract class BaseAsyncTask extends AsyncTask<String, Void, Integer> {
             Log.d(Constants.LOG_TAG, "couldn't load data in class " + getClass());
             new ErrorDialog(parent, "Konnte die Daten nicht laden (Grund unbekannt)", Client.lastUrl()).show();
         } else {
-            startNextActivity();
+            startActivityAfterParsing();
         }
     }
 
-    protected void startNextActivity() {
+    protected void startActivityAfterParsing() {
         if (targetClz != null) {
             Intent target = new Intent(parent, targetClz);
             putExtra(target);

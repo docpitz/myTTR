@@ -1,7 +1,5 @@
 package com.jmelzer.myttr.logic;
 
-import android.text.Html;
-
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Competition;
 import com.jmelzer.myttr.Group;
@@ -30,8 +28,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -488,22 +484,12 @@ public class ClickTTParser extends AbstractBaseParser {
 
     private String getFixedPage(String url) throws NetworkException, LoginExpiredException {
         String page = Client.getPage(url);
-        Pattern pattern = Pattern.compile("https://www\\.mytischtennis\\.de/clicktt/([^/]+)/.+?/gruppe/([^/]+)/tabelle/gesamt");
-        ParseResult resultMeta = readBetween(page, 0, "name=\"nuLigaStatsUrl\" content=\"/nuLigaTTDE/wa/leaguePage/view", "\"");
-
-        Matcher matcher = pattern.matcher(page);
-
-        StringBuffer sb = new StringBuffer(page.length());
-
-        while (matcher.find()) {
-            matcher.appendReplacement(sb, "https://$1.click-tt.de/cgi-bin/WebObjects/nuLigaTTDE.woa/wa/groupPage" +
-                    resultMeta.result + "&group=$2");
-        }
-
-        matcher.appendTail(sb);
-        page = sb.toString().replaceAll(" target=\"_blank\" ", " ");
-        return page;
+        return new RemoveMyttLinks().replaceIt(page);
     }
+
+
+
+
 
     /**
      * read the ligen and Bezirke from the url inside the verband

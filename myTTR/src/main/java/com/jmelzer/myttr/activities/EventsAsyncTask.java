@@ -12,6 +12,7 @@ import com.jmelzer.myttr.logic.MyTischtennisParser;
 import com.jmelzer.myttr.logic.NetworkException;
 import com.jmelzer.myttr.logic.NiceGuysException;
 import com.jmelzer.myttr.logic.NoClickTTException;
+import com.jmelzer.myttr.logic.NoDataException;
 import com.jmelzer.myttr.logic.impl.MyTTClickTTParserImpl;
 import com.jmelzer.myttr.model.MyTTPlayerIds;
 
@@ -47,7 +48,7 @@ public class EventsAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException, NiceGuysException {
+    protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException, NiceGuysException, NoDataException {
         if (game != null) {
             Player p = parser.readEventsForForeignPlayer(game.getPlayerId());
             MyApplication.setEvents(p.getEvents());

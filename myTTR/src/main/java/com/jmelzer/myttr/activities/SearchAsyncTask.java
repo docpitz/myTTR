@@ -74,11 +74,11 @@ class SearchAsyncTask extends BaseAsyncTask {
     }
 
     @Override
-    protected void startNextActivity() {
+    protected void startActivityAfterParsing() {
         if (goBackToClass.equals(EventsActivity.class) && foundSinglePlayer != null) {
             new EventsAsyncTask(parent, EventsActivity.class, foundSinglePlayer).execute();
         } else {
-            super.startNextActivity();
+            super.startActivityAfterParsing();
         }
     }
 

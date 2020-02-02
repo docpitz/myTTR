@@ -2,6 +2,7 @@ package com.jmelzer.myttr.activities;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+
 import androidx.viewpager.widget.ViewPager;
 
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -22,7 +23,7 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
     protected void init() {
 
         final ActionBar actionBar = getActionBar();
-        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = findViewById(R.id.pager);
         LigaTabsPagerAdapter mAdapter = createTabsAdapter();
         viewPager.setAdapter(mAdapter);
 
@@ -65,13 +66,13 @@ public abstract class AbstractLigaResultActivity extends BaseActivity {
                 // probably ignore this event
             }
         };
-        if (!hasGesamt()) {
+//        if (!hasGesamt()) {
             boolean b = isVRCompleted();
             actionBar.addTab(actionBar.newTab().setText("Vorrunde").setTabListener(tabListener), !b);
             actionBar.addTab(actionBar.newTab().setText("Rückrunde").setTabListener(tabListener), b);
-        } else {
-            actionBar.addTab(actionBar.newTab().setText("Gesamt").setTabListener(tabListener), true);
-        }
+//        } else {
+//            actionBar.addTab(actionBar.newTab().setText("Gesamt").setTabListener(tabListener), true);
+//        }
     }
 
     abstract boolean startWithRR();

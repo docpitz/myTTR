@@ -53,7 +53,7 @@ public class LigaHomeActivity extends BaseActivity {
     FavoriteManager favoriteManager;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 
@@ -246,7 +246,7 @@ public class LigaHomeActivity extends BaseActivity {
             }
 
             @Override
-            protected void startNextActivity() {
+            protected void startActivityAfterParsing() {
                 selectedBezirk = null;
                 configBezirkAdapter();
                 configKreisAdapter();
@@ -293,7 +293,7 @@ public class LigaHomeActivity extends BaseActivity {
                         }
 
                         @Override
-                        protected void startNextActivity() {
+                        protected void startActivityAfterParsing() {
                             configLigAdapter();
                             configKreisAdapter();
                             configKategorienAdapter();
@@ -335,7 +335,7 @@ public class LigaHomeActivity extends BaseActivity {
                         }
 
                         @Override
-                        protected void startNextActivity() {
+                        protected void startActivityAfterParsing() {
                             configLigAdapter();
                             configKategorienAdapter();
                         }

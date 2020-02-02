@@ -85,7 +85,7 @@ public class SearchFilterActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 

@@ -2,14 +2,14 @@ package com.jmelzer.myttr.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
@@ -25,7 +25,7 @@ public class Head2HeadActivity extends BaseActivity {
     private List<Head2HeadResult> head2HeadResults;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;//MyApplication.getHead2Head() != null;
     }
 

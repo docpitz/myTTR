@@ -52,7 +52,7 @@ public class TournamentResultsActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedCompetition != null;
     }
 

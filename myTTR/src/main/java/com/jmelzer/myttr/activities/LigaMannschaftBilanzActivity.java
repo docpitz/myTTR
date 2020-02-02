@@ -29,7 +29,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
 
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedMannschaft != null;
     }
 
@@ -48,7 +48,6 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
         textView.setText("Bilanzen für die Mannschaft " + mannschaft.getName());
 
         List<String> groupList = new ArrayList<>();
-        List<SpielerAndBilanz> children = new ArrayList<>();
 
         ExpandableListView listView = findViewById(R.id.expandableListView);
 
@@ -56,7 +55,7 @@ public class LigaMannschaftBilanzActivity extends BaseActivity {
             groupList.add(spielerBilanz.getPos() + " "  + spielerBilanz.getName());
 
         }
-        children.addAll(mannschaft.getSpielerBilanzen());
+        List<SpielerAndBilanz> children = new ArrayList<>(mannschaft.getSpielerBilanzen());
         listView.setAdapter(new BilanzAdapter(this, groupList, children));
     }
 

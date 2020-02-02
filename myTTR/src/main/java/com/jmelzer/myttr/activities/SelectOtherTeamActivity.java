@@ -22,8 +22,11 @@ import java.util.List;
  */
 public class SelectOtherTeamActivity extends BaseActivity {
 
+    public static final String INTENT_BACK_TO = "INTENT_BACK_TO";
+    Class goBackToClass;
+
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.otherTeams != null;
     }
 
@@ -37,7 +40,13 @@ public class SelectOtherTeamActivity extends BaseActivity {
 
         setContentView(R.layout.select_other_team);
 
-        final ListView listview = (ListView) findViewById(R.id.playerlistview);
+        Intent i = getIntent();
+        goBackToClass = TTRCalculatorActivity.class;
+        if (i != null && i.getExtras() != null) {
+            goBackToClass = (Class) i.getExtras().getSerializable(INTENT_BACK_TO);
+        }
+
+        final ListView listview = findViewById(R.id.otherteamview);
         final MannschaftAdapter adapter = new MannschaftAdapter(this,
                 android.R.layout.simple_list_item_1,
                 MyApplication.otherTeams);
@@ -49,7 +58,7 @@ public class SelectOtherTeamActivity extends BaseActivity {
         listview.setOnItemClickListener((parent, view, position, id) -> {
             view.setSelected(true);
             MyApplication.selectedOtherTeam = MyApplication.otherTeams.get(position);
-            Intent target = new Intent(SelectOtherTeamActivity.this, TTRCalculatorActivity.class);
+            Intent target = new Intent(SelectOtherTeamActivity.this,goBackToClass);
             finish();
             SelectOtherTeamActivity.this.startActivity(target);
         });

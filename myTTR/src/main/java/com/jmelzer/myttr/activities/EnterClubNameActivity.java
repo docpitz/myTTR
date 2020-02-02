@@ -29,7 +29,7 @@ public class EnterClubNameActivity extends BaseActivity {
     Club selectedClub;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 

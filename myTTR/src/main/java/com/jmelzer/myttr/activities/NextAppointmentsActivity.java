@@ -31,7 +31,7 @@ import java.util.List;
 public class NextAppointmentsActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.teamAppointments != null;
     }
 

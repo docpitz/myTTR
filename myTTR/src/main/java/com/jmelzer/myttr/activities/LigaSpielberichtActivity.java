@@ -32,7 +32,7 @@ import java.util.List;
 public class LigaSpielberichtActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedMannschaftSpiel != null;
     }
 

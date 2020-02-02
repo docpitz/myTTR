@@ -12,3 +12,6 @@ drawable-hdpi (240 dpi, High density screen) - 72px x 72px
 drawable-xhdpi (320 dpi, Extra-high density screen) - 96px x 96px
 drawable-xxhdpi (480 dpi, Extra-extra-high density screen) - 144px x 144px
 drawable-xxxhdpi (640 dpi, Extra-extra-extra-high density screen) - 192px x 192px
+
+C:\ws\private\myTTR-master\myTTR\src\main\res\drawable>
+C:\batch\convert-images.cmd "c:\ws\private\myTTR-master\diverses\ic_launcher_cup.xcf" ic_launcher_cup

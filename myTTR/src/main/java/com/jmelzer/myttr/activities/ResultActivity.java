@@ -19,7 +19,7 @@ import com.jmelzer.myttr.R;
 public class ResultActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return !MyApplication.userIsEmpty();
     }
 

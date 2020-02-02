@@ -18,7 +18,7 @@ import com.jmelzer.myttr.R;
 
 public class EnterTTRActivity extends BaseActivity {
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 

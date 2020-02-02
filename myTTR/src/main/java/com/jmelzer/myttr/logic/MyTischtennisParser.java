@@ -523,7 +523,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     public Mannschaft readOtherTeam(Mannschaft mannschaft) throws NetworkException, LoginExpiredException, NoDataException, ValidationException {
-        String url = "https://www.mytischtennis.de/community/team?teamId=" + mannschaft.getVereinId();
+        String url = "https://www.mytischtennis.de/community/team?teamId=" + mannschaft.getTeamId();
         String page = Client.getPage(url);
         return parseOtherTeam(mannschaft, page);
     }
@@ -532,24 +532,29 @@ public class MyTischtennisParser extends AbstractBaseParser {
      * see https://www.mytischtennis.de/community/team?teamId=2227711
      */
     Mannschaft parseOtherTeam(Mannschaft m, String page) throws NoDataException, LoginExpiredException {
+        //parse the group of the team
+        ParseResult group = readBetween(page, 0, "<a href=\"group?groupId=", "\"");
+        m.setLiga(new Liga());
+        m.getLiga().setGroupId(group.result);
+        m.getLiga().setUrl("https://www.mytischtennis.de/community/group?groupId=" + group.result);
+
         List<Mannschaftspiel> spiele = parseSpiele(page);
         m.setSpiele(spiele);
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm");
         for (Mannschaftspiel spiel : spiele) {
             try {
                 Date d = sdf.parse(spiel.getDate());
+                spiel.setDateAsDate(d);
                 if (d.after(new Date())) {
                     TeamAppointment app = new TeamAppointment();
                     app.setDate(spiel.getDate());
                     app.setTeam1(spiel.getHeimMannschaft().getName());
                     String url = spiel.getHeimMannschaft().getUrl();
-                    app.setId1(url.substring(url.indexOf("=")+1));
+                    app.setId1(url.substring(url.indexOf("=") + 1));
                     url = spiel.getGastMannschaft().getUrl();
-                    app.setId2(url.substring(url.indexOf("=")+1));
+                    app.setId2(url.substring(url.indexOf("=") + 1));
                     app.setTeam2(spiel.getGastMannschaft().getName());
                     m.addFutureAppointment(app);
-                } else {
-                    System.out.println(d);
                 }
 
             } catch (ParseException e) {
@@ -597,7 +602,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
                 ParseResult name = readBetween(resultrow, 0, "\" >", null);
                 if (!value.result.isEmpty()) {
                     Mannschaft mannschaft = new Mannschaft();
-                    mannschaft.setVereinId(value.result);
+                    mannschaft.setTeamId(value.result);
                     mannschaft.setName(name.result);
                     list.add(mannschaft);
                 }
@@ -642,7 +647,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             idx = resultrow.end;
             String[] row = tableRowAsArray("<td>" + resultrow.result, 11, false);
             String[] ahref = readHrefAndATag(row[1]);
-            printRows(row);
+//            printRows(row);
             String datetime = "";
             ParseResult dr = readBetween(row[0], 0, "<span class=\"hidden-xs\">", "</span>");
             datetime += dr.result;
@@ -698,7 +703,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         validateBadPeople(page);
     }
 
-    public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException {
+    public Player readEvents() throws NetworkException, LoginExpiredException, NiceGuysException, NoDataException {
         String url = "https://www.mytischtennis.de/community/events";
         String page = Client.getPage(url);
         validateStillLoginActive(page);
@@ -731,7 +736,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
         }
     }
 
-    Player parseEvents(String page, final boolean own) {
+    Player parseEvents(String page, final boolean own) throws NoDataException {
         List<Event> events = new ArrayList<Event>();
         boolean rown = own;
         if (!rown && page.contains("<h3>Dein")) {
@@ -793,11 +798,14 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return player;
     }
 
-    private Player parsePlayerFromEventPage(String page, boolean own) {
+    private Player parsePlayerFromEventPage(String page, boolean own) throws NoDataException {
         Player p = new Player();
         ParseResult result = null;
         try {
             result = readBetween(page, 0, "<strong>TTR: </strong>", "</p>");
+            if (result == null) {
+                throw new NoDataException("Keine Daten gefunden");
+            }
             p.setTtrPoints(Integer.valueOf(result.result.trim()));
         } catch (NumberFormatException e) {
             //ok
@@ -874,9 +882,9 @@ public class MyTischtennisParser extends AbstractBaseParser {
             String[] ahref = readHrefAndATag(row[1]);
 //            printRows(row);
             List<String[]> posResults = new ArrayList<>();
-            for (int i = 3; i < 8; i++) {
+            for (int i = 4; i <= 9; i++) {
                 if (!row[i].isEmpty()) {
-                    posResults.add(new String[]{"" + (i - 2), row[i]});
+                    posResults.add(new String[]{"" + (i - 3), row[i]});
                 }
 
             }
@@ -1092,7 +1100,11 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     //getting points and events
-    public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException {
+    public Player readEventsForForeignPlayer(long playerId) throws NetworkException, LoginExpiredException, NoDataException {
+
+        if (playerId == 0) {
+            throw new NoDataException("Konnte den Spieler nicht finden");
+        }
 
         String url = "https://www.mytischtennis.de/community/events?personId=" + playerId;
         String page = Client.getPage(url);
@@ -1153,7 +1165,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
             }
 
             String[] row = tableRowAsArray(resultrow.result, 8, false);
-            printRows(row);
+//            printRows(row);
             String date = row[0];
             String type;
             if (row[1].contains("span")) {
@@ -1254,18 +1266,23 @@ public class MyTischtennisParser extends AbstractBaseParser {
         return p;
     }
 
-    public List<MyTTLiga> readOwnLigaRanking() throws NetworkException, LoginExpiredException {
-        String url = "https://www.mytischtennis.de/community/group";
-        String page = Client.getPage(url);
-        validateStillLoginActive(page);
-
-        List<String> groupIds = parseGroupForRanking(page);
+    public List<MyTTLiga> readLigaRanking(String teamGroupId) throws NetworkException, LoginExpiredException {
+        final String gURL = "https://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
         List<MyTTLiga> ligen = new ArrayList<>();
-        for (String groupId : groupIds) {
 
-            url = "https://www.mytischtennis.de/community/ajax/_rankingList?kontinent=Europa&land=DE&deutschePlusGleichgest=no&alleSpielberechtigen=&verband=&bezirk=&kreis=&regionPattern123=&regionPattern4=&regionPattern5=&geschlecht=&geburtsJahrVon=&geburtsJahrBis=&ttrVon=&ttrBis=&ttrQuartalorAktuell=aktuell&anzahlErgebnisse=100&vorname=&nachname=&verein=&vereinId=&vereinPersonenSuche=&vereinIdPersonenSuche=&ligen=&groupId=%s&showGroupId=%s&deutschePlusGleichgest2=no&ttrQuartalorAktuell2=aktuell";
-            url = url.replace("%s", groupId);
-            page = Client.getPage(url);
+        if (teamGroupId == null) {
+            String url = "https://www.mytischtennis.de/community/group";
+            String page = Client.getPage(url);
+            validateStillLoginActive(page);
+            List<String> groupIds = parseGroupForRanking(page);
+            for (String groupId : groupIds) {
+                String urlToCall = gURL.replace("%s", groupId);
+                page = Client.getPage(urlToCall);
+                ligen.add(parseGroupRanking(page));
+            }
+        } else {
+            String urlToCall = gURL.replace("%s", teamGroupId);
+            String page = Client.getPage(urlToCall);
             ligen.add(parseGroupRanking(page));
         }
         return ligen;

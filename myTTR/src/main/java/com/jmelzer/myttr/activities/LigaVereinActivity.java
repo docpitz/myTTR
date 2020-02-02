@@ -42,7 +42,7 @@ public class LigaVereinActivity extends BaseActivity {
     static final int MANNSCHAFTEN_POS = 3;
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.selectedVerein != null;
     }
 

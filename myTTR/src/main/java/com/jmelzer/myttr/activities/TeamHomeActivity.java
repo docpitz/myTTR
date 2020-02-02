@@ -7,42 +7,20 @@
 
 package com.jmelzer.myttr.activities;
 
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jmelzer.myttr.Liga;
-import com.jmelzer.myttr.Mannschaftspiel;
 import com.jmelzer.myttr.MyApplication;
 import com.jmelzer.myttr.R;
-import com.jmelzer.myttr.logic.LoginExpiredException;
-import com.jmelzer.myttr.logic.LoginManager;
-import com.jmelzer.myttr.logic.MyTischtennisParser;
-import com.jmelzer.myttr.logic.NetworkException;
-import com.jmelzer.myttr.logic.NoClickTTException;
-import com.jmelzer.myttr.logic.NoDataException;
-import com.jmelzer.myttr.logic.ValidationException;
-import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
-import com.jmelzer.myttr.model.Favorite;
-
-import java.util.List;
-
-import static com.jmelzer.myttr.MyApplication.actualTTR;
-import static com.jmelzer.myttr.MyApplication.selectedMannschaft;
 
 public class TeamHomeActivity extends BaseActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 
@@ -55,6 +33,22 @@ public class TeamHomeActivity extends BaseActivity {
         }
 
         setContentView(R.layout.team_home);
+
+        otherTeamInfo();
+    }
+
+    private void otherTeamInfo() {
+        TextView otherTeamView = findViewById(R.id.otherteamtext);
+        ImageView imageCancel = findViewById(R.id.imageCancel);
+        if (MyApplication.selectedOtherTeam != null) {
+            otherTeamView.setVisibility(View.VISIBLE);
+            imageCancel.setVisibility(View.VISIBLE);
+            String txt = getResources().getText(R.string.text_teams_selected) + "\n" + MyApplication.selectedOtherTeam.getName();
+            otherTeamView.setText(txt);
+        } else {
+            otherTeamView.setVisibility(View.INVISIBLE);
+            imageCancel.setVisibility(View.INVISIBLE);
+        }
     }
 
 
@@ -82,5 +76,15 @@ public class TeamHomeActivity extends BaseActivity {
 
     public void club(View view) {
         new ReadOwnClubTask(this, LigaVereinActivity.class).execute();
+    }
+
+    public void otherTeam(View view) {
+        AsyncTask<String, Void, Integer> task = new SelectOtherTeamAsyncTask(this, TeamHomeActivity.class);
+        task.execute();
+    }
+
+    public void cancelOtherTeam(View view) {
+        MyApplication.selectedOtherTeam = null;
+        otherTeamInfo();
     }
 }

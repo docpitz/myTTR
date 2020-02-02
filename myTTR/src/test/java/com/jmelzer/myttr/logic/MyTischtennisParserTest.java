@@ -61,6 +61,9 @@ public class MyTischtennisParserTest {
             assertNotNull(appointment.getId1());
             assertNotNull(appointment.getId2());
         }
+
+        assertNotNull(mannschaft.getLiga());
+        assertNotNull(mannschaft.getLiga().getGroupId());
     }
 
     @Test
@@ -70,9 +73,9 @@ public class MyTischtennisParserTest {
         assertNotNull(mannschaften);
         assertEquals(22, mannschaften.size());
         for (Mannschaft mannschaft : mannschaften) {
-            assertNotNull(mannschaft.toString(), mannschaft.getVereinId());
+            assertNotNull(mannschaft.toString(), mannschaft.getTeamId());
             assertNotNull(mannschaft.toString(), mannschaft.getName());
-            System.out.println("id, name = " + mannschaft.getVereinId() + ", " + mannschaft.getName());
+            System.out.println("id, name = " + mannschaft.getTeamId() + ", " + mannschaft.getName());
         }
 
     }
@@ -95,6 +98,40 @@ public class MyTischtennisParserTest {
 //        }
     }
 
+    @Test
+    public void readOwnTeamBugInPos() throws Exception {
+        String page = readFile(ASSETS_DIR + "/mytt/team2.html");
+        Mannschaft mannschaft = parser.parseOwnTeam(page);
+        assertNotNull(mannschaft);
+        assertEquals(17, mannschaft.getSpielerBilanzen().size());
+        boolean found = false;
+        for (SpielerAndBilanz spielerAndBilanz : mannschaft.getSpielerBilanzen()) {
+            if (spielerAndBilanz.getName().equals("Zenner, Thomas")) {
+                found = true;
+            }
+        }
+        assertTrue(found);
+        for (SpielerAndBilanz spielerAndBilanz : mannschaft.getSpielerBilanzen()) {
+//            System.out.println("spielerAndBilanz = " + spielerAndBilanz);
+            if (spielerAndBilanz.getName().equals("Zenner, Thomas")) {
+                assertEquals("3", spielerAndBilanz.getPosResults().get(0)[0]);
+                assertEquals("0:1", spielerAndBilanz.getPosResults().get(0)[1]);
+                assertEquals("4", spielerAndBilanz.getPosResults().get(1)[0]);
+                assertEquals("1:1", spielerAndBilanz.getPosResults().get(1)[1]);
+                assertEquals("5", spielerAndBilanz.getPosResults().get(2)[0]);
+                assertEquals("1:3", spielerAndBilanz.getPosResults().get(2)[1]);
+                assertEquals("6", spielerAndBilanz.getPosResults().get(3)[0]);
+                assertEquals("4:3", spielerAndBilanz.getPosResults().get(3)[1]);
+            }
+        }
+        assertEquals(0, mannschaft.getSpiele().size());
+        assertEquals("TTG St. Augustin III", mannschaft.getName());
+//        for (Mannschaftspiel ms : mannschaft.getSpiele()) {
+//            System.out.println(ms.getDate() + "  " + ms.getHeimMannschaft().getName() +
+//                    "  " + ms.getGastMannschaft().getName() +  " " + ms.getErgebnis());
+//            System.out.println("mannschaftspiel = " + ms);
+//        }
+    }
     @Test
     public void readOwnTeamEmptyTable() throws Exception {
         String page = readFile(ASSETS_DIR + "/mytt/teamEmptyTable.htm");

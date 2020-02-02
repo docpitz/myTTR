@@ -185,7 +185,7 @@ public class TournamentsActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 

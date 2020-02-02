@@ -2,6 +2,10 @@ package com.jmelzer.myttr.logic;
 
 import android.util.Log;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+
 import com.jmelzer.myttr.Constants;
 import com.jmelzer.myttr.Event;
 import com.jmelzer.myttr.EventDetail;
@@ -11,17 +15,12 @@ import com.jmelzer.myttr.Player;
 import com.jmelzer.myttr.activities.LoginActivity;
 import com.jmelzer.myttr.model.SearchPlayer;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 
 import static com.jmelzer.myttr.logic.LogicTestHelper.login;
 import static com.jmelzer.myttr.logic.LogicTestHelper.readFile;
@@ -350,7 +349,7 @@ public class MyTischtennisParserIntegrationTest {
 
     @Test
     public void testreadOwnLigaRanking() throws Exception {
-        List<Player> players = myTischtennisParser.readOwnLigaRanking().get(0).getRanking();
+        List<Player> players = myTischtennisParser.readLigaRanking(null).get(0).getRanking();
         assertTrue(players.size() > 80);
 
         for (Player player : players) {

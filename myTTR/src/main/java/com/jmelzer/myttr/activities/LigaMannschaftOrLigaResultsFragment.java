@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +22,8 @@ import com.jmelzer.myttr.logic.impl.MytClickTTWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.jmelzer.myttr.MyApplication.selectedMannschaftSpiel;
 
 /**
  * Created by J. Melzer on 27.02.2015.
@@ -58,36 +59,26 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
         //create emtpty list
         adapter = new SpielAdapter(getActivity(),
                 android.R.layout.simple_list_item_1,
-                new ArrayList<Mannschaftspiel>());
+                new ArrayList<>());
         listview.setAdapter(adapter);
 
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                MyApplication.selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
-                if (MyApplication.selectedMannschaftSpiel != null &&
-                        MyApplication.selectedMannschaftSpiel.getUrlDetail() != null &&
-                        MyApplication.selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
-                    Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
-                } else {
-                    callMannschaftSpielDetail();
-                }
-
-            }
-        });
-        // the list will be filled
-        Liga.Spielplan spielplan = Liga.Spielplan.GESAMT;
-        if ((liga != null && liga.getUrlGesamt() == null) ||
-                (MyApplication.getSelectedLiga() != null &&
-                        MyApplication.getSelectedLiga().getUrlGesamt() == null)) {
-            if (pos == 0) {
-                spielplan = Liga.Spielplan.VR;
+        listview.setOnItemClickListener((parent, view, position, id) -> {
+            selectedMannschaftSpiel = (Mannschaftspiel) parent.getItemAtPosition(position);
+            if (selectedMannschaftSpiel != null &&
+                    selectedMannschaftSpiel.getUrlDetail() != null &&
+                    selectedMannschaftSpiel.getUrlDetail().contains("livescoring")) {
+                Toast.makeText(getContext(), "Livescoring wird noch nicht unterstützt.", Toast.LENGTH_LONG).show();
             } else {
-                spielplan = Liga.Spielplan.RR;
+                callMannschaftSpielDetail();
             }
+
+        });
+        Liga.Spielplan spielplan;
+        if (pos == 0) {
+            spielplan = Liga.Spielplan.VR;
+        } else {
+            spielplan = Liga.Spielplan.RR;
         }
         List<Mannschaftspiel> list = getSpiele(spielplan);
         configList(list);
@@ -104,27 +95,31 @@ public class LigaMannschaftOrLigaResultsFragment extends Fragment {
 
     List<Mannschaftspiel> getSpiele(Liga.Spielplan spielplan) {
         if (mannschaft != null) {
-            return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), spielplan);
+            if (!mannschaft.getSpiele().isEmpty()) {
+                return mannschaft.getSpiele(spielplan);
+            } else {
+                return MyApplication.getSelectedLiga().getSpieleFor(mannschaft.getName(), spielplan);
+            }
         } else {
-            return MyApplication.getSelectedLiga().getSpieleFor(null, spielplan);
+            return liga.getSpieleFor(null, spielplan);
         }
     }
 
     private void callMannschaftSpielDetail() {
-        if (MyApplication.selectedMannschaftSpiel.getUrlDetail() == null ||
-                MyApplication.selectedMannschaftSpiel.getUrlDetail().isEmpty()) {
+        if (selectedMannschaftSpiel.getUrlDetail() == null ||
+                selectedMannschaftSpiel.getUrlDetail().isEmpty()) {
             return;
         }
         AsyncTask<String, Void, Integer> task = new BaseAsyncTask(getActivity(), LigaSpielberichtActivity.class) {
 
             @Override
             protected void callParser() throws NetworkException, LoginExpiredException, NoClickTTException {
-                new MytClickTTWrapper().readDetail(MyApplication.saison, MyApplication.selectedMannschaftSpiel);
+                new MytClickTTWrapper().readDetail(MyApplication.saison, selectedMannschaftSpiel);
             }
 
             @Override
             protected boolean dataLoaded() {
-                return MyApplication.selectedMannschaftSpiel.getSpiele().size() > 0;
+                return selectedMannschaftSpiel.getSpiele().size() > 0;
             }
 
 

@@ -1,0 +1,4410 @@
+<!DOCTYPE html>
+<html><head>
+<title>
+myTischtennis.de - click-TT
+- Bezirk Nord 2019/20
+- Herren Bezirksklasse Gr. 1
+</title>
+<base href="https://www.mytischtennis.de/clicktt/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="/includes/javascript/jquery.min.v1.9.1.js" type="text/javascript"></script>
+<script src="/includes/javascript/jquery.matchHeight.js" type="text/javascript"></script>
+<script src="/includes/javascript/common.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/jBox-0.4.9/Source/jBox.min.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/bootstrap.js" type="text/javascript"></script>
+<script src="/includes/javascript/knockout-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//script.ioam.de/iam.js"> </script>
+<link href="/includes/css/click-tt.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<link href="/includes/javascript/jBox-0.4.9/Source/jBox.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<link href="/includes/javascript/jBox-0.4.9/Source/themes/TooltipBorderThickMytt.css?v=12-0-5" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//storage.googleapis.com/adtags/mytt/click-tt/qmax/QMAX_httv.de.js"></script>
+<script src="/includes/javascript/webui-popover/dist/jquery.webui-popover.min.js" type="text/javascript"></script>
+<link href="/includes/javascript/webui-popover/dist/jquery.webui-popover.min.css" media="all" rel="stylesheet" type="text/css" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/SubIm_myTT_Schlaeger_gross.jpg" />
+<meta property="og:image" content="https://www.mytischtennis.de/public/imagedata/sub_Plastikball_Schlaeger.jpg" />
+</head>
+<body class="click-tt">
+<!-- Version: 12.0.5 -->
+<div class="top-bar hidden-xs hidden-sm hidden-print">
+<div class="container">
+<div class="col-md-offset-3 col-md-9 text-right">
+<form action="/community/logout/" method="post" class="form-inline pull-right">
+<a href="/community/personalprofil" class="user-image"><div class="userimagewrapper smallUserImageFromComponent"></div><span>Jürgen Melzer</span></a>
+<button type="submit" class="btn btn-primary btn-xs flat-link"><i class="icon-off"></i></button>
+<input type="hidden" name="targetPage" value="https://www.mytischtennis.de/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/spielplan/gesamt?fromlogin=1">
+</form>
+</div>
+</div>
+</div>
+<div class="header_fx hidden-xs hidden-sm hidden-print">
+<div class="container">
+<h1>
+<a href="/clicktt/home/">
+<img src='/includes/images/mytt_logo_gruen_340x69.png'>
+</a>
+</h1>
+<ul class="mytt-tabs">
+<li class="click-tt">
+<a href="/clicktt/home/" class="current" title="click-TT">click-TT</a>
+</li>
+<li class="portal">
+<a href="/public/home/" class="" title="Portal">Portal</a>
+</li>
+<li class="community">
+<a href="/community/index/" class="" title="myTischtennis">myTischtennis</a>
+</li>
+<li class="magazin" style="margin-left: 25px;">
+<a href="/magazin/home/" class="" title="Magazin">Magazin</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="navbar navbar-default navbar-clicktt navbar-fixed-top-mobile hidden-print" id="sticky-navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed pull-left navHamburger" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+<span class="sr-only">
+Toggle navigation
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</button>
+<a class="navbar-brand visible-xs visible-sm" href="/clicktt/home/">
+<img src="/includes/images/mytt_logo_gruen_148x30.png" alt="myTischtennis.de" />
+</a>
+<div class="navbar-text quicknav visible-xs visible-sm" style="">
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" aria-expanded="false"><i class="icon-big icon-user"></i></a>
+<ul class="dropdown-menu dropdown-menu-right" style="padding-top: 10px">
+<li><a href="/community/personalprofil">Mein Profil</a></li>
+<li><a href="/community/friends"><i class="icon-group"></i> Freunde</a></li>
+<li><a href="/community/mailbox?messageTab=1"><i class="icon-envelope"></i> Nachrichten</a></li>
+<li><a href="/community/premium">Premium Infos</a></li>
+<li role="separator" class="divider"></li>
+<li><a class="text-danger" href="/community/logout/">Abmelden</a></li>
+</ul>
+</div>
+</div>
+<div class="navbar-subnav">
+<span class="click-tt">
+<a href="/clicktt/home/"><i class="icon-table"></i> click-TT</a>
+</span>
+<span class="portal">
+<a href="/public/home/"><i class="icon-desktop"></i> Portal</a>
+</span>
+<span class="community">
+<a href="/community/index/"><i class="icon-user"></i> Community</a>
+</span>
+<span class="magazin" style="border-left: 1px solid #eceaea; padding-left: 8px; margin-left: 8px;">
+<a href="/magazin/home/" style="color: #0e7480"><i class="icon-book"></i> Magazin</a>
+</span>
+</div>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="">
+<a href="&#x2f;clicktt&#x2f;verbaende&#x2f;">Verbände</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;home&#x2f;">Mein click-TT</a>
+</li>
+<li class="active dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ligenplan HeTTV <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class=" active ">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;19-20&#x2f;ligen&#x2f;" id="activeFedIsHeTTV">Ligenplan HeTTV</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;P-19-20&#x2f;pokalspiele&#x2f;">Ligenplan Pokal HeTTV</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;livescoring&#x2f;start&#x2f;">Livescoring</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Suche <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li class="">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;vereinssuche&#x2f;">Vereinssuche</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;spielersuche&#x2f;">Spielersuche</a>
+</li>
+</ul>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;wettkampfarchiv&#x2f;">Wettkampfarchiv HeTTV</a>
+</li>
+<li class="">
+<a href="&#x2f;clicktt&#x2f;HeTTV&#x2f;wechselliste&#x2f;">Wechselliste HeTTV</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container" id="content-container">
+<div class="row hidden-print">
+<div class="col-md-12">
+<a name="content"></a>
+<ol class="breadcrumb"> 
+<li><a href="/clicktt/home/" title="Home">Home</a>
+<li><a href="/clicktt/HeTTV/19-20/ligen/" title="Hessischer Tischtennis-Verband e.V. &ndash; Ligenplan">HeTTV &ndash; Ligenplan</a></li>
+<li><a href="/clicktt/HeTTV/19-20/ligen/B1-19-20/" title="Bezirk Nord 2019/20(B1 19/20)">Bezirk Nord 2019/20</a></li>
+<li class="active">Herren Bezirksklasse Gr. 1</li>
+</ol>
+</div>
+</div>
+<div class="row hidden-print">
+<div class="text-center ontopbanner" id="topBanner">
+<div class='aAdTagWrapper visible-xs'><p><a border="0" href="https://www.mytischtennis.de/public/countAndRedirect.cfm?id=9546" id="9521&quot;" public="" target="_blank" www.mytischtennis.de=""><img src="http://www.mytischtennis.de/public/imagedata/2020_01_mytt_gif_320x50px.gif" /></a></p></div>
+<!-- Beginning Async AdSlot 1 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[728,90],[800,250],[900,250],[320,50]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
+<div id='div-gpt-ad-149594444772628791-1'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-1'); });
+</script>
+</div>
+<!-- End AdSlot 1 -->
+<div class="sky">
+<!-- Beginning Async AdSlot 2 for Ad unit myTischtennis_GmbH/mytischtennis.de ### size: [[160,600],[300,600]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[2]]) -->
+<div id='div-gpt-ad-149594444772628791-2'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-149594444772628791-2'); });
+</script>
+</div>
+<!-- End AdSlot 2 -->
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Liga &nbsp; Spielplan</h3>
+</div>
+<div class="panel-body">
+<div class="pull-right">
+<a href="/community/ranking?showgroupid=359162" class="btn btn-primary m-t hidden-print">TTR-Rangliste <i class="icon-circle-arrow-right"></i></a>
+</div>
+<h1>
+Herren Bezirksklasse Gr. 1
+<span class="btn-group hidden-print" data-bind="with:$root.group">
+<button type="button" class="btn btn-pill btn-xs dropdown-toggle"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+data-bind="css: ((favoriteStatus() == 'added') ? 'btn-primary' : 'btn-default')">
+<i class="fa fa-star" data-bind="css: ((favoriteStatus() == 'added') ? 'fa-star' : 'fa-star-o')"></i>
+</button>
+<ul class="dropdown-menu disabled">
+<!-- ko if: favoriteStatus() == "added" -->
+<li><a href="#" data-bind="click: removeFavorite"><i class="fa fa-fw fa-trash"></i> Von meinen Favoriten-Ligen entfernen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noadded" -->
+<li><a href="" data-bind="click: addFavorite"><i class="fa fa-fw fa-plus-circle"></i> Zu meinen Favoriten-Ligen hinzufügen</a></li>
+<!-- /ko -->
+<!-- ko if: favoriteStatus() == "noaddedAndOverloaded" -->
+<li><a href="#" data-toggle="tooltip" title="Sie haben die Favoriten-Ligen voll">Favoriten-Ligen voll</a></li>
+<!-- /ko -->
+<li><a href="clicktt/home#tab_ligen"><i class="fa fa-fw fa-list"></i> Favoriten-Ligen anzeigen</a></li>
+</ul>
+</span>
+<script src="/includes/javascript/group.js?v=12-0-5" type="text/javascript"></script>
+<script type="text/javascript">
+if (!window.koModels) {
+window.koModels = {};
+}
+// hook for loading-process of mainViewModel
+window.koModels.group = function(mainData, mainModel) {
+return new window.ClickTTGroupViewModel("noadded"
+, "/clicktt/HeTTV/group/removeFavorite?groupid=359162"
+, "/clicktt/HeTTV/group/addFavorite?groupid=359162");
+};
+</script>
+</h1>
+<ul class="nav nav-tabs m-b-md tabs-stacked-xs hidden-print" role="tablist" id="group-tabs">
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/tabelle/gesamt/" data-target="#groupTeamInfos" role="tab">
+Tabelle
+</a>
+</li>
+<li role="presentation" class="active">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/spielplan/rr/" role="tab">
+Gruppenspielplan
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/adressen/" data-target="#groupTeamAddresses" role="tab">
+Kontakte
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/bilanzuebersichten/rr/" data-target="#groupTeamStats" role="tab">
+Bilanzen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/mannschaftsmeldungen/rr/"
+data-target="#groupTeamPools" role="tab">
+Meldungen
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/gruppen-ranglisten/spieler/rr/"
+data-target="#groupTeamPools" role="tab" id="tabGroupTeamPools">
+Ranglisten
+</a>
+</li>
+<li role="presentation" class="">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/zuschauer-matrix/"
+data-target="#groupTeamPools" role="tab" id="tabAttendancesMatrix">
+Zuschauer-Matrix
+</a>
+</li>
+</ul>
+<div class="pull-right">
+<div class="btn-group hidden-print">
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/spielplan/vr/" class="m-b-md btn btn-sm btn-info ">Vorrunde <i class="fa fa-arrow-circle-right"></i></a>
+<a href="/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/spielplan/rr/" class="m-b-md btn btn-sm btn-info ">Rückrunde <i class="fa fa-arrow-circle-left"></i></a>
+</div>
+</div>
+<style>
+.leagueNickname {
+display: none;
+}
+</style>
+<h3>Gruppenspielplan (gesamt)</h3>
+<table class="table table-mytt table-striped table-bordered" id="playingPlanDesktop">
+<thead>
+<tr>
+<th>Datum</th>
+<th>Zeit</th>
+<th class="hidden-xs hidden-sm hidden-md">Halle</th>
+<th class="leagueNickname">Liga</th>
+<th class="hidden-xs hidden-sm hidden-md">Heimmannschaft</th>
+<th class="hidden-xs hidden-sm hidden-md">Gastmannschaft</th>
+<th class="visible-sm visible-xs visible-md">Begegnung</th>
+<th colspan="2">Spiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span>
+Fr 13.09.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841295/TV-1906-Coelbe-vs-TTC-1951-Ginseldorf-II/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841297/TV-1908-Gladenbach-vs-TTV-1951-66-Stadtallendorf-IV/">
+9:0
+</a>
+<a href="javascript:void(0);" id="settooltip9A1BD603-D814-4E10-9174EB70F938659B">NA</a>
+<script type="text/javascript">
+var toolTipContent = "Gastmannschaft ist zur Begegnung nicht angetreten";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip9A1BD603-D814-4E10-9174EB70F938659B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 14.09.19
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841291/TV-1862-Biedenkopf-vs-TTC-1952-Anzefahr-II/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 18.09.19
+</span>
+</td>
+<td>
+20:15 
+<a href="javascript:void(0);" id="settooltip8F1DE09A-BD96-4F1B-AE87430621948057">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 20.09.2019 20:15&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip8F1DE09A-BD96-4F1B-AE87430621948057',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841273/TTC-Tenne-Steffenberg-vs-TV-1862-Biedenkopf/">
+9:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 20.09.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841264/TTC-Eintr-1969-Burgholz-Kirchhain-II-vs-TV-1907-Sterzhausen/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+<a href="javascript:void(0);" id="settooltip2D9900A0-1010-4B06-ACEFE50C0429D94B">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip2D9900A0-1010-4B06-ACEFE50C0429D94B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841286/TV-1908-Gladenbach-vs-TTV-Angelburg-II/">
+9:1
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 28.09.19
+</span>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841272/TTV-1951-66-Stadtallendorf-IV-vs-TV-1906-Coelbe/">
+7:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841294/TTC-1952-Anzefahr-II-vs-TTC-Eintr-1969-Burgholz-Kirchhain-II/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 05.10.19
+</span>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841275/TTV-1951-66-Stadtallendorf-IV-vs-TTC-Eintr-1969-Burgholz-Kirchhain-II/">
+6:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 16.10.19
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip025EF154-A3B7-4100-8E245E8122CB2665">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 11.10.2019 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip025EF154-A3B7-4100-8E245E8122CB2665',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841267/TTC-1951-Ginseldorf-II-vs-TTC-Tenne-Steffenberg/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 18.10.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841259/TV-1906-Coelbe-vs-TV-1908-Gladenbach/">
+8:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841263/TTC-Eintr-1969-Burgholz-Kirchhain-II-vs-TTC-Tenne-Steffenberg/">
+9:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltipECF76F09-3CEF-4835-91E6F6ABB360E975">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipECF76F09-3CEF-4835-91E6F6ABB360E975',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841298/TTC-1952-Anzefahr-II-vs-TV-1907-Sterzhausen/">
+7:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841278/TTV-Angelburg-II-vs-TTV-1951-66-Stadtallendorf-IV/">
+9:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 19.10.19
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841290/TV-1862-Biedenkopf-vs-TV-1906-Coelbe/">
+9:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 25.10.19
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip9261A7DC-3480-420B-9088361EDF704827">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip9261A7DC-3480-420B-9088361EDF704827',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841271/TTV-Angelburg-II-vs-TTC-1952-Anzefahr-II/">
+6:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841299/TV-1906-Coelbe-vs-TTC-Eintr-1969-Burgholz-Kirchhain-II/">
+3:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841292/TTC-Tenne-Steffenberg-vs-TV-1907-Sterzhausen/">
+6:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841287/TV-1908-Gladenbach-vs-TV-1862-Biedenkopf/">
+9:0
+</a>
+<a href="javascript:void(0);" id="settooltipB9573F69-B9BA-48C7-BBCCE4A9326BC3E0">W</a>
+<script type="text/javascript">
+var toolTipContent = "(Straf-)Wertung gegen Gastmannschaft";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipB9573F69-B9BA-48C7-BBCCE4A9326BC3E0',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 26.10.19
+</span>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip61078744-8B6A-48EA-BC6C86C472AF2985">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip61078744-8B6A-48EA-BC6C86C472AF2985',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841269/TTC-1951-Ginseldorf-II-vs-TV-1862-Biedenkopf/">
+9:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+So 27.10.19
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841268/TTV-1951-66-Stadtallendorf-IV-vs-TTC-1951-Ginseldorf-II/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 01.11.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841266/TTC-1951-Ginseldorf-II-vs-TV-1908-Gladenbach/">
+9:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 02.11.19
+</span>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip27634295-09B6-41FC-B90B7AFC9B6461C8">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip27634295-09B6-41FC-B90B7AFC9B6461C8',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841277/TTV-Angelburg-II-vs-TV-1907-Sterzhausen/">
+2:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 08.11.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841270/TTC-Eintr-1969-Burgholz-Kirchhain-II-vs-TV-1908-Gladenbach/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip9FDD99FA-F0EE-43E7-9DF3674343BAFC02">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 09.11.2019 17:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip9FDD99FA-F0EE-43E7-9DF3674343BAFC02',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841257/TTC-1952-Anzefahr-II-vs-TTC-Tenne-Steffenberg/">
+8:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841284/TTV-Angelburg-II-vs-TTC-1951-Ginseldorf-II/">
+3:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 09.11.19
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841265/TV-1862-Biedenkopf-vs-TTV-1951-66-Stadtallendorf-IV/">
+9:2
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841281/TV-1907-Sterzhausen-vs-TV-1906-Coelbe/">
+9:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 15.11.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841289/TV-1906-Coelbe-vs-TTC-1952-Anzefahr-II/">
+7:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841301/TTC-Tenne-Steffenberg-vs-TTV-Angelburg-II/">
+9:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841262/TV-1908-Gladenbach-vs-TV-1907-Sterzhausen/">
+9:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 22.11.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841258/TTC-Eintr-1969-Burgholz-Kirchhain-II-vs-TTC-1951-Ginseldorf-II/">
+9:6
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841283/TTC-Tenne-Steffenberg-vs-TV-1906-Coelbe/">
+9:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+<a href="javascript:void(0);" id="settooltip57FEADC4-F0F2-453D-896D21A74C936265">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip57FEADC4-F0F2-453D-896D21A74C936265',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841296/TTV-Angelburg-II-vs-TV-1862-Biedenkopf/">
+5:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 23.11.19
+</span>
+</td>
+<td>
+18:00 
+<a href="javascript:void(0);" id="settooltipF53BDE92-1549-4BCE-95C44243C0189976">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 23.11.2019 17:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipF53BDE92-1549-4BCE-95C44243C0189976',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841274/TV-1907-Sterzhausen-vs-TTV-1951-66-Stadtallendorf-IV/">
+9:3
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 29.11.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841288/TV-1906-Coelbe-vs-TTV-Angelburg-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841293/TV-1908-Gladenbach-vs-TTC-Tenne-Steffenberg/">
+7:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 30.11.19
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841282/TV-1862-Biedenkopf-vs-TTC-Eintr-1969-Burgholz-Kirchhain-II/">
+7:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841300/TTV-1951-66-Stadtallendorf-IV-vs-TTC-1952-Anzefahr-II/">
+9:5
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip58EB15B2-97CE-45A4-BA7AB95E6BA4CB36">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip58EB15B2-97CE-45A4-BA7AB95E6BA4CB36',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841285/TTC-1951-Ginseldorf-II-vs-TV-1907-Sterzhausen/">
+9:4
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 06.12.19
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841261/TTC-1952-Anzefahr-II-vs-TV-1908-Gladenbach/">
+9:7
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841276/TTC-Tenne-Steffenberg-vs-TTV-1951-66-Stadtallendorf-IV/">
+8:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841280/TTV-Angelburg-II-vs-TTC-Eintr-1969-Burgholz-Kirchhain-II/">
+0:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 07.12.19
+</span>
+</td>
+<td>
+15:00 
+<a href="javascript:void(0);" id="settooltip0BBFDFEA-5EDB-41A1-BEBE3807B0FAEEA4">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip0BBFDFEA-5EDB-41A1-BEBE3807B0FAEEA4',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip7B456B5F-7EB0-4137-AB487F72328793F4">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 07.12.2019 17:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip7B456B5F-7EB0-4137-AB487F72328793F4',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841279/TV-1862-Biedenkopf-vs-TV-1907-Sterzhausen/">
+8:8
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+19:00 
+<a href="javascript:void(0);" id="settooltip8948AA43-0F1D-4B09-B05F9CCCF17F737F">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 07.12.2019 17:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip8948AA43-0F1D-4B09-B05F9CCCF17F737F',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/spielbericht/11841260/TTC-1952-Anzefahr-II-vs-TTC-1951-Ginseldorf-II/">
+2:9
+</a>
+</td>
+<td>
+<i class="fa fa-check green"></i>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 24.01.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+<a href="javascript:void(0);" id="settooltip5B79EC8C-AFCA-4F00-BB4307CA26036809">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip5B79EC8C-AFCA-4F00-BB4307CA26036809',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 25.01.20
+</span>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 31.01.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Termin offen
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 01.02.20
+</span>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip10D0E1A8-A4E0-40EA-AF28705800DA7942">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip10D0E1A8-A4E0-40EA-AF28705800DA7942',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip343E8ADE-67C9-40DC-89DC994569E91A6E">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 31.01.2020 20:15&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip343E8ADE-67C9-40DC-89DC994569E91A6E',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 07.02.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 08.02.20
+</span>
+</td>
+<td>
+17:30 
+<a href="javascript:void(0);" id="settooltip35A42AAC-7367-4E1B-B8481E0881AAE4DF">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip35A42AAC-7367-4E1B-B8481E0881AAE4DF',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+So 09.02.20
+</span>
+</td>
+<td>
+11:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 14.02.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Termin offen
+</td>
+<td>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 15.02.20
+</span>
+</td>
+<td>
+17:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:30 
+<a href="javascript:void(0);" id="settooltip1ACE4FDC-E368-4E69-B3283D3CD0948164">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip1ACE4FDC-E368-4E69-B3283D3CD0948164',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltip54FEABB3-3839-4BA2-A303E71CAF468415">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 14.02.2020 20:15&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip54FEABB3-3839-4BA2-A303E71CAF468415',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 21.02.20
+</span>
+</td>
+<td>
+20:30 
+<a href="javascript:void(0);" id="settooltipBAA07F71-43EA-4635-A8C8FEEE4BCA74C9">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 07.02.2020 20:30&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipBAA07F71-43EA-4635-A8C8FEEE4BCA74C9',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 22.02.20
+</span>
+</td>
+<td>
+15:00 
+<a href="javascript:void(0);" id="settooltip932BA1DB-2981-4C61-BE2DA5158AC74C33">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 21.03.2020 15:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip932BA1DB-2981-4C61-BE2DA5158AC74C33',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltip1AAB15BA-D2B4-4A71-BE79962276C2C10D">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 25.01.2020 17:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip1AAB15BA-D2B4-4A71-BE79962276C2C10D',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 29.02.20
+</span>
+</td>
+<td>
+17:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+18:00 
+<a href="javascript:void(0);" id="settooltip6050592A-2AE5-4109-8836554F29AFF5E9">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 01.02.2020 15:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip6050592A-2AE5-4109-8836554F29AFF5E9',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 13.03.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 14.03.20
+</span>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Mi 18.03.20
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip27779645-D281-421E-95A1B222E7EA464D">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 21.03.2020 17:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip27779645-D281-421E-95A1B222E7EA464D',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 20.03.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+<a href="javascript:void(0);" id="settooltipD8EC284B-70C7-44D2-BC066B765AC74CC9">h</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungsort(-halle) der Begegnung wurde verlegt";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipD8EC284B-70C7-44D2-BC066B765AC74CC9',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 21.03.20
+</span>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 27.03.20
+</span>
+</td>
+<td>
+20:00 
+<a href="javascript:void(0);" id="settooltip6A877D6E-9816-4602-832B8BD163F6B32B">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Fri. 10.04.2020 20:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltip6A877D6E-9816-4602-832B8BD163F6B32B',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13014/TV-1906-Coelbe/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 28.03.20
+</span>
+</td>
+<td>
+15:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13006/TV-1862-Biedenkopf/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 03.04.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13021/TTC-1951-Ginseldorf-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13018/TTC-Tenne-Steffenberg/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:15 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13023/TTV-Angelburg-II/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 04.04.20
+</span>
+</td>
+<td>
+17:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2212359/TTC-1951-Ginseldorf-II/spielerbilanzen/rr/">TTC 1951 Ginseldorf II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209659/TTC-1952-Anzefahr-II/spielerbilanzen/rr/">TTC 1952 Anzefahr II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13003/TTC-1952-Anzefahr-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Fr 24.04.20
+</span>
+</td>
+<td>
+20:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208734/TTC-Eintr-1969-Burgholz-Kirchhain-II/spielerbilanzen/rr/">TTC Eintr. 1969 Burgholz-Kirchhain II</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209459/TTV-Angelburg-II/spielerbilanzen/rr/">TTV Angelburg II</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13011/TTC-Eintr-1969-Burgholz-Kirchhain-II/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+20:30 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208655/TV-1908-Gladenbach/spielerbilanzen/rr/">TV 1908 Gladenbach</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2211857/TV-1906-Coelbe/spielerbilanzen/rr/">TV 1906 Cölbe</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13022/TV-1908-Gladenbach/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span>
+Sa 25.04.20
+</span>
+</td>
+<td>
+16:00 
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209608/TTV-1951-66-Stadtallendorf-IV/spielerbilanzen/rr/">TTV 1951/66 Stadtallendorf IV</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209752/TTC-Tenne-Steffenberg/spielerbilanzen/rr/">TTC Tenne Steffenberg</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13052/TTV-1951-66-Stadtallendorf-IV/info/">1</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+17:00 
+<a href="javascript:void(0);" id="settooltipFE1DDE6D-3E9A-4892-B207C74025B80635">t</a>
+<script type="text/javascript">
+var toolTipContent = "Heimrecht in der Begegnung wurde getauscht";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipFE1DDE6D-3E9A-4892-B207C74025B80635',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+/
+<a href="javascript:void(0);" id="settooltipAA91D258-CE39-43D7-BE6B4742D9EE67B8">v</a>
+<script type="text/javascript">
+var toolTipContent = "Austragungstermin der Begegnung wurde verlegt. Ursprünglicher Termin: Sat. 25.04.2020 15:00&nbsp;Uhr";
+var toolTipHeader = "";
+var toolTipFooter = "";
+var tooltipOptions = {
+attach: '#settooltipAA91D258-CE39-43D7-BE6B4742D9EE67B8',
+//animation: {open: 'tada', close: 'flip'},
+content: toolTipContent,
+trigger: 'click',
+adjustPosition: true,
+adjustTracker: true,
+theme: 'TooltipBorderThickMytt',
+closeOnEsc: true,
+closeOnClick: 'body'
+};
+if(toolTipHeader.length > 0 ) tooltipOptions.title = toolTipHeader;
+if(toolTipFooter.length > 0 ) tooltipOptions.footer = toolTipFooter;
+new jBox('Tooltip', tooltipOptions);
+</script>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2
+</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</td>
+<td class="hidden-xs hidden-sm hidden-md">
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</td>
+<td class="visible-sm visible-xs visible-md">
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2209617/TV-1907-Sterzhausen/spielerbilanzen/rr/">TV 1907 Sterzhausen</a>
+</div>
+<div>
+<a href="/clicktt/HeTTV/19-20/ligen/Herren-Bezirksklasse-Gr-1/gruppe/359162/mannschaft/2208318/TV-1862-Biedenkopf/spielerbilanzen/rr/">TV 1862 Biedenkopf</a>
+</div>
+<div>
+Spiellokal:
+<a href="/clicktt/HeTTV/19-20/verein/13054/TV-1907-Sterzhausen/info/">2</a>
+</div>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div id="mobileAdBottomWrapper" class="panel panel-primary visible-xs">
+<div class="panel-heading"></div>
+<div class="panel-body text-center p-b-md">
+<!-- Beginning Async AdSlot 3 for Ad unit myTischtennis_GmbH/mytischtennis.de/mytischtennis.de_click-tt.de ### size: [[728,90],[800,250],[900,250],[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[3]]) -->
+<div id='div-gpt-ad-518943210402310848-3'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-3'); });
+</script>
+</div>
+<!-- End AdSlot 3 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+<div class="col-md-4 hidden-print">
+<div id="right-col" class="hidden-xs hidden-sm">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Shop-Partner
+</h3>
+</div>
+<div class="panel-body text-center">
+<p><a class="adLink" href="https://www.mytischtennis.de/public/countAndRedirect?id=9545" target="_blank"><img alt="Shop-Partner
+" class="img-responsive" src="http://www.mytischtennis.de/public/imagedata/2020_01_mytt_300x250px.gif" /> </a></p>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<div id='div-gpt-ad-518943210402310848-4'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-4'); });
+</script>
+</div>
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Anzeige
+</h3>
+</div>
+<div class="panel-body text-center">
+<!-- isNewColdboxApp: true -->
+<!-- Beginning Async AdSlot 6 for Ad unit myTischtennis_GmbH/mytischtennis.de_click-tt.de ### size: [[300,250]] -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[6]]) -->
+<div id='div-gpt-ad-518943210402310848-6'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-6'); });
+</script>
+</div>
+<!-- End AdSlot 6 -->
+</div>
+<div class="panel-footer"></div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">JOOLA &ndash; offizieller Verbandsausr&uuml;ster
+</h3>
+</div>
+<div class="panel-body text-center">
+<a href="http://www.mytischtennis.de/public/countAndRedirect.cfm?id=9307" onClick="_gaq.push(['_trackEvent', 'rechte Spalte Pic Only', 'http://www.mytischtennis.de/public/countAndRedirect.cfm?id=9307','JOOLA &ndash; offizieller Verbandsausr&uuml;ster
+']);" title="JOOLA &ndash; offizieller Verbandsausr&uuml;ster
+" class="adLink" target="_blank">
+<img class="img-responsive" src="//www.mytischtennis.de/public/imagedata/winter-sale-300-250.jpg" alt="JOOLA &ndash; offizieller Verbandsausr&uuml;ster
+">
+</a>
+</div>
+<div class="panel-footer"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="hidden-print">
+<div class="whitebox_fx mt_30">
+<div class="bg_spon_top"></div>
+<div class="bg_spon_bottom"></div>
+</div>
+<div class="graybox_fx">
+<div class="container">
+<div class="row">
+<div class="col-xs-6 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-1">
+<div class="headline"><h5>Informationen</h5></div>
+<ul>
+<li><a href="/public/misc/12568/Datenschutz-HeTTV" id="Datenschutz_link_HeTTV" title="Datenschutz">Datenschutz</a></li>
+<li><a href="/public/misc/12391/impressum-HeTTV" id="Impressum_link_HeTTV" title="Impressum">Impressum</a></li>
+<li><a href="/public/misc/12453/kontakt-HeTTV" id="Kontakt_link_HeTTV" title="Kontakt">Kontakt</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cookie-bar" style="display:none;">
+<p>Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a></p>
+</div>
+<div class="onbottomnavi_fx bg_ci_blue text-center">
+<p class="m-t white m-b">Copyright &copy; 2020 myTischtennis GmbH. Alle Rechte vorbehalten. </p>
+</div>
+</div>
+<script src="/includes/javascript/knockstrap-1.3.2.js" type="text/javascript"></script>
+<script src="/includes/javascript/communityGlobal.js?v=12-0-5" type="text/javascript"></script>
+<script src="/includes/javascript/clickttKnockoutStuff.js?v=12-0-5" type="text/javascript"></script>
+<script type="text/html" id="popover-friendship-template">
+<p>Möchtest Du die Freundschaftsanfrage an <em data-bind="text: userDisplayName"></em> versenden?</p>
+<label for="friendship-popover-message">Nachricht hinzufügen (optional)</label>
+<textarea id="friendship-popover-message" name="message" class="form-control" rows="5"></textarea>
+</script>
+<div class="friendship-popover-modal" data-bind="modal: {
+visible: friendshipModal.visible,
+header: { data: { label: 'Freundschaft anbieten' } },
+body: { name: 'popover-friendship-template', data: friendshipModal },
+footer: { data: { primaryLabel: 'Anfrage senden', action: friendshipModal.sendRequest, closeLabel: 'abbrechen' } }
+}"></div>
+<script type="text/javascript">
+var viewModel = new ClickTTMainViewModel({
+hasFederation: true,
+federation: {
+nickname: "HeTTV"
+},
+urls: {
+playerPopover: '/clicktt/HeTTV/player/popover/',
+groupPopover: '/clicktt/HeTTV/group/popover/',
+friendship: '/community/ajax/_friendShipRequest' 
+}
+});
+viewModel.bind();
+window.mainModel = viewModel;
+</script>
+<script type="text/javascript">
+// Set to the same value as the web property used on the site
+var gaProperty = "UA-19104087-1";
+// Disable tracking if the opt-out cookie exists.
+var disableStr = "ga-disable-" + gaProperty;
+if (document.cookie.indexOf(disableStr + "=true") > -1) {
+window[disableStr] = true;
+}
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', gaProperty]);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+// Opt-out function
+function gaOptout() {
+document.cookie =
+disableStr + "=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
+window[disableStr] = true;
+}
+</script>
+<!-- Beginning Async AdSlot 5 for Ad unit myTischtennis_GmbH ### size: Out of Page -->
+<!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[5]]) -->
+<div id='div-gpt-ad-518943210402310848-5'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-518943210402310848-5'); });
+</script>
+</div>
+<!-- End AdSlot 5 -->
+<script src="/includes/javascript/js.cookie-2.0.4.min.js" type="text/javascript"></script>
+<div id="cookie-bar" class="cookie-bar" style="display:none;">
+<div class="cookie-bar-inner">
+Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.<a class="btn btn-xs btn-primary" style="margin-left: 15px;">OK</a>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {
+if (Cookies.get('isCookieAccepted') != '1') {
+var $cookiebar = $('#cookie-bar');
+$cookiebar.show();
+$cookiebar.find('a').click(function() {
+Cookies.set('isCookieAccepted', '1' , { expires: 3650 });
+$cookiebar.hide();
+});
+}
+});
+</script>
+</body>
+</html>

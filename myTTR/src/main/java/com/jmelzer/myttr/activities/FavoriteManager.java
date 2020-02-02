@@ -108,7 +108,7 @@ public class FavoriteManager {
                 Intent target = new Intent(context, SearchActivity.class);
                 target.putExtra(SearchActivity.BACK_TO, SearchActivity.class);
                 target.putExtra(SearchActivity.INTENT_SP, searchPlayer);
-                context.startActivity(target);
+                context.getApplicationContext().startActivity(target);
             } else {
                 Toast.makeText(parent, "Fehler bem Laden", Toast.LENGTH_LONG).show();
             }

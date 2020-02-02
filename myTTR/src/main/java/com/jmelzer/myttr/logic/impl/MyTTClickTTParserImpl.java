@@ -1,7 +1,8 @@
 package com.jmelzer.myttr.logic.impl;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.jmelzer.myttr.Bezirk;
 import com.jmelzer.myttr.Constants;
@@ -28,9 +29,13 @@ import com.jmelzer.myttr.util.UrlUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -49,6 +54,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public static final String CONTAINER_START_TAG = "<div class=\"col-sm-4 col-xs-12\">";
     private static final String[] retiredStrings = new String[]{"zurückgezogen", "aufgelöst", "Relegationsverzicht", "Teilnahmeverzicht"};
     public static final String EMPTY_NAME = "--------";
+    final SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yy HH:mm", Locale.GERMANY);
 
     public String parseError(String page) {
         if (page == null) {
@@ -170,7 +176,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
     public void readGesamtSpielplan(Liga liga) throws NetworkException, NoClickTTException, LoginExpiredException {
         if (liga.getUrlGesamt() != null) {
             String url = liga.getUrlGesamt();
-            if (!url.contains(liga.getHttpAndDomain())) {
+            if (!url.contains("http")) {
                 url = liga.getHttpAndDomain() + url;
             }
             String page = Client.getPage(url);
@@ -258,15 +264,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 m.setUrlDetail(MYTT + ahref[0]);
             }
             m.setErgebnis(ergebnis);
-//            if (ahref[1] != null) {
-//                m.setErgebnis(ahref[1].replaceAll(" ", ""));
-//                if (!ahref[0].isEmpty()) {
-//                    m.setUrlDetail(MYTT + ahref[0]);
-//                }
-//            } else {
-////                m.setErgebnis(row[6]);
-//                m.setErgebnis(null);
-//            }
+
             ahref = readHrefAndATag(row[4]);
             Mannschaft heimMannschaft = new Mannschaft(ahref[1]);
             heimMannschaft.setUrl(MYTT + ahref[0]);
@@ -608,7 +606,7 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             String[] row = tableRowAsArray(resultrow.result, 10, false);
 //            printRows(row);
             String datum = row[0];
-            String time = "";
+            String time = " 24:00";
             if (row[1] != null && !row[1].isEmpty()) {
                 time = " " + removeHtml(row[1]);
             }
@@ -637,12 +635,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
             if (ergebnis.startsWith("<")) {
                 ergebnis = readBetween(ergebnis, 0, ">", "<").result;
             }
-            Mannschaft heim = findMannschaft(liga, readHrefAndATag(row[3])[1]);
             String[] ahref = readHrefAndATag(row[3]);
+            Mannschaft heim = findMannschaft(liga, ahref[1]);
+            ahref = readHrefAndATag(row[3]);
             heim.setUrl(MYTT + ahref[0]);
             Mannschaft gast = findMannschaft(liga, readHrefAndATag(row[4])[1]);
-//            ahref = readHrefAndATag(row[5]);
-//            heim.setUrl(MYTT + ahref[0]);
             Mannschaftspiel mannschaftspiel = new Mannschaftspiel(datum,
                     heim,
                     gast,
@@ -654,10 +651,24 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
                 mannschaftspiel.setDate(lastDate);
             }
 
-            if (heim.getName() != null) {//sometime happen
-                liga.addMannschaft(heim);
-                liga.addSpiel(mannschaftspiel, spielplan);
+            try {
+                //Unparseable date: "Mo 03.02.20" ??
+                Date d = sdf.parse(mannschaftspiel.getDate());
+                mannschaftspiel.setDateAsDate(d);
+            } catch (ParseException e) {
+                Log.e(Constants.LOG_TAG, "", e);
             }
+            if (heim.getName() != null) {//sometimes happened
+                liga.addMannschaft(heim);
+                //https://www.mytischtennis.de/clicktt/DTTB/19-20/ligen/Herren-Landesliga-11/gruppe/
+                // 356941/mannschaft/2232050/TTC-BW-Bruehl-Vochem-III/spielerbilanzen/vr/
+                //                   ~~~~~~~
+                String teamId = readBetween(heim.getUrl(), 0, "mannschaft/", "/").result;
+                heim.setTeamId(teamId);
+                liga.addSpiel(mannschaftspiel, spielplan);
+                heim.addSpiel(mannschaftspiel);
+            }
+            gast.addSpiel(mannschaftspiel);
             idx = resultrow.end;
 
         }
@@ -857,9 +868,9 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         String url = liga.getUrl();
         if (url.contains("/tabelle")) {
             url = url.substring(0, url.indexOf("/tabelle"));
-            liga.setUrlVR(url + "/spielplan/vr");
-            liga.setUrlRR(url + "/spielplan/rr");
-            liga.setUrlGesamt(null);
+//            liga.setUrlVR(url + "/spielplan/vr");
+//            liga.setUrlRR(url + "/spielplan/rr");
+            liga.setUrlGesamt(url + "/spielplan/gesamt");
         } else {
             ParseResult result = readBetween(page, 0, "</h1>", null);
             result = readBetween(result, 0, "<div", "</div");
@@ -1112,5 +1123,11 @@ public class MyTTClickTTParserImpl extends AbstractBaseParser implements MyTTCli
         return mannschaft.getName().
                 replace("III", "Herren III").
                 replace("II", "Herren II");
+    }
+
+    public void readBilanzen(Mannschaft team) throws LoginExpiredException, NetworkException {
+        String urlBilanz = team.getUrl();
+        String page = Client.getPage(urlBilanz);
+        parseBilanzen(page, team);
     }
 }

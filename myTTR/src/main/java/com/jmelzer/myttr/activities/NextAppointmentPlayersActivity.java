@@ -24,7 +24,7 @@ public class NextAppointmentPlayersActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.foreignTeamPlayers != null;
     }
 

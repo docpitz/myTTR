@@ -3,11 +3,15 @@ package com.jmelzer.myttr;
 import com.jmelzer.myttr.model.Favorite;
 import com.jmelzer.myttr.util.UrlUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import static com.jmelzer.myttr.model.Saison.getVREndDateForSeason;
 
 /**
  * Created by J. Melzer on 19.02.2015.
@@ -15,8 +19,26 @@ import java.util.List;
  */
 public class Liga implements Favorite {
 
+    final SimpleDateFormat sdf = new SimpleDateFormat("E dd.MM.yy HH:mm", Locale.GERMANY);
 
+    private String groupId;
 
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public Mannschaft getMannschaft(String teamId) {
+        for (Mannschaft mannschaft : mannschaften) {
+            if (mannschaft.getTeamId().equals(teamId)) {
+                return mannschaft;
+            }
+        }
+        return null;
+    }
 
     public enum Spielplan {
         VR,
@@ -77,8 +99,9 @@ public class Liga implements Favorite {
     }
 
     public String getNameForFav() {
-        if (getKategorie() != null)
+        if (getKategorie() != null) {
             return name + " - " + getKategorie();
+        }
         return name;
     }
 
@@ -108,8 +131,9 @@ public class Liga implements Favorite {
     }
 
     public void addMannschaft(Mannschaft m) {
-        if (!mannschaften.contains(m))
+        if (!mannschaften.contains(m)) {
             mannschaften.add(m);
+        }
 
         m.setLiga(this);
     }
@@ -127,16 +151,19 @@ public class Liga implements Favorite {
     }
 
     public void addSpiel(Mannschaftspiel s, Spielplan spielplan) {
-        switch (spielplan) {
-            case VR:
-                spieleVorrunde.add(s);
-                break;
-            case RR:
-                spieleRueckrunde.add(s);
-                break;
-            case GESAMT:
-                spieleGesamt.add(s);
+        Date end = getVREndDateForSeason(Constants.ACTUAL_SAISON);
+        boolean isVR;
+        if (s.getDateAsDate() != null) {
+            isVR = s.getDateAsDate().before(end);
+        } else {
+            isVR = spielplan == Spielplan.VR;
         }
+        if (isVR) {
+            spieleVorrunde.add(s);
+        } else {
+            spieleRueckrunde.add(s);
+        }
+        spieleGesamt.add(s);
     }
 
     public String getUrlGesamt() {
@@ -186,6 +213,7 @@ public class Liga implements Favorite {
         list.addAll(filterSpiele(spieleRueckrunde, name));
         return list;
     }
+
     public List<Mannschaftspiel> getSpieleFor(String mannschaft, Spielplan spielplan) {
         if (spielplan == Spielplan.VR) {
             if (mannschaft != null) {
@@ -242,12 +270,18 @@ public class Liga implements Favorite {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Liga liga = (Liga) o;
 
-        if (!name.equals(liga.name)) return false;
+        if (!name.equals(liga.name)) {
+            return false;
+        }
         return url.equals(liga.url);
     }
 
@@ -260,7 +294,7 @@ public class Liga implements Favorite {
 
     public Mannschaft replaceMannschaftInList(Mannschaft m) {
         for (Mannschaft mannschaft : mannschaften) {
-            if (m.getName().equals(mannschaft.getName())) {
+            if (m.getName() != null && m.getName().equals(mannschaft.getName())) {
                 mannschaften.remove(mannschaft);
                 m.setVereinId(mannschaft.getVereinId());
                 m.setVereinUrl(mannschaft.getVereinUrl());

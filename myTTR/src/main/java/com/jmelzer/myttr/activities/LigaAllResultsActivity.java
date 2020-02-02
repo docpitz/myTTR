@@ -2,7 +2,6 @@ package com.jmelzer.myttr.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.jmelzer.myttr.Liga;
 import com.jmelzer.myttr.Mannschaftspiel;
@@ -18,7 +17,7 @@ import java.util.List;
 public class LigaAllResultsActivity extends AbstractLigaResultActivity {
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return MyApplication.getSelectedLiga() != null;
     }
 

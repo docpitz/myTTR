@@ -33,7 +33,7 @@
 
 
     <ListView
-        android:id="@+id/playerlistview"
+        android:id="@+id/otherteamview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         tools:listitem="@layout/other_team_row"/>

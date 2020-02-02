@@ -42,7 +42,7 @@ public class TTRCalculatorActivity extends BaseActivity {
     MyTischtennisParser myTischtennisParser = new MyTischtennisParser();
 
     @Override
-    protected boolean checkIfNeccessryDataIsAvaible() {
+    protected boolean checkIfNeccessryDataIsAvailable() {
         return true;
     }
 
@@ -117,20 +117,7 @@ public class TTRCalculatorActivity extends BaseActivity {
     }
 
     public void selectTeam(MenuItem item) {
-        AsyncTask<String, Void, Integer> task = new BaseAsyncTask(this, SelectOtherTeamActivity.class) {
-
-            @Override
-            protected void callParser() throws NetworkException, LoginExpiredException, NoDataException {
-                myTischtennisParser.getOtherTeams();
-            }
-
-            @Override
-            protected boolean dataLoaded() {
-                return MyApplication.otherTeams != null;
-            }
-
-
-        };
+        AsyncTask<String, Void, Integer> task = new SelectOtherTeamAsyncTask(this, TTRCalculatorActivity.class);
         task.execute();
     }
 
@@ -174,4 +161,5 @@ public class TTRCalculatorActivity extends BaseActivity {
 
 
     }
+
 }

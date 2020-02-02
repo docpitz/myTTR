@@ -14,13 +14,11 @@ import com.jmelzer.myttr.logic.TestUtil;
 import com.jmelzer.myttr.logic.ValidationException;
 import com.jmelzer.myttr.model.Verein;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -93,6 +91,27 @@ public class MyTTClickTTParserTest {
         assertEquals(11, liga.getMannschaften().size());
     }
 
+    @Test
+    public void bugParseDate() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/bug_parse_date.htm");
+        Liga liga = new Liga("Kreisoberliga ", "https://www.mytischtennis.de/clicktt/TTVSA/19-20/ligen/Kreisoberliga/gruppe/361123/spielplan/gesamt");
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel.getDateAsDate());
+        }
+    }
+
+    @Test
+    public void bugParseDate2() throws Exception {
+        String page = TestUtil.readFile(ASSETS_DIR + "/spieplan-mit-verlegungen.htm");
+        Liga liga = new Liga("Kreisoberliga ", "https://www.mytischtennis.de/clicktt/HeTTV/19-20/ligen/Bezirksklasse-Gr-1/gruppe/359162/spielplan/gesamt");
+        parser.parseErgebnisse(page, liga, Liga.Spielplan.RR);
+        for (Mannschaftspiel mannschaftspiel : liga.getSpieleRueckrunde()) {
+            System.out.println("mannschaftspiel = " + mannschaftspiel);
+            assertNotNull(mannschaftspiel.getDateAsDate());
+        }
+    }
     @Test
     public void parseLigaHome() throws Exception {
         String page = TestUtil.readFile(ASSETS_DIR + "/click-tt-home.html");
@@ -189,24 +208,6 @@ public class MyTTClickTTParserTest {
         }
     }
 
-    /**
-     * Gruppenspielplan
-     * https://www.mytischtennis.de/clicktt/WTTV/18-19/ligen/NRW-Liga-3/gruppe/334215/spielplan/vr
-     */
-    @Test
-    public void parseErgebnisseNeu() throws Exception {
-        String page = TestUtil.readFile(ASSETS_DIR + "/wttv-spielplan-neu.html");
-        Liga liga = new Liga("Herren-Bezirksliga 2", "https://www.mytischtennis.de/clicktt/WTTV/17-18/ligen/Bezirksliga-2/gruppe/305796/tabelle/aktuell");
-
-        parser.parseErgebnisse(page, liga, Liga.Spielplan.VR);
-        assertEquals(55, liga.getSpieleVorrunde().size());
-        for (Mannschaftspiel mannschaftspiel : liga.getSpieleVorrunde()) {
-            System.out.println("mannschaftspiel = " + mannschaftspiel);
-            assertNotNull(mannschaftspiel.getDate());
-            assertTrue(mannschaftspiel.toString(), mannschaftspiel.getDate().contains(":"));
-            assertFalse(mannschaftspiel.toString(), mannschaftspiel.getDate().contains("<"));
-        }
-    }
 
     /**
      * Gruppenspielplan

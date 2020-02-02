@@ -1,6 +1,8 @@
 package com.jmelzer.myttr.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,5 +46,21 @@ public enum Saison {
             }
         }
         throw new IllegalArgumentException(item + " isn't valid");
+    }
+
+    public static Date getVREndDateForSeason(Saison saison) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.MONTH, Calendar.DECEMBER);
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+
+        switch (saison) {
+            case SAISON_2020:
+                cal.set(Calendar.YEAR, 2019);
+                break;
+            case SAISON_2021:
+                cal.set(Calendar.YEAR, 2020);
+                break;
+        }
+        return cal.getTime();
     }
 }
