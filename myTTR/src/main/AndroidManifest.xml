@@ -7,12 +7,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jmelzer.myttr"
     android:installLocation="auto">
+    <uses-sdk android:targetSdkVersion="21"/>
     <application
         android:usesCleartextTraffic="true">
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-
-
 </manifest>
