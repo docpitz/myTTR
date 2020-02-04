@@ -460,7 +460,7 @@ public class MyTischtennisParser extends AbstractBaseParser {
     }
 
     private String parseLoginName(String page) {
-        ParseResult result = readBetween(page, 0, "<a href=\"/community/personalprofil\" class=\"user-image\">", "</a>");
+        ParseResult result = readBetween(page, 0, "<a href=\"/community/personalprofil/\" class=\"user-image\">", "</a>");
         result = readBetween(result.result, 0, "<span>", "</span>");
         return result.result.trim();
     }
