@@ -76,6 +76,7 @@ dependencies {
 //    implementation 'com.getbase:floatingactionbutton:1.7.0'
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'com.github.PhilJay:MPAndroidChart:v2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 //    implementation 'com.google.firebase:firebase-perf:19.0.4'
 
 
